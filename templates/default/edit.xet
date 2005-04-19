@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.1.002">
+		<grid width="100%">
+			<columns>
+				<column width="95"/>
+				<column width="40%"/>
+				<column width="8%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row">
+					<description options=",,,cat_id" value="Category"/>
+					<menulist>
+						<menupopup type="select-cat" options="None" id="cat_id"/>
+					</menulist>
+					<description value="Access" options=",,,pm_access"/>
+					<menulist>
+						<menupopup id="pm_access" no_lang="1"/>
+					</menulist>
+				</row>
+				<row class="row">
+					<description options=",,,pm_priority" value="Priority"/>
+					<menulist>
+						<menupopup type="select-number" options=",1,10" id="pm_priority"/>
+					</menulist>
+					<description value="State" options=",,,pm_status"/>
+					<menulist>
+						<menupopup id="pm_status" no_lang="1"/>
+					</menulist>
+				</row>
+				<row class="th">
+					<description value="Value"/>
+					<description value="Project"/>
+					<description value="Elementlist" span="all"/>
+				</row>
+				<row class="row">
+					<description options=",,,pm_real_start" value="Startdate"/>
+					<date-time id="pm_real_start"/>
+					<date-time id="ds[pe_real_start]" readonly="true" span="all"/>
+				</row>
+				<row class="row">
+					<description value="- planed" options=",,,pm_planed_end"/>
+					<date-time id="pm_planed_start"/>
+					<date-time id="ds[pe_planed_start]" readonly="true" span="all"/>
+				</row>
+				<row class="row">
+					<description options=",,,pm_real_end" value="Enddate"/>
+					<date-time id="pm_real_end"/>
+					<date-time id="ds[pe_real_end]" readonly="true" span="all"/>
+				</row>
+				<row class="row">
+					<description value="- planed" options=",,,pm_planed_end"/>
+					<date-time id="pm_planed_end"/>
+					<date-time id="ds[pe_planed_end]" readonly="true" span="all"/>
+				</row>
+				<row class="row">
+					<description options=",,,pm_used_time" value="Time"/>
+					<date-timeonly id="pm_used_time"/>
+					<date-timeonly id="ds[pe_used_time]" readonly="true" span="all"/>
+				</row>
+				<row class="row">
+					<description options=",,,pm_planed_time" value="- planed"/>
+					<date-timeonly id="pm_planed_time"/>
+					<date-timeonly id="ds[pe_planed_time]" readonly="true" span="all"/>
+				</row>
+				<row class="row">
+					<description options=",,,pm_completion" value="Status"/>
+					<menulist>
+						<menupopup type="select-percent" options="None" id="pm_completion"/>
+					</menulist>
+					<description no_lang="1" id="ds[pe_completion]" readonly="true" span="all"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.1.001">
+		<grid width="100%">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<htmlarea id="pm_description"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.edit.members" template="" lang="" group="0" version="0.1.001">
+		<grid>
+			<columns>
+				<column width="95"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row">
+					<description options=",,,pm_coordinator" value="Coordinator"/>
+					<menulist>
+						<menupopup type="select-account" id="pm_coordinator"/>
+					</menulist>
+				</row>
+				<row class="row" valign="top">
+					<description options=",,,pm_members" value="Members"/>
+					<listbox type="select-account" rows="5" id="pm_members"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.1.001">
+		<grid width="100%" height="150">
+			<columns>
+				<column width="95"/>
+				<column width="40%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row" valign="top">
+					<description options=",,,pm_accounting_type" value="Accounting type" span="all"/>
+				</row>
+				<row class="th">
+					<description value="Value"/>
+					<description value="Project"/>
+					<description value="Elementlist"/>
+				</row>
+				<row class="row">
+					<description options=",,,pm_used_budget" value="Budget"/>
+					<textbox type="float" min="2" id="pm_used_budget"/>
+					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
+				</row>
+				<row class="row">
+					<description options=",,,pm_planed_budget" value="- planed"/>
+					<textbox type="float" min="2" id="pm_planed_budget"/>
+					<textbox type="float" min="2" id="ds[pe_planed_budget]" readonly="true"/>
+				</row>
+				<row height="50%">
+					<description/>
+					<description/>
+					<description/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="0.1.001">
+		<grid width="100%" height="150">
+			<columns>
+				<column width="95"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row" valign="top">
+					<description id="$row[label]"/>
+					<description options="@$row[options]" id="$row[content]"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.edit.links" template="" lang="" group="0" version="0.1.001">
+		<grid width="100%">
+			<columns>
+				<column width="95"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th" disabled="@status_only">
+					<description span="all" value="Create new links"/>
+				</row>
+				<row class="row" disabled="@status_only">
+					<link-to span="all" id="link_to"/>
+				</row>
+				<row class="th">
+					<description span="all" value="Existing links"/>
+				</row>
+				<row class="row_off" valign="top" height="164">
+					<link-list span="all" id="link_to"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.edit" template="" lang="" group="0" version="0.1.001">
+		<grid width="100%">
+			<columns>
+				<column width="100"/>
+				<column width="150"/>
+				<column width="10%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description span="all" class="redItalic" no_lang="1" id="msg" align="center"/>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+				<row class="th">
+					<description options=",,,pm_number" value="Project ID"/>
+					<textbox size="20" maxlength="64" no_lang="1" id="pm_number" statustext="leave it empty to have one generated"/>
+					<description options=",,,pm_title" value="Title"/>
+					<textbox size="64" maxlength="255" id="pm_title" needed="1" statustext="a describtive title for the project, must not be empty"/>
+				</row>
+				<row>
+					<tabbox span="all">
+						<tabs>
+							<tab label="General" statustext="Start, End, Category, ..."/>
+							<tab label="Description" statustext="free descriptiv text"/>
+							<tab label="Members" statustext="Project coordinator and members"/>
+							<tab label="Accounting" statustext="Accounting options"/>
+							<tab label="Custom" statustext="Custom fields"/>
+							<tab label="Links" statustext="Linked elements"/>
+						</tabs>
+						<tabpanels>
+							<template id="projectmanager.edit.general"/>
+							<template id="projectmanager.edit.description"/>
+							<template id="projectmanager.edit.members"/>
+							<template id="projectmanager.edit.accounting"/>
+							<template id="projectmanager.edit.custom"/>
+							<template id="projectmanager.edit.links"/>
+						</tabpanels>
+					</tabbox>
+				</row>
+				<row class="row" disabled="!@pm_id">
+					<description value="Modified"/>
+					<hbox span="all">
+						<date-time id="pm_modified" readonly="true"/>
+						<menulist>
+							<menupopup type="select-account" id="pm_modifier" label="by" readonly="true"/>
+						</menulist>
+					</hbox>
+				</row>
+				<row>
+					<hbox span="3">
+						<button id="edit" label="Edit" statustext="Edit this project"/>
+						<button label="Save" id="save" statustext="Save the changes made"/>
+						<button id="apply" label="Apply" statustext="Apply the changes"/>
+						<button id="cancel" label="Cancel" statustext="Exit without saving"/>
+					</hbox>
+					<button label="Delete" align="right" id="delete" statustext="Delete this project" onclick="return confirm('Delete this project');"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

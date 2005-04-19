@@ -1,0 +1,90 @@
+<?php
+/**************************************************************************\
+* eGroupWare - ProjectManager - DataSource for InfoLog                     *
+* http://www.egroupware.org                                                *
+* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
+* --------------------------------------------                             *
+*  This program is free software; you can redistribute it and/or modify it *
+*  under the terms of the GNU General Public License as published by the   *
+*  Free Software Foundation; either version 2 of the License, or (at your  *
+*  option) any later version.                                              *
+\**************************************************************************/
+
+/* $Id$ */
+
+include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
+
+/**
+ * DataSource for the Calendar
+ *
+ * @package projectmanager
+ * @author RalfBecker-AT-outdoor-training.de
+ * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ */
+class datasource_calendar extends datasource
+{
+	/**
+	 * Constructor
+	 */
+	function datasource_calendar()
+	{
+		$this->datasource('calendar');
+		
+		$this->valid = PM_PLANED_START|PM_PLANED_END|PM_PLANED_TIME|PM_RESOURCES;
+	}
+	
+	/**
+	 * get an entry from the underlaying app (if not given) and convert it into a datasource array
+	 * 
+	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
+	 * @return array/boolean array with the data supported by that source or false on error (eg. not found, not availible)
+	 */
+	function get($data_id)
+	{
+		// we use $GLOBALS['bocal'] as an already running instance is availible there
+		if (!is_object($GLOBALS['bocal']))
+		{
+			include_once(EGW_INCLUDE_ROOT.'/calendar/inc/class.bocal.inc.php');
+			$GLOBALS['bocal'] =& new bocal();
+		}
+		if (!is_array($data_id))
+		{
+			if (!(int) $data_id || !($data = $GLOBALS['bocal']->read((int) $data_id)))
+			{
+				return false;
+			}
+		}
+		else
+		{
+			$data =& $data_id;
+		}
+		$ds = array(
+			'pe_title' => ExecMethod('infolog.bolink.calendar_title',$data),
+			'pe_planed_start' => $data['start']['raw'],
+			'pe_planed_end' => $data['end']['raw'],
+			'pe_planed_time' => $data['end']['raw'] - $data['start']['raw'],
+		);
+		foreach($data['participants'] as $uid => $status)
+		{
+			if ($status != 'R')
+			{
+				$ds[] = $uid;
+			}
+		}
+/*
+		// ToDO: this does not change automatically after the event is over, 
+		// maybe we need a flag for that in egw_pm_elements
+		if ($data['end']['raw'] <= time()+$GLOBALS['egw']->datetime->tz_offset)
+		{
+			$ds['pe_used_time'] = $ds['planed_time'];
+		}
+*/
+		if ($this->debug)
+		{
+			echo "datasource_calendar($data_id) data="; _debug_array($data);
+			echo "datasource="; _debug_array($ds);
+		}
+		return $ds;
+	}
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="0.1.001">
+		<grid width="100%">
+			<columns>
+				<column/>
+				<column width="33%"/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th">
+					<nextmatch-sortheader label="Project ID" id="pm_number"/>
+					<nextmatch-sortheader label="Title" id="pm_title"/>
+					<nextmatch-sortheader label="Priority" align="center" id="pm_priority"/>
+					<nextmatch-sortheader label="Coordinator" id="pm_coordinator"/>
+					<nextmatch-sortheader label="last modified" id="pm_modified"/>
+					<nextmatch-sortheader label="modified by" id="pm_modifier"/>
+					<nextmatch-sortheader label="Status" id="pm_completiton" align="center"/>
+					<description value="Actions" align="center"/>
+				</row>
+				<row class="row">
+					<description id="${row}[pm_number]" no_lang="1"/>
+					<description id="${row}[pm_title]" no_lang="1" options=",projectmanager.uiprojectelements.index&amp;pm_id=$row_cont[pm_id]" statustext="Select this project and show it's elements"/>
+					<description no_lang="1" id="${row}[pm_priority]" align="center"/>
+					<menulist>
+						<menupopup type="select-account" id="${row}[pm_coordinator]" readonly="true"/>
+					</menulist>
+					<date-time id="${row}[pm_modified]" readonly="true"/>
+					<menulist>
+						<menupopup type="select-account" id="${row}[pm_modifier]" readonly="true"/>
+					</menulist>
+					<image src="${row}[pm_completion]" label="$row_cont[pm_completion]" no_lang="1" align="center"/>
+					<hbox align="center">
+						<button image="view" label="View" id="view[$row_cont[pm_id]]" statustext="View this project"/>
+						<button id="edit[$row_cont[pm_id]]" image="edit" label="Edit" statustext="Edit this project"/>
+						<button id="delete[$row_cont[pm_id]]" image="delete" label="Delete" statustext="Delete this project" onclick="return confirm('Delete this project');"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.list" template="" lang="" group="0" version="0.1.001">
+		<grid width="100%">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description class="redItalic" id="msg" align="center" no_lang="1"/>
+				</row>
+				<row>
+					<nextmatch options="projectmanager.list.rows" id="nm"/>
+				</row>
+				<row>
+					<button label="Add" id="add" statustext="Add a new project"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

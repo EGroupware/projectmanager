@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.elements.edit.times" template="" lang="" group="0" version="0.1.002">
+		<grid width="100%">
+			<columns>
+				<column width="95"/>
+				<column width="50%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row">
+					<description options=",,,pe_real_start" value="Startdate"/>
+					<date-time id="pe_real_start"/>
+					<date-time id="ds[pe_real_start]" readonly="true"/>
+				</row>
+				<row class="row">
+					<description value="- planed" options=",,,pe_planed_end"/>
+					<date-time id="pe_planed_start"/>
+					<date-time id="ds[pe_planed_start]" readonly="true"/>
+				</row>
+				<row class="row">
+					<description options=",,,pe_real_end" value="Enddate"/>
+					<date-time id="pe_real_end"/>
+					<date-time id="ds[pe_real_end]" readonly="true"/>
+				</row>
+				<row class="row">
+					<description value="- planed"/>
+					<date-time id="pe_planed_end"/>
+					<date-time id="ds[pe_planed_end]" readonly="true"/>
+				</row>
+				<row class="row">
+					<description options=",,,pe_used_time" value="Time"/>
+					<date-timeonly id="pe_used_time"/>
+					<date-timeonly id="ds[pe_used_time]" readonly="true"/>
+				</row>
+				<row class="row">
+					<description options=",,,pe_planed_time" value="- planed"/>
+					<date-timeonly id="pe_planed_time"/>
+					<date-timeonly id="ds[pe_planed_time]" readonly="true"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.1.002">
+		<grid width="100%">
+			<columns>
+				<column width="95"/>
+				<column width="50%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row">
+					<description options=",,,pe_real_budget" value="Budget"/>
+					<textbox type="float" min="2" id="pe_used_budget"/>
+					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
+				</row>
+				<row class="row">
+					<description options=",,,pe_planed_budget" value="- planed"/>
+					<textbox type="float" min="2" id="pe_planed_budget"/>
+					<textbox type="float" min="2" id="ds[pe_planed_budget]" readonly="true"/>
+				</row>
+				<row class="th">
+					<description span="all" value="Calculate budget by time"/>
+				</row>
+				<row class="row" disabled="@no_activities">
+					<description value="Activity"/>
+					<menulist span="all">
+						<menupopup id="pe_activity_id" statustext="select an activity if you want to calculate costs by the time"/>
+					</menulist>
+				</row>
+				<row class="row">
+					<description options=",,,pe_cost_per_time" value="Cost per Time"/>
+					<textbox type="float" min="2" span="all" id="pe_cost_per_time"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="0.1.002">
+		<grid>
+			<columns>
+				<column width="100"/>
+				<column width="49%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description span="all" class="redItalic" align="center" id="msg" no_lang="1"/>
+					<description/>
+					<description/>
+				</row>
+				<row class="th">
+					<image src="pe_icon" align="center"/>
+					<description no_lang="1" id="pe_title" span="2"/>
+				</row>
+				<row class="row">
+					<description options=",,,pe_cat_id" value="Category"/>
+					<menulist>
+						<menupopup type="select-cat" options="None" id="cat_id"/>
+					</menulist>
+					<checkbox options="ignore,regular" id="pe_status" statustext="do not use that entry as project-element" label="ignore that entry" span="2"/>
+				</row>
+				<row class="row">
+					<description options=",,,pe_remark" value="Comment"/>
+					<textbox size="50" maxlength="50" id="pe_remark" span="2"/>
+				</row>
+				<row class="th">
+					<description value="Value"/>
+					<description value="Overwrite the datasource"/>
+					<description value="Datasource"/>
+				</row>
+				<row class="row">
+					<description options=",,,pe_completion" value="Status"/>
+					<menulist>
+						<menupopup type="select-percent" options="None" id="pe_completion"/>
+					</menulist>
+					<description id="ds[pe_completion]"/>
+				</row>
+				<row>
+					<tabbox span="all">
+						<tabs>
+							<tab label="Times" statustext="Start- &amp; Enddate, Time"/>
+							<tab label="Budget" statustext="Budget"/>
+						</tabs>
+						<tabpanels>
+							<template id="projectmanager.elements.edit.times"/>
+							<template id="projectmanager.elements.edit.budget"/>
+						</tabpanels>
+					</tabbox>
+				</row>
+				<row class="row_on">
+					<description value="Modified"/>
+					<hbox>
+						<date-time id="pe_modified" readonly="true"/>
+						<menulist>
+							<menupopup type="select-account" id="pe_modifier" label="by" readonly="true"/>
+						</menulist>
+					</hbox>
+					<date-time id="pe_synced" readonly="true"/>
+				</row>
+				<row>
+					<hbox span="2">
+						<button label="Edit" id="edit" statustext="Edit this project-element"/>
+						<button id="save" label="Save" statustext="Save this project element"/>
+						<button id="apply" label="Apply" statustext="Apply the changes"/>
+						<button id="cancel" label="Cancel" statustext="Close the window, discard the changes made" onclick="window.close();"/>
+						<html id="js"/>
+					</hbox>
+					<button label="Delete" align="right" id="delete" statustext="Delete this project-element, does NOT remove the linked entry" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>
