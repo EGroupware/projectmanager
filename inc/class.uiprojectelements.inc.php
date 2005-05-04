@@ -282,7 +282,7 @@ class uiprojectelements extends boprojectelements
 		{
 			$query['col_filter']['cat_id'] = $query['cat_id'];
 		}
-		$total = parent::get_rows($query,$rows,$readonlys);
+		$total = parent::get_rows($query,$rows,$readonlys,true);
 		
 		// adding the project itself always as first line
 		$self = $this->update('projectmanager',$this->pm_id);
