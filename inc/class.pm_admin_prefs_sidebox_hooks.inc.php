@@ -62,11 +62,20 @@ class pm_admin_prefs_sidebox_hooks
 			{
 				$projects[0] = lang('select a project');
 			}
+			switch($_GET['menuaction'])
+			{
+				case 'projectmanager.ganttchart.show':
+					$selbox_action = 'projectmanager.ganttchart.show';
+					break;
+				default:
+					$selbox_action = 'projectmanager.uiprojectelements.index';
+					break;
+			}
 			$file = array(
 				array(
 					'text' => $GLOBALS['egw']->html->select('pm_id',$pm_id,$projects,true,
 						' onchange="location.href=\''.$GLOBALS['egw']->link('/index.php',array(
-							'menuaction'=>'projectmanager.uiprojectelements.index',
+							'menuaction' => $selbox_action,
 						)).'&pm_id=\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars($pm_title).'"'),
 					'no_lang' => True,
 					'link' => False
@@ -75,6 +84,8 @@ class pm_admin_prefs_sidebox_hooks
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
 				'Elementlist' => $GLOBALS['phpgw']->link('/index.php',array(
 					'menuaction' => 'projectmanager.uiprojectelements.index' )),
+				'Ganttchart' => $GLOBALS['phpgw']->link('/index.php',array(
+					'menuaction' => 'projectmanager.ganttchart.show' )),
 			);
 			display_sidebox($appname,$GLOBALS['phpgw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 		}

@@ -162,7 +162,7 @@ class uiprojectelements extends boprojectelements
 					{
 						$msg = lang('Project-Element saved');
 						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => 'projectmanager.uiprojectelements.index',
+							'menuaction' => $content['caller'],//'projectmanager.uiprojectelements.index',
 							'pm_id'      => $this->data['pm_id'],
 							'msg'        => $msg,
 						))."';";
@@ -177,7 +177,7 @@ class uiprojectelements extends boprojectelements
 			{
 				// all delete are done by index
 				$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-					'menuaction' => 'projectmanager.uiprojectelements.index',
+					'menuaction' => $content['caller'],//'projectmanager.uiprojectelements.index',
 					'delete'     => $this->data['pe_id'],
 				))."';";
 				/*
@@ -222,6 +222,8 @@ class uiprojectelements extends boprojectelements
 		$preserv = array(
 			'view' => $view,
 			'data' => $this->data,
+			'caller' => !$content['caller'] && preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ?
+				 $matches[1] : $content['caller'],
 		);
 		foreach($datasource->name2id as $name => $id)
 		{

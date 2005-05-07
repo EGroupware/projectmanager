@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="0.2.002">
+		<grid>
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<html span="all" class="redItalic" id="msg" align="center"/>
+				</row>
+				<row>
+					<groupbox 3="select" 4="select" 5="button" data="" rows="2" cols="5">
+						<caption label="Ganttchart parameter"/>
+						<grid>
+							<columns>
+								<column/>
+								<column/>
+								<column/>
+								<column/>
+								<column/>
+							</columns>
+							<rows>
+								<row>
+									<description options=",,,start" value="Startdate"/>
+									<description options=",,,end" value="Enddate"/>
+									<description options=",,,depth" value="Depth of display"/>
+									<description options=",,,filter" value="Status filter"/>
+									<description/>
+								</row>
+								<row>
+									<date id="start" onchange="1"/>
+									<date id="end" onchange="1"/>
+									<menulist>
+										<menupopup no_lang="1" id="depth" onchange="1"/>
+									</menulist>
+									<menulist>
+										<menupopup no_lang="1" id="filter" onchange="1"/>
+									</menulist>
+									<button label="Update" id="update"/>
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+				</row>
+				<row>
+					<html id="map"/>
+				</row>
+				<row>
+					<image src="ganttchart" options=",,ganttchart"/>
+				</row>
+				<row disabled="1">
+					<button id="milestone" label="Add milestone" statustext="Add a new milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.ganttchart.milestone&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

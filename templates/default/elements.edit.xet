@@ -114,7 +114,7 @@
 					<menulist>
 						<menupopup type="select-percent" options="None" id="pe_completion"/>
 					</menulist>
-					<description id="ds[pe_completion]"/>
+					<description id="ds[pe_completion]" no_lang="1"/>
 				</row>
 				<row>
 					<tabbox span="all">

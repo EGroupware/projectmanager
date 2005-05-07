@@ -16,7 +16,7 @@ include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.ph
 include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.uietemplate.inc.php');
 
 /**
- * ProjectManage UI: list and edit projects
+ * ProjectManager UI: list and edit projects
  *
  * @package projectmanager
  * @author RalfBecker-AT-outdoor-training.de
@@ -346,9 +346,9 @@ class uiprojectmanager extends boprojectmanager
 		}
 		$content = $content['nm']['rows'];
 		
-		if ($content['view'] || $content['edit'] || $content['delete'])
+		if ($content['view'] || $content['edit'] || $content['delete'] || $content['ganttchart'])
 		{
-			foreach(array('view','edit','delete') as $action)
+			foreach(array('view','edit','delete','ganttchart') as $action)
 			{
 				if ($content[$action])
 				{
@@ -359,6 +359,12 @@ class uiprojectmanager extends boprojectmanager
 			//echo "<p>uiprojectmanger::index() action='$action', pm_id='$pm_id'</p>\n";
 			switch($action)
 			{
+				case 'ganttchart':
+					$tpl->location(array(
+						'menuaction' => 'projectmanager.ganttchart.show',
+						'pm_id'      => $pm_id,
+					));
+					break;
 				case 'view':
 				case 'edit':
 					$tpl->location(array(
