@@ -236,10 +236,12 @@ class ganttchart extends boprojectelements
 	/**
 	 * Ganttbar for a project
 	 *
-	 * @param array $pm project-data array
+	 * @param array $pm project or project-element data array
+	 * @param int $level hierarchy level, 0=main project
+	 * @param int $line line-number of the gantchart, starting with 0
 	 * @return object GanttBar
 	 */
-	function &project2bar($pm,$level=0)
+	function &project2bar($pm,$level,$line)
 	{
 		if ($pm['pe_id'])
 		{
@@ -256,7 +258,7 @@ class ganttchart extends boprojectelements
 				if ($key != 'pm_id') $pe[str_replace('pm_','pe_',$key)] =& $pm[$key];
 			}
 		}
-		$bar =& $this->element2bar($pe,$level);
+		$bar =& $this->element2bar($pe,$level,$line);
 
 		// set project-specific attributes: bold, solid bar, ...
 		$bar->title->SetFont(FF_VERA,FS_BOLD,!$level ? 9 : 8);
@@ -270,12 +272,12 @@ class ganttchart extends boprojectelements
 	 * Ganttbar for a project-element
 	 *
 	 * @param array $pe projectelement-data array
+	 * @param int $level hierarchy level, 0=main project
+	 * @param int $line line-number of the gantchart, starting with 0
 	 * @return object GanttBar
 	 */
-	function &element2bar($pe,$level=1)
+	function &element2bar($pe,$level,$line)
 	{
-		static $counter=0;
-
 		// create a shorter title (removes dates from calendar-titles and project-numbers from sub-projects
 		if ($pe['pe_app'] == 'calendar' || $pe['pe_app'] == 'projectmanager')
 		{
@@ -283,11 +285,12 @@ class ganttchart extends boprojectelements
 		}
 		if (!$title) $title = $pe['pe_title'];
 		
-		if ($this->debug) {
-			echo "<p>GanttBar($counter,'".($level ? str_repeat(' ',$level) : '').
+		if ($this->debug) 
+		{
+			echo "<p>GanttBar($line,'".($level ? str_repeat(' ',$level) : '').
 				$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').'   '."','".
-				date('Y-m-d',$pe['pe_planned_start'])."','".
-				date('Y-m-d',$pe['pe_planned_end'])."','".
+				date('Y-m-d H:i',$pe['pe_planned_start'])."','".
+				date('Y-m-d H:i',$pe['pe_planned_end'])."','".
 				round($pe['pe_completion']).'%'."',0.5)</p>\n";
 		}		
 		if (!$this->modernJPGraph)	// for an old JPGraph we have to clip the bar ourself
@@ -295,7 +298,7 @@ class ganttchart extends boprojectelements
 			if ($pe['pe_planned_start'] < $this->scale_start) $pe['pe_planned_start'] = $this->scale_start;
 			if ($pe['pe_planned_end'] > $this->scale_end) $pe['pe_planned_end'] = $this->scale_end-1;
 		}
-		$bar =& new GanttBar($counter++,($level ? str_repeat(' ',$level) : '').
+		$bar =& new GanttBar($line,($level ? str_repeat(' ',$level) : '').
 			// the GanttBar title has somehow to be iso-8859-1
 			$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').($level?'  ':''),
 			date('Y-m-d'.($this->modernJPGraph?' H:i':''),$pe['pe_planned_start']),
@@ -322,12 +325,13 @@ class ganttchart extends boprojectelements
 	/**
 	 * Adds all elements of project $pm_id to the ganttchart, calls itself recursive for subprojects
 	 *
-	 * @param object &$graph JPGraph gantt-graph object
 	 * @param int $pm_id project-id
 	 * @param array $params
-	 * @param int $level calling level starting with 1, functin stops if $level > $params['deepth']
+	 * @param int &$line line-number of the gantchart, starting with 0, gets incremented
+	 * @param array &$bars bars are added here, with their pe_id as key
+	 * @param int $level hierarchy level starting with 1, function stops if $level > $params['deepth']
 	 */
-	function add_elements(&$graph,$pm_id,$params,$level=1)
+	function add_elements($pm_id,$params,&$line,&$bars,$level=1)
 	{
 		$filter = array(
 			'pm_id' => $pm_id,
@@ -349,21 +353,45 @@ class ganttchart extends boprojectelements
 				$filter['pe_completion'] = 100;
 				break;
 		}
+		$pe_id2line = array();
 		foreach((array) $this->search(array(),false,'pe_planned_start,pe_planned_end','','',false,'AND',false,$filter) as $pe)
 		{
+			//echo "$line: ".print_r($pe,true)."<br>\n";
+			if (!$pe) continue;
+			
+			$pe_id = $pe['pe_id'];
+			$pe_id2line[$pe_id] = $line;	// need to remember the line to draw the constraints
+
 			if ($pe['pe_app'] == 'projectmanager')
 			{
-				$graph->Add($this->project2bar($pe,$level));
-
-				// if we should display further levels, we call ourself recursive
-				if ($level < $params['depth'])
-				{
-					$this->add_elements($graph,$pe['pe_app_id'],$params,$level+1);
-				}
+				$bars[$pe_id] =& $this->project2bar($pe,$level,$line++);
 			}
-			elseif ($pe) 
+			else
 			{
-				$graph->Add($this->element2bar($pe,$level));
+				$bars[$pe_id] =& $this->element2bar($pe,$level,$line++);
+			}
+			// if we should display further levels, we call ourself recursive
+			if ($pe['pe_app'] == 'projectmanager' && $level < $params['depth'])
+			{
+				$this->add_elements($pe['pe_app_id'],$params,$line,$bars,$level+1);
+			}
+		}
+		// adding the constraints to the bars
+		foreach((array)$this->constraints->search(array('pm_id'=>$pm_id)) as $constraint)
+		{
+			$pe_id = $constraint['pe_id_end'];	// start of the array at the end of this pe
+			if (isset($bars[$pe_id]))
+			{
+				$bar =& $bars[$pe_id];
+				
+				if ($constraint['pe_id_start'] && isset($pe_id2line[$constraint['pe_id_start']]))
+				{
+					$bar->SetConstrain($pe_id2line[$constraint['pe_id_start']],CONSTRAIN_ENDSTART);
+				}
+				if ($constraint['ms_id'])
+				{
+					// ToDO
+				}
 			}
 		}
 	}
@@ -383,11 +411,17 @@ class ganttchart extends boprojectelements
 		// create new graph-object and set scale_{start|end}
 		$graph =& $this->new_gantt($title,$subtitle,$params['start'],$params['end'],$params['width']);
 
-		$graph->Add($this->project2bar($this->project->data));
+		$line = 0;
+		$bars = array();
+		$graph->Add($this->project2bar($this->project->data,0,$line++));
 
 		if ($params['depth'] > 0)
 		{
-			$this->add_elements($graph,$this->project->data['pm_id'],$params);
+			$this->add_elements($this->project->data['pm_id'],$params,$line,$bars);
+		}
+		foreach($bars as $pe_id => $bar)
+		{
+			$graph->Add($bar);
 		}
 		if (!$this->debug) $graph->Stroke($filename);
 		

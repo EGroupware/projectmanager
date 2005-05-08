@@ -84,7 +84,7 @@
 			'ix' => array(array('pm_id','pe_status')),
 			'uc' => array()
 		),
-		'egw_pm_constrains' => array(
+		'egw_pm_constraints' => array(
 			'fd' => array(
 				'pm_id' => array('type' => 'int','precision' => '4'),
 				'pe_id_end' => array('type' => 'int','precision' => '4'),

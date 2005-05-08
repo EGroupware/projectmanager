@@ -25,6 +25,7 @@ budget	projectmanager	de	Budget
 by	projectmanager	de	von
 calculate budget by time	projectmanager	de	Budget nach Zeit/Tätigkeiten berechnen
 close the window, discard the changes made	projectmanager	de	Fenster schließen und die gemachten Veränderungen löschen
+constraints	projectmanager	de	Bedingungen
 coordinator	projectmanager	de	Koordinator
 cost per time	projectmanager	de	Kosten pro Zeiteinheit
 create new links	projectmanager	de	Neue Verknüpfung erstellen
@@ -42,6 +43,9 @@ edit this project-element	projectmanager	de	Dieses Projektelement editieren
 elementlist	projectmanager	de	Elementliste
 elements	projectmanager	de	Elemente
 elements of elements	projectmanager	de	Element der Elemente
+elements that can't start before this one is finished	projectmanager	de	Elemente die nicht starten können bevor dieses beendet ist
+elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
+end before	projectmanager	de	Endet vor
 enddate	projectmanager	de	Enddatum
 error: deleting project !!!	projectmanager	de	Fehler: Projekt löschen!!!
 error: deleting project-element !!!	projectmanager	de	Fehler: Projektelement löschen!!!
@@ -65,6 +69,8 @@ links	projectmanager	de	Verknüpfungen
 mainproject only	projectmanager	de	nur das Hauptprojekt
 mainprojects	projectmanager	de	Hauptprojekte
 members	projectmanager	de	Mitarbeiter
+milestones	projectmanager	de	Milensteine
+milestones before this element has to be finished	projectmanager	de	Milensteine vor denen dieses Element beendet sein muß
 modified	projectmanager	de	Geändert
 modified by	projectmanager	de	Geändert durch
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
@@ -96,6 +102,7 @@ save this project element	projectmanager	de	Dieses Projektelement speichern
 select a project	projectmanager	de	Ein Projekt auswählen
 select an activity if you want to calculate costs by the time	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Zeit berechnen wollen
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
+start after	projectmanager	de	Startet nach
 start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
 start- & enddate, time	projectmanager	de	Start- & Enddatum, Zeit
 startdate	projectmanager	de	Startdatum

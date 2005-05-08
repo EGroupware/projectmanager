@@ -24,6 +24,7 @@ budget	projectmanager	en	Budget
 by	projectmanager	en	by
 calculate budget by time	projectmanager	en	Calculate budget by time
 close the window, discard the changes made	projectmanager	en	Close the window, discard the changes made
+constraints	projectmanager	en	Constraints
 coordinator	projectmanager	en	Coordinator
 cost per time	projectmanager	en	Cost per Time
 create new links	projectmanager	en	Create new links
@@ -40,6 +41,9 @@ edit this project	projectmanager	en	Edit this project
 edit this project-element	projectmanager	en	Edit this project-element
 elementlist	projectmanager	en	Elementlist
 elements of elements	projectmanager	en	Elements of elements
+elements that can't start before this one is finished	projectmanager	en	Elements that can't start before this one is finished
+elements which have to be finished before this can start	projectmanager	en	Elements which have to be finished before this can start
+end before	projectmanager	en	End before
 enddate	projectmanager	en	Enddate
 error: deleting project !!!	projectmanager	en	Error: deleting project !!!
 error: deleting project-element !!!	projectmanager	en	Error: deleting project-element !!!
@@ -63,6 +67,8 @@ links	projectmanager	en	Links
 mainproject only	projectmanager	en	Mainproject only
 mainprojects	projectmanager	en	Mainprojects
 members	projectmanager	en	Members
+milestones	projectmanager	en	Milestones
+milestones before this element has to be finished	projectmanager	en	Milestones before this element has to be finished
 modified	projectmanager	en	Modified
 modified by	projectmanager	en	modified by
 necessary for project-elements doing that not automatic	projectmanager	en	necessary for project-elements doing that not automatic
@@ -73,6 +79,7 @@ nonactive	projectmanager	en	Nonactive
 not started (0%)	projectmanager	en	Not started (0%)
 overwrite the datasource	projectmanager	en	Overwrite the datasource
 permission denied !!!	projectmanager	en	Permission denied !!!
+planed	projectmanager	en	planed
 planned	projectmanager	en	planned
 project coordinator and members	projectmanager	en	Project coordinator and members
 project deleted	projectmanager	en	Project deleted
@@ -91,6 +98,7 @@ save this project element	projectmanager	en	Save this project element
 select a project	projectmanager	en	select a project
 select an activity if you want to calculate costs by the time	projectmanager	en	select an activity if you want to calculate costs by the time
 select this project and show it's elements	projectmanager	en	Select this project and show it's elements
+start after	projectmanager	en	Start after
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate, time	projectmanager	en	Start- & Enddate, Time
 startdate	projectmanager	en	Startdate

@@ -44,7 +44,7 @@ class soprojectmanager extends so_sql
 	var $extra_table = 'egw_pm_extra';
 
 	/**
-	 * Constructor, class the constructor of the extended class
+	 * Constructor, calls the constructor of the extended class
 	 * 
 	 * @param int $pm_id id of the project to load, default null
 	 */

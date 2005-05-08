@@ -46,7 +46,7 @@ class soprojectelements extends so_sql
 	);
 
 	/**
-	 * Constructor, class the constructor of the extended class
+	 * Constructor, calls the constructor of the extended class
 	 * 
 	 * It is sufficent to give just the pe_id, as it is unique!
 	 *
@@ -180,5 +180,5 @@ class soprojectelements extends so_sql
 			$this->data['pe_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
 		}
 		return parent::save();
-	}	 
+	}
 }

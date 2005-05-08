@@ -37,6 +37,10 @@ class boprojectelements extends soprojectelements
 	 */
 	var $project;
 	/**
+	 * @var soconstraints-object $constraints instance of the soconstraints-class
+	 */
+	var $constraints;
+	/**
 	 * @var array $datasources instances of the different datasources
 	 */
 	var $datasources = array();
@@ -89,6 +93,12 @@ class boprojectelements extends soprojectelements
 		$this->link =& $GLOBALS['egw']->link;
 
 		$this->project =& CreateObject('projectmanager.boprojectmanager',$pm_id);
+		
+		if (!is_object($this->project->constraints))
+		{
+			$this->project->constraints =& CreateObject('projectmanager.soconstraints',$pm_id);
+		}
+		$this->constraints =& $this->project->constraints;
 
 		if ($this->debug) $this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
 
@@ -354,9 +364,20 @@ class boprojectelements extends soprojectelements
 			$this->link->update_remark($this->data['pe_id'],$this->data['pe_remark']);
 		}
 		if ($this->debug) $this->debug_message("boprojectelements::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
-		if (!($err = parent::save($keys,$touch_modified)) && $update_project)
+		
+		if (!($err = parent::save($keys,$touch_modified)))
 		{
-			$this->project->update($this->data['pm_id'],$update_project,$this->data);
+			if (is_array($this->data['pe_constraints']))
+			{
+				$this->constraints->save(array(
+					'pm_id' => $this->data['pm_id'],
+					'pe_id' => $this->data['pe_id'],
+				) + $this->data['pe_constraints']);
+			}
+			if ($update_project) 
+			{
+				$this->project->update($this->data['pm_id'],$update_project,$this->data);
+			}
 		}
 		return $err;
 	}
@@ -391,15 +412,54 @@ class boprojectelements extends soprojectelements
 			$this->link->unlink($pe_id);
 			// update the project
 			$this->project->update($pm_id);
+			
+			$this->constraints->delete(array('pe_id' => $pe_id));
 		}
 		elseif ($pm_id)
 		{
 			// delete all links to project $pm_id
 			$this->link->unlink(0,'projectmanager',$pm_id);
-		}		
+		}	
 		return $ret;
 	}
 	
+	/**
+	 * reads row matched by key and puts all cols in the data array, reimplemented to also read the constraints
+	 *
+	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
+	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or 
+	 * @return array/boolean data if row could be retrived else False
+	*/
+	function read($keys,$extra_cols='',$join=true)
+	{
+		if (!($data = parent::read($keys,$extra_cols,$join)))
+		{
+			return false;
+		}
+		$this->data['pe_constraints'] = $this->constraints->read(array(
+			'pm_id' => $this->data['pm_id'],
+			'pe_id' => $this->data['pe_id'],
+		));
+		return $this->data;
+	}
+	
+	/**
+	 * reads the titles of all project-elements specified by $keys
+	 *
+	 * @param array $keys keys of elements to read, default empty = all of the project the class is instanciated for
+	 * @return array with pe_id => lang(pe_app): pe_title pairs
+	 */
+	function &titles($keys=array())
+	{
+		$titles = array();
+		foreach((array) $this->search(array(),'pe_id,pe_title','pe_app,pe_title','','',false,'AND',false,$keys) as $element)
+		{
+			$titles[$element['pe_id']] = lang($element['pe_app']).': '.$element['pe_title'];
+		}
+		return $titles;
+	}
+
 	/**
 	 * echos a (preformatted / no-html) debug-message and evtl. log it to a file
 	 *

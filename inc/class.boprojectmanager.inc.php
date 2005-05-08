@@ -50,6 +50,14 @@ class boprojectmanager extends soprojectmanager
 	 *	it need to be add to a server-time to get the user-time or substracted from a user-time to get the server-time
 	 */
 	var $tz_offset_s;
+	/**
+	 * @var object $constraints soconstraints-object, not instanciated automatic!
+	 */
+	var $constraints;
+	/**
+	 * @var object $milestones somilestones-object, not instanciated automatic!
+	 */
+	var $constraints;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -78,7 +86,7 @@ class boprojectmanager extends soprojectmanager
 			$GLOBALS['egw']->link =& CreateObject('infolog.bolink');
 		}
 		$this->link =& $GLOBALS['egw']->link;
-
+		
 		if ($this->debug) $this->debug_message("boprojectmanager::boprojectmanager($pm_id) finished");
 	}
 	
@@ -204,6 +212,20 @@ class boprojectmanager extends soprojectmanager
 			// delete all links to project $pm_id
 			$this->link->unlink(0,'projectmanager',$pm_id);
 		}
+		if (!is_object($this->constraints))
+		{
+			$this->constraints =& CreateObject('projectmanager.soconstraints',$pm_id);
+		}
+		// delete all constraints of the project
+		$this->constraints->delete(array('pm_id' => $pm_id));
+
+		if (!is_object($this->milestones))
+		{
+			$this->milestones =& CreateObject('projectmanager.somilestones',$pm_id);
+		}
+		// delete all milestones of the project
+		$this->milestones->delete(array('pm_id' => $pm_id));
+
 		return $ret;
 	}
 

@@ -104,7 +104,7 @@ class uiprojectelements extends boprojectelements
 		{
 			//_debug_array($content);
 			// re-read it in case it's changed in the meantime!
-			$this->data = $this->read($content['data']);	
+			$this->data = $this->read($content['data']);
 			$update_necessary = $save_necessary = 0;
 			$datasource = $this->datasource($this->data['pe_app']);
 			$ds = $datasource->read($this->data['pe_app_id']);
@@ -120,9 +120,10 @@ class uiprojectelements extends boprojectelements
 						$this->data['pe_overwrite'] |= $id;
 						$update_necessary |= $id;
 					}
-					// or check if a field is no longer set, or the datasource changed => set it from the datasource
-					elseif ((!$content[$name] || $name == 'pe_completion' && $content[$name] === '') &&
-						    ($this->data['pe_overwrite'] & $id) || $this->data[$name] != $ds[$name])
+					// check if a field is no longer set, or it's not set and datasource changed 
+					// => set it from the datasource
+					elseif (($this->data['pe_overwrite'] & $id) && (!$content[$name] || $name == 'pe_completion' && $content[$name] === '') ||
+						    !($this->data['pe_overwrite'] & $id) && $this->data[$name] != $ds[$name])
 					{
 						// if we have a change in the datasource, set pe_synced
 						if ($this->data[$name] != $ds[$name])
@@ -134,7 +135,7 @@ class uiprojectelements extends boprojectelements
 						$update_necessary |= $id;
 					}
 				}
-				foreach(array('pe_status','cat_id','pe_remark') as $name)
+				foreach(array('pe_status','cat_id','pe_remark','pe_constraints') as $name)
 				{
 					if ($content[$name] != $this->data[$name])
 					{
@@ -239,6 +240,12 @@ class uiprojectelements extends boprojectelements
 		);
 		//_debug_array($content);
 		$sel_options = array(
+			'pe_constraints' => $this->titles(array(	// only titles of elements displayed in a gantchart
+				"pe_status != 'ignore'",
+				'pe_planned_start IS NOT NULL',
+				'pe_planned_end IS NOT NULL',	
+			)),
+			'milestone'     => array()//$this->milestones->titles(), 
 		);
 		$readonlys = array(
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
@@ -252,6 +259,7 @@ class uiprojectelements extends boprojectelements
 			}
 			$readonlys['pe_remark'] = true;
 			$readonlys['save'] = $readonlys['apply'] = true;
+			$readonlys['pe_constraints[start]'] = $readonlys['pe_constraints[end]'] = $readonlys['pe_constraints[milestone]'] = true;
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' . 
 			($this->data['pm_id'] ? ($view ? lang('View project-elements') : lang('Edit project-elements')) : lang('Add project-elements'));

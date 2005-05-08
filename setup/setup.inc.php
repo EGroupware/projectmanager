@@ -13,9 +13,9 @@
 /* $Id$ */
 
 $setup_info['projectmanager']['name']      = 'projectmanager';
-$setup_info['projectmanager']['version']   = '0.2.004';
+$setup_info['projectmanager']['version']   = '0.2.005';
 $setup_info['projectmanager']['app_order'] = 5;
-$setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constrains','egw_pm_milestones');
+$setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones');
 $setup_info['projectmanager']['enable']    = 1;
 
 $setup_info['projectmanager']['author'] = 

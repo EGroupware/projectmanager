@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.edit.times" template="" lang="" group="0" version="0.1.002">
+	<template id="projectmanager.elements.edit.times" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -15,9 +15,9 @@
 					<date-time id="ds[pe_real_start]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description value="- planed" options=",,,pe_planed_end"/>
-					<date-time id="pe_planed_start"/>
-					<date-time id="ds[pe_planed_start]" readonly="true"/>
+					<description value="- planned" options=",,,pe_planned_end"/>
+					<date-time id="pe_planned_start"/>
+					<date-time id="ds[pe_planned_start]" readonly="true"/>
 				</row>
 				<row class="row">
 					<description options=",,,pe_real_end" value="Enddate"/>
@@ -25,9 +25,9 @@
 					<date-time id="ds[pe_real_end]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description value="- planed"/>
-					<date-time id="pe_planed_end"/>
-					<date-time id="ds[pe_planed_end]" readonly="true"/>
+					<description value="- planned" options=",,,pe_planned_end"/>
+					<date-time id="pe_planned_end"/>
+					<date-time id="ds[pe_planned_end]" readonly="true"/>
 				</row>
 				<row class="row">
 					<description options=",,,pe_used_time" value="Time"/>
@@ -35,14 +35,14 @@
 					<date-timeonly id="ds[pe_used_time]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_planed_time" value="- planed"/>
-					<date-timeonly id="pe_planed_time"/>
-					<date-timeonly id="ds[pe_planed_time]" readonly="true"/>
+					<description options=",,,pe_planned_time" value="- planned"/>
+					<date-timeonly id="pe_planned_time"/>
+					<date-timeonly id="ds[pe_planned_time]" readonly="true"/>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.1.002">
+	<template id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -56,8 +56,8 @@
 					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_planed_budget" value="- planed"/>
-					<textbox type="float" min="2" id="pe_planed_budget"/>
+					<description options=",,,pe_planned_budget" value="- planned"/>
+					<textbox type="float" min="2" id="pe_planned_budget"/>
 					<textbox type="float" min="2" id="ds[pe_planed_budget]" readonly="true"/>
 				</row>
 				<row class="th">
@@ -66,7 +66,7 @@
 				<row class="row" disabled="@no_activities">
 					<description value="Activity"/>
 					<menulist span="all">
-						<menupopup id="pe_activity_id" statustext="select an activity if you want to calculate costs by the time"/>
+						<menupopup id="pe_activity_id" statustext="select an activity if you want to calculate costs by the time" no_lang="1"/>
 					</menulist>
 				</row>
 				<row class="row">
@@ -76,7 +76,29 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="0.1.002">
+	<template id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.2.001">
+		<grid width="100%">
+			<columns>
+				<column width=" 95"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row" valign="top">
+					<description options=",,,end_constraints" value="End before"/>
+					<listbox rows="2" id="pe_constraints[end]" statustext="Elements that can't start before this one is finished" no_lang="1"/>
+				</row>
+				<row class="row" valign="top">
+					<description options=",,,end_constraints" value="Start after"/>
+					<listbox rows="2" id="pe_constraints[start]" statustext="Elements which have to be finished before this can start" no_lang="1"/>
+				</row>
+				<row class="row" valign="top">
+					<description options=",,,milestone_constraints" value="Milestones"/>
+					<listbox id="pe_constraints[milestone]" statustext="Milestones before this element has to be finished" rows="2" no_lang="1"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="0.2.001">
 		<grid>
 			<columns>
 				<column width="100"/>
@@ -121,10 +143,12 @@
 						<tabs>
 							<tab label="Times" statustext="Start- &amp; Enddate, Time"/>
 							<tab label="Budget" statustext="Budget"/>
+							<tab label="Constraints" statustext="Constraints"/>
 						</tabs>
 						<tabpanels>
 							<template id="projectmanager.elements.edit.times"/>
 							<template id="projectmanager.elements.edit.budget"/>
+							<template id="projectmanager.elements.edit.constraints"/>
 						</tabpanels>
 					</tabbox>
 				</row>

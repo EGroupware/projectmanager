@@ -72,15 +72,15 @@ class datasource
 	 * @var array $name2id translated names / array-keys to the numeric ids PM_*
 	 */
 	var $name2id = array(
-		'pe_completion'    => PM_COMPLETION,
+		'pe_completion'     => PM_COMPLETION,
 		'pe_planned_time'   => PM_PLANNED_TIME,
-		'pe_used_time'     => PM_USED_TIME,
+		'pe_used_time'      => PM_USED_TIME,
 		'pe_planned_budget' => PM_PLANNED_BUDGET,
-		'pe_used_budget'   => PM_USED_BUDGET,
+		'pe_used_budget'    => PM_USED_BUDGET,
 		'pe_planned_start'  => PM_PLANNED_START,
-		'pe_real_start'    => PM_REAL_START,
+		'pe_real_start'     => PM_REAL_START,
 		'pe_planned_end'    => PM_PLANNED_END,
-		'pe_real_end'      => PM_REAL_END,
+		'pe_real_end'       => PM_REAL_END,
 	);
 
 	/**

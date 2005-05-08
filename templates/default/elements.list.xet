@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.1.003">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -52,19 +52,19 @@
 					</vbox>
 					<vbox>
 						<date readonly="true" id="${row}[pe_real_start]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planed_start]" class="planed"/>
+						<date readonly="true" no_lang="1" id="${row}[pe_planned_start]" class="planed"/>
 					</vbox>
 					<vbox readonly="true">
 						<date readonly="true" id="${row}[pe_real_end]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planed_end]" class="planed"/>
+						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planed"/>
 					</vbox>
 					<vbox readonly="true">
 						<date-timeonly readonly="true" id="${row}[pe_used_time]"/>
-						<date-timeonly readonly="true" no_lang="1" id="${row}[pe_planed_time]" class="planed"/>
+						<date-timeonly readonly="true" no_lang="1" id="${row}[pe_planned_time]" class="planed"/>
 					</vbox>
 					<vbox readonly="true">
 						<textbox type="float" readonly="true" id="${row}[pe_budget_used]" max="2"/>
-						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planed_budget]" max="2" class="planed"/>
+						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planned_budget]" max="2" class="planed"/>
 					</vbox>
 					<image label="$row_cont[pe_completion]" no_lang="1" align="center" src="${row}[pe_completion]"/>
 					<vbox readonly="true">
@@ -74,6 +74,7 @@
 						</menulist>
 					</vbox>
 					<hbox align="center">
+						<image label="Ganttchart" onclick="return confirm('window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]'),'view-projects','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;');" src="ganttchart" options="projectmanager.ganttchart.show&amp;pm_id=$row_cont[pm_id]" statustext="View Ganttchart of this project"/>
 						<image label="View" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]'),'view-projects','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" src="view" options="projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
 						<image label="Edit" onclick="return confirm('window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.edit&amp;pm_id=$row_cont[pm_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;');" src="edit" options="projectmanager.uiprojectmanager.edit&amp;pm_id=$row_cont[pm_id]" statustext="Edit this project"/>
 					</hbox>
@@ -86,19 +87,19 @@
 					</vbox>
 					<vbox>
 						<date readonly="true" id="${row}[pe_real_start]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planed_start]" class="planed"/>
+						<date readonly="true" no_lang="1" id="${row}[pe_planned_start]" class="planed"/>
 					</vbox>
 					<vbox readonly="true">
 						<date readonly="true" id="${row}[pe_real_end]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planed_end]" class="planed"/>
+						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planed"/>
 					</vbox>
 					<vbox readonly="true">
 						<date-timeonly readonly="true" id="${row}[pe_used_time]"/>
-						<date-timeonly readonly="true" no_lang="1" id="${row}[pe_planed_time]" class="planed"/>
+						<date-timeonly readonly="true" no_lang="1" id="${row}[pe_planned_time]" class="planed"/>
 					</vbox>
 					<vbox readonly="true">
 						<textbox type="float" readonly="true" id="${row}[pe_budget_used]" max="2"/>
-						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planed_budget]" max="2" class="planed"/>
+						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planned_budget]" max="2" class="planed"/>
 					</vbox>
 					<image label="$row_cont[pe_completion]" no_lang="1" align="center" src="${row}[pe_completion]"/>
 					<vbox readonly="true">
