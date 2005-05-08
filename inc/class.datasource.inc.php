@@ -19,19 +19,19 @@
  */
 /** int percentage completion 0-100 */
 define('PM_COMPLETION',1);
-/** int seconds planed time */
+/** int seconds planned time */
 define('PM_PLANNED_TIME',2);
 /** int seconds used time */
 define('PM_USED_TIME',4);
-/** double planed budget */
+/** double planned budget */
 define('PM_PLANNED_BUDGET',8);
-/** double planed budget */
+/** double planned budget */
 define('PM_USED_BUDGET',16);
-/** int timestamp planed start-date */
+/** int timestamp planned start-date */
 define('PM_PLANNED_START',32);
 /** int timestamp real start-date */
 define('PM_REAL_START',64);		
-/** int timestamp planed end-date */
+/** int timestamp planned end-date */
 define('PM_PLANNED_END',128);
 /** int timestamp real end-date */
 define('PM_REAL_END',256);
@@ -102,8 +102,8 @@ class datasource
 	/**
 	 * get an item from the underlaying app and convert applying data ia a datasource array
 	 *
-	 * A datasource array can contain values for the keys: completiton, {planed|used}_time, {planed|used}_budget,
-	 *	{planed|real}_start, {planed|real}_end
+	 * A datasource array can contain values for the keys: completiton, {planned|used}_time, {planned|used}_budget,
+	 *	{planned|real}_start, {planned|real}_end
 	 * Not set values mean they are not supported by the datasource.
 	 *
 	 * Reimplent this function for spezial datasource types (not read!)
@@ -125,8 +125,8 @@ class datasource
 	/**
 	 * read an item from a datasource (via the get methode) and try to set (guess) some not supported values
 	 *
-	 * A datasource array can contain values for the keys: completiton, {planed|used}_time, {planed|used}_budget,
-	 *	{planed|real}_start, {planed|real}_end
+	 * A datasource array can contain values for the keys: completiton, {planned|used}_time, {planned|used}_budget,
+	 *	{planned|real}_start, {planned|real}_end
 	 * Not set values mean they are not supported by the datasource.
 	 * 
 	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
@@ -138,7 +138,7 @@ class datasource
 		
 		if ($ds)
 		{
-			// setting real or planed start- or end-date, from each other if not set
+			// setting real or planned start- or end-date, from each other if not set
 			foreach(array('start','end') as $name)
 			{
 				if (!isset($ds['pe_real_'.$name]) && isset($ds['pe_planned_'.$name]))
