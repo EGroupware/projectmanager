@@ -98,15 +98,15 @@
 		),
 		'egw_pm_milestones' => array(
 			'fd' => array(
+				'ms_id' => array('type' => 'auto','nullable' => False),
 				'pm_id' => array('type' => 'int','precision' => '4'),
-				'ms_id' => array('type' => 'int','precision' => '4'),
 				'ms_date' => array('type' => 'int','precision' => '8','nullable' => False),
-				'ms_title' => array('type' => 'varchar','precision' => '64'),
+				'ms_title' => array('type' => 'varchar','precision' => '255'),
 				'ms_description' => array('type' => 'text')
 			),
-			'pk' => array('pm_id','ms_id'),
+			'pk' => array('ms_id'),
 			'fk' => array(),
-			'ix' => array(),
+			'ix' => array('pm_id'),
 			'uc' => array()
 		)
 	);

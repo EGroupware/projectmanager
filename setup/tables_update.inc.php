@@ -10,7 +10,7 @@
 	* option) any later version.                                               *
 	\**************************************************************************/
 	
-	/* tables_update.inc.php,v 1.1 2005/05/08 08:00:03 ralfbecker Exp */
+	/* tables_update.inc.php,v 1.2 2005/05/08 17:50:37 ralfbecker Exp */
 
 	$test[] = '0.1.008';
 	function projectmanager_upgrade0_1_008()
@@ -63,15 +63,15 @@
 	{
 		$GLOBALS['phpgw_setup']->oProc->CreateTable('egw_pm_milestones',array(
 			'fd' => array(
+				'ms_id' => array('type' => 'auto','nullable' => False),
 				'pm_id' => array('type' => 'int','precision' => '4'),
-				'ms_id' => array('type' => 'int','precision' => '4'),
 				'ms_date' => array('type' => 'int','precision' => '8','nullable' => False),
-				'ms_title' => array('type' => 'varchar','precision' => '64'),
+				'ms_title' => array('type' => 'varchar','precision' => '255'),
 				'ms_description' => array('type' => 'text')
 			),
-			'pk' => array('pm_id','ms_id'),
+			'pk' => array('ms_id'),
 			'fk' => array(),
-			'ix' => array(),
+			'ix' => array('pm_id'),
 			'uc' => array()
 		));
 
