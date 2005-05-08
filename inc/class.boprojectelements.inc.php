@@ -305,7 +305,7 @@ class boprojectelements extends soprojectelements
 		if ($data['pe_app']) $data['pe_icon'] = $data['pe_app'].'/navbar';
 		// convert time from min => sec
 		if ($data['pe_used_time']) $data['pe_used_time'] *= 60;
-		if ($data['pe_planed_time']) $data['pe_planed_time'] *= 60;
+		if ($data['pe_planned_time']) $data['pe_planned_time'] *= 60;
 
 		return $data;
 	}
@@ -332,7 +332,7 @@ class boprojectelements extends soprojectelements
 		if (substr($data['pe_completition'],-1) == '%') $data['pe_completition'] = (int) substr($data['pe_completition'],0,-1);
 		// convert time from sec => min
 		if ($data['pe_used_time']) $data['pe_used_time'] /= 60;
-		if ($data['pe_planed_time']) $data['pe_planed_time'] /= 60;
+		if ($data['pe_planned_time']) $data['pe_planned_time'] /= 60;
 
 		return $data;
 	}

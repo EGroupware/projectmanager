@@ -20,19 +20,19 @@
 /** int percentage completion 0-100 */
 define('PM_COMPLETION',1);
 /** int seconds planed time */
-define('PM_PLANED_TIME',2);
+define('PM_PLANNED_TIME',2);
 /** int seconds used time */
 define('PM_USED_TIME',4);
 /** double planed budget */
-define('PM_PLANED_BUDGET',8);
+define('PM_PLANNED_BUDGET',8);
 /** double planed budget */
 define('PM_USED_BUDGET',16);
 /** int timestamp planed start-date */
-define('PM_PLANED_START',32);
+define('PM_PLANNED_START',32);
 /** int timestamp real start-date */
 define('PM_REAL_START',64);		
 /** int timestamp planed end-date */
-define('PM_PLANED_END',128);
+define('PM_PLANNED_END',128);
 /** int timestamp real end-date */
 define('PM_REAL_END',256);
 /** int timestamp real end-date */
@@ -73,13 +73,13 @@ class datasource
 	 */
 	var $name2id = array(
 		'pe_completion'    => PM_COMPLETION,
-		'pe_planed_time'   => PM_PLANED_TIME,
+		'pe_planned_time'   => PM_PLANNED_TIME,
 		'pe_used_time'     => PM_USED_TIME,
-		'pe_planed_budget' => PM_PLANED_BUDGET,
+		'pe_planned_budget' => PM_PLANNED_BUDGET,
 		'pe_used_budget'   => PM_USED_BUDGET,
-		'pe_planed_start'  => PM_PLANED_START,
+		'pe_planned_start'  => PM_PLANNED_START,
 		'pe_real_start'    => PM_REAL_START,
-		'pe_planed_end'    => PM_PLANED_END,
+		'pe_planned_end'    => PM_PLANNED_END,
 		'pe_real_end'      => PM_REAL_END,
 	);
 
@@ -141,19 +141,19 @@ class datasource
 			// setting real or planed start- or end-date, from each other if not set
 			foreach(array('start','end') as $name)
 			{
-				if (!isset($ds['pe_real_'.$name]) && isset($ds['pe_planed_'.$name]))
+				if (!isset($ds['pe_real_'.$name]) && isset($ds['pe_planned_'.$name]))
 				{
-					$ds['pe_real_'.$name] = $ds['pe_planed_'.$name];
+					$ds['pe_real_'.$name] = $ds['pe_planned_'.$name];
 				}
-				elseif (!isset($ds['pe_planed_'.$name]) && isset($ds['pe_real_'.$name]))
+				elseif (!isset($ds['pe_planned_'.$name]) && isset($ds['pe_real_'.$name]))
 				{
-					$ds['pe_planed_'.$name] = $ds['pe_real_'.$name];
+					$ds['pe_planned_'.$name] = $ds['pe_real_'.$name];
 				}
 			}
 			// try calculating a (second) completion from the times
-			if (!empty($ds['pe_used_time']) && (int) $ds['pe_planed_time'] > 0)
+			if (!empty($ds['pe_used_time']) && (int) $ds['pe_planned_time'] > 0)
 			{
-				$compl_by_time = $ds['pe_used_time'] / $ds['pe_planed_time'];
+				$compl_by_time = $ds['pe_used_time'] / $ds['pe_planned_time'];
 
 				// if no completion is given by the datasource use the calculated one
 				if (!isset($ds['pe_completion']))
@@ -166,9 +166,9 @@ class datasource
 				}
 			}
 			// try calculating a (second) completion from the budget
-			if(!empty($ds['pe_used_budget']) && $ds['pe_planed_budget'] > 0)
+			if(!empty($ds['pe_used_budget']) && $ds['pe_planned_budget'] > 0)
 			{
-				$compl_by_budget = $ds['pe_used_budget'] / $ds['pe_planed_budget'];
+				$compl_by_budget = $ds['pe_used_budget'] / $ds['pe_planned_budget'];
 			
 				// if no completion is given by the datasource use the calculated one
 				if (!isset($ds['pe_completion']))

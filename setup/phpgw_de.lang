@@ -1,7 +1,8 @@
 %1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert
 %1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
 - planed	projectmanager	de	- geplant
-0ngoing (0 < % < 100)	projectmanager	de	in arbeit (0 < % 100)
+- planned	projectmanager	de	- geplant
+0ngoing (0 < % < 100)	projectmanager	de	in Arbeit (0 < % 100)
 a describtive title for the project, must not be empty	projectmanager	de	Ein beschreibender Titel für das Projekt, Feld darf nicht leer bleiben!
 accounting	projectmanager	de	Abrechnung
 accounting options	projectmanager	de	Abrechnungsoptionen
@@ -77,6 +78,7 @@ permission denied !!!	projectmanager	de	Zugriff verweigert !!!
 planed	projectmanager	de	geplant
 planed end	projectmanager	de	Geplantes Ende
 planed start	projectmanager	de	Geplanter Anfang
+planned	projectmanager	de	geplant
 project coordinator and members	projectmanager	de	Projektkoordinator und -mitarbeiter
 project deleted	projectmanager	de	Projekt gelöscht
 project id	projectmanager	de	Projekt-ID

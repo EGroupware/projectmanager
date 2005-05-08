@@ -10,7 +10,7 @@
 	* option) any later version.                                               *
 	\**************************************************************************/
 	
-	/* $Id$ */
+	/* tables_baseline.inc.php,v 1.1 2005/05/08 08:00:03 ralfbecker Exp */
 
 
 	$phpgw_baseline = array(
@@ -24,8 +24,8 @@
 				'pm_created' => array('type' => 'int','precision' => '8','nullable' => False),
 				'pm_modifier' => array('type' => 'int','precision' => '4'),
 				'pm_modified' => array('type' => 'int','precision' => '8'),
-				'pm_planned_start' => array('type' => 'int','precision' => '8'),
-				'pm_planned_end' => array('type' => 'int','precision' => '8'),
+				'pm_planed_start' => array('type' => 'int','precision' => '8'),
+				'pm_planed_end' => array('type' => 'int','precision' => '8'),
 				'pm_real_start' => array('type' => 'int','precision' => '8'),
 				'pm_real_end' => array('type' => 'int','precision' => '8'),
 				'cat_id' => array('type' => 'int','precision' => '4','default' => '0'),
@@ -35,9 +35,9 @@
 				'pm_completion' => array('type' => 'int','precision' => '2','default' => '0'),
 				'pm_coordinator' => array('type' => 'int','precision' => '4'),
 				'pm_used_time' => array('type' => 'int','precision' => '4'),
-				'pm_planned_time' => array('type' => 'int','precision' => '4'),
+				'pm_planed_time' => array('type' => 'int','precision' => '4'),
 				'pm_used_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
-				'pm_planned_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
+				'pm_planed_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
 				'pm_overwrite' => array('type' => 'int','precision' => '4','default' => '0')
 			),
 			'pk' => array('pm_id'),
@@ -62,13 +62,13 @@
 				'pe_id' => array('type' => 'int','precision' => '4'),
 				'pe_title' => array('type' => 'varchar','precision' => '255','nullable' => False),
 				'pe_completion' => array('type' => 'int','precision' => '2'),
-				'pe_planned_time' => array('type' => 'int','precision' => '4'),
+				'pe_planed_time' => array('type' => 'int','precision' => '4'),
 				'pe_used_time' => array('type' => 'int','precision' => '4'),
-				'pe_planned_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
+				'pe_planed_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
 				'pe_used_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
-				'pe_planned_start' => array('type' => 'int','precision' => '8'),
+				'pe_planed_start' => array('type' => 'int','precision' => '8'),
 				'pe_real_start' => array('type' => 'int','precision' => '8'),
-				'pe_planned_end' => array('type' => 'int','precision' => '8'),
+				'pe_planed_end' => array('type' => 'int','precision' => '8'),
 				'pe_real_end' => array('type' => 'int','precision' => '8'),
 				'pe_overwrite' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
 				'pe_activity_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
@@ -82,31 +82,6 @@
 			'pk' => array('pm_id','pe_id'),
 			'fk' => array(),
 			'ix' => array(array('pm_id','pe_status')),
-			'uc' => array()
-		),
-		'egw_pm_constrains' => array(
-			'fd' => array(
-				'pm_id' => array('type' => 'int','precision' => '4'),
-				'pe_id_end' => array('type' => 'int','precision' => '4'),
-				'pe_id_start' => array('type' => 'int','precision' => '4'),
-				'ms_id' => array('type' => 'int','precision' => '4')
-			),
-			'pk' => array('pm_id','pe_id_end','pe_id_start','ms_id'),
-			'fk' => array(),
-			'ix' => array(array('pm_id','pe_id_start'),array('pm_id','ms_id')),
-			'uc' => array()
-		),
-		'egw_pm_milestones' => array(
-			'fd' => array(
-				'pm_id' => array('type' => 'int','precision' => '4'),
-				'ms_id' => array('type' => 'int','precision' => '4'),
-				'ms_date' => array('type' => 'int','precision' => '8','nullable' => False),
-				'ms_title' => array('type' => 'varchar','precision' => '64'),
-				'ms_description' => array('type' => 'text')
-			),
-			'pk' => array('pm_id','ms_id'),
-			'fk' => array(),
-			'ix' => array(),
 			'uc' => array()
 		)
 	);

@@ -1,6 +1,6 @@
 %1 element(s) updated	projectmanager	en	%1 element(s) updated
 %1 new project-elements imported	projectmanager	en	%1 new project-elements imported
-- planed	projectmanager	en	- planed
+- planned	projectmanager	en	- planned
 0ngoing (0 < % < 100)	projectmanager	en	0ngoing (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	en	a describtive title for the project, must not be empty
 accounting	projectmanager	en	Accounting
@@ -73,9 +73,7 @@ nonactive	projectmanager	en	Nonactive
 not started (0%)	projectmanager	en	Not started (0%)
 overwrite the datasource	projectmanager	en	Overwrite the datasource
 permission denied !!!	projectmanager	en	Permission denied !!!
-planed	projectmanager	en	planed
-planed end	projectmanager	en	Planed end
-planed start	projectmanager	en	Planed start
+planned	projectmanager	en	planned
 project coordinator and members	projectmanager	en	Project coordinator and members
 project deleted	projectmanager	en	Project deleted
 project id	projectmanager	en	Project ID

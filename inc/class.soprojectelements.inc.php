@@ -85,13 +85,13 @@ class soprojectelements extends so_sql
 		$this->db->select($this->table_name,array(
 			'AVG(pe_completion) AS pe_completion',
 			'SUM(pe_used_time) AS pe_used_time',
-			'SUM(pe_planed_time) AS pe_planed_time',
+			'SUM(pe_planned_time) AS pe_planned_time',
 			'SUM(pe_used_budget) AS pe_used_budget',
-			'SUM(pe_planed_budget) AS pe_planed_budget',
+			'SUM(pe_planned_budget) AS pe_planned_budget',
 			'MIN(pe_real_start) AS pe_real_start',
-			'MIN(pe_planed_start) AS pe_planed_start',
+			'MIN(pe_planned_start) AS pe_planned_start',
 			'MAX(pe_real_end) AS pe_real_end',
-			'MAX(pe_planed_end) AS pe_planed_end',
+			'MAX(pe_planned_end) AS pe_planned_end',
 		),array('pm_id' => $pm_id,"pe_status != 'ignore'"),__LINE__,__FILE__);
 		
 		if (!($data = $this->db->row(true)))

@@ -286,20 +286,20 @@ class ganttchart extends boprojectelements
 		if ($this->debug) {
 			echo "<p>GanttBar($counter,'".($level ? str_repeat(' ',$level) : '').
 				$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').'   '."','".
-				date('Y-m-d',$pe['pe_planed_start'])."','".
-				date('Y-m-d',$pe['pe_planed_end'])."','".
+				date('Y-m-d',$pe['pe_planned_start'])."','".
+				date('Y-m-d',$pe['pe_planned_end'])."','".
 				round($pe['pe_completion']).'%'."',0.5)</p>\n";
 		}		
 		if (!$this->modernJPGraph)	// for an old JPGraph we have to clip the bar ourself
 		{
-			if ($pe['pe_planed_start'] < $this->scale_start) $pe['pe_planed_start'] = $this->scale_start;
-			if ($pe['pe_planed_end'] > $this->scale_end) $pe['pe_planed_end'] = $this->scale_end-1;
+			if ($pe['pe_planned_start'] < $this->scale_start) $pe['pe_planned_start'] = $this->scale_start;
+			if ($pe['pe_planned_end'] > $this->scale_end) $pe['pe_planned_end'] = $this->scale_end-1;
 		}
 		$bar =& new GanttBar($counter++,($level ? str_repeat(' ',$level) : '').
 			// the GanttBar title has somehow to be iso-8859-1
 			$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').($level?'  ':''),
-			date('Y-m-d'.($this->modernJPGraph?' H:i':''),$pe['pe_planed_start']),
-			date('Y-m-d'.($this->modernJPGraph?' H:i':''),$pe['pe_planed_end']),
+			date('Y-m-d'.($this->modernJPGraph?' H:i':''),$pe['pe_planned_start']),
+			date('Y-m-d'.($this->modernJPGraph?' H:i':''),$pe['pe_planned_end']),
 			round($pe['pe_completion']).'%',0.5);
 			
 		$bar->progress->Set($pe['pe_completion']/100);
@@ -332,10 +332,10 @@ class ganttchart extends boprojectelements
 		$filter = array(
 			'pm_id' => $pm_id,
 			"pe_status != 'ignore'",
-			'pe_planed_start IS NOT NULL',
-			'pe_planed_end IS NOT NULL',
-			'pe_planed_start <= '.(int)$this->scale_end,	// starts before our report-period
-			'pe_planed_end >= '.(int)$this->scale_start,	// ends after our start
+			'pe_planned_start IS NOT NULL',
+			'pe_planned_end IS NOT NULL',
+			'pe_planned_start <= '.(int)$this->scale_end,	// starts before our report-period
+			'pe_planned_end >= '.(int)$this->scale_start,	// ends after our start
 		);
 		switch ($params['filter'])
 		{
@@ -349,7 +349,7 @@ class ganttchart extends boprojectelements
 				$filter['pe_completion'] = 100;
 				break;
 		}
-		foreach((array) $this->search(array(),false,'pe_planed_start,pe_planed_end','','',false,'AND',false,$filter) as $pe)
+		foreach((array) $this->search(array(),false,'pe_planned_start,pe_planned_end','','',false,'AND',false,$filter) as $pe)
 		{
 			if ($pe['pe_app'] == 'projectmanager')
 			{
@@ -426,9 +426,9 @@ class ganttchart extends boprojectelements
 			{
 				// already set
 			}
-			elseif ($this->project->data['pm_id'] && $this->project->data['pm_planed_'.$var])
+			elseif ($this->project->data['pm_id'] && $this->project->data['pm_planned_'.$var])
 			{
-				$params[$var] = $this->project->data['pm_planed_'.$var];
+				$params[$var] = $this->project->data['pm_planned_'.$var];
 			}
 			else
 			{

@@ -31,7 +31,7 @@ class datasource_calendar extends datasource
 	{
 		$this->datasource('calendar');
 		
-		$this->valid = PM_PLANED_START|PM_PLANED_END|PM_PLANED_TIME|PM_RESOURCES;
+		$this->valid = PM_PLANNED_START|PM_PLANNED_END|PM_PLANNED_TIME|PM_RESOURCES;
 	}
 	
 	/**
@@ -61,9 +61,9 @@ class datasource_calendar extends datasource
 		}
 		$ds = array(
 			'pe_title' => ExecMethod('infolog.bolink.calendar_title',$data),
-			'pe_planed_start' => $data['start']['raw'],
-			'pe_planed_end' => $data['end']['raw'],
-			'pe_planed_time' => $data['end']['raw'] - $data['start']['raw'],
+			'pe_planned_start' => $data['start']['raw'],
+			'pe_planned_end' => $data['end']['raw'],
+			'pe_planned_time' => $data['end']['raw'] - $data['start']['raw'],
 		);
 		foreach($data['participants'] as $uid => $status)
 		{
@@ -77,7 +77,7 @@ class datasource_calendar extends datasource
 		// maybe we need a flag for that in egw_pm_elements
 		if ($data['end']['raw'] <= time()+$GLOBALS['egw']->datetime->tz_offset)
 		{
-			$ds['pe_used_time'] = $ds['planed_time'];
+			$ds['pe_used_time'] = $ds['pe_planned_time'];
 		}
 */
 		if ($this->debug)

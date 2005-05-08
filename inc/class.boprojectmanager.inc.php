@@ -43,7 +43,7 @@ class boprojectmanager extends soprojectmanager
 	 * @var array $timestamps timestaps that need to be adjusted to user-time on reading or saving
 	 */
 	var $timestamps = array(
-		'pm_created','pm_modified','pm_planed_start','pm_planed_end','pm_real_start','pm_real_end',
+		'pm_created','pm_modified','pm_planned_start','pm_planned_end','pm_real_start','pm_real_end',
 	);
 	/**
 	 * @var int $tz_offset_s offset in secconds between user and server-time,
@@ -229,7 +229,7 @@ class boprojectmanager extends soprojectmanager
 		if (is_numeric($data['pm_completion'])) $data['pm_completion'] .= '%';
 		// convert time from min => sec
 		if ($data['pm_used_time']) $data['pm_used_time'] *= 60;
-		if ($data['pm_planed_time']) $data['pm_planed_time'] *= 60;
+		if ($data['pm_planned_time']) $data['pm_planned_time'] *= 60;
 
 		return $data;
 	}
@@ -256,7 +256,7 @@ class boprojectmanager extends soprojectmanager
 		if (substr($data['pm_completition'],-1) == '%') $data['pm_completition'] = (int) substr($data['pm_completition'],0,-1);
 		// convert time from sec => min
 		if ($data['pm_used_time']) $data['pm_used_time'] /= 60;
-		if ($data['pm_planed_time']) $data['pm_planed_time'] /= 60;
+		if ($data['pm_planned_time']) $data['pm_planned_time'] /= 60;
 
 		return $data;
 	}

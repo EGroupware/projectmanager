@@ -31,7 +31,7 @@ class datasource_infolog extends datasource
 	{
 		$this->datasource('infolog');
 		
-		$this->valid = PM_COMPLETION|PM_PLANED_START|PM_PLANED_END|PM_RESOURCES;
+		$this->valid = PM_COMPLETION|PM_PLANNED_START|PM_PLANNED_END|PM_RESOURCES;
 	}
 	
 	/**
@@ -61,8 +61,8 @@ class datasource_infolog extends datasource
 		return array(
 			'pe_title'        => $GLOBALS['boinfolog']->link_title($data),
 			'pe_completion'   => $this->status2completion($data['info_status']).'%',
-			'pe_planed_start' => $data['info_startdate'],
-			'pe_planed_end'   => $data['info_enddate'],
+			'pe_planned_start' => $data['info_startdate'],
+			'pe_planned_end'   => $data['info_enddate'],
 			'pe_resources'    => array($data['info_responsible'] ? $data['info_responsible'] : $data['info_owner']),
 		);
 	}

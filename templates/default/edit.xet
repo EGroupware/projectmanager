@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.1.002">
+	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -41,9 +41,9 @@
 					<date-time id="ds[pe_real_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
-					<description value="- planed" options=",,,pm_planed_end"/>
-					<date-time id="pm_planed_start"/>
-					<date-time id="ds[pe_planed_start]" readonly="true" span="all"/>
+					<description value="- planned" options=",,,pm_planned_end"/>
+					<date-time id="pm_planned_start"/>
+					<date-time id="ds[pe_planned_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description options=",,,pm_real_end" value="Enddate"/>
@@ -51,9 +51,9 @@
 					<date-time id="ds[pe_real_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
-					<description value="- planed" options=",,,pm_planed_end"/>
-					<date-time id="pm_planed_end"/>
-					<date-time id="ds[pe_planed_end]" readonly="true" span="all"/>
+					<description value="- planned" options=",,,pm_planned_end"/>
+					<date-time id="pm_planned_end"/>
+					<date-time id="ds[pe_planned_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description options=",,,pm_used_time" value="Time"/>
@@ -61,9 +61,9 @@
 					<date-timeonly id="ds[pe_used_time]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
-					<description options=",,,pm_planed_time" value="- planed"/>
-					<date-timeonly id="pm_planed_time"/>
-					<date-timeonly id="ds[pe_planed_time]" readonly="true" span="all"/>
+					<description options=",,,pm_planned_time" value="- planned"/>
+					<date-timeonly id="pm_planned_time"/>
+					<date-timeonly id="ds[pe_planned_time]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description options=",,,pm_completion" value="Status"/>
@@ -76,7 +76,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.1.001">
-		<grid width="100%">
+		<grid width="100%" height="150">
 			<columns>
 				<column/>
 			</columns>
@@ -88,7 +88,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.members" template="" lang="" group="0" version="0.1.001">
-		<grid>
+		<grid width="100%" height="150">
 			<columns>
 				<column width="95"/>
 				<column/>
@@ -107,7 +107,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.1.001">
+	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%" height="150">
 			<columns>
 				<column width="95"/>
@@ -129,9 +129,9 @@
 					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description options=",,,pm_planed_budget" value="- planed"/>
-					<textbox type="float" min="2" id="pm_planed_budget"/>
-					<textbox type="float" min="2" id="ds[pe_planed_budget]" readonly="true"/>
+					<description options=",,,pm_planned_budget" value="- planned"/>
+					<textbox type="float" min="2" id="pm_planned_budget"/>
+					<textbox type="float" min="2" id="ds[pe_planned_budget]" readonly="true"/>
 				</row>
 				<row height="50%">
 					<description/>
