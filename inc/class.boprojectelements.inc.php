@@ -41,6 +41,10 @@ class boprojectelements extends soprojectelements
 	 */
 	var $constraints;
 	/**
+	 * @var somilestones-object $milestones instance of the somilestones-class
+	 */
+	var $milestones;
+	/**
 	 * @var array $datasources instances of the different datasources
 	 */
 	var $datasources = array();
@@ -99,6 +103,12 @@ class boprojectelements extends soprojectelements
 			$this->project->constraints =& CreateObject('projectmanager.soconstraints',$pm_id);
 		}
 		$this->constraints =& $this->project->constraints;
+
+		if (!is_object($this->project->milestones))
+		{
+			$this->project->milestones =& CreateObject('projectmanager.somilestones',$pm_id);
+		}
+		$this->milestones =& $this->project->milestones;
 
 		if ($this->debug) $this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
 

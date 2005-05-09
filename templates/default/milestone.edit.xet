@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.milestone.edit" template="" lang="" group="0" version="0.2.001">
+		<grid width="100%">
+			<columns>
+				<column width="95"/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description span="all" class="redItalic" align="center" id="msg" no_lang="1"/>
+					<description/>
+					<description/>
+				</row>
+				<row class="th">
+					<description options=",,,ms_title" value="Title"/>
+					<textbox size="64" maxlength="255" id="ms_title" span="all" needed="1"/>
+				</row>
+				<row class="row">
+					<description options=",,,ms_date" value="Date"/>
+					<date-time id="ms_date" needed="1"/>
+					<html id="js"/>
+				</row>
+				<row class="row">
+					<htmlarea span="all" id="ms_description"/>
+				</row>
+				<row>
+					<hbox span="2">
+						<button label="Edit" id="edit" statustext="Edit this milestone"/>
+						<button id="save" label="Save" statustext="Save the changes made"/>
+						<button id="apply" label="Apply" statustext="Apply the changes"/>
+						<button id="cancel" label="Cancel" statustext="Close this window, discard the changes made" onclick="window.close();"/>
+					</hbox>
+					<button label="Delete" align="right" id="delete" statustext="Delete this milestone" onclick="return confirm('Delete this milestone');"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

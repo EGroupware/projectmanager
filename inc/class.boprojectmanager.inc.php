@@ -57,7 +57,7 @@ class boprojectmanager extends soprojectmanager
 	/**
 	 * @var object $milestones somilestones-object, not instanciated automatic!
 	 */
-	var $constraints;
+	var $milestones;
 
 	/**
 	 * Constructor, calls the constructor of the extended class

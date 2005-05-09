@@ -2,7 +2,7 @@
 %1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
 - planed	projectmanager	de	- geplant
 - planned	projectmanager	de	- geplant
-0ngoing (0 < % < 100)	projectmanager	de	in Arbeit (0 < % 100)
+0ngoing (0 < % < 100)	projectmanager	de	in Arbeit (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	de	Ein beschreibender Titel für das Projekt, Feld darf nicht leer bleiben!
 accounting	projectmanager	de	Abrechnung
 accounting options	projectmanager	de	Abrechnungsoptionen
@@ -31,15 +31,17 @@ cost per time	projectmanager	de	Kosten pro Zeiteinheit
 create new links	projectmanager	de	Neue Verknüpfung erstellen
 custom fields	projectmanager	de	Extra
 datasource	projectmanager	de	Datenquelle
+delete this milestone	projectmanager	de	Diesen Meilenstein löschen
 delete this project	projectmanager	de	Dieses Projekt löschen
 delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
 depth of display	projectmanager	de	Tiefe der Anzeige
 do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
 done (100%)	projectmanager	de	erledigt (100%)
-edit project	projectmanager	de	Projekt editieren
-edit project-elements	projectmanager	de	Projektelemente editieren
-edit this project	projectmanager	de	Dieses Projekt editieren
-edit this project-element	projectmanager	de	Dieses Projektelement editieren
+edit project	projectmanager	de	Projekt bearbeiten
+edit project-elements	projectmanager	de	Projektelemente bearbeiten
+edit this milestone	projectmanager	de	Diesen Meilenstein bearbeiten
+edit this project	projectmanager	de	Dieses Projekt bearbeiten
+edit this project-element	projectmanager	de	Dieses Projektelement bearbeiten
 elementlist	projectmanager	de	Elementliste
 elements	projectmanager	de	Elemente
 elements of elements	projectmanager	de	Element der Elemente
@@ -69,8 +71,8 @@ links	projectmanager	de	Verknüpfungen
 mainproject only	projectmanager	de	nur das Hauptprojekt
 mainprojects	projectmanager	de	Hauptprojekte
 members	projectmanager	de	Mitarbeiter
-milestones	projectmanager	de	Milensteine
-milestones before this element has to be finished	projectmanager	de	Milensteine vor denen dieses Element beendet sein muß
+milestones	projectmanager	de	Meilensteine
+milestones before this element has to be finished	projectmanager	de	Meilensteine vor denen dieses Element beendet sein muß
 modified	projectmanager	de	Geändert
 modified by	projectmanager	de	Geändert durch
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
@@ -85,6 +87,7 @@ planed	projectmanager	de	geplant
 planed end	projectmanager	de	Geplantes Ende
 planed start	projectmanager	de	Geplanter Anfang
 planned	projectmanager	de	geplant
+planned times	projectmanager	de	Geplante Zeiten
 project coordinator and members	projectmanager	de	Projektkoordinator und -mitarbeiter
 project deleted	projectmanager	de	Projekt gelöscht
 project id	projectmanager	de	Projekt-ID
@@ -102,6 +105,8 @@ save this project element	projectmanager	de	Dieses Projektelement speichern
 select a project	projectmanager	de	Ein Projekt auswählen
 select an activity if you want to calculate costs by the time	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Zeit berechnen wollen
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
+show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
+show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
 start after	projectmanager	de	Startet nach
 start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
 start- & enddate, time	projectmanager	de	Start- & Enddatum, Zeit

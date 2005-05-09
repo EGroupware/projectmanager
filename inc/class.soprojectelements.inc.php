@@ -126,7 +126,15 @@ class soprojectelements extends so_sql
 		{
 			$join = $this->links_join;
 			
-			if (!$extra_cols) $extra_cols = $this->links_extracols;
+			if (!$extra_cols)
+			{
+				$extra_cols = $this->links_extracols;
+			}
+			else
+			{
+				$extra_cols = array_merge($this->links_extracols,
+					is_array($extra_cols) ? $extra_cols : explode(',',$extra_cols));
+			}			
 		}
 		// include sub-categories in the search
 		if ($filter['cat_id'])

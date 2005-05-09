@@ -239,9 +239,10 @@ class ganttchart extends boprojectelements
 	 * @param array $pm project or project-element data array
 	 * @param int $level hierarchy level, 0=main project
 	 * @param int $line line-number of the gantchart, starting with 0
+	 * @param boolean $planned_times=false show planned or real start- and end-dates
 	 * @return object GanttBar
 	 */
-	function &project2bar($pm,$level,$line)
+	function &project2bar($pm,$level,$line,$planned_times=false)
 	{
 		if ($pm['pe_id'])
 		{
@@ -258,7 +259,7 @@ class ganttchart extends boprojectelements
 				if ($key != 'pm_id') $pe[str_replace('pm_','pe_',$key)] =& $pm[$key];
 			}
 		}
-		$bar =& $this->element2bar($pe,$level,$line);
+		$bar =& $this->element2bar($pe,$level,$line,$planned_times);
 
 		// set project-specific attributes: bold, solid bar, ...
 		$bar->title->SetFont(FF_VERA,FS_BOLD,!$level ? 9 : 8);
@@ -274,9 +275,10 @@ class ganttchart extends boprojectelements
 	 * @param array $pe projectelement-data array
 	 * @param int $level hierarchy level, 0=main project
 	 * @param int $line line-number of the gantchart, starting with 0
+	 * @param boolean $planned_times=false show planned or real start- and end-dates
 	 * @return object GanttBar
 	 */
-	function &element2bar($pe,$level,$line)
+	function &element2bar($pe,$level,$line,$planned_times=false)
 	{
 		// create a shorter title (removes dates from calendar-titles and project-numbers from sub-projects
 		if ($pe['pe_app'] == 'calendar' || $pe['pe_app'] == 'projectmanager')
@@ -289,20 +291,20 @@ class ganttchart extends boprojectelements
 		{
 			echo "<p>GanttBar($line,'".($level ? str_repeat(' ',$level) : '').
 				$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').'   '."','".
-				date('Y-m-d H:i',$pe['pe_planned_start'])."','".
-				date('Y-m-d H:i',$pe['pe_planned_end'])."','".
+				date('Y-m-d H:i',$pe['pe_start'])."','".date('Y-m-d H:i',$pe['pe_end'])."','".
 				round($pe['pe_completion']).'%'."',0.5)</p>\n";
 		}		
 		if (!$this->modernJPGraph)	// for an old JPGraph we have to clip the bar ourself
 		{
-			if ($pe['pe_planned_start'] < $this->scale_start) $pe['pe_planned_start'] = $this->scale_start;
-			if ($pe['pe_planned_end'] > $this->scale_end) $pe['pe_planned_end'] = $this->scale_end-1;
+			if ($pe['pe_start'] < $this->scale_start) $pe['pe_start'] = $this->scale_start;
+			if ($pe['pe_end'] > $this->scale_end) $pe['pe_end'] = $this->scale_end-1;
 		}
 		$bar =& new GanttBar($line,($level ? str_repeat(' ',$level) : '').
 			// the GanttBar title has somehow to be iso-8859-1
-			$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').($level?'  ':''),
-			date('Y-m-d'.($this->modernJPGraph?' H:i':''),$pe['pe_planned_start']),
-			date('Y-m-d'.($this->modernJPGraph?' H:i':''),$pe['pe_planned_end']),
+			$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').
+			($level ? '  ' : ''),	// fix for wrong length calculation in JPGraph
+			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_start']),
+			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_end']),
 			round($pe['pe_completion']).'%',0.5);
 			
 		$bar->progress->Set($pe['pe_completion']/100);
@@ -323,6 +325,42 @@ class ganttchart extends boprojectelements
 	}
 
 	/**
+	 * Milestone
+	 *
+	 * @param array $milestone data-array
+	 * @param int $level hierarchy level, 0=main project
+	 * @param int $line line-number of the gantchart, starting with 0
+	 * @return object MileStone
+	 */
+	function &milestone2bar($milestone,$level,$line)
+	{
+		if ($this->debug) 
+		{
+		 	echo "<p>MileStone($line,'$milestone[ms_title],".
+		 		date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$milestone['ms_date']).','.
+				date($this->prefs['common']['dateformat'],$milestone['ms_date']).")</p>\n";
+		}
+		$ms =& new MileStone($line,($level ? str_repeat(' ',$level) : '').
+			// the Milestone title has somehow to be iso-8859-1
+			$GLOBALS['egw']->translation->convert($milestone['ms_title'],$this->charset,'iso-8859-1'),
+			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$milestone['ms_date']),
+			date($this->prefs['common']['dateformat'],$milestone['ms_date']));
+		
+		if ($this->modernJPGraph)
+		{
+			$link = $GLOBALS['egw']->link('/index.php',array(
+				'menuaction' => 'projectmanager.uimilestones.view',
+				'pm_id'      => $milestone['pm_id'],
+				'ms_id'      => $milestone['ms_id'],
+			));
+			$title = lang('View this milestone');
+			$ms->SetCSIMTarget($link,$title);
+			$ms->title->SetCSIMTarget($link,$title);
+		}
+		return $ms;
+	}
+
+	/**
 	 * Adds all elements of project $pm_id to the ganttchart, calls itself recursive for subprojects
 	 *
 	 * @param int $pm_id project-id
@@ -333,42 +371,67 @@ class ganttchart extends boprojectelements
 	 */
 	function add_elements($pm_id,$params,&$line,&$bars,$level=1)
 	{
-		$filter = array(
-			'pm_id' => $pm_id,
-			"pe_status != 'ignore'",
-			'pe_planned_start IS NOT NULL',
-			'pe_planned_end IS NOT NULL',
-			'pe_planned_start <= '.(int)$this->scale_end,	// starts before our report-period
-			'pe_planned_end >= '.(int)$this->scale_start,	// ends after our start
-		);
-		switch ($params['filter'])
+		static $filter=false;
+		static $extra_cols;
+
+		if (!$filter)	// we do this only once for all shown projects
 		{
-			case 'not':
-				$filter['pe_completion'] = 0;
-				break;
-			case 'ongoing':
-				$filter[] = '0 < pe_completion AND pe_completion < 100';
-				break;
-			case 'done':
-				$filter['pe_completion'] = 100;
-				break;
+			// defining start- and end-times depending on $params['planned_times'] and the availible data
+			foreach(array('start','end') as $var)
+			{
+				if ($params['planned_times'])
+				{
+					$$var = "CASE WHEN pe_planned_$var IS NULL THEN pe_real_$var ELSE pe_planned_$var END";
+				}
+				else
+				{
+					$$var = "CASE WHEN pe_real_$var IS NULL THEN pe_planned_$var ELSE pe_real_$var END";
+				}
+			}
+			$filter = array(
+				"pe_status != 'ignore'",
+				"$start IS NOT NULL",
+				"$end IS NOT NULL",
+				"$start <= ".(int)$this->scale_end,	// starts befor the end of our period AND
+				"$end >= ".(int)$this->scale_start,	// ends after the start of our period
+			);
+			switch ($params['filter'])
+			{
+				case 'not':
+					$filter['pe_completion'] = 0;
+					break;
+				case 'ongoing':
+					$filter[] = 'pe_completion!=100';
+					break;
+				case 'done':
+					$filter['pe_completion'] = 100;
+					break;
+			}
+			$extra_cols = array(
+				$start.' AS pe_start',
+				$end.' AS pe_end',
+			);
 		}
+		$filter['pm_id'] = $pm_id;	// this is NOT static
+
 		$pe_id2line = array();
-		foreach((array) $this->search(array(),false,'pe_planned_start,pe_planned_end','','',false,'AND',false,$filter) as $pe)
+		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
+			'',false,'AND',false,$filter) as $pe)
 		{
 			//echo "$line: ".print_r($pe,true)."<br>\n";
 			if (!$pe) continue;
 			
 			$pe_id = $pe['pe_id'];
 			$pe_id2line[$pe_id] = $line;	// need to remember the line to draw the constraints
+			$pes[$pe_id] = $pe;
 
 			if ($pe['pe_app'] == 'projectmanager')
 			{
-				$bars[$pe_id] =& $this->project2bar($pe,$level,$line++);
+				$bars[$pe_id] =& $this->project2bar($pe,$level,$line++,$params['planned_times']);
 			}
 			else
 			{
-				$bars[$pe_id] =& $this->element2bar($pe,$level,$line++);
+				$bars[$pe_id] =& $this->element2bar($pe,$level,$line++,$params['planned_times']);
 			}
 			// if we should display further levels, we call ourself recursive
 			if ($pe['pe_app'] == 'projectmanager' && $level < $params['depth'])
@@ -376,21 +439,41 @@ class ganttchart extends boprojectelements
 				$this->add_elements($pe['pe_app_id'],$params,$line,$bars,$level+1);
 			}
 		}
-		// adding the constraints to the bars
-		foreach((array)$this->constraints->search(array('pm_id'=>$pm_id)) as $constraint)
+		if ($params['constraints'])
 		{
-			$pe_id = $constraint['pe_id_end'];	// start of the array at the end of this pe
-			if (isset($bars[$pe_id]))
+			// adding milestones
+			foreach((array)$this->milestones->search(array(),'pm_id,ms_id,ms_title,ms_date','ms_date','','',false,'AND',false,array(
+				'pm_id' => $pm_id,
+				(int)$this->scale_start.' <= ms_date',
+				'ms_date <= '.(int)$this->scale_end, 
+			)) as $milestone)
 			{
-				$bar =& $bars[$pe_id];
-				
-				if ($constraint['pe_id_start'] && isset($pe_id2line[$constraint['pe_id_start']]))
+				if (!$milestone || !($ms_id = $milestone['ms_id'])) continue;
+
+				$ms_id2line[$ms_id] = $line;
+				$milestones[$ms_id] = $milestone;
+				$bars[-$ms_id] =& $this->milestone2bar($milestone,$level,$line++);
+			}
+			// adding the constraints to the bars
+			foreach((array)$this->constraints->search(array('pm_id'=>$pm_id)) as $constraint)
+			{
+				$pe_id = $constraint['pe_id_end'];	// start of the array at the end of this pe
+				if (isset($bars[$pe_id]))
 				{
-					$bar->SetConstrain($pe_id2line[$constraint['pe_id_start']],CONSTRAIN_ENDSTART);
-				}
-				if ($constraint['ms_id'])
-				{
-					// ToDO
+					$bar =& $bars[$pe_id];
+					
+					if ($constraint['pe_id_start'] && isset($pe_id2line[$constraint['pe_id_start']]))
+					{
+						// show violated constrains in red
+						$color = $pes[$constraint['pe_id_start']]['pe_start'] >= $pes[$pe_id]['pe_end'] ? 'black' : 'red';
+						$bar->SetConstrain($pe_id2line[$constraint['pe_id_start']],CONSTRAIN_ENDSTART,$color);
+					}
+					if ($constraint['ms_id'] && isset($ms_id2line[$constraint['ms_id']]))
+					{
+						// show violated constrains in red
+						$color = $milestones[$constraint['ms_id']]['ms_date'] >= $pes[$pe_id]['pe_end'] ? 'black' : 'red';
+						$bar->SetConstrain($ms_id2line[$constraint['ms_id']],CONSTRAIN_ENDSTART,$color);
+					}
 				}
 			}
 		}
@@ -413,7 +496,7 @@ class ganttchart extends boprojectelements
 
 		$line = 0;
 		$bars = array();
-		$graph->Add($this->project2bar($this->project->data,0,$line++));
+		$graph->Add($this->project2bar($this->project->data,0,$line++,$params['planned_times']));
 
 		if ($params['depth'] > 0)
 		{
@@ -440,8 +523,12 @@ class ganttchart extends boprojectelements
 		
 		if (!count($params))
 		{
-			$params = $GLOBALS['egw']->session->appsession('ganttchart','projectmanager');
-			
+			if (!($params = $GLOBALS['egw']->session->appsession('ganttchart','projectmanager')))
+			{
+				$params = array(				// some defaults, if called the first time
+					'constraints' => true,
+				);
+			}			
 			// check if project changed => not use start and end
 			if ($params['pm_id'] != $this->project->data['pm_id'])
 			{
@@ -450,8 +537,19 @@ class ganttchart extends boprojectelements
 				unset($params['end']);
 			}
 		}
+		$data =& $this->project->data;
 		foreach(array('start','end') as $var)
 		{
+			// set used start- and end-times of the project
+			if ($params['planned_times'] && $data['pe_planned_'.$var] || !$data['pe_real_'.$var])
+			{
+				$data['pm_'.$var] = $data['pm_planned_'.$var];
+			}
+			else
+			{
+				$data['pm_'.$var] = $data['pm_real_'.$var];
+			}
+			// set start- and end-times of the ganttchart
 			if (isset($_GET[$var]))
 			{
 				$params[$var] = $_GET[$var];
@@ -460,9 +558,9 @@ class ganttchart extends boprojectelements
 			{
 				// already set
 			}
-			elseif ($this->project->data['pm_id'] && $this->project->data['pm_planned_'.$var])
+			elseif ($data['pm_id'] && $data['pm_'.$var])
 			{
-				$params[$var] = $this->project->data['pm_planned_'.$var];
+				$params[$var] = $data['pm_'.$var];
 			}
 			else
 			{

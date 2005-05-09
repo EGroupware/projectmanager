@@ -1,6 +1,6 @@
 <?php
 /**************************************************************************\
-* eGroupWare - ProjectManager - Constrains storage object                  *
+* eGroupWare - ProjectManager - Constraints storage object                 *
 * http://www.egroupware.org                                                *
 * Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
 * --------------------------------------------                             *
@@ -15,7 +15,7 @@
 include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
 /**
- * Constrains storage object of the projectmanager
+ * Constraints storage object of the projectmanager
  *
  * Tables: egw_pm_constraints
  *

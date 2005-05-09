@@ -20,6 +20,7 @@
 								<column/>
 								<column/>
 								<column/>
+								<column/>
 							</columns>
 							<rows>
 								<row>
@@ -27,6 +28,7 @@
 									<description options=",,,end" value="Enddate"/>
 									<description options=",,,depth" value="Depth of display"/>
 									<description options=",,,filter" value="Status filter"/>
+									<checkbox label="Planned" id="planned" onchange="1" statustext="Show planned times instead of the real times"/>
 									<description/>
 								</row>
 								<row>
@@ -38,6 +40,7 @@
 									<menulist>
 										<menupopup no_lang="1" id="filter" onchange="1"/>
 									</menulist>
+									<checkbox label="Constraints" id="constraints" onchange="1" statustext="Show constraints and milestones"/>
 									<button label="Update" id="update"/>
 								</row>
 							</rows>

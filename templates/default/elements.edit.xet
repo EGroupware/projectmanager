@@ -76,7 +76,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.2.002">
 		<grid width="100%">
 			<columns>
 				<column width=" 95"/>
@@ -84,12 +84,12 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description options=",,,end_constraints" value="End before"/>
-					<listbox rows="2" id="pe_constraints[end]" statustext="Elements that can't start before this one is finished" no_lang="1"/>
-				</row>
-				<row class="row" valign="top">
 					<description options=",,,end_constraints" value="Start after"/>
 					<listbox rows="2" id="pe_constraints[start]" statustext="Elements which have to be finished before this can start" no_lang="1"/>
+				</row>
+				<row class="row" valign="top">
+					<description options=",,,end_constraints" value="End before"/>
+					<listbox rows="2" id="pe_constraints[end]" statustext="Elements that can't start before this one is finished" no_lang="1"/>
 				</row>
 				<row class="row" valign="top">
 					<description options=",,,milestone_constraints" value="Milestones"/>

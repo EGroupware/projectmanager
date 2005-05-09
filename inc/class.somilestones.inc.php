@@ -75,4 +75,17 @@ class somilestones extends so_sql
 		}
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
 	}
+	
+	function &titles($keys=array())
+	{
+		$milestones = array();
+		foreach((array)$this->search($keys,'ms_id,ms_date,ms_title') as $milestone)
+		{
+			if (!$milestone) continue;
+
+			$milestones[$milestone['ms_id']] = date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'],$milestone['ms_date']).
+				': '.$milestone['ms_title'];
+		}
+		return $milestones;
+	}
 }

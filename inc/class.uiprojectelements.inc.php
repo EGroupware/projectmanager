@@ -164,7 +164,6 @@ class uiprojectelements extends boprojectelements
 						$msg = lang('Project-Element saved');
 						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
 							'menuaction' => $content['caller'],//'projectmanager.uiprojectelements.index',
-							'pm_id'      => $this->data['pm_id'],
 							'msg'        => $msg,
 						))."';";
 					}
@@ -242,10 +241,10 @@ class uiprojectelements extends boprojectelements
 		$sel_options = array(
 			'pe_constraints' => $this->titles(array(	// only titles of elements displayed in a gantchart
 				"pe_status != 'ignore'",
-				'pe_planned_start IS NOT NULL',
-				'pe_planned_end IS NOT NULL',	
+				'(pe_planned_start IS NOT NULL OR pe_real_start IS NOT NULL)',
+				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',	
 			)),
-			'milestone'     => array()//$this->milestones->titles(), 
+			'milestone'     => $this->milestones->titles(), 
 		);
 		$readonlys = array(
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
