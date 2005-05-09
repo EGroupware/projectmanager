@@ -82,10 +82,18 @@ class pm_admin_prefs_sidebox_hooks
 				),
 				'Projectlist' => $GLOBALS['phpgw']->link('/index.php',array(
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
-				'Elementlist' => $GLOBALS['phpgw']->link('/index.php',array(
-					'menuaction' => 'projectmanager.uiprojectelements.index' )),
-				'Ganttchart' => $GLOBALS['phpgw']->link('/index.php',array(
-					'menuaction' => 'projectmanager.ganttchart.show' )),
+				array(
+					'text' => 'Elementlist',
+					'link' => $pm_title ? $GLOBALS['phpgw']->link('/index.php',array(
+						'menuaction' => 'projectmanager.uiprojectelements.index', 
+					)) : False,
+				),
+				array(
+					'text' => 'Ganttchart',
+					'link' => $pm_title ? $GLOBALS['phpgw']->link('/index.php',array(
+						'menuaction' => 'projectmanager.ganttchart.show',
+					)) : False,
+				),
 			);
 			display_sidebox($appname,$GLOBALS['phpgw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 		}
