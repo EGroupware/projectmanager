@@ -85,9 +85,11 @@ class datasource_infolog extends datasource
 			case 'billed':
 				return 100;
 				
-			case 'ongoing':
 			case 'will-call':
 				return 50;
+
+			case 'ongoing':
+				return 10;
 		}
 		return 0;
 	}
