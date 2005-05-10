@@ -30,7 +30,7 @@
 					<date-time id="ds[pe_planned_end]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_used_time" value="Time"/>
+					<description options=",,,pe_used_time" value="Times"/>
 					<date-timeonly id="pe_used_time"/>
 					<date-timeonly id="ds[pe_used_time]" readonly="true"/>
 				</row>

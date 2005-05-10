@@ -17,6 +17,11 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 /**
  * Constraints storage object of the projectmanager
  *
+ * There are 3 constraint-types:
+ * - start:     PE has to start after an other PE (own pe_id is in pe_id_start)
+ * - end:       PE has to end before the start an other PE (own pe_id is in pe_id_end)
+ * - milestone: PE has to end before a milestone (own pe_id is in pe_id_end)
+ *
  * Tables: egw_pm_constraints
  *
  * @package projectmanager
@@ -69,16 +74,16 @@ class soconstraints extends so_sql
 		{
 			$pe_id = (int) $criteria['pe_id'];
 			unset($criteria['pe_id']);
-			$criteria[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";
 		}
 		if (isset($filter['pe_id']) && (int)$filter['pe_id'])
 		{
 			$pe_id = (int) $filter['pe_id'];
 			unset($filter['pe_id']);
-			$filter[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";
 		}
 		if ($pe_id)
 		{
+			$filter[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";
+
 			if ($extra_cols && !is_array($extra_cols)) $extra_cols = explode(',',$extra_cols);
 			// defines 3 constrain-types: milestone, start and end
 			$extra_cols[] = "CASE WHEN ms_id != 0 THEN 'milestone' WHEN pe_id_start=$pe_id THEN 'start' ELSE 'end' END AS constraint_type";
@@ -100,7 +105,7 @@ class soconstraints extends so_sql
 	*/
 	function read($keys,$extra_cols='',$join='')
 	{
-		if (!$search =& $this->search($keys))
+		if (!$search =& $this->search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$keys))
 		{
 			return false;
 		}
@@ -126,7 +131,7 @@ class soconstraints extends so_sql
 						$ret['start'] = $row['pe_id_end'];
 						break;
 					case 'end':
-						$ret['start'] = $row['pe_id_start'];
+						$ret['end'] = $row['pe_id_start'];
 						break;
 				}
 			}
@@ -134,6 +139,11 @@ class soconstraints extends so_sql
 		else
 		{
 			$ret =& $search;
+		}
+		if ($this->debug)
+		{
+			echo "<p>soconstraints::read(".print_r($keys,true).",'$extra_cols','$join')</p>\n";
+			_debug_array($ret);
 		}
 		return $ret;
 	}

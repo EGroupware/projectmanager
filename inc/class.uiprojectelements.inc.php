@@ -51,7 +51,7 @@ class uiprojectelements extends boprojectelements
 		if ((int) $_REQUEST['pm_id'])
 		{
 			$pm_id = (int) $_REQUEST['pm_id'];
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
+			// store the current project (only for index, as popups may be called by other parent-projects)
 		}
 		else
 		{
@@ -103,28 +103,31 @@ class uiprojectelements extends boprojectelements
 		if (is_array($content))
 		{
 			//_debug_array($content);
-			// re-read it in case it's changed in the meantime!
-			$this->data = $this->read($content['data']);
+			$this->data = $content['data'];
 			$update_necessary = $save_necessary = 0;
 			$datasource = $this->datasource($this->data['pe_app']);
 			$ds = $datasource->read($this->data['pe_app_id']);
 			if (!$content['view'])
 			{
+				if ($content['pe_completion'] !== '') $content['pe_completion'] .= '%';
+
 				foreach($datasource->name2id as $name => $id)
 				{
+					//echo "checking $name=$id<br>\n";
 					// check if update is necessary, because a field has be set or changed
-					if (($content[$name] || $name == 'pe_completion' && $content[$name] !== '') &&
-						($content[$name] != $this->data[$name] || !($this->data['pe_overwrite'] & $id)))
+					if ($content[$name] && ($content[$name] != $this->data[$name] || !($this->data['pe_overwrite'] & $id)))
 					{
+						//echo "need to update $name as content[$name] changed to '".$content[$name]."' != '".$this->data[$name]."'<br>\n";
 						$this->data[$name] = $content[$name];
 						$this->data['pe_overwrite'] |= $id;
 						$update_necessary |= $id;
 					}
 					// check if a field is no longer set, or it's not set and datasource changed 
 					// => set it from the datasource
-					elseif (($this->data['pe_overwrite'] & $id) && (!$content[$name] || $name == 'pe_completion' && $content[$name] === '') ||
-						    !($this->data['pe_overwrite'] & $id) && $this->data[$name] != $ds[$name])
+					elseif (($this->data['pe_overwrite'] & $id) && !$content[$name] ||
+						    !($this->data['pe_overwrite'] & $id) && (int)$this->data[$name] != (int)$ds[$name])
 					{
+						//echo "need to update $name as content[$name] is unset or datasource changed cont='".$content[$name]."', data='".$this->data[$name]."', ds='".$ds[$name]."'<br>\n";
 						// if we have a change in the datasource, set pe_synced
 						if ($this->data[$name] != $ds[$name])
 						{
@@ -135,10 +138,12 @@ class uiprojectelements extends boprojectelements
 						$update_necessary |= $id;
 					}
 				}
+				$content['cat_id'] = (int) $content['cat_id'];	// as All='' and cat_id column is int
 				foreach(array('pe_status','cat_id','pe_remark','pe_constraints') as $name)
 				{
 					if ($content[$name] != $this->data[$name])
 					{
+						echo "need to update $name as content[$name] changed to '".$content[$name]."' != '".$this->data[$name]."'<br>\n";
 						$this->data[$name] = $content[$name];
 						$save_necessary = true;
 
@@ -219,7 +224,7 @@ class uiprojectelements extends boprojectelements
 			$datasource = $this->datasource($this->data['pe_app']);
 			$js = 'window.focus();';
 		}
-		$preserv = array(
+		$preserv = $this->data + array(
 			'view' => $view,
 			'data' => $this->data,
 			'caller' => !$content['caller'] && preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ?
@@ -242,9 +247,10 @@ class uiprojectelements extends boprojectelements
 			'pe_constraints' => $this->titles(array(	// only titles of elements displayed in a gantchart
 				"pe_status != 'ignore'",
 				'(pe_planned_start IS NOT NULL OR pe_real_start IS NOT NULL)',
-				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',	
+				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',
+				'pe_id != '.(int)$this->data['pe_id'],	// dont show own title	
 			)),
-			'milestone'     => $this->milestones->titles(), 
+			'milestone'     => $this->milestones->titles(array('pm_id' => $this->data['pm_id'])), 
 		);
 		$readonlys = array(
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
@@ -352,6 +358,9 @@ class uiprojectelements extends boprojectelements
 	 */
 	function index($content=null,$msg='')
 	{
+		// store the current project (only for index, as popups may be called by other parent-projects)
+		$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$this->project->data['pm_id']);
+
 		if ($_GET['msg']) $msg = $_GET['msg'];
 
 		if ($content['sync_all'])

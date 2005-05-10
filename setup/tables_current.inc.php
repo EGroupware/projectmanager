@@ -99,7 +99,7 @@
 		'egw_pm_milestones' => array(
 			'fd' => array(
 				'ms_id' => array('type' => 'auto','nullable' => False),
-				'pm_id' => array('type' => 'int','precision' => '4'),
+				'pm_id' => array('type' => 'int','precision' => '4','nullable' => False),
 				'ms_date' => array('type' => 'int','precision' => '8','nullable' => False),
 				'ms_title' => array('type' => 'varchar','precision' => '255'),
 				'ms_description' => array('type' => 'text')

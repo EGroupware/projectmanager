@@ -43,7 +43,6 @@ class uimilestones extends boprojectmanager
 		if ((int) $_REQUEST['pm_id'])
 		{
 			$pm_id = (int) $_REQUEST['pm_id'];
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
 		}
 		else
 		{
@@ -92,6 +91,10 @@ class uimilestones extends boprojectmanager
 		
 		if (is_array($content))
 		{
+			if ($content['pm_id'] != $this->data['pm_id'])
+			{
+				$this->read($content['pm_id']);
+			}
 			$this->milestones->data_merge($content);
 
 			if ($this->check_acl(EGW_ACL_EDIT))
@@ -141,9 +144,12 @@ class uimilestones extends boprojectmanager
 		elseif ($_REQUEST['ms_id'])
 		{
 			$this->milestones->read(array(
-				'pm_id' => $this->data['pm_id'],
 				'ms_id' => $_REQUEST['ms_id'],
 			));
+		}
+		else
+		{
+			$this->milestones->data['pm_id'] = $this->data['pm_id'];
 		}
 		$content = $this->milestones->data + array(
 			'msg' => $msg,
@@ -157,22 +163,30 @@ class uimilestones extends boprojectmanager
 				'save'     => true,
 				'apply'    => true,
 				'delete'   => true,
+				'pm_id'    => true,
 				'ms_title' => true,
 				'ms_date'  => true,
 				'ms_description' => true,
+			);
+			$sel_options = array(
+				'pm_id' => array($this->data['pm_id'] => $this->data['pm_title']),
 			);
 		}
 		else
 		{
 			$readonlys = array(
 				'edit'   => true,
-				'delete' => !$this->milestones->data['ms_id'],
+			);
+			$sel_options = array(
+				'pm_id' => $this->query_list('pm_title','pm_id'),
 			);
 		}
+		$readonlys['delete'] = !$this->milestones->data['ms_id'] || !$this->check_acl(EGW_ACL_EDIT);
+
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($view ? lang('View milestone') : 
 			($this->milestones->data['ms_id'] ? lang('Edit milestone') : lang('Add milestone')));
 		$this->tpl->read('projectmanager.milestone.edit');
-		$this->tpl->exec('projectmanager.uimilestones.edit',$content,'',$readonlys,$this->milestones->data+array(
+		$this->tpl->exec('projectmanager.uimilestones.edit',$content,$sel_options,$readonlys,$this->milestones->data+array(
 			'view'  => $view,
 		),2);
 	}	 

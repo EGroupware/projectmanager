@@ -20,6 +20,18 @@ $GLOBALS['egw_info'] = array(
 ));
 include('../header.inc.php');
 
+include_once(EGW_INCLUDE_ROOT.'/projectmanager/setup/setup.inc.php');
+if ($setup_info['projectmanager']['version'] != $GLOBALS['egw_info']['apps']['projectmanager']['version'])
+{
+	$GLOBALS['egw']->common->egw_header();
+	parse_navbar();
+	echo '<p style="text-align: center; color:red; font-weight: bold;">'.lang('Your database is NOT up to date (%1 vs. %2), please run %3setup%4 to update your database.',
+		$setup_info['projectmanager']['version'],$GLOBALS['egw_info']['apps']['projectmanager']['version'],
+		'<a href="../setup/">','</a>')."</p>\n";
+	$GLOBALS['egw']->common->phpgw_exit();
+}
+unset($setup_info);
+
 $pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 
 $GLOBALS['egw']->redirect_link('/index.php',array(

@@ -10,7 +10,7 @@
 	* option) any later version.                                               *
 	\**************************************************************************/
 	
-	/* tables_update.inc.php,v 1.3 2005/05/08 18:20:59 ralfbecker Exp */
+	/* tables_update.inc.php,v 1.4 2005/05/10 14:51:35 ralfbecker Exp */
 
 	$test[] = '0.1.008';
 	function projectmanager_upgrade0_1_008()
@@ -87,6 +87,20 @@
 		$GLOBALS['phpgw_setup']->oProc->RenameTable('egw_pm_constrains','egw_pm_constraints');
 
 		$GLOBALS['setup_info']['projectmanager']['currentver'] = '0.2.005';
+		return $GLOBALS['setup_info']['projectmanager']['currentver'];
+	}
+
+
+	$test[] = '0.2.005';
+	function projectmanager_upgrade0_2_005()
+	{
+		$GLOBALS['phpgw_setup']->oProc->AlterColumn('egw_pm_milestones','pm_id',array(
+			'type' => 'int',
+			'precision' => '4',
+			'nullable' => False
+		));
+
+		$GLOBALS['setup_info']['projectmanager']['currentver'] = '0.2.006';
 		return $GLOBALS['setup_info']['projectmanager']['currentver'];
 	}
 ?>

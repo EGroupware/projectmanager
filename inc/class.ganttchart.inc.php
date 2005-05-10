@@ -263,9 +263,19 @@ class ganttchart extends boprojectelements
 
 		// set project-specific attributes: bold, solid bar, ...
 		$bar->title->SetFont(FF_VERA,FS_BOLD,!$level ? 9 : 8);
-		//$bar->title->SetColor("#9999FF");
 		$bar->SetPattern(BAND_SOLID,"#9999FF");
 		
+		if ($this->modernJPGraph && !$pe['pe_id'])	// main-project
+		{
+			$link = $GLOBALS['egw']->link('/index.php',array(
+				'menuaction' => 'projectmanager.uiprojectmanager.view',
+				'pm_id'      => $pe['pm_id'],
+			));
+			$title = lang('View this project');
+			
+			$bar->SetCSIMTarget($link,$title);
+			$bar->title->SetCSIMTarget($link,$title);
+		}
 		return $bar;
 	}
 	
@@ -312,14 +322,14 @@ class ganttchart extends boprojectelements
 		
 		if ($this->modernJPGraph && $pe['pe_id'])
 		{
-			$link = $GLOBALS['egw']->link('/index.php',array(
+			$bar->SetCSIMTarget('@'.$GLOBALS['egw']->link('/index.php',array(	// @ = popup
 				'menuaction' => 'projectmanager.uiprojectelements.view',
 				'pm_id'      => $pe['pm_id'],
 				'pe_id'      => $pe['pe_id'],
-			));
-			$title = $pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element');
-			$bar->SetCSIMTarget($link,$title);
-			$bar->title->SetCSIMTarget($link,$title);
+			)),$pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element'));
+			
+			$bar->title->SetCSIMTarget($GLOBALS['egw']->link('/index.php',$this->link->view($pe['pe_app'],$pe['pe_app_id'])),
+				lang('View this element in %1',lang($pe['pe_app'])));
 		}
 		return $bar;
 	}
@@ -337,15 +347,20 @@ class ganttchart extends boprojectelements
 		if ($this->debug) 
 		{
 		 	echo "<p>MileStone($line,'$milestone[ms_title],".
-		 		date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$milestone['ms_date']).','.
+		 		date('Y-m-d',$milestone['ms_date']).','.
 				date($this->prefs['common']['dateformat'],$milestone['ms_date']).")</p>\n";
 		}
 		$ms =& new MileStone($line,($level ? str_repeat(' ',$level) : '').
 			// the Milestone title has somehow to be iso-8859-1
 			$GLOBALS['egw']->translation->convert($milestone['ms_title'],$this->charset,'iso-8859-1'),
-			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$milestone['ms_date']),
+			date('Y-m-d',$milestone['ms_date']),
 			date($this->prefs['common']['dateformat'],$milestone['ms_date']));
 		
+		$ms->title->SetFont(FF_VERA,FS_ITALIC,8);
+		$ms->title->SetColor('blue');
+		$ms->mark->SetColor('black');
+		$ms->mark->SetFillColor('blue');
+
 		if ($this->modernJPGraph)
 		{
 			$link = $GLOBALS['egw']->link('/index.php',array(
@@ -354,8 +369,8 @@ class ganttchart extends boprojectelements
 				'ms_id'      => $milestone['ms_id'],
 			));
 			$title = lang('View this milestone');
-			$ms->SetCSIMTarget($link,$title);
-			$ms->title->SetCSIMTarget($link,$title);
+			$ms->SetCSIMTarget('@'.$link,$title);	// @ = popup
+			$ms->title->SetCSIMTarget('@'.$link,$title);
 		}
 		return $ms;
 	}
@@ -617,7 +632,7 @@ class ganttchart extends boprojectelements
 		$img_name = basename($img);
 		$map = $this->create($content,$img,'ganttchart');
 		// replace the regular links with popups
-		$map = preg_replace('/href="([^"]+)"/i','href="#" onclick="window.open(\'\\1\',\'_blank\',\'dependent=yes,width=600,height=450,scrollbars=yes,status=yes\'); return false;"'
+		$map = preg_replace('/href="@([^"]+)"/i','href="#" onclick="window.open(\'\\1\',\'_blank\',\'dependent=yes,width=600,height=450,scrollbars=yes,status=yes\'); return false;"'
 		//.$tmpl->html->tooltip('Hallo Ralf<br>das ist ja <b>fett</b>')
 		,$map);
 		
