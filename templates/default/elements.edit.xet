@@ -99,7 +99,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="0.2.001">
-		<grid>
+		<grid width="100%">
 			<columns>
 				<column width="100"/>
 				<column width="49%"/>

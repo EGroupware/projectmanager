@@ -65,7 +65,7 @@ class uiprojectelements extends boprojectelements
 			));
 		}
 		$this->boprojectelements($pm_id);
-		
+	
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
@@ -143,7 +143,7 @@ class uiprojectelements extends boprojectelements
 				{
 					if ($content[$name] != $this->data[$name])
 					{
-						echo "need to update $name as content[$name] changed to '".$content[$name]."' != '".$this->data[$name]."'<br>\n";
+						//echo "need to update $name as content[$name] changed to '".$content[$name]."' != '".$this->data[$name]."'<br>\n";
 						$this->data[$name] = $content[$name];
 						$save_necessary = true;
 
@@ -256,6 +256,11 @@ class uiprojectelements extends boprojectelements
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 		);
+		// check if user has the necessary rights to view or edit the budget
+		$readonlys['times|budget|constraints']['budget'] = !$this->check_acl(EGW_ACL_BUDGET);
+		$readonlys['pe_planned_budget'] = $readonlys['pe_used_budget'] = $readonlys['pe_activity_id'] = 
+			$readonlys['pe_cost_per_time'] = !$this->check_acl(EGW_ACL_EDIT_BUDGET);
+
 		if ($view)
 		{
 			foreach($this->db_cols as $name)
@@ -325,7 +330,7 @@ class uiprojectelements extends boprojectelements
 				// no link for own project
 				if (!$this->project->check_acl(EGW_ACL_EDIT,$this->project->data))
 				{
-					$readonlys['edit_project'] = true;
+					$readonlys['edit'] = true;
 				}
 			}
 			elseif ($row['pe_app'] == 'projectmanager')
@@ -341,6 +346,7 @@ class uiprojectelements extends boprojectelements
 				$row['view_link'] = $this->link->view($row['pe_app'],$row['pe_app_id']);
 			}
 		}
+		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
 
 		if ($this->debug)
 		{
@@ -363,11 +369,19 @@ class uiprojectelements extends boprojectelements
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 
-		if ($content['sync_all'])
+		if ($content['nm']['rows']['edit'])
+		{
+			$this->tpl->location(array(
+				'menuaction' => 'projectmanager.uiprojectmanager.edit',
+				'pm_id'      => $this->pm_id,
+			));
+		}
+		elseif ($content['sync_all'] && $this->project->check_acl(EGW_ACL_ADD))
 		{
 			$msg = lang('%1 element(s) updated',$this->sync_all());
 		}
-		elseif ($content['nm']['add'] && ($param = $this->link->add($content['nm']['add_app'],'projectmanager',$this->pm_id)))
+		elseif ($content['nm']['add'] && $this->project->check_acl(EGW_ACL_ADD) && 
+			($param = $this->link->add($content['nm']['add_app'],'projectmanager',$this->pm_id)))
 		{
 			$this->tpl->location($param);
 		}
@@ -407,12 +421,22 @@ class uiprojectelements extends boprojectelements
 				'options-filter' => $this->status_labels,
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
 				'no_filter2'     => True,// I  disable the 2. filter (params are the same as for filter)
-				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
+//				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
-				'header_right'   => 'projectmanager.elements.list.add',
-				'header_left'    => 'projectmanager.elements.list.add-new',
 			);
+		}
+		// add "buttons" only with add-rights
+		if ($this->project->check_acl(EGW_ACL_ADD))
+		{
+			$content['nm']['header_right'] = 'projectmanager.elements.list.add';
+			$content['nm']['header_left']  = 'projectmanager.elements.list.add-new';
+		}
+		else
+		{
+			unset($content['nm']['header_right']);
+			unset($content['nm']['header_left']);
+			$readonlys['sync_all'] = true;
 		}
 		$content['nm']['link_to'] = array(
 			'to_id'    => $this->pm_id,
@@ -420,11 +444,10 @@ class uiprojectelements extends boprojectelements
 			'no_files' => true,
 			'search_label' => 'Add existing',
 			'link_label'   => 'Add',
-		);
-
+		);			
 		$GLOBALS['phpgw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
-		$this->tpl->exec('projectmanager.uiprojectelements.index',$content,$sel_options);
+		$this->tpl->exec('projectmanager.uiprojectelements.index',$content,$sel_options,$readonlys);
 	}
 }

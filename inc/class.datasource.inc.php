@@ -103,7 +103,7 @@ class datasource
 	 * get an item from the underlaying app and convert applying data ia a datasource array
 	 *
 	 * A datasource array can contain values for the keys: completiton, {planned|used}_time, {planned|used}_budget,
-	 *	{planned|real}_start, {planned|real}_end
+	 *	{planned|real}_start, {planned|real}_end and pe_status
 	 * Not set values mean they are not supported by the datasource.
 	 *
 	 * Reimplent this function for spezial datasource types (not read!)
@@ -116,7 +116,8 @@ class datasource
 		if (($title = $this->link->title($this->type,$data_id)))
 		{
 			return array(
-				'pe_title' => $title,
+				'pe_title'  => $title,
+				'pe_status' => 'ignore',	// not supported datasources are ignored, as they contain no values, eg. addressbook
 			);
 		}
 		return false;

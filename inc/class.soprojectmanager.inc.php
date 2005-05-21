@@ -42,6 +42,21 @@ class soprojectmanager extends so_sql
 	 * @var string $extra_table name of customefields table
 	 */
 	var $extra_table = 'egw_pm_extra';
+	var $members_table = 'egw_pm_members';
+	var $roles_table = 'egw_pm_roles';
+	/**
+	 * @var string $acl_join join with the members and the roles table to get the role-ACL of the current user
+	 */
+	var $acl_join;
+	/**
+	 * @var array $acl_extracols extracolumns from the members table
+	 */
+	var $acl_extracols='role_acl';
+	/**
+	 * @var array $grants ACL grants from other users
+	 */
+	var $grants;
+	var $read_grants,$private_grants;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -57,6 +72,19 @@ class soprojectmanager extends so_sql
 		unset($config);
 		$this->customfields =& $this->config['customfields'];
 		
+		$this->grants = $GLOBALS['egw']->acl->get_grants('projectmanager');
+		$this->user = (int) $GLOBALS['egw_info']['user']['account_id'];
+
+		$this->read_grants = $this->private_grants = array();
+		foreach($this->grants as $owner => $rights)
+		{
+			if ($rights) $this->read_grants[] = $owner;		// ANY ACL implies READ!
+			
+			if ($rights & EGW_ACL_PRIVATE) $this->private_grants[] = $owner;
+		}
+		$this->acl_join = "LEFT JOIN $this->members_table ON ($this->table_name.pm_id=$this->members_table.pm_id AND member_uid=$this->user) ".
+			" LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id";
+
 		if ($pm_id) $this->read($pm_id);
 	}
 	
@@ -67,6 +95,13 @@ class soprojectmanager extends so_sql
 	 */
 	function read($keys)
 	{
+		//echo "<p>soprojectmanager::read(".print_r($keys,true).")</p>\n";
+
+		if ($keys && is_numeric($keys) && $this->data['pm_id'] == $keys ||
+			$keys['pm_id'] &&  $this->data['pm_id'] == $keys['pm_id'])
+		{
+			return $this->data;
+		}
 		if (!parent::read($keys))
 		{
 			return false;
@@ -80,6 +115,16 @@ class soprojectmanager extends so_sql
 				$this->data['extra_'.$row['pm_extra_name']] = $row['pm_extra_value'];
 			}
 		}
+		// query project_members and their roles
+		$this->db->select($this->members_table,'*',$this->members_table.'.pm_id='.(int)$this->data['pm_id'],__LINE__,__FILE__,
+			False,'',False,0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id");
+	
+		while (($row = $this->db->row(true)))
+		{
+			$this->data['pm_members'][$row['member_uid']] = $row;
+		}
+		$this->data['role_acl'] = $this->data['pm_members'][$this->user]['role_acl'];
+
 		return $this->data;
 	}
 	
@@ -112,20 +157,33 @@ class soprojectmanager extends so_sql
 			$this->data['pm_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
 			$this->data['pm_modified'] = time();
 		}
-		if (parent::save($keys) && $this->data['pm_id'] && $this->customfields)
+		if (parent::save($keys) == 0 && $this->data['pm_id'])
 		{
-			$this->db->delete($this->extra_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__);
-			
-			foreach($this->customfields as $name => $data)
+			if ($this->customfields)
 			{
-				if ($name && isset($this->data['extra_'.$name]) && !empty($this->data['extra_'.$name]))
+				// custome fields: first delete all, then save the ones with non-empty content
+				$this->db->delete($this->extra_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__);
+				foreach($this->customfields as $name => $data)
 				{
-					$this->db->insert($this->extra_table,array(
-						'pm_id' => $this->data['pm_id'],
-						'pm_extra_name' => $name,
-						'pm_extra_value' => $this->data['extra_'.$name],
-					),false,__LINE__,__FILE__);
+					if ($name && isset($this->data['extra_'.$name]) && !empty($this->data['extra_'.$name]))
+					{
+						$this->db->insert($this->extra_table,array(
+							'pm_id'          => $this->data['pm_id'],
+							'pm_extra_name'  => $name,
+							'pm_extra_value' => $this->data['extra_'.$name],
+						),false,__LINE__,__FILE__);
+					}
 				}
+			}
+			// project-members: first delete all, then save the (still) assigned ones
+			$this->db->delete($this->members_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__);
+			foreach((array)$this->data['pm_members'] as $uid => $data)
+			{
+				$this->db->insert($this->members_table,array(
+					'pm_id'      => $this->data['pm_id'],
+					'member_uid' => $uid,
+					'role_id'    => $data['role_id'],
+				),false,__LINE__,__FILE__);
 			}
 		}
 		return $this->db->Errno;
@@ -143,9 +201,10 @@ class soprojectmanager extends so_sql
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
 	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
+	 * @param string/boolean $join=true sql to do a join, added as is after the table-name, default true=add join for acl
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
-	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null)
+	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
 	{
 		// include sub-categories in the search
 		if ($filter['cat_id'])
@@ -169,10 +228,50 @@ class soprojectmanager extends so_sql
 				}
 				$ids = count($ids) ? implode(',',$ids) : 0;
 			}
-			$filter[] = 'pm_id '.($filter['subs_or_mains'] == 'mains' ? 'NOT ' : '').'IN ('.$ids.')';
+			$filter[] = $this->table_name.'.pm_id '.($filter['subs_or_mains'] == 'mains' ? 'NOT ' : '').'IN ('.$ids.')';
 		}
 		unset($filter['subs_or_mains']);
-
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$extra);
+		
+		if ($join === true)	// add acl-join, to get role_acl of current user
+		{
+			$join = $this->acl_join;
+			
+			if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
+			$extra_cols = array_merge($extra_cols,array(
+				$this->acl_extracols,
+				$this->table_name.'.pm_id AS pm_id',
+			));			
+			if (isset($criteria['pm_id']))
+			{
+				$criteria[$this->table_name.'.pm_id'] = $criteria['pm_id'];
+				unset($criteria['pm_id']);
+			}
+			if (isset($filter['pm_id']) && $filter['pm_id'])
+			{
+				$filter[$this->table_name.'.pm_id'] = $filter['pm_id'];
+				unset($filter['pm_id']);
+			}
+		}
+		// include an ACL filter for read-access
+		$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
+			") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
+			($join == $this->acl_join ? ' OR '.$this->roles_table.'.role_acl!=0' : '').')';
+		
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+	}
+	
+	/**
+	 * reimplemented to set some defaults and cope with ambigues pm_id column
+	 *
+	 * @param string $value_col='pm_title' column-name for the values of the array, can also be an expression aliased with AS
+	 * @param string $key_col='pm_id' column-name for the keys, default '' = same as $value_col: returns a distinct list
+	 * @param array $filter=array() to filter the entries
+	 * @return array with key_col => value_col pairs, ordered by value_col
+	 */
+	function query_list($value_col='pm_title',$key_col='pm_id',$filter=array('pm_status'=>'active'))
+	{
+		if ($key_col == 'pm_id') $key_col = $this->table_name.'.pm_id AS pm_id';
+		
+		return parent::query_list($value_col,$key_col,$filter);
 	}
 }

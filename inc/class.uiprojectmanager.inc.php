@@ -140,7 +140,22 @@ class uiprojectmanager extends boprojectmanager
 				}
 			}
 			//echo "uiprojectmanager::edit(): data="; _debug_array($this->data);
-
+			
+			// process new and changed project-members
+			foreach((array)$content['member'] as $n => $uid)
+			{
+				if (!(int) $content['role'][$n])
+				{
+					unset($this->data['pm_members'][$uid]);
+				}
+				elseif ((int) $uid)
+				{
+					$this->data['pm_members'][(int)$uid] = array(
+						'member_uid' => (int) $uid,
+						'role_id'    => (int) $content['role'][$n],
+					);
+				}
+			}
 			if (($content['save'] || $content['apply']) && $this->check_acl(EGW_ACL_EDIT))
 			{
 				// generate project-number, taking into account a given parent-project
@@ -230,8 +245,10 @@ class uiprojectmanager extends boprojectmanager
 			$add_link = $content['add_link'];
 		}
 		$content = $this->data + array(
-			'msg' => $msg,
-			'ds'  => $pe_summary,
+			'msg'  => $msg,
+			'general|description|members|accounting|custom|links' => $content['general|description|members|accounting|custom|links'],
+			'view' => $view,
+			'ds'   => $pe_summary,
 			'link_to' => array(
 				'to_id' => $content['link_to']['to_id'] ? $content['link_to']['to_id'] : $this->data['pm_id'],
 				'to_app' => 'projectmanager',
@@ -243,10 +260,6 @@ class uiprojectmanager extends boprojectmanager
 		}
 		$content['links'] = $content['link_to'];
 
-		$preserv = $this->data + array(
-			'view' => $view,
-			'add_link' => $add_link,
-		);
 		// empty not explicitly in the project set values
 		if (!is_object($datasource)) $datasource =& CreateObject('projectmanager.datasource'); 
 		foreach($datasource->name2id as $pe_name => $id)
@@ -257,14 +270,43 @@ class uiprojectmanager extends boprojectmanager
 				$content[$pm_name] = $preserv[$pm_name] = '';
 			}
 		}
-		//_debug_array($content);
-		$sel_options = array(
-			'pm_status' => &$this->status_labels,
-			'pm_access' => &$this->access_labels,
-		);
 		$readonlys = array(
 			'delete' => !$this->data['pm_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
+			'general|description|members|accounting|custom|links' => array(
+				'accounting' => !$this->check_acl(EGW_ACL_BUDGET),	// disable the tab, if not budget rights
+			),
+		);
+		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))
+		{
+			$readonlys['pm_planned_budget'] = $readonlys['pm_used_budget'] = true;
+		}
+		$n = 2;
+		foreach((array)$this->data['pm_members'] as $uid => $data)
+		{
+			$content['role'][$n] = $data['role_id'];
+			$content['member'][$n] = $data['member_uid'];
+			if ($view) $readonlys["role[$n]"] = true;
+			++$n;
+		}
+		//_debug_array($content);
+		$preserv = $this->data + array(
+			'view'     => $view,
+			'add_link' => $add_link,
+			'member'   => $content['member'],
+		);
+		$this->instanciate('roles');
+
+		$sel_options = array(
+			'pm_status' => &$this->status_labels,
+			'pm_access' => &$this->access_labels,
+			'role'      => $this->roles->query_list(array(
+				'label' => 'role_title',
+				'title' => 'role_description',
+			),'role_id',array(
+				'pm_id' => array(0,(int)$this->data['pm_id'])
+			)),
+			//'role'      => $this->roles->query($this->data['pm_id']),
 		);
 		if ($view)
 		{
@@ -275,7 +317,9 @@ class uiprojectmanager extends boprojectmanager
 			$readonlys['save'] = $readonlys['apply'] = true;
 
 			// add fields not stored in the main-table
-			$readonlys['pm_members'] = true;
+			$readonlys['pm_members'] = $readonlys['edit_roles'] = true;
+			
+			$readonlys['links'] = $readonlys['link_to'] = true;
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' . 
 			($this->data['pm_id'] ? ($view ? lang('View project') : lang('Edit project')) : lang('Add project'));
@@ -303,7 +347,7 @@ class uiprojectmanager extends boprojectmanager
 		}
 		$query['col_filter']['subs_or_mains'] = $query['filter'];
 
-		$total = parent::get_rows($query,$rows,$readonlys);
+		$total = parent::get_rows($query,$rows,$readonlys,true,true);
 		
 		$readonlys = array();
 		foreach($rows as $n => $val)
@@ -395,14 +439,13 @@ class uiprojectmanager extends boprojectmanager
 			$content['nm'] = array(
 				'get_rows'       =>	'projectmanager.uiprojectmanager.get_rows',
 				'filter2'        => 'active',// I initial value for the filter
-//				'filter2_label'  => lang('State'),// I  label for filter    (optional)
 				'options-filter2'=> $this->status_labels,
 				'filter2_no_lang'=> True,// I  set no_lang for filter (=dont translate the options)
 				'filter'         => 'mains',
 				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
 				'options-filter' => $this->filter_labels,
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
-				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
+//				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
 				'order'          =>	'pm_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 			);

@@ -98,18 +98,10 @@ class boprojectelements extends soprojectelements
 
 		$this->project =& CreateObject('projectmanager.boprojectmanager',$pm_id);
 		
-		if (!is_object($this->project->constraints))
-		{
-			$this->project->constraints =& CreateObject('projectmanager.soconstraints',$pm_id);
-		}
+		$this->project->instanciate('constraints,milestones');
 		$this->constraints =& $this->project->constraints;
-
-		if (!is_object($this->project->milestones))
-		{
-			$this->project->milestones =& CreateObject('projectmanager.somilestones',$pm_id);
-		}
-		$this->milestones =& $this->project->milestones;
-
+		$this->milestones  =& $this->project->milestones;
+		
 		if ($this->debug) $this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
 
 		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
@@ -194,8 +186,18 @@ class boprojectelements extends soprojectelements
 		{
 			$this->data['pm_id'] = $pm_id;
 			$this->data['pe_id'] = $pe_id;
-			$this->data['pe_status'] = 'new';
 			$this->data['pe_overwrite'] = 0;		// none set so far
+			
+			// only set status if it's not set by the datasource
+			if (!isset($this->data['pe_status'])) 
+			{
+				$this->data['pe_status']= 'new';
+			}
+			// if user linking has no ADD rights, the entry is set to ignored
+			if (!$this->check_acl(EGW_ACL_ADD,array('pm_id'=>$pm_id)))
+			{
+				$this->data['pe_status']= 'ignore';
+			}
 		}
 		foreach($data as $name => $value)
 		{
@@ -247,7 +249,7 @@ class boprojectelements extends soprojectelements
 				$updated++;
 			}
 		}
-		//if ($updated)
+		if ($updated)
 		{
 			$this->project->update($pm_id);
 		}
@@ -257,29 +259,39 @@ class boprojectelements extends soprojectelements
 	/**
 	 * checks if the user has enough rights for a certain operation
 	 *
-	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE
+	 * The rights on a project-element depend on the rigths on the parent-project:
+	 *	- One can only read an element, if he can read the project (any rights, at least READ on the project)
+	 *	- Adding, editing and deleting of elements require the ADD right of the project (deleting requires the element to exist pe_id!=0)
+	 *	- reading or editing of budgets require the concerned rights of the project
+	 *
+	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE, EGW_ACL_BUDGET or EGW_ACL_EDIT_BUDGET
 	 * @param array/int $data=null project-element or pe_id to use, default the project-element in $this->data
 	 * @return boolean true if the rights are ok, false if not
 	 */
 	function check_acl($required,$data=0)
 	{
-		if ($data)
+		$pe_id = is_array($data) ? $data['pe_id'] : ($data ? $data : $this->data['pe_id']);
+		$pm_id = is_array($data) ? $data['pm_id'] : ($data ? 0 : $this->data['pm_id']);
+		
+		if (!$pe_id && (!$pm_id || $required == EGW_ACL_DELETE))
 		{
-			if (!is_array($data))
-			{
-				$data_backup =& $this->data; unset($this->data);
-				$data =& $this->read($data);
-				$this->data =& $data_backup; unset($data_backup);
+			return false;
+		}
+		if (!$pm_id)
+		{
+			$data_backup =& $this->data; unset($this->data);
+			$data =& $this->read($pe_id);
+			$this->data =& $data_backup; unset($data_backup);
+		
+			if (!$data) return false;	// not found ==> no rights
 			
-				if (!$data) return false;	// $pm_id not found ==> no rights
-			}
+			$pm_id = $data['pm_id'];
 		}
-		else
+		if ($required == EGW_ACL_EDIT ||$required ==  EGW_ACL_DELETE)
 		{
-			$data =& $this->data;
+			$required = EGW_ACL_ADD;	// edit or delete of elements is handled by the ADD right of the project
 		}
-		// ToDo: concept and implementation of PM ACL !!!
-		return $required != EGW_ACL_DELETE || $data['pe_id'];	// only false if trying to delete a not saved project
+		return $this->project->check_acl($required,$pm_id);
 	}
 	
 	/**
@@ -465,7 +477,7 @@ class boprojectelements extends soprojectelements
 		$titles = array();
 		foreach((array) $this->search(array(),'pe_id,pe_title','pe_app,pe_title','','',false,'AND',false,$keys) as $element)
 		{
-			$titles[$element['pe_id']] = lang($element['pe_app']).': '.$element['pe_title'];
+			if ($element) $titles[$element['pe_id']] = lang($element['pe_app']).': '.$element['pe_title'];
 		}
 		return $titles;
 	}

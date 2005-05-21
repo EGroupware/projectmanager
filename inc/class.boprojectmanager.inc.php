@@ -14,6 +14,9 @@
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectmanager.inc.php');
 
+define('EGW_ACL_BUDGET',EGW_ACL_CUSTOM_1);
+define('EGW_ACL_EDIT_BUDGET',EGW_ACL_CUSTOM_2);
+
 /**
  * General business object of the projectmanager
  *
@@ -58,13 +61,22 @@ class boprojectmanager extends soprojectmanager
 	 * @var object $milestones somilestones-object, not instanciated automatic!
 	 */
 	var $milestones;
+	/**
+	 * @var object $roles instance of the soroles-class, not instanciated automatic!
+	 */
+	var $roles;
+	/**
+	 * @var boolean $is_admin atm. projectmanager-admins are identical to eGW admins, this might change in the future
+	 */
+	var $is_admin;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
 	 * @param int $pm_id id of the project to load, default null
+	 * @param string $instanciate='' comma-separated: constrains,milestones,roles
 	 */
-	function boprojectmanager($pm_id=null)
+	function boprojectmanager($pm_id=null,$instanciate='')
 	{
 		if ($this->debug) $this->debug_message(function_backtrace()."\nboprojectmanager::boprojectmanager($pm_id) started");
 		$this->soprojectmanager($pm_id);
@@ -87,9 +99,30 @@ class boprojectmanager extends soprojectmanager
 		}
 		$this->link =& $GLOBALS['egw']->link;
 		
+		// atm. projectmanager-admins are identical to eGW admins, this might change in the future
+		$this->is_admin = isset($GLOBALS['egw_info']['user']['apps']['admin']);
+
+		if ($instanciate) $this->instanciate($instanciate);
+		
 		if ($this->debug) $this->debug_message("boprojectmanager::boprojectmanager($pm_id) finished");
 	}
 	
+	/**
+	 * Instanciates some classes which dont get instanciated by default
+	 *
+	 * @param string $instanciate comma-separated: constrains,milestones,roles
+	 */
+	function instanciate($instanciate)
+	{
+		foreach(explode(',',$instanciate) as $class)
+		{
+			if (!is_object($this->$class))
+			{
+				$this->$class =& CreateObject('projectmanager.so'.$class);
+			}
+		}		
+	}
+
 	/**
 	 * Summarize the information of all elements of a project: min(start-time), sum(time), avg(completion), ...
 	 *
@@ -212,17 +245,11 @@ class boprojectmanager extends soprojectmanager
 			// delete all links to project $pm_id
 			$this->link->unlink(0,'projectmanager',$pm_id);
 		}
-		if (!is_object($this->constraints))
-		{
-			$this->constraints =& CreateObject('projectmanager.soconstraints',$pm_id);
-		}
+		$this->instanciate('constrains,milestones');
+
 		// delete all constraints of the project
 		$this->constraints->delete(array('pm_id' => $pm_id));
 
-		if (!is_object($this->milestones))
-		{
-			$this->milestones =& CreateObject('projectmanager.somilestones',$pm_id);
-		}
 		// delete all milestones of the project
 		$this->milestones->delete(array('pm_id' => $pm_id));
 
@@ -312,43 +339,52 @@ class boprojectmanager extends soprojectmanager
 	}
 	
 	/**
-	 * Init project
-	 *
-	 * reimplemented to set cooridnator to creating user
-	 */
-	function init($keys=null)
-	{
-		parent::init($keys);
-		
-		if (!$this->data['pm_coordinator']) $this->data['pm_coordinator'] = $GLOBALS['egw_info']['user']['account_id'];
-	}
-	
-	/**
 	 * checks if the user has enough rights for a certain operation
 	 *
-	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE
+	 * Rights are given via owner grants or role based acl
+	 *
+	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE, EGW_ACL_BUDGET, EGW_ACL_EDIT_BUDGET
 	 * @param array/int $data=null project or project-id to use, default the project in $this->data
 	 * @return boolean true if the rights are ok, false if not
 	 */
 	function check_acl($required,$data=0)
 	{
-		if ($data)
+		static $rights = array();
+		$pm_id = (!$data ? $this->data['pm_id'] : (is_array($data) ? $data['pm_id'] : $data));
+		
+		if (!$pm_id)	// new entry, everything allowed, but delete
 		{
-			if (!is_array($data))
+			return $required != EGW_ACL_DELETE;
+		}
+		if (!isset($rights[$pm_id]))	// check if we have a cache entry for $pm_id
+		{
+			if ($data)
 			{
-				$data_backup =& $this->data; unset($this->data);
-				$data =& $this->read($data);
-				$this->data =& $data_backup; unset($data_backup);
-			
-				if (!$data) return false;	// $pm_id not found ==> no rights
+				if (!is_array($data))
+				{
+					$data_backup =& $this->data; unset($this->data);
+					$data =& $this->read($data);
+					$this->data =& $data_backup; unset($data_backup);
+				
+					if (!$data) return false;	// $pm_id not found ==> no rights
+				}
 			}
+			else
+			{
+				$data =& $this->data;
+			}
+			// rights come from owner grants or role based acl
+			$rights[$pm_id] = (int) $this->grants[$data['pm_creator']] | (int) $data['role_acl'];
 		}
-		else
+		//echo "<p>boprojectmanager::check_acl($required,pm_id=$pm_id) rights[$pm_id]=".$rights[$pm_id]."</p>\n";
+
+		if ($required == EGW_ACL_READ)	// read-rights are implied by all other rights
 		{
-			$data =& $this->data;
+			return (boolean) $rights[$pm_id];
 		}
-		// ToDo: concept and implementation of PM ACL !!!
-		return $required != EGW_ACL_DELETE || $data['pm_id'];	// only false if trying to delete a not saved project
+		if ($required == EGW_ACL_BUDGET) $required |= EGW_ACL_EDIT_BUDGET;	// EDIT_BUDGET implies BUDGET
+
+		return (boolean) ($rights[$pm_id] & $required);
 	}
 	
 	/**

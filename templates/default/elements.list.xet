@@ -75,8 +75,8 @@
 					</vbox>
 					<hbox align="center">
 						<image label="Ganttchart" onclick="return confirm('window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]'),'view-projects','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;');" src="ganttchart" options="projectmanager.ganttchart.show&amp;pm_id=$row_cont[pm_id]" statustext="View Ganttchart of this project"/>
-						<image label="View" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]'),'view-projects','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" src="view" options="projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
-						<image label="Edit" onclick="return confirm('window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.edit&amp;pm_id=$row_cont[pm_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;');" src="edit" options="projectmanager.uiprojectmanager.edit&amp;pm_id=$row_cont[pm_id]" statustext="Edit this project"/>
+						<image label="View" src="view" options="projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
+						<button label="Edit" id="edit" image="edit" statustext="Edit this project"/>
 					</hbox>
 				</row>
 				<row class="row">
@@ -117,7 +117,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.list" template="" lang="" group="0" version="0.1.002">
+	<template id="projectmanager.elements.list" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column/>

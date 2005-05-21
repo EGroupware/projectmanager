@@ -1,0 +1,170 @@
+<?php
+/**************************************************************************\
+* eGroupWare - ProjectManager - UI roles                                   *
+* http://www.egroupware.org                                                *
+* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
+* --------------------------------------------                             *
+*  This program is free software; you can redistribute it and/or modify it *
+*  under the terms of the GNU General Public License as published by the   *
+*  Free Software Foundation; either version 2 of the License, or (at your  *
+*  option) any later version.                                              *
+\**************************************************************************/
+
+/* $Id$ */
+
+include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
+include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.uietemplate.inc.php');
+
+define('EGW_ACL_ROLES',EGW_ACL_EDIT);	// maybe this gets an own ACL later
+
+/**
+ * ProjectManager UI: roles
+ *
+ * @package projectmanager
+ * @author RalfBecker-AT-outdoor-training.de
+ * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ */
+class uiroles extends boprojectmanager  
+{
+	/**
+	 * @var array $public_functions Functions to call via menuaction
+	 */
+	var $public_functions = array(
+		'roles' => true,
+	);
+	var $acl2id = array(
+		'read'   => EGW_ACL_READ,
+		'edit'   => EGW_ACL_EDIT,
+		'delete' => EGW_ACL_DELETE,
+		'add'    => EGW_ACL_ADD,
+		'budget' => EGW_ACL_BUDGET,
+		'edit_budget' => EGW_ACL_EDIT_BUDGET,
+	);
+	var $project;
+
+	/**
+	 * Constructor, calls the constructor of the extended class
+	 */
+	function uiroles()
+	{
+		$this->boprojectmanager(null,'roles');
+	}
+	
+	/**
+	 * Create and edit roles
+	 *
+	 * @param array $content=null
+	 */
+	function roles($content=null)
+	{
+		$tpl =& new etemplate('projectmanager.roles');
+		
+		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
+		
+		$only = !!$pm_id;
+		if (!($project_rights = $this->check_acl(EGW_ACL_ROLES,$pm_id)) || !$this->is_admin)
+		{
+			$only = $project_rights ? 1 : 0;
+			$readonlys['1[pm_id]'] = true;
+			
+			if (!$project_rights && !$this->is_admin)
+			{
+				$readonlys['edit'] = $readonlys['apply'] = true;
+			}
+		}
+		$role_to_edit = array('pm_id' => $only);
+		$js = 'window.focus();';
+
+		if (($content['save'] || $content['apply']) && (!$pm_id && $this->is_admin || $pm_id && $project_rights))
+		{
+			if (!$content[1]['role_title'])
+			{
+				$role_to_edit = $content[1];
+				$msg = lang('Title must not be empty');
+			}
+			else
+			{
+				$role = array(
+					'role_id'          => (int) $content[1]['role_id'],
+					'role_title'       => $content[1]['role_title'],
+					'role_description' => $content[1]['role_description'],
+					'pm_id'            => $content[1]['pm_id'] || !$this->is_admin ? $pm_id : 0,
+					'role_acl'         => 0,
+				);
+				foreach($this->acl2id as $acl => $id)
+				{
+					if ($content[1]['acl_'.$acl]) $role['role_acl'] |= $id;
+				}
+				if ($this->roles->save($role) == 0)
+				{
+					$msg = lang('Role saved');
+					
+					$js = 'opener.document.eTemplate.submit();';
+
+					if ($content['save']) $js .= 'window.close();';
+				}
+				else
+				{
+					$msg = lang('Error: saving role !!!');
+				}
+			}
+		}
+		if ($content['delete'] || $content['edit'])
+		{
+			list($role) = $content['delete'] ? each($content['delete']) : each($content['edit']);
+			if(!($role = $this->roles->read($role)) ||
+				$role['pm_id'] && !$this->check_acl(EGW_ACL_ROLES,$role['pm_id']) ||
+				!$role['pm_id'] && !$this->is_admin)
+			{
+				$msg = lang('Permission denied !!!');
+			}
+			elseif ($content['delete'])
+			{
+				if ($this->roles->delete($role))
+				{
+					$msg = lang('Role deleted');
+					$js = 'opener.document.eTemplate.submit();';
+				}
+				else
+				{
+					$msg = lang('Error: deleting role !!!');
+				}
+			}
+			else	// edit an existing role
+			{
+				$role_to_edit = $role;
+				foreach($this->acl2id as $acl => $id)
+				{
+					$role_to_edit['acl_'.$acl] = $role['role_acl'] & $id;
+				}
+			}
+		}
+		$content = array(
+			'pm_id' => $pm_id,
+			'msg'   => $msg,
+			'view'  => !$project_rights && !$this->is_admin,
+			'js'    => '<script>'.$js.'</script>',
+			1       => $role_to_edit,
+		);
+		$n = 2;
+		foreach((array)$this->roles->search(array('pm_id'=>array(0,$pm_id)),false,'pm_id DESC,role_acl DESC') as $role)
+		{
+			foreach($this->acl2id as $acl => $id)
+			{
+				$role['acl_'.$acl] = $role['role_acl'] & $id;
+			}
+			$content[$n++] = $role;
+			
+			$readonlys['delete['.$role['role_id'].']'] = $readonlys['edit['.$role['role_id'].']'] =
+				!$role['pm_id'] && !$this->is_admin || $role['pm_id'] && !$this->check_acl(EGW_ACL_ROLES,$role['pm_id']);
+		}
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Add or edit roles and their ACL');
+		$tpl->exec('projectmanager.uiroles.roles',$content,array(
+			'pm_id' => $this->query_list(),
+		),$readonlys,array(
+			'pm_id' => $pm_id,
+			1       => array('role_id' => $content[1]['role_id']),
+		),2);
+	}		
+}

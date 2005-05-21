@@ -33,7 +33,6 @@
 				'pm_priority' => array('type' => 'int','precision' => '2','default' => '1'),
 				'pm_status' => array('type' => 'varchar','precision' => '9','default' => 'active'),
 				'pm_completion' => array('type' => 'int','precision' => '2','default' => '0'),
-				'pm_coordinator' => array('type' => 'int','precision' => '4'),
 				'pm_used_time' => array('type' => 'int','precision' => '4'),
 				'pm_planned_time' => array('type' => 'int','precision' => '4'),
 				'pm_used_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
@@ -107,6 +106,30 @@
 			'pk' => array('ms_id'),
 			'fk' => array(),
 			'ix' => array('pm_id'),
+			'uc' => array()
+		),
+		'egw_pm_roles' => array(
+			'fd' => array(
+				'role_id' => array('type' => 'auto','nullable' => False),
+				'pm_id' => array('type' => 'int','precision' => '4','default' => '0'),
+				'role_title' => array('type' => 'varchar','precision' => '80','nullable' => False),
+				'role_description' => array('type' => 'varchar','precision' => '255'),
+				'role_acl' => array('type' => 'int','precision' => '4','nullable' => False)
+			),
+			'pk' => array('role_id'),
+			'fk' => array(),
+			'ix' => array('pm_id'),
+			'uc' => array()
+		),
+		'egw_pm_members' => array(
+			'fd' => array(
+				'pm_id' => array('type' => 'int','precision' => '4','nullable' => False),
+				'member_uid' => array('type' => 'int','precision' => '4','nullable' => False),
+				'role_id' => array('type' => 'int','precision' => '4','default' => '0')
+			),
+			'pk' => array('pm_id','member_uid'),
+			'fk' => array(),
+			'ix' => array(),
 			'uc' => array()
 		)
 	);

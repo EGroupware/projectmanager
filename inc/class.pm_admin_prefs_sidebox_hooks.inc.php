@@ -47,18 +47,14 @@ class pm_admin_prefs_sidebox_hooks
 			foreach((array)$GLOBALS['boprojectmanager']->search(array(
 				'pm_status' => 'active',
 				'pm_id'     => $pm_id,
-			),'pm_id,pm_number,pm_title','pm_modified','','',False,'OR') as $project)
+			),$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_modified','','',False,'OR') as $project)
 			{
 				$projects[$project['pm_id']] = array(
 					'label' => $project['pm_number'],
 					'title' => $project['pm_title'],
 				);
-				if ($pm_id == $project['pm_id'])
-				{
-					$pm_title = $project['pm_title'];
-				}
 			}
-			if (!$pm_title) 
+			if (!$pm_id) 
 			{
 				$projects[0] = lang('select a project');
 			}
@@ -76,7 +72,7 @@ class pm_admin_prefs_sidebox_hooks
 					'text' => $GLOBALS['egw']->html->select('pm_id',$pm_id,$projects,true,
 						' onchange="location.href=\''.$GLOBALS['egw']->link('/index.php',array(
 							'menuaction' => $selbox_action,
-						)).'&pm_id=\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars($pm_title).'"'),
+						)).'&pm_id=\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars($projects[$pm_id]).'"'),
 					'no_lang' => True,
 					'link' => False
 				),
@@ -84,13 +80,13 @@ class pm_admin_prefs_sidebox_hooks
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
 				array(
 					'text' => 'Elementlist',
-					'link' => $pm_title ? $GLOBALS['phpgw']->link('/index.php',array(
+					'link' => $pm_id ? $GLOBALS['phpgw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.uiprojectelements.index', 
 					)) : False,
 				),
 				array(
 					'text' => 'Ganttchart',
-					'link' => $pm_title ? $GLOBALS['phpgw']->link('/index.php',array(
+					'link' => $pm_id ? $GLOBALS['phpgw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.ganttchart.show',
 					)) : False,
 				),
@@ -102,7 +98,7 @@ class pm_admin_prefs_sidebox_hooks
 		{
 			$file = array(
 				//'Preferences'     => $GLOBALS['phpgw']->link('/preferences/preferences.php','appname='.$appname),
-				//'Grant Access'    => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
+				'Grant Access'    => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
 				'Edit Categories' => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
 			);
 			if ($location == 'preferences')

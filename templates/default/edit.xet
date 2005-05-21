@@ -81,28 +81,44 @@
 				<column/>
 			</columns>
 			<rows>
-				<row>
+				<row valign="top">
 					<htmlarea id="pm_description"/>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.members" template="" lang="" group="0" version="0.1.001">
-		<grid width="100%" height="150">
+	<template id="projectmanager.edit.members" template="" lang="" group="0" version="0.2.001">
+		<grid width="100%" height="150" overflow="auto">
 			<columns>
-				<column width="95"/>
 				<column/>
+				<column width="70%"/>
 			</columns>
 			<rows>
-				<row class="row">
-					<description options=",,,pm_coordinator" value="Coordinator"/>
-					<menulist>
-						<menupopup type="select-account" id="pm_coordinator"/>
-					</menulist>
+				<row class="th" height="12">
+					<description value="Members"/>
+					<hbox>
+						<description value="Role"/>
+						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiroles.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=740,height=450,scrollbars=yes,status=yes'); return false;" statustext="Add or edit roles and their ACL" id="edit_roles"/>
+					</hbox>
 				</row>
-				<row class="row" valign="top">
-					<description options=",,,pm_members" value="Members"/>
-					<listbox type="select-account" rows="5" id="pm_members"/>
+				<row class="row" height="12" disabled="@view">
+					<menulist>
+						<menupopup type="select-account" id="member[1]" options="select one"/>
+					</menulist>
+					<hbox orient=",0,0">
+						<menulist>
+							<menupopup id="role[1]"/>
+						</menulist>
+						<button label="Add" id="add"/>
+					</hbox>
+				</row>
+				<row class="row" valign="top" disabled="!@member">
+					<menulist>
+						<menupopup type="select-account" readonly="true" id="member[$row]"/>
+					</menulist>
+					<menulist>
+						<menupopup id="role[$row]" options="None"/>
+					</menulist>
 				</row>
 			</rows>
 		</grid>
@@ -162,10 +178,10 @@
 				<column/>
 			</columns>
 			<rows>
-				<row class="th" disabled="@status_only">
+				<row class="th" disabled="@view">
 					<description span="all" value="Create new links"/>
 				</row>
-				<row class="row" disabled="@status_only">
+				<row class="row" disabled="@view">
 					<link-to span="all" id="link_to"/>
 				</row>
 				<row class="th">
@@ -177,7 +193,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit" template="" lang="" group="0" version="0.1.001">
+	<template id="projectmanager.edit" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column width="100"/>
@@ -187,7 +203,7 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description span="all" class="redItalic" no_lang="1" id="msg" align="center"/>
+					<description span="all" class="redItalic" no_lang="1" align="center" id="msg"/>
 					<description/>
 					<description/>
 					<description/>
@@ -196,14 +212,14 @@
 					<description options=",,,pm_number" value="Project ID"/>
 					<textbox size="20" maxlength="64" no_lang="1" id="pm_number" statustext="leave it empty to have one generated"/>
 					<description options=",,,pm_title" value="Title"/>
-					<textbox size="64" maxlength="255" id="pm_title" needed="1" statustext="a describtive title for the project, must not be empty"/>
+					<textbox size="64" maxlength="255" needed="1" id="pm_title" statustext="a describtive title for the project, must not be empty"/>
 				</row>
 				<row>
 					<tabbox span="all">
 						<tabs>
 							<tab label="General" statustext="Start, End, Category, ..."/>
 							<tab label="Description" statustext="free descriptiv text"/>
-							<tab label="Members" statustext="Project coordinator and members"/>
+							<tab label="Members" statustext="Project members and roles"/>
 							<tab label="Accounting" statustext="Accounting options"/>
 							<tab label="Custom" statustext="Custom fields"/>
 							<tab label="Links" statustext="Linked elements"/>
@@ -220,21 +236,27 @@
 				</row>
 				<row class="row" disabled="!@pm_id">
 					<description value="Modified"/>
-					<hbox span="all">
-						<date-time id="pm_modified" readonly="true"/>
+					<hbox span="2" orient=",2,0">
+						<date-time readonly="true" id="pm_modified"/>
 						<menulist>
-							<menupopup type="select-account" id="pm_modifier" label="by" readonly="true"/>
+							<menupopup type="select-account" label="by" readonly="true" id="pm_modifier"/>
+						</menulist>
+					</hbox>
+					<hbox span="2" orient=",2,0">
+						<date-time readonly="true" label="created" no_lang="1" id="pm_created"/>
+						<menulist>
+							<menupopup type="select-account" label="by" readonly="true" id="pm_creator"/>
 						</menulist>
 					</hbox>
 				</row>
 				<row>
 					<hbox span="3">
-						<button id="edit" label="Edit" statustext="Edit this project"/>
+						<button label="Edit" id="edit" statustext="Edit this project"/>
 						<button label="Save" id="save" statustext="Save the changes made"/>
-						<button id="apply" label="Apply" statustext="Apply the changes"/>
-						<button id="cancel" label="Cancel" statustext="Exit without saving"/>
+						<button label="Apply" id="apply" statustext="Apply the changes"/>
+						<button label="Cancel" id="cancel" statustext="Exit without saving"/>
 					</hbox>
-					<button label="Delete" align="right" id="delete" statustext="Delete this project" onclick="return confirm('Delete this project');"/>
+					<button label="Delete" align="right" onclick="return confirm('Delete this project');" id="delete" statustext="Delete this project"/>
 				</row>
 			</rows>
 		</grid>

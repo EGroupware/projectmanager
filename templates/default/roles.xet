@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.roles" template="" lang="" group="0" version="0.2.001">
+		<vbox>
+			<hbox orient=",0,0">
+				<menulist>
+					<menupopup label="Project" onchange="1" no_lang="1" id="pm_id" options="All"/>
+				</menulist>
+				<description no_lang="1" align="right" id="msg" class="redItalic"/>
+			</hbox>
+			<grid>
+				<columns>
+					<column/>
+					<column/>
+					<column disabled="!@pm_id"/>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+					<column disabled="@view"/>
+				</columns>
+				<rows>
+					<row class="th">
+						<description value="Role"/>
+						<description value="Description"/>
+						<description align="center" value="Only this project"/>
+						<description value="Read"/>
+						<description value="Edit"/>
+						<description value="Delete"/>
+						<description align="center" value="Add element"/>
+						<description value="Budget"/>
+						<description align="center" value="Edit budget"/>
+						<description/>
+					</row>
+					<row class="row" disabled="@view">
+						<textbox size="16" maxlength="80" id="${row}[role_title]"/>
+						<textbox size="24" maxlength="255" id="${row}[role_description]"/>
+						<checkbox align="center" id="${row}[pm_id]"/>
+						<checkbox align="center" id="${row}[acl_read]"/>
+						<checkbox align="center" id="${row}[acl_edit]"/>
+						<checkbox align="center" id="${row}[acl_delete]"/>
+						<checkbox align="center" id="${row}[acl_add]"/>
+						<checkbox align="center" id="${row}[acl_budget]"/>
+						<checkbox align="center" id="${row}[acl_edit_budget]"/>
+						<description align="right"/>
+					</row>
+					<row class="row">
+						<description id="${row}[role_title]"/>
+						<description id="${row}[role_description]"/>
+						<checkbox align="center" readonly="true" id="${row}[pm_id]"/>
+						<checkbox align="center" readonly="true" id="${row}[acl_read]"/>
+						<checkbox align="center" readonly="true" id="${row}[acl_edit]"/>
+						<checkbox align="center" readonly="true" id="${row}[acl_delete]"/>
+						<checkbox align="center" readonly="true" id="${row}[acl_add]"/>
+						<checkbox align="center" readonly="true" id="${row}[acl_budget]"/>
+						<checkbox align="center" readonly="true" id="${row}[acl_edit_budget]"/>
+						<hbox orient=",0,0">
+							<button label="Edit" id="edit[$row_cont[role_id]]" image="edit" statustext="Edit this role"/>
+							<button label="Delete" onclick="return confirm('Delete this role');" align="right" id="delete[$row_cont[role_id]]" image="delete" statustext="Delete this role"/>
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+			<hbox>
+				<button label="Save" id="save" statustext="Saves the changes made"/>
+				<button label="Apply" id="apply" statustext="Applies the changes made"/>
+				<button label="Cancel" onclick="window.close();" id="cancel" statustext="Close the window, discard the changes made"/>
+				<html id="js"/>
+			</hbox>
+		</vbox>
+	</template>
+</overlay>

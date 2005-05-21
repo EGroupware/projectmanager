@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="0.1.001">
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -37,6 +37,7 @@
 					</menulist>
 					<image src="${row}[pm_completion]" label="$row_cont[pm_completion]" no_lang="1" align="center"/>
 					<hbox align="center">
+						<button image="ganttchart" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" statustext="View ganttchart of this project"/>
 						<button image="view" label="View" id="view[$row_cont[pm_id]]" statustext="View this project"/>
 						<button id="edit[$row_cont[pm_id]]" image="edit" label="Edit" statustext="Edit this project"/>
 						<button id="delete[$row_cont[pm_id]]" image="delete" label="Delete" statustext="Delete this project" onclick="return confirm('Delete this project');"/>
@@ -45,7 +46,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.list" template="" lang="" group="0" version="0.1.001">
+	<template id="projectmanager.list" template="" lang="" group="0" version="0.2.001">
 		<grid width="100%">
 			<columns>
 				<column/>
