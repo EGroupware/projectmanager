@@ -124,7 +124,7 @@ class soprojectmanager extends so_sql
 			$this->data['pm_members'][$row['member_uid']] = $row;
 		}
 		$this->data['role_acl'] = $this->data['pm_members'][$this->user]['role_acl'];
-
+		
 		return $this->data;
 	}
 	
@@ -251,12 +251,11 @@ class soprojectmanager extends so_sql
 				$filter[$this->table_name.'.pm_id'] = $filter['pm_id'];
 				unset($filter['pm_id']);
 			}
+			// include an ACL filter for read-access
+			$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
+				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
+				($join == $this->acl_join ? ' OR '.$this->roles_table.'.role_acl!=0' : '').')';
 		}
-		// include an ACL filter for read-access
-		$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
-			") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
-			($join == $this->acl_join ? ' OR '.$this->roles_table.'.role_acl!=0' : '').')';
-		
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 	
