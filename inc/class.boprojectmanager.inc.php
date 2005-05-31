@@ -233,26 +233,25 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function delete($keys=null)
 	{
-		$pm_id = !is_null($keys) ? $keys['pm_id'] : $this->data['pm_id'];
+		//echo "<p>boprojectmanager::delete(".print_r($keys,true).") this->data[pm_id] = ".$this->data['pm_id']."</p>\n";
+		$pm_id = is_null($keys) ? $this->data['pm_id'] : (is_array($keys) ? $keys['pm_id'] : $keys);
 		
 		if (($ret = parent::delete($keys)) && $pm_id)
 		{
 			ExecMethod('projectmanager.boprojectelements.delete',array('pm_id' => $pm_id));
-		}
-		// the following is not really necessary, as it's already one in boprojectelements::delete
-		if ($pm_id)
-		{
+
+			// the following is not really necessary, as it's already one in boprojectelements::delete
 			// delete all links to project $pm_id
 			$this->link->unlink(0,'projectmanager',$pm_id);
+
+			$this->instanciate('constraints,milestones');
+
+			// delete all constraints of the project
+			$this->constraints->delete(array('pm_id' => $pm_id));
+	
+			// delete all milestones of the project
+			$this->milestones->delete(array('pm_id' => $pm_id));
 		}
-		$this->instanciate('constraints,milestones');
-
-		// delete all constraints of the project
-		$this->constraints->delete(array('pm_id' => $pm_id));
-
-		// delete all milestones of the project
-		$this->milestones->delete(array('pm_id' => $pm_id));
-
 		return $ret;
 	}
 
