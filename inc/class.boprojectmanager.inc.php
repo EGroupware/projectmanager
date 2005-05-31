@@ -74,7 +74,7 @@ class boprojectmanager extends soprojectmanager
 	 * Constructor, calls the constructor of the extended class
 	 *
 	 * @param int $pm_id id of the project to load, default null
-	 * @param string $instanciate='' comma-separated: constrains,milestones,roles
+	 * @param string $instanciate='' comma-separated: constraints,milestones,roles
 	 */
 	function boprojectmanager($pm_id=null,$instanciate='')
 	{
@@ -110,7 +110,7 @@ class boprojectmanager extends soprojectmanager
 	/**
 	 * Instanciates some classes which dont get instanciated by default
 	 *
-	 * @param string $instanciate comma-separated: constrains,milestones,roles
+	 * @param string $instanciate comma-separated: constraints,milestones,roles
 	 */
 	function instanciate($instanciate)
 	{
@@ -245,7 +245,7 @@ class boprojectmanager extends soprojectmanager
 			// delete all links to project $pm_id
 			$this->link->unlink(0,'projectmanager',$pm_id);
 		}
-		$this->instanciate('constrains,milestones');
+		$this->instanciate('constraints,milestones');
 
 		// delete all constraints of the project
 		$this->constraints->delete(array('pm_id' => $pm_id));
