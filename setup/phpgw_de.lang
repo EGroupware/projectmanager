@@ -35,6 +35,7 @@ cost per time	projectmanager	de	Kosten pro Zeiteinheit
 create new links	projectmanager	de	Neue Verknüpfung erstellen
 custom fields	projectmanager	de	Extra
 datasource	projectmanager	de	Datenquelle
+dates	projectmanager	de	Datum
 delete this milestone	projectmanager	de	Diesen Meilenstein löschen
 delete this project	projectmanager	de	Dieses Projekt löschen
 delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
@@ -50,6 +51,7 @@ edit project-elements	projectmanager	de	Projektelemente bearbeiten
 edit this milestone	projectmanager	de	Diesen Meilenstein bearbeiten
 edit this project	projectmanager	de	Dieses Projekt bearbeiten
 edit this project-element	projectmanager	de	Dieses Projektelement bearbeiten
+edit this role	projectmanager	de	Diese Rolle bearbeiten
 elementlist	projectmanager	de	Elementliste
 elements	projectmanager	de	Elemente
 elements of elements	projectmanager	de	Element der Elemente
@@ -74,6 +76,8 @@ full access	projectmanager	de	unbeschränkter Zugriff
 ganttchart	projectmanager	de	Ganttchart
 ganttchart parameter	projectmanager	de	Ganttchart Parameter
 general	projectmanager	de	Allgemein
+h	projectmanager	de	h
+health	projectmanager	de	Zustand
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
 last modified	projectmanager	de	Zuletzt geändert
@@ -129,11 +133,13 @@ save this project element	projectmanager	de	Dieses Projektelement speichern
 select a project	projectmanager	de	Ein Projekt auswählen
 select an activity if you want to calculate costs by the time	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Zeit berechnen wollen
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
+share	projectmanager	de	Anteil
+share on the whole project in hours or percent, defaults to planned time	projectmanager	de	Anteil am Gesamtprojekt in Stunden oder prozentual, Vorgabe ist geplante Zeit
 show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
 start after	projectmanager	de	Startet nach
 start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
-start- & enddate, time	projectmanager	de	Start- & Enddatum, Zeit
+start- & enddate	projectmanager	de	Start- & Enddatum
 startdate	projectmanager	de	Startdatum
 state	projectmanager	de	Zustand
 status filter	projectmanager	de	Status Filter

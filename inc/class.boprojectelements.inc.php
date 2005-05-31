@@ -37,6 +37,10 @@ class boprojectelements extends soprojectelements
 	 */
 	var $project;
 	/**
+	 * @var array $project_summary array with summary information of the current project
+	 */
+	var $project_summary;
+	/**
 	 * @var soconstraints-object $constraints instance of the soconstraints-class
 	 */
 	var $constraints;
@@ -101,6 +105,8 @@ class boprojectelements extends soprojectelements
 		$this->project->instanciate('constraints,milestones');
 		$this->constraints =& $this->project->constraints;
 		$this->milestones  =& $this->project->milestones;
+		
+		$this->project_summary = $this->summary();
 		
 		if ($this->debug) $this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
 
@@ -336,8 +342,9 @@ class boprojectelements extends soprojectelements
 		if (is_numeric($data['pe_completion'])) $data['pe_completion'] .= '%';
 		if ($data['pe_app']) $data['pe_icon'] = $data['pe_app'].'/navbar';
 		// convert time from min => sec
-		if ($data['pe_used_time']) $data['pe_used_time'] *= 60;
+		if ($data['pe_used_time']) $data['pe_used_time'] *= 60;	// DB: minutes, internal seconds
 		if ($data['pe_planned_time']) $data['pe_planned_time'] *= 60;
+		if ($data['pe_share']) $data['pe_share'] = round($data['pe_share'] / 60.0,1);	// DB: minutes, internal hours
 
 		return $data;
 	}
@@ -363,8 +370,9 @@ class boprojectelements extends soprojectelements
 		}
 		if (substr($data['pe_completition'],-1) == '%') $data['pe_completition'] = (int) substr($data['pe_completition'],0,-1);
 		// convert time from sec => min
-		if ($data['pe_used_time']) $data['pe_used_time'] /= 60;
+		if ($data['pe_used_time']) $data['pe_used_time'] /= 60;	// DB: minutes, internal seconds
 		if ($data['pe_planned_time']) $data['pe_planned_time'] /= 60;
+		if ($data['pe_share']) $data['pe_share'] = round(60 * $data['pe_share']);	// DB: minutes, internal hours
 
 		return $data;
 	}

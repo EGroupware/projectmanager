@@ -44,6 +44,10 @@ class soprojectelements extends so_sql
 		"CASE WHEN link_app1='projectmanager' AND link_id1=pm_id THEN link_id2 ELSE link_id1 END AS pe_app_id",
 		'link_remark AS pe_remark',
 	);
+	/**
+	 * @var int $default_share default share in minutes (on the whole project), used if no planned time AND no pe_share set
+	 */
+	var $default_share = 240; // minutes
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -82,8 +86,12 @@ class soprojectelements extends so_sql
 	{
 		if (is_null($pm_id)) $pm_id = $this->pm_id;
 
+		$share = "CASE WHEN pe_share IS NULL AND pe_planned_time IS NULL THEN $this->default_share WHEN pe_share IS NULL THEN pe_planned_time ELSE pe_share END";
+
 		$this->db->select($this->table_name,array(
-			'AVG(pe_completion) AS pe_completion',
+			"SUM(pe_completion * ($share)) AS pe_sum_completion_shares",
+			"SUM(CASE WHEN pe_completion IS NULL THEN NULL ELSE ($share) END) AS pe_total_shares",
+//			'AVG(pe_completion) AS pe_completion',
 			'SUM(pe_used_time) AS pe_used_time',
 			'SUM(pe_planned_time) AS pe_planned_time',
 			'SUM(pe_used_budget) AS pe_used_budget',
@@ -97,6 +105,10 @@ class soprojectelements extends so_sql
 		if (!($data = $this->db->row(true)))
 		{
 			return false;
+		}
+		if ($data['pe_total_shares'])
+		{
+			$data['pe_completion'] = round($data['pe_sum_completion_shares'] / $data['pe_total_shares'],1);
 		}
 		return $this->db2data($data);
 	}

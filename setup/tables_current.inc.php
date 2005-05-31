@@ -76,7 +76,9 @@
 				'pe_modifier' => array('type' => 'int','precision' => '4','nullable' => False),
 				'pe_status' => array('type' => 'varchar','precision' => '8','nullable' => False,'default' => 'new'),
 				'pe_cost_per_time' => array('type' => 'decimal','precision' => '20','scale' => '2'),
-				'cat_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0')
+				'cat_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+				'pe_share' => array('type' => 'int','precision' => '4'),
+				'pe_health' => array('type' => 'int','precision' => '2')
 			),
 			'pk' => array('pm_id','pe_id'),
 			'fk' => array(),

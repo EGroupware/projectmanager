@@ -37,7 +37,7 @@
 						<button label="Edit" id="edit" statustext="Edit this milestone"/>
 						<button id="save" label="Save" statustext="Save the changes made"/>
 						<button id="apply" label="Apply" statustext="Apply the changes"/>
-						<button id="cancel" label="Cancel" statustext="Close this window, discard the changes made" onclick="window.close();"/>
+						<button id="cancel" label="Cancel" statustext="Close the window, discard the changes made" onclick="window.close();"/>
 					</hbox>
 					<button label="Delete" align="right" id="delete" statustext="Delete this milestone" onclick="return confirm('Delete this milestone');"/>
 				</row>

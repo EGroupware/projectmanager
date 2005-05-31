@@ -10,7 +10,7 @@
 	* option) any later version.                                               *
 	\**************************************************************************/
 	
-	/* tables_update.inc.php,v 1.5 2005/05/21 18:14:26 ralfbecker Exp */
+	/* tables_update.inc.php,v 1.6 2005/05/31 21:28:29 ralfbecker Exp */
 
 	$test[] = '0.1.008';
 	function projectmanager_upgrade0_1_008()
@@ -217,6 +217,23 @@
 		),'pm_coordinator');
 
 		$GLOBALS['setup_info']['projectmanager']['currentver'] = '0.2.009';
+		return $GLOBALS['setup_info']['projectmanager']['currentver'];
+	}
+
+
+	$test[] = '0.2.009';
+	function projectmanager_upgrade0_2_009()
+	{
+		$GLOBALS['phpgw_setup']->oProc->AddColumn('egw_pm_elements','pe_share',array(
+			'type' => 'int',
+			'precision' => '4'
+		));
+		$GLOBALS['phpgw_setup']->oProc->AddColumn('egw_pm_elements','pe_health',array(
+			'type' => 'int',
+			'precision' => '2'
+		));
+
+		$GLOBALS['setup_info']['projectmanager']['currentver'] = '0.3.001';
 		return $GLOBALS['setup_info']['projectmanager']['currentver'];
 	}
 ?>

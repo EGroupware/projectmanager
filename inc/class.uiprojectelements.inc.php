@@ -139,7 +139,16 @@ class uiprojectelements extends boprojectelements
 					}
 				}
 				$content['cat_id'] = (int) $content['cat_id'];	// as All='' and cat_id column is int
-				foreach(array('pe_status','cat_id','pe_remark','pe_constraints') as $name)
+				
+				// calculate the new summary and if a percentage give the share in hours
+				$this->project_summary['pe_total_shares'] -= round(60 * ($content['old_pe_share'] ? $content['old_pe_share'] : $this->data['pe_default_share']));
+				if (substr($content['pe_share'],-1) == '%')
+				{
+					$content['pe_share'] = round($this->project_summary['pe_total_shares'] * (float) $content['pe_share'] / (100 - (float) $content['pe_share']) / 60.0,1);
+				}
+				$this->project_summary['pe_total_shares'] += round(60 * ($content['pe_share'] ? $content['pe_share'] : $this->data['pe_default_share']));
+
+				foreach(array('pe_status','cat_id','pe_remark','pe_constraints','pe_share') as $name)
 				{
 					if ($content[$name] != $this->data[$name])
 					{
@@ -229,6 +238,7 @@ class uiprojectelements extends boprojectelements
 			'data' => $this->data,
 			'caller' => !$content['caller'] && preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ?
 				 $matches[1] : $content['caller'],
+			'old_pe_share' => $this->data['pe_share'],
 		);
 		foreach($datasource->name2id as $name => $id)
 		{
@@ -241,7 +251,19 @@ class uiprojectelements extends boprojectelements
 			'ds'  => $ds ? $ds : $datasource->read($this->data['pe_app_id']),
 			'msg' => $msg,
 			'js'  => '<script>'.$js.'</script>',
+			'default_share' => round(($share = $this->data['pe_planned_time'] ? $this->data['pe_planned_time']/60 : $this->default_share) / 60,1).lang('h'),
 		);
+		// calculate percentual shares
+		if ($this->project_summary['pe_total_shares'])
+		{
+			if ($this->data['pe_share'])
+			{
+				$content['share_percentage'] = lang('h') . '/' . round($this->project_summary['pe_total_shares']/60,1).lang('h').' = '.
+					round(100.0 * 60*$this->data['pe_share'] / $this->project_summary['pe_total_shares'],1) . '%';
+			}
+			$content['default_share'] .= '/' . round(($this->project_summary['pe_total_shares']-60.0*(float)$content['pe_share']+$share)/60,1).lang('h').' = '.
+				round(100.0 * $share / $this->project_summary['pe_total_shares'],1) . '%';
+		}
 		//_debug_array($content);
 		$sel_options = array(
 			'pe_constraints' => $this->titles(array(	// only titles of elements displayed in a gantchart

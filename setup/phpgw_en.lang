@@ -34,6 +34,7 @@ cost per time	projectmanager	en	Cost per Time
 create new links	projectmanager	en	Create new links
 custom fields	projectmanager	en	Custom fields
 datasource	projectmanager	en	Datasource
+dates	projectmanager	en	Dates
 delete this milestone	projectmanager	en	Delete this milestone
 delete this project	projectmanager	en	Delete this project
 delete this project-element, does not remove the linked entry	projectmanager	en	Delete this project-element, does NOT remove the linked entry
@@ -49,6 +50,7 @@ edit project-elements	projectmanager	en	Edit project-elements
 edit this milestone	projectmanager	en	Edit this milestone
 edit this project	projectmanager	en	Edit this project
 edit this project-element	projectmanager	en	Edit this project-element
+edit this role	projectmanager	en	Edit this role
 elementlist	projectmanager	en	Elementlist
 elements of elements	projectmanager	en	Elements of elements
 elements that can't start before this one is finished	projectmanager	en	Elements that can't start before this one is finished
@@ -72,6 +74,8 @@ full access	projectmanager	en	full access
 ganttchart	projectmanager	en	Ganttchart
 ganttchart parameter	projectmanager	en	Ganttchart parameter
 general	projectmanager	en	General
+h	projectmanager	en	h
+health	projectmanager	en	Health
 ignore that entry	projectmanager	en	ignore that entry
 ignored	projectmanager	en	ignored
 last modified	projectmanager	en	last modified
@@ -124,11 +128,13 @@ save this project element	projectmanager	en	Save this project element
 select a project	projectmanager	en	select a project
 select an activity if you want to calculate costs by the time	projectmanager	en	select an activity if you want to calculate costs by the time
 select this project and show it's elements	projectmanager	en	Select this project and show it's elements
+share	projectmanager	en	Share
+share on the whole project in hours or percent, defaults to planned time	projectmanager	en	Share on the whole project in hours or percent, defaults to planned time
 show constraints and milestones	projectmanager	en	Show constraints and milestones
 show planned times instead of the real times	projectmanager	en	Show planned times instead of the real times
 start after	projectmanager	en	Start after
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
-start- & enddate, time	projectmanager	en	Start- & Enddate, Time
+start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
 state	projectmanager	en	State
 status filter	projectmanager	en	Status filter
