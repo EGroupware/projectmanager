@@ -107,11 +107,11 @@ class uiprojectmanager extends boprojectmanager
 			}
 			$view = $content['view'] && !($content['edit'] && $this->check_acl(EGW_ACL_EDIT));
 			
-			if (!$view)
+			if (!$content['view'])	// just changed to edit-mode, still counts as view
 			{
-				//_debug_array($content);
+				//echo "content="; _debug_array($content);
 				$this->data_merge($content);
-				//_debug_array($this->data);
+				//echo "after data_merge data="; _debug_array($this->data);
 
 				// set the data of the pe_summary, if the project-value is unset
 				$pe_summary = $this->pe_summary();
@@ -123,11 +123,13 @@ class uiprojectmanager extends boprojectmanager
 					if (($content[$pm_name] || $pm_name == 'pm_completion' && $content[$pm_name] !== '') &&
 						($content[$pm_name] != $this->data[$pm_name] || !($this->data['pm_overwrite'] & $id)))
 					{
+						//echo "$pm_name set to '".$this->data[$pm_name]."'<br>\n";
 						$this->data['pm_overwrite'] |= $id;
 					}
 					// or check if a field is no longer set, or the datasource changed => set it from the datasource
 					elseif ((!$content[$pm_name] || $pm_name == 'pm_completion' && $content[$pm_name] === '') &&
-						    ($this->data['pm_overwrite'] & $id) || $this->data[$pm_name] != $pe_summary[$pe_name])
+						    ($this->data['pm_overwrite'] & $id) || 
+						    !($this->data['pm_overwrite'] & $id) && $this->data[$pm_name] != $pe_summary[$pe_name])
 					{
 						// if we have a change in the datasource, set pe_synced
 						if ($this->data[$pm_name] != $pe_summary[$name])
@@ -135,6 +137,7 @@ class uiprojectmanager extends boprojectmanager
 							$this->data['pm_synced'] = $this->now_su;
 						}
 						$this->data[$pm_name] = $pe_summary[$pe_name];
+						//echo "$pm_name re-set to default '".$this->data[$pm_name]."'<br>\n";
 						$this->data['pm_overwrite'] &= ~$id;
 					}
 				}
@@ -246,7 +249,8 @@ class uiprojectmanager extends boprojectmanager
 		}
 		$content = $this->data + array(
 			'msg'  => $msg,
-			'general|description|members|accounting|custom|links' => $content['general|description|members|accounting|custom|links'],
+			'general|description|members|accounting|custom|links' => !$content['general|description|members|accounting|custom|links'] && 
+				!$view && $tpl->html->user_agent == 'mozilla' ? 'projectmanager.edit.description' : '',
 			'view' => $view,
 			'ds'   => $pe_summary,
 			'link_to' => array(
@@ -306,7 +310,6 @@ class uiprojectmanager extends boprojectmanager
 			),'role_id',array(
 				'pm_id' => array(0,(int)$this->data['pm_id'])
 			)),
-			//'role'      => $this->roles->query($this->data['pm_id']),
 		);
 		if ($view)
 		{
