@@ -106,7 +106,10 @@ class uiprojectelements extends boprojectelements
 			$this->data = $content['data'];
 			$update_necessary = $save_necessary = 0;
 			$datasource = $this->datasource($this->data['pe_app']);
-			$ds = $datasource->read($this->data['pe_app_id']);
+			if (($ds_read_from_element = !($ds = $datasource->read($this->data['pe_app_id']))))
+			{
+				$ds = $datasource->element_values($this->data);
+			}
 			if (!$content['view'])
 			{
 				if ($content['pe_completion'] !== '') $content['pe_completion'] .= '%';
@@ -150,6 +153,13 @@ class uiprojectelements extends boprojectelements
 
 				foreach(array('pe_status','cat_id','pe_remark','pe_constraints','pe_share') as $name)
 				{
+					if ($name == 'pe_constraints')
+					{
+						foreach($content['pe_constraints'] as $type => $data)
+						{
+							if (!$data) unset($content['pe_constraints'][$type]);	// ignore not set constraints
+						}
+					}
 					if ($content[$name] != $this->data[$name])
 					{
 						//echo "need to update $name as content[$name] changed to '".$content[$name]."' != '".$this->data[$name]."'<br>\n";
@@ -177,7 +187,7 @@ class uiprojectelements extends boprojectelements
 					{
 						$msg = lang('Project-Element saved');
 						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => $content['caller'],//'projectmanager.uiprojectelements.index',
+							'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.uiprojectelements.index',
 							'msg'        => $msg,
 						))."';";
 					}
@@ -191,7 +201,7 @@ class uiprojectelements extends boprojectelements
 			{
 				// all delete are done by index
 				$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-					'menuaction' => $content['caller'],//'projectmanager.uiprojectelements.index',
+					'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.uiprojectelements.index',
 					'delete'     => $this->data['pe_id'],
 				))."';";
 				/*
@@ -230,8 +240,17 @@ class uiprojectelements extends boprojectelements
 				}
 				if (!$this->check_acl(EGW_ACL_EDIT)) $view = true;
 			}
-			$datasource = $this->datasource($this->data['pe_app']);
 			$js = 'window.focus();';
+
+			$datasource = $this->datasource($this->data['pe_app']);
+			if (($ds_read_from_element = !($ds = $datasource->read($this->data['pe_app_id']))))
+			{
+				$ds = $datasource->element_values($this->data);
+			}
+		}
+		if ($ds_read_from_element && !$view)
+		{
+			$msg .= lang('No READ access to the datasource: removing overwritten values will just empty them !!!');
 		}
 		$preserv = $this->data + array(
 			'view' => $view,
@@ -248,7 +267,7 @@ class uiprojectelements extends boprojectelements
 			}
 		}
 		$content = $this->data + array(
-			'ds'  => $ds ? $ds : $datasource->read($this->data['pe_app_id']),
+			'ds'  => $ds,
 			'msg' => $msg,
 			'js'  => '<script>'.$js.'</script>',
 			'default_share' => round(($share = $this->data['pe_planned_time'] ? $this->data['pe_planned_time']/60 : $this->default_share) / 60,1).lang('h'),

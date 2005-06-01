@@ -184,4 +184,26 @@ class datasource
 		}		
 		return $ds;
 	}
+	
+	/**
+	 * reading the not-overwritten values from the element-data
+	 *
+	 * Can be used instead of read, if there's no read-access to the datasource itself
+	 *
+	 * @param array $data element data
+	 * @return array
+	 */
+	function element_values($data)
+	{
+		$values = array();
+
+		foreach($this->name2id as $name => $id)
+		{
+			if (!($data['pe_overwrite'] & $id))
+			{
+				$values[$name] = $data[$name];
+			}
+		}
+		return $values;
+	}
 }

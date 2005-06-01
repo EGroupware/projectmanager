@@ -169,7 +169,7 @@ class boprojectelements extends soprojectelements
 	 * @param string $id id of $app as used by the link-class and the datasource
 	 * @param int $pe_id=0 element- / link-id or 0 to only read and return the entry, but not save it!
 	 * @param int $pm_id=null project-id, default $this->pm_id
-	 * @return array/boolean the updated project-element or false on error
+	 * @return array/boolean the updated project-element or false on error (eg. no read access)
 	 */
 	function &update($app,$id,$pe_id=0,$pm_id=null)
 	{
@@ -178,12 +178,10 @@ class boprojectelements extends soprojectelements
 		if ($this->debug) $this->debug_message("boprojectelements::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 
 		$datasource =& 	$this->datasource($app);
-		$data = $datasource->read($id);
 
-		if (!$app || !(int) $id || !(int) $pm_id ||
-			!($data = $datasource->read($id)))
+		if (!$app || !(int) $id || !(int) $pm_id ||	!($data = $datasource->read($id)))
 		{
-			return false;
+			return false;	// eg. no read access, so I cant update
 		}
 		$this->init();
 
@@ -229,6 +227,8 @@ class boprojectelements extends soprojectelements
 	function &sync_all($pm_id=null)
 	{
 		if (!$pm_id && !($pm_id = $this->pm_id)) return 0;
+		
+		$save_project = $this->project->data;
 
 		$updated = 0;
 		foreach((array) $this->search(array('pm_id'=>$pm_id,"pe_status != 'ignore'"),false) as $data)
@@ -236,8 +236,10 @@ class boprojectelements extends soprojectelements
 			$this->data = $data;
 			
 			$datasource =& $this->datasource($data['pe_app']);
-			$ds = $datasource->read($data['pe_app_id']);
-			
+			if (!($ds = $datasource->read($data['pe_app_id'])))
+			{
+				continue;	// no read access => no update possible
+			}
 			$update_necessary = 0;
 			foreach($datasource->name2id as $name => $id)
 			{
@@ -259,6 +261,8 @@ class boprojectelements extends soprojectelements
 		{
 			$this->project->update($pm_id);
 		}
+		$this->project->data =& $save_project;
+
 		return $updated;
 	}
 
