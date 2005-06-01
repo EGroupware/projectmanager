@@ -85,7 +85,7 @@
 				<row class="row">
 					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
 					<vbox>
-						<description no_lang="1" id="${row}[pe_title]" options=",@${row}[view_link]"/>
+						<description no_lang="1" id="${row}[pe_title]" options=",@${row}[view_link]" statustext="@${row}[view_help]"/>
 						<description no_lang="1" id="${row}[pe_remark]"/>
 					</vbox>
 					<vbox>

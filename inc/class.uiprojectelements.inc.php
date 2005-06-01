@@ -279,7 +279,7 @@ class uiprojectelements extends boprojectelements
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 		);
 		// check if user has the necessary rights to view or edit the budget
-		$readonlys['times|budget|constraints']['budget'] = !$this->check_acl(EGW_ACL_BUDGET);
+		$readonlys['dates|times|budget|constraints']['budget'] = !$this->check_acl(EGW_ACL_BUDGET);
 		$readonlys['pe_planned_budget'] = $readonlys['pe_used_budget'] = $readonlys['pe_activity_id'] = 
 			$readonlys['pe_cost_per_time'] = !$this->check_acl(EGW_ACL_EDIT_BUDGET);
 
@@ -362,10 +362,12 @@ class uiprojectelements extends boprojectelements
 					'menuaction' => 'projectmanager.uiprojectelements.index',
 					'pm_id'      => $row['pe_app_id'],
 				);
+				$row['view_help'] = lang("Select this project and show it's elements");
 			}
 			else
 			{
 				$row['view_link'] = $this->link->view($row['pe_app'],$row['pe_app_id']);
+				$row['view_help'] = lang('View this element in %1',lang($row['pe_app']));
 			}
 		}
 		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
