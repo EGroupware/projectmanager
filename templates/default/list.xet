@@ -18,10 +18,10 @@
 					<nextmatch-sortheader label="Project ID" id="pm_number"/>
 					<nextmatch-sortheader label="Title" id="pm_title"/>
 					<nextmatch-sortheader label="Priority" align="center" id="pm_priority"/>
-					<nextmatch-sortheader label="Coordinator" id="pm_coordinator"/>
+					<nextmatch-sortheader label="Owner" id="pm_creator"/>
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
 					<nextmatch-sortheader label="modified by" id="pm_modifier"/>
-					<nextmatch-sortheader label="Status" id="pm_completiton" align="center"/>
+					<nextmatch-sortheader label="Status" id="pm_completion" align="center"/>
 					<description value="Actions" align="center"/>
 				</row>
 				<row class="row">
@@ -29,7 +29,7 @@
 					<description id="${row}[pm_title]" no_lang="1" options=",projectmanager.uiprojectelements.index&amp;pm_id=$row_cont[pm_id]" statustext="Select this project and show it's elements"/>
 					<description no_lang="1" id="${row}[pm_priority]" align="center"/>
 					<menulist>
-						<menupopup type="select-account" id="${row}[pm_coordinator]" readonly="true"/>
+						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>
 					</menulist>
 					<date-time id="${row}[pm_modified]" readonly="true"/>
 					<menulist>
