@@ -10,7 +10,7 @@
 	* option) any later version.                                               *
 	\**************************************************************************/
 	
-	/* tables_update.inc.php,v 1.6 2005/05/31 21:28:29 ralfbecker Exp */
+	/* tables_update.inc.php,v 1.7 2005/06/02 23:09:30 ralfbecker Exp */
 
 	$test[] = '0.1.008';
 	function projectmanager_upgrade0_1_008()
@@ -234,6 +234,20 @@
 		));
 
 		$GLOBALS['setup_info']['projectmanager']['currentver'] = '0.3.001';
+		return $GLOBALS['setup_info']['projectmanager']['currentver'];
+	}
+
+
+	$test[] = '0.3.001';
+	function projectmanager_upgrade0_3_001()
+	{
+		$GLOBALS['phpgw_setup']->oProc->AddColumn('egw_pm_projects','pm_accounting_type',array(
+			'type' => 'varchar',
+			'precision' => '10',
+			'default' => 'times'
+		));
+
+		$GLOBALS['setup_info']['projectmanager']['currentver'] = '0.3.002';
 		return $GLOBALS['setup_info']['projectmanager']['currentver'];
 	}
 ?>

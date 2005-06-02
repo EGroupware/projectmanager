@@ -275,9 +275,6 @@ class boprojectmanager extends soprojectmanager
 			if (isset($data[$name]) && $data[$name]) $data[$name] += $this->tz_adjust_s;
 		}
 		if (is_numeric($data['pm_completion'])) $data['pm_completion'] .= '%';
-		// convert time from min => sec
-		if ($data['pm_used_time']) $data['pm_used_time'] *= 60;
-		if ($data['pm_planned_time']) $data['pm_planned_time'] *= 60;
 
 		return $data;
 	}
@@ -301,10 +298,7 @@ class boprojectmanager extends soprojectmanager
 		{
 			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_adjust_s;
 		}
-		if (substr($data['pm_completition'],-1) == '%') $data['pm_completition'] = (int) substr($data['pm_completition'],0,-1);
-		// convert time from sec => min
-		if ($data['pm_used_time']) $data['pm_used_time'] /= 60;
-		if ($data['pm_planned_time']) $data['pm_planned_time'] /= 60;
+		if (substr($data['pm_completition'],-1) == '%') $data['pm_completition'] = (int) round(substr($data['pm_completition'],0,-1));
 
 		return $data;
 	}
@@ -374,6 +368,12 @@ class boprojectmanager extends soprojectmanager
 			}
 			// rights come from owner grants or role based acl
 			$rights[$pm_id] = (int) $this->grants[$data['pm_creator']] | (int) $data['role_acl'];
+			
+			// for status or times accounting-type (no accounting) remove the budget-rigts from everyone
+			if ($data['pm_accounting_type'] == 'status' || $data['pm_accounting_type'] == 'times')
+			{
+				$rights[$pm_id] &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
+			}
 		}
 		//echo "<p>boprojectmanager::check_acl($required,pm_id=$pm_id) rights[$pm_id]=".$rights[$pm_id]."</p>\n";
 

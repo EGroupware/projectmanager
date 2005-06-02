@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.config" template="" lang="" group="0" version="0.3.001">
+		<grid width="60%">
+			<columns>
+				<column width="40%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description span="all" class="redItalic" no_lang="1" align="center" id="msg"/>
+					<description/>
+				</row>
+				<row class="th">
+					<description span="all" value="Times"/>
+				</row>
+				<row class="row" valign="top">
+					<description options=",,,duration_units" value="Allowed units"/>
+					<listbox rows="2" id="duration_units" statustext="default all and a selectbox to choose" needed="1"/>
+				</row>
+				<row class="row">
+					<description options=",,,hours_per_workday" value="Hours per workday"/>
+					<menulist>
+						<menupopup type="select-number" options=",1,24" id="hours_per_workday" statustext="conversation between days and hours, default 8"/>
+					</menulist>
+				</row>
+				<row>
+					<description span="all"/>
+				</row>
+				<row class="th">
+					<description span="all" value="Accounting"/>
+				</row>
+				<row class="row" valign="top">
+					<description options=",,,accounting_types" value="Allowed accounting types"/>
+					<listbox rows="4" id="accounting_types" statustext="select the accounting types visible for users of projectmanager" no_lang="1" needed="1"/>
+				</row>
+				<row>
+					<hbox span="all">
+						<button label="Save" id="save" statustext="Save the changes made"/>
+						<button id="apply" label="Apply" statustext="apply the changes made"/>
+						<button id="cancel" label="Cancel" statustext="discards the changes made"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

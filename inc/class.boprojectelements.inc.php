@@ -101,6 +101,7 @@ class boprojectelements extends soprojectelements
 		$this->link =& $GLOBALS['egw']->link;
 
 		$this->project =& CreateObject('projectmanager.boprojectmanager',$pm_id);
+		$this->config =& $this->project->config;
 		
 		$this->project->instanciate('constraints,milestones');
 		$this->constraints =& $this->project->constraints;
@@ -345,10 +346,6 @@ class boprojectelements extends soprojectelements
 		}
 		if (is_numeric($data['pe_completion'])) $data['pe_completion'] .= '%';
 		if ($data['pe_app']) $data['pe_icon'] = $data['pe_app'].'/navbar';
-		// convert time from min => sec
-		if ($data['pe_used_time']) $data['pe_used_time'] *= 60;	// DB: minutes, internal seconds
-		if ($data['pe_planned_time']) $data['pe_planned_time'] *= 60;
-		if ($data['pe_share']) $data['pe_share'] = round($data['pe_share'] / 60.0,1);	// DB: minutes, internal hours
 
 		return $data;
 	}
@@ -373,10 +370,6 @@ class boprojectelements extends soprojectelements
 			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_adjust_s;
 		}
 		if (substr($data['pe_completition'],-1) == '%') $data['pe_completition'] = (int) substr($data['pe_completition'],0,-1);
-		// convert time from sec => min
-		if ($data['pe_used_time']) $data['pe_used_time'] /= 60;	// DB: minutes, internal seconds
-		if ($data['pe_planned_time']) $data['pe_planned_time'] /= 60;
-		if ($data['pe_share']) $data['pe_share'] = round(60 * $data['pe_share']);	// DB: minutes, internal hours
 
 		return $data;
 	}

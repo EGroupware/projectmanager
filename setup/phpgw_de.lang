@@ -20,22 +20,28 @@ add or edit roles and their acl	projectmanager	de	Rollen und ihre ACL anlegen od
 add project	projectmanager	de	Projekt hinzufügen
 add project-elements	projectmanager	de	Projektelemente hinzufügen
 add this role	projectmanager	de	Diese Rolle hinzufügen
+allowed accounting types	projectmanager	de	Erlaubte Abrechnungsarten
+allowed units	projectmanager	de	Erlaubte Einheiten
 anonymous public	projectmanager	de	Anonym öffentlich
 app.	projectmanager	de	Anw.
-apply the changes	projectmanager	de	Veränderungen übernehmen
+apply the changes	projectmanager	de	Änderungen übernehmen
 archive	projectmanager	de	Archiviert
 assistant	projectmanager	de	Assistent
 budget	projectmanager	de	Budget
+budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
+budget and pricelist	projectmanager	de	Budget und Preisliste
 by	projectmanager	de	von
 calculate budget by time	projectmanager	de	Budget nach Zeit/Tätigkeiten berechnen
 close the window, discard the changes made	projectmanager	de	Fenster schließen und die gemachten Veränderungen verwerfen
 constraints	projectmanager	de	Bedingungen
+conversation between days and hours, default 8	projectmanager	de	Umrechnung zwischen Tagen und Stunden, Vorgabe 8
 coordinator	projectmanager	de	Koordinator
 cost per time	projectmanager	de	Kosten pro Zeiteinheit
 create new links	projectmanager	de	Neue Verknüpfung erstellen
 custom fields	projectmanager	de	Extra
 datasource	projectmanager	de	Datenquelle
 dates	projectmanager	de	Datum
+default all and a selectbox to choose	projectmanager	de	Vorgabe alle und eine Auswahlbox
 delete this milestone	projectmanager	de	Diesen Meilenstein löschen
 delete this project	projectmanager	de	Dieses Projekt löschen
 delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
@@ -77,6 +83,7 @@ ganttchart	projectmanager	de	Ganttchart
 ganttchart parameter	projectmanager	de	Ganttchart Parameter
 general	projectmanager	de	Allgemein
 h	projectmanager	de	h
+hours per workday	projectmanager	de	Stunden pro Arbeitstag
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
 last modified	projectmanager	de	Zuletzt geändert
@@ -96,6 +103,8 @@ modified by	projectmanager	de	Geändert durch
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht gelanden und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
+no accounting, only status	projectmanager	de	Keine Abrechnung, nur Status
+no accounting, only times and status	projectmanager	de	Keine Abrechnung, nur Zeiten und Status
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	de	Kein LESE-Recht an der Datenquelle: entfernen von überschriebenen Werten hinterläßt diese leer !!!
 no save necessary	projectmanager	de	Kein Abspeichern notwendig
 nonactive	projectmanager	de	Nicht aktiv
@@ -128,15 +137,18 @@ role	projectmanager	de	Rolle
 role deleted	projectmanager	de	Rolle gelöscht
 role saved	projectmanager	de	Rolle gespeichert
 roles	projectmanager	de	Rollen
-save the changes made	projectmanager	de	Veränderungen speichern
+save the changes made	projectmanager	de	Änderungen speichern
 save this project element	projectmanager	de	Dieses Projektelement speichern
 select a project	projectmanager	de	Ein Projekt auswählen
 select an activity if you want to calculate costs by the time	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Zeit berechnen wollen
+select the accounting types visible for users of projectmanager	projectmanager	de	wählen sie die Abrechnungsarten die für Benutzer des Projektmanagers sichtbar sind
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
 share	projectmanager	de	Anteil
+share on the whole project	projectmanager	de	Anteil am Gesamtprojekt
 share on the whole project in hours or percent, defaults to planned time	projectmanager	de	Anteil am Gesamtprojekt in Stunden oder prozentual, Vorgabe ist geplante Zeit
 show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
+site configuration saved	projectmanager	de	Konfiguration gespeichert
 start after	projectmanager	de	Startet nach
 start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
 start- & enddate	projectmanager	de	Start- & Enddatum

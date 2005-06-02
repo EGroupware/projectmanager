@@ -68,10 +68,12 @@ class soprojectmanager extends so_sql
 		$this->so_sql('projectmanager','egw_pm_projects');
 		
 		$config =& CreateObject('phpgwapi.config','projectmanager');
-		$this->config =& $config->data;
+		$config->read_repository();
+		$this->config =& $config->config_data;
 		unset($config);
 		$this->customfields =& $this->config['customfields'];
-		
+		$this->config['duration_format'] = str_replace(',','',$this->config['duration_units']).','.$this->config['hours_per_workday'];
+
 		$this->grants = $GLOBALS['egw']->acl->get_grants('projectmanager');
 		$this->user = (int) $GLOBALS['egw_info']['user']['account_id'];
 

@@ -60,11 +60,7 @@ class soprojectelements extends so_sql
 	function soprojectelements($pm_id=null,$pe_id=null)
 	{
 		$this->so_sql('projectmanager','egw_pm_elements');
-/*		
-		$config =& CreateObject('phpgwapi.config','projectmanager');
-		$this->config =& $config->data;
-		unset($config);
-*/		
+
 		if ((int) $pm_id || (int) $pe_id) 
 		{
 			$this->pm_id = (int) $pm_id;
@@ -86,7 +82,20 @@ class soprojectelements extends so_sql
 	{
 		if (is_null($pm_id)) $pm_id = $this->pm_id;
 
-		$share = "CASE WHEN pe_share IS NULL AND pe_planned_time IS NULL THEN $this->default_share WHEN pe_share IS NULL THEN pe_planned_time ELSE pe_share END";
+		if ($this->project->data['pm_id'] != $pm_id)
+		{
+			$save_data = $this->project->data;
+			$this->project->read($pm_id);
+		}
+		if ($this->project->data['pm_accounting_type'] == 'status')	// we dont have a times!
+		{
+			$share = "CASE WHEN pe_share IS NULL THEN $this->default_share ELSE pe_share END";
+		}
+		else
+		{
+			$share = "CASE WHEN pe_share IS NULL AND pe_planned_time IS NULL THEN $this->default_share WHEN pe_share IS NULL THEN pe_planned_time ELSE pe_share END";
+		}
+		if ($save_data) $this->project->data = $save_data;
 
 		$this->db->select($this->table_name,array(
 			"SUM(pe_completion * ($share)) AS pe_sum_completion_shares",

@@ -8,7 +8,7 @@
 				<column width="25%"/>
 				<column/>
 				<column/>
-				<column/>
+				<column disabled="@no_times"/>
 				<column disabled="@no_budget"/>
 				<column/>
 				<column/>
@@ -38,7 +38,7 @@
 						<nextmatch-sortheader label="planed" id="pe_planed_budget" class="planned"/>
 					</vbox>
 					<vbox align="center">
-						<nextmatch-sortheader id="pe_health" label="Health" align="center"/>
+						<nextmatch-sortheader id="pe_health" label="Health" align="center" disabled="true"/>
 						<nextmatch-sortheader label="Status" align="center" id="pe_completion"/>
 					</vbox>
 					<vbox>
@@ -62,8 +62,8 @@
 						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date-timeonly readonly="true" id="${row}[pe_used_time]"/>
-						<date-timeonly readonly="true" no_lang="1" id="${row}[pe_planned_time]" class="planned"/>
+						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
+						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
 					</vbox>
 					<vbox readonly="true">
 						<textbox type="float" readonly="true" id="${row}[pe_budget_used]" max="2"/>
@@ -97,8 +97,8 @@
 						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date-timeonly readonly="true" id="${row}[pe_used_time]"/>
-						<date-timeonly readonly="true" no_lang="1" id="${row}[pe_planned_time]" class="planned"/>
+						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
+						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
 					</vbox>
 					<vbox readonly="true">
 						<textbox type="float" readonly="true" id="${row}[pe_budget_used]" max="2"/>
@@ -123,7 +123,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.list" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.elements.list" template="" lang="" group="0" version="0.3.001">
 		<grid width="100%">
 			<columns>
 				<column/>

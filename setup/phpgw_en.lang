@@ -19,22 +19,28 @@ add or edit roles and their acl	projectmanager	en	Add or edit roles and their AC
 add project	projectmanager	en	Add project
 add project-elements	projectmanager	en	Add project-elements
 add this role	projectmanager	en	Add this role
+allowed accounting types	projectmanager	en	Allowed accounting types
+allowed units	projectmanager	en	Allowed units
 anonymous public	projectmanager	en	Anonymous public
 app.	projectmanager	en	App.
 apply the changes	projectmanager	en	Apply the changes
 archive	projectmanager	en	Archive
 assistant	projectmanager	en	Assistant
 budget	projectmanager	en	Budget
+budget (no pricelist)	projectmanager	en	Budget (no pricelist)
+budget and pricelist	projectmanager	en	Budget and pricelist
 by	projectmanager	en	by
 calculate budget by time	projectmanager	en	Calculate budget by time
 close the window, discard the changes made	projectmanager	en	Close the window, discard the changes made
 constraints	projectmanager	en	Constraints
+conversation between days and hours, default 8	projectmanager	en	conversation between days and hours, default 8
 coordinator	projectmanager	en	Coordinator
 cost per time	projectmanager	en	Cost per Time
 create new links	projectmanager	en	Create new links
 custom fields	projectmanager	en	Custom fields
 datasource	projectmanager	en	Datasource
 dates	projectmanager	en	Dates
+default all and a selectbox to choose	projectmanager	en	default all and a selectbox to choose
 delete this milestone	projectmanager	en	Delete this milestone
 delete this project	projectmanager	en	Delete this project
 delete this project-element, does not remove the linked entry	projectmanager	en	Delete this project-element, does NOT remove the linked entry
@@ -75,6 +81,7 @@ ganttchart	projectmanager	en	Ganttchart
 ganttchart parameter	projectmanager	en	Ganttchart parameter
 general	projectmanager	en	General
 h	projectmanager	en	h
+hours per workday	projectmanager	en	Hours per workday
 ignore that entry	projectmanager	en	ignore that entry
 ignored	projectmanager	en	ignored
 last modified	projectmanager	en	last modified
@@ -93,6 +100,8 @@ modified by	projectmanager	en	modified by
 necessary for project-elements doing that not automatic	projectmanager	en	necessary for project-elements doing that not automatic
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	en	Necessary PHP extentions %1 not loaded and can't be loaded !!!
 new	projectmanager	en	new
+no accounting, only status	projectmanager	en	No accounting, only status
+no accounting, only times and status	projectmanager	en	No accounting, only times and status
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	en	No READ access to the datasource: removing overwritten values will just empty them !!!
 no save necessary	projectmanager	en	no save necessary
 nonactive	projectmanager	en	Nonactive
@@ -127,11 +136,14 @@ save the changes made	projectmanager	en	Save the changes made
 save this project element	projectmanager	en	Save this project element
 select a project	projectmanager	en	select a project
 select an activity if you want to calculate costs by the time	projectmanager	en	select an activity if you want to calculate costs by the time
+select the accounting types visible for users of projectmanager	projectmanager	en	select the accounting types visible for users of projectmanager
 select this project and show it's elements	projectmanager	en	Select this project and show it's elements
 share	projectmanager	en	Share
+share on the whole project	projectmanager	en	Share on the whole project
 share on the whole project in hours or percent, defaults to planned time	projectmanager	en	Share on the whole project in hours or percent, defaults to planned time
 show constraints and milestones	projectmanager	en	Show constraints and milestones
 show planned times instead of the real times	projectmanager	en	Show planned times instead of the real times
+site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start- & Enddate

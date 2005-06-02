@@ -37,7 +37,8 @@
 				'pm_planned_time' => array('type' => 'int','precision' => '4'),
 				'pm_used_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
 				'pm_planned_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
-				'pm_overwrite' => array('type' => 'int','precision' => '4','default' => '0')
+				'pm_overwrite' => array('type' => 'int','precision' => '4','default' => '0'),
+				'pm_accounting_type' => array('type' => 'varchar','precision' => '10','default' => 'times')
 			),
 			'pk' => array('pm_id'),
 			'fk' => array(),

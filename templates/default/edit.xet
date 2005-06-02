@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.3.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -55,15 +55,15 @@
 					<date-time id="pm_planned_end"/>
 					<date-time id="ds[pe_planned_end]" readonly="true" span="all"/>
 				</row>
-				<row class="row">
-					<description options=",,,pm_used_time" value="Time"/>
-					<date-timeonly id="pm_used_time"/>
-					<date-timeonly id="ds[pe_used_time]" readonly="true" span="all"/>
+				<row class="row" disabled="@pm_accounting_type=status">
+					<description options=",,,pm_used_time" value="Times"/>
+					<date-duration id="pm_used_time" options="@duration_format"/>
+					<date-duration id="ds[pe_used_time]" readonly="true" span="all" options="@duration_format"/>
 				</row>
-				<row class="row">
+				<row class="row" disabled="@pm_accounting_type=status">
 					<description options=",,,pm_planned_time" value="- planned"/>
-					<date-timeonly id="pm_planned_time"/>
-					<date-timeonly id="ds[pe_planned_time]" readonly="true" span="all"/>
+					<date-duration id="pm_planned_time" options="@duration_format"/>
+					<date-duration id="ds[pe_planned_time]" readonly="true" span="all" options="@duration_format"/>
 				</row>
 				<row class="row">
 					<description options=",,,pm_completion" value="Status"/>
@@ -88,7 +88,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.members" template="" lang="" group="0" version="0.2.001">
-		<grid width="100%" height="150" overflow="auto">
+		<grid width="100%" overflow="auto">
 			<columns>
 				<column/>
 				<column width="70%"/>
@@ -123,7 +123,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.3.001">
 		<grid width="100%" height="150">
 			<columns>
 				<column width="95"/>
@@ -131,20 +131,23 @@
 				<column/>
 			</columns>
 			<rows>
-				<row class="row" valign="top">
-					<description options=",,,pm_accounting_type" value="Accounting type" span="all"/>
+				<row class="row">
+					<description options=",,,pm_accounting_type" value="Accounting type"/>
+					<menulist span="all">
+						<menupopup id="pm_accounting_type" onchange="1"/>
+					</menulist>
 				</row>
 				<row class="th">
 					<description value="Value"/>
 					<description value="Project"/>
 					<description value="Elementlist"/>
 				</row>
-				<row class="row">
+				<row class="row" disabled="@no_budget">
 					<description options=",,,pm_used_budget" value="Budget"/>
 					<textbox type="float" min="2" id="pm_used_budget"/>
 					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
 				</row>
-				<row class="row">
+				<row class="row" disabled="@no_budget">
 					<description options=",,,pm_planned_budget" value="- planned"/>
 					<textbox type="float" min="2" id="pm_planned_budget"/>
 					<textbox type="float" min="2" id="ds[pe_planned_budget]" readonly="true"/>

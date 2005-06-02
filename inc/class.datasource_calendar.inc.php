@@ -63,7 +63,7 @@ class datasource_calendar extends datasource
 			'pe_title' => ExecMethod('infolog.bolink.calendar_title',$data),
 			'pe_planned_start' => $data['start']['raw'],
 			'pe_planned_end' => $data['end']['raw'],
-			'pe_planned_time' => $data['end']['raw'] - $data['start']['raw'],
+			'pe_planned_time' => (int) (($data['end']['raw'] - $data['start']['raw'])/60),	// time is in minutes
 		);
 		foreach($data['participants'] as $uid => $status)
 		{

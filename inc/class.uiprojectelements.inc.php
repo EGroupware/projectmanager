@@ -40,6 +40,10 @@ class uiprojectelements extends boprojectelements
 	 * @var array $status_labels labels for status-filter
 	 */
 	var $status_labels;
+	/**
+	 * @var array $config config-settings for projectmanager
+	 */
+	var $config;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -144,12 +148,12 @@ class uiprojectelements extends boprojectelements
 				$content['cat_id'] = (int) $content['cat_id'];	// as All='' and cat_id column is int
 				
 				// calculate the new summary and if a percentage give the share in hours
-				$this->project_summary['pe_total_shares'] -= round(60 * ($content['old_pe_share'] ? $content['old_pe_share'] : $this->data['pe_default_share']));
+				$this->project_summary['pe_total_shares'] -= round($content['old_pe_share'] ? $content['old_pe_share'] : $this->data['pe_default_share']);
 				if (substr($content['pe_share'],-1) == '%')
 				{
-					$content['pe_share'] = round($this->project_summary['pe_total_shares'] * (float) $content['pe_share'] / (100 - (float) $content['pe_share']) / 60.0,1);
+					$content['pe_share'] = round($this->project_summary['pe_total_shares'] * (float) $content['pe_share'] / (100 - (float) $content['pe_share']),1);
 				}
-				$this->project_summary['pe_total_shares'] += round(60 * ($content['pe_share'] ? $content['pe_share'] : $this->data['pe_default_share']));
+				$this->project_summary['pe_total_shares'] += round($content['pe_share'] ? $content['pe_share'] : $this->data['pe_default_share']);
 
 				foreach(array('pe_status','cat_id','pe_remark','pe_constraints','pe_share') as $name)
 				{
@@ -270,18 +274,21 @@ class uiprojectelements extends boprojectelements
 			'ds'  => $ds,
 			'msg' => $msg,
 			'js'  => '<script>'.$js.'</script>',
-			'default_share' => round(($share = $this->data['pe_planned_time'] ? $this->data['pe_planned_time']/60 : $this->default_share) / 60,1).lang('h'),
+			'default_share' => ($share = $this->data['pe_planned_time'] && $this->project->data['pm_accounting_type'] != 'status' ? 
+				$this->data['pe_planned_time'] : $this->default_share),
+			'duration_format' => ','.$this->config['duration_format'],
+			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
 		);
 		// calculate percentual shares
 		if ($this->project_summary['pe_total_shares'])
 		{
 			if ($this->data['pe_share'])
 			{
-				$content['share_percentage'] = lang('h') . '/' . round($this->project_summary['pe_total_shares']/60,1).lang('h').' = '.
-					round(100.0 * 60*$this->data['pe_share'] / $this->project_summary['pe_total_shares'],1) . '%';
+				$content['share_total'] = $this->project_summary['pe_total_shares'];
+				$content['share_percentage'] = round(100.0 * $this->data['pe_share'] / $this->project_summary['pe_total_shares'],1) . '%';
 			}
-			$content['default_share'] .= '/' . round(($this->project_summary['pe_total_shares']-60.0*(float)$content['pe_share']+$share)/60,1).lang('h').' = '.
-				round(100.0 * $share / $this->project_summary['pe_total_shares'],1) . '%';
+			$content['default_total'] = $this->project_summary['pe_total_shares']-$content['pe_share']+$share;
+			$content['default_percentage'] = round(100.0 * $share / $this->project_summary['pe_total_shares'],1) . '%';
 		}
 		//_debug_array($content);
 		$sel_options = array(
@@ -297,6 +304,8 @@ class uiprojectelements extends boprojectelements
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 		);
+		// disable the times tab, if accounting-type status
+		$readonlys['dates|times|budget|constraints']['times'] = $this->project->data['pm_accounting_type'] == 'status';
 		// check if user has the necessary rights to view or edit the budget
 		$readonlys['dates|times|budget|constraints']['budget'] = !$this->check_acl(EGW_ACL_BUDGET);
 		$readonlys['pe_planned_budget'] = $readonlys['pe_used_budget'] = $readonlys['pe_activity_id'] = 
@@ -390,6 +399,8 @@ class uiprojectelements extends boprojectelements
 			}
 		}
 		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
+		$rows['no_times']  = $this->project->data['pm_accounting_type'] == 'status';
+		$rows['duration_format'] = ','.$this->config['duration_format'];
 
 		if ($this->debug)
 		{
@@ -480,14 +491,16 @@ class uiprojectelements extends boprojectelements
 			unset($content['nm']['header_right']);
 			unset($content['nm']['header_left']);
 			$readonlys['sync_all'] = true;
-		}
+		}			
+		$content['nm']['duration_format'] = ','.$this->config['duration_format'];
+
 		$content['nm']['link_to'] = array(
 			'to_id'    => $this->pm_id,
 			'to_app'   => 'projectmanager',
 			'no_files' => true,
 			'search_label' => 'Add existing',
 			'link_label'   => 'Add',
-		);			
+		);
 		$GLOBALS['phpgw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');

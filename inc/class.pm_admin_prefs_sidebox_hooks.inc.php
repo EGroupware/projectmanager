@@ -114,10 +114,7 @@ class pm_admin_prefs_sidebox_hooks
 		if ($GLOBALS['phpgw_info']['user']['apps']['admin'] && $location != 'preferences')
 		{
 			$file = Array(
-				/*'Site configuration' => $GLOBALS['phpgw']->link('/index.php',array(
-					'menuaction' => 'admin.uiconfig.index',
-					'appname'    => $appname,
-				 )),*/
+				'Site configuration' => $GLOBALS['phpgw']->link('/index.php','menuaction=projectmanager.admin.config'),
 				'Global Categories'  => $GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => 'admin.uicategories.index',
 					'appname'    => $appname,

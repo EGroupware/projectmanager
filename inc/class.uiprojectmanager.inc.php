@@ -256,7 +256,10 @@ class uiprojectmanager extends boprojectmanager
 			'link_to' => array(
 				'to_id' => $content['link_to']['to_id'] ? $content['link_to']['to_id'] : $this->data['pm_id'],
 				'to_app' => 'projectmanager',
-		));
+			),
+			'duration_format' => ','.$this->config['duration_format'],
+			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET),
+		);
 		if ($add_link && !is_array($content['link_to']['to_id']))
 		{
 			list($app,$app_id) = explode(':',$add_link,2);
@@ -278,7 +281,9 @@ class uiprojectmanager extends boprojectmanager
 			'delete' => !$this->data['pm_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 			'general|description|members|accounting|custom|links' => array(
-				'accounting' => !$this->check_acl(EGW_ACL_BUDGET),	// disable the tab, if not budget rights
+				'accounting' => !$this->check_acl(EGW_ACL_BUDGET) &&	// disable the tab, if no budget rights and no owner or coordinator
+					(count(explode(',',$this->config['accounting_types'])) == 1 ||
+					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)),	
 			),
 		);
 		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))
@@ -310,7 +315,25 @@ class uiprojectmanager extends boprojectmanager
 			),'role_id',array(
 				'pm_id' => array(0,(int)$this->data['pm_id'])
 			)),
+			'pm_accounting_type' => array(
+				'status' => 'No accounting, only status',
+				'times'  => 'No accounting, only times and status',
+				'budget' => 'Budget (no pricelist)',
+				'pricelist' => 'Budget and pricelist',
+			),
 		);
+		if ($this->config['accounting_types'])	// only allow the configured types
+		{
+			$allowed = explode(',',$this->config['accounting_types']);
+			foreach($sel_options['pm_accounting_type'] as $key => $label)
+			{
+				if (!in_array($key,$allowed)) unset($sel_options['pm_accounting_type'][$key]);
+			}
+			if (count($sel_options['pm_accounting_type']) == 1)
+			{
+				$readonlys['pm_accounting_type'] = true;
+			}
+		}
 		if ($view)
 		{
 			foreach($this->db_cols as $name)
