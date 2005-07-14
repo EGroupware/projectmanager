@@ -59,11 +59,13 @@ class datasource_infolog extends datasource
 			$data =& $data_id;
 		}
 		return array(
-			'pe_title'        => $GLOBALS['boinfolog']->link_title($data),
-			'pe_completion'   => $this->status2completion($data['info_status']).'%',
+			'pe_title'         => $GLOBALS['boinfolog']->link_title($data),
+			'pe_completion'    => $this->status2completion($data['info_status']).'%',
 			'pe_planned_start' => $data['info_startdate'],
 			'pe_planned_end'   => $data['info_enddate'],
-			'pe_resources'    => array($data['info_responsible'] ? $data['info_responsible'] : $data['info_owner']),
+			'pe_planned_time'  => $data['info_planned_time'],
+			'pe_used_time'     => $data['info_planned_time'],
+			'pe_resources'     => array($data['info_responsible'] ? $data['info_responsible'] : $data['info_owner']),
 		);
 	}
 	
