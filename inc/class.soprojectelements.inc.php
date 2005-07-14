@@ -17,7 +17,7 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 /**
  * Elements storage object of the projectmanager
  *
- * Tables: egw_pm_elements, phpgw_links
+ * Tables: egw_pm_elements, egw_links
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  *
@@ -29,13 +29,13 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 class soprojectelements extends so_sql
 {
 	/**
-	 * @var string $links_table table name 'phpgw_links', might change to egw_links in future
+	 * @var string $links_table table name 'egw_links'
 	 */
-	var $links_table = 'phpgw_links';
+	var $links_table = 'egw_links';
 	/**
 	 * @var string $links_join join in the links table
 	 */
-	var $links_join = ',phpgw_links WHERE pe_id=link_id';
+	var $links_join = ',egw_links WHERE pe_id=link_id';
 	/**
 	 * @var array $links_extracols extracolumns from the links table
 	 */

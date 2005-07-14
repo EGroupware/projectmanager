@@ -29,9 +29,9 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 class soprojectmanager extends so_sql
 {
 	/**
-	 * @var string $links_table table name 'phpgw_links', might change to egw_links in future
+	 * @var string $links_table table name 'egw_links'
 	 */
-	var $links_table = 'phpgw_links';
+	var $links_table = 'egw_links';
 	/**
 	 * @var array $config configuration data
 	 */
@@ -219,7 +219,7 @@ class soprojectmanager extends so_sql
 		}
 		if ($filter['subs_or_mains'])
 		{
-			$ids = "SELECT link_id2 FROM phpgw_links WHERE link_app2='projectmanager' AND link_app1='projectmanager'";
+			$ids = "SELECT link_id2 FROM $this->links_table WHERE link_app2='projectmanager' AND link_app1='projectmanager'";
 			if (!$this->db->capabilities['sub_queries'])
 			{
 				$this->db->query($ids,__LINE__,__FILE__);
