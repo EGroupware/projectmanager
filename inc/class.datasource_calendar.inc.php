@@ -60,11 +60,12 @@ class datasource_calendar extends datasource
 			$data =& $data_id;
 		}
 		$ds = array(
-			'pe_title' => ExecMethod('infolog.bolink.calendar_title',$data),
-			'pe_planned_start' => $data['start']['raw'],
-			'pe_planned_end' => $data['end']['raw'],
-			'pe_planned_time' => (int) (($data['end']['raw'] - $data['start']['raw'])/60),	// time is in minutes
+			'pe_title' => $GLOBALS['bocal']->link_title($data),
+			'pe_planned_start' => $GLOBALS['bocal']->date2ts($data['start']),
+			'pe_planned_end' => $GLOBALS['bocal']->date2ts($data['end']),
 		);
+		$ds['pe_planned_time'] = (int) (($ds['pe_planned_end'] - $ds['pe_planned_start'])/60);	// time is in minutes
+
 		foreach($data['participants'] as $uid => $status)
 		{
 			if ($status != 'R')

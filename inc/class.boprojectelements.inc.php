@@ -252,8 +252,9 @@ class boprojectelements extends soprojectelements
 			}
 			$this->debug_message("boprojectemlements::sync_all($pm_id): element $data[pe_app]-$data[pe_app_id]: update_necessary=$update_necessary");
 
-			if ($update_necessary) 
+			if ($update_necessary || $data['pe_title'] != $ds['pe_title']) 
 			{
+				$this->data['pe_title'] = $ds['pe_title']; 	// in case it's changed
 				$this->save(null,false,0);	// update the project after all elements are synced
 				$updated++;
 			}
