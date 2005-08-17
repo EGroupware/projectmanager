@@ -19,6 +19,7 @@ add or edit roles and their acl	projectmanager	en	Add or edit roles and their AC
 add project	projectmanager	en	Add project
 add project-elements	projectmanager	en	Add project-elements
 add this role	projectmanager	en	Add this role
+allow users to change their working times	projectmanager	en	Allow users to change their working times
 allowed accounting types	projectmanager	en	Allowed accounting types
 allowed units	projectmanager	en	Allowed units
 anonymous public	projectmanager	en	Anonymous public
@@ -26,6 +27,7 @@ app.	projectmanager	en	App.
 apply the changes	projectmanager	en	Apply the changes
 archive	projectmanager	en	Archive
 assistant	projectmanager	en	Assistant
+at which time do you start working on the given day.	projectmanager	en	At which time do you start working on the given day.
 budget	projectmanager	en	Budget
 budget (no pricelist)	projectmanager	en	Budget (no pricelist)
 budget and pricelist	projectmanager	en	Budget and pricelist
@@ -80,8 +82,10 @@ full access	projectmanager	en	full access
 ganttchart	projectmanager	en	Ganttchart
 ganttchart parameter	projectmanager	en	Ganttchart parameter
 general	projectmanager	en	General
+general availibility	projectmanager	en	General availibility
 h	projectmanager	en	h
 hours per workday	projectmanager	en	Hours per workday
+how long do you work on the given day.	projectmanager	en	How long do you work on the given day.
 ignore that entry	projectmanager	en	ignore that entry
 ignored	projectmanager	en	ignored
 last modified	projectmanager	en	last modified
@@ -106,13 +110,17 @@ no read access to the datasource: removing overwritten values will just empty th
 no save necessary	projectmanager	en	no save necessary
 nonactive	projectmanager	en	Nonactive
 not started (0%)	projectmanager	en	Not started (0%)
+not working	projectmanager	en	not working
 only this project	projectmanager	en	Only this project
 overwrite the datasource	projectmanager	en	Overwrite the datasource
+percentage the member is availible for projects	projectmanager	en	Percentage the member is availible for projects
+percentage the member is availible for this project	projectmanager	en	Percentage the member is availible for this project
 permission denied !!!	projectmanager	en	Permission denied !!!
 planed	projectmanager	en	planed
 planned	projectmanager	en	planned
 planned times	projectmanager	en	Planned times
 please download a recent version from %1 and install it in %2.	projectmanager	en	Please download a recent version from %1 and install it in %2.
+project availibility	projectmanager	en	Project availibility
 project deleted	projectmanager	en	Project deleted
 project id	projectmanager	en	Project ID
 project members and roles	projectmanager	en	Project members and roles
@@ -145,6 +153,7 @@ show constraints and milestones	projectmanager	en	Show constraints and milestone
 show planned times instead of the real times	projectmanager	en	Show planned times instead of the real times
 site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
+start working on %1	projectmanager	en	Start working on %1
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
@@ -164,6 +173,7 @@ view this element in %1	projectmanager	en	View this element in %1
 view this milestone	projectmanager	en	View this milestone
 view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project-element
+working duration on %1	projectmanager	en	Working duration on %1
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	en	You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.
 you need to select a project first	projectmanager	en	You need to select a project first
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	en	Your database is NOT up to date (%1 vs. %2), please run %3setup%4 to update your database.

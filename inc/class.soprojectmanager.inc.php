@@ -17,7 +17,7 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 /**
  * General storage object of the projectmanager: access the main project data
  *
- * Tables: egw_pm_projects, egw_pm_extra
+ * Tables: egw_pm_projects, egw_pm_extra, egw_pm_roles, egw_pm_members
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  *
@@ -185,6 +185,7 @@ class soprojectmanager extends so_sql
 					'pm_id'      => $this->data['pm_id'],
 					'member_uid' => $uid,
 					'role_id'    => $data['role_id'],
+					'member_availibility' => $data['member_availibility'], 
 				),false,__LINE__,__FILE__);
 			}
 		}
@@ -274,5 +275,58 @@ class soprojectmanager extends so_sql
 		if ($key_col == 'pm_id') $key_col = $this->table_name.'.pm_id AS pm_id';
 		
 		return parent::query_list($value_col,$key_col,$filter);
+	}
+	
+	/**
+	 * read the general availebility of one or all users
+	 *
+	 * A not set availibility is by default 100%
+	 *
+	 * @param int $uid user-id or 0 to read all
+	 * @return array uid => availibility
+	 */
+	function get_availibility($uid=0)
+	{
+		$where = array('pm_id' => 0);
+		
+		if ($uid) $where['member_uid'] = $uid;
+		
+		$this->db->select($this->members_table,'member_uid,member_availibility',$where,__LINE__,__FILE__);
+		$avails = array();
+		while (($row = $this->db->row(true)))
+		{
+			$avails[$row['member_uid']] = empty($row['member_availibility']) ? 100.0 : $row['member_availibility'];
+		}
+		return $avails;
+	}
+	
+	/**
+	 * set or delete the general availibility of a user
+	 *
+	 * A not set availibility is by default 100%
+	 *
+	 * @param int $uid user-id
+	 * @param float $availiblity=null percentage to set or nothing to delete the avail. for the user
+	 */
+	function set_availibility($uid,$availibility=null)
+	{
+		if (!is_numeric($uid)) return;
+
+		if (!is_null($availibility) && !empty($availibility) && $availibility != 100.0)
+		{
+			$this->db->insert($this->members_table,array(
+				'member_availibility' => $availibility
+			),array(
+				'member_uid' => $uid,
+				'pm_id'      => 0,
+			),__LINE__,__FILE__);
+		}
+		else
+		{
+			$this->db->delete($this->members_table,array(
+				'pm_id' => 0,
+				'member_uid' => $uid,
+			),__LINE__,__FILE__);
+		}
 	}
 }

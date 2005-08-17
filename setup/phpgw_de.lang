@@ -20,6 +20,7 @@ add or edit roles and their acl	projectmanager	de	Rollen und ihre ACL anlegen od
 add project	projectmanager	de	Projekt hinzufügen
 add project-elements	projectmanager	de	Projektelemente hinzufügen
 add this role	projectmanager	de	Diese Rolle hinzufügen
+allow users to change their working times	projectmanager	de	Erlaube Benutzern ihre Arbeitszeiten zu ändern
 allowed accounting types	projectmanager	de	Erlaubte Abrechnungsarten
 allowed units	projectmanager	de	Erlaubte Einheiten
 anonymous public	projectmanager	de	Anonym öffentlich
@@ -27,6 +28,7 @@ app.	projectmanager	de	Anw.
 apply the changes	projectmanager	de	Änderungen übernehmen
 archive	projectmanager	de	Archiviert
 assistant	projectmanager	de	Assistent
+at which time do you start working on the given day.	projectmanager	de	Um welche Uhrzeit beginnen Sie an dem angegebenen Tag zu arbeiten.
 budget	projectmanager	de	Budget
 budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
 budget and pricelist	projectmanager	de	Budget und Preisliste
@@ -62,7 +64,7 @@ elementlist	projectmanager	de	Elementliste
 elements	projectmanager	de	Elemente
 elements of elements	projectmanager	de	Element der Elemente
 elements that can't start before this one is finished	projectmanager	de	Elemente die nicht starten können bevor dieses beendet ist
-elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen befor dieses starten kann
+elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
 end before	projectmanager	de	Endet vor
 enddate	projectmanager	de	Enddatum
 error: deleting project !!!	projectmanager	de	Fehler: Projekt löschen !!!
@@ -82,8 +84,10 @@ full access	projectmanager	de	unbeschränkter Zugriff
 ganttchart	projectmanager	de	Ganttchart
 ganttchart parameter	projectmanager	de	Ganttchart Parameter
 general	projectmanager	de	Allgemein
+general availibility	projectmanager	de	Allgemeine Verfügbarkeit
 h	projectmanager	de	h
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
+how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
 last modified	projectmanager	de	Zuletzt geändert
@@ -109,8 +113,11 @@ no read access to the datasource: removing overwritten values will just empty th
 no save necessary	projectmanager	de	Kein Abspeichern notwendig
 nonactive	projectmanager	de	Nicht aktiv
 not started (0%)	projectmanager	de	nicht gestartet (0%)
+not working	projectmanager	de	nicht arbeiten
 only this project	projectmanager	de	Nur dieses Projekt
 overwrite the datasource	projectmanager	de	Anzeige in der Elementliste überschreiben
+percentage the member is availible for projects	projectmanager	de	Prozentsatz den der Mitarbeiter für Projekte verfügbar ist
+percentage the member is availible for this project	projectmanager	de	Prozentsatz den der Mitarbeiter für dieses Projekt verfügbar ist
 permission denied !!!	projectmanager	de	Zugriff verweigert !!!
 planed	projectmanager	de	geplant
 planed end	projectmanager	de	Geplantes Ende
@@ -118,6 +125,7 @@ planed start	projectmanager	de	Geplanter Anfang
 planned	projectmanager	de	geplant
 planned times	projectmanager	de	Geplante Zeiten
 please download a recent version from %1 and install it in %2.	projectmanager	de	Bitte laden Sie die aktuelle Version von %1 und installieren Sie sie in %2.
+project availibility	projectmanager	de	Projekt- Verfügbarkeit
 project deleted	projectmanager	de	Projekt gelöscht
 project id	projectmanager	de	Projekt-ID
 project members and roles	projectmanager	de	Projekt Mitarbeiter und Rollen
@@ -150,6 +158,7 @@ show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine a
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
 site configuration saved	projectmanager	de	Konfiguration gespeichert
 start after	projectmanager	de	Startet nach
+start working on %1	projectmanager	de	Arbeitsbeginn am %1
 start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
 start- & enddate	projectmanager	de	Start- & Enddatum
 startdate	projectmanager	de	Startdatum
@@ -169,6 +178,7 @@ view this element in %1	projectmanager	de	Diese Element im %1 anzeigen
 view this milestone	projectmanager	de	Diesen Meilenstein anzeigen
 view this project	projectmanager	de	Dieses Projekt anzeigen
 view this project-element	projectmanager	de	Dieses Projektelement anzeigen
+working duration on %1	projectmanager	de	Arbeitsdauer am %1
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	de	Sie benützen die alte Version von JPGraph, die mit eGroupWare ausgeliefert wird. Sie hat nur eine beschränkte Funktionalität.
 you need to select a project first	projectmanager	de	Sie müssen zuerst ein Projekt auswählen
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	de	Ihre Datenbank ist NICHT aktuell (%1 vs. %2), bitte rufen Sie %3setup%4 auf um Ihre Datenbank zu aktualisieren.

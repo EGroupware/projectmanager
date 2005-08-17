@@ -15,8 +15,32 @@
 class pm_admin_prefs_sidebox_hooks
 {
 	var $public_functions = array(
-		'all_hooks' => true,
+//		'check_set_default_prefs' => true,
 	);
+	var $weekdays = array(
+		1 => 'monday',
+		2 => 'tuesday',
+		3 => 'wednesday',
+		4 => 'thursday',
+		5 => 'friday',
+		6 => 'saturday',
+		0 => 'sunday',
+	);
+	var $config = array();
+
+	function pm_admin_prefs_sidebox_hooks()
+	{
+		$config =& CreateObject('phpgwapi.config','projectmanager');
+		$config->read_repository();
+		$this->config =& $config->config_data;
+		unset($config);
+	}
+
+	/**
+	 * hooks to build projectmanager's sidebox-menu plus the admin and preferences sections
+	 *
+	 * @param string/array $args hook args
+	 */
 	function all_hooks($args)
 	{
 		$appname = 'projectmanager';
@@ -76,31 +100,35 @@ class pm_admin_prefs_sidebox_hooks
 					'no_lang' => True,
 					'link' => False
 				),
-				'Projectlist' => $GLOBALS['phpgw']->link('/index.php',array(
+				'Projectlist' => $GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
 				array(
 					'text' => 'Elementlist',
-					'link' => $pm_id ? $GLOBALS['phpgw']->link('/index.php',array(
+					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.uiprojectelements.index', 
 					)) : False,
 				),
 				array(
 					'text' => 'Ganttchart',
-					'link' => $pm_id ? $GLOBALS['phpgw']->link('/index.php',array(
+					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.ganttchart.show',
 					)) : False,
 				),
 			);
-			display_sidebox($appname,$GLOBALS['phpgw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
+			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 		}
 
-		if ($GLOBALS['phpgw_info']['user']['apps']['preferences'] && $location != 'admin')
+		if ($GLOBALS['egw_info']['user']['apps']['preferences'] && $location != 'admin')
 		{
 			$file = array(
-				//'Preferences'     => $GLOBALS['phpgw']->link('/preferences/preferences.php','appname='.$appname),
+				'Preferences'     => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uisettings.index&appname='.$appname),
 				'Grant Access'    => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
 				'Edit Categories' => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
 			);
+			if (!$this->config['allow_change_workingtimes'] && !$GLOBALS['egw_info']['user']['apps']['admin'])
+			{
+				unset($file['Preferences']);	// atm. prefs are only working times
+			}
 			if ($location == 'preferences')
 			{
 				display_section($appname,$file);
@@ -111,10 +139,10 @@ class pm_admin_prefs_sidebox_hooks
 			}
 		}
 
-		if ($GLOBALS['phpgw_info']['user']['apps']['admin'] && $location != 'preferences')
+		if ($GLOBALS['egw_info']['user']['apps']['admin'] && $location != 'preferences')
 		{
 			$file = Array(
-				'Site configuration' => $GLOBALS['phpgw']->link('/index.php','menuaction=projectmanager.admin.config'),
+				'Site configuration' => $GLOBALS['egw']->link('/index.php','menuaction=projectmanager.admin.config'),
 				'Global Categories'  => $GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => 'admin.uicategories.index',
 					'appname'    => $appname,
@@ -128,6 +156,103 @@ class pm_admin_prefs_sidebox_hooks
 			{
 				display_sidebox($appname,lang('Admin'),$file);
 			}
+		}
+	}
+	
+	/**
+	 * populates $GLOBALS['settings'] for the preferences
+	 */
+	function settings()
+	{
+		$this->check_set_default_prefs();
+		
+		$start = array();
+		for($i = 0; $i < 24*60; $i += 30)
+		{
+			if ($GLOBALS['egw_info']['user']['preferences']['common']['timeformat'] == 12)
+			{
+				if (!($hour = ($i / 60) % 12)) 
+				{
+					$hour = 12;
+				}
+				$start[$i] = sprintf('%01d:%02d %s',$hour,$i % 60,$i < 12*60 ? 'am' : 'pm');
+			}
+			else
+			{
+				$start[$i] = sprintf('%01d:%02d',$i/60,$i % 60);
+			}
+		}
+		$duration = array(0 => lang('not working'));
+		for($i = 30; $i <= 24*60; $i += 30)
+		{
+			$duration[$i] = sprintf('%3.1lf',$i / 60.0).' '.lang('hours');
+		}
+		foreach($this->weekdays as $day => $label)
+		{
+			$GLOBALS['settings']['duration_'.$day] = array(
+				'type'   => 'select',
+				'label'  => lang('Working duration on %1',lang($label)),
+				'run_lang' => -1,
+				'name'   => 'duration_'.$day,
+				'values' => $duration,
+				'help'   => 'How long do you work on the given day.',
+				'xmlrpc' => True,
+				'admin'  => !$this->config['allow_change_workingtimes'],
+			);
+			$GLOBALS['settings']['start_'.$day] = array(
+				'type'   => 'select',
+				'label'  => lang('Start working on %1',lang($label)),
+				'run_lang' => -1,
+				'name'   => 'start_'.$day,
+				'values' => $start,
+				'help'   => 'At which time do you start working on the given day.',
+				'xmlrpc' => True,
+				'admin'  => !$this->config['allow_change_workingtimes'],
+			);
+		}
+		return true;	// otherwise prefs say it cant find the file ;-)
+	}
+	
+	/**
+	 * Check if reasonable default preferences are set and set them if not
+	 *
+	 * It sets a flag in the app-session-data to be called only once per session
+	 */
+	function check_set_default_prefs()
+	{
+		if ($GLOBALS['egw']->session->appsession('default_prefs_set','projectmanager'))
+		{
+			return;
+		}
+		$GLOBALS['egw']->session->appsession('default_prefs_set','projectmanager','set');
+
+		$default_prefs =& $GLOBALS['egw']->preferences->default['projectmanager'];
+
+		$defaults = array(
+			'start_1' => 9*60,
+			'duration_1' => 8*60,
+			'start_2' => 9*60,
+			'duration_2' => 8*60,
+			'start_3' => 9*60,
+			'duration_3' => 8*60,
+			'start_4' => 9*60,
+			'duration_4' => 8*60,
+			'start_5' => 9*60,
+			'duration_5' => 6*60,
+			'duration_6' => 0,
+			'duration_0' => 0,
+		);
+		foreach($defaults as $var => $default)
+		{
+			if (!isset($default_prefs[$var]) || $default_prefs[$var] === '')
+			{
+				$GLOBALS['egw']->preferences->add('projectmanager',$var,$default,'default');
+				$need_save = True;
+			}
+		}
+		if ($need_save)
+		{
+			$GLOBALS['egw']->preferences->save_repository(False,'default');
 		}
 	}
 }

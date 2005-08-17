@@ -105,7 +105,7 @@ class uiprojectmanager extends boprojectmanager
 			{
 				$this->init();
 			}
-			$view = $content['view'] && !($content['edit'] && $this->check_acl(EGW_ACL_EDIT));
+			$view = $content['view'] && !$content['edit'] || !$this->check_acl(EGW_ACL_EDIT);
 			
 			if (!$content['view'])	// just changed to edit-mode, still counts as view
 			{
@@ -141,24 +141,29 @@ class uiprojectmanager extends boprojectmanager
 						$this->data['pm_overwrite'] &= ~$id;
 					}
 				}
+				// process new and changed project-members
+				foreach((array)$content['member'] as $n => $uid)
+				{
+					if (!(int) $content['role'][$n])
+					{
+						unset($this->data['pm_members'][$uid]);
+					}
+					elseif ((int) $uid)
+					{
+						$this->data['pm_members'][(int)$uid] = array(
+							'member_uid' => (int) $uid,
+							'member_availibility' => empty($content['availibility'][$n]) ? 100.0 : $content['availibility'][$n],
+							'role_id'    => (int) $content['role'][$n],
+						);
+						if ($GLOBALS['egw_info']['user']['apps']['admin'] && $content['general_avail'][$n])
+						{
+							$this->set_availibility($uid,$content['general_avail'][$n]);
+						}
+					}
+				}
 			}
 			//echo "uiprojectmanager::edit(): data="; _debug_array($this->data);
-			
-			// process new and changed project-members
-			foreach((array)$content['member'] as $n => $uid)
-			{
-				if (!(int) $content['role'][$n])
-				{
-					unset($this->data['pm_members'][$uid]);
-				}
-				elseif ((int) $uid)
-				{
-					$this->data['pm_members'][(int)$uid] = array(
-						'member_uid' => (int) $uid,
-						'role_id'    => (int) $content['role'][$n],
-					);
-				}
-			}
+
 			if (($content['save'] || $content['apply']) && $this->check_acl(EGW_ACL_EDIT))
 			{
 				// generate project-number, taking into account a given parent-project
@@ -285,6 +290,7 @@ class uiprojectmanager extends boprojectmanager
 					(count(explode(',',$this->config['accounting_types'])) == 1 ||
 					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)),	
 			),
+			'general_avail[1]' => !$GLOBALS['egw_info']['user']['apps']['admin'],
 		);
 		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))
 		{
@@ -295,7 +301,11 @@ class uiprojectmanager extends boprojectmanager
 		{
 			$content['role'][$n] = $data['role_id'];
 			$content['member'][$n] = $data['member_uid'];
-			if ($view) $readonlys["role[$n]"] = true;
+			$content['availibility'][$n] = empty($data['member_availibility']) ? 100.0 : $data['member_availibility'];
+			if (!is_array($general_avail)) $general_avail = $this->get_availibility();
+			$content['general_avail'][$n] = empty($general_avail[$uid]) ? 100.0 : $general_avail[$uid];
+			$readonlys["general_avail[$n]"] = $view || !$GLOBALS['egw_info']['user']['apps']['admin'];
+			$readonlys["role[$n]"] = $readonlys["availibility[$n]"] = $view;
 			++$n;
 		}
 		//_debug_array($content);

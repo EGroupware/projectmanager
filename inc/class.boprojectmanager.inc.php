@@ -510,5 +510,93 @@ class boprojectmanager extends soprojectmanager
 			echo '<pre>'.$msg."</pre>\n";
 		}
 		$this->log2file($msg);
-	}	
+	}
+
+	/**
+	 * Add a timespan to a given datetime, taking into account the availibility and worktimes of the user
+	 *
+	 * ToDo: take exclusivly blocked times (calendar) into account
+	 *
+	 * @param int $start start timestamp (usertime)
+	 * @param int $time working time in minutes to add, 0 advances to the next working time
+	 * @param int $uid user-id
+	 * @return int/boolean end-time or false if it cant be calculated because user has no availibility or worktime
+	 */
+	function date_add($start,$time,$uid)
+	{
+		// we cache the user-prefs with the working times globaly, as they are expensive to read
+		$user_prefs =& $GLOBALS['egw_info']['projectmanager']['user_prefs'][$uid];
+		if (!is_array($user_prefs))
+		{
+			if ($uid == $GLOBALS['egw_info']['user']['account_id'])
+			{
+				$user_prefs = $GLOBALS['egw_info']['user']['preferences']['projectmanager'];
+			}
+			else
+			{
+				$prefs =& CreateObject('phpgwapi.preferences',$uid);
+				$prefs->read_repository();
+				$user_prefs =& $prefs->data['projectmanager'];
+				unset($prefs);
+			}
+			// calculate total weekly worktime
+			for($day=$user_prefs['duration']; $day <= 6; ++$day)
+			{
+				$user_prefs['duration'] += $user_prefs['duration_'.$day];
+			}
+		}
+		$availibility = 1.0;
+		if (isset($this->data['pm_members'][$uid]))
+		{
+			$availibility = $this->data['pm_members'][$uid]['member_availibility'] / 100.0;
+		}
+		$general = $this->get_availibility($uid);
+		if (isset($general[$uid]))
+		{
+			$availibility *= $general[$uid] / 100.0;
+		}
+		// if user has no availibility or no working duration ==> fail
+		if (!$availibility || !$user_prefs['duration'])
+		{
+			return false;
+		}
+		$time_s = $time * 60 / $availibility;
+		
+		$end_s = $start;
+		// we use do-while to allow with time=0 to advance to the next working time
+		do {
+			$day = date('w',$end_s);	// 0=Sun, 1=Mon, ...
+			$work_start_s = $user_prefs['start_'.$day] * 60;
+			$max_add_s = 60 * $user_prefs['duration_'.$day];
+			$time_of_day_s = $end_s - mktime(0,0,0,date('m',$end_s),date('d',$end_s),date('Y',$end_s));
+			// befor workday starts ==> go to start of workday
+			if ($max_add_s && $time_of_day_s < $work_start_s)
+			{
+				$end_s += $work_start_s - $time_of_day_s;
+			}
+			// after workday ends or non-working day ==> go to start of NEXT workday
+			elseif (!$max_add_s || $time_of_day_s >= $work_start_s+$max_add_s)	// after workday ends
+			{
+				//echo date('D Y-m-d H:i',$end_s)." ==> go to next day: work_start_s=$work_start_s, time_of_day_s=$time_of_day_s, max_add_s=$max_add_s<br>\n";
+				do {
+					$day = ($day+1) % 7;
+					$end_s = mktime($user_prefs['start_'.$day]/60,$user_prefs['start_'.$day]%60,0,date('m',$end_s),date('d',$end_s)+1,date('Y',$end_s));
+				} while (!($max_add_s = 60 * $user_prefs['duration_'.$day]));
+			}
+			// in the working period ==> adjust max_add_s accordingly
+			else
+			{
+				$max_add_s -= $time_of_day_s - $work_start_s;
+			}
+			$add_s = min($max_add_s,$time_s);
+			
+			//echo date('D Y-m-d H:i',$end_s)." + ".($add_s/60/60)."h / ".($time_s/60/60)."h<br>\n";
+			
+			$end_s += $add_s;
+			$time_s -= $add_s;
+		} while ($time_s > 0);
+
+		//echo "<p>boprojectmanager::date_add($start=".date('D Y-m-d H:i',$start).", $time=".($time/60.0)."h, $uid)=".date('D Y-m-d H:i',$end_s)."</p>\n";
+		return $end_s;
+	}
 }

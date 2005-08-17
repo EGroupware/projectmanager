@@ -35,15 +35,23 @@ define('PM_REAL_START',64);
 define('PM_PLANNED_END',128);
 /** int timestamp real end-date */
 define('PM_REAL_END',256);
-/** int timestamp real end-date */
+/** array with (int) user- or (string) resource-ids */
 define('PM_RESOURCES',512);
+/** string title */
+define('PM_TITLE',1024);
 /** all data-types or'ed together, need to be changed if new data-types get added */
-define('PM_ALL_DATA',1023);
+define('PM_ALL_DATA',2047);
 
 /**
  * DataSource baseclass of the ProjectManager
  *
- * This is the baseclass of all DataSources, each spezific DataSource extends it.
+ * This is the baseclass of all DataSources, each spezific DataSource extends it and implement 
+ * an own get method.
+ *
+ * The read method of this class sets (if not set by the get method) the planned start- and endtime:
+ *  - planned start from the end of a start constrain or the project start-time
+ *  - planned end from the planned time and a start-time
+ *  - real or planned start and end from each other
  *
  * @package projectmanager
  * @author RalfBecker-AT-outdoor-training.de
@@ -81,7 +89,12 @@ class datasource
 		'pe_real_start'     => PM_REAL_START,
 		'pe_planned_end'    => PM_PLANNED_END,
 		'pe_real_end'       => PM_REAL_END,
+		'pe_title'          => PM_TITLE,
 	);
+	/**
+	 * @var boprojectelements-object $bo_pe pe object to read other pe's (eg. for constraints)
+	 */
+	var $bo_pe;
 
 	/**
 	 * Constructor
@@ -131,14 +144,72 @@ class datasource
 	 * Not set values mean they are not supported by the datasource.
 	 * 
 	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
+	 * @param array $pe_data data of the project-element or null, eg. to use the constraints
 	 * @return array/boolean array with the data supported by that source or false on error (eg. not found, not availible)
 	 */
-	function read($data_id)
+	function read($data_id,$pe_data=null)
 	{
 		$ds = $this->get($data_id);
 		
+		//echo "<p>datasource::read($data_id,$pe_data) ds="; _debug_array($ds);
+		
 		if ($ds)
 		{
+			// setting a not set planned start from a contrains
+			if (!$ds['pe_planned_start'] && !is_null($pe_data) && $pe_data['pe_constraints']['start'])
+			{
+				//echo "start-constr."; _debug_array($pe_data['pe_constraints']['start']);
+				$start = 0;
+				if (!is_object($this->bo_pe))
+				{
+					$this->bo_pe =& CreateObject('projectmanager.boprojectelements',$pe_data['pm_id']);
+				}
+				foreach($pe_data['pe_constraints']['start'] as $start_pe_id)
+				{
+					if ($this->bo_pe->read(array('pm_id'=>$pe_data['pm_id'],'pe_id'=>$start_pe_id)) &&
+						$start < $this->bo_pe->data['pe_real_end'])
+					{
+						$start = $this->bo_pe->data['pe_real_end'];
+						//echo "startdate from startconstrain with"; _debug_array($this->bo_pe->data);
+					}
+				}
+				if ($start)
+				{
+					$ds['pe_planned_start'] = $this->project->date_add($start,0,$ds['pe_resources'][0]);
+					//echo "<p>$ds[pe_title] set planned start to ".date('D Y-m-d H:i',$ds['pe_planned_start'])."</p>\n";
+				}
+			}
+			// setting the planned start from the real-start
+			if (!$ds['pe_planned_start'] && $ds['pe_real_start'])
+			{
+				$ds['pe_planned_start'] = $ds['pe_real_start'];
+			}
+			// setting the planned start from the projects start
+			if (!$ds['pe_planned_start'] && $pe_data['pm_id'])
+			{
+				if (!is_object($this->bo_pe))
+				{
+					$this->bo_pe =& CreateObject('projectmanager.boprojectelements',$pe_data['pm_id']);
+				}
+				if ($this->bo_pe->pm_id != $pe_data['pm_id'])
+				{
+					$this->bo_pe->boprojectelements($pe_data['pm_id']);
+				}
+				if ($this->bo_pe->project->data['pm_planned_start'] || $this->bo_pe->project->data['pm_real_start'])
+				{
+					$ds['pe_planned_start'] = $this->bo_pe->project->data['pm_planned_start'] ? 
+						$this->bo_pe->project->data['pm_planned_start'] : $this->bo_pe->project->data['pm_real_start'];
+				}
+			}
+			// calculating the planned end-date from the planned time
+			if (!$ds['pe_planned_end'] && $ds['pe_planned_time'])
+			{
+				if ($ds['pe_planned_start'] && is_object($this->project))
+				{
+					$ds['pe_planned_end'] = $this->project->date_add($ds['pe_planned_start'],$ds['pe_planned_time'],$ds['pe_resources'][0]);
+					//echo "<p>$ds[pe_title] set planned end to ".date('D Y-m-d H:i',$ds['pe_planned_end'])."</p>\n";
+				}
+			}
 			// setting real or planned start- or end-date, from each other if not set
 			foreach(array('start','end') as $name)
 			{
@@ -181,7 +252,7 @@ class datasource
 					$ds['warning']['completion_by_budget'] = $compl_by_budget;
 				}
 			}
-		}		
+		}
 		return $ds;
 	}
 	

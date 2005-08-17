@@ -110,7 +110,7 @@ class uiprojectelements extends boprojectelements
 			$this->data = $content['data'];
 			$update_necessary = $save_necessary = 0;
 			$datasource = $this->datasource($this->data['pe_app']);
-			if (($ds_read_from_element = !($ds = $datasource->read($this->data['pe_app_id']))))
+			if (($ds_read_from_element = !($ds = $datasource->read($this->data['pe_app_id'],$this->data))))
 			{
 				$ds = $datasource->element_values($this->data);
 			}
@@ -161,12 +161,19 @@ class uiprojectelements extends boprojectelements
 					{
 						foreach($content['pe_constraints'] as $type => $data)
 						{
-							if (!$data) unset($content['pe_constraints'][$type]);	// ignore not set constraints
+							if (!$data)
+							{
+								unset($content['pe_constraints'][$type]);	// ignore not set constraints
+							}
+							elseif (!is_array($data))
+							{
+								$content['pe_constraints'][$type] = array($data);		// otherwise it's detected as change
+							}
 						}
 					}
 					if ($content[$name] != $this->data[$name])
 					{
-						//echo "need to update $name as content[$name] changed to '".$content[$name]."' != '".$this->data[$name]."'<br>\n";
+						//echo "need to update $name as content[$name] changed to '".print_r($content[$name],true)."' != '".print_r($this->data[$name],true)."'<br>\n";
 						$this->data[$name] = $content[$name];
 						$save_necessary = true;
 
@@ -247,7 +254,7 @@ class uiprojectelements extends boprojectelements
 			$js = 'window.focus();';
 
 			$datasource = $this->datasource($this->data['pe_app']);
-			if (($ds_read_from_element = !($ds = $datasource->read($this->data['pe_app_id']))))
+			if (($ds_read_from_element = !($ds = $datasource->read($this->data['pe_app_id'],$this->data))))
 			{
 				$ds = $datasource->element_values($this->data);
 			}
@@ -265,17 +272,18 @@ class uiprojectelements extends boprojectelements
 		);
 		foreach($datasource->name2id as $name => $id)
 		{
-			if (!($this->data['pe_overwrite'] & $id)) 	// empty not explicitly set values
+			if ($id != PM_TITLE && !($this->data['pe_overwrite'] & $id)) 	// empty not explicitly set values
 			{
 				$this->data[$name] = '';
 			}
 		}
+		$planned_time = $this->data['pe_planned_time'] ? $this->data['pe_planned_time'] : $ds['pe_planned_time'];
 		$content = $this->data + array(
 			'ds'  => $ds,
 			'msg' => $msg,
 			'js'  => '<script>'.$js.'</script>',
-			'default_share' => ($share = $this->data['pe_planned_time'] && $this->project->data['pm_accounting_type'] != 'status' ? 
-				$this->data['pe_planned_time'] : $this->default_share),
+			'default_share' => ($share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? 
+				$planned_time : $this->default_share),
 			'duration_format' => ','.$this->config['duration_format'],
 			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
 		);
@@ -294,8 +302,8 @@ class uiprojectelements extends boprojectelements
 		$sel_options = array(
 			'pe_constraints' => $this->titles(array(	// only titles of elements displayed in a gantchart
 				"pe_status != 'ignore'",
-				'(pe_planned_start IS NOT NULL OR pe_real_start IS NOT NULL)',
-				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',
+//				'(pe_planned_start IS NOT NULL OR pe_real_start IS NOT NULL)',
+//				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',
 				'pe_id != '.(int)$this->data['pe_id'],	// dont show own title	
 			)),
 			'milestone'     => $this->milestones->titles(array('pm_id' => $this->data['pm_id'])), 

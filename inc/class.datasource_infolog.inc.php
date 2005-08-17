@@ -17,6 +17,13 @@ include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
 /**
  * DataSource for InfoLog
  *
+ * The InfoLog datasource set's only real start- and endtimes, plus planned and used time and 
+ * the responsible user as resources (not always the owner too!).
+ * The read method of the extended datasource class sets the planned start- and endtime:
+ *  - planned start from the end of a start constrain
+ *  - planned end from the planned time and a start-time
+ *  - planned start and end from the "real" values
+ *
  * @package projectmanager
  * @author RalfBecker-AT-outdoor-training.de
  * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
@@ -31,7 +38,7 @@ class datasource_infolog extends datasource
 	{
 		$this->datasource('infolog');
 		
-		$this->valid = PM_COMPLETION|PM_PLANNED_START|PM_PLANNED_END|PM_RESOURCES;
+		$this->valid = PM_COMPLETION|PM_REAL_START|PM_REAL_END|PM_PLANNED_TIME|PM_USED_TIME|PM_RESOURCES;
 	}
 	
 	/**
@@ -59,13 +66,13 @@ class datasource_infolog extends datasource
 			$data =& $data_id;
 		}
 		return array(
-			'pe_title'         => $GLOBALS['boinfolog']->link_title($data),
-			'pe_completion'    => $this->status2completion($data['info_status']).'%',
-			'pe_planned_start' => $data['info_startdate'],
-			'pe_planned_end'   => $data['info_enddate'],
-			'pe_planned_time'  => $data['info_planned_time'],
-			'pe_used_time'     => $data['info_planned_time'],
-			'pe_resources'     => array($data['info_responsible'] ? $data['info_responsible'] : $data['info_owner']),
+			'pe_title'        => $GLOBALS['boinfolog']->link_title($data),
+			'pe_completion'   => $this->status2completion($data['info_status']).'%',
+			'pe_real_start'   => $data['info_startdate'] ? $data['info_startdate'] : null,
+			'pe_real_end'     => $data['info_enddate'] ? $data['info_enddate'] : null,
+			'pe_planned_time' => $data['info_planned_time'],
+			'pe_used_time'    => $data['info_used_time'],
+			'pe_resources'    => array($data['info_responsible'] ? $data['info_responsible'] : $data['info_owner']),
 		);
 	}
 	

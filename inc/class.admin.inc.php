@@ -71,7 +71,7 @@ class admin
 		
 		if ($content['save'] || $content['apply'])
 		{
-			foreach(array('duration_units','hours_per_workday','accounting_types') as $name)
+			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes') as $name)
 			{
 				$this->config->config_data[$name] = $content[$name];
 			}
@@ -96,6 +96,7 @@ class admin
 		$tpl->exec('projectmanager.admin.config',$content,array(
 			'duration_units'   => $this->duration_units,
 			'accounting_types' => $this->accounting_types,
+			'allow_change_workingtimes' => array('no','yes'),
 		));
 	}		
 }

@@ -32,6 +32,8 @@ if ($setup_info['projectmanager']['version'] != $GLOBALS['egw_info']['apps']['pr
 }
 unset($setup_info);
 
+ExecMethod('projectmanager.pm_admin_prefs_sidebox_hooks.check_set_default_prefs');
+
 $pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 
 $GLOBALS['egw']->redirect_link('/index.php',array(

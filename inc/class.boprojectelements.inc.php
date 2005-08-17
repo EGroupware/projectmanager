@@ -76,6 +76,10 @@ class boprojectelements extends soprojectelements
 		'new'     => 'new',
 		'ignored' => 'ignore',
 	);
+	/**
+	 * @var int $updated or'ed id's of the values set by the last call to the updated method
+	 */
+	var $updated = 0;
 
 	/**
 	 * Constructor, class the constructor of the extended class
@@ -166,28 +170,31 @@ class boprojectelements extends soprojectelements
 	/**
 	 * Updates / creates a project-element with the data of it's datasource
 	 *
+	 * Sets additionally $this->updated with the or'ed id's of the updated values
+	 *
+	 * ToDo: if end-date changed, update elements which have "us" as start-constrain
+	 *
 	 * @param string $app appname
 	 * @param string $id id of $app as used by the link-class and the datasource
 	 * @param int $pe_id=0 element- / link-id or 0 to only read and return the entry, but not save it!
 	 * @param int $pm_id=null project-id, default $this->pm_id
+	 * @param boolean $update_project=true update the data in the project if necessary
 	 * @return array/boolean the updated project-element or false on error (eg. no read access)
 	 */
-	function &update($app,$id,$pe_id=0,$pm_id=null)
+	function &update($app,$id,$pe_id=0,$pm_id=null,$update_project=true)
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
 		
 		if ($this->debug) $this->debug_message("boprojectelements::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 
-		$datasource =& 	$this->datasource($app);
-
-		if (!$app || !(int) $id || !(int) $pm_id ||	!($data = $datasource->read($id)))
+		if (!$app || !(int) $id || !(int) $pm_id)
 		{
-			return false;	// eg. no read access, so I cant update
+			return false;
 		}
 		$this->init();
-
+		$need_save_anyway = false;
 		// check if entry already exists and set basic values if not
-		if (!$pe_id || !$this->read(array('pm_id'=>$pm_id,'pe_id'=>$pe_id)))
+		if (!$pe_id || ($need_save_anyway = !$this->read(array('pm_id'=>$pm_id,'pe_id'=>$pe_id))))
 		{
 			$this->data['pm_id'] = $pm_id;
 			$this->data['pe_id'] = $pe_id;
@@ -204,23 +211,38 @@ class boprojectelements extends soprojectelements
 				$this->data['pe_status']= 'ignore';
 			}
 		}
+		$datasource =& 	$this->datasource($app);
+		$this->updated = 0;
+
+		if (!($data = $datasource->read($id,$this->data)))
+		{
+			return false;	// eg. no read access, so I cant update
+		}
 		foreach($data as $name => $value)
 		{
-			if (isset($datasource->name2id[$name]) && !($this->data['pe_overwrite'] & $datasource->name2id[$name]))
+			if (isset($datasource->name2id[$name]) && !($this->data['pe_overwrite'] & $datasource->name2id[$name]) &&
+				$this->data[$name] != $value)
 			{
+				//if ((int) $pe_id) echo "<p>boprojectelements::update($app,$id,$pe_id,$pm_id) $name updated: '{$this->data[$name]}' != '$value'</p>\n";
 				$this->data[$name] = $value;
+				$this->updated |= $datasource->name2id[$name];
 			}
 		}
-		$this->data['pe_title'] = $data['pe_title'];
 		$this->data['pe_synced'] = $this->now_su;
 		
-		if((int) $pe_id) $this->save(null,false);	// dont set modified, only synced
-		
+		if((int) $pe_id && ($need_save_anyway || $this->updated))
+		{
+			$this->save(null,false,$update_project ? $this->updated & ~PM_TITLE : 0);	// dont set modified, only synced
+		}
 		return $this->data;
 	}
 
 	/**
 	 * sync all project-elements
+	 *
+	 * The sync of the elements is done by calling the update-method for each (not ignored) element
+	 * in the order of their planned starts and after that calling the projects update methode only 
+	 * once if necessary!
 	 *
 	 * @param int $pm_id=null id of project to use, default null=use $this->pm_id
 	 * @return int number of updated elements
@@ -231,37 +253,17 @@ class boprojectelements extends soprojectelements
 		
 		$save_project = $this->project->data;
 
-		$updated = 0;
-		foreach((array) $this->search(array('pm_id'=>$pm_id,"pe_status != 'ignore'"),false) as $data)
+		$updated = $update_project = 0;
+		foreach((array) $this->search(array('pm_id'=>$pm_id,"pe_status != 'ignore'"),false,'pe_planned_start') as $data)
 		{
-			$this->data = $data;
+			$this->update($data['pe_app'],$data['pe_app_id'],$data['pe_id'],$pm_id,false);
 			
-			$datasource =& $this->datasource($data['pe_app']);
-			if (!($ds = $datasource->read($data['pe_app_id'])))
-			{
-				continue;	// no read access => no update possible
-			}
-			$update_necessary = 0;
-			foreach($datasource->name2id as $name => $id)
-			{
-				if (!($data['pe_overwrite'] & $id) && $data[$name] != $ds[$name])
-				{
-					$this->data[$name] = $ds[$name];
-					$update_necessary |= $id;
-				}
-			}
-			$this->debug_message("boprojectemlements::sync_all($pm_id): element $data[pe_app]-$data[pe_app_id]: update_necessary=$update_necessary");
-
-			if ($update_necessary || $data['pe_title'] != $ds['pe_title']) 
-			{
-				$this->data['pe_title'] = $ds['pe_title']; 	// in case it's changed
-				$this->save(null,false,0);	// update the project after all elements are synced
-				$updated++;
-			}
+			$update_project |= $this->updated & ~PM_TITLE;
+			if ($this->updated) $updated++;
 		}
-		if ($updated)
+		if ($update_project)
 		{
-			$this->project->update($pm_id);
+			$this->project->update($pm_id,$update_project);
 		}
 		$this->project->data =& $save_project;
 
@@ -322,6 +324,8 @@ class boprojectelements extends soprojectelements
 			}
 			include_once($classfile);
 			$this->datasources[$app] =& new $class($app);
+			// make the project availible for the datasource
+			$this->datasources[$app]->project =& $this->project;
 		}
 		return $this->datasources[$app];	
 	}
@@ -368,7 +372,17 @@ class boprojectelements extends soprojectelements
 		}
 		foreach($this->timestamps as $name)
 		{
-			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_adjust_s;
+			if (isset($data[$name]))
+			{
+				if ($data[$name])
+				{
+					$data[$name] -= $this->tz_adjust_s;
+				}
+				else
+				{
+					$data[$name] = null;	// so it's not used for min or max dates
+				}
+			}
 		}
 		if (substr($data['pe_completition'],-1) == '%') $data['pe_completition'] = (int) substr($data['pe_completition'],0,-1);
 

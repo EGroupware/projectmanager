@@ -128,7 +128,8 @@
 			'fd' => array(
 				'pm_id' => array('type' => 'int','precision' => '4','nullable' => False),
 				'member_uid' => array('type' => 'int','precision' => '4','nullable' => False),
-				'role_id' => array('type' => 'int','precision' => '4','default' => '0')
+				'role_id' => array('type' => 'int','precision' => '4','default' => '0'),
+				'member_availibility' => array('type' => 'float','precision' => '4','default' => '100.0')
 			),
 			'pk' => array('pm_id','member_uid'),
 			'fk' => array(),

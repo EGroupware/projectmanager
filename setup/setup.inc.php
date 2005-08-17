@@ -13,7 +13,7 @@
 /* $Id$ */
 
 $setup_info['projectmanager']['name']      = 'projectmanager';
-$setup_info['projectmanager']['version']   = '0.3.002';
+$setup_info['projectmanager']['version']   = '0.4.001';
 $setup_info['projectmanager']['app_order'] = 5;
 $setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones','egw_pm_roles','egw_pm_members');
 $setup_info['projectmanager']['enable']    = 1;
@@ -41,7 +41,7 @@ $setup_info['projectmanager']['note'] =
 
 /* The hooks this app includes, needed for hooks registration */
 $setup_info['projectmanager']['hooks']['preferences'] = 'projectmanager.pm_admin_prefs_sidebox_hooks.all_hooks';
-$setup_info['projectmanager']['hooks'][] = 'settings';
+$setup_info['projectmanager']['hooks']['settings'] = 'projectmanager.pm_admin_prefs_sidebox_hooks.settings';
 $setup_info['projectmanager']['hooks']['admin'] = 'projectmanager.pm_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['projectmanager']['hooks']['sidebox_menu'] = 'projectmanager.pm_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager.boprojectmanager.search_link';
@@ -60,6 +60,7 @@ $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'infolog',
 	 'versions' => Array('1.0.0','1.0.1')
 );
+
 
 
 

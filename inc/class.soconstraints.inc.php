@@ -125,13 +125,13 @@ class soconstraints extends so_sql
 				switch($row['constraint_type'])
 				{
 					case 'milestone':
-						$ret['milestone'] = $row['ms_id'];
+						$ret['milestone'][] = $row['ms_id'];
 						break;
 					case 'start':
-						$ret['start'] = $row['pe_id_end'];
+						$ret['start'][] = $row['pe_id_end'];
 						break;
 					case 'end':
-						$ret['end'] = $row['pe_id_start'];
+						$ret['end'][] = $row['pe_id_start'];
 						break;
 				}
 			}
