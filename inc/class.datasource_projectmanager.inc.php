@@ -58,9 +58,7 @@ class datasource_projectmanager extends datasource
 		{
 			$data =& $data_id;
 		}
-		$ds = array(
-			'pe_title' => $GLOBALS['boprojectmanager']->link_title($data['pm_id'],$data),
-		);
+		$ds = array();
 		foreach($this->name2id as $name => $id)
 		{
 			$pm_name = str_replace('pe_','pm_',$name);
@@ -70,6 +68,8 @@ class datasource_projectmanager extends datasource
 				$ds[$name] = $data[$pm_name];
 			}
 		}
+		$ds['pe_title'] = $GLOBALS['boprojectmanager']->link_title($data['pm_id'],$data);
+
 		if (is_numeric($ds['pe_completion'])) $ds['pe_completion'] .= '%';
 
 		return $ds;
