@@ -417,8 +417,13 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function link_query( $pattern )
 	{
+		$criteria = array();
+		foreach(array('pm_number','pm_title','pm_description') as $col)
+		{
+			$criteria[$col] = $pattern;
+		}
 		$result = array();
-		foreach((array) $this->search($pattern,false,'','','%',false,'OR') as $prj )
+		foreach((array) $this->search($criteria,false,'','','%',false,'OR') as $prj )
 		{
 			$result[$prj['pm_id']] = $this->link_title($prj);
 		}
@@ -437,7 +442,7 @@ class boprojectmanager extends soprojectmanager
 			'query' => 'projectmanager.boprojectmanager.link_query',
 			'title' => 'projectmanager.boprojectmanager.link_title',
 			'view'  => array(
-				'menuaction' => 'projectmanager.uiprojectmanager.view',
+				'menuaction' => 'projectmanager.uiprojectelements.index',
 			),
 			'view_id' => 'pm_id',
 			'notify' => 'projectmanager.boprojectelements.notify',
