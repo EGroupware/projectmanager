@@ -95,7 +95,7 @@ class boprojectmanager extends soprojectmanager
 		// instanciation of link-class has to be after making us globaly availible, as it calls us to get the search_link
 		if (!is_object($GLOBALS['egw']->link))
 		{
-			$GLOBALS['egw']->link =& CreateObject('infolog.bolink');
+			$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
 		}
 		$this->link =& $GLOBALS['egw']->link;
 		

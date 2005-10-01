@@ -107,7 +107,7 @@ class datasource
 
 		if (!is_object($GLOBALS['egw']->link))
 		{
-			$GLOBALS['egw']->link =& CreateObject('infolog.bolink');
+			$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
 		}
 		$this->link =& $GLOBALS['egw']->link;
 	}
