@@ -293,7 +293,7 @@ class ganttchart extends boprojectelements
 		// create a shorter title (removes dates from calendar-titles and project-numbers from sub-projects
 		if ($pe['pe_app'] == 'calendar' || $pe['pe_app'] == 'projectmanager')
 		{
-			list(,$title) = explode(': ',$pe['pe_title']);
+			list(,$title) = explode(': ',$pe['pe_title'],2);
 		}
 		if (!$title) $title = $pe['pe_title'];
 		
