@@ -258,6 +258,10 @@ class uiprojectelements extends boprojectelements
 			{
 				$ds = $datasource->element_values($this->data);
 			}
+			else
+			{
+				$this->data['pe_title'] = $ds['pe_title'];	// updating the title, not all datasources do it automatic
+			}
 		}
 		if ($ds_read_from_element && !$view)
 		{
