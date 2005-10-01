@@ -373,7 +373,7 @@ class uiprojectmanager extends boprojectmanager
 	 */
 	function get_rows($query,&$rows,&$readonlys)
 	{
-		$GLOBALS['phpgw']->session->appsession('project_list','projectmanager',$query);
+		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query);
 
 		// handle nextmatch filters like col_filters
 		foreach(array('cat_id' => 'cat_id','filter2' => 'pm_status') as $nm_name => $pm_name)
@@ -467,7 +467,7 @@ class uiprojectmanager extends boprojectmanager
 			}						
 		}
 		$content = array(
-			'nm' => $GLOBALS['phpgw']->session->appsession('project_list','projectmanager'),
+			'nm' => $GLOBALS['egw']->session->appsession('project_list','projectmanager'),
 			'msg' => $msg,
 		);		
 		if (!is_array($content['nm']))
@@ -487,7 +487,7 @@ class uiprojectmanager extends boprojectmanager
 			);
 		}
 
-		$GLOBALS['phpgw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
 		$tpl->exec('projectmanager.uiprojectmanager.index',$content,array(
 		));
 	}
