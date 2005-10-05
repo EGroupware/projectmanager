@@ -72,7 +72,7 @@ class datasource_infolog extends datasource
 			'pe_real_end'     => $data['info_enddate'] ? $data['info_enddate'] : null,
 			'pe_planned_time' => $data['info_planned_time'],
 			'pe_used_time'    => $data['info_used_time'],
-			'pe_resources'    => array($data['info_responsible'] ? $data['info_responsible'] : $data['info_owner']),
+			'pe_resources'    => count($data['info_responsible']) ? $data['info_responsible'] : array($data['info_owner']),
 		);
 	}
 	
