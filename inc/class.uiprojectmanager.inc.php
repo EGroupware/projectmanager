@@ -94,7 +94,7 @@ class uiprojectmanager extends boprojectmanager
 			if ($content['cancel'])
 			{
 				$tpl->location(array(
-					'menuaction' => 'projectmanager.uiprojectmanager.index',
+					'menuaction' => $content['referer'],
 				));
 			}
 			if ($content['pm_id'])
@@ -208,10 +208,10 @@ class uiprojectmanager extends boprojectmanager
 					}
 				}
 			}
-			if ($content['save'] || $content['cancel'])
+			if ($content['save'])
 			{
 				$tpl->location(array(
-					'menuaction' => 'projectmanager.uiprojectmanager.index',
+					'menuaction' => $content['referer'],
 					'msg'        => $msg,
 				));
 			}
@@ -222,19 +222,43 @@ class uiprojectmanager extends boprojectmanager
 					'delete' => array($this->data['pm_id']=>true)
 				))));
 			}
+			$referer = $content['referer'];
 		}
 		else
 		{
+			$referer = preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ? $matches[1] : 'projectmanager.uiprojectmanager.index';
+
 			if ((int) $_GET['pm_id'])
 			{
 				$this->read((int) $_GET['pm_id']);
+			}
+			// for a new sub-project set some data from the parent
+			elseif ($_GET['link_app'] == 'projectmanager' && (int) $_GET['link_id'] && $this->read((int) $_GET['link_id']))
+			{
+				if (!$this->check_acl(EGW_ACL_READ))	// no read-rights for the parent, eg. someone edited the url
+				{
+					$tpl->location(array(
+						'menuaction' => $referer,
+						'msg' => lang('Permission denied !!!'),
+					));
+				}
+				else
+				{
+					$this->generate_pm_number(true,$this->data['pm_number']);
+					foreach(array('pm_id','pm_title','pm_description','pm_creator','pm_created','pm_modified','pm_modifier','pm_real_start','pm_real_end','pm_completion','pm_status','pm_used_time','pm_planned_time','pm_used_budget','pm_planned_budget') as $key)
+					{
+						unset($this->data[$key]);
+					}
+					include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
+					$this->data['pm_overwrite'] &= PM_PLANNED_START | PM_PLANNED_END;
+				}
 			}
 			if ($this->data['pm_id'])
 			{
 				if (!$this->check_acl(EGW_ACL_READ))
 				{
 					$tpl->location(array(
-						'menuaction' => 'projectmanager.uiprojectmanager.index',
+						'menuaction' => $referer,
 						'msg' => lang('Permission denied !!!'),
 					));
 				}
@@ -313,6 +337,7 @@ class uiprojectmanager extends boprojectmanager
 			'view'     => $view,
 			'add_link' => $add_link,
 			'member'   => $content['member'],
+			'referer'  => $referer,
 		);
 		$this->instanciate('roles');
 
