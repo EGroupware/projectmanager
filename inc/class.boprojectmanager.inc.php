@@ -604,4 +604,60 @@ class boprojectmanager extends soprojectmanager
 		//echo "<p>boprojectmanager::date_add($start=".date('D Y-m-d H:i',$start).", $time=".($time/60.0)."h, $uid)=".date('D Y-m-d H:i',$end_s)."</p>\n";
 		return $end_s;
 	}
+	
+	/**
+	 * Copies a project
+	 *
+	 * @param int $source id of project to copy
+	 * @param int $only_stage=0 0=both stages plus saving the project, 1=copy of the project, 2=copying the element tree
+	 * @return boolean true on successful copy, false otherwise (eg. permission denied)
+	 */
+	function copy($source,$only_stage=0)
+	{
+		//echo "<p>projectmanager::copy($source,$only_stage)</p>\n";
+		if ($only_stage == 2)
+		{
+			if (!(int)$this->data['pm_id']) return false;
+
+			$data_backup = $this->data;
+		}
+		if (!$this->read((int) $source) || !$this->check_acl(EGW_ACL_READ))
+		{
+			return false;
+		}
+		if ($only_stage == 2)
+		{
+			$this->data = $data_backup;
+			unset($data_backup);
+		}
+		else
+		{
+			// if user has no budget rights on the source, we need to unset the budget fields
+			if ($this->check_acl(EGW_ACL_BUDGET))
+			{
+				include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
+				foreach(array(PM_PLANNED_BUDGET => 'pm_planned_budget',PM_USED_BUDGET => 'pm_used_budget') as $id => $key)
+				{
+					unset($this->data[$key]);
+					$this->data['pm_overwrite'] &= ~$id;
+				}
+			}
+			// we unset a view things, as this should be a new project
+			foreach(array('pm_id','pm_number','pm_creator','pm_created','pm_modified','pm_modifier') as $key)
+			{
+				unset($this->data[$key]);
+			}
+			$this->data['pm_status'] = 'active';
+
+			if ($only_stage == 1)
+			{
+				return true;
+			}
+			if (!$this->save()) return false;
+		}
+		// copying the element tree
+		$elements =& CreateObject('projectmanager.boprojectelements',$this->data['pm_id']);
+		
+		return $elements->copytree((int) $source);
+	}
 }

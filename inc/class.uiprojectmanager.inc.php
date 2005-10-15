@@ -57,6 +57,7 @@ class uiprojectmanager extends boprojectmanager
 			'active'    => lang('Active'),
 			'nonactive' => lang('Nonactive'),
 			'archive'   => lang('Archive'),
+			'template'  => lang('Template'),
 		);
 		$this->access_labels = array(
 			'public'    => lang('Public'),
@@ -206,6 +207,11 @@ class uiprojectmanager extends boprojectmanager
 					{
 						$this->link->link('projectmanager',$this->data['pm_id'],$content['link_to']['to_id']);
 					}
+					if ($content['template'] && $this->copy($content['template'],2))
+					{
+						$msg = lang('Template including elment-tree saved as new project');
+						unset($content['template']);
+					}
 				}
 			}
 			if ($content['save'])
@@ -223,6 +229,7 @@ class uiprojectmanager extends boprojectmanager
 				))));
 			}
 			$referer = $content['referer'];
+			$template = $content['template'];
 		}
 		else
 		{
@@ -253,6 +260,18 @@ class uiprojectmanager extends boprojectmanager
 					$this->data['pm_overwrite'] &= PM_PLANNED_START | PM_PLANNED_END;
 				}
 			}
+			elseif((int)$_GET['template'] && $this->read((int) $_GET['template']))
+			{
+				if (!$this->check_acl(EGW_ACL_READ))	// no read-rights for the template, eg. someone edited the url
+				{
+					$tpl->location(array(
+						'menuaction' => $referer,
+						'msg' => lang('Permission denied !!!'),
+					));
+				}
+				// we do only stage 1 of the copy, so if the user hits cancel everythings Ok
+				$this->copy($template = (int) $_GET['template'],1);
+			}
 			if ($this->data['pm_id'])
 			{
 				if (!$this->check_acl(EGW_ACL_READ))
@@ -264,6 +283,8 @@ class uiprojectmanager extends boprojectmanager
 				}
 				if (!$this->check_acl(EGW_ACL_EDIT)) $view = true;
 			}
+			// no pm-number set, generate one
+			if (!$this->data['pm_number']) $this->generate_pm_number(true);
 		}
 		if (!$pe_summary) $pe_summary = $this->pe_summary();
 
@@ -279,7 +300,8 @@ class uiprojectmanager extends boprojectmanager
 		$content = $this->data + array(
 			'msg'  => $msg,
 			'general|description|members|accounting|custom|links' => !$content['general|description|members|accounting|custom|links'] && 
-				!$view && $tpl->html->user_agent == 'mozilla' ? 'projectmanager.edit.description' : '',
+				!$view && $tpl->html->user_agent == 'mozilla' ? 'projectmanager.edit.description' : 
+				$content['general|description|members|accounting|custom|links'],
 			'view' => $view,
 			'ds'   => $pe_summary,
 			'link_to' => array(
@@ -287,7 +309,7 @@ class uiprojectmanager extends boprojectmanager
 				'to_app' => 'projectmanager',
 			),
 			'duration_format' => ','.$this->config['duration_format'],
-			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET),
+			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET) || in_array($this->data['pm_accounting_type'],array('status','times')),
 		);
 		if ($add_link && !is_array($content['link_to']['to_id']))
 		{
@@ -338,6 +360,7 @@ class uiprojectmanager extends boprojectmanager
 			'add_link' => $add_link,
 			'member'   => $content['member'],
 			'referer'  => $referer,
+			'template' => $template,
 		);
 		$this->instanciate('roles');
 
@@ -447,6 +470,7 @@ class uiprojectmanager extends boprojectmanager
 		{
 			$tpl->location(array(
 				'menuaction' => 'projectmanager.uiprojectmanager.edit',
+				'template'   => $content['template'],
 			));
 		}
 		$content = $content['nm']['rows'];
@@ -511,9 +535,19 @@ class uiprojectmanager extends boprojectmanager
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 			);
 		}
-
+		$templates = array();
+		foreach((array)$this->search(array(
+			'pm_status' => 'template',
+		),$this->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_number','','',False,'OR') as $template)
+		{
+			$templates[$template['pm_id']] = array(
+				'label' => $template['pm_number'],
+				'title' => $template['pm_title'],
+			);
+		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
 		$tpl->exec('projectmanager.uiprojectmanager.index',$content,array(
+			'template' => $templates,
 		));
 	}
 }

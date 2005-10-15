@@ -46,7 +46,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.list" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.list" template="" lang="" group="0" version="0.4.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -59,7 +59,12 @@
 					<nextmatch options="projectmanager.list.rows" id="nm"/>
 				</row>
 				<row>
-					<button label="Add" id="add" statustext="Add a new project"/>
+					<hbox>
+						<menulist>
+							<menupopup id="template" no_lang="1" statustext="Create a new empty project or use a template" options="Empty"/>
+						</menulist>
+						<button label="Add" id="add" statustext="Add a new project"/>
+					</hbox>
 				</row>
 			</rows>
 		</grid>

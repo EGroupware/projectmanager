@@ -70,8 +70,8 @@ class pm_admin_prefs_sidebox_hooks
 			$projects = array();
 			foreach((array)$GLOBALS['boprojectmanager']->search(array(
 				'pm_status' => 'active',
-				'pm_id'     => $pm_id,
-			),$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_modified','','',False,'OR') as $project)
+				'pm_id'     => $pm_id,		// active or the current one
+			),$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_number','','',False,'OR') as $project)
 			{
 				$projects[$project['pm_id']] = array(
 					'label' => $project['pm_number'],
@@ -96,7 +96,8 @@ class pm_admin_prefs_sidebox_hooks
 					'text' => $GLOBALS['egw']->html->select('pm_id',$pm_id,$projects,true,
 						' onchange="location.href=\''.$GLOBALS['egw']->link('/index.php',array(
 							'menuaction' => $selbox_action,
-						)).'&pm_id=\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars($projects[$pm_id]).'"'),
+						)).'&pm_id=\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars(
+							$pm_id && isset($projects[$pm_id]) ? $projects[$pm_id]['title'] : lang('Select a project')).'"'),
 					'no_lang' => True,
 					'link' => False
 				),
@@ -104,13 +105,13 @@ class pm_admin_prefs_sidebox_hooks
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
 				array(
 					'text' => 'Elementlist',
-					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
+					'link' => $pm_id && isset($projects[$pm_id]) ? $GLOBALS['egw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.uiprojectelements.index', 
 					)) : False,
 				),
 				array(
 					'text' => 'Ganttchart',
-					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
+					'link' => $pm_id && isset($projects[$pm_id]) ? $GLOBALS['egw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.ganttchart.show',
 					)) : False,
 				),

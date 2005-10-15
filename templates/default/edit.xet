@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.3.001">
-		<grid width="100%">
+	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.4.001">
+		<grid width="100%" height="260">
 			<columns>
 				<column width="95"/>
 				<column width="40%"/>
@@ -87,15 +87,19 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.members" template="" lang="" group="0" version="0.2.001">
-		<grid width="100%" overflow="auto">
+	<template id="projectmanager.edit.members" template="" lang="" group="0" version="0.4.002">
+		<grid width="100%" height="260" overflow="auto">
 			<columns>
+				<column/>
+				<column/>
 				<column/>
 				<column width="70%"/>
 			</columns>
 			<rows>
 				<row class="th" height="12">
 					<description value="Members"/>
+					<description value="General availibility"/>
+					<description value="Project availibility"/>
 					<hbox>
 						<description value="Role"/>
 						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiroles.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=740,height=450,scrollbars=yes,status=yes'); return false;" statustext="Add or edit roles and their ACL" id="edit_roles"/>
@@ -105,6 +109,8 @@
 					<menulist>
 						<menupopup type="select-account" id="member[1]" options="select one"/>
 					</menulist>
+					<textbox type="float" id="general_avail[1]" statustext="Percentage the member is availible for projects"/>
+					<textbox type="float" id="availibility[1]" statustext="Percentage the member is availible for this project"/>
 					<hbox orient=",0,0">
 						<menulist>
 							<menupopup id="role[1]"/>
@@ -116,6 +122,8 @@
 					<menulist>
 						<menupopup type="select-account" readonly="true" id="member[$row]"/>
 					</menulist>
+					<textbox type="float" id="general_avail[$row]" statustext="Percentage the member is availible for projects"/>
+					<textbox type="float" id="availibility[$row]" statustext="Percentage the member is availible for this project"/>
 					<menulist>
 						<menupopup id="role[$row]" options="None"/>
 					</menulist>
@@ -123,36 +131,36 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.3.001">
-		<grid width="100%" height="150">
+	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.4.001">
+		<grid width="100%" height="260">
 			<columns>
 				<column width="95"/>
 				<column width="40%"/>
 				<column/>
 			</columns>
 			<rows>
-				<row class="row">
+				<row class="row" valign="top" height="12">
 					<description options=",,,pm_accounting_type" value="Accounting type"/>
 					<menulist span="all">
 						<menupopup id="pm_accounting_type" onchange="1"/>
 					</menulist>
 				</row>
-				<row class="th">
+				<row class="th" height="12" disabled="@no_budget">
 					<description value="Value"/>
 					<description value="Project"/>
 					<description value="Elementlist"/>
 				</row>
-				<row class="row" disabled="@no_budget">
+				<row class="row" height="12" disabled="@no_budget">
 					<description options=",,,pm_used_budget" value="Budget"/>
 					<textbox type="float" min="2" id="pm_used_budget"/>
 					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
 				</row>
-				<row class="row" disabled="@no_budget">
+				<row class="row" valign="top" height="12" disabled="@no_budget">
 					<description options=",,,pm_planned_budget" value="- planned"/>
 					<textbox type="float" min="2" id="pm_planned_budget"/>
 					<textbox type="float" min="2" id="ds[pe_planned_budget]" readonly="true"/>
 				</row>
-				<row height="50%">
+				<row valign="top">
 					<description/>
 					<description/>
 					<description/>
@@ -160,8 +168,8 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="0.1.001">
-		<grid width="100%" height="150">
+	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="0.4.001">
+		<grid width="100%" height="260">
 			<columns>
 				<column width="95"/>
 				<column/>
@@ -169,13 +177,13 @@
 			<rows>
 				<row class="row" valign="top">
 					<description id="$row[label]"/>
-					<description options="@$row[options]" id="$row[content]"/>
+					<description options="@$row[options]" id="$row[content]" value="Comming soon ;-)"/>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.links" template="" lang="" group="0" version="0.1.001">
-		<grid width="100%">
+	<template id="projectmanager.edit.links" template="" lang="" group="0" version="0.4.001">
+		<grid width="100%" height="260">
 			<columns>
 				<column width="95"/>
 				<column/>

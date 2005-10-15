@@ -1,6 +1,5 @@
 %1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert
 %1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
-- planed	projectmanager	de	- geplant
 - planned	projectmanager	de	- geplant
 0ngoing (0 < % < 100)	projectmanager	de	in Arbeit (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	de	Ein beschreibender Titel für das Projekt, Feld darf nicht leer bleiben!
@@ -39,7 +38,9 @@ constraints	projectmanager	de	Bedingungen
 conversation between days and hours, default 8	projectmanager	de	Umrechnung zwischen Tagen und Stunden, Vorgabe 8
 coordinator	projectmanager	de	Koordinator
 cost per time	projectmanager	de	Kosten pro Zeiteinheit
+create a new empty project or use a template	projectmanager	de	Erstellt ein neues leeres Projekt oder benützt eine Vorlage
 create new links	projectmanager	de	Neue Verknüpfung erstellen
+created	projectmanager	de	Erstellt
 custom fields	projectmanager	de	Extra
 datasource	projectmanager	de	Datenquelle
 dates	projectmanager	de	Datum
@@ -61,10 +62,10 @@ edit this project	projectmanager	de	Dieses Projekt bearbeiten
 edit this project-element	projectmanager	de	Dieses Projektelement bearbeiten
 edit this role	projectmanager	de	Diese Rolle bearbeiten
 elementlist	projectmanager	de	Elementliste
-elements	projectmanager	de	Elemente
 elements of elements	projectmanager	de	Element der Elemente
 elements that can't start before this one is finished	projectmanager	de	Elemente die nicht starten können bevor dieses beendet ist
 elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
+empty	projectmanager	de	Leer
 end before	projectmanager	de	Endet vor
 enddate	projectmanager	de	Enddatum
 error: deleting project !!!	projectmanager	de	Fehler: Projekt löschen !!!
@@ -86,13 +87,14 @@ ganttchart parameter	projectmanager	de	Ganttchart Parameter
 general	projectmanager	de	Allgemein
 general availibility	projectmanager	de	Allgemeine Verfügbarkeit
 h	projectmanager	de	h
+health	projectmanager	de	Gesundheit
+hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
 last modified	projectmanager	de	Zuletzt geändert
 leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine zu generieren
-lements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
 linked elements	projectmanager	de	Verknüpfte Elemente
 links	projectmanager	de	Verknüpfungen
 mainproject only	projectmanager	de	nur das Hauptprojekt
@@ -120,8 +122,6 @@ percentage the member is availible for projects	projectmanager	de	Prozentsatz de
 percentage the member is availible for this project	projectmanager	de	Prozentsatz den der Mitarbeiter für dieses Projekt verfügbar ist
 permission denied !!!	projectmanager	de	Zugriff verweigert !!!
 planed	projectmanager	de	geplant
-planed end	projectmanager	de	Geplantes Ende
-planed start	projectmanager	de	Geplanter Anfang
 planned	projectmanager	de	geplant
 planned times	projectmanager	de	Geplante Zeiten
 please download a recent version from %1 and install it in %2.	projectmanager	de	Bitte laden Sie die aktuelle Version von %1 und installieren Sie sie in %2.
@@ -166,6 +166,8 @@ state	projectmanager	de	Zustand
 status filter	projectmanager	de	Status Filter
 subprojects	projectmanager	de	Unterprojekte
 synchronise all	projectmanager	de	Alle synchronisieren
+template	projectmanager	de	Vorlage
+template including elment-tree saved as new project	projectmanager	de	Vorlage einschl. Elementbaum als neues Projekt gespeichert
 time	projectmanager	de	Zeit
 times	projectmanager	de	Zeiten
 title must not be empty	projectmanager	de	Titel darf nicht leer sein

@@ -512,5 +512,67 @@ class boprojectelements extends soprojectelements
 	function debug_message($msg)
 	{
 		$this->project->debug_message($msg);
-	}		
+	}
+
+	/**
+	 * Copies the elementtree from an other project
+	 *
+	 * This is done by calling the copy method of the datasource (if existent) and then calling update with the (new) app_id
+	 *
+	 * @param int $source
+	 * @return boolean true on success, false otherwise
+	 */
+	function copytree($source)
+	{
+		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start');
+		if (!$elements) return true;
+		
+		foreach($elements as $element)
+		{
+			$ds =& $this->datasource($element['pe_app']);
+			
+			if (method_exists($ds,'copy'))
+			{
+				//echo "<p>copying $element[pe_app]:$element[pe_app_id] $element[pe_title]</p>\n";
+				list($app_id,$link_id) = $ds->copy($element,$this->pm_id);
+			}
+			else	// no copy method, we just link again with that entry
+			{
+				//echo "<p>linking $element[pe_app]:$element[pe_app_id] $element[pe_title]</p>\n";
+				$app_id = $element['pe_app_id'];
+				$link_id = $this->link->link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
+			}
+			//echo "<p>update($element[pe_app],$app_id,$link_id,$this->pm_id,false);</p>\n";
+			$this->update($element['pe_app'],$app_id,$link_id,$this->pm_id,false);	// false=no update of project itself => done once at the end
+
+			// copy evtl. overwriten content from the element
+			if (($need_save = $element['pe_overwrite'] != 0))
+			{
+				foreach($ds->name2id as $name => $id)
+				{
+					if ($element['pe_overwrite'] & $id)
+					{
+						$this->data[$name] = $element[$name];
+					}
+				}
+				$this->data['pe_overwrite'] = $element['pe_overwrite'];
+			}
+			// copy other element data
+			foreach(array('pe_activity_id','pe_cost_per_time','cat_id','pe_share','pe_status') as $name)
+			{
+				if ($name == 'pe_status' && $element['pe_status'] != 'ignore') continue;	// only copy ignored
+
+				if ($this->data[$name] != $element[$name])
+				{
+					$this->data[$name] = $element[$name];
+					$need_save = true;
+				}
+			}	
+			if ($need_save) $this->save(null,true,false);
+		}
+		// now we do one update of our project
+		$this->project->update();
+
+		return true;
+	}
 }

@@ -38,7 +38,9 @@ constraints	projectmanager	en	Constraints
 conversation between days and hours, default 8	projectmanager	en	conversation between days and hours, default 8
 coordinator	projectmanager	en	Coordinator
 cost per time	projectmanager	en	Cost per Time
+create a new empty project or use a template	projectmanager	en	Create a new empty project or use a template
 create new links	projectmanager	en	Create new links
+created	projectmanager	en	created
 custom fields	projectmanager	en	Custom fields
 datasource	projectmanager	en	Datasource
 dates	projectmanager	en	Dates
@@ -63,6 +65,7 @@ elementlist	projectmanager	en	Elementlist
 elements of elements	projectmanager	en	Elements of elements
 elements that can't start before this one is finished	projectmanager	en	Elements that can't start before this one is finished
 elements which have to be finished before this can start	projectmanager	en	Elements which have to be finished before this can start
+empty	projectmanager	en	Empty
 end before	projectmanager	en	End before
 enddate	projectmanager	en	Enddate
 error: deleting project !!!	projectmanager	en	Error: deleting project !!!
@@ -84,6 +87,8 @@ ganttchart parameter	projectmanager	en	Ganttchart parameter
 general	projectmanager	en	General
 general availibility	projectmanager	en	General availibility
 h	projectmanager	en	h
+health	projectmanager	en	Health
+hours	projectmanager	en	hours
 hours per workday	projectmanager	en	Hours per workday
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day.
 ignore that entry	projectmanager	en	ignore that entry
@@ -161,6 +166,8 @@ state	projectmanager	en	State
 status filter	projectmanager	en	Status filter
 subprojects	projectmanager	en	Subprojects
 synchronise all	projectmanager	en	Synchronise all
+template	projectmanager	en	Template
+template including elment-tree saved as new project	projectmanager	en	Template including elment-tree saved as new project
 time	projectmanager	en	Time
 times	projectmanager	en	Times
 title must not be empty	projectmanager	en	Title must not be empty

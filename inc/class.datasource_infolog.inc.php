@@ -49,7 +49,7 @@ class datasource_infolog extends datasource
 	 */
 	function get($data_id)
 	{
-		// we use $GLOBALS['boprojectmanager'] as an already running instance is availible there
+		// we use $GLOBALS['boinfolog'] as an already running instance might be availible there
 		if (!is_object($GLOBALS['boinfolog']))
 		{
 			include_once(EGW_INCLUDE_ROOT.'/infolog/inc/class.boinfolog.inc.php');
@@ -101,5 +101,58 @@ class datasource_infolog extends datasource
 				return 10;
 		}
 		return 0;
+	}
+	
+	/**
+	 * Copy the datasource of a projectelement (InfoLog entry) and re-link it with project $target
+	 *
+	 * @param array $element source project element representing an InfoLog entry, $element['pe_app_id'] = info_id
+	 * @param int $target target project id
+	 * @param array $extra=null extra-data, not used
+	 * @return array/boolean array(info_id,link_id) on success, false otherwise
+	 */
+	function copy($element,$target,$extra=null)
+	{
+		if (!is_object($GLOBALS['boinfolog']))
+		{
+			include_once(EGW_INCLUDE_ROOT.'/infolog/inc/class.boinfolog.inc.php');
+			$GLOBALS['boinfolog'] =& new boinfolog();
+		}
+		$info =& $GLOBALS['boinfolog']->read((int) $element['pe_app_id']);
+		
+		if (!is_array($info)) return false;
+		
+		// unsetting info_link_id and evtl. info_from
+		if ($info['info_link_id'])
+		{
+			$GLOBALS['boinfolog']->link_id2from($info);		// unsets info_from and sets info_link_target
+			unset($info['info_link_id']);
+		}
+		// we need to unset a view fields, to get a new entry
+		foreach(array('info_id','info_owner','info_modified','info_modifierer') as $key)
+		{
+			unset($info[$key]);
+		}
+		if(!($info['info_id'] = $GLOBALS['boinfolog']->write($info))) return false;
+		
+		// link the new infolog against the project and setting info_link_id and evtl. info_from
+		$info['info_link_id'] = $GLOBALS['boinfolog']->link->link('projectmanager',$target,'infolog',$info['info_id'],$element['pe_remark'],0,0,1);
+		if (!$info['info_from'])
+		{
+			$info['info_from'] = $GLOBALS['boinfolog']->link->title('projectmanager',$target);
+		}
+		$GLOBALS['boinfolog']->write($info);
+		
+		// creating again all links, beside the one to the source-project
+		foreach($GLOBALS['boinfolog']->link->get_links('infolog',$element['pe_app_id']) as $link)
+		{
+			if ($link['app'] == 'projectmanager' && $link['id'] == $element['pm_id'] ||		// ignoring the source project
+				$link['app'] == $GLOBALS['boinfolog']->link->vfs_appname)					// ignoring files attachments for now
+			{
+				continue;
+			}
+			$GLOBALS['boinfolog']->link->link('infolog',$info['info_id'],$link['app'],$link['id'],$link['remark']);
+		}
+		return array($info['info_id'],$info['info_link_id']);
 	}
 }
