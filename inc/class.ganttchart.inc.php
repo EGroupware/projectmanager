@@ -509,6 +509,12 @@ class ganttchart extends boprojectelements
 		// create new graph-object and set scale_{start|end}
 		$graph =& $this->new_gantt($title,$subtitle,$params['start'],$params['end'],$params['width']);
 
+		if ($params['start'] < $this->now_su && $this->now_su < $params['end'])
+		{
+			// add a vertical line to mark today
+			$graph->add(new GanttVLine($this->now_su-24*60*60,
+				date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'],$this->now_su)));
+		}
 		$line = 0;
 		$bars = array();
 		foreach(explode(',',$params['pm_id']) as $pm_id)
