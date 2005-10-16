@@ -25,9 +25,9 @@ include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectelements.inc.p
 class boprojectelements extends soprojectelements
 {
 	/**
-	 * @var boolean $debug switch debug-messates on or off
+	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
 	 */
-	var $debug=false;
+	var $debug=0;
 	/**
 	 * @var bolink-object $link instance of the link-class
 	 */
@@ -113,8 +113,10 @@ class boprojectelements extends soprojectelements
 		
 		$this->project_summary = $this->summary();
 		
-		if ($this->debug) $this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
-
+		if ((int)$this->debug >= 3 || $this->debug == 'boprojectelements')
+		{
+			$this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
+		}
 		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
 		if (!is_object($GLOBALS['boprojectselements']))
 		{
@@ -132,7 +134,7 @@ class boprojectelements extends soprojectelements
 	 */
 	function notify($data)
 	{
-		if ($this->debug) $this->debug_message("boprojectelements::notify(link_id=$data[link_id], type=$data[type], target=$data[target_app]-$data[target_id])");
+		if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("boprojectelements::notify(link_id=$data[link_id], type=$data[type], target=$data[target_app]-$data[target_id])");
 
 		switch($data['type'])
 		{
@@ -151,10 +153,10 @@ class boprojectelements extends soprojectelements
 					{
 						if (($ancestors = $this->project->ancestors($data['id'])) && in_array($data['target_id'],$ancestors))
 						{
-							if ($this->debug) $this->debug_message("boprojectelements::notify: cant use pm_id=$data[target_id] as child as it's one of our (pm_id=$data[id]) ancestors=".print_r($ancestors,true));
+							if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("boprojectelements::notify: cant use pm_id=$data[target_id] as child as it's one of our (pm_id=$data[id]) ancestors=".print_r($ancestors,true));
 							return;	// the link is not used as an project-element, thought it's still a regular link
 						}
-						if ($this->debug) $this->debug_message("boprojectelements::notify: ancestors($data[id])=".print_r($ancestors,true));
+						if ((int) $this->debug >= 3 || $this->debug == 'notify') $this->debug_message("boprojectelements::notify: ancestors($data[id])=".print_r($ancestors,true));
 					}
 				}
 				$this->update($data['target_app'],$data['target_id'],$data['link_id'],$data['id']);
@@ -185,7 +187,7 @@ class boprojectelements extends soprojectelements
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
 		
-		if ($this->debug) $this->debug_message("boprojectelements::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
+		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectelements::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 
 		if (!$app || !(int) $id || !(int) $pm_id)
 		{
@@ -405,7 +407,7 @@ class boprojectelements extends soprojectelements
 			unset($this->data['update_remark']);
 			$this->link->update_remark($this->data['pe_id'],$this->data['pe_remark']);
 		}
-		if ($this->debug) $this->debug_message("boprojectelements::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
+		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectelements::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
 		
 		if (!($err = parent::save($keys,$touch_modified)))
 		{
@@ -524,6 +526,8 @@ class boprojectelements extends soprojectelements
 	 */
 	function copytree($source)
 	{
+		if ((int) $this->debug >= 2 || $this->debug == 'copytree') $this->debug_message("boprojectelements::copytree($source) this->pm_id=$this->pm_id");
+
 		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start');
 		if (!$elements) return true;
 		
@@ -533,16 +537,16 @@ class boprojectelements extends soprojectelements
 			
 			if (method_exists($ds,'copy'))
 			{
-				//echo "<p>copying $element[pe_app]:$element[pe_app_id] $element[pe_title]</p>\n";
-				list($app_id,$link_id) = $ds->copy($element,$this->pm_id);
+				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("copying $element[pe_app]:$element[pe_app_id] $element[pe_title]");
+				list($app_id,$link_id) = $ds->copy($element,$this->pm_id,$this->project->data);
 			}
 			else	// no copy method, we just link again with that entry
 			{
-				//echo "<p>linking $element[pe_app]:$element[pe_app_id] $element[pe_title]</p>\n";
+				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("linking $element[pe_app]:$element[pe_app_id] $element[pe_title]");
 				$app_id = $element['pe_app_id'];
 				$link_id = $this->link->link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
 			}
-			//echo "<p>update($element[pe_app],$app_id,$link_id,$this->pm_id,false);</p>\n";
+			if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling update($element[pe_app],$app_id,$link_id,$this->pm_id,false);");
 			$this->update($element['pe_app'],$app_id,$link_id,$this->pm_id,false);	// false=no update of project itself => done once at the end
 
 			// copy evtl. overwriten content from the element
@@ -571,6 +575,7 @@ class boprojectelements extends soprojectelements
 			if ($need_save) $this->save(null,true,false);
 		}
 		// now we do one update of our project
+		if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling project->update() this->pm_id=$this->pm_id");
 		$this->project->update();
 
 		return true;

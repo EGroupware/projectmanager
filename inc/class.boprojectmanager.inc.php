@@ -31,9 +31,9 @@ define('EGW_ACL_EDIT_BUDGET',EGW_ACL_CUSTOM_2);
 class boprojectmanager extends soprojectmanager 
 {
 	/**
-	 * @var boolean $debug switch debug-messates on or off
+	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
 	 */
-	var $debug=false;
+	var $debug=0;
 	/**
 	 * @var string $logfile file to log debug-messages, ''=echo them
 	 */
@@ -78,7 +78,8 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function boprojectmanager($pm_id=null,$instanciate='')
 	{
-		if ($this->debug) $this->debug_message(function_backtrace()."\nboprojectmanager::boprojectmanager($pm_id) started");
+		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message(function_backtrace()."\nboprojectmanager::boprojectmanager($pm_id) started");
+
 		$this->soprojectmanager($pm_id);
 		
 		if (!is_object($GLOBALS['egw']->datetime))
@@ -104,7 +105,7 @@ class boprojectmanager extends soprojectmanager
 
 		if ($instanciate) $this->instanciate($instanciate);
 		
-		if ($this->debug) $this->debug_message("boprojectmanager::boprojectmanager($pm_id) finished");
+		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("boprojectmanager::boprojectmanager($pm_id) finished");
 	}
 	
 	/**
@@ -166,7 +167,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		$pe_summary = $this->pe_summary($pm_id);
 
-		if ($this->debug) $this->debug_message("boprojectmanager::update($pm_id) pe_summary=".print_r($pe_summary,true));
+		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectmanager::update($pm_id) pe_summary=".print_r($pe_summary,true));
 		
 		if (!$this->pe_name2id)
 		{
@@ -216,7 +217,7 @@ class boprojectmanager extends soprojectmanager
 		{
 			$this->generate_pm_number();
 		}
-		if ($this->debug) $this->debug_message("boprojectmanager::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
+		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectmanager::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
 
 		if (!($err = parent::save(null,$touch_modified)))
 		{
@@ -233,7 +234,8 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function delete($keys=null)
 	{
-		//echo "<p>boprojectmanager::delete(".print_r($keys,true).") this->data[pm_id] = ".$this->data['pm_id']."</p>\n";
+		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("boprojectmanager::delete(".print_r($keys,true).") this->data[pm_id] = ".$this->data['pm_id']);
+
 		$pm_id = is_null($keys) ? $this->data['pm_id'] : (is_array($keys) ? $keys['pm_id'] : $keys);
 		
 		if (($ret = parent::delete($keys)) && $pm_id)
@@ -375,7 +377,7 @@ class boprojectmanager extends soprojectmanager
 				$rights[$pm_id] &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
 			}
 		}
-		//echo "<p>boprojectmanager::check_acl($required,pm_id=$pm_id) rights[$pm_id]=".$rights[$pm_id]."</p>\n";
+		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message("boprojectmanager::check_acl($required,pm_id=$pm_id) rights[$pm_id]=".$rights[$pm_id]);
 
 		if ($required == EGW_ACL_READ)	// read-rights are implied by all other rights
 		{
@@ -498,6 +500,7 @@ class boprojectmanager extends soprojectmanager
 	{
 		if ($this->logfile && ($f = fopen($this->logfile,'a+')))
 		{
+			fwrite($f,date('Y-m-d H:i:s: ').$GLOBALS['egw']->common->grab_owner_name(0)."\n");
 			fwrite($f,$msg."\n\n");
 			fclose($f);
 		}
@@ -510,11 +513,16 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function debug_message($msg)
 	{
+		$msg = 'Backtrace: '.function_backtrace(2)."\n".$msg;
+
 		if (!$this->logfile)
 		{
 			echo '<pre>'.$msg."</pre>\n";
 		}
-		$this->log2file($msg);
+		else
+		{
+			$this->log2file($msg);
+		}
 	}
 
 	/**
@@ -601,7 +609,8 @@ class boprojectmanager extends soprojectmanager
 			$time_s -= $add_s;
 		} while ($time_s > 0);
 
-		//echo "<p>boprojectmanager::date_add($start=".date('D Y-m-d H:i',$start).", $time=".($time/60.0)."h, $uid)=".date('D Y-m-d H:i',$end_s)."</p>\n";
+		if ((int) $this->debug >= 3 || $this->debug == 'date_add') $this->debug_message("boprojectmanager::date_add($start=".date('D Y-m-d H:i',$start).", $time=".($time/60.0)."h, $uid)=".date('D Y-m-d H:i',$end_s));
+
 		return $end_s;
 	}
 	
@@ -610,11 +619,13 @@ class boprojectmanager extends soprojectmanager
 	 *
 	 * @param int $source id of project to copy
 	 * @param int $only_stage=0 0=both stages plus saving the project, 1=copy of the project, 2=copying the element tree
+	 * @param string $parent_number='' number of the parent project, to create a sub-project-number
 	 * @return boolean true on successful copy, false otherwise (eg. permission denied)
 	 */
-	function copy($source,$only_stage=0)
+	function copy($source,$only_stage=0,$parent_number='')
 	{
-		//echo "<p>projectmanager::copy($source,$only_stage)</p>\n";
+		if ((int) $this->debug >= 1 || $this->debug == 'copy') $this->debug_message("boprojectmanager::copy($source,$only_stage)");
+
 		if ($only_stage == 2)
 		{
 			if (!(int)$this->data['pm_id']) return false;
@@ -623,6 +634,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		if (!$this->read((int) $source) || !$this->check_acl(EGW_ACL_READ))
 		{
+			if ((int) $this->debug >= 1 || $this->debug == 'copy') $this->debug_message("boprojectmanager::copy($source,$only_stage) returning false (not found or no perms), data=".print_r($this->data,true));
 			return false;
 		}
 		if ($only_stage == 2)
@@ -649,11 +661,13 @@ class boprojectmanager extends soprojectmanager
 			}
 			$this->data['pm_status'] = 'active';
 
+			if ($parent_number) $this->generate_pm_number(true,$parent_number);
+
 			if ($only_stage == 1)
 			{
 				return true;
 			}
-			if (!$this->save()) return false;
+			if ($this->save() != 0) return false;
 		}
 		// copying the element tree
 		$elements =& CreateObject('projectmanager.boprojectelements',$this->data['pm_id']);

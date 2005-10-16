@@ -1,5 +1,7 @@
 %1 element(s) updated	projectmanager	en	%1 element(s) updated
 %1 new project-elements imported	projectmanager	en	%1 new project-elements imported
+%1 projects deleted	projectmanager	en	%1 projects deleted
+%1 times permission denied, %2 projects deleted	projectmanager	en	%1 times permission denied, %2 projects deleted
 - planned	projectmanager	en	- planned
 0ngoing (0 < % < 100)	projectmanager	en	0ngoing (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	en	a describtive title for the project, must not be empty
@@ -33,6 +35,7 @@ budget (no pricelist)	projectmanager	en	Budget (no pricelist)
 budget and pricelist	projectmanager	en	Budget and pricelist
 by	projectmanager	en	by
 calculate budget by time	projectmanager	en	Calculate budget by time
+check all	projectmanager	en	Check all
 close the window, discard the changes made	projectmanager	en	Close the window, discard the changes made
 constraints	projectmanager	en	Constraints
 conversation between days and hours, default 8	projectmanager	en	conversation between days and hours, default 8
@@ -41,10 +44,12 @@ cost per time	projectmanager	en	Cost per Time
 create a new empty project or use a template	projectmanager	en	Create a new empty project or use a template
 create new links	projectmanager	en	Create new links
 created	projectmanager	en	created
+created a ganttchart from the checked projects	projectmanager	en	Created a ganttchart from the checked projects
 custom fields	projectmanager	en	Custom fields
 datasource	projectmanager	en	Datasource
 dates	projectmanager	en	Dates
 default all and a selectbox to choose	projectmanager	en	default all and a selectbox to choose
+delete all checked projects	projectmanager	en	Delete all checked projects
 delete this milestone	projectmanager	en	Delete this milestone
 delete this project	projectmanager	en	Delete this project
 delete this project-element, does not remove the linked entry	projectmanager	en	Delete this project-element, does NOT remove the linked entry
@@ -149,6 +154,7 @@ save the changes made	projectmanager	en	Save the changes made
 save this project element	projectmanager	en	Save this project element
 select a project	projectmanager	en	select a project
 select an activity if you want to calculate costs by the time	projectmanager	en	select an activity if you want to calculate costs by the time
+select multiple projects for a further action	projectmanager	en	Select multiple projects for a further action
 select the accounting types visible for users of projectmanager	projectmanager	en	select the accounting types visible for users of projectmanager
 select this project and show it's elements	projectmanager	en	Select this project and show it's elements
 share	projectmanager	en	Share

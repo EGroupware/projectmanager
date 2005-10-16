@@ -108,7 +108,7 @@ class datasource_infolog extends datasource
 	 *
 	 * @param array $element source project element representing an InfoLog entry, $element['pe_app_id'] = info_id
 	 * @param int $target target project id
-	 * @param array $extra=null extra-data, not used
+	 * @param array $target_data=null data of target-project, atm not used by the infolog datasource
 	 * @return array/boolean array(info_id,link_id) on success, false otherwise
 	 */
 	function copy($element,$target,$extra=null)

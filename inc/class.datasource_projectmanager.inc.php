@@ -25,6 +25,11 @@ include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
 class datasource_projectmanager extends datasource
 {
 	/**
+	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, or string function-name to debug
+	 */
+	var $debug=0;
+
+	/**
 	 * Constructor
 	 */
 	function datasource_projectmanager()
@@ -42,7 +47,7 @@ class datasource_projectmanager extends datasource
 	 */
 	function get($data_id)
 	{
-		// we use $GLOBALS['boprojectmanager'] as an already running instance is availible there
+		// we use $GLOBALS['boprojectmanager'] as an already running instance may be availible there
 		if (!is_object($GLOBALS['boprojectmanager']))
 		{
 			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
@@ -72,6 +77,43 @@ class datasource_projectmanager extends datasource
 
 		if (is_numeric($ds['pe_completion'])) $ds['pe_completion'] .= '%';
 
+		if ((int) $this->debug > 1 || $this->debug == 'get') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::get($data_id) =".print_r($ds,true));
+
 		return $ds;
+	}
+	
+	/**
+	 * Copy the datasource of a projectelement (sub-project) and re-link it with project $target
+	 *
+	 * @param array $element source project element representing an sub-project, $element['pe_app_id'] = pm_id
+	 * @param int $target target project id
+	 * @param array $target_data=null data of target-project, atm only pm_number is used
+	 * @return array/boolean array(pm_id,link_id) on success, false otherwise
+	 */
+	function copy($element,$target,$target_data=null)
+	{
+		if (!is_object($GLOBALS['boprojectmanager']))
+		{
+			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
+			$GLOBALS['boprojectmanager'] =& new boprojectmanager();
+		}
+		if ((int) $this->debug > 1 || $this->debug == 'copy') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::copy(".print_r($element,true).",$target)");
+
+		$data_backup = $GLOBALS['boprojectmanager']->data;
+
+		$pm_id = false;
+		if ($GLOBALS['boprojectmanager']->copy((int) $element['pe_app_id'],0,$target_data['pm_number']))
+		{
+			if ($this->debug > 3 || $this->debug == 'copy') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::copy() data=".print_r($GLOBALS['boprojectmanager']->data,true));
+
+			$pm_id = $GLOBALS['boprojectmanager']->data['pm_id'];
+			// link the new sub-project against the project
+			$link_id = $GLOBALS['boprojectmanager']->link->link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
+		}
+		$GLOBALS['boprojectmanager']->data = $data_backup;
+
+		if ($this->debug > 2 || $this->debug == 'copy') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::copy() returning pm_id=$pm_id, link_id=$link_id, data=".print_r($GLOBALS['boprojectmanager']->data,true));
+
+		return $pm_id ? array($pm_id,$link_id) : false;
 	}
 }

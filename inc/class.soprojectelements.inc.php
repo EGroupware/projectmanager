@@ -203,7 +203,7 @@ class soprojectelements extends so_sql
 	{
 		if (is_array($keys) && count($keys)) $this->data_merge($keys);
 		
-		if ($this->debug)
+		if ((int)$this->debug >= 3)
 		{
 			echo "<p>soprojectelements::save(".print_r($keys,true).",$touch_modified) data=";
 			_debug_array($this->data);

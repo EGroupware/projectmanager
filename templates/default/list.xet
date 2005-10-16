@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="0.4.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -22,7 +22,10 @@
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
 					<nextmatch-sortheader label="modified by" id="pm_modifier"/>
 					<nextmatch-sortheader label="Status" id="pm_completion" align="center"/>
-					<description value="Actions" align="center"/>
+					<hbox align="center">
+						<description value="Actions" align="center"/>
+						<button image="check" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('checked[]')); return false;" needed="1"/>
+					</hbox>
 				</row>
 				<row class="row">
 					<description id="${row}[pm_number]" no_lang="1"/>
@@ -41,6 +44,7 @@
 						<button image="view" label="View" id="view[$row_cont[pm_id]]" statustext="View this project"/>
 						<button id="edit[$row_cont[pm_id]]" image="edit" label="Edit" statustext="Edit this project"/>
 						<button id="delete[$row_cont[pm_id]]" image="delete" label="Delete" statustext="Delete this project" onclick="return confirm('Delete this project');"/>
+						<checkbox id="checked[]" options="$row_cont[pm_id]" statustext="Select multiple projects for a further action"/>
 					</hbox>
 				</row>
 			</rows>
@@ -60,13 +64,23 @@
 				</row>
 				<row>
 					<hbox>
-						<menulist>
-							<menupopup id="template" no_lang="1" statustext="Create a new empty project or use a template" options="Empty"/>
-						</menulist>
-						<button label="Add" id="add" statustext="Add a new project"/>
+						<hbox>
+							<menulist>
+								<menupopup id="template" no_lang="1" statustext="Create a new empty project or use a template" options="Empty"/>
+							</menulist>
+							<button label="Add" id="add" statustext="Add a new project"/>
+						</hbox>
+						<hbox align="right">
+							<button id="gantt_checked" image="ganttchart" label="Ganttchart" statustext="Created a ganttchart from the checked projects"/>
+							<button id="delete_checked" image="delete" label="Delete" statustext="Delete all checked projects" onclick="return confirm('Delete all checked projects');"/>
+							<button image="arrow_ltr" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('nm[rows][checked][]')); return false;" needed="1" class="check_all_arrow"/>
+						</hbox>
 					</hbox>
 				</row>
 			</rows>
 		</grid>
+		<styles>
+			.check_all_arrow input { margin-right: 10px; }
+		</styles>
 	</template>
 </overlay>

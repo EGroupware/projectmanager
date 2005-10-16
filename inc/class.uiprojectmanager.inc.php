@@ -88,6 +88,8 @@ class uiprojectmanager extends boprojectmanager
 	 */
 	function edit($content=null,$view=false)
 	{
+		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("uiprojectmanager::edit(,$view) content=".print_r($content,true));
+
 		$tpl =& new etemplate('projectmanager.edit');
 
 		if (is_array($content))
@@ -446,10 +448,9 @@ class uiprojectmanager extends boprojectmanager
 				$readonlys["delete[$row[pm_id]]"] = true;
 			}
 		}
-		if ($this->debug)
+		if ((int) $this->debug >= 2 || $this->debug == 'get_rows')
 		{
-			echo "<p>uiprojectmanager::get_rows(".print_r($query,true).") rows ="; _debug_array($rows);
-			_debug_array($readonlys);
+			$this->debug_message("uiprojectmanager::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."\nreadonlys=".print_r($readonlys,true));
 		}
 		return $total;		
 	}
@@ -462,6 +463,8 @@ class uiprojectmanager extends boprojectmanager
 	 */
 	function index($content=null,$msg='')
 	{
+		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("uiprojectmanager::index(,$msg) content=".print_r($content,true));
+
 		$tpl =& new etemplate('projectmanager.list');
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
@@ -472,6 +475,40 @@ class uiprojectmanager extends boprojectmanager
 				'menuaction' => 'projectmanager.uiprojectmanager.edit',
 				'template'   => $content['template'],
 			));
+		}
+		if ($content['delete_checked'] || $content['gantt_checked'])
+		{
+			$checked = $content['nm']['rows']['checked'];
+			if (!is_array($checked) || !count($checked))
+			{
+				$msg = lang('You need to select a project first');
+			}
+			else
+			{
+				if ($content['gantt_checked'])
+				{
+					$tpl->location(array(
+						'menuaction' => 'projectmanager.ganttchart.show',
+						'pm_id'      => implode(',',$checked),
+					));
+				}
+				// delete all checked
+				$deleted = $no_perms = 0;
+				foreach($checked as $pm_id)
+				{
+					if ($this->read($pm_id) && !$this->check_acl(EGW_ACL_DELETE))
+					{
+						$no_perms++;
+					}
+					else
+					{
+						$this->delete($pm_id);
+						$deleted++;
+					}
+				}
+				$msg = $no_perms ? lang('%1 times permission denied, %2 projects deleted',$no_perms,$deleted) :
+					lang('%1 projects deleted',$deleted);
+			}
 		}
 		$content = $content['nm']['rows'];
 		

@@ -1,5 +1,7 @@
 %1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert
 %1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
+%1 projects deleted	projectmanager	de	%1 Projekte gelöscht
+%1 times permission denied, %2 projects deleted	projectmanager	de	%1 mal Zugriff verweigert, %2 Projekte gelöscht
 - planned	projectmanager	de	- geplant
 0ngoing (0 < % < 100)	projectmanager	de	in Arbeit (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	de	Ein beschreibender Titel für das Projekt, Feld darf nicht leer bleiben!
@@ -33,6 +35,7 @@ budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
 budget and pricelist	projectmanager	de	Budget und Preisliste
 by	projectmanager	de	von
 calculate budget by time	projectmanager	de	Budget nach Zeit/Tätigkeiten berechnen
+check all	projectmanager	de	Alle auswählen
 close the window, discard the changes made	projectmanager	de	Fenster schließen und die gemachten Veränderungen verwerfen
 constraints	projectmanager	de	Bedingungen
 conversation between days and hours, default 8	projectmanager	de	Umrechnung zwischen Tagen und Stunden, Vorgabe 8
@@ -41,10 +44,12 @@ cost per time	projectmanager	de	Kosten pro Zeiteinheit
 create a new empty project or use a template	projectmanager	de	Erstellt ein neues leeres Projekt oder benützt eine Vorlage
 create new links	projectmanager	de	Neue Verknüpfung erstellen
 created	projectmanager	de	Erstellt
+created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Ganttchart von den gewählten Projekten
 custom fields	projectmanager	de	Extra
 datasource	projectmanager	de	Datenquelle
 dates	projectmanager	de	Datum
 default all and a selectbox to choose	projectmanager	de	Vorgabe alle und eine Auswahlbox
+delete all checked projects	projectmanager	de	Ausgewählten Projekte löschen
 delete this milestone	projectmanager	de	Diesen Meilenstein löschen
 delete this project	projectmanager	de	Dieses Projekt löschen
 delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
@@ -149,6 +154,7 @@ save the changes made	projectmanager	de	Änderungen speichern
 save this project element	projectmanager	de	Dieses Projektelement speichern
 select a project	projectmanager	de	Ein Projekt auswählen
 select an activity if you want to calculate costs by the time	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Zeit berechnen wollen
+select multiple projects for a further action	projectmanager	de	Wählt mehrere Projekte für einen weiteren Befehl aus
 select the accounting types visible for users of projectmanager	projectmanager	de	wählen sie die Abrechnungsarten die für Benutzer des Projektmanagers sichtbar sind
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
 share	projectmanager	de	Anteil

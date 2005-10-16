@@ -104,9 +104,10 @@ class uiprojectelements extends boprojectelements
 	 */
 	function edit($content=null,$view=false)
 	{
+		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("uiprojectelements::edit(".print_r($content,true).",$view)");
+
 		if (is_array($content))
 		{
-			//_debug_array($content);
 			$this->data = $content['data'];
 			$update_necessary = $save_necessary = 0;
 			$datasource = $this->datasource($this->data['pe_app']);
@@ -414,10 +415,9 @@ class uiprojectelements extends boprojectelements
 		$rows['no_times']  = $this->project->data['pm_accounting_type'] == 'status';
 		$rows['duration_format'] = ','.$this->config['duration_format'];
 
-		if ($this->debug)
+		if ((int)$this->debug >= 2 || $this->debug == 'get_rows')
 		{
-			echo "<p>uiprojectelements::get_rows(".print_r($query,true).") rows ="; _debug_array($rows);
-			_debug_array($readonlys);
+			$this->debug_message("uiprojectelements::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."readonlys=".print_r($readonlys,true));
 		}
 		return $total;		
 	}
@@ -430,6 +430,8 @@ class uiprojectelements extends boprojectelements
 	 */
 	function index($content=null,$msg='')
 	{
+		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("uiprojectelements::index(".print_r($content,true).",$msg)");
+
 		// store the current project (only for index, as popups may be called by other parent-projects)
 		$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$this->project->data['pm_id']);
 

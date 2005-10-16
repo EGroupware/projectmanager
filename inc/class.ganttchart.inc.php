@@ -297,7 +297,7 @@ class ganttchart extends boprojectelements
 		}
 		if (!$title) $title = $pe['pe_title'];
 		
-		if ($this->debug) 
+		if ((int) $this->debug >= 1) 
 		{
 			echo "<p>GanttBar($line,'".($level ? str_repeat(' ',$level) : '').
 				$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').'   '."','".
@@ -344,7 +344,7 @@ class ganttchart extends boprojectelements
 	 */
 	function &milestone2bar($milestone,$level,$line)
 	{
-		if ($this->debug) 
+		if ((int) $this->debug >= 1) 
 		{
 		 	echo "<p>MileStone($line,'$milestone[ms_title],".
 		 		date('Y-m-d',$milestone['ms_date']).','.
@@ -504,18 +504,28 @@ class ganttchart extends boprojectelements
 	{
 		if (!$params) $params = $this->url2params($params);
 
-		$title = lang('project overview').': '.$this->project->data['pm_title'];
+		$title = lang('project overview').': '.(is_numeric($params['pm_id']) ? $this->project->data['pm_title'] : '');
 		$subtitle = lang('from %1 to %2',date($this->prefs['common']['dateformat'],$params['start']),date($this->prefs['common']['dateformat'],$params['end']));
 		// create new graph-object and set scale_{start|end}
 		$graph =& $this->new_gantt($title,$subtitle,$params['start'],$params['end'],$params['width']);
 
 		$line = 0;
 		$bars = array();
-		$graph->Add($this->project2bar($this->project->data,0,$line++,$params['planned_times']));
-
-		if ($params['depth'] > 0)
+		foreach(explode(',',$params['pm_id']) as $pm_id)
 		{
-			$this->add_elements($this->project->data['pm_id'],$params,$line,$bars);
+			if ($pm_id != $this->project->data['pm_id'])
+			{
+				if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
+				{
+					continue;
+				}
+			}
+			$graph->Add($this->project2bar($this->project->data,0,$line++,$params['planned_times']));
+	
+			if ($params['depth'] > 0)
+			{
+				$this->add_elements($this->project->data['pm_id'],$params,$line,$bars);
+			}
 		}
 		foreach($bars as $pe_id => $bar)
 		{
@@ -534,7 +544,7 @@ class ganttchart extends boprojectelements
 	 */
 	function url2params($params = array())
 	{
-		if ($this->debug) echo "<p>ganttchart::url2params(".print_r($params,true).")</p>\n";
+		if ((int) $this->debug >= 1) echo "<p>ganttchart::url2params(".print_r($params,true).")</p>\n";
 		
 		if (!count($params))
 		{
@@ -583,7 +593,7 @@ class ganttchart extends boprojectelements
 			}
 			$params[$var] = is_numeric($params[$var]) ? (int) $params[$var] : strtotime($params[$var]);
 			
-			if ($this->debug) echo "<p>$var=".$params[$var].'='.date('Y-m-d',$params[$var])."</p>\n";
+			if ((int) $this->debug >= 1) echo "<p>$var=".$params[$var].'='.date('Y-m-d',$params[$var])."</p>\n";
 		}
 		if ((int) $_GET['width'])
 		{
@@ -592,16 +602,20 @@ class ganttchart extends boprojectelements
 		else
 		{
 			$params['width'] = $this->tmpl->innerWidth - 
-				($this->prefs['common']['auto_hide_sidebox'] ? 75 : 230);
+				($this->prefs['common']['auto_hide_sidebox'] ? 60 : 245);
 		}
 		if (!isset($params['pm_id']) && $this->project->data['pm_id'])
 		{
 			$params['pm_id'] = $this->project->data['pm_id'];
 		}
 		if (!isset($params['depth'])) $params['depth'] = 1;
-
+		
+		if ($_GET['pm_id'] && !is_numeric($_GET['pm_id']))
+		{
+			$params['pm_id'] = $_GET['pm_id'];
+		}
 		$GLOBALS['egw']->session->appsession('ganttchart','projectmanager',$params);
-		if ($this->debug) _debug_array($params);
+		if ((int) $this->debug >= 1) _debug_array($params);
 
 		return $params;		
 	}
