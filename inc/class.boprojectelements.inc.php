@@ -27,7 +27,7 @@ class boprojectelements extends soprojectelements
 	/**
 	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
 	 */
-	var $debug=0;
+	var $debug=false;
 	/**
 	 * @var bolink-object $link instance of the link-class
 	 */

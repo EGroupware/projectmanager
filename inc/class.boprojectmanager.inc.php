@@ -33,7 +33,7 @@ class boprojectmanager extends soprojectmanager
 	/**
 	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
 	 */
-	var $debug=0;
+	var $debug=false;
 	/**
 	 * @var string $logfile file to log debug-messages, ''=echo them
 	 */

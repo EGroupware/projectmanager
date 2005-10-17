@@ -27,7 +27,7 @@ class datasource_projectmanager extends datasource
 	/**
 	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, or string function-name to debug
 	 */
-	var $debug=0;
+	var $debug=false;
 
 	/**
 	 * Constructor
