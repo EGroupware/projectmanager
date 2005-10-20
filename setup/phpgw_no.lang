@@ -140,7 +140,7 @@ project-element deleted	projectmanager	no	Prosjekt - Element slettet
 project-element saved	projectmanager	no	Prosjekt - Element lagret
 project-elements	projectmanager	no	Prosjekt - Elementer
 projectlist	projectmanager	no	Prosjektliste
-projectmanager	common	no	Prosjektledelse
+projectmanager	common	no	Prosjektadministrasjon
 projectmember	projectmanager	no	Prosjektmedlem
 read access, incl. budget and adding elements	projectmanager	no	leseadgang, inkl. budsjett og til å legge til elementer
 read access, no budget	projectmanager	no	leseadgang, ikke budsjett
