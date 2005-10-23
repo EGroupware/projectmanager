@@ -1,5 +1,7 @@
 %1 element(s) updated	projectmanager	it	%1 elemento/i aggiornato/i
 %1 new project-elements imported	projectmanager	it	%1 nuovi elementi-progetto importati
+%1 projects deleted	projectmanager	it	%1 progetti eliminati
+%1 times permission denied, %2 projects deleted	projectmanager	it	%1 permessi tempi negati, %2 progetti eliminati
 - planned	projectmanager	it	- pianificato
 0ngoing (0 < % < 100)	projectmanager	it	in corso (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	it	un titolo descrittivo per il progetto, non può essere vuoto
@@ -19,6 +21,7 @@ add or edit roles and their acl	projectmanager	it	Aggiungi o modifica ruoli e lo
 add project	projectmanager	it	Aggiungi progetto
 add project-elements	projectmanager	it	Aggiungi elementi-progetto
 add this role	projectmanager	it	Aggiungi questo ruolo
+allow users to change their working times	projectmanager	it	Permetti agli utenti di cambiare i propri orari di lavoro
 allowed accounting types	projectmanager	it	Tipi di contabilità permessi
 allowed units	projectmanager	it	Unità permesse
 anonymous public	projectmanager	it	Pubblico anonimo
@@ -26,21 +29,27 @@ app.	projectmanager	it	App.
 apply the changes	projectmanager	it	Applica modifiche
 archive	projectmanager	it	Archivio
 assistant	projectmanager	it	Assistente
+at which time do you start working on the given day.	projectmanager	it	A che ora inizi a lavorare nel dato giorno.
 budget	projectmanager	it	Budget
 budget (no pricelist)	projectmanager	it	Budget (nessun listino)
 budget and pricelist	projectmanager	it	Budget e listino
 by	projectmanager	it	da
 calculate budget by time	projectmanager	it	Calcola budget per tempo
+check all	projectmanager	it	Seleziona tutto
 close the window, discard the changes made	projectmanager	it	Chiudi la finestra, annulla le modifiche fatte
 constraints	projectmanager	it	Vincoli
 conversation between days and hours, default 8	projectmanager	it	conversione tra giorni e ore, predefinito 8
 coordinator	projectmanager	it	Coordinatore
 cost per time	projectmanager	it	Costo orario
+create a new empty project or use a template	projectmanager	it	Crea un nuovo progetto vuoto o usa un template
 create new links	projectmanager	it	Crea nuovi collegamenti
+created	projectmanager	it	creato
+created a ganttchart from the checked projects	projectmanager	it	Creato un grafico gantt dai progetti selezionati
 custom fields	projectmanager	it	Campi personalizzati
 datasource	projectmanager	it	Sorgente dati
 dates	projectmanager	it	Date
 default all and a selectbox to choose	projectmanager	it	tutto predefinito e una selectbox per scegliere
+delete all checked projects	projectmanager	it	Elimina tutti i progetti selezionati
 delete this milestone	projectmanager	it	Cancella questo traguardo
 delete this project	projectmanager	it	Cancella questo progetto
 delete this project-element, does not remove the linked entry	projectmanager	it	Cancella questo elemento-progetto, NON rimuove la voce collegata
@@ -61,6 +70,7 @@ elementlist	projectmanager	it	Elenco elementi
 elements of elements	projectmanager	it	Elementi di elementi
 elements that can't start before this one is finished	projectmanager	it	Elementi che non possono iniziare prima che questo sia finito
 elements which have to be finished before this can start	projectmanager	it	Elementi che devono essere finiti prima che questo possa iniziare
+empty	projectmanager	it	Vuoto
 end before	projectmanager	it	Fine prima di
 enddate	projectmanager	it	Data fine
 error: deleting project !!!	projectmanager	it	Errore: cancellando progetto !!!
@@ -80,8 +90,12 @@ full access	projectmanager	it	accesso completo
 ganttchart	projectmanager	it	Grafico Gantt
 ganttchart parameter	projectmanager	it	Parametri per grafico Gantt
 general	projectmanager	it	Generale
+general availibility	projectmanager	it	Disponibilità generale
 h	projectmanager	it	h
+health	projectmanager	it	Salute
+hours	projectmanager	it	ore
 hours per workday	projectmanager	it	Ore per giorno lavorativo
+how long do you work on the given day.	projectmanager	it	Quanto lavori il dato giorno.
 ignore that entry	projectmanager	it	ignora quella voce
 ignored	projectmanager	it	ignorato
 last modified	projectmanager	it	ultima modifica
@@ -106,13 +120,17 @@ no read access to the datasource: removing overwritten values will just empty th
 no save necessary	projectmanager	it	non necessario salvare
 nonactive	projectmanager	it	non attivo
 not started (0%)	projectmanager	it	Non iniziato (0%)
+not working	projectmanager	it	non funzionante
 only this project	projectmanager	it	Solo questo progetto
 overwrite the datasource	projectmanager	it	Sovrascrivi sorgente dati
+percentage the member is availible for projects	projectmanager	it	Percentuale disponibilità del membro per progetti
+percentage the member is availible for this project	projectmanager	it	Percentuale disponibilità del membro per questo progetto
 permission denied !!!	projectmanager	it	Permesso negato !!!
 planed	projectmanager	it	pianificato
 planned	projectmanager	it	pianificato
 planned times	projectmanager	it	Ore pianificate
 please download a recent version from %1 and install it in %2.	projectmanager	it	Per favore scarica una versione recente da %1 e installala in %2.
+project availibility	projectmanager	it	Disponibilità progetto
 project deleted	projectmanager	it	Progetto cancellato
 project id	projectmanager	it	ID progetto
 project members and roles	projectmanager	it	Membri e ruoli progetto
@@ -136,6 +154,7 @@ save the changes made	projectmanager	it	Salva le modifiche fatte
 save this project element	projectmanager	it	Salva questo elemento progetto
 select a project	projectmanager	it	scegli un progetto
 select an activity if you want to calculate costs by the time	projectmanager	it	seleziona un'attività se vuoi calcolare i costi orari
+select multiple projects for a further action	projectmanager	it	Seleziona più progetti per una successiva azione
 select the accounting types visible for users of projectmanager	projectmanager	it	seleziona i tipi contabilità visibili agli utenti di Gestione Progetti
 select this project and show it's elements	projectmanager	it	Seleziona questo progetto e mostra i suoi elementi
 share	projectmanager	it	Condividi
@@ -143,9 +162,9 @@ share on the whole project	projectmanager	it	Condividi su tutto il progetto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	it	Condividi su tutto il progetto i ore o percentuale, predefinito a tempo pianificato
 show constraints and milestones	projectmanager	it	Mostra vincoli e traguardi
 show planned times instead of the real times	projectmanager	it	Mostra tempi pianificati invece di quelli reali
-site configuration	projectmanager	it	Configurazione sito
 site configuration saved	projectmanager	it	Configurazione sito salvata
 start after	projectmanager	it	Inizia dopo
+start working on %1	projectmanager	it	Ha iniziato a lavorare il %1
 start, end, category, ...	projectmanager	it	Inizio, Fine, Categoria, ...
 start- & enddate	projectmanager	it	Data Inizio e Fine
 startdate	projectmanager	it	Data inizio
@@ -153,6 +172,7 @@ state	projectmanager	it	Stato
 status filter	projectmanager	it	Filtro di stato
 subprojects	projectmanager	it	Sottoprogetti
 synchronise all	projectmanager	it	Sincronizza tutto
+template	projectmanager	it	Template
 time	projectmanager	it	Tempo
 times	projectmanager	it	Tempi
 title must not be empty	projectmanager	it	Il titolo non deve essere vuoto
@@ -165,6 +185,7 @@ view this element in %1	projectmanager	it	Vedi questo elemento in %1
 view this milestone	projectmanager	it	Vedi questo traguardo
 view this project	projectmanager	it	Vedi questo progetto
 view this project-element	projectmanager	it	Vedi questo elemento-progetto
+working duration on %1	projectmanager	it	Durata lavoro il %1
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	it	Stai usando la vecchia versione di JPGraph, fornita con eGroupWare. Ha solo funzionalità limitate.
 you need to select a project first	projectmanager	it	Devi prima selezionare un progetto
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	it	Il tuo database NON è aggiornato (%1 contro %2), per favore esegui %3setup%4 per aggiornarlo.
