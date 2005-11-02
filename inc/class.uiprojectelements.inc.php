@@ -149,12 +149,27 @@ class uiprojectelements extends boprojectelements
 				$content['cat_id'] = (int) $content['cat_id'];	// as All='' and cat_id column is int
 				
 				// calculate the new summary and if a percentage give the share in hours
-				$this->project_summary['pe_total_shares'] -= round($content['old_pe_share'] ? $content['old_pe_share'] : $this->data['pe_default_share']);
-				if (substr($content['pe_share'],-1) == '%')
+				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, old_pe_share={$content['old_pe_share']}, old_default_share=$content[old_default_share], content[pe_share]={$content['pe_share']}</p>\n";
+				$planned_time = $content['pe_planned_time'] ? $content['pe_planned_time'] : $ds['pe_planned_time'];
+				$default_share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? $planned_time : $this->default_share;
+
+				$this->project_summary['pe_total_shares'] -= round((string) $content['old_pe_share'] !== '' ? $content['old_pe_share'] : $content['old_default_share']);
+				if (substr($content['pe_share'],-1) == '%' || $this->project->data['pm_accounting_type'] == 'status')
 				{
-					$content['pe_share'] = round($this->project_summary['pe_total_shares'] * (float) $content['pe_share'] / (100 - (float) $content['pe_share']),1);
+					//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}</p>\n";
+					if ((float) $content['pe_share'] == 100 || !$this->project_summary['pe_total_shares'])
+					{
+						$content['pe_share'] = $this->default_share;
+					}
+					else
+					{
+						$content['pe_share'] = round($this->project_summary['pe_total_shares'] * (float) $content['pe_share'] / 
+							(100 - (float) $content['pe_share']),1);
+					}
+					//echo "<p>pe_share={$content['pe_share']}</p>\n";
 				}
-				$this->project_summary['pe_total_shares'] += round($content['pe_share'] ? $content['pe_share'] : $this->data['pe_default_share']);
+				$this->project_summary['pe_total_shares'] += round((string) $content['pe_share'] !== '' ? $content['pe_share'] : $default_share);
+				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, default_share=$default_share, content[pe_share]={$content['pe_share']}</p>\n";
 
 				foreach(array('pe_status','cat_id','pe_remark','pe_constraints','pe_share') as $name)
 				{
@@ -172,7 +187,8 @@ class uiprojectelements extends boprojectelements
 							}
 						}
 					}
-					if ($content[$name] != $this->data[$name])
+					if ($content[$name] != $this->data[$name] || 
+						$name == 'pe_share' && $content[$name] !== $this->data[$name])	// for pe_share we differ between 0 and empty!
 					{
 						//echo "need to update $name as content[$name] changed to '".print_r($content[$name],true)."' != '".print_r($this->data[$name],true)."'<br>\n";
 						$this->data[$name] = $content[$name];
@@ -264,6 +280,9 @@ class uiprojectelements extends boprojectelements
 				$this->data['pe_title'] = $ds['pe_title'];	// updating the title, not all datasources do it automatic
 			}
 		}
+		$planned_time = $this->data['pe_planned_time'] ? $this->data['pe_planned_time'] : $ds['pe_planned_time'];
+		$default_share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? $planned_time : $this->default_share;
+
 		if ($ds_read_from_element && !$view)
 		{
 			$msg .= lang('No READ access to the datasource: removing overwritten values will just empty them !!!');
@@ -274,6 +293,7 @@ class uiprojectelements extends boprojectelements
 			'caller' => !$content['caller'] && preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ?
 				 $matches[1] : $content['caller'],
 			'old_pe_share' => $this->data['pe_share'],
+			'old_default_share' => $default_share,
 		);
 		foreach($datasource->name2id as $name => $id)
 		{
@@ -282,26 +302,32 @@ class uiprojectelements extends boprojectelements
 				$this->data[$name] = '';
 			}
 		}
-		$planned_time = $this->data['pe_planned_time'] ? $this->data['pe_planned_time'] : $ds['pe_planned_time'];
 		$content = $this->data + array(
 			'ds'  => $ds,
 			'msg' => $msg,
 			'js'  => '<script>'.$js.'</script>',
-			'default_share' => ($share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? 
-				$planned_time : $this->default_share),
-			'duration_format' => ','.$this->config['duration_format'],
+			'default_share' => $default_share,
+			'duration_format' => $this->config['duration_format'],
 			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
+			'dates|times|budget|constraints' => $content['dates|times|budget|constraints'],
 		);
 		// calculate percentual shares
-		if ($this->project_summary['pe_total_shares'])
+		$content['default_total'] = $content['share_total'] = $this->project_summary['pe_total_shares'];
+		if ((string) $this->data['pe_share'] !== '')
 		{
-			if ($this->data['pe_share'])
+			if ($this->project_summary['pe_total_shares'])
 			{
-				$content['share_total'] = $this->project_summary['pe_total_shares'];
 				$content['share_percentage'] = round(100.0 * $this->data['pe_share'] / $this->project_summary['pe_total_shares'],1) . '%';
 			}
-			$content['default_total'] = $this->project_summary['pe_total_shares']-$content['pe_share']+$share;
-			$content['default_percentage'] = round(100.0 * $share / $this->project_summary['pe_total_shares'],1) . '%';
+			$content['default_total'] += $default_share - $this->data['pe_share'];
+		}
+		if ($content['default_total'])
+		{
+			$content['default_percentage'] = round(100.0 * $default_share / $content['default_total'],1) . '%';
+		}
+		if ($this->project->data['pm_accounting_type'] == 'status')
+		{
+			$content['pe_share'] = $content['share_percentage'];
 		}
 		//_debug_array($content);
 		$sel_options = array(
