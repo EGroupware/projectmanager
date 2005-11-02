@@ -325,7 +325,7 @@ class uiprojectmanager extends boprojectmanager
 		foreach($datasource->name2id as $pe_name => $id)
 		{
 			$pm_name = str_replace('pe_','pm_',$pe_name);
-			if (!($this->data['pm_overwrite'] & $id))
+			if (!($this->data['pm_overwrite'] & $id) && $pm_name != 'pm_title')
 			{
 				$content[$pm_name] = $preserv[$pm_name] = '';
 			}
