@@ -1,5 +1,7 @@
 %1 element(s) updated	projectmanager	es-es	Se han actualizado %1 elementos
 %1 new project-elements imported	projectmanager	es-es	Se han importado %1 elementos nuevos al proyecto
+%1 projects deleted	projectmanager	es-es	Se han borrado %1 proyectos
+%1 times permission denied, %2 projects deleted	projectmanager	es-es	Se ha denegado el acceso %1 veces, se han borrado %2 proyectos
 - planned	projectmanager	es-es	- planificado
 0ngoing (0 < % < 100)	projectmanager	es-es	Saliente (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	es-es	un título descriptivo para el proyecto, y no debe estar vacío
@@ -19,6 +21,7 @@ add or edit roles and their acl	projectmanager	es-es	Añadir o editar roles y sus
 add project	projectmanager	es-es	Añadir proyecto
 add project-elements	projectmanager	es-es	Añadir elementos de proyecto
 add this role	projectmanager	es-es	Añadir este rol
+allow users to change their working times	projectmanager	es-es	Permitir a los usuarios cambiar sus horas de trabajo
 allowed accounting types	projectmanager	es-es	Añadir tipos de cuenta
 allowed units	projectmanager	es-es	Unidades permitidas
 anonymous public	projectmanager	es-es	Anónimo público
@@ -26,21 +29,27 @@ app.	projectmanager	es-es	Aplicación
 apply the changes	projectmanager	es-es	Aplicar los cambios
 archive	projectmanager	es-es	Archivar
 assistant	projectmanager	es-es	Asistente
+at which time do you start working on the given day.	projectmanager	es-es	La hora a la que se empieza a trabajar en el día indicado.
 budget	projectmanager	es-es	Presupuesto
 budget (no pricelist)	projectmanager	es-es	Presupuesto (sin lista de precios)
 budget and pricelist	projectmanager	es-es	Presupuesto y lista de precios
 by	projectmanager	es-es	por
 calculate budget by time	projectmanager	es-es	Calcular presupuesto por tiempo
+check all	projectmanager	es-es	Comprobar todo
 close the window, discard the changes made	projectmanager	es-es	Cerrar la ventana, descartar los cambios
 constraints	projectmanager	es-es	Restricciones
 conversation between days and hours, default 8	projectmanager	es-es	conversación entre días y horas. Predeterminado: 8
 coordinator	projectmanager	es-es	Coordinador
 cost per time	projectmanager	es-es	Coste por tiempo
+create a new empty project or use a template	projectmanager	es-es	Crear un nuevo proyecto vacío o usar una plantilla
 create new links	projectmanager	es-es	Crear enlaces nuevos
+created	projectmanager	es-es	creado
+created a ganttchart from the checked projects	projectmanager	es-es	Se ha creado un gráfico Gantt a partir de los proyectos seleccionados
 custom fields	projectmanager	es-es	Campos personalizados
 datasource	projectmanager	es-es	Fuente de datos
 dates	projectmanager	es-es	Fechas
 default all and a selectbox to choose	projectmanager	es-es	predeterminar todo y una lista desplegable para elegir
+delete all checked projects	projectmanager	es-es	Borrar todos los proyectos seleccionados
 delete this milestone	projectmanager	es-es	Borrar este punto de destino
 delete this project	projectmanager	es-es	Borrar este proyecto
 delete this project-element, does not remove the linked entry	projectmanager	es-es	Borrar este elemento de proyecto NO borra la entrada vinculada
@@ -61,6 +70,7 @@ elementlist	projectmanager	es-es	Lista de elementos
 elements of elements	projectmanager	es-es	Elementos de elementos
 elements that can't start before this one is finished	projectmanager	es-es	Elementos que no pueden comenzar antes de que éste esté terminado
 elements which have to be finished before this can start	projectmanager	es-es	Elementos que tienen que estar terminados antes de que éste pueda comenzar
+empty	projectmanager	es-es	Vacío
 end before	projectmanager	es-es	Finalizar antes
 enddate	projectmanager	es-es	Fecha de finalización
 error: deleting project !!!	projectmanager	es-es	¡¡Error: borrando proyecto!!
@@ -80,7 +90,12 @@ full access	projectmanager	es-es	acceso total
 ganttchart	projectmanager	es-es	Diagrama Gantt
 ganttchart parameter	projectmanager	es-es	Parámetro de diagrama Gantt
 general	projectmanager	es-es	General
+general availibility	projectmanager	es-es	Disponibilidad general
+h	projectmanager	es-es	h
+health	projectmanager	es-es	Salud
+hours	projectmanager	es-es	horas
 hours per workday	projectmanager	es-es	Horas por día de trabajo
+how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
 ignore that entry	projectmanager	es-es	ignorar esa entrada
 ignored	projectmanager	es-es	ignorado
 last modified	projectmanager	es-es	última modificación
@@ -105,6 +120,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no save necessary	projectmanager	es-es	No es necesario guardar
 nonactive	projectmanager	es-es	No activo
 not started (0%)	projectmanager	es-es	Sin iniciar (0%)
+not working	projectmanager	es-es	no está trabajando
 only this project	projectmanager	es-es	Sólo este proyecto
 overwrite the datasource	projectmanager	es-es	Sobreescribir la fuente de datos
 permission denied !!!	projectmanager	es-es	¡¡Permiso denegado!!
@@ -112,6 +128,7 @@ planed	projectmanager	es-es	Planificado
 planned	projectmanager	es-es	Planificado
 planned times	projectmanager	es-es	Tiempos planificados
 please download a recent version from %1 and install it in %2.	projectmanager	es-es	Por favor, descargue una versión reciente desde %1 e instálela en %2.
+project availibility	projectmanager	es-es	Disponibilidad del proyecto
 project deleted	projectmanager	es-es	Se ha borrado el proyecto
 project id	projectmanager	es-es	ID del proyecto
 project members and roles	projectmanager	es-es	Miembros y roles del proyecto
@@ -135,6 +152,7 @@ save the changes made	projectmanager	es-es	Guardar los cambios hechos
 save this project element	projectmanager	es-es	Guardar este elemento del proyecto
 select a project	projectmanager	es-es	Seleccionar un proyecto
 select an activity if you want to calculate costs by the time	projectmanager	es-es	seleccionar una actividad si se quieren calcular los costes por el tiempo
+select multiple projects for a further action	projectmanager	es-es	Seleccionar múltiples proyectos para una acción posterior
 select the accounting types visible for users of projectmanager	projectmanager	es-es	seleccionar los tipos de cuentas visibles para los usuarios del administrador de proyectos
 select this project and show it's elements	projectmanager	es-es	Seleccionar este proyecto y mostrar sus elementos
 share	projectmanager	es-es	Compartir
@@ -145,6 +163,7 @@ show planned times instead of the real times	projectmanager	es-es	Mostrar tiempo
 site configuration	projectmanager	es-es	Configuración del sitio
 site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
 start after	projectmanager	es-es	Comenzar después de
+start working on %1	projectmanager	es-es	Comenzar a trabajar en %1
 start, end, category, ...	projectmanager	es-es	Inicio, fin, categoría...
 start- & enddate	projectmanager	es-es	Fecha de inicio y fin
 startdate	projectmanager	es-es	Fecha de inicio
@@ -152,6 +171,8 @@ state	projectmanager	es-es	Estado
 status filter	projectmanager	es-es	Filtro de estados
 subprojects	projectmanager	es-es	Subproyectos
 synchronise all	projectmanager	es-es	Sincronizar todo
+template	projectmanager	es-es	Plantilla
+template including elment-tree saved as new project	projectmanager	es-es	Se ha guardado la plantilla que incluye el árbol de elementos como un proyecto nuevo
 time	projectmanager	es-es	Tiempo
 times	projectmanager	es-es	Tiempos
 title must not be empty	projectmanager	es-es	El título no debe estar vacío
@@ -164,6 +185,7 @@ view this element in %1	projectmanager	es-es	Ver este elemento en %1
 view this milestone	projectmanager	es-es	Ver este punto de destino
 view this project	projectmanager	es-es	Ver este proyecto
 view this project-element	projectmanager	es-es	Ver este elemento del proyecto
+working duration on %1	projectmanager	es-es	Duración del trabajo en %1
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	es-es	Está usando la versión antigua de JPGraph incluida en eGroupWare. Sólo tiene funcionalidad limitada.
 you need to select a project first	projectmanager	es-es	Necesita seleccionar un proyecto antes
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	es-es	La base de datos NO está actualizada (%1 en vez de %2). Por favor, ejecute %3setup%4 para actualizar la base de datos.
