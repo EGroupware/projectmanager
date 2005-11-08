@@ -38,6 +38,7 @@ class soprojectmanager extends so_sql
 	var $config = array(
 		'customfields' => array(),
 	);
+	var $customfields;
 	/**
 	 * @var string $extra_table name of customefields table
 	 */
@@ -114,7 +115,7 @@ class soprojectmanager extends so_sql
 
 			while (($row = $this->db->row(true)))
 			{
-				$this->data['extra_'.$row['pm_extra_name']] = $row['pm_extra_value'];
+				$this->data['#'.$row['pm_extra_name']] = $row['pm_extra_value'];
 			}
 		}
 		// query project_members and their roles
@@ -167,12 +168,12 @@ class soprojectmanager extends so_sql
 				$this->db->delete($this->extra_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__);
 				foreach($this->customfields as $name => $data)
 				{
-					if ($name && isset($this->data['extra_'.$name]) && !empty($this->data['extra_'.$name]))
+					if ($name && isset($this->data['#'.$name]) && !empty($this->data['#'.$name]))
 					{
 						$this->db->insert($this->extra_table,array(
 							'pm_id'          => $this->data['pm_id'],
 							'pm_extra_name'  => $name,
-							'pm_extra_value' => $this->data['extra_'.$name],
+							'pm_extra_value' => $this->data['#'.$name],
 						),false,__LINE__,__FILE__);
 					}
 				}
@@ -190,6 +191,29 @@ class soprojectmanager extends so_sql
 			}
 		}
 		return $this->db->Errno;
+	}
+	
+	/**
+	 * merges in new values from the given new data-array
+	 *
+	 * reimplemented to also merge the customfields
+	 *
+	 * @param $new array in form col => new_value with values to set
+	 */
+	function data_merge($new)
+	{
+		parent::data_merge($new);
+		
+		if (is_array($this->customfields))
+		{
+			foreach($this->customfields as $name => $data)
+			{
+				if (isset($new['#'.$name]))
+				{
+					$this->data['#'.$name] = $new['#'.$name];
+				}
+			}
+		}
 	}
 
 	/**

@@ -144,6 +144,7 @@ class pm_admin_prefs_sidebox_hooks
 		{
 			$file = Array(
 				'Site configuration' => $GLOBALS['egw']->link('/index.php','menuaction=projectmanager.admin.config'),
+				'Custom fields' => $GLOBALS['egw']->link('/index.php','menuaction=admin.customfields.edit&appname=projectmanager'),
 				'Global Categories'  => $GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => 'admin.uicategories.index',
 					'appname'    => $appname,

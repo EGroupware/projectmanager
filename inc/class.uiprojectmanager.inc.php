@@ -337,7 +337,9 @@ class uiprojectmanager extends boprojectmanager
 				'accounting' => !$this->check_acl(EGW_ACL_BUDGET) &&	// disable the tab, if no budget rights and no owner or coordinator
 					(count(explode(',',$this->config['accounting_types'])) == 1 ||
 					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)),	
+				'custom' => !count($this->customfields),	// only show customfields tab, if there are some
 			),
+			'customfields' => $view,
 			'general_avail[1]' => !$GLOBALS['egw_info']['user']['apps']['admin'],
 		);
 		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))

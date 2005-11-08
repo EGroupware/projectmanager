@@ -169,15 +169,13 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="260">
+		<grid width="100%" height="260" overflow="auto">
 			<columns>
-				<column width="95"/>
 				<column/>
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description id="$row[label]"/>
-					<description options="@$row[options]" id="$row[content]" value="Comming soon ;-)"/>
+					<customfields id="customfields"/>
 				</row>
 			</rows>
 		</grid>
