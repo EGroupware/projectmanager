@@ -214,7 +214,7 @@ class uiprojectelements extends boprojectelements
 					else
 					{
 						$msg = lang('Project-Element saved');
-						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
+						$js = "opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
 							'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.uiprojectelements.index',
 							'msg'        => $msg,
 						))."';";
@@ -228,7 +228,7 @@ class uiprojectelements extends boprojectelements
 			if ($content['delete'] && $this->check_acl(EGW_ACL_DELETE))
 			{
 				// all delete are done by index
-				$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
+				$js = "opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.uiprojectelements.index',
 					'delete'     => $this->data['pe_id'],
 				))."';";
@@ -377,7 +377,7 @@ class uiprojectelements extends boprojectelements
 	 */
 	function get_rows($query,&$rows,&$readonlys)
 	{
-		$GLOBALS['phpgw']->session->appsession('projectelements_list','projectmanager',$query);
+		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query);
 	
 		if ($this->status_filter[$query['filter']])
 		{
@@ -422,19 +422,15 @@ class uiprojectelements extends boprojectelements
 					$readonlys['edit'] = true;
 				}
 			}
-			elseif ($row['pe_app'] == 'projectmanager')
-			{
-				// for projectmanager entries link to "their" elements list
-				$row['view_link'] = array(
-					'menuaction' => 'projectmanager.uiprojectelements.index',
-					'pm_id'      => $row['pe_app_id'],
-				);
-				$row['view_help'] = lang("Select this project and show it's elements");
-			}
 			else
 			{
-				$row['view_link'] = $this->link->view($row['pe_app'],$row['pe_app_id']);
-				$row['view_help'] = lang('View this element in %1',lang($row['pe_app']));
+				$row['link'] = array(
+					'app'  => $row['pe_app'],
+					'id'   => $row['pe_app_id'],
+					'title'=> $row['pe_title'],
+					'help' => $row['pe_app'] == 'projectmanager' ? lang("Select this project and show it's elements") : 
+						lang('View this element in %1',lang($row['pe_app'])),
+				);
 			}
 		}
 		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
@@ -474,11 +470,6 @@ class uiprojectelements extends boprojectelements
 		{
 			$msg = lang('%1 element(s) updated',$this->sync_all());
 		}
-		elseif ($content['nm']['add'] && $this->project->check_acl(EGW_ACL_ADD) && 
-			($param = $this->link->add($content['nm']['add_app'],'projectmanager',$this->pm_id)))
-		{
-			$this->tpl->location($param);
-		}
 		elseif((int) $_GET['delete'] || $content['nm']['rows']['delete'])
 		{
 			if ($content['nm']['rows']['delete'])
@@ -500,11 +491,8 @@ class uiprojectelements extends boprojectelements
 			}
 		}
 		$content = array(
-			'nm' => $GLOBALS['phpgw']->session->appsession('projectelements_list','projectmanager'),
+			'nm' => $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager'),
 			'msg'      => $msg,
-		);
-		$sel_options = array(
-			'add_app' => $this->link->app_list('add'),
 		);
 		if (!is_array($content['nm']))
 		{
@@ -541,9 +529,13 @@ class uiprojectelements extends boprojectelements
 			'search_label' => 'Add existing',
 			'link_label'   => 'Add',
 		);
-		$GLOBALS['phpgw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
+		$content['nm']['link_add'] = array(
+			'to_id'    => $this->pm_id,
+			'to_app'   => 'projectmanager',
+		);
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
-		$this->tpl->exec('projectmanager.uiprojectelements.index',$content,$sel_options,$readonlys);
+		$this->tpl->exec('projectmanager.uiprojectelements.index',$content,'',$readonlys);
 	}
 }

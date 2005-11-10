@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.3.001">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.4.002">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -23,19 +23,19 @@
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
-						<nextmatch-sortheader label="planed" id="pe_planed_start" class="planned"/>
+						<nextmatch-sortheader label="planed" id="pe_planned_start" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Enddate" id="pe_real_end"/>
-						<nextmatch-sortheader label="planed" id="pe_planed_end" class="planned"/>
+						<nextmatch-sortheader label="planed" id="pe_planned_end" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_time_used"/>
-						<nextmatch-sortheader label="planed" id="pe_planed_time" class="planned"/>
+						<nextmatch-sortheader label="planed" id="pe_planned_time" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Budget" readonly="true" id="pe_budget_used"/>
-						<nextmatch-sortheader label="planed" id="pe_planed_budget" class="planned"/>
+						<nextmatch-sortheader label="planed" id="pe_planned_budget" class="planned"/>
 					</vbox>
 					<vbox align="center">
 						<nextmatch-sortheader id="pe_health" label="Health" align="center" disabled="true"/>
@@ -85,7 +85,7 @@
 				<row class="row">
 					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
 					<vbox>
-						<description no_lang="1" id="${row}[pe_title]" options=",@${row}[view_link]" statustext="@${row}[view_help]"/>
+						<link no_lang="1" id="${row}[link]"/>
 						<description no_lang="1" id="${row}[pe_remark]"/>
 					</vbox>
 					<vbox>
