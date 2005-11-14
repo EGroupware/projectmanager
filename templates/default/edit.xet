@@ -75,14 +75,14 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.1.001">
+	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.4.001">
 		<grid width="100%" height="150">
 			<columns>
 				<column/>
 			</columns>
 			<rows>
 				<row valign="top">
-					<htmlarea id="pm_description"/>
+					<htmlarea id="pm_description" style="width: 100%; height:100%;" plugins="TableOperations,ContextMenu,ColorChooser,FontChooser,SearchReplace,InsertDateTime"/>
 				</row>
 			</rows>
 		</grid>
