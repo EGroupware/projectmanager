@@ -121,6 +121,8 @@ not started (0%)	projectmanager	es-es	Sin iniciar (0%)
 not working	projectmanager	es-es	no está trabajando
 only this project	projectmanager	es-es	Sólo este proyecto
 overwrite the datasource	projectmanager	es-es	Sobreescribir la fuente de datos
+percentage the member is availible for projects	projectmanager	es-es	Porcentaje de disponibilidad del miembro para los proyectos
+percentage the member is availible for this project	projectmanager	es-es	Porcentaje de disponibilidad del miembro para este proyecto
 permission denied !!!	projectmanager	es-es	¡¡Permiso denegado!!
 planed	projectmanager	es-es	Planificado
 planned	projectmanager	es-es	Planificado
@@ -158,7 +160,6 @@ share on the whole project	projectmanager	es-es	Compartir en todo el proyecto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	es-es	Compartir en todo el proyecto en horas o porcentaje. Por defecto, el tiempo planificado
 show constraints and milestones	projectmanager	es-es	Mostrar restricciones y puntos de destino
 show planned times instead of the real times	projectmanager	es-es	Mostrar tiempos planificados en vez de los reales
-site configuration	projectmanager	es-es	Configuración del sitio
 site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
 start after	projectmanager	es-es	Comenzar después de
 start working on %1	projectmanager	es-es	Comenzar a trabajar en %1
