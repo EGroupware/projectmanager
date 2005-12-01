@@ -23,19 +23,19 @@
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
-						<nextmatch-sortheader label="planed" id="pe_planned_start" class="planned"/>
+						<nextmatch-sortheader label="planned" id="pe_planned_start" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Enddate" id="pe_real_end"/>
-						<nextmatch-sortheader label="planed" id="pe_planned_end" class="planned"/>
+						<nextmatch-sortheader label="planned" id="pe_planned_end" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_time_used"/>
-						<nextmatch-sortheader label="planed" id="pe_planned_time" class="planned"/>
+						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Budget" readonly="true" id="pe_budget_used"/>
-						<nextmatch-sortheader label="planed" id="pe_planned_budget" class="planned"/>
+						<nextmatch-sortheader label="planned" id="pe_planned_budget" class="planned"/>
 					</vbox>
 					<vbox align="center">
 						<nextmatch-sortheader id="pe_health" label="Health" align="center" disabled="true"/>
