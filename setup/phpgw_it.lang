@@ -10,13 +10,11 @@ accounting options	projectmanager	it	Opzioni Contabilità
 accounting type	projectmanager	it	Tipo Contabilità
 actions	projectmanager	it	Azioni
 activity	projectmanager	it	Attività
-add a new entry of the selected application	projectmanager	it	Aggiungi una nuova voce dell'applicazione selezionata
 add a new milestone	projectmanager	it	Aggiungi un nuovo traguardo
 add a new project	projectmanager	it	Aggiungi un nuovo progetto
 add element	projectmanager	it	Aggiungi un nuovo elemento
 add existing	projectmanager	it	Aggiungi esistente
 add milestone	projectmanager	it	Aggiungi traguardo
-add new	projectmanager	it	Aggiungi nuovo
 add or edit roles and their acl	projectmanager	it	Aggiungi o modifica ruoli e loro ACL
 add project	projectmanager	it	Aggiungi progetto
 add project-elements	projectmanager	it	Aggiungi elementi-progetto
@@ -173,6 +171,7 @@ status filter	projectmanager	it	Filtro di stato
 subprojects	projectmanager	it	Sottoprogetti
 synchronise all	projectmanager	it	Sincronizza tutto
 template	projectmanager	it	Template
+template including elment-tree saved as new project	projectmanager	it	Template contenente albero-elementi salvato come nuovo progetto
 time	projectmanager	it	Tempo
 times	projectmanager	it	Tempi
 title must not be empty	projectmanager	it	Il titolo non deve essere vuoto
