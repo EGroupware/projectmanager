@@ -126,7 +126,6 @@ overwrite the datasource	projectmanager	no	Overskrive kildekoden
 percentage the member is availible for projects	projectmanager	no	Prosent medlemmet er tilgjengelig for prosjektet
 percentage the member is availible for this project	projectmanager	no	Prosent medlemmet er tilgjengelig for dette prosjektet
 permission denied !!!	projectmanager	no	Adgang nektet !
-planed	projectmanager	no	Planlagt
 planned	projectmanager	no	Planlagt
 planned times	projectmanager	no	Planlagt ant. ganger
 please download a recent version from %1 and install it in %2.	projectmanager	no	Last ned en nyere versjon fra %1 og installer denne i %2
