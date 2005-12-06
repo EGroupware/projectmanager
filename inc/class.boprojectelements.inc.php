@@ -189,7 +189,7 @@ class boprojectelements extends soprojectelements
 		
 		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectelements::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 
-		if (!$app || !(int) $id || !(int) $pm_id)
+		if (!$app || !$id || !(int) $pm_id)
 		{
 			return false;
 		}
