@@ -533,6 +533,10 @@ class uiprojectelements extends boprojectelements
 			'to_id'    => $this->pm_id,
 			'to_app'   => 'projectmanager',
 		);
+		if ($content['nm']['cat_id'])
+		{
+			$content['nm']['link_add']['extra'] = array('cat_id' => $content['nm']['cat_id']);
+		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
