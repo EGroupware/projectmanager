@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.4.002">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.4.003">
 		<grid width="100%">
 			<columns>
 				<column/>
 				<column width="25%"/>
+				<column/>
 				<column/>
 				<column/>
 				<column disabled="@no_times"/>
@@ -21,6 +22,7 @@
 						<nextmatch-sortheader label="Title" id="pe_title"/>
 						<nextmatch-sortheader label="Comment" id="pe_remark"/>
 					</vbox>
+					<nextmatch-accountfilter id="pe_resources" options="Resources"/>
 					<vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_start" class="planned"/>
@@ -51,8 +53,10 @@
 					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
 					<vbox>
 						<description no_lang="1" id="${row}[pe_title]" options=",@${row}[view_link]"/>
+						<html id="${row}[pe_details]" no_lang="1"/>
 						<description no_lang="1" id="${row}[pe_remark]"/>
 					</vbox>
+					<listbox type="select-account" id="${row}[pe_resources]" readonly="true" rows="2"/>
 					<vbox>
 						<date readonly="true" id="${row}[pe_real_start]"/>
 						<date readonly="true" no_lang="1" id="${row}[pe_planned_start]" class="planned"/>
@@ -86,8 +90,10 @@
 					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
 					<vbox>
 						<link no_lang="1" id="${row}[link]"/>
+						<html id="${row}[pe_details]" no_lang="1"/>
 						<description no_lang="1" id="${row}[pe_remark]"/>
 					</vbox>
+					<listbox type="select-account" id="${row}[pe_resources]" readonly="true" rows="2"/>
 					<vbox>
 						<date readonly="true" id="${row}[pe_real_start]"/>
 						<date readonly="true" no_lang="1" id="${row}[pe_planned_start]" class="planned"/>

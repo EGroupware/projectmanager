@@ -39,8 +39,10 @@ define('PM_REAL_END',256);
 define('PM_RESOURCES',512);
 /** string title */
 define('PM_TITLE',1024);
+/** string details */
+define('PM_DETAILS',2048);
 /** all data-types or'ed together, need to be changed if new data-types get added */
-define('PM_ALL_DATA',2047);
+define('PM_ALL_DATA',4095);
 
 /**
  * DataSource baseclass of the ProjectManager
@@ -90,6 +92,8 @@ class datasource
 		'pe_planned_end'    => PM_PLANNED_END,
 		'pe_real_end'       => PM_REAL_END,
 		'pe_title'          => PM_TITLE,
+		'pe_resources'		=> PM_RESOURCES,
+		'pe_details'		=> PM_DETAILS,
 	);
 	/**
 	 * @var boprojectelements-object $bo_pe pe object to read other pe's (eg. for constraints)

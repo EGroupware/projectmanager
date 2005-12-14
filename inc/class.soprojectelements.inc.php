@@ -157,6 +157,15 @@ class soprojectelements extends so_sql
 					is_array($extra_cols) ? $extra_cols : explode(',',$extra_cols));
 			}			
 		}
+		// handle search for a single resource in comma-separated pe_resources column
+		if (isset($filter['pe_resources']))
+		{
+			if ($filter['pe_resources'])
+			{
+				$filter[] = $this->db->contact("','",'pe_resources',"','").' LIKE '.$this->db->quote('%,'.$criteria['pe_resources'].',%');
+			}
+			unset($filter['pe_resources']);
+		}
 		// include sub-categories in the search
 		if ($filter['cat_id'])
 		{

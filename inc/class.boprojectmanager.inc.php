@@ -575,13 +575,33 @@ class boprojectmanager extends soprojectmanager
 		}
 		$time_s = $time * 60 / $availibility;
 		
+		if (!is_object($this->bocal))
+		{
+			$this->bocal =& CreateObject('calendar.bocal');
+		}
+		$events =& $this->bocal->search(array(
+			'start' => $start,
+			'end'   => $start+max(10*$time,30*24*60*60),
+			'users' => $uid,
+			'show_rejected' => false,
+			'ignore_acl' => true,
+		));
+		if ($events) $event = array_shift($events);
+
 		$end_s = $start;
 		// we use do-while to allow with time=0 to advance to the next working time
 		do {
+			// ignore non-blocking events or events already over
+			while ($event && ($event['non_blocking'] || $event['end'] <= $end_s))
+			{
+				//echo "<p>ignoring event $event[title]: ".date('Y-m-d H:i',$event['start'])."</p>\n";
+				$event = array_shift($events);
+			}
 			$day = date('w',$end_s);	// 0=Sun, 1=Mon, ...
 			$work_start_s = $user_prefs['start_'.$day] * 60;
 			$max_add_s = 60 * $user_prefs['duration_'.$day];
 			$time_of_day_s = $end_s - mktime(0,0,0,date('m',$end_s),date('d',$end_s),date('Y',$end_s));
+			
 			// befor workday starts ==> go to start of workday
 			if ($max_add_s && $time_of_day_s < $work_start_s)
 			{
@@ -605,6 +625,18 @@ class boprojectmanager extends soprojectmanager
 			
 			//echo date('D Y-m-d H:i',$end_s)." + ".($add_s/60/60)."h / ".($time_s/60/60)."h<br>\n";
 			
+			if ($event)
+			{
+				//echo "<p>checking event $event[title] (".date('Y-m-d H:i',$event['start']).") against end_s=$end_s=".date('Y-m-d H:i',$end_s)." + add_s=$add_s</p>\n";
+				if ($end_s+$add_s > $event['start'])	// event overlaps added period
+				{
+					$time_s -= max(0,$event['start'] - $end_s);	// add only time til events starts (if any)
+					$end_s = $event['end'];				// set time for further calculation to event end
+					//echo "<p>==> event overlaps: time_s=$time_s, end_s=$end_s now</p>\n";
+					$event = array_shift($events);		// advance to next event
+					continue;
+				}
+			}
 			$end_s += $add_s;
 			$time_s -= $add_s;
 		} while ($time_s > 0);

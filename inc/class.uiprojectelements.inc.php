@@ -121,7 +121,7 @@ class uiprojectelements extends boprojectelements
 
 				foreach($datasource->name2id as $name => $id)
 				{
-					//echo "checking $name=$id<br>\n";
+					//echo "checking $name=$id (overwrite={$this->data['pe_overwrite']}&$id == ".($this->data['pe_overwrite']&$id?'true':'false')."), content='{$content[$name]}'<br>\n";
 					// check if update is necessary, because a field has be set or changed
 					if ($content[$name] && ($content[$name] != $this->data[$name] || !($this->data['pe_overwrite'] & $id)))
 					{
@@ -295,6 +295,8 @@ class uiprojectelements extends boprojectelements
 			'old_pe_share' => $this->data['pe_share'],
 			'old_default_share' => $default_share,
 		);
+		unset($preserv['pe_resources']);	// otherwise we cant detect no more resources set
+
 		foreach($datasource->name2id as $name => $id)
 		{
 			if ($id != PM_TITLE && !($this->data['pe_overwrite'] & $id)) 	// empty not explicitly set values
@@ -302,6 +304,7 @@ class uiprojectelements extends boprojectelements
 				$this->data[$name] = '';
 			}
 		}
+		$tabs = 'dates|times|budget|constraints|resources|details';
 		$content = $this->data + array(
 			'ds'  => $ds,
 			'msg' => $msg,
@@ -309,7 +312,7 @@ class uiprojectelements extends boprojectelements
 			'default_share' => $default_share,
 			'duration_format' => $this->config['duration_format'],
 			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
-			'dates|times|budget|constraints' => $content['dates|times|budget|constraints'],
+			$tabs => $content[$tabs],
 		);
 		// calculate percentual shares
 		$content['default_total'] = $content['share_total'] = $this->project_summary['pe_total_shares'];
@@ -344,9 +347,9 @@ class uiprojectelements extends boprojectelements
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 		);
 		// disable the times tab, if accounting-type status
-		$readonlys['dates|times|budget|constraints']['times'] = $this->project->data['pm_accounting_type'] == 'status';
+		$readonlys[$tabs]['times'] = $this->project->data['pm_accounting_type'] == 'status';
 		// check if user has the necessary rights to view or edit the budget
-		$readonlys['dates|times|budget|constraints']['budget'] = !$this->check_acl(EGW_ACL_BUDGET);
+		$readonlys[$tabs]['budget'] = !$this->check_acl(EGW_ACL_BUDGET);
 		$readonlys['pe_planned_budget'] = $readonlys['pe_used_budget'] = $readonlys['pe_activity_id'] = 
 			$readonlys['pe_cost_per_time'] = !$this->check_acl(EGW_ACL_EDIT_BUDGET);
 
@@ -392,7 +395,7 @@ class uiprojectelements extends boprojectelements
 			$query['col_filter']['cat_id'] = $query['cat_id'];
 		}
 		$total = parent::get_rows($query,$rows,$readonlys,true);
-		
+
 		// adding the project itself always as first line
 		$self = $this->update('projectmanager',$this->pm_id);
 		$self['pe_app']    = 'projectmanager';
@@ -432,10 +435,11 @@ class uiprojectelements extends boprojectelements
 						lang('View this element in %1',lang($row['pe_app'])),
 				);
 			}
+			if (!$query['filter2']) unset($row['pe_details']);
 		}
 		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
 		$rows['no_times']  = $this->project->data['pm_accounting_type'] == 'status';
-		$rows['duration_format'] = ','.$this->config['duration_format'];
+		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
 
 		if ((int)$this->debug >= 2 || $this->debug == 'get_rows')
 		{
@@ -502,7 +506,7 @@ class uiprojectelements extends boprojectelements
 				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
 				'options-filter' => $this->status_labels,
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
-				'no_filter2'     => True,// I  disable the 2. filter (params are the same as for filter)
+				'options-filter2' => array('no details','details'),
 //				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
@@ -520,8 +524,6 @@ class uiprojectelements extends boprojectelements
 			unset($content['nm']['header_left']);
 			$readonlys['sync_all'] = true;
 		}			
-		$content['nm']['duration_format'] = ','.$this->config['duration_format'];
-
 		$content['nm']['link_to'] = array(
 			'to_id'    => $this->pm_id,
 			'to_app'   => 'projectmanager',

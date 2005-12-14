@@ -62,15 +62,17 @@ class datasource_calendar extends datasource
 		$ds = array(
 			'pe_title' => $GLOBALS['bocal']->link_title($data),
 			'pe_planned_start' => $GLOBALS['bocal']->date2ts($data['start']),
-			'pe_planned_end' => $GLOBALS['bocal']->date2ts($data['end']),
+			'pe_planned_end'   => $GLOBALS['bocal']->date2ts($data['end']),
+			'pe_resources'     => array(),
+			'pe_details'       => $data['description'] ? nl2br($data['description']) : '',
 		);
 		$ds['pe_planned_time'] = (int) (($ds['pe_planned_end'] - $ds['pe_planned_start'])/60);	// time is in minutes
 
 		foreach($data['participants'] as $uid => $status)
 		{
-			if ($status != 'R')
+			if ($status != 'R' && is_numeric($uid))	// only users for now
 			{
-				$ds[] = $uid;
+				$ds['pe_resources'][] = $uid;
 			}
 		}
 /*

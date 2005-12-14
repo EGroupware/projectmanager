@@ -2,7 +2,7 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.elements.edit.dates" template="" lang="" group="0" version="0.3.001">
-		<grid width="100%">
+		<grid width="100%" height="200">
 			<columns>
 				<column width="95"/>
 				<column width="51%"/>
@@ -24,7 +24,7 @@
 					<date-time id="pe_real_end"/>
 					<date-time id="ds[pe_real_end]" readonly="true"/>
 				</row>
-				<row class="row">
+				<row class="row" valign="top" height="50%">
 					<description value="- planned" options=",,,pe_planned_end"/>
 					<date-time id="pe_planned_end"/>
 					<date-time id="ds[pe_planned_end]" readonly="true"/>
@@ -40,7 +40,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.edit.times" template="" lang="" group="0" version="0.3.001">
-		<grid width="100%">
+		<grid width="100%" height="200">
 			<columns>
 				<column width="95"/>
 				<column width="51%"/>
@@ -66,7 +66,7 @@
 					</hbox>
 					<description/>
 				</row>
-				<row class="row">
+				<row class="row" valign="top" height="50%">
 					<description value="Default"/>
 					<hbox>
 						<date-duration id="default_share" readonly="true" options=",$cont[duration_format]"/>
@@ -79,7 +79,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.2.001">
-		<grid width="100%">
+		<grid width="100%" height="200">
 			<columns>
 				<column width="95"/>
 				<column width="51%"/>
@@ -105,7 +105,7 @@
 						<menupopup id="pe_activity_id" statustext="select an activity if you want to calculate costs by the time" no_lang="1"/>
 					</menulist>
 				</row>
-				<row class="row">
+				<row class="row" valign="top" height="50%">
 					<description options=",,,pe_cost_per_time" value="Cost per Time"/>
 					<textbox type="float" min="2" span="all" id="pe_cost_per_time"/>
 				</row>
@@ -113,7 +113,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%">
+		<grid width="100%" height="200">
 			<columns>
 				<column width=" 95"/>
 				<column/>
@@ -134,8 +134,38 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="0.3.001">
-		<grid width="100%">
+	<template id="projectmanager.elements.edit.resources" template="" lang="" group="0" version="0.4.001">
+		<grid width="100%" height="200">
+			<columns>
+				<column width="95"/>
+				<column width="51%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row" valign="top">
+					<description data="" rows="1" cols="1" value="Resources"/>
+					<listbox type="select-account" rows="14" id="pe_resources"/>
+					<listbox type="select-account" rows="8" id="ds[pe_resources]" readonly="true"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.edit.details" template="" lang="" group="0" version="0.4.001">
+		<grid width="100%" height="200" overflow="auto">
+			<columns>
+				<column width="95"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row" valign="top">
+					<description value="Details"/>
+					<html id="ds[pe_details]"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="0.4.001">
+		<grid width="100%" height="200">
 			<columns>
 				<column width="100"/>
 				<column width="50%"/>
@@ -184,12 +214,16 @@
 							<tab label="Times" statustext="Times"/>
 							<tab label="Budget" statustext="Budget"/>
 							<tab label="Constraints" statustext="Constraints"/>
+							<tab label="Resources" statustext="Resources"/>
+							<tab label="Details" statustext="Details"/>
 						</tabs>
 						<tabpanels>
 							<template id="projectmanager.elements.edit.dates"/>
 							<template id="projectmanager.elements.edit.times"/>
 							<template id="projectmanager.elements.edit.budget"/>
 							<template id="projectmanager.elements.edit.constraints"/>
+							<template id="projectmanager.elements.edit.resources"/>
+							<template id="projectmanager.elements.edit.details"/>
 						</tabpanels>
 					</tabbox>
 				</row>

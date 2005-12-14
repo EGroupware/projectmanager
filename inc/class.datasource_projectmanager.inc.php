@@ -74,7 +74,9 @@ class datasource_projectmanager extends datasource
 			}
 		}
 		$ds['pe_title'] = $GLOBALS['boprojectmanager']->link_title($data['pm_id'],$data);
-
+		// return the projectmembers as resources
+		$ds['pe_resources'] = array_keys($data['pm_members']);
+		$ds['pe_details'] = $data['pm_description'];
 		if (is_numeric($ds['pe_completion'])) $ds['pe_completion'] .= '%';
 
 		if ((int) $this->debug > 1 || $this->debug == 'get') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::get($data_id) =".print_r($ds,true));

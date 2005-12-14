@@ -114,6 +114,7 @@ necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	en
 new	projectmanager	en	new
 no accounting, only status	projectmanager	en	No accounting, only status
 no accounting, only times and status	projectmanager	en	No accounting, only times and status
+no details	projectmanager	en	no details
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	en	No READ access to the datasource: removing overwritten values will just empty them !!!
 no save necessary	projectmanager	en	no save necessary
 nonactive	projectmanager	en	Nonactive

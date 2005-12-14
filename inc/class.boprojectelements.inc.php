@@ -213,7 +213,7 @@ class boprojectelements extends soprojectelements
 				$this->data['pe_status']= 'ignore';
 			}
 		}
-		$datasource =& 	$this->datasource($app);
+		$datasource =& $this->datasource($app);
 		$this->updated = 0;
 
 		if (!($data = $datasource->read($id,$this->data)))
@@ -234,7 +234,7 @@ class boprojectelements extends soprojectelements
 		
 		if((int) $pe_id && ($need_save_anyway || $this->updated))
 		{
-			$this->save(null,false,$update_project ? $this->updated & ~PM_TITLE : 0);	// dont set modified, only synced
+			$this->save(null,false,$update_project ? $this->updated & ~PM_TITLE & ~PM_DETAILS & ~PM_RESOURCES : 0);	// dont set modified, only synced
 		}
 		return $this->data;
 	}
@@ -353,6 +353,7 @@ class boprojectelements extends soprojectelements
 		}
 		if (is_numeric($data['pe_completion'])) $data['pe_completion'] .= '%';
 		if ($data['pe_app']) $data['pe_icon'] = $data['pe_app'].'/navbar';
+		if ($data['pe_resources']) $data['pe_resources'] = explode(',',$data['pe_resources']);
 
 		return $data;
 	}
@@ -388,6 +389,10 @@ class boprojectelements extends soprojectelements
 		}
 		if (substr($data['pe_completition'],-1) == '%') $data['pe_completition'] = (int) substr($data['pe_completition'],0,-1);
 
+		if (is_array($data['pe_resources']))
+		{
+			$data['pe_resources'] = count($data['pe_resources']) ? implode(',',$data['pe_resources']) : null;
+		}
 		return $data;
 	}
 	
