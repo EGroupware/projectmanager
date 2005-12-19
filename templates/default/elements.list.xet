@@ -70,7 +70,7 @@
 						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
 					</vbox>
 					<vbox readonly="true">
-						<textbox type="float" readonly="true" id="${row}[pe_budget_used]" max="2"/>
+						<textbox type="float" readonly="true" id="${row}[pe_used_budget]" max="2"/>
 						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planned_budget]" max="2" class="planned"/>
 					</vbox>
 					<image label="$row_cont[pe_completion]" no_lang="1" align="center" src="${row}[pe_completion]"/>
@@ -107,7 +107,7 @@
 						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
 					</vbox>
 					<vbox readonly="true">
-						<textbox type="float" readonly="true" id="${row}[pe_budget_used]" max="2"/>
+						<textbox type="float" readonly="true" id="${row}[pe_used_budget]" max="2"/>
 						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planned_budget]" max="2" class="planned"/>
 					</vbox>
 					<vbox align="center">
