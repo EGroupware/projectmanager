@@ -378,7 +378,7 @@ class uiprojectelements extends boprojectelements
 	 * @param array &$rows returned rows/cups
 	 * @param array &$readonlys eg. to disable buttons based on acl
 	 */
-	function get_rows($query,&$rows,&$readonlys)
+	function get_rows(&$query,&$rows,&$readonlys)
 	{
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query);
 	
@@ -393,6 +393,11 @@ class uiprojectelements extends boprojectelements
 		if ($query['cat_id'])
 		{
 			$query['col_filter']['cat_id'] = $query['cat_id'];
+			$query['link_add']['extra'] = array('cat_id' => $query['cat_id']);
+		}
+		else
+		{
+			unset($query['link_add']['extra']);
 		}
 		$total = parent::get_rows($query,$rows,$readonlys,true);
 
@@ -535,10 +540,6 @@ class uiprojectelements extends boprojectelements
 			'to_id'    => $this->pm_id,
 			'to_app'   => 'projectmanager',
 		);
-		if ($content['nm']['cat_id'])
-		{
-			$content['nm']['link_add']['extra'] = array('cat_id' => $content['nm']['cat_id']);
-		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
