@@ -1,6 +1,6 @@
 <?php
 /**************************************************************************\
-* eGroupWare - ProjectManager - DataSource for InfoLog                     *
+* eGroupWare - ProjectManager - DataSource for ProjectManager              *
 * http://www.egroupware.org                                                *
 * Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
 * --------------------------------------------                             *
@@ -75,7 +75,7 @@ class datasource_projectmanager extends datasource
 		}
 		$ds['pe_title'] = $GLOBALS['boprojectmanager']->link_title($data['pm_id'],$data);
 		// return the projectmembers as resources
-		$ds['pe_resources'] = array_keys($data['pm_members']);
+		$ds['pe_resources'] = $data['pm_members'] ? array_keys($data['pm_members']) : array($data['pm_creator']);
 		$ds['pe_details'] = $data['pm_description'];
 		if (is_numeric($ds['pe_completion'])) $ds['pe_completion'] .= '%';
 
