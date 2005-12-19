@@ -313,6 +313,9 @@ class boprojectelements extends soprojectelements
 	/**
 	 * Get reference to instance of the datasource used for $app
 	 *
+	 * The class has to be named datasource_$app and is search first in the App's inc-dir and then in the one of 
+	 * ProjectManager. If it's not found PM's datasource baseclass is used.
+	 *
 	 * @param string $app appname
 	 * @return object
 	 */
@@ -320,7 +323,8 @@ class boprojectelements extends soprojectelements
 	{
 		if (!isset($this->datasources[$app]))
 		{		
-			if(!file_exists($classfile = EGW_INCLUDE_ROOT.'/projectmanager/inc/class.'.($class='datasource_'.$app).'.inc.php'))
+			if (!file_exists($classfile = EGW_INCLUDE_ROOT.'/'.$app.'/inc/class.'.($class='datasource_'.$app).'.inc.php') &&
+				!file_exists($classfile = EGW_INCLUDE_ROOT.'/projectmanager/inc/class.'.($class='datasource_'.$app).'.inc.php'))
 			{
 				$classfile = EGW_INCLUDE_ROOT.'/projectmanager/inc/class.'.($class='datasource').'.inc.php';
 			}
@@ -335,7 +339,7 @@ class boprojectelements extends soprojectelements
 	/**
 	 * changes the data from the db-format to your work-format
 	 *
-	 * reimplemented to adjust the timezone of the timestamps (adding $this->tz_adjust_s to get user-time)
+	 * reimplemented to adjust the timezone of the timestamps (adding $this->tz_offset_s to get user-time)
 	 * Please note, we do NOT call the method of the parent or so_sql !!!
 	 *
 	 * @param array $data if given works on that array and returns result, else works on internal data-array
@@ -349,7 +353,7 @@ class boprojectelements extends soprojectelements
 		}
 		foreach($this->timestamps as $name)
 		{
-			if (isset($data[$name]) && $data[$name]) $data[$name] += $this->tz_adjust_s;
+			if (isset($data[$name]) && $data[$name]) $data[$name] += $this->tz_offset_s;
 		}
 		if (is_numeric($data['pe_completion'])) $data['pe_completion'] .= '%';
 		if ($data['pe_app']) $data['pe_icon'] = $data['pe_app'].'/navbar';
@@ -361,7 +365,7 @@ class boprojectelements extends soprojectelements
 	/**
 	 * changes the data from your work-format to the db-format
 	 *
-	 * reimplemented to adjust the timezone of the timestamps (subtraction $this->tz_adjust_s to get server-time)
+	 * reimplemented to adjust the timezone of the timestamps (subtraction $this->tz_offset_s to get server-time)
 	 * Please note, we do NOT call the method of the parent or so_sql !!!
 	 *
 	 * @param array $data if given works on that array and returns result, else works on internal data-array
@@ -379,7 +383,7 @@ class boprojectelements extends soprojectelements
 			{
 				if ($data[$name])
 				{
-					$data[$name] -= $this->tz_adjust_s;
+					$data[$name] -= $this->tz_offset_s;
 				}
 				else
 				{

@@ -224,6 +224,7 @@ class boprojectmanager extends soprojectmanager
 			// notify the link-class about the update, as other apps may be subscribt to it
 			$this->link->notify_update('projectmanager',$this->data['pm_id'],$this->data);
 		}
+		return $err;
 	}
 	
 	/**
@@ -260,7 +261,7 @@ class boprojectmanager extends soprojectmanager
 	/**
 	 * changes the data from the db-format to your work-format
 	 *
-	 * reimplemented to adjust the timezone of the timestamps (adding $this->tz_adjust_s to get user-time)
+	 * reimplemented to adjust the timezone of the timestamps (adding $this->tz_offset_s to get user-time)
 	 * Please note, we do NOT call the method of the parent or so_sql !!!
 	 *
 	 * @param array $data if given works on that array and returns result, else works on internal data-array
@@ -274,7 +275,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		foreach($this->timestamps as $name)
 		{
-			if (isset($data[$name]) && $data[$name]) $data[$name] += $this->tz_adjust_s;
+			if (isset($data[$name]) && $data[$name]) $data[$name] += $this->tz_offset_s;
 		}
 		if (is_numeric($data['pm_completion'])) $data['pm_completion'] .= '%';
 
@@ -284,7 +285,7 @@ class boprojectmanager extends soprojectmanager
 	/**
 	 * changes the data from your work-format to the db-format
 	 *
-	 * reimplemented to adjust the timezone of the timestamps (subtraction $this->tz_adjust_s to get server-time)
+	 * reimplemented to adjust the timezone of the timestamps (subtraction $this->tz_offset_s to get server-time)
 	 * Please note, we do NOT call the method of the parent or so_sql !!!
 	 *
 	 * @param array $data if given works on that array and returns result, else works on internal data-array
@@ -298,7 +299,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		foreach($this->timestamps as $name)
 		{
-			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_adjust_s;
+			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_offset_s;
 		}
 		if (substr($data['pm_completition'],-1) == '%') $data['pm_completition'] = (int) round(substr($data['pm_completition'],0,-1));
 
