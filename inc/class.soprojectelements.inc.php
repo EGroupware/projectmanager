@@ -162,7 +162,7 @@ class soprojectelements extends so_sql
 		{
 			if ($filter['pe_resources'])
 			{
-				$filter[] = $this->db->contact("','",'pe_resources',"','").' LIKE '.$this->db->quote('%,'.$criteria['pe_resources'].',%');
+				$filter[] = $this->db->concat("','",'pe_resources',"','").' LIKE '.$this->db->quote('%,'.$filter['pe_resources'].',%');
 			}
 			unset($filter['pe_resources']);
 		}
