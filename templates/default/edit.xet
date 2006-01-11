@@ -76,7 +76,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="150">
+		<grid width="100%" height="260">
 			<columns>
 				<column/>
 			</columns>
@@ -152,12 +152,12 @@
 				</row>
 				<row class="row" height="12" disabled="@no_budget">
 					<description options=",,,pm_used_budget" value="Budget"/>
-					<textbox type="float" min="2" id="pm_used_budget"/>
+					<textbox type="float" id="pm_used_budget"/>
 					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
 				</row>
 				<row class="row" valign="top" height="12" disabled="@no_budget">
 					<description options=",,,pm_planned_budget" value="- planned"/>
-					<textbox type="float" min="2" id="pm_planned_budget"/>
+					<textbox type="float" id="pm_planned_budget"/>
 					<textbox type="float" min="2" id="ds[pe_planned_budget]" readonly="true"/>
 				</row>
 				<row valign="top">
@@ -181,7 +181,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.links" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="260">
+		<grid width="100%" height="260" overflow="auto">
 			<columns>
 				<column width="95"/>
 				<column/>

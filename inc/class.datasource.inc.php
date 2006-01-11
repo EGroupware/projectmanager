@@ -41,8 +41,16 @@ define('PM_RESOURCES',512);
 define('PM_TITLE',1024);
 /** string details */
 define('PM_DETAILS',2048);
+/** int pl_id */
+define('PM_PRICELIST_ID',4096);
+/** double price */
+define('PM_UNITPRICE',8192);
+/** double planned quantity */
+define('PM_PLANNED_QUANTITY',16384);
+/** double used quantity */
+define('PM_USED_QUANTITY',32768);
 /** all data-types or'ed together, need to be changed if new data-types get added */
-define('PM_ALL_DATA',4095);
+define('PM_ALL_DATA',65535);
 
 /**
  * DataSource baseclass of the ProjectManager
@@ -94,6 +102,10 @@ class datasource
 		'pe_title'          => PM_TITLE,
 		'pe_resources'		=> PM_RESOURCES,
 		'pe_details'		=> PM_DETAILS,
+		'pl_id'				=> PM_PRICELIST_ID,
+		'pe_unitprice'      => PM_UNITPRICE,
+		'pe_planned_quantity' => PM_PLANNED_QUANTITY,
+		'pe_used_quantity'  => PM_USED_QUANTITY,		
 	);
 	/**
 	 * @var boprojectelements-object $bo_pe pe object to read other pe's (eg. for constraints)
@@ -256,6 +268,32 @@ class datasource
 					$ds['warning']['completion_by_budget'] = $compl_by_budget;
 				}
 			}
+			// setting quantity from time, if not given by the ds
+			foreach(array(
+				'pe_planned_time' => 'pe_planned_quantity',
+				'pe_used_time'    => 'pe_used_quantity',
+			) as $time => $quantity)
+			{
+				if (!isset($ds[$quantity]) && isset($ds[$time]))
+				{
+					$ds[$quantity] = $ds[$time] / 60.0;	// time is in min, quantity in h
+				}
+			}
+			// setting the budget from unitprice and quantity
+			if (isset($ds['pe_unitprice']))
+			{
+				foreach(array(
+					'pe_planned_quantity' => 'pe_planned_budget',
+					'pe_used_quantity'    => 'pe_used_budget',
+				) as $quantity => $budget)
+				{
+					if (!isset($ds[$budget]) && isset($ds[$quantity]))
+					{
+						$ds[$budget] = $ds[$quantity] * $ds['pe_unitprice'];
+					}
+				}
+			}
+				
 		}
 		return $ds;
 	}

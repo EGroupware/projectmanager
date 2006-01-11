@@ -54,6 +54,10 @@ class boprojectmanager extends soprojectmanager
 	 */
 	var $tz_offset_s;
 	/**
+	 * @var int $now_su is the time as timestamp in user-time
+	 */
+	var $now_su;
+	/**
 	 * @var object $constraints soconstraints-object, not instanciated automatic!
 	 */
 	var $constraints;
@@ -87,6 +91,7 @@ class boprojectmanager extends soprojectmanager
 			$GLOBALS['egw']->datetime =& CreateObject('phpgwapi.datetime');
 		}
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
+		$this->now_su = time() + $this->tz_offset_s;
 		
 		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
 		if (!is_object($GLOBALS['boprojectmanager']))
@@ -112,14 +117,15 @@ class boprojectmanager extends soprojectmanager
 	 * Instanciates some classes which dont get instanciated by default
 	 *
 	 * @param string $instanciate comma-separated: constraints,milestones,roles
+	 * @param string $pre='so' class prefix to use, default so
 	 */
-	function instanciate($instanciate)
+	function instanciate($instanciate,$pre='so')
 	{
 		foreach(explode(',',$instanciate) as $class)
 		{
 			if (!is_object($this->$class))
 			{
-				$this->$class =& CreateObject('projectmanager.so'.$class);
+				$this->$class =& CreateObject('projectmanager.'.$pre.$class);
 			}
 		}		
 	}
@@ -217,9 +223,20 @@ class boprojectmanager extends soprojectmanager
 		{
 			$this->generate_pm_number();
 		}
+		// set creation and modification data
+		if (!$this->data['pm_id'])
+		{
+			$this->data['pm_creator'] = $GLOBALS['egw_info']['user']['account_id'];
+			$this->data['pm_created'] = $this->now_su;
+		}
+		if ($touch_modified)
+		{
+			$this->data['pm_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
+			$this->data['pm_modified'] = $this->now_su;
+		}
 		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectmanager::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
 
-		if (!($err = parent::save(null,$touch_modified)))
+		if (!($err = parent::save()))
 		{
 			// notify the link-class about the update, as other apps may be subscribt to it
 			$this->link->notify_update('projectmanager',$this->data['pm_id'],$this->data);
@@ -247,13 +264,16 @@ class boprojectmanager extends soprojectmanager
 			// delete all links to project $pm_id
 			$this->link->unlink(0,'projectmanager',$pm_id);
 
-			$this->instanciate('constraints,milestones');
+			$this->instanciate('constraints,milestones,pricelist');
 
 			// delete all constraints of the project
 			$this->constraints->delete(array('pm_id' => $pm_id));
 	
 			// delete all milestones of the project
 			$this->milestones->delete(array('pm_id' => $pm_id));
+			
+			// delete all pricelist items of the project
+			$this->pricelist->delete(array('pm_id' => $pm_id));
 		}
 		return $ret;
 	}
@@ -372,7 +392,7 @@ class boprojectmanager extends soprojectmanager
 			// rights come from owner grants or role based acl
 			$rights[$pm_id] = (int) $this->grants[$data['pm_creator']] | (int) $data['role_acl'];
 			
-			// for status or times accounting-type (no accounting) remove the budget-rigts from everyone
+			// for status or times accounting-type (no accounting) remove the budget-rights from everyone
 			if ($data['pm_accounting_type'] == 'status' || $data['pm_accounting_type'] == 'times')
 			{
 				$rights[$pm_id] &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
@@ -426,7 +446,7 @@ class boprojectmanager extends soprojectmanager
 			$criteria[$col] = $pattern;
 		}
 		$result = array();
-		foreach((array) $this->search($criteria,false,'','','%',false,'OR') as $prj )
+		foreach((array) $this->search($criteria,false,'pm_number','','%',false,'OR') as $prj )
 		{
 			$result[$prj['pm_id']] = $this->link_title($prj);
 		}
@@ -470,26 +490,34 @@ class boprojectmanager extends soprojectmanager
 
 	function &ancestors($pm_id=0,$ancestors=array())
 	{
+		static $ancestors_cache = array();	// some caching
+
 		if (!$pm_id && !($pm_id = $this->pm_id)) return false;
 		
-		// read all projectmanager entries attached to this one
-		foreach($this->link->get_links('projectmanager',$pm_id,'projectmanager') as $link_id => $data)
+		if (!isset($ancestors_cache[$pm_id]))
 		{
-			// we need to read the complete link, to know if the entry is a child (link_id1 == pm_id)
-			$link = $this->link->get_link($link_id);
-			if ($link['link_id1'] == $pm_id)
+			$ancestors_cache[$pm_id] = array();
+
+			// read all projectmanager entries attached to this one
+			foreach($this->link->get_links('projectmanager',$pm_id,'projectmanager') as $link_id => $data)
 			{
-				continue;	// we are the parent in this link ==> ignore it
+				// we need to read the complete link, to know if the entry is a child (link_id1 == pm_id)
+				$link = $this->link->get_link($link_id);
+				if ($link['link_id1'] == $pm_id)
+				{
+					continue;	// we are the parent in this link ==> ignore it
+				}
+				$parent = (int) $link['link_id1'];
+				if (!in_array($parent,$ancestors_cache[$pm_id]))
+				{
+					$ancestors_cache[$pm_id][] = $parent;
+					// now we call ourself recursivly to get all parents of the parents
+					$ancestors_cache[$pm_id] =& $this->ancestors($parent,$ancestors_cache[$pm_id]);
+				}			
 			}
-			$parent = (int) $link['link_id1'];
-			if (!in_array($parent,$ancestors))
-			{
-				$ancestors[] = $parent;
-				// now we call ourself recursivly to get all parents of the parents
-				$ancestors =& $this->ancestors($parent,$ancestors);
-			}			
 		}
-		return $ancestors;
+		//echo "<p>ancestors($pm_id)=".print_r($ancestors_cache[$pm_id],true)."</p>\n";
+		return array_merge($ancestors,$ancestors_cache[$pm_id]);
 	}
 
 	/**

@@ -56,7 +56,7 @@ class boprojectelements extends soprojectelements
 	 * @var array $timestamps timestaps that need to be adjusted to user-time on reading or saving
 	 */
 	var $timestamps = array(
-		'pm_synced','pe_modified'
+		'pe_synced','pe_modified','pe_planned_start','pe_real_start','pe_planned_end','pe_real_end',
 	);
 	/**
 	 * @var int $tz_offset_s offset in secconds between user and server-time,
@@ -410,15 +410,22 @@ class boprojectelements extends soprojectelements
 	 */
 	function save($keys=null,$touch_modified=true,$update_project=-1)
 	{
+		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectelements::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
+
 		if ($keys['update_remark'] || $this->data['update_remark'])
 		{
 			unset($keys['update_remark']);
 			unset($this->data['update_remark']);
 			$this->link->update_remark($this->data['pe_id'],$this->data['pe_remark']);
 		}
-		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectelements::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
+		if ($keys) $this->data_merge($keys);
 		
-		if (!($err = parent::save($keys,$touch_modified)))
+		if ($touch_modified || !$this->data['pe_modified'] || !$this->data['pe_modifier'])
+		{
+			$this->data['pe_modified'] = $this->now_su;
+			$this->data['pe_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
+		}
+		if (!($err = parent::save()))
 		{
 			if (is_array($this->data['pe_constraints']))
 			{
@@ -571,7 +578,7 @@ class boprojectelements extends soprojectelements
 				$this->data['pe_overwrite'] = $element['pe_overwrite'];
 			}
 			// copy other element data
-			foreach(array('pe_activity_id','pe_cost_per_time','cat_id','pe_share','pe_status') as $name)
+			foreach(array('pl_id','pe_cost_per_time','cat_id','pe_share','pe_status') as $name)
 			{
 				if ($name == 'pe_status' && $element['pe_status'] != 'ignore') continue;	// only copy ignored
 

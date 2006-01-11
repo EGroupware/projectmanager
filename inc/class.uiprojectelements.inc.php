@@ -304,6 +304,12 @@ class uiprojectelements extends boprojectelements
 				$this->data[$name] = '';
 			}
 		}
+		$js .= "\nfunction calc_budget(form) {
+			form['exec[pe_used_budget]'].value = form['exec[pe_used_quantity]'].value * form['exec[pe_unitprice]'].value;
+			if (form['exec[pe_used_budget]'].value == '0') form['exec[pe_used_budget]'].value = '';
+			form['exec[pe_planned_budget]'].value = form['exec[pe_planned_quantity]'].value * form['exec[pe_unitprice]'].value;
+			if (form['exec[pe_planned_budget]'].value == '0') form['exec[pe_planned_budget]'].value = '';
+		}";
 		$tabs = 'dates|times|budget|constraints|resources|details';
 		$content = $this->data + array(
 			'ds'  => $ds,
@@ -313,6 +319,9 @@ class uiprojectelements extends boprojectelements
 			'duration_format' => $this->config['duration_format'],
 			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
 			$tabs => $content[$tabs],
+			'no_pricelist' => $this->project->data['pm_accounting_type'] != 'pricelist',
+			'planned_quantity_blur' => $this->data['pe_planned_time'] ? $this->data['pe_planned_time'] / 60 : $ds['pe_planned_quantity'],
+			'used_quantity_blur' => $this->data['pe_used_time'] ? $this->data['pe_used_time'] / 60 : $ds['pe_used_quantity'],
 		);
 		// calculate percentual shares
 		$content['default_total'] = $content['share_total'] = $this->project_summary['pe_total_shares'];
@@ -340,7 +349,7 @@ class uiprojectelements extends boprojectelements
 //				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',
 				'pe_id != '.(int)$this->data['pe_id'],	// dont show own title	
 			)),
-			'milestone'     => $this->milestones->titles(array('pm_id' => $this->data['pm_id'])), 
+			'milestone'     => $this->milestones->titles(array('pm_id' => $this->data['pm_id'])),
 		);
 		$readonlys = array(
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
@@ -350,9 +359,13 @@ class uiprojectelements extends boprojectelements
 		$readonlys[$tabs]['times'] = $this->project->data['pm_accounting_type'] == 'status';
 		// check if user has the necessary rights to view or edit the budget
 		$readonlys[$tabs]['budget'] = !$this->check_acl(EGW_ACL_BUDGET);
-		$readonlys['pe_planned_budget'] = $readonlys['pe_used_budget'] = $readonlys['pe_activity_id'] = 
-			$readonlys['pe_cost_per_time'] = !$this->check_acl(EGW_ACL_EDIT_BUDGET);
-
+		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))
+		{
+			foreach(array('pe_planned_budget','pe_used_budget','pl_id','pe_unitprice','pe_planned_quantity','pe_used_quantity') as $key)
+			{
+				$readonlys[$key] = true;
+			}
+		}
 		if ($view)
 		{
 			foreach($this->db_cols as $name)

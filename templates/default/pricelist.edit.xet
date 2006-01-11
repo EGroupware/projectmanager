@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.pricelist.edit.price" template="" lang="" group="0" version="0.5.001">
+		<grid width="100%" height="200" overflow="auto">
+			<columns>
+				<column width="95"/>
+				<column/>
+				<column/>
+				<column/>
+				<column disabled="@view_prices"/>
+			</columns>
+			<rows>
+				<row class="th">
+					<description value="Price"/>
+					<description value="Valid since"/>
+					<description value="Last modified"/>
+					<description value="Modified by"/>
+					<description value="Delete"/>
+				</row>
+				<row class="row">
+					<textbox type="float" id="prices[$row][pl_price]"/>
+					<date id="prices[$row][pl_validsince]" statustext="you can leave the date of the first price empty"/>
+					<date-time id="prices[$row][pl_modified]" readonly="true"/>
+					<menulist>
+						<menupopup type="select-account" id="prices[$row][pl_modifier]" readonly="true"/>
+					</menulist>
+					<checkbox id="delete_price[$row]" statustext="Delete this price"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.pricelist.edit.project" template="" lang="" group="0" version="0.5.001">
+		<grid width="100%" height="200" overflow="auto">
+			<columns>
+				<column width="95"/>
+				<column/>
+				<column/>
+				<column/>
+				<column disabled="@view_project_prices"/>
+			</columns>
+			<rows>
+				<row class="row">
+					<description options=",,,pd_customertitle" value="Customer title"/>
+					<textbox size="60" maxlength="255" span="all" id="pl_customertitle" statustext="leave it empty if you dont need a different customer title"/>
+				</row>
+				<row class="row">
+					<description options=",,,pl_billable" value="Availible"/>
+					<menulist span="all">
+						<menupopup id="pl_billable" options="No"/>
+					</menulist>
+				</row>
+				<row class="th">
+					<description value="Price"/>
+					<description value="Valid since"/>
+					<description value="Last modified"/>
+					<description value="Modified by"/>
+					<description value="Delete"/>
+				</row>
+				<row class="row">
+					<textbox type="float" id="project_prices[$row][pl_price]"/>
+					<date id="project_prices[$row][pl_validsince]" statustext="you can leave the date of the first price empty"/>
+					<date-time id="project_prices[$row][pl_modified]" readonly="true"/>
+					<menulist>
+						<menupopup type="select-account" id="project_prices[$row][pl_modifier]" readonly="true"/>
+					</menulist>
+					<checkbox id="delete_project_price[$row]" statustext="Delete this price"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.pricelist.edit.description" template="" lang="" group="0" version="0.5.001">
+		<grid width="100%" height="200">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row class="row">
+					<textbox multiline="true" data="" rows="12" cols="64" id="pl_description"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.pricelist.edit" template="" lang="" group="0" version="0.5.001">
+		<grid width="100%">
+			<columns>
+				<column width="100"/>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description span="all" class="redItalic" no_lang="1" id="msg" align="center"/>
+					<description/>
+				</row>
+				<row class="th" height="28">
+					<description options=",,,pl_title" value="Title"/>
+					<textbox size="60" maxlength="255" id="pl_title" needed="1"/>
+				</row>
+				<row class="row">
+					<description options=",,,pl_unit" value="Unit"/>
+					<textbox size="20" maxlength="20" id="pl_unit" blur="h" span="all"/>
+				</row>
+				<row class="row">
+					<description options=",,,cat_id" value="Category"/>
+					<menulist>
+						<menupopup type="select-cat" options="None" id="cat_id"/>
+					</menulist>
+				</row>
+				<row>
+					<tabbox span="all">
+						<tabs>
+							<tab label="Price" statustext="General pricelist"/>
+							<tab label="Project" statustext="Project specific title, prices, ..."/>
+							<tab label="Description" statustext="Description"/>
+						</tabs>
+						<tabpanels>
+							<template id="projectmanager.pricelist.edit.price"/>
+							<template id="projectmanager.pricelist.edit.project"/>
+							<template id="projectmanager.pricelist.edit.description"/>
+						</tabpanels>
+					</tabbox>
+				</row>
+				<row>
+					<hbox span="all">
+						<button label="Edit" id="button[edit]" statustext="Edit this price"/>
+						<button id="button[save]" label="Save" statustext="Save the changes made"/>
+						<button id="button[apply]" label="Apply" statustext="Apply the changes"/>
+						<button id="button[cancel]" label="Cancel" statustext="Closes the window without saving the changes" onclick="window.close();"/>
+						<html id="js"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

@@ -137,10 +137,9 @@ class soprojectmanager extends so_sql
 	 * reimplemented to handle custom fields and set modification and creation data
 	 *
 	 * @param array $keys if given $keys are copied to data before saveing => allows a save as
-	 * @param boolean $touch_modified=true should modification date+user be set, default yes
 	 * @return int 0 on success and errno != 0 else
 	 */
-	function save($keys=null,$touch_modified=true)
+	function save($keys=null)
 	{
 		//echo "soprojectmanager::save(".print_r($keys,true).") this->data="; _debug_array($this->data);
 		
@@ -148,17 +147,6 @@ class soprojectmanager extends so_sql
 		{
 			$this->data_merge($keys);
 			$keys = null;
-		}
-		// set creation and modification data
-		if (!$this->data['pm_id'])
-		{
-			$this->data['pm_creator'] = $GLOBALS['egw_info']['user']['account_id'];
-			$this->data['pm_created'] = time();
-		}
-		if ($touch_modified)
-		{
-			$this->data['pm_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
-			$this->data['pm_modified'] = time();
 		}
 		if (parent::save($keys) == 0 && $this->data['pm_id'])
 		{

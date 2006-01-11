@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="0.5.001">
+		<grid width="100%">
+			<columns>
+				<column/>
+				<column disabled="@standard_only"/>
+				<column disabled="@standard_only"/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th">
+					<nextmatch-sortheader label="Title" id="pl_title"/>
+					<vbox>
+						<nextmatch-filterheader id="pm_id" options="Project" no_lang="1"/>
+						<nextmatch-sortheader id="pl_customertitle" label="Customer title"/>
+					</vbox>
+					<nextmatch-filterheader options="Availible" id="pl_billable"/>
+					<vbox>
+						<nextmatch-sortheader label="Price / Unit" id="pl_price"/>
+						<nextmatch-sortheader id="pl_validsince" label="Valid since"/>
+					</vbox>
+					<vbox>
+						<nextmatch-sortheader label="Last modified" id="pl_modified"/>
+						<nextmatch-sortheader id="pl_modifier" label="Modified by"/>
+					</vbox>
+					<description value="Actions"/>
+				</row>
+				<row class="row">
+					<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
+					<vbox>
+						<menulist>
+							<menupopup id="${row}[pm_id]" no_lang="1" readonly="true"/>
+						</menulist>
+						<description id="${row}[pl_customertitle]" no_lang="1"/>
+					</vbox>
+					<menulist>
+						<menupopup id="${row}[pl_billable]" readonly="true" options="No"/>
+					</menulist>
+					<vbox>
+						<textbox type="float" max="2" id="${row}[pl_price]" readonly="true" label="%s / $row_cont[pl_unit]" no_lang="1"/>
+						<date id="${row}[pl_validsince]" readonly="true"/>
+					</vbox>
+					<vbox>
+						<date-time id="${row}[pl_modified]" readonly="true"/>
+						<menulist>
+							<menupopup type="select-account" id="${row}[pl_modifier]" readonly="true"/>
+						</menulist>
+					</vbox>
+					<hbox>
+						<button image="view" label="View" id="view[$row_cont[pl_id]]" statustext="View this price" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uipricelist.view&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+						<button image="edit" label="Edit" id="edit[$row_cont[pl_id]]" statustext="Edit this price" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uipricelist.edit&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+						<button id="delete[$row_cont[pm_id]:$row_cont[pl_id]]" image="delete" label="Delete" statustext="Delete this price" onclick="return confirm('Delete this price');"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="0.5.001">
+		<grid width="100%">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description span="all" class="redItalic" align="center" id="msg" no_lang="1"/>
+				</row>
+				<row>
+					<nextmatch options="projectmanager.pricelist.list.rows" id="nm"/>
+				</row>
+				<row>
+					<button label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uipricelist.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

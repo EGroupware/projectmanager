@@ -13,9 +13,9 @@
 /* $Id$ */
 
 $setup_info['projectmanager']['name']      = 'projectmanager';
-$setup_info['projectmanager']['version']   = '0.5.001';
+$setup_info['projectmanager']['version']   = '0.5.005';
 $setup_info['projectmanager']['app_order'] = 5;
-$setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones','egw_pm_roles','egw_pm_members');
+$setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones','egw_pm_roles','egw_pm_members','egw_pm_pricelist','egw_pm_prices');
 $setup_info['projectmanager']['enable']    = 1;
 
 $setup_info['projectmanager']['author'] = 
@@ -27,7 +27,7 @@ $setup_info['projectmanager']['license']  = 'GPL';
 $setup_info['projectmanager']['description'] = 
 'The projectmanager is a complete rewrite of the projects app using modern object orientated programming
 technics and a widget based user-interface (eTemplate). It has a better integration in eGroupWare 
-by using other already existing apps like InfoLog, Calendar or the TroubleTicketSystem.<br>
+by using other already existing apps like InfoLog, Calendar or the TimeSheet.<br>
 For more information see the <a href="http://outdoor-training.de/pdf/projects-rewrite.pdf" 
 target="_blank">concept of the rewrite</a> (<a href="http://outdoor-training.de/pdf/Neuprogrammierung-Projektmanagement.pdf" 
 target="_blank">german version</a>).';
@@ -55,6 +55,8 @@ $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'etemplate',
 	 'versions' => Array('1.0.0','1.0.1','1.2')
 );
+
+
 
 
 

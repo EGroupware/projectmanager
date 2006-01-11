@@ -201,27 +201,4 @@ class soprojectelements extends so_sql
 		}
 		return parent::read($keys,$extra_cols,$join);
 	}
-	
-	/**
-	 * saves the content of data to the db
-	 *
-	 * @param array $keys=null if given $keys are copied to data before saveing => allows a save as
-	 * @return int 0 on success and errno != 0 else
-	 */
-	function save($keys=null,$touch_modified=true)
-	{
-		if (is_array($keys) && count($keys)) $this->data_merge($keys);
-		
-		if ((int)$this->debug >= 3)
-		{
-			echo "<p>soprojectelements::save(".print_r($keys,true).",$touch_modified) data=";
-			_debug_array($this->data);
-		}
-		if ($touch_modified || !$this->data['pe_modified'] || !$this->data['pe_modifier'])
-		{
-			$this->data['pe_modified'] = time();
-			$this->data['pe_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
-		}
-		return parent::save();
-	}
 }

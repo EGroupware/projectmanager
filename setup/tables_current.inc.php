@@ -71,17 +71,19 @@
 				'pe_planned_end' => array('type' => 'int','precision' => '8'),
 				'pe_real_end' => array('type' => 'int','precision' => '8'),
 				'pe_overwrite' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
-				'pe_activity_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+				'pl_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
 				'pe_synced' => array('type' => 'int','precision' => '8'),
 				'pe_modified' => array('type' => 'int','precision' => '8','nullable' => False),
 				'pe_modifier' => array('type' => 'int','precision' => '4','nullable' => False),
 				'pe_status' => array('type' => 'varchar','precision' => '8','nullable' => False,'default' => 'new'),
-				'pe_cost_per_time' => array('type' => 'decimal','precision' => '20','scale' => '2'),
+				'pe_unitprice' => array('type' => 'decimal','precision' => '20','scale' => '2'),
 				'cat_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
 				'pe_share' => array('type' => 'int','precision' => '4'),
 				'pe_health' => array('type' => 'int','precision' => '2'),
 				'pe_resources' => array('type' => 'varchar','precision' => '255'),
-				'pe_details' => array('type' => 'text')
+				'pe_details' => array('type' => 'text'),
+				'pe_planned_quantity' => array('type' => 'float','precision' => '8'),
+				'pe_used_quantity' => array('type' => 'float','precision' => '8')
 			),
 			'pk' => array('pm_id','pe_id'),
 			'fk' => array(),
@@ -134,6 +136,35 @@
 				'member_availibility' => array('type' => 'float','precision' => '4','default' => '100.0')
 			),
 			'pk' => array('pm_id','member_uid'),
+			'fk' => array(),
+			'ix' => array(),
+			'uc' => array()
+		),
+		'egw_pm_pricelist' => array(
+			'fd' => array(
+				'pl_id' => array('type' => 'auto','nullable' => False),
+				'pl_title' => array('type' => 'varchar','precision' => '255','nullable' => False),
+				'pl_description' => array('type' => 'text','default' => ''),
+				'cat_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+				'pl_unit' => array('type' => 'varchar','precision' => '20','nullable' => False)
+			),
+			'pk' => array('pl_id'),
+			'fk' => array(),
+			'ix' => array(),
+			'uc' => array()
+		),
+		'egw_pm_prices' => array(
+			'fd' => array(
+				'pm_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+				'pl_id' => array('type' => 'int','precision' => '4','nullable' => False),
+				'pl_validsince' => array('type' => 'int','precision' => '8','nullable' => False,'default' => '0'),
+				'pl_price' => array('type' => 'float','precision' => '8'),
+				'pl_modifier' => array('type' => 'int','precision' => '4','nullable' => False),
+				'pl_modified' => array('type' => 'int','precision' => '8','nullable' => False),
+				'pl_customertitle' => array('type' => 'varchar','precision' => '255'),
+				'pl_billable' => array('type' => 'int','precision' => '2','default' => '1')
+			),
+			'pk' => array('pm_id','pl_id','pl_validsince'),
 			'fk' => array(),
 			'ix' => array(),
 			'uc' => array()

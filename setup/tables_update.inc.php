@@ -10,7 +10,7 @@
 	* option) any later version.                                               *
 	\**************************************************************************/
 	
-	/* tables_update.inc.php,v 1.9 2005/12/14 07:02:34 ralfbecker Exp */
+	/* tables_update.inc.php,v 1.10 2006/01/11 05:15:43 ralfbecker Exp */
 
 	$test[] = '0.1.008';
 	function projectmanager_upgrade0_1_008()
@@ -278,5 +278,76 @@
 		));
 
 		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '0.5.001';
+	}
+
+
+	$test[] = '0.5.001';
+	function projectmanager_upgrade0_5_001()
+	{
+		$GLOBALS['egw_setup']->oProc->CreateTable('egw_pm_pricelist',array(
+			'fd' => array(
+				'pl_id' => array('type' => 'auto','nullable' => False),
+				'pl_title' => array('type' => 'varchar','precision' => '255','nullable' => False),
+				'pl_description' => array('type' => 'text','default' => ''),
+				'cat_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+				'pl_unit' => array('type' => 'varchar','precision' => '20','nullable' => False)
+			),
+			'pk' => array('pl_id'),
+			'fk' => array(),
+			'ix' => array(),
+			'uc' => array()
+		));
+
+		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '0.5.002';
+	}
+
+
+	$test[] = '0.5.002';
+	function projectmanager_upgrade0_5_002()
+	{
+		$GLOBALS['egw_setup']->oProc->CreateTable('egw_pm_prices',array(
+			'fd' => array(
+				'pm_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+				'pl_id' => array('type' => 'int','precision' => '4','nullable' => False),
+				'pl_validsince' => array('type' => 'int','precision' => '8', 'nullable' => False,'default' => '0'),
+				'pl_price' => array('type' => 'float','precision' => '8'),
+				'pl_modifier' => array('type' => 'int','precision' => '4','nullable' => False),
+				'pl_modified' => array('type' => 'int','precision' => '8','nullable' => False),
+				'pl_customertitle' => array('type' => 'varchar','precision' => '255'),
+				'pl_billable' => array('type' => 'int','precision' => '2','default' => '1')
+			),
+			'pk' => array('pm_id','pl_id','pl_validsince'),
+			'fk' => array(),
+			'ix' => array(),
+			'uc' => array()
+		));
+
+		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '0.5.003';
+	}
+
+
+	$test[] = '0.5.003';
+	function projectmanager_upgrade0_5_003()
+	{
+		$GLOBALS['egw_setup']->oProc->RenameColumn('egw_pm_elements','pe_activity_id','pl_id');
+
+		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '0.5.004';
+	}
+
+
+	$test[] = '0.5.004';
+	function projectmanager_upgrade0_5_004()
+	{
+		$GLOBALS['egw_setup']->oProc->RenameColumn('egw_pm_elements','pe_cost_per_time','pe_unitprice');
+		$GLOBALS['egw_setup']->oProc->AddColumn('egw_pm_elements','pe_planned_quantity',array(
+			'type' => 'float',
+			'precision' => '8'
+		));
+		$GLOBALS['egw_setup']->oProc->AddColumn('egw_pm_elements','pe_used_quantity',array(
+			'type' => 'float',
+			'precision' => '8'
+		));
+
+		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '0.5.005';
 	}
 ?>

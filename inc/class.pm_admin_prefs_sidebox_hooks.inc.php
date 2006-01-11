@@ -59,9 +59,9 @@ class pm_admin_prefs_sidebox_hooks
 				// dont assign it to $GLOBALS['boprojectmanager'], as the constructor does it!!!
 				CreateObject('projectmanager.uiprojectmanager');
 			}
-			if (($pm_id = (int) $_REQUEST['pm_id']))
+			if (isset($_REQUEST['pm_id']))
 			{
-				$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
+				$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id = (int) $_REQUEST['pm_id']);
 			}
 			else
 			{
@@ -78,14 +78,19 @@ class pm_admin_prefs_sidebox_hooks
 					'title' => $project['pm_title'],
 				);
 			}
-			if (!$pm_id) 
+			if ($_GET['menuaction'] == 'projectmanager.uipricelist.index')
+			{
+				$projects[0] = lang('General pricelist');
+			}
+			elseif (!$pm_id) 
 			{
 				$projects[0] = lang('select a project');
 			}
 			switch($_GET['menuaction'])
 			{
 				case 'projectmanager.ganttchart.show':
-					$selbox_action = 'projectmanager.ganttchart.show';
+				case 'projectmanager.uipricelist.index':
+					$selbox_action = $_GET['menuaction'];
 					break;
 				default:
 					$selbox_action = 'projectmanager.uiprojectelements.index';
@@ -116,6 +121,18 @@ class pm_admin_prefs_sidebox_hooks
 					)) : False,
 				),
 			);
+			// show pricelist menuitem only if we use pricelists
+			if (in_array('pricelist',explode(',',$this->config['accounting_types'])))
+			{
+				// menuitem links to project-spezific priclist only if user has rights and it is used
+				// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(EGW_ACL_READ),
+				// specialy the always existing READ right for the general pricelist!!!
+				$file['Pricelist'] = $GLOBALS['egw']->link('/index.php',array(
+					'menuaction' => 'projectmanager.uipricelist.index',
+					'pm_id' => $pm_id && $GLOBALS['boprojectmanager']->check_acl(EGW_ACL_BUDGET,$pm_id) &&
+						 $GLOBALS['boprojectmanager']->data['pm_accounting_type'] == 'pricelist' ? $pm_id : 0,
+				));
+			}
 			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 		}
 
