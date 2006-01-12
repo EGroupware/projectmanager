@@ -254,8 +254,9 @@ class boprojectelements extends soprojectelements
 		if (!$pm_id && !($pm_id = $this->pm_id)) return 0;
 		
 		$save_project = $this->project->data;
-
+		
 		$updated = $update_project = 0;
+		++$GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'];
 		foreach((array) $this->search(array('pm_id'=>$pm_id,"pe_status != 'ignore'"),false,'pe_planned_start') as $data)
 		{
 			$this->update($data['pe_app'],$data['pe_app_id'],$data['pe_id'],$pm_id,false);
@@ -263,11 +264,12 @@ class boprojectelements extends soprojectelements
 			$update_project |= $this->updated & ~PM_TITLE;
 			if ($this->updated) $updated++;
 		}
+		--$GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'];
 		if ($update_project)
 		{
 			$this->project->update($pm_id,$update_project);
 		}
-		$this->project->data =& $save_project;
+		if ($this->project->data['pm_id'] != $save_project['pm_id']) $this->project->data =& $save_project;
 
 		return $updated;
 	}

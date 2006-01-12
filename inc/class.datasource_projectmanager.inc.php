@@ -28,6 +28,10 @@ class datasource_projectmanager extends datasource
 	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, or string function-name to debug
 	 */
 	var $debug=false;
+	/**
+	 * @var array $get_cache return value or the last call to the get method, used by the re-implemented read method
+	 */
+	var $get_cache=null;
 
 	/**
 	 * Constructor
@@ -39,6 +43,48 @@ class datasource_projectmanager extends datasource
 		$this->valid = PM_ALL_DATA;
 	}
 	
+	/**
+	 * read an item from a datasource (via the get methode) and try to set (guess) some not supported values
+	 *
+	 * Reimplemented from the datasource parent to set the start-date of the project itself and call it's sync-all
+	 * method if necessary to move it's elements 
+	 * 
+	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
+	 * @param array $pe_data data of the project-element or null, eg. to use the constraints
+	 * @return array/boolean array with the data supported by that source or false on error (eg. not found, not availible)
+	 */
+	function read($data_id,$pe_data=null)
+	{
+		$ds = parent::read($data_id,$pe_data);	// calls $this->get($data_id) to fetch the data
+		// we use $GLOBALS['boprojectmanager'] instanciated by get
+
+		if ((int) $this->debug > 1 || $this->debug == 'read')
+		{
+			$GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::read(pm_id=$data_id,".print_r($pe_data,true).')='.print_r($ds,true));
+		}
+		// check if datasource::read changed our planned start, because it's determined by the constrains or parent
+		if (!is_null($pe_data) && $pe_data['pe_id'] && $ds['pe_planned_start'] != $pe_data['pe_planned_start'])
+		{
+			$pm_id = is_array($data_id) ? $data_id['pm_id'] : $data_id;
+
+			$GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) planned start changed from $pe_data[pe_planned_start]=".date('Y-m-d H:i',$pe_data['pe_planned_start'])." to $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start'])/*.", pe_data=".print_r($pe_data,true)*/);
+
+			$bope =& CreateObject('projectmanager.boprojectelements',$pm_id);
+			
+			if (!($bope->project->data['pm_overwrite'] & PM_PLANNED_START))
+			{
+				// set the planned start, as it came from the project elements and then call sync_all to move the elements
+				$bope->project->data['pm_planned_start'] = $ds['pe_planned_start'];
+				$bope->project->save(null,false,false);	// not modification and NO notification
+				if (($updated_pes = $bope->sync_all()))
+				{
+					$GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) $updated_pes elements updated to new project-start $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start']));					
+				}
+			}
+		}
+		return $ds;
+	}
+
 	/**
 	 * get an entry from the underlaying app (if not given) and convert it into a datasource array
 	 * 
@@ -63,7 +109,13 @@ class datasource_projectmanager extends datasource
 		{
 			$data =& $data_id;
 		}
-		$ds = array();
+		// if pm_ds_ignore_elements is set, ignore planned start&end for the element-list (not overwritten)
+		$ds = !$GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'] ? array() :	array(
+			'ignore_planned_start' => !($data['pm_overwrite'] & PM_PLANNED_START),
+			'ignore_planned_end'   => !($data['pm_overwrite'] & PM_PLANNED_END),
+			'ignore_real_start'    => !($data['pm_overwrite'] & PM_REAL_START),
+			'ignore_real_end'      => !($data['pm_overwrite'] & PM_REAL_END),
+		);
 		foreach($this->name2id as $name => $id)
 		{
 			$pm_name = str_replace('pe_','pm_',$name);

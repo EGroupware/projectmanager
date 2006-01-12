@@ -172,7 +172,7 @@ class datasource
 		if ($ds)
 		{
 			// setting a not set planned start from a contrains
-			if (!$ds['pe_planned_start'] && !is_null($pe_data) && $pe_data['pe_constraints']['start'])
+			if ((!$ds['pe_planned_start'] || $ds['ignore_planned_start']) && !is_null($pe_data) && $pe_data['pe_constraints']['start'])
 			{
 				//echo "start-constr."; _debug_array($pe_data['pe_constraints']['start']);
 				$start = 0;
@@ -183,9 +183,9 @@ class datasource
 				foreach($pe_data['pe_constraints']['start'] as $start_pe_id)
 				{
 					if ($this->bo_pe->read(array('pm_id'=>$pe_data['pm_id'],'pe_id'=>$start_pe_id)) &&
-						$start < $this->bo_pe->data['pe_real_end'])
+						$start < $this->bo_pe->data['pe_planned_end'])
 					{
-						$start = $this->bo_pe->data['pe_real_end'];
+						$start = $this->bo_pe->data['pe_planned_end'];
 						//echo "startdate from startconstrain with"; _debug_array($this->bo_pe->data);
 					}
 				}
@@ -193,15 +193,16 @@ class datasource
 				{
 					$ds['pe_planned_start'] = $this->project->date_add($start,0,$ds['pe_resources'][0]);
 					//echo "<p>$ds[pe_title] set planned start to ".date('D Y-m-d H:i',$ds['pe_planned_start'])."</p>\n";
+					unset($ds['ignore_planned_start']);
 				}
 			}
 			// setting the planned start from the real-start
-			if (!$ds['pe_planned_start'] && $ds['pe_real_start'])
+			if (!$ds['pe_planned_start'] && !$ds['ignore_planned_start'] && $ds['pe_real_start'])
 			{
 				$ds['pe_planned_start'] = $ds['pe_real_start'];
 			}
 			// setting the planned start from the projects start
-			if (!$ds['pe_planned_start'] && $pe_data['pm_id'])
+			if ((!$ds['pe_planned_start'] || $ds['ignore_planned_start']) && $pe_data['pm_id'])
 			{
 				if (!is_object($this->bo_pe))
 				{
@@ -215,23 +216,25 @@ class datasource
 				{
 					$ds['pe_planned_start'] = $this->bo_pe->project->data['pm_planned_start'] ? 
 						$this->bo_pe->project->data['pm_planned_start'] : $this->bo_pe->project->data['pm_real_start'];
+					unset($ds['ignore_planned_start']);
 				}
 			}
 			// calculating the planned end-date from the planned time
-			if (!$ds['pe_planned_end'] && $ds['pe_planned_time'])
+			if ((!$ds['pe_planned_end'] || $ds['ignore_planned_end']) && $ds['pe_planned_time'])
 			{
 				if ($ds['pe_planned_start'] && is_object($this->project))
 				{
 					$ds['pe_planned_end'] = $this->project->date_add($ds['pe_planned_start'],$ds['pe_planned_time'],$ds['pe_resources'][0]);
 					//echo "<p>$ds[pe_title] set planned end to ".date('D Y-m-d H:i',$ds['pe_planned_end'])."</p>\n";
+					unset($ds['ignore_planned_end']);
 				}
 			}
 			// setting real or planned start- or end-date, from each other if not set
 			foreach(array('start','end') as $name)
 			{
-				if (!isset($ds['pe_real_'.$name]) && isset($ds['pe_planned_'.$name]) &&
+				if ((!isset($ds['pe_real_'.$name]) || $ds['ignore_real_'.$name]) && isset($ds['pe_planned_'.$name]) /*&&
 				// setting the real dates only if the completition is more then 0% (if supported by the datasource)
-					(!isset($ds['pe_completion']) || $ds['pe_completion'] > 0))
+					(!isset($ds['pe_completion']) || $ds['pe_completion'] > 0)*/)
 				{
 					$ds['pe_real_'.$name] = $ds['pe_planned_'.$name];
 				}

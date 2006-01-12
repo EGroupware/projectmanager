@@ -84,14 +84,14 @@ class boprojectmanager extends soprojectmanager
 	{
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message(function_backtrace()."\nboprojectmanager::boprojectmanager($pm_id) started");
 
-		$this->soprojectmanager($pm_id);
-		
 		if (!is_object($GLOBALS['egw']->datetime))
 		{
 			$GLOBALS['egw']->datetime =& CreateObject('phpgwapi.datetime');
 		}
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
+		
+		$this->soprojectmanager($pm_id);
 		
 		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
 		if (!is_object($GLOBALS['boprojectmanager']))
@@ -212,9 +212,10 @@ class boprojectmanager extends soprojectmanager
 	 *
 	 * @param array $keys if given $keys are copied to data before saveing => allows a save as
 	 * @param boolean $touch_modified=true should modification date+user be set, default yes
+	 * @param boolean $do_notify=true should link::notify be called, default yes
 	 * @return int 0 on success and errno != 0 else
 	 */
-	function save($keys=null,$touch_modified=true)
+	function save($keys=null,$touch_modified=true,$do_notify=true)
 	{
 		if ($keys) $this->data_merge($keys);
 
@@ -236,7 +237,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectmanager::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
 
-		if (!($err = parent::save()))
+		if (!($err = parent::save()) && $do_notify)
 		{
 			// notify the link-class about the update, as other apps may be subscribt to it
 			$this->link->notify_update('projectmanager',$this->data['pm_id'],$this->data);
@@ -529,7 +530,7 @@ class boprojectmanager extends soprojectmanager
 	{
 		if ($this->logfile && ($f = fopen($this->logfile,'a+')))
 		{
-			fwrite($f,date('Y-m-d H:i:s: ').$GLOBALS['egw']->common->grab_owner_name(0)."\n");
+			fwrite($f,date('Y-m-d H:i:s: ').$GLOBALS['egw']->common->grab_owner_name($GLOBALS['egw_info']['user']['account_id'])."\n");
 			fwrite($f,$msg."\n\n");
 			fclose($f);
 		}
@@ -582,7 +583,7 @@ class boprojectmanager extends soprojectmanager
 				unset($prefs);
 			}
 			// calculate total weekly worktime
-			for($day=$user_prefs['duration']; $day <= 6; ++$day)
+			for($day=$user_prefs['duration']=0; $day <= 6; ++$day)
 			{
 				$user_prefs['duration'] += $user_prefs['duration_'.$day];
 			}
