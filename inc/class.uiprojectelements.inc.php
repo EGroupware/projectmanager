@@ -183,7 +183,7 @@ class uiprojectelements extends boprojectelements
 							}
 							elseif (!is_array($data))
 							{
-								$content['pe_constraints'][$type] = array($data);		// otherwise it's detected as change
+								$content['pe_constraints'][$type] = explode(',',$data);		// otherwise it's detected as change
 							}
 						}
 					}
