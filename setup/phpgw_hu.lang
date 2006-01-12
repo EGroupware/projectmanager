@@ -1,0 +1,57 @@
+- planned	projectmanager	hu	- tervezett
+accounting	projectmanager	hu	Számlázás
+accounting options	projectmanager	hu	Számlázási beállítások
+accounting type	projectmanager	hu	Számlázás típusa
+actions	projectmanager	hu	Mûveletek
+activity	projectmanager	hu	Aktivitás
+add a new milestone	projectmanager	hu	Új mérföldkõ hozzáadása
+add a new project	projectmanager	hu	Új projekt hozzáadása
+add element	projectmanager	hu	Új elem hozzáadása
+add price	projectmanager	hu	Ár hozzáadása
+add project	projectmanager	hu	Projekt hozzáadása
+add project-elements	projectmanager	hu	Projektelemek hozzáadása
+archive	projectmanager	hu	Archív
+assistant	projectmanager	hu	Asszisztens
+billable	projectmanager	hu	számlázható
+coordinator	projectmanager	hu	Koordinátor
+datasource	projectmanager	hu	Adatforrás
+done (100%)	projectmanager	hu	Kész (100%)
+edit budget	projectmanager	hu	Költségkeret szerkeszése
+edit milestone	projectmanager	hu	Mérföldkõ szerkesztése
+edit price	projectmanager	hu	Ár szerkesztése
+edit project	projectmanager	hu	Projekt szerkesztése
+edit project-elements	projectmanager	hu	Projekt-elemek szerkesztése
+edit this milestone	projectmanager	hu	Mérföldõ szerkesztése
+elements of elements	projectmanager	hu	Az Elemek elemei
+empty	projectmanager	hu	Üres
+enddate	projectmanager	hu	Befejezés dátuma
+existing links	projectmanager	hu	Már létezõ linkek
+exit without saving	projectmanager	hu	Kilépés mentés nélkül
+full access	projectmanager	hu	teljes hozzáférés
+general	projectmanager	hu	Általános
+general availibility	projectmanager	hu	Általános elérhetõség
+general pricelist	projectmanager	hu	Általános árlista
+last modified	projectmanager	hu	utolsó módosítás
+links	projectmanager	hu	Linkek
+mainproject only	projectmanager	hu	Csak a fõprojektek
+mainprojects	projectmanager	hu	Fõprojektek
+members	projectmanager	hu	Résztvevõk
+modified	projectmanager	hu	Módosítva
+new	projectmanager	hu	új
+nonactive	projectmanager	hu	Inaktív
+not working	projectmanager	hu	nem mûködõ
+price	projectmanager	hu	Ár
+price / unit	projectmanager	hu	Egységár
+price deleted	projectmanager	hu	Az ár törölve
+price saved	projectmanager	hu	Az ár elmentve
+pricelist	projectmanager	hu	Árlista
+project id	projectmanager	hu	Projekt ID
+projectlist	projectmanager	hu	Projektlista
+quantity	projectmanager	hu	Mennyiség
+resources	projectmanager	hu	Erõforrások
+role	projectmanager	hu	Szerep
+roles	projectmanager	hu	Szerepek
+state	projectmanager	hu	Állapot
+unit	projectmanager	hu	Egység
+view this price	projectmanager	hu	Ár megtekintése
+view this project	projectmanager	hu	Projekt megtekintése
