@@ -251,7 +251,7 @@
 							<menupopup type="select-account" label="by" readonly="true" id="pm_modifier"/>
 						</menulist>
 					</hbox>
-					<hbox span="2" orient=",2,0">
+					<hbox span="2" orient=",2,0" align="right">
 						<date-time readonly="true" label="created" no_lang="1" id="pm_created"/>
 						<menulist>
 							<menupopup type="select-account" label="by" readonly="true" id="pm_creator"/>

@@ -83,7 +83,7 @@ class ganttchart extends boprojectelements
 		$this->modernJPGraph = version_compare('1.13',JPG_VERSION) < 0;
 		//echo "version=".JPG_VERSION.", modernJPGraph=".(int)$this->modernJPGraph; exit;
 
-		if ((int) $_REQUEST['pm_id'])
+		if (isset($_REQUEST['pm_id']))
 		{
 			$pm_id = (int) $_REQUEST['pm_id'];
 			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
@@ -635,6 +635,11 @@ class ganttchart extends boprojectelements
 	 */
 	function show($content=array(),$msg='')
 	{
+		if ($content['sync_all'] && $this->project->check_acl(EGW_ACL_ADD))
+		{
+			$msg = lang('%1 element(s) updated',$this->sync_all());
+			unset($content['sync_all']);
+		}		
 		// run $_GET[msg] through htmlspecialchars, as we output it raw, to allow the link in the jpgraph message.
 		if (!$msg) $msg = $this->tmpl->html->htmlspecialchars($_GET['msg']);
 

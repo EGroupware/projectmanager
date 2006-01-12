@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="0.2.002">
+	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="0.5.001">
 		<grid>
 			<columns>
 				<column/>
@@ -11,7 +11,7 @@
 					<html span="all" class="redItalic" id="msg" align="center"/>
 				</row>
 				<row>
-					<groupbox 3="select" 4="select" 5="button" data="" rows="2" cols="5">
+					<groupbox data="" rows="2" cols="5">
 						<caption label="Ganttchart parameter"/>
 						<grid>
 							<columns>
@@ -28,8 +28,8 @@
 									<description options=",,,end" value="Enddate"/>
 									<description options=",,,depth" value="Depth of display"/>
 									<description options=",,,filter" value="Status filter"/>
-									<checkbox label="Planned" id="planned" onchange="1" statustext="Show planned times instead of the real times"/>
-									<description/>
+									<checkbox label="Planned times" id="planned_times" onchange="1" statustext="Show planned times instead of the real times"/>
+									<button label="Update" id="update"/>
 								</row>
 								<row>
 									<date id="start" onchange="1"/>
@@ -41,7 +41,7 @@
 										<menupopup no_lang="1" id="filter" onchange="1"/>
 									</menulist>
 									<checkbox label="Constraints" id="constraints" onchange="1" statustext="Show constraints and milestones"/>
-									<button label="Update" id="update"/>
+									<button label="Synchronise all" id="sync_all" statustext="necessary for project-elements doing that not automatic"/>
 								</row>
 							</rows>
 						</grid>
@@ -53,8 +53,8 @@
 				<row>
 					<image src="ganttchart" options=",,ganttchart"/>
 				</row>
-				<row disabled="1">
-					<button id="milestone" label="Add milestone" statustext="Add a new milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.ganttchart.milestone&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+				<row>
+					<button id="milestone" label="Add milestone" statustext="Add a new milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uimilestones.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"/>
 				</row>
 			</rows>
 		</grid>
