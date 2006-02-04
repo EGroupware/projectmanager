@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.4.003">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.4.004">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -32,7 +32,7 @@
 						<nextmatch-sortheader label="planned" id="pe_planned_end" class="planned"/>
 					</vbox>
 					<vbox>
-						<nextmatch-sortheader label="Times" id="pe_time_used"/>
+						<nextmatch-sortheader label="Times" id="pe_used_time"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
 					</vbox>
 					<vbox>
@@ -112,7 +112,7 @@
 					</vbox>
 					<vbox align="center">
 						<image src="${row}[pe_healt_icon]" align="center"/>
-						<image label="$row_cont[pe_completion]" no_lang="1" align="center" src="${row}[pe_completion]"/>
+						<image label="$row_cont[pe_completion]" no_lang="1" align="center" src="${row}[pe_completion_icon]"/>
 					</vbox>
 					<vbox readonly="true">
 						<date-time readonly="true" id="${row}[pe_modified]"/>

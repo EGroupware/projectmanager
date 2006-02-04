@@ -79,6 +79,7 @@ elements which have to be finished before this can start	projectmanager	de	Eleme
 empty	projectmanager	de	Leer
 end before	projectmanager	de	Endet vor
 enddate	projectmanager	de	Enddatum
+error: deleting price !!!	projectmanager	de	Fehler: Preis löschen !!!
 error: deleting project !!!	projectmanager	de	Fehler: Projekt löschen !!!
 error: deleting project-element !!!	projectmanager	de	Fehler: Projektelement löschen !!!
 error: deleting role !!!	projectmanager	de	Fehler: Rolle löschen !!!
@@ -178,8 +179,10 @@ select this project and show it's elements	projectmanager	de	Dieses Projekt ausw
 share	projectmanager	de	Anteil
 share on the whole project	projectmanager	de	Anteil am Gesamtprojekt
 share on the whole project in hours or percent, defaults to planned time	projectmanager	de	Anteil am Gesamtprojekt in Stunden oder prozentual, Vorgabe ist geplante Zeit
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status Icons der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller).
 show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
+show status icons of the datasources	projectmanager	de	Status Icons der Datenquellen anzeigen
 site configuration saved	projectmanager	de	Konfiguration gespeichert
 start after	projectmanager	de	Startet nach
 start working on %1	projectmanager	de	Arbeitsbeginn am %1

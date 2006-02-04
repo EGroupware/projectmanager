@@ -79,6 +79,7 @@ elements which have to be finished before this can start	projectmanager	en	Eleme
 empty	projectmanager	en	Empty
 end before	projectmanager	en	End before
 enddate	projectmanager	en	Enddate
+error: deleting price !!!	projectmanager	en	Error: deleting price !!!
 error: deleting project !!!	projectmanager	en	Error: deleting project !!!
 error: deleting project-element !!!	projectmanager	en	Error: deleting project-element !!!
 error: deleting role !!!	projectmanager	en	Error: deleting role !!!
@@ -178,8 +179,10 @@ select this project and show it's elements	projectmanager	en	Select this project
 share	projectmanager	en	Share
 share on the whole project	projectmanager	en	Share on the whole project
 share on the whole project in hours or percent, defaults to planned time	projectmanager	en	Share on the whole project in hours or percent, defaults to planned time
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	en	Should ProjectManager display the status icons of the datasource (eg. InfoLog) or just a progressbar with the numerical status (faster).
 show constraints and milestones	projectmanager	en	Show constraints and milestones
 show planned times instead of the real times	projectmanager	en	Show planned times instead of the real times
+show status icons of the datasources	projectmanager	en	Show status icons of the datasources
 site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
 start working on %1	projectmanager	en	Start working on %1

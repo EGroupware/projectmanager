@@ -454,6 +454,22 @@ class uiprojectelements extends boprojectelements
 				);
 			}
 			if (!$query['filter2']) unset($row['pe_details']);
+			
+			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : $row['pe_completion'];
+			
+			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
+		}
+		if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_custom_app_icons'])
+		{
+			$custom_app_icons['location'] = 'pm_custom_app_icons';
+			$custom_app_icons = $GLOBALS['egw']->hooks->process($custom_app_icons);
+			foreach($rows as $n => $row)
+			{
+				if (isset($custom_app_icons[$row['pe_app']][$row['pe_app_id']]))
+				{
+					$rows[$n]['pe_completion_icon'] = $custom_app_icons[$row['pe_app']][$row['pe_app_id']];
+				}
+			}
 		}
 		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
 		$rows['no_times']  = $this->project->data['pm_accounting_type'] == 'status';

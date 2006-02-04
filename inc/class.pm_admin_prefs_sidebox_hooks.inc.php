@@ -229,6 +229,14 @@ class pm_admin_prefs_sidebox_hooks
 				'admin'  => !$this->config['allow_change_workingtimes'],
 			);
 		}
+		$GLOBALS['settings']['show_custom_app_icons'] = array(
+			'type'   => 'check',
+			'label'  => 'Show status icons of the datasources',
+			'name'   => 'show_custom_app_icons',
+			'help'   => 'Should Projectmanager display the status icons of the datasource (eg. InfoLog) or just a progressbar with the numerical status (faster).',
+			'xmlrpc' => True,
+			'admin'  => False,
+		);
 		return true;	// otherwise prefs say it cant find the file ;-)
 	}
 	
