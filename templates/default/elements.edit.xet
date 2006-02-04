@@ -117,7 +117,7 @@
 				<row class="row">
 					<description options=",,,pe_planned_budget" value="- planned"/>
 					<textbox type="float" id="pe_planned_budget" blur="@ds[pe_planned_budget]"/>
-					<textbox type="float" min="2" id="ds[pe_planed_budget]" readonly="true"/>
+					<textbox type="float" min="2" id="ds[pe_planned_budget]" readonly="true"/>
 				</row>
 			</rows>
 		</grid>
