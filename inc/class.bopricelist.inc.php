@@ -134,32 +134,36 @@ class bopricelist extends sopricelist
 			$prices[] =& $price;
 		}
 		
-		// index prices in old by pm_id and validsince
+		// index prices in old by pm_id and date (!) of validsince
 		$old_prices = array();
 		if ($old)
 		{
 			foreach(array_merge($old['prices'],$old['project_prices']) as $old_price)
 			{
-				$old_prices[(int)$price['pm_id']][(int)$price['pl_validsince']] = $old_price;
+				$old_prices[(int)$old_price['pm_id']][date('Y-m-d',$old_price['pl_validsince'])] = $old_price;
 			}
 		}
 		foreach($prices as $key => $nul)
 		{
 			$price =& $prices[$key];
 			if (!isset($price['pl_id'])) $price['pl_id'] = $this->data['pl_id'];
-			if (!$this->prices_equal($price,$old_prices[(int)$price['pm_id']][(int)$price['pl_validsince']]))
+			$old_price = $old_prices[(int)$price['pm_id']][date('Y-m-d',$price['pl_validsince'])];
+			if (!$this->prices_equal($price,$old_price))
 			{
 				// price needs saving, checking acl now
 				if (!$this->check_acl(EGW_ACL_EDIT,$price['pm_id']))
 				{
 					return lang('permission denied !!!').' check_acl(EGW_ACL_EDIT(pm_id='.(int)$price[pm_id].')';
 				}
+				// maintain time of old price, to not create doublets with different times by users operating in different TZ's
+				$price['pl_validsince'] = $old_price['pl_validsince'];
+
 				if (($err = parent::save_price($price)))
 				{
 					return $err;
 				}
 			}
-			unset($old_prices[(int)$price['pm_id']][(int)$price['pl_validsince']]);
+			unset($old_prices[(int)$price['pm_id']][date('Y-m-d',$old_price['pl_validsince'])]);
 		}
 		// check if there are old prices not longer set ==> delete them
 		foreach($old_prices as $pm_id => $prices)
@@ -234,9 +238,11 @@ class bopricelist extends sopricelist
 	*/
 	function read($keys,$extra_cols='',$join=true)
 	{
-		if (!$this->check_acl(EGW_ACL_READ,(int)($keys['pm_id'] ? $keys['pm_id'] : $this->pm_id)))
+		// check if we have the requested access to all given pricelists
+		foreach(!is_array($keys) || !isset($keys['pm_id']) ? array($this->pm_id) : 
+			(is_array($keys['pm_id']) ? $keys['pm_id'] : array($keys['pm_id'])) as $pm_id)
 		{
-			return false;
+			if (!$this->check_acl(EGW_ACL_READ,(int)$pm_id)) return false;
 		}
 		return parent::read($keys,$extra_cols,$join);
 	}
@@ -301,7 +307,7 @@ class bopricelist extends sopricelist
 	/**
 	 * Compares two prices to check if they are equal
 	 *
-	 * The compared fields depend the price being project-specific or not
+	 * The compared fields depend on the price being project-specific or not
 	 *
 	 * @param array $price
 	 * @param array $price2
@@ -321,11 +327,19 @@ class bopricelist extends sopricelist
 		$equal = true;
 		foreach($to_compare as $key)
 		{
-			if ($price[$key] != $price2[$key] && ($key != 'pm_id' || (int) $price['pm_id'] != (int) $price2['pm_id']))
+			switch($key)
 			{
-				$equal = false;
-				break;
+				case 'pm_id':
+					$equal = (int) $price['pm_id'] == (int) $price2['pm_id'];
+					break;
+				case 'pl_validsince':
+					$equal = date('Y-m-d',$price['pl_validsince']) == date('Y-m-d',$price2['pl_validsince']);
+					break;
+				default:
+					$equal = $price[$key] == $price2[$key];
+					break;
 			}
+			if (!$equal) break;
 		}
 		if ((int)$this->debug >= 3) echo "<p>bopricelist::prices_equal(".print_r($price,true).','.print_r($price2,true).') = '.($equal ? 'true' : "differ in $key: {$price[$key]} != {$price2[$key]}")."</p>\n";
 
