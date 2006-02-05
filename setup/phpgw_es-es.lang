@@ -179,8 +179,10 @@ select this project and show it's elements	projectmanager	es-es	Seleccionar este
 share	projectmanager	es-es	Compartir
 share on the whole project	projectmanager	es-es	Compartir en todo el proyecto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	es-es	Compartir en todo el proyecto en horas o porcentaje. Por defecto, el tiempo planificado
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	es-es	Debe mostrar el administrador de proyectos los iconos de estado de la fuente de datos (p. ej. el registro de notas y tareas) o sólo una barra de progreso con el estado númerico (más rápido)
 show constraints and milestones	projectmanager	es-es	Mostrar restricciones y puntos de destino
 show planned times instead of the real times	projectmanager	es-es	Mostrar tiempos planificados en vez de los reales
+show status icons of the datasources	projectmanager	es-es	Mostrar iconos de estado de las fuentes de datos
 site configuration	projectmanager	es-es	Configuración del sitio
 site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
 start after	projectmanager	es-es	Comenzar después de
