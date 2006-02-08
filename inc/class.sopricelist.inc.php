@@ -197,12 +197,13 @@ class sopricelist extends so_sql
 			}
 			if ($this->db->capabilities['sub_queries'])
 			{
-				$extra_cols[] = "(select max(t.pl_validsince) FROM $this->prices_table t where p.pl_id=t.pl_id and p.pm_id=t.pm_id and t.pl_validsince <= $validsince) AS max_validsince";
+				$subquery = "(select max(t.pl_validsince) FROM $this->prices_table t where p.pl_id=t.pl_id and p.pm_id=t.pm_id and t.pl_validsince <= $validsince)";
+				$extra_cols[] = $subquery;
 				if ($pm_id)
 				{
 					$extra_cols[] = $this->sql_priority($pm_id,'p.pm_id'). ' AS prio';
 					$extra_cols[] = '(select max('.$this->sql_priority($pm_id,'m.pm_id').") FROM $this->prices_table m WHERE m.pl_id=p.pl_id) AS max_prio";
-					$order_by = 'HAVING prio=max_prio AND pl_validsince=max_validsince ORDER BY '.($order_by ? $order_by : 'pl_title');
+					$order_by = 'HAVING prio=max_prio AND pl_validsince='.$subquery.' ORDER BY '.($order_by ? $order_by : 'pl_title');
 					if ($no_general)
 					{
 						$filter[] = 'pm_id != 0 AND pl_billable IN (0,1)';
@@ -211,7 +212,7 @@ class sopricelist extends so_sql
 				else
 				{
 					$filter['pm_id'] = 0;
-					$order_by = 'HAVING pl_validsince=max_validsince ORDER BY '.($order_by ? $order_by : 'pl_title');
+					$order_by = 'HAVING pl_validsince='.$subquery.' ORDER BY '.($order_by ? $order_by : 'pl_title');
 				}
 			}
 			else	// mysql 4.0 or less
