@@ -463,6 +463,7 @@ class uiprojectelements extends boprojectelements
 		{
 			$custom_app_icons['location'] = 'pm_custom_app_icons';
 			$custom_app_icons = $GLOBALS['egw']->hooks->process($custom_app_icons);
+			unset($row);	// it's used as reference before !!!
 			foreach($rows as $n => $row)
 			{
 				if (isset($custom_app_icons[$row['pe_app']][$row['pe_app_id']]))
