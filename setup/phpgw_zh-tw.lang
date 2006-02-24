@@ -79,6 +79,7 @@ elements which have to be finished before this can start	projectmanager	zh-tw	�
 empty	projectmanager	zh-tw	清空
 end before	projectmanager	zh-tw	截止日期
 enddate	projectmanager	zh-tw	結束日期
+error: deleting price !!!	projectmanager	zh-tw	錯誤：刪除價格時！
 error: deleting project !!!	projectmanager	zh-tw	錯誤：刪除專案時！
 error: deleting project-element !!!	projectmanager	zh-tw	錯誤：刪除專案元素時！
 error: deleting role !!!	projectmanager	zh-tw	錯誤：刪除角色時！
@@ -178,8 +179,10 @@ select this project and show it's elements	projectmanager	zh-tw	選擇這個專�
 share	projectmanager	zh-tw	分工
 share on the whole project	projectmanager	zh-tw	整個專案的分工
 share on the whole project in hours or percent, defaults to planned time	projectmanager	zh-tw	整個專案的分工（時數或百分比），預設是已規劃的時間
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	zh-tw	專案系統是否要顯示資料來源（例如記事本）的狀態圖示？或只是一個數值型態的狀態圖示（較快）。
 show constraints and milestones	projectmanager	zh-tw	顯示限制與里程碑
 show planned times instead of the real times	projectmanager	zh-tw	顯示已規劃的時間來取代實際時間
+show status icons of the datasources	projectmanager	zh-tw	顯示資料來源的狀態圖示
 site configuration saved	projectmanager	zh-tw	網站設定儲存了
 start after	projectmanager	zh-tw	開始日期
 start working on %1	projectmanager	zh-tw	開始工作於 %1
