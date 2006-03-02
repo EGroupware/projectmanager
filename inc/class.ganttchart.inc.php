@@ -454,7 +454,7 @@ class ganttchart extends boprojectelements
 				$this->add_elements($pe['pe_app_id'],$params,$line,$bars,$level+1);
 			}
 		}
-		if ($params['constraints'])
+		if ($params['constraints'] && $this->modernJPGraph)		// the old jpgraph does not support constrains
 		{
 			// adding milestones
 			foreach((array)$this->milestones->search(array(),'pm_id,ms_id,ms_title,ms_date','ms_date','','',false,'AND',false,array(
