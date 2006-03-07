@@ -33,12 +33,15 @@ class uipricelist extends bopricelist
 	var $billable_lables = array('bookable','billable');
 	/**
 	 * Constructor, calls the constructor of the extended class
+	 *
+	 * @param int $pm_id project to use
 	 */
-	function uipricelist()
+	function uipricelist($pm_id=null)
 	{
-		if (isset($_REQUEST['pm_id']))
+		if (!is_null($pm_id) || isset($_REQUEST['pm_id']))
 		{
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id = (int) $_REQUEST['pm_id']);
+			if (is_null($pm_id)) $pm_id = (int) $_REQUEST['pm_id'];
+			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
 		}
 		else
 		{
@@ -248,7 +251,14 @@ class uipricelist extends bopricelist
 		{
 			$query['col_filter']['cat_id'] = $query['cat_id'];
 		}
-		if ($query['col_filter']['pm_id'] === '') unset($query['col_filter']['pm_id']);
+		if ($query['col_filter']['pm_id'] === '' || !$this->check_acl(EGW_ACL_READ,$query['col_filter']['pm_id']))
+		{
+			unset($query['col_filter']['pm_id']);
+		}
+		elseif ($query['col_filter']['pm_id'] != $this->pm_id)
+		{
+			$this->uipricelist($query['col_filter']['pm_id']);
+		}
 		if ($query['col_filter']['pl_billable'] === '') unset($query['col_filter']['pl_billable']);
 
 		$total = parent::get_rows($query,$rows,$readonlys,true);
@@ -320,6 +330,8 @@ class uipricelist extends bopricelist
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 			);
 		}
+		$content['nm']['col_filter']['pm_id'] = $this->pm_id;
+
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($this->pm_id ? 
 			lang('Pricelist') .': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] : 
 			lang('General pricelist'));
@@ -328,7 +340,7 @@ class uipricelist extends bopricelist
 		foreach((array)$this->project->search(array(
 			'pm_status' => 'active',
 			'pm_id'     => $this->pm_id,		// active or the current one
-		),$this->project->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_number','','',False,'OR') as $project)
+		),$this->project->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_number','','',False,'OR',false,array('pm_accounting_type' => 'pricelist')) as $project)
 		{
 			$projects[$project['pm_id']] = $project['pm_number'].': '.$project['pm_title'];
 		}
