@@ -362,9 +362,10 @@ class boprojectmanager extends soprojectmanager
 	 *
 	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE, EGW_ACL_BUDGET, EGW_ACL_EDIT_BUDGET
 	 * @param array/int $data=null project or project-id to use, default the project in $this->data
+	 * @param boolean $no_cache=false should a cached value be used, if availible, or not
 	 * @return boolean true if the rights are ok, false if not
 	 */
-	function check_acl($required,$data=0)
+	function check_acl($required,$data=0,$no_cache=false)
 	{
 		static $rights = array();
 		$pm_id = (!$data ? $this->data['pm_id'] : (is_array($data) ? $data['pm_id'] : $data));
@@ -373,7 +374,7 @@ class boprojectmanager extends soprojectmanager
 		{
 			return $required != EGW_ACL_DELETE;
 		}
-		if (!isset($rights[$pm_id]))	// check if we have a cache entry for $pm_id
+		if (!isset($rights[$pm_id]) || $no_cache)	// check if we have a cache entry for $pm_id
 		{
 			if ($data)
 			{

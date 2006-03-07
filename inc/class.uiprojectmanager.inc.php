@@ -311,7 +311,7 @@ class uiprojectmanager extends boprojectmanager
 				'to_app' => 'projectmanager',
 			),
 			'duration_format' => ','.$this->config['duration_format'],
-			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET) || in_array($this->data['pm_accounting_type'],array('status','times')),
+			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET,0,true) || in_array($this->data['pm_accounting_type'],array('status','times')),
 		);
 		if ($add_link && !is_array($content['link_to']['to_id']))
 		{
