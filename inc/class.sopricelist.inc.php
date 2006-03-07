@@ -33,7 +33,7 @@ class sopricelist extends so_sql
 	/**
 	 * @var string $prices_join default join with the prices table
 	 */
-	var $prices_join = ',egw_pm_prices p WHERE egw_pm_pricelist.pl_id=p.pl_id';
+	var $prices_join = 'JOIN egw_pm_prices p USING(pl_id)';
 	/**
 	 * @var array $links_extracols extracolumns from the links table
 	 */
@@ -218,7 +218,7 @@ class sopricelist extends so_sql
 			else	// mysql 4.0 or less
 			{
 				// ToDo: avoid subqueries (eg. use a join) or do it manual inside php
-echo "<p>Pricelist needs a DB capabal of subqueries (eg. MySQL 4.1+) !!!</p>\n";
+				//echo "<p>Pricelist needs a DB capabal of subqueries (eg. MySQL 4.1+) !!!</p>\n";
 				$filter['pm_id'] = $this->project->ancestors($this->pm_id,array(0,(int)$this->pm_id));
 				$filter[] = 'pl_validsince <= '.$validsince;
 			}
