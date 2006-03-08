@@ -6,6 +6,6 @@
     <td align="center"><input type="checkbox" name="{delete}" value="Y"{delete_selected}></td>
     <td align="center"><input type="checkbox" name="{private}" value="Y"{private_selected}></td>
     <td align="center"><input type="checkbox" name="{add}" value="Y"{add_selected}></td>
-    <td align="center"><input type="checkbox" name="{custome_1}" value="Y"{custome_1_selected}></td>
-    <td align="center"><input type="checkbox" name="{custome_2}" value="Y"{custome_2_selected}></td>
+    <td align="center"><input type="checkbox" name="{custom_1}" value="Y"{custom_1_selected}></td>
+    <td align="center"><input type="checkbox" name="{custom_2}" value="Y"{custom_2_selected}></td>
   </tr>
