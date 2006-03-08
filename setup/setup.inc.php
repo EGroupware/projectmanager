@@ -49,11 +49,11 @@ $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager.boprojec
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'phpgwapi',
-	 'versions' => Array('1.0.0','1.0.1','1.2')
+	 'versions' => Array('1.0.0','1.0.1','1.2','1.3')
 );
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'etemplate',
-	 'versions' => Array('1.0.0','1.0.1','1.2')
+	 'versions' => Array('1.0.0','1.0.1','1.2','1.3')
 );
 
 
