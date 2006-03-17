@@ -183,6 +183,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	pt-br	Mostra regras e marcos
 show planned times instead of the real times	projectmanager	pt-br	Mostra horas planejadas no lugar de horas reais
 show status icons of the datasources	projectmanager	pt-br	Mostra ícones de estado das origens de dados
+site configuration	projectmanager	pt-br	Configuração do site
 site configuration saved	projectmanager	pt-br	Configuração do site salva
 start after	projectmanager	pt-br	Começar depois
 start working on %1	projectmanager	pt-br	Iniciando o trabalho em %1
@@ -217,4 +218,3 @@ you are using the old version of jpgraph, bundled with egroupware. it has only l
 you can leave the date of the first price empty	projectmanager	pt-br	você pode deixar a data do primeiro preço vazia
 you need to select a project first	projectmanager	pt-br	Você deve selecionar um projeto primeiro
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	pt-br	O seu banco de dados NÃO está atualizado (%1 vs. %2), por favor execute o %3setup%4 para atualizá-lo.
-Status	projectmanager	pt-br	Estado

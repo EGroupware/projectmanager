@@ -139,3 +139,34 @@ save the changes made	projectmanager	eu	Egindako aldaketak gorde
 save this project element	projectmanager	eu	Proiektuko elementu hau gorde
 select a project	projectmanager	eu	Proiektu bat aukeratu
 share	projectmanager	eu	Partekatu
+share on the whole project	projectmanager	eu	Partekatu proiektu guztian zehar
+show planned times instead of the real times	projectmanager	eu	Denbora errealak erakutsi beharrean planifikatuak erakutsi
+site configuration saved	projectmanager	eu	Erakutsi egoera ikonoak dauten iturrietatik
+start after	projectmanager	eu	Beranduago hasi
+start working on %1	projectmanager	eu	Lanean hasi %1
+start, end, category, ...	projectmanager	eu	Hasiera, Amaiera, kategoria...
+start- & enddate	projectmanager	eu	Hasiera eta amaierada data
+startdate	projectmanager	eu	Hasiera data
+state	projectmanager	eu	Egoera
+status filter	projectmanager	eu	Egoeren iragazkia
+subprojects	projectmanager	eu	Azpiproiektuak
+synchronise all	projectmanager	eu	Guztia sinkronizatu
+template	projectmanager	eu	Plantilla
+time	projectmanager	eu	Denbora
+times	projectmanager	eu	Denborak
+title must not be empty	projectmanager	eu	Izenburua ez da hutsik egon behar
+unit	projectmanager	eu	Unitatea
+unitprice	projectmanager	eu	Unitateko prezioa
+used	projectmanager	eu	erabilia
+valid since	projectmanager	eu	Baliagarria noiztik
+view ganttchart of this project	projectmanager	eu	Proiektu honen Gantt diagrama ikusi
+view price	projectmanager	eu	Prezioa ikusi
+view project	projectmanager	eu	Proiektua ikusi
+view project-elements	projectmanager	eu	Proiektuaren osagaiak ikusi
+view this element in %1	projectmanager	eu	Ikusi elementu hau %1ean
+view this price	projectmanager	eu	Prezio hau ikusi
+view this project	projectmanager	eu	Proiektu hau ikusi
+view this project-element	projectmanager	eu	Proiketuaren osagai hau ikusi
+working duration on %1	projectmanager	eu	Lanaren iraupena %1ean
+you can leave the date of the first price empty	projectmanager	eu	Lehenengo prezioaren data zurian utzi dezakezu
+you need to select a project first	projectmanager	eu	Proiektu bat aukeratu behar duzu lehenago
