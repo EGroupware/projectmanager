@@ -68,6 +68,7 @@ class pm_admin_prefs_sidebox_hooks
 				$pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 			}
 			$projects = array();
+/*
 			foreach((array)$GLOBALS['boprojectmanager']->search(array(
 				'pm_status' => 'active',
 				'pm_id'     => $pm_id,		// active or the current one
@@ -77,6 +78,16 @@ class pm_admin_prefs_sidebox_hooks
 					'label' => $project['pm_number'],
 					'title' => $project['pm_title'],
 				);
+			}
+*/
+			$selected_project = false;
+			foreach($GLOBALS['boprojectmanager']->get_project_tree() as $project)
+			{
+				$projects[$project['path']] = array(
+					'label' => $project['pm_number'],
+					'title' => $project['pm_title'],
+				);
+				if (!$selected_project && $pm_id == $project['pm_id']) $selected_project = $project['path'];
 			}
 			if ($_GET['menuaction'] == 'projectmanager.uipricelist.index')
 			{
@@ -96,16 +107,25 @@ class pm_admin_prefs_sidebox_hooks
 					$selbox_action = 'projectmanager.uiprojectelements.index';
 					break;
 			}
+			$select_link = $GLOBALS['egw']->link('/index.php',array('menuaction' => $selbox_action)).'&pm_id=';
+
 			$file = array(
 				array(
+					'text' => $GLOBALS['egw']->html->tree($projects,$selected_project,false,
+						"function (_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }"),
+					'no_lang' => True,
+					'link' => False,
+					'icon' => False,
+				),
+/*
+				array(
 					'text' => $GLOBALS['egw']->html->select('pm_id',$pm_id,$projects,true,
-						' onchange="location.href=\''.$GLOBALS['egw']->link('/index.php',array(
-							'menuaction' => $selbox_action,
-						)).'&pm_id=\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars(
+						' onchange="location.href=\''.$select_link.'\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars(
 							$pm_id && isset($projects[$pm_id]) ? $projects[$pm_id]['title'] : lang('Select a project')).'"'),
 					'no_lang' => True,
 					'link' => False
 				),
+*/
 				'Projectlist' => $GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
 				array(

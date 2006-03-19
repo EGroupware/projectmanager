@@ -521,6 +521,54 @@ class boprojectmanager extends soprojectmanager
 		//echo "<p>ancestors($pm_id)=".print_r($ancestors_cache[$pm_id],true)."</p>\n";
 		return array_merge($ancestors,$ancestors_cache[$pm_id]);
 	}
+	
+	/**
+	 * Query the project-tree from the DB, project tree is indexed by a path consisting of pm_id's delimited by slashes (/)
+	 *
+	 * @param array $filter=array('pm_status' => 'active') filter for the search, default active projects
+	 * @param string $filter_op='AND' AND or OR filters together, default AND
+	 * @return array with path => array(pm_id,pm_number,pm_title,pm_parent) pairs
+	 */
+	function get_project_tree($filter = array('pm_status' => 'active'),$filter_op='AND')
+	{
+		$projects = array();
+		$parents = 'mains';
+		// get the children
+		while (($children = $this->search($filter,$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent',
+			'pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
+		{
+			//echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents); _debug_array($children);
+			
+			// sort the children behind the parents
+			$parents = $both = array();
+			foreach ($projects as $parent)
+			{
+				$both[$parent['path']] = $parent;
+				
+				foreach($children as $key => $child)
+				{
+					if ($child['pm_parent'] == $parent['pm_id'])
+					{
+						$child['path'] = $parent['path'] . '/' . $child['pm_id'];
+						$both[$child['path']] = $child;
+						$parents[] = $child['pm_id'];
+						unset($children[$key]);
+					}
+				}
+			}
+			// mains or orphans
+			foreach ($children as $child)
+			{
+				$child['path'] = '/' . $child['pm_id'];
+				$both[$child['path']] = $child;
+				$parents[] = $child['pm_id'];
+				
+			}
+			$projects = $both;
+		}
+		//echo "tree"; _debug_array($projects);
+		return $projects;
+	}
 
 	/**
 	 * write a debug-message to the log-file $this->logfile (if set)

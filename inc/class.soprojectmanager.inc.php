@@ -230,23 +230,6 @@ class soprojectmanager extends so_sql
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
-		if ($filter['subs_or_mains'])
-		{
-			$ids = "SELECT link_id2 FROM $this->links_table WHERE link_app2='projectmanager' AND link_app1='projectmanager'";
-			if (!$this->db->capabilities['sub_queries'])
-			{
-				$this->db->query($ids,__LINE__,__FILE__);
-				$ids = array();
-				while($this->db->next_record())
-				{
-					$ids[] = $this->db->f(0);
-				}
-				$ids = count($ids) ? implode(',',$ids) : 0;
-			}
-			$filter[] = $this->table_name.'.pm_id '.($filter['subs_or_mains'] == 'mains' ? 'NOT ' : '').'IN ('.$ids.')';
-		}
-		unset($filter['subs_or_mains']);
-		
 		if ($join === true)	// add acl-join, to get role_acl of current user
 		{
 			$join = $this->acl_join;
@@ -271,6 +254,43 @@ class soprojectmanager extends so_sql
 				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
 				($join == $this->acl_join ? ' OR '.$this->roles_table.'.role_acl!=0' : '').')';
 		}
+		if ($filter['subs_or_mains'])
+		{
+/* old code using a sub-query
+			$ids = "SELECT link_id2 FROM $this->links_table WHERE link_app2='projectmanager' AND link_app1='projectmanager'";
+			
+			if (is_array($filter['subs_or_mains']))		// sub-projects of given parent-projects
+			{
+				$ids .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
+				$filter['subs_or_mains'] = 'subs';
+			}
+			if (!$this->db->capabilities['sub_queries'])
+			{
+				$this->db->query($ids,__LINE__,__FILE__);
+				$ids = array();
+				while($this->db->next_record())
+				{
+					$ids[] = $this->db->f(0);
+				}
+				$ids = count($ids) ? implode(',',$ids) : 0;
+			}
+			$filter[] = $this->table_name.'.pm_id '.($filter['subs_or_mains'] == 'mains' ? 'NOT ' : '').'IN ('.$ids.')';
+*/
+			// new code using a JOIN
+			if ($filter['subs_or_mains'] == 'mains')
+			{
+				$filter[] = 'link_id2 IS NULL';
+				$join .= ' LEFT';
+			}
+			$join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=$this->table_name.pm_id";
+
+			if (is_array($filter['subs_or_mains']))	// sub-projects of given parent-projects
+			{
+				$join .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
+			}
+		}
+		unset($filter['subs_or_mains']);
+		
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 	
