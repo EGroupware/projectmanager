@@ -427,6 +427,8 @@ class boprojectelements extends soprojectelements
 			$this->data['pe_modified'] = $this->now_su;
 			$this->data['pe_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
 		}
+		if (!$this->data['pm_id']) $this->data['pm_id'] = $this->pm_id;
+
 		if (!($err = parent::save()))
 		{
 			if (is_array($this->data['pe_constraints']))
@@ -565,6 +567,9 @@ class boprojectelements extends soprojectelements
 				$link_id = $this->link->link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
 			}
 			if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling update($element[pe_app],$app_id,$link_id,$this->pm_id,false);");
+
+			if (!$app_id || !$link_id) continue;	// something went wrong, eg. element no longer exists
+
 			$this->update($element['pe_app'],$app_id,$link_id,$this->pm_id,false);	// false=no update of project itself => done once at the end
 
 			// copy evtl. overwriten content from the element
