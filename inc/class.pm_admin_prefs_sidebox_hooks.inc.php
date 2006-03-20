@@ -80,8 +80,20 @@ class pm_admin_prefs_sidebox_hooks
 				);
 			}
 */
+			// include the filter of the projectlist into the tree, eg. if you watch the list of templates, include them in the tree
+			$filter = array('pm_status' => 'active');
+			$list_filter = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
+			if ($_GET['menuaction'] == 'projectmanager.uiprojectmanager.index' && isset($_POST['exec']['nm']['filter2']))
+			{
+				//echo "<p align=right>set pm_status={$_POST['exec']['nm']['filter2']}</p>\n";
+				$list_filter['pm_status'] = $_POST['exec']['nm']['filter2'];	// necessary as uiprojectmanager::get_rows is not yet executed
+			}
+			if(in_array($list_filter['filter2'],array('nonactive','archive','template')))
+			{
+				$filter['pm_status'] = array('active',$list_filter['filter2']);
+			}
 			$selected_project = false;
-			foreach($GLOBALS['boprojectmanager']->get_project_tree() as $project)
+			foreach($GLOBALS['boprojectmanager']->get_project_tree($filter) as $project)
 			{
 				$projects[$project['path']] = array(
 					'label' => $project['pm_number'],

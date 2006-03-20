@@ -535,7 +535,7 @@ class boprojectmanager extends soprojectmanager
 		$parents = 'mains';
 		// get the children
 		while (($children = $this->search($filter,$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent',
-			'pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
+			'pm_status,pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
 			//echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents); _debug_array($children);
 			
