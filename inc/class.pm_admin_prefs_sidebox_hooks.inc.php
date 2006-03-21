@@ -148,13 +148,13 @@ class pm_admin_prefs_sidebox_hooks
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
 				array(
 					'text' => 'Elementlist',
-					'link' => $pm_id && isset($projects[$pm_id]) ? $GLOBALS['egw']->link('/index.php',array(
+					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.uiprojectelements.index', 
 					)) : False,
 				),
 				array(
 					'text' => 'Ganttchart',
-					'link' => $pm_id && isset($projects[$pm_id]) ? $GLOBALS['egw']->link('/index.php',array(
+					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
 						'menuaction' => 'projectmanager.ganttchart.show',
 					)) : False,
 				),
