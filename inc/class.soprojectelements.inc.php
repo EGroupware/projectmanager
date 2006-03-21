@@ -76,9 +76,10 @@ class soprojectelements extends so_sql
 	 * Summarize the information of all elements of a project: min(start-time), sum(time), avg(completion), ...
 	 *
 	 * @param int/array $pm_id=null int project-id, array of project-id's or null to use $this->pm_id
+	 * @param array $filter=array() columname => value pairs to filter, eg. '
 	 * @return array/boolean with summary information (keys as for a single project-element), false on error
 	 */
-	function summary($pm_id=null)
+	function summary($pm_id=null,$filter=array())
 	{
 		if (is_null($pm_id)) $pm_id = $this->pm_id;
 
@@ -97,6 +98,11 @@ class soprojectelements extends so_sql
 		}
 		if ($save_data) $this->project->data = $save_data;
 
+		if (!isset($filter['pm_id'])) $filter['pm_id'] = $pm_id;
+		if (!isset($filter['pe_status'])) $filter[] = "pe_status != 'ignore'";
+		// fix some special filters: resources, cats
+		$filter = $this->_fix_filter($filter);
+
 		$this->db->select($this->table_name,array(
 			"SUM(pe_completion * ($share)) AS pe_sum_completion_shares",
 			"SUM(CASE WHEN pe_completion IS NULL THEN NULL ELSE ($share) END) AS pe_total_shares",
@@ -109,7 +115,7 @@ class soprojectelements extends so_sql
 			'MIN(pe_planned_start) AS pe_planned_start',
 			'MAX(pe_real_end) AS pe_real_end',
 			'MAX(pe_planned_end) AS pe_planned_end',
-		),array('pm_id' => $pm_id,"pe_status != 'ignore'"),__LINE__,__FILE__);
+		),$filter,__LINE__,__FILE__);
 		
 		if (!($data = $this->db->row(true)))
 		{
@@ -157,6 +163,14 @@ class soprojectelements extends so_sql
 					is_array($extra_cols) ? $extra_cols : explode(',',$extra_cols));
 			}			
 		}
+		// fix some special filters: resources, cats
+		$filter = $this->_fix_filter($filter);
+
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+	}
+	
+	function _fix_filter($filter)
+	{
 		// handle search for a single resource in comma-separated pe_resources column
 		if (isset($filter['pe_resources']))
 		{
@@ -175,9 +189,9 @@ class soprojectelements extends so_sql
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		return $filter;
 	}
-	
+
 	/**
 	 * reads one project-element specified by $keys, reimplemented to use $this->pm_id, if no pm_id given
 	 *

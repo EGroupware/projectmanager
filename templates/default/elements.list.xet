@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.4.004">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.5.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -17,7 +17,7 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<nextmatch-sortheader label="App." align="center" id="pe_app"/>
+					<nextmatch-sortheader align="center" id="pe_app" label="App."/>
 					<vbox>
 						<nextmatch-sortheader label="Title" id="pe_title"/>
 						<nextmatch-sortheader label="Comment" id="pe_remark"/>
@@ -25,23 +25,32 @@
 					<nextmatch-accountfilter id="pe_resources" options="Resources"/>
 					<vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
+						<date id="pe_real_start" readonly="true"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_start" class="planned"/>
+						<date id="pe_planned_start" readonly="true"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Enddate" id="pe_real_end"/>
+						<date id="pe_real_end" readonly="true"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_end" class="planned"/>
+						<date id="pe_planned_end" readonly="true"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
+						<date-duration id="pe_used_time" readonly="true" options=",,,,1"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
+						<date-duration id="pe_planned_time" readonly="true" options=",,,,1" class="planned"/>
 					</vbox>
 					<vbox>
-						<nextmatch-sortheader label="Budget" readonly="true" id="pe_budget_used"/>
+						<nextmatch-sortheader label="Budget" readonly="true" id="pe_used_budget"/>
+						<description id="pe_used_budget" no_lang="1"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_budget" class="planned"/>
+						<description id="pe_planned_budget" no_lang="1"/>
 					</vbox>
 					<vbox align="center">
 						<nextmatch-sortheader id="pe_health" label="Health" align="center" disabled="true"/>
 						<nextmatch-sortheader label="Status" align="center" id="pe_completion"/>
+						<description id="pe_completion" no_lang="1"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="last modified" id="pe_modified"/>

@@ -410,10 +410,15 @@ class uiprojectelements extends boprojectelements
 		}
 		else
 		{
+			unset($query['col_filter']['cat_id']);
 			unset($query['link_add']['extra']);
 		}
+		if (!$query['col_filter']['pe_resources'])
+		{
+			unset($query['col_filter']['pe_resources']);
+		}
 		$total = parent::get_rows($query,$rows,$readonlys,true);
-
+		
 		// adding the project itself always as first line
 		$self = $this->update('projectmanager',$this->pm_id);
 		$self['pe_app']    = 'projectmanager';
@@ -476,6 +481,11 @@ class uiprojectelements extends boprojectelements
 		$rows['no_times']  = $this->project->data['pm_accounting_type'] == 'status';
 		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
 
+		// calculate the filter-specific summary if we have a filter, beside the default pe_status=used=array(new,regular)
+		if (count($query['col_filter']) > (int)isset($query['col_filter']['pe_status']) || !is_array($query['col_filter']['pe_status']))
+		{
+			$rows += $this->summary(null,$query['col_filter']);
+		}
 		if ((int)$this->debug >= 2 || $this->debug == 'get_rows')
 		{
 			$this->debug_message("uiprojectelements::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."readonlys=".print_r($readonlys,true));

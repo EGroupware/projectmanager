@@ -422,6 +422,10 @@ class ganttchart extends boprojectelements
 					$filter['pe_completion'] = 100;
 					break;
 			}
+			if ($params['pe_resources'])
+			{
+				$filter['pe_resources'] = $params['pe_resources'];
+			}
 			$extra_cols = array(
 				$start.' AS pe_start',
 				$end.' AS pe_end',
