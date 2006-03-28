@@ -27,7 +27,7 @@
 						<nextmatch-sortheader label="Last modified" id="pl_modified"/>
 						<nextmatch-sortheader id="pl_modifier" label="Modified by"/>
 					</vbox>
-					<description value="Actions"/>
+					<description value="Actions" class="noPrint"/>
 				</row>
 				<row class="row">
 					<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
@@ -50,7 +50,7 @@
 							<menupopup type="select-account" id="${row}[pl_modifier]" readonly="true"/>
 						</menulist>
 					</vbox>
-					<hbox>
+					<hbox class="noPrint">
 						<button image="view" label="View" id="view[$row_cont[pl_id]]" statustext="View this price" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uipricelist.view&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
 						<button image="edit" label="Edit" id="edit[$row_cont[pl_id]]" statustext="Edit this price" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uipricelist.edit&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
 						<button id="delete[$row_cont[pm_id]:$row_cont[pl_id]]" image="delete" label="Delete" statustext="Delete this price" onclick="return confirm('Delete this price');"/>
@@ -71,7 +71,7 @@
 				<row>
 					<nextmatch options="projectmanager.pricelist.list.rows" id="nm"/>
 				</row>
-				<row>
+				<row class="noPrint">
 					<button label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uipricelist.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
 				</row>
 			</rows>

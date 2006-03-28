@@ -22,7 +22,7 @@
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
 					<nextmatch-sortheader label="modified by" id="pm_modifier"/>
 					<nextmatch-sortheader label="Status" id="pm_completion" align="center"/>
-					<hbox align="center">
+					<hbox align="center" class="noPrint">
 						<description value="Actions" align="center"/>
 						<button image="check" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('checked[]')); return false;" needed="1"/>
 					</hbox>
@@ -39,7 +39,7 @@
 						<menupopup type="select-account" id="${row}[pm_modifier]" readonly="true"/>
 					</menulist>
 					<image src="${row}[pm_completion]" label="$row_cont[pm_completion]" no_lang="1" align="center"/>
-					<hbox align="center">
+					<hbox align="center" class="noPrint">
 						<button image="ganttchart" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" statustext="View ganttchart of this project"/>
 						<button image="view" label="View" id="view[$row_cont[pm_id]]" statustext="View this project"/>
 						<button id="edit[$row_cont[pm_id]]" image="edit" label="Edit" statustext="Edit this project"/>
@@ -62,7 +62,7 @@
 				<row>
 					<nextmatch options="projectmanager.list.rows" id="nm"/>
 				</row>
-				<row>
+				<row class="noPrint">
 					<hbox>
 						<hbox>
 							<menulist>

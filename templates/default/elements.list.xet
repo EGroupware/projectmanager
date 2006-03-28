@@ -37,9 +37,9 @@
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-						<date-duration id="pe_used_time" readonly="true" options=",,,,1"/>
+						<date-duration id="pe_used_time" readonly="true" options="@duration_format"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-						<date-duration id="pe_planned_time" readonly="true" options=",,,,1" class="planned"/>
+						<date-duration id="pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Budget" readonly="true" id="pe_used_budget"/>
@@ -56,7 +56,7 @@
 						<nextmatch-sortheader label="last modified" id="pe_modified"/>
 						<nextmatch-sortheader label="modified by" id="pe_modifier"/>
 					</vbox>
-					<description align="center" value="Actions"/>
+					<description align="center" value="Actions" class="noPrint"/>
 				</row>
 				<row class="th">
 					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
@@ -89,7 +89,7 @@
 							<menupopup type="select-account" readonly="true" id="${row}[pe_modifier]"/>
 						</menulist>
 					</vbox>
-					<hbox align="center">
+					<hbox align="center" class="noPrint">
 						<image label="Ganttchart" onclick="return confirm('window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]'),'view-projects','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;');" src="ganttchart" options="projectmanager.ganttchart.show&amp;pm_id=$row_cont[pm_id]" statustext="View Ganttchart of this project"/>
 						<image label="View" src="view" options="projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
 						<button label="Edit" id="edit" image="edit" statustext="Edit this project"/>
@@ -129,7 +129,7 @@
 							<menupopup type="select-account" readonly="true" id="${row}[pe_modifier]"/>
 						</menulist>
 					</vbox>
-					<hbox align="center">
+					<hbox align="center" class="noPrint">
 						<button label="View" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectelements.view&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'view-elements','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="view[$row_cont[pe_id]]" image="view" statustext="View this project-element"/>
 						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectelements.edit&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="edit[$row_cont[pe_id]]" image="edit" statustext="Edit this project-element"/>
 						<button label="Delete" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');" id="delete[$row_cont[pe_id]]" image="delete" statustext="Delete this project-element, does NOT remove the linked entry"/>
@@ -150,7 +150,7 @@
 				<row>
 					<nextmatch id="nm" options="projectmanager.elements.list.rows"/>
 				</row>
-				<row>
+				<row class="noPrint">
 					<button label="Synchronise all" id="sync_all" statustext="necessary for project-elements doing that not automatic"/>
 				</row>
 			</rows>
