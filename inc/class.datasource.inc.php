@@ -233,7 +233,7 @@ class datasource
 			foreach(array('start','end') as $name)
 			{
 				if ((!isset($ds['pe_real_'.$name]) || $ds['ignore_real_'.$name]) && isset($ds['pe_planned_'.$name]) /*&&
-				// setting the real dates only if the completition is more then 0% (if supported by the datasource)
+				// setting the real dates only if the completion is more then 0% (if supported by the datasource)
 					(!isset($ds['pe_completion']) || $ds['pe_completion'] > 0)*/)
 				{
 					$ds['pe_real_'.$name] = $ds['pe_planned_'.$name];

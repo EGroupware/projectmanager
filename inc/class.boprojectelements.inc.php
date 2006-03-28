@@ -393,7 +393,7 @@ class boprojectelements extends soprojectelements
 				}
 			}
 		}
-		if (substr($data['pe_completition'],-1) == '%') $data['pe_completition'] = (int) substr($data['pe_completition'],0,-1);
+		if (substr($data['pe_completion'],-1) == '%') $data['pe_completion'] = (int) substr($data['pe_completion'],0,-1);
 
 		if (is_array($data['pe_resources']))
 		{

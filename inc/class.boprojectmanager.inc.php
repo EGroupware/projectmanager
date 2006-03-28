@@ -322,7 +322,7 @@ class boprojectmanager extends soprojectmanager
 		{
 			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_offset_s;
 		}
-		if (substr($data['pm_completition'],-1) == '%') $data['pm_completition'] = (int) round(substr($data['pm_completition'],0,-1));
+		if (substr($data['pm_completion'],-1) == '%') $data['pm_completion'] = (int) round(substr($data['pm_completion'],0,-1));
 
 		return $data;
 	}
