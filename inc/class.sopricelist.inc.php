@@ -33,7 +33,7 @@ class sopricelist extends so_sql
 	/**
 	 * @var string $prices_join default join with the prices table
 	 */
-	var $prices_join = 'JOIN egw_pm_prices p USING(pl_id)';
+	var $prices_join = 'JOIN egw_pm_prices p ON egw_pm_pricelist.pl_id=p.pl_id';
 	/**
 	 * @var array $links_extracols extracolumns from the links table
 	 */
