@@ -79,6 +79,7 @@ elements which have to be finished before this can start	projectmanager	no	Eleme
 empty	projectmanager	no	Uten innhold
 end before	projectmanager	no	Slutte før
 enddate	projectmanager	no	Sluttdato
+error: deleting price !!!	projectmanager	no	Feil : Slette pris !
 error: deleting project !!!	projectmanager	no	Feil : Slette prosjekt !
 error: deleting project-element !!!	projectmanager	no	Feil : Slette prosjektelement !
 error: deleting role !!!	projectmanager	no	Feil : Slette rolle !
@@ -178,8 +179,10 @@ select this project and show it's elements	projectmanager	no	Velg dette prosjekt
 share	projectmanager	no	Deles
 share on the whole project	projectmanager	no	Deles for hele prosjektet
 share on the whole project in hours or percent, defaults to planned time	projectmanager	no	Deles for hele prosjektet i timer eller prosent, standard er planlagt tid
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	no	Skal prosjektadm. vise statusikon for datakilde (eks. Infologg) eller bare en progresjonsbar med numerisk status (raskere)
 show constraints and milestones	projectmanager	no	Viser innskrenker og milepel
 show planned times instead of the real times	projectmanager	no	Vis planlagt tid istedet for virkelig tid
+show status icons of the datasources	projectmanager	no	Vis statusikoner for datakildene
 site configuration saved	projectmanager	no	Konfigurasjon for websidene ble lagret
 start after	projectmanager	no	Start etter
 start working on %1	projectmanager	no	Start arbeidet den %1
