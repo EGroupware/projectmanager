@@ -98,7 +98,7 @@ full access	projectmanager	hu	teljes hozzáférés
 ganttchart	projectmanager	hu	Gantt diagramm
 ganttchart parameter	projectmanager	hu	Gantt diagramm paraméterek
 general	projectmanager	hu	Általános
-general availibility	projectmanager	hu	Általános elérhetõség
+general availibility	projectmanager	hu	Rendelkezésre állás
 general pricelist	projectmanager	hu	Általános árlista
 h	projectmanager	hu	óra
 health	projectmanager	hu	Egészség
@@ -127,7 +127,7 @@ necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	hu
 new	projectmanager	hu	új
 no accounting, only status	projectmanager	hu	Nincs számlázás, csak státusz
 no accounting, only times and status	projectmanager	hu	Nincs számlázás, csak idõk és státusz
-no details	projectmanager	hu	részletek nélkül
+no details	projectmanager	hu	Részletek nélkül
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	hu	Adatforrás olvasására nem jogosult: felülírt értékek törlése esetén ezek a mezõk üresen maradnak!!!
 no save necessary	projectmanager	hu	mentés nem szükséges
 nonactive	projectmanager	hu	Inaktív
@@ -135,8 +135,8 @@ not started (0%)	projectmanager	hu	Nem idult el (0%)
 not working	projectmanager	hu	nem mûködõ
 only this project	projectmanager	hu	Csak ez a projekt
 overwrite the datasource	projectmanager	hu	Adatforrás felülírása
-percentage the member is availible for projects	projectmanager	hu	Projekttagnak a projektekben felhasználható %-os rendelkezésre állása
-percentage the member is availible for this project	projectmanager	hu	Projekttagnak ebben a projektekben felhasználható %-os rendelkezésre állása
+percentage the member is availible for projects	projectmanager	hu	Projekttag rendelkezésre állása a projektben
+percentage the member is availible for this project	projectmanager	hu	Projekttag rendelkezésre állása a projektben.
 permission denied !!!	projectmanager	hu	Hozzáférés megtagadva!
 planned	projectmanager	hu	tervezett
 planned times	projectmanager	hu	Tervezett idõráfordítás
@@ -185,7 +185,7 @@ show planned times instead of the real times	projectmanager	hu	Tervezett idõ mut
 show status icons of the datasources	projectmanager	hu	Adatforrások státusz ikonjainak mutatása
 site configuration saved	projectmanager	hu	Webhely konfiguráció elmentve
 start after	projectmanager	hu	Indulás késõbb
-start working on %1	projectmanager	hu	%1 munka elkezdõdött
+start working on %1	projectmanager	hu	Munkaidõ kezdete %1
 start, end, category, ...	projectmanager	hu	Indulás, befejezés, kategória ...
 start- & enddate	projectmanager	hu	Indulási- és befejezési dátum
 startdate	projectmanager	hu	Indulási dátum
@@ -196,7 +196,7 @@ synchronise all	projectmanager	hu	Összes szinkronizálása
 template	projectmanager	hu	Sablon
 template including elment-tree saved as new project	projectmanager	hu	A sablon a hozzá tartozó elemekkel együtt az újonnan létrehozott projektbe átmásolva.
 time	projectmanager	hu	Idõ
-times	projectmanager	hu	Idõk
+times	projectmanager	hu	Idõtartam
 title must not be empty	projectmanager	hu	Cím nem lehet üres
 unit	projectmanager	hu	Egység
 unitprice	projectmanager	hu	Egységár
@@ -212,7 +212,8 @@ view this milestone	projectmanager	hu	Mérföldkõ megtekintése
 view this price	projectmanager	hu	Ár megtekintése
 view this project	projectmanager	hu	Projekt megtekintése
 view this project-element	projectmanager	hu	Projekt-elem megtekintése
-working duration on %1	projectmanager	hu	Mûdödési idõtartam
+working duration on %1	projectmanager	hu	Munkaidõ %1
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	hu	Régi JPGraph verziót használ, ami korlátozott képességekkel rendelkezik. Frissítés javasolt.
 you can leave the date of the first price empty	projectmanager	hu	az elsõ ár bejegyzés dátum mezõjét üresen lehet hagyni
 you need to select a project first	projectmanager	hu	Elõbb projekt kiválasztása szükséges
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	hu	Az adatbázis nem friss (%1 <-> %2), kérem %3frissítse%4 az adatbázist.
