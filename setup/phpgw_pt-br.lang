@@ -183,6 +183,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	pt-br	Mostra regras e marcos
 show planned times instead of the real times	projectmanager	pt-br	Mostra horas planejadas no lugar de horas reais
 show status icons of the datasources	projectmanager	pt-br	Mostra ícones de estado das origens de dados
+site configuration	projectmanager	pt-br	Configuração do site
 site configuration saved	projectmanager	pt-br	Configuração do site salva
 start after	projectmanager	pt-br	Começar depois
 start working on %1	projectmanager	pt-br	Iniciando o trabalho em %1
