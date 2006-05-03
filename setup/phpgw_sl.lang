@@ -1,0 +1,70 @@
+%1 element(s) updated	projectmanager	sl	%1 element(-a/-i/-ov) posodobljen(-a/-i/-ih)
+%1 new project-elements imported	projectmanager	sl	%1 novih elementov projekta je bilo uvoženih
+%1 projects deleted	projectmanager	sl	%1 projektov je bilo zbrisanih
+%1 times permission denied, %2 projects deleted	projectmanager	sl	%1 krat je bil dostop zavrnjen, %2 projektov zbrisanih
+- planned	projectmanager	sl	- planirano
+0ngoing (0 < % < 100)	projectmanager	sl	V teku (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	sl	Opisni naslov projekta ne sme bit prazen
+accounting	projectmanager	sl	Računovodstvo
+accounting options	projectmanager	sl	Možnosti računovodstva
+accounting type	projectmanager	sl	Vrsta računovodstva
+actions	projectmanager	sl	Dejanja
+activity	projectmanager	sl	Aktivnost
+add a new milestone	projectmanager	sl	Dodaj nov milestone
+add a new project	projectmanager	sl	Dodaj nov projekt
+add element	projectmanager	sl	Dodaj element
+add existing	projectmanager	sl	Dodaj obstoječega
+add milestone	projectmanager	sl	Dodaj milestone
+add price	projectmanager	sl	Dodaj ceno
+add project	projectmanager	sl	Dodaj projekt
+add project-elements	projectmanager	sl	Dodaj elemente projekta
+allow users to change their working times	projectmanager	sl	Dovoli uporabnikom spreminjanje svojega delovnega časa
+allowed accounting types	projectmanager	sl	Dovoljene vrste računovodstva
+allowed units	projectmanager	sl	Dovoljene enote
+app.	projectmanager	sl	Apl.
+apply the changes	projectmanager	sl	Uveljavi spremenbe
+archive	projectmanager	sl	Arhiv
+assistant	projectmanager	sl	Pomočnik
+at which time do you start working on the given day.	projectmanager	sl	Ob kateri uri začnete delati na določen dan.
+availible	projectmanager	sl	Na voljo
+budget	projectmanager	sl	Proračun
+budget (no pricelist)	projectmanager	sl	Proračun (brez stroškovnika)
+budget and pricelist	projectmanager	sl	Proračun s stroškovnikom
+by	projectmanager	sl	od
+check all	projectmanager	sl	Izberi vse
+coordinator	projectmanager	sl	Koordinator
+cost per time	projectmanager	sl	Strošek na uro
+create new links	projectmanager	sl	Ustvari nove povezave
+created	projectmanager	sl	ustvarjeno
+custom fields	projectmanager	sl	Lastna polja
+datasource	projectmanager	sl	Vir podatkov
+dates	projectmanager	sl	Datumi
+delete all checked projects	projectmanager	sl	Zbriši vse izbrane projekte
+delete this price	projectmanager	sl	Zbriši to ceno
+delete this project	projectmanager	sl	Zbriši ta projekt
+depth of display	projectmanager	sl	Globina prikaza
+done (100%)	projectmanager	sl	Narejeno (100%)
+edit budget	projectmanager	sl	Uredi proračun
+edit price	projectmanager	sl	Uredi ceno
+edit project	projectmanager	sl	Uredi projekt
+edit project-elements	projectmanager	sl	Uredi elemente projekta
+edit this price	projectmanager	sl	Uredi to ceno
+edit this project	projectmanager	sl	Uredi ta projekt
+edit this project-element	projectmanager	sl	Uredi ta element projekta
+elementlist	projectmanager	sl	Seznam elementov
+empty	projectmanager	sl	Prazno
+end before	projectmanager	sl	Konec pred
+enddate	projectmanager	sl	Končni datum
+existing links	projectmanager	sl	Obstoječe povezave
+full access	projectmanager	sl	poln dostop
+general	projectmanager	sl	Splošno
+h	projectmanager	sl	h
+hours	projectmanager	sl	ure
+last modified	projectmanager	sl	nazadnje spremenjeno
+links	projectmanager	sl	Povezave
+members	projectmanager	sl	Člani
+modified	projectmanager	sl	Spremenjeno
+new	projectmanager	sl	nov
+price	projectmanager	sl	Cena
+pricelist	projectmanager	sl	Cenik
+quantity	projectmanager	sl	Količina
