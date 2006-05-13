@@ -145,7 +145,7 @@ class soprojectelements extends so_sql
 	 */
 	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
 	{
-		if ($this->pm_id && !isset($criteria['pm_id']) && (!isset($filter['pm_id']) || !$filter['pm_id']))
+		if ($this->pm_id && (!isset($filter['pm_id']) || !$filter['pm_id']))
 		{
 			$filter['pm_id'] = $this->pm_id;
 		}
