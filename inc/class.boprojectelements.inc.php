@@ -251,7 +251,20 @@ class boprojectelements extends soprojectelements
 	 */
 	function &sync_all($pm_id=null)
 	{
+		if (!is_array($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited']))
+		{
+			$GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'] = array();
+		}
 		if (!$pm_id && !($pm_id = $this->pm_id)) return 0;
+		
+		if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("boprojectelements::sync_all(pm_id=$pm_id)");
+
+		if ($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id])	// project already visited
+		{
+			if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("boprojectelements::sync_all(pm_id=$pm_id) stoped recursion, as pm_id in (".implode(',',array_keys($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'])).")");
+			return 0;							// no further recursion, might lead to an infinit loop
+		}
+		$GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id] = true;
 		
 		$save_project = $this->project->data;
 		
@@ -270,6 +283,8 @@ class boprojectelements extends soprojectelements
 			$this->project->update($pm_id,$update_project);
 		}
 		if ($this->project->data['pm_id'] != $save_project['pm_id']) $this->project->data =& $save_project;
+
+		unset($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id]);
 
 		return $updated;
 	}
