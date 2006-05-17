@@ -577,7 +577,7 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function log2file($msg)
 	{
-		if ($this->logfile && ($f = fopen($this->logfile,'a+')))
+		if ($this->logfile && ($f = @fopen($this->logfile,'a+')))
 		{
 			fwrite($f,date('Y-m-d H:i:s: ').$GLOBALS['egw']->common->grab_owner_name($GLOBALS['egw_info']['user']['account_id'])."\n");
 			fwrite($f,$msg."\n\n");
