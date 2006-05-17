@@ -238,7 +238,9 @@ class soprojectmanager extends so_sql
 			$extra_cols = array_merge($extra_cols,array(
 				$this->acl_extracols,
 				$this->table_name.'.pm_id AS pm_id',
-			));			
+			));
+			if ($only_keys == true) $only_keys='';	// otherwise we use ambigues pm_id
+	
 			if (isset($criteria['pm_id']))
 			{
 				$criteria[$this->table_name.'.pm_id'] = $criteria['pm_id'];
