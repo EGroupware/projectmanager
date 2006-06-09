@@ -105,7 +105,7 @@ hours	projectmanager	sk	hodín
 hours per workday	projectmanager	sk	Hodín pracovného dòa
 how long do you work on the given day.	projectmanager	sk	Koµko hodín pracujete v daný deò.
 ignore that entry	projectmanager	sk	ignorova» túto polo¾ku
-ignored	projectmanager	sk	ignorované
+ignored	projectmanager	sk	Ignorované
 last modified	projectmanager	sk	Naposledy upravené
 leave it empty if you dont need a different customer title	projectmanager	sk	Ponechajte prázdne, ak nepotrebujete odli¹né meno klienta
 leave it empty to have one generated	projectmanager	sk	ponechajte prázdne, ak chcete aby sa automaticky pridelilo
@@ -199,7 +199,7 @@ times	projectmanager	sk	Èasy
 title must not be empty	projectmanager	sk	Názov nesmie by» prázdny
 unit	projectmanager	sk	Jednotka
 unitprice	projectmanager	sk	Cena za jednotku
-used	projectmanager	sk	pou¾ité
+used	projectmanager	sk	Pou¾ité
 valid since	projectmanager	sk	Platné od
 view ganttchart of this project	projectmanager	sk	Zobrazi» priebehový diagram tohto projektu
 view milestone	projectmanager	sk	Zobrazi» medzník
