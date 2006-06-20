@@ -55,6 +55,12 @@ $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'etemplate',
 	 'versions' => Array('1.0.0','1.0.1','1.2','1.3')
 );
+// installation checks for email
+$setup_info['projectmanager']['check_install'] = array(
+	'gd' => array(
+		'func' => 'gd_check',
+	),
+);
 
 
 
