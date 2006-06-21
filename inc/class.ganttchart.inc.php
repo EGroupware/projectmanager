@@ -14,16 +14,33 @@
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
 
-define('TTF_DIR',EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/');
+// check if the admin installed a recent JPGraph parallel to eGroupWare
 if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 {
 	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php');
 	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph_gantt.php');
+	
+	// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
+	foreach(array(
+		'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
+		'C:/windows/fonts/',					// windows default
+		// add your location here ...
+		EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/',	// our bundled Vera font
+	) as $dir)
+	{
+		if (@is_dir($dir) && (is_readable($dir.'arial.ttf') || is_readable($dir.'Vera.ttf')))
+		{
+			define('TTF_DIR',$dir);
+			unset($dir);
+			break;
+		}
+	}
 }
 else
 {
 	include(EGW_SERVER_ROOT . '/projectmanager/inc/jpgraph-1.5.2/src/jpgraph.php');
 	include(EGW_SERVER_ROOT . '/projectmanager/inc/jpgraph-1.5.2/src/jpgraph_gantt.php');
+	define('TTF_DIR',EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/');
 }
 
 // some constanst for pre php4.3
@@ -54,10 +71,36 @@ class ganttchart extends boprojectelements
 		'show'   => true,
 	);
 	/**
-	 * @var boolean $modernJPGraph true if JPGraph version > 1.13
+	 * true if JPGraph version > 1.13
+	 * 
+	 * @var boolean
 	 */
 	var $modernJPGraph;
+	/**
+	 * Charset used internaly by eGW, $GLOBALS['egw']->translation->charset()
+	 *
+	 * @var string
+	 */
 	var $charset;
+	/**
+	 * Font used for the Gantt Chart, in the form used by JPGraphs SetFont method
+	 * 
+	 * The constructor checks for FF_ARIAL if TTF_DIR.'arial.ttf' is readable and sets FF_VERA instead if not
+	 * 
+	 * You can try with every font-family specified in jpgraph.php AND availible on your system:
+	 * eg. FF_CHINESE, FF_MINCHO, ...
+	 * Dont forget to also set $gantt_charset accordingly!
+	 * 
+	 * @var string
+	 */
+	var $gantt_font = FF_ARIAL;
+	/**
+	 * Charset used by the above font, gets set by constructor if $gannt_font is NOT set!
+	 * 
+	 * @var string
+	 */
+	var $gantt_charset = 'iso-8859-1';
+
 	var $debug;
 	var $scale_start,$scale_end;
 	var $tmpl;
@@ -111,6 +154,34 @@ class ganttchart extends boprojectelements
 		}
 		$this->charset = $GLOBALS['egw']->translation->charset();
 		$this->prefs =& $GLOBALS['egw_info']['user']['preferences'];
+		
+		// check if a arial font is availible and set FF_VERA (or bundled font) if not
+		if ($this->gantt_font == FF_ARIAL && !is_readable(TTF_DIR.'arial.ttf'))
+		{
+			$this->gantt_font = FF_VERA;
+		}
+	}
+	
+	/**
+	 * Converts text from eGW's internal encoding to something understood by JPGraph / GD
+	 *
+	 * The only working thing I found so far is numeric html-entities from iso-8859-1.
+	 * If you found other encoding do work, please let mit know: RalfBecker-AT-outdoor-training.de
+	 * It would be nice if we could use the full utf-8 charset, if supported by the used font.
+	 * 
+	 * @param string $text
+	 * @return string
+	 */
+	function text_encode($text)
+	{
+		// convert to the charset used for the gantchart
+		$text = $GLOBALS['egw']->translation->convert($text,$this->charset,$this->gantt_charset);
+
+		// convert everything above ascii to nummeric html entities
+		// not sure if this is necessary for non iso-8859-1 charsets, try to comment it out if you have problems
+		$text = preg_replace('/[^\x00-\x7F]/e', '"&#".ord("$0").";"',$text);
+		
+		return $text;
 	}
 	
 	/**
@@ -221,14 +292,14 @@ class ganttchart extends boprojectelements
 			$graph->ShowHeaders(GANTT_HYEAR | GANTT_HMONTH);
 		}
 		// Change the font scale 
-		$graph->scale->week->SetFont(FF_VERA,FS_NORMAL,8);
-		$graph->scale->year->SetFont(FF_VERA,FS_BOLD,10);
+		$graph->scale->week->SetFont($this->gantt_font,FS_NORMAL,8);
+		$graph->scale->year->SetFont($this->gantt_font,FS_BOLD,10);
 		
 		// Title & subtitle
-		$graph->title->Set($title);
-		$graph->title->SetFont(FF_VERA,FS_BOLD,12);
-		$graph->subtitle->Set($subtitle);
-		$graph->subtitle->SetFont(FF_VERA,FS_NORMAL,10);
+		$graph->title->Set($this->text_encode($title));
+		$graph->title->SetFont($this->gantt_font,FS_BOLD,12);
+		$graph->subtitle->Set($this->text_encode($subtitle));
+		$graph->subtitle->SetFont($this->gantt_font,FS_NORMAL,10);
 		
 		return $graph;
 	}
@@ -262,7 +333,7 @@ class ganttchart extends boprojectelements
 		$bar =& $this->element2bar($pe,$level,$line,$planned_times);
 
 		// set project-specific attributes: bold, solid bar, ...
-		$bar->title->SetFont(FF_VERA,FS_BOLD,!$level ? 9 : 8);
+		$bar->title->SetFont($this->gantt_font,FS_BOLD,!$level ? 9 : 8);
 		$bar->SetPattern(BAND_SOLID,"#9999FF");
 		
 		if ($this->modernJPGraph && !$pe['pe_id'])	// main-project
@@ -300,7 +371,7 @@ class ganttchart extends boprojectelements
 		if ((int) $this->debug >= 1) 
 		{
 			echo "<p>GanttBar($line,'".($level ? str_repeat(' ',$level) : '').
-				$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').'   '."','".
+				$this->text_encode($title).'   '."','".
 				date('Y-m-d H:i',$pe['pe_start'])."','".date('Y-m-d H:i',$pe['pe_end'])."','".
 				round($pe['pe_completion']).'%'."',0.5)</p>\n";
 		}		
@@ -310,8 +381,7 @@ class ganttchart extends boprojectelements
 			if ($pe['pe_end'] > $this->scale_end) $pe['pe_end'] = $this->scale_end-1;
 		}
 		$bar =& new GanttBar($line,($level ? str_repeat(' ',$level) : '').
-			// the GanttBar title has somehow to be iso-8859-1
-			$GLOBALS['egw']->translation->convert($title,$this->charset,'iso-8859-1').
+			$this->text_encode($title).
 			($level ? '  ' : ''),	// fix for wrong length calculation in JPGraph
 			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_start']),
 			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_end']),
@@ -351,12 +421,11 @@ class ganttchart extends boprojectelements
 				date($this->prefs['common']['dateformat'],$milestone['ms_date']).")</p>\n";
 		}
 		$ms =& new MileStone($line,($level ? str_repeat(' ',$level) : '').
-			// the Milestone title has somehow to be iso-8859-1
-			$GLOBALS['egw']->translation->convert($milestone['ms_title'],$this->charset,'iso-8859-1'),
+			$this->text_encode($milestone['ms_title']),
 			date('Y-m-d',$milestone['ms_date']),
 			date($this->prefs['common']['dateformat'],$milestone['ms_date']));
 		
-		$ms->title->SetFont(FF_VERA,FS_ITALIC,8);
+		$ms->title->SetFont($this->gantt_font,FS_ITALIC,8);
 		$ms->title->SetColor('blue');
 		$ms->mark->SetColor('black');
 		$ms->mark->SetFillColor('blue');
@@ -657,7 +726,12 @@ class ganttchart extends boprojectelements
 		unset($content['update']);
 		$content = $this->url2params($content);
 	
-		$img = tempnam('','ganttchart');
+		$tmp = $GLOBALS['egw_info']['server']['temp_dir'];
+		if (!is_dir($tmp) || !is_writable($tmp))
+		{
+			$tmp = '';
+		}
+		$img = tempnam($tmp,'ganttchart');
 		$img_name = basename($img);
 		$map = $this->create($content,$img,'ganttchart');
 		// replace the regular links with popups

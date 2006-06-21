@@ -21,9 +21,13 @@
  */
 error_reporting(E_ALL & ~E_NOTICE);
 
-unlink($other = tempnam('','test'));	// get the systems temp-dir
-
-if (isset($_GET['img']) && is_readable($ganttchart= dirname($other).'/'.basename($_GET['img'])))
+$tmp = $GLOBALS['egw_info']['server']['temp_dir'];
+if (!$tmp || !is_dir($tmp) || !is_writable($tmp))
+{
+	unlink($tmp = tempnam('','test'));	// get the systems temp-dir
+	$tmp = dirname($tmp);
+}
+if (isset($_GET['img']) && is_readable($ganttchart = $tmp.'/'.basename($_GET['img'])))
 {
 	header('Content-type: image/png');
 	readfile($ganttchart);
