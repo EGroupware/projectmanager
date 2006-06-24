@@ -363,7 +363,7 @@ class boprojectmanager extends soprojectmanager
 	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE, EGW_ACL_BUDGET, EGW_ACL_EDIT_BUDGET
 	 * @param array/int $data=null project or project-id to use, default the project in $this->data
 	 * @param boolean $no_cache=false should a cached value be used, if availible, or not
-	 * @return boolean true if the rights are ok, false if not
+	 * @return boolean true if the rights are ok, false if not or null if entry not found
 	 */
 	function check_acl($required,$data=0,$no_cache=false)
 	{
@@ -384,7 +384,7 @@ class boprojectmanager extends soprojectmanager
 					$data =& $this->read($data);
 					$this->data =& $data_backup; unset($data_backup);
 				
-					if (!$data) return false;	// $pm_id not found ==> no rights
+					if (!$data) return null;	// $pm_id not found ==> no rights
 				}
 			}
 			else
@@ -412,12 +412,33 @@ class boprojectmanager extends soprojectmanager
 	}
 	
 	/**
+	 * Read a project
+	 * 
+	 * reimplemented to add an acl check
+	 *
+	 * @param array $keys
+	 * @return array/boolean array with project, null if project not found or false if no perms to view it
+	 */
+	function read($keys)
+	{
+		if (!parent::read($keys))
+		{
+			return null;
+		}
+		if (!$this->check_acl(EGW_ACL_READ))
+		{
+			return false;
+		}
+		return $this->data;
+	}
+	
+	/**
 	 * get title for an project identified by $entry
 	 * 
 	 * Is called as hook to participate in the linking
 	 *
 	 * @param int/array $entry int pm_id or array with project entry
-	 * @param string the title
+	 * @param string/boolean string with title, null if project not found or false if no perms to view it
 	 */
 	function link_title( $entry )
 	{
@@ -427,7 +448,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		if (!$entry)
 		{
-			return False;
+			return $entry;
 		}
 		return $entry['pm_number'].': '.$entry['pm_title'];
 	}
