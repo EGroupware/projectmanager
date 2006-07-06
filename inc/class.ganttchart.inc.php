@@ -17,9 +17,6 @@ include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.p
 // check if the admin installed a recent JPGraph parallel to eGroupWare
 if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 {
-	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php');
-	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph_gantt.php');
-	
 	// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
 	foreach(array(
 		'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
@@ -35,6 +32,8 @@ if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 			break;
 		}
 	}
+	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php');
+	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph_gantt.php');
 }
 else
 {
