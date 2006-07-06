@@ -26,6 +26,6 @@ DEFINE("APACHE_CACHE_DIR","/jpgraph_cache/");
 
 // Directory for TTF fonts. Must end with '/'
 #DEFINE("TTF_DIR","/usr/local/fonts/ttf/");
-DEFINE("TTF_DIR",PHPGW_SERVER_ROOT."/projects/ttf-bitstream-vera-1.10/");
+DEFINE("TTF_DIR",EGW_SERVER_ROOT."/projectmanager/inc/ttf-bitstream-vera-1.10/");
 
 ?>
