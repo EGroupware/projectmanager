@@ -14,6 +14,9 @@
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
 
+// JPGraph does not work, if that got somehow set, so unset it
+if (isset($GLOBALS['php_errormsg'])) { unset ($GLOBALS['php_errormsg']); }
+
 // check if the admin installed a recent JPGraph parallel to eGroupWare
 if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 {
