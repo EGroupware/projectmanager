@@ -42,7 +42,7 @@
 						<date-duration id="pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
 					</vbox>
 					<vbox>
-						<nextmatch-sortheader label="Budget" readonly="true" id="pe_used_budget"/>
+						<nextmatch-sortheader label="Budget" id="pe_used_budget"/>
 						<description id="pe_used_budget" no_lang="1"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_budget" class="planned"/>
 						<description id="pe_planned_budget" no_lang="1"/>
