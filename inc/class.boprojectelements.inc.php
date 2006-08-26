@@ -1,74 +1,89 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - Elements business object                   *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - Elements business object
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectelements.inc.php');
 
 /**
  * Elements business object of the projectmanager
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class boprojectelements extends soprojectelements
 {
 	/**
-	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
+	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
+	 * 
+	 * @var int/string
 	 */
 	var $debug=false;
 	/**
-	 * @var bolink-object $link instance of the link-class
+	 * Instance of the link-class
+	 * 
+	 * @var bolink
 	 */
 	var $link;
 	/**
-	 * @var boprojectmanager-object $link instance of the boprojectmanager-class
+	 * Instance of the boprojectmanager-class
+	 * 
+	 * @var boprojectmanager
 	 */
 	var $project;
 	/**
-	 * @var array $project_summary array with summary information of the current project
+	 * Summary information of the current project
+	 * 
+	 * @var array
 	 */
 	var $project_summary;
 	/**
-	 * @var soconstraints-object $constraints instance of the soconstraints-class
+	 * Instance of the soconstraints-class
+	 * 
+	 * @var soconstraints
 	 */
 	var $constraints;
 	/**
-	 * @var somilestones-object $milestones instance of the somilestones-class
+	 * Instance of the somilestones-class
+	 * 
+	 * @var somilestones
 	 */
 	var $milestones;
 	/**
-	 * @var array $datasources instances of the different datasources
+	 * Instances of the different datasources
+	 * 
+	 * @var array
 	 */
 	var $datasources = array();
 	/**
-	 * @var array $timestamps timestaps that need to be adjusted to user-time on reading or saving
+	 * Timestaps that need to be adjusted to user-time on reading or saving
+	 * 
+	 * @var array
 	 */
 	var $timestamps = array(
 		'pe_synced','pe_modified','pe_planned_start','pe_real_start','pe_planned_end','pe_real_end',
 	);
 	/**
-	 * @var int $tz_offset_s offset in secconds between user and server-time,
-	 *	it need to be add to a server-time to get the user-time or substracted from a user-time to get the server-time
+	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time 
+	 * or substracted from a user-time to get the server-time
+	 * 
+	 * @var int
 	 */
 	var $tz_offset_s;
 	/**
-	 * @var int $now_su is the time as timestamp in user-time
+	 * Current time as timestamp in user-time
+	 * 
+	 * @var int
 	 */
 	var $now_su;
 	/**
-	 * @var array $status_filter translates filter-values to allowed stati
+	 * Translates filter-values to allowed stati
+	 * 
+	 * @var array
 	 */
 	var $status_filter = array(
 		'all'     => false,
@@ -77,7 +92,9 @@ class boprojectelements extends soprojectelements
 		'ignored' => 'ignore',
 	);
 	/**
-	 * @var int $updated or'ed id's of the values set by the last call to the updated method
+	 * Or'ed id's of the values set by the last call to the updated method
+	 * 
+	 * @var int
 	 */
 	var $updated = 0;
 
@@ -86,6 +103,7 @@ class boprojectelements extends soprojectelements
 	 * 
 	 * @param int $pm_id pm_id of the project to use, default null
 	 * @param int $pe_id pe_id of the project-element to load, default null
+	 * @return boprojectelements
 	 */
 	function boprojectelements($pm_id=null,$pe_id=null)
 	{
@@ -103,6 +121,7 @@ class boprojectelements extends soprojectelements
 			$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
 		}
 		$this->link =& $GLOBALS['egw']->link;
+		$this->links_table = $this->link->link_table;
 
 		$this->project =& CreateObject('projectmanager.boprojectmanager',$pm_id);
 		$this->config =& $this->project->config;
@@ -618,4 +637,81 @@ class boprojectelements extends soprojectelements
 
 		return true;
 	}
-}
+
+	/**
+	 * Search elements
+	 * 
+	 * Reimplemented to cumulate eg. timesheets in also included infologs, if $filter['cumulate'] is true.
+	 *
+	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
+	 * @param boolean $only_keys True returns only keys, False returns all cols
+	 * @param string $order_by fieldnames + {ASC|DESC} separated by colons ','
+	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
+	 * @param string $wildcard appended befor and after each criteria
+	 * @param boolean $empty False=empty criteria are ignored in query, True=empty have to be empty in row
+	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
+	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
+	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
+	 * @param string/boolean $join=true default join with links-table or string as in so_sql
+	 * @return array of matching rows (the row is an array of the cols) or False
+	 */
+	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
+	{
+		if ($this->pm_id && (!isset($filter['pm_id']) || !$filter['pm_id']))
+		{
+			$filter['pm_id'] = $this->pm_id;
+		}
+		if ($filter['cumulate'])
+		{
+			$cumulate = array();
+			foreach((array)$GLOBALS['egw']->hooks->process(array(
+				'location' => 'pm_cumulate',
+				'pm_id' => $filter['pm_id'],
+			)) as $app => $data)
+			{
+				if (is_array($data)) $cumulate += $data;
+			}
+			if ($cumulate)
+			{
+				//echo "<p align=right>cumulate-filter: ".$this->db->expression($this->table_name,'NOT ',array('pe_id' => array_keys($cumulate)))."</p>\n";
+				$filter[] = $this->db->expression($this->table_name,'NOT ',array('pe_id' => array_keys($cumulate)));
+			}
+		}
+		$rows = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		
+		if ($rows && $cumulate)
+		{
+			// get the pe_id of all returned rows
+			$row_pe_ids = array();
+			foreach($rows as $k => $row)
+			{
+				$row_pe_ids[$k] = $row['pe_id'];
+			}
+			// get pe_id's of to cumulate entries which are in $rows
+			$cumulate_in = array();
+			foreach($cumulate as $pe_id => $data)
+			{
+				if (in_array($data['other_id'],$row_pe_ids))
+				{
+					$cumulate_in[$pe_id] = $data['other_id'];
+				}
+			}
+			if ($cumulate_in)	// do we have something (timesheets) to cumulate
+			{
+				foreach(parent::search(array('pe_id' => array_keys($cumulate_in)),false) as $to_cumulate)
+				{
+					// get the row, where the entry cumulates
+					if (($k = array_search($cumulate_in[$to_cumulate['pe_id']],$row_pe_ids)) !== false)
+					{
+						//echo "kumulated in ".$rows[$k]['pe_title']; _debug_array($rows);
+						foreach(array('pe_planned_time','pe_used_time','pe_planned_budget','pe_used_budget') as $name)
+						{
+							if ($to_cumulate[$name]) $rows[$k][$name] += $to_cumulate[$name];
+						}
+						//echo "-->"; _debug_array($rows);
+					}
+				}
+			}
+		}
+		return $rows;
+	}}

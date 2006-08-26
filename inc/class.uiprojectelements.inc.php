@@ -1,31 +1,26 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - UI list and edit projects-elements         *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - UI to list and edit project-elments
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
 
 /**
  * ProjectManage UI: list and edit projects-elements
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class uiprojectelements extends boprojectelements  
 {
 	/**
-	 * @var array $public_functions Functions to call via menuaction
+	 * Functions to call via menuaction
+	 * 
+	 * @var array
 	 */
 	var $public_functions = array(
 		'index' => true,
@@ -33,20 +28,28 @@ class uiprojectelements extends boprojectelements
 		'view'  => true,
 	);
 	/**
-	 * @var etemplate-object $tpl instance of the etemplate class
+	 * Instance of the etemplate class
+	 * 
+	 * @var etemplate
 	 */
 	var $tpl;
 	/**
-	 * @var array $status_labels labels for status-filter
+	 * Labels for status-filter
+	 * 
+	 * @var array
 	 */
 	var $status_labels;
 	/**
-	 * @var array $config config-settings for projectmanager
+	 * Config-settings for projectmanager
+	 * 
+	 * @var array
 	 */
 	var $config;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
+	 *
+	 * @return uiprojectelements
 	 */
 	function uiprojectelements()
 	{
@@ -417,8 +420,16 @@ class uiprojectelements extends boprojectelements
 		{
 			unset($query['col_filter']['pe_resources']);
 		}
+		if ($query['filter2'] & 2)	// show sub-elements (elements of sub-projects)
+		{
+			$query['col_filter']['pm_id'] = $this->project->children($this->pm_id,array($this->pm_id));
+			if (count($query['col_filter']['pm_id']) <= 1) $query['col_filter']['pm_id'] = $this->pm_id;
+		}
+		// cumulate eg. timesheets in also included infologs
+		$query['col_filter']['cumulate'] = !($query['filter2'] & 4);
 		$total = parent::get_rows($query,$rows,$readonlys,true);
-		
+		unset($query['col_filter']['cumulate']);
+
 		// adding the project itself always as first line
 		$self = $this->update('projectmanager',$this->pm_id);
 		$self['pe_app']    = 'projectmanager';
@@ -458,7 +469,7 @@ class uiprojectelements extends boprojectelements
 						lang('View this element in %1',lang($row['pe_app'])),
 				);
 			}
-			if (!$query['filter2']) unset($row['pe_details']);
+			if (!($query['filter2']&1)) unset($row['pe_details']);
 			
 			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : $row['pe_completion'];
 			
@@ -482,7 +493,8 @@ class uiprojectelements extends boprojectelements
 		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
 
 		// calculate the filter-specific summary if we have a filter, beside the default pe_status=used=array(new,regular)
-		if (count($query['col_filter']) > (int)isset($query['col_filter']['pe_status']) || !is_array($query['col_filter']['pe_status']))
+		if ((count($query['col_filter']) > (int)isset($query['col_filter']['pe_status']) || !is_array($query['col_filter']['pe_status'])) &&
+			!($query['filter2'] & 2))	// dont show summary on recursive view, as it's wrong, because the subprojects count now double
 		{
 			$rows += $this->summary(null,$query['col_filter']);
 		}
@@ -551,8 +563,14 @@ class uiprojectelements extends boprojectelements
 				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
 				'options-filter' => $this->status_labels,
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
-				'options-filter2' => array('no details','details'),
-//				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
+				'options-filter2' => array(
+					0 => 'No details',
+					1 => 'Details',
+					2 => 'Subelements',
+					3 => 'Details of subelements',
+					4 => 'Cumulated elements too',
+					5 => 'Details of cumulated',
+				),
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 			);

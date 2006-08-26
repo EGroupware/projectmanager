@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	de	Erstellt ein neue
 create new links	projectmanager	de	Neue Verknüpfung erstellen
 created	projectmanager	de	Erstellt
 created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Ganttchart von den gewählten Projekten
+cumulated elements too	projectmanager	de	Auch zusammengefaßte Elemente
 custom fields	projectmanager	de	Extra
 customer title	projectmanager	de	Kundentitel
 datasource	projectmanager	de	Datenquelle
@@ -59,6 +60,8 @@ delete this project	projectmanager	de	Dieses Projekt löschen
 delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
 delete this role	projectmanager	de	Diese Rolle löschen
 depth of display	projectmanager	de	Tiefe der Anzeige
+details of cumulated	projectmanager	de	Details der zusammengefaßten
+details of subelements	projectmanager	de	Details der Unterelemente
 do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
 done (100%)	projectmanager	de	erledigt (100%)
 edit access, incl. editing budget and elements	projectmanager	de	Zugriff zum Bearbeiten, einschl. Budget und Element bearbeiten
@@ -105,6 +108,7 @@ health	projectmanager	de	Gesundheit
 hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
 last modified	projectmanager	de	Zuletzt geändert
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	de	Wählt mehrere Projekte für einen weiteren Befehl aus
 select the accounting types visible for users of projectmanager	projectmanager	de	wählen sie die Abrechnungsarten die für Benutzer des Projektmanagers sichtbar sind
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
+selectbox with %1	projectmanager	de	Auswahlbox mit %1
 share	projectmanager	de	Anteil
 share on the whole project	projectmanager	de	Anteil am Gesamtprojekt
 share on the whole project in hours or percent, defaults to planned time	projectmanager	de	Anteil am Gesamtprojekt in Stunden oder prozentual, Vorgabe ist geplante Zeit
@@ -183,6 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
 show status icons of the datasources	projectmanager	de	Status Icons der Datenquellen anzeigen
+show the project selection as	projectmanager	de	Zeige die Projektauswahl als
 site configuration saved	projectmanager	de	Konfiguration gespeichert
 start after	projectmanager	de	Startet nach
 start working on %1	projectmanager	de	Arbeitsbeginn am %1
@@ -191,6 +197,7 @@ start- & enddate	projectmanager	de	Start- & Enddatum
 startdate	projectmanager	de	Startdatum
 state	projectmanager	de	Zustand
 status filter	projectmanager	de	Status Filter
+subelements	projectmanager	de	Unterelemente
 subprojects	projectmanager	de	Unterprojekte
 synchronise all	projectmanager	de	Alle synchronisieren
 template	projectmanager	de	Vorlage
@@ -198,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	de	Vorlage ei
 time	projectmanager	de	Zeit
 times	projectmanager	de	Zeiten
 title must not be empty	projectmanager	de	Titel darf nicht leer sein
+tree with %1	projectmanager	de	Baum mit %1
 unit	projectmanager	de	Einheit
 unitprice	projectmanager	de	Preis pro Einheit
 used	projectmanager	de	benutzt

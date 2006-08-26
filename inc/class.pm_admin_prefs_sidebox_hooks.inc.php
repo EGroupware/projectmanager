@@ -67,48 +67,6 @@ class pm_admin_prefs_sidebox_hooks
 			{
 				$pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 			}
-			// include the filter of the projectlist into the tree, eg. if you watch the list of templates, include them in the tree
-			$filter = array('pm_status' => 'active');
-			$list_filter = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
-			if ($_GET['menuaction'] == 'projectmanager.uiprojectmanager.index' && isset($_POST['exec']['nm']['filter2']))
-			{
-				//echo "<p align=right>set pm_status={$_POST['exec']['nm']['filter2']}</p>\n";
-				$list_filter['pm_status'] = $_POST['exec']['nm']['filter2'];	// necessary as uiprojectmanager::get_rows is not yet executed
-			}
-			if(in_array($list_filter['filter2'],array('nonactive','archive','template')))
-			{
-				$filter['pm_status'] = array('active',$list_filter['filter2']);
-			}
-			$selected_project = false;
-			$projects = array();
-			foreach($GLOBALS['boprojectmanager']->get_project_tree($filter) as $project)
-			{
-				$projects[$project['path']] = array(
-					'label' => $project['pm_number'],
-					'title' => $project['pm_title'],
-				);
-				if (!$selected_project && $pm_id == $project['pm_id']) $selected_project = $project['path'];
-			}
-			if ($_GET['menuaction'] == 'projectmanager.uipricelist.index')
-			{
-				$projects['general'] = array(
-					'label' => lang('General pricelist'),
-					'image' => 'kfm_home.png',
-				);
-				if (!$pm_id) $selected_project = 'general';	
-			}
-			switch($_GET['menuaction'])
-			{
-				case 'projectmanager.ganttchart.show':
-				case 'projectmanager.uipricelist.index':
-					$selbox_action = $_GET['menuaction'];
-					break;
-				default:
-					$selbox_action = 'projectmanager.uiprojectelements.index';
-					break;
-			}
-			$select_link = $GLOBALS['egw']->link('/index.php',array('menuaction' => $selbox_action)).'&pm_id=';
-
 			$file = array(
 				'Projectlist' => $GLOBALS['egw']->link('/index.php',array(
 					'menuaction' => 'projectmanager.uiprojectmanager.index' )),
@@ -137,16 +95,55 @@ class pm_admin_prefs_sidebox_hooks
 						 $GLOBALS['boprojectmanager']->data['pm_accounting_type'] == 'pricelist' ? $pm_id : 0,
 				));
 			}
-			if ($projects)	// show project-tree only if it's not empty
+
+			// include the filter of the projectlist into the projectlist, eg. if you watch the list of templates, include them in the tree
+			$filter = array('pm_status' => 'active');
+			$list_filter = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
+			if ($_GET['menuaction'] == 'projectmanager.uiprojectmanager.index' && isset($_POST['exec']['nm']['filter2']))
 			{
-				$file[] = array(
-					'text' => "<script>function load_project(_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".
-						$GLOBALS['egw']->html->tree($projects,$selected_project,false,'load_project'),
-					'no_lang' => True,
-					'link' => False,
-					'icon' => False,
-				);
+				//echo "<p align=right>set pm_status={$_POST['exec']['nm']['filter2']}</p>\n";
+				$list_filter['pm_status'] = $_POST['exec']['nm']['filter2'];	// necessary as uiprojectmanager::get_rows is not yet executed
 			}
+			if(in_array($list_filter['filter2'],array('nonactive','archive','template')))
+			{
+				$filter['pm_status'] = array('active',$list_filter['filter2']);
+			}
+			switch($_GET['menuaction'])
+			{
+				case 'projectmanager.ganttchart.show':
+				case 'projectmanager.uipricelist.index':
+					$selbox_action = $_GET['menuaction'];
+					break;
+				default:
+					$selbox_action = 'projectmanager.uiprojectelements.index';
+					break;
+			}
+			$select_link = $GLOBALS['egw']->link('/index.php',array('menuaction' => $selbox_action)).'&pm_id=';
+			
+			// show the project-selection as tree or -selectbox
+			// $_POST['user']['show_projectselection'] is used to give the user immediate feedback, if he changes the prefs
+			$type = isset($_POST['user']['show_projectselection']) ? $_POST['user']['show_projectselection'] :
+				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
+			if (substr($type,-5) == 'title')
+			{
+				$label = 'pm_title';
+				$title = 'pm_number';
+			}
+			else
+			{
+				$label = 'pm_number';
+				$title = 'pm_title';
+			}
+			if (substr($type,0,9) == 'selectbox')
+			{
+				$projectlist =& $this->_project_selectbox($pm_id,$filter,$select_link,$label,$title);
+			}
+			else
+			{
+				$projectlist =& $this->_project_tree($pm_id,$filter,$select_link,$label,$title);
+			}
+			if ($projectlist) $file[] =& $projectlist;
+
 			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 		}
 
@@ -190,6 +187,86 @@ class pm_admin_prefs_sidebox_hooks
 				display_sidebox($appname,lang('Admin'),$file);
 			}
 		}
+	}
+	
+	/**
+	 * Show the project-selection as tree
+	 *
+	 * @param int $pm_id current active project
+	 * @param array $filter filter for the project-list
+	 * @param string $select_link link to load the elementslist of an appended project (pm_id)
+	 * @param string $label column to use as label
+	 * @param string $title column to use as title (tooltip)
+	 * @return array suitable for the sidebox-menu
+	 */
+	function &_project_tree($pm_id,$filter,$select_link,$label,$title)
+	{
+		$selected_project = false;
+		$projects = array();
+		foreach($GLOBALS['boprojectmanager']->get_project_tree($filter) as $project)
+		{
+			$projects[$project['path']] = array(
+				'label' => $project[$label],
+				'title' => $project[$title],
+			);
+			if (!$selected_project && $pm_id == $project['pm_id']) $selected_project = $project['path'];
+		}
+		if ($_GET['menuaction'] == 'projectmanager.uipricelist.index')
+		{
+			$projects['general'] = array(
+				'label' => lang('General pricelist'),
+				'image' => 'kfm_home.png',
+			);
+			if (!$pm_id) $selected_project = 'general';	
+		}
+		if (!$projects)	// show project-tree only if it's not empty
+		{
+			return null;
+		}
+		return array(
+			'text' => "<script>function load_project(_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".
+				$GLOBALS['egw']->html->tree($projects,$selected_project,false,'load_project'),
+			'no_lang' => True,
+			'link' => False,
+			'icon' => False,
+		);
+	}
+	
+	/**
+	 * Show the project-selection as selectbox
+	 *
+	 * @param int $pm_id current active project
+	 * @param array $filter filter for the project-list
+	 * @param string $select_link link to load the elementslist of an appended project (pm_id)
+	 * @param string $label column to use as label
+	 * @param string $title column to use as title (tooltip)
+	 * @return array suitable for the sidebox-menu
+	 */
+	function &_project_selectbox($pm_id,$filter,$select_link,$label,$title)
+	{
+		$projects = array();
+		foreach((array)$GLOBALS['boprojectmanager']->search(array(
+			'pm_status' => 'active',
+			'pm_id'     => $pm_id,        // active or the current one
+		),$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_number','','',False,'OR') as $project)
+		{
+			$projects[$project['pm_id']] = $project[$label].($label == 'pm_number' ? ': '.$project[$title] : ' ('.$project[$title].')');
+		}
+		if ($_GET['menuaction'] == 'projectmanager.uipricelist.index')
+		{
+			$projects[0] = lang('General pricelist');
+		}
+		elseif (!$pm_id) 
+		{
+			$projects[0] = lang('Select a project');
+		}
+		return array(
+			'text' => $GLOBALS['egw']->html->select('pm_id',$pm_id,$projects,true,' style="width: 100%;"'.
+				' onchange="location.href=\''.$select_link.'\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars(
+				$pm_id && isset($projects[$pm_id]) ? $projects[$pm_id] : lang('Select a project')).'"'),
+			'no_lang' => True,
+			'link' => False
+		);
 	}
 	
 	/**
@@ -251,6 +328,20 @@ class pm_admin_prefs_sidebox_hooks
 			'xmlrpc' => True,
 			'admin'  => False,
 		);
+		$GLOBALS['settings']['show_projectselection'] = array(
+			'type'   => 'select',
+			'label'  => 'Show the project selection as',
+			'name'   => 'show_projectselection',
+			'values' => array(
+				'tree_with_number'      => lang('Tree with %1',lang('Project ID')),
+				'tree_with_title'       => lang('Tree with %1',lang('Title')),
+				'selectbox_with_number' => lang('Selectbox with %1',lang('Project ID').': '.lang('Title')),
+				'selectbox_with_title'  => lang('Selectbox with %1',lang('Title').' ('.lang('Project ID').')'),
+			),
+			'help'   => 'How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.',
+			'xmlrpc' => True,
+			'admin'  => False,
+		);
 		return true;	// otherwise prefs say it cant find the file ;-)
 	}
 	
@@ -282,10 +373,12 @@ class pm_admin_prefs_sidebox_hooks
 			'duration_5' => 6*60,
 			'duration_6' => 0,
 			'duration_0' => 0,
+			'show_custom_app_icons' => '0',
+			'show_tree'  => 'pm_number',
 		);
 		foreach($defaults as $var => $default)
 		{
-			if (!isset($default_prefs[$var]) || $default_prefs[$var] === '')
+			if (!isset($default_prefs[$var]) || (string)$default_prefs[$var] === '')
 			{
 				$GLOBALS['egw']->preferences->add('projectmanager',$var,$default,'default');
 				$need_save = True;

@@ -1,16 +1,14 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - General business object                    *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - General business object
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectmanager.inc.php');
 
@@ -22,55 +20,70 @@ define('EGW_ACL_EDIT_BUDGET',EGW_ACL_CUSTOM_2);
  *
  * This class does all the timezone-conversation: All function expect user-time and convert them to server-time
  * before calling the storage object.
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class boprojectmanager extends soprojectmanager 
 {
 	/**
-	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
+	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
+	 * 
+	 * @var int/string
 	 */
 	var $debug=false;
 	/**
-	 * @var string $logfile file to log debug-messages, ''=echo them
+	 * File to log debug-messages, ''=echo them
+	 * 
+	 * @var string
 	 */
 	var $logfile='/tmp/pm_log';
 	/**
-	 * @var bolink-object $link instance of the link-class
+	 * Instance of the link-class
+	 * 
+	 * @var bolink
 	 */
 	var $link;
 	/**
-	 * @var array $timestamps timestaps that need to be adjusted to user-time on reading or saving
+	 * Timestaps that need to be adjusted to user-time on reading or saving
+	 * 
+	 * @var array
 	 */
 	var $timestamps = array(
 		'pm_created','pm_modified','pm_planned_start','pm_planned_end','pm_real_start','pm_real_end',
 	);
 	/**
-	 * @var int $tz_offset_s offset in secconds between user and server-time,
-	 *	it need to be add to a server-time to get the user-time or substracted from a user-time to get the server-time
+	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time 
+	 * or substracted from a user-time to get the server-time
+	 * 
+	 * @var int
 	 */
 	var $tz_offset_s;
 	/**
-	 * @var int $now_su is the time as timestamp in user-time
+	 * Current time as timestamp in user-time
+	 * 
+	 * @var int
 	 */
 	var $now_su;
 	/**
-	 * @var object $constraints soconstraints-object, not instanciated automatic!
+	 * Instance of the soconstraints-class
+	 * 
+	 * @var soconstraints
 	 */
 	var $constraints;
 	/**
-	 * @var object $milestones somilestones-object, not instanciated automatic!
+	 * Instance of the somilestones-class
+	 * 
+	 * @var somilestones
 	 */
 	var $milestones;
 	/**
-	 * @var object $roles instance of the soroles-class, not instanciated automatic!
+	 * Instance of the soroles-class, not instanciated automatic!
+	 * 
+	 * @var soroles
 	 */
 	var $roles;
 	/**
-	 * @var boolean $is_admin atm. projectmanager-admins are identical to eGW admins, this might change in the future
+	 * Atm. projectmanager-admins are identical to eGW admins, this might change in the future
+	 * 
+	 * @var boolean
 	 */
 	var $is_admin;
 
@@ -79,6 +92,7 @@ class boprojectmanager extends soprojectmanager
 	 *
 	 * @param int $pm_id id of the project to load, default null
 	 * @param string $instanciate='' comma-separated: constraints,milestones,roles
+	 * @return boprojectmanager
 	 */
 	function boprojectmanager($pm_id=null,$instanciate='')
 	{
@@ -104,6 +118,7 @@ class boprojectmanager extends soprojectmanager
 			$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
 		}
 		$this->link =& $GLOBALS['egw']->link;
+		$this->links_table = $this->link->link_table;
 		
 		// atm. projectmanager-admins are identical to eGW admins, this might change in the future
 		$this->is_admin = isset($GLOBALS['egw_info']['user']['apps']['admin']);
@@ -510,7 +525,6 @@ class boprojectmanager extends soprojectmanager
 	 * @param array $ancestors=array() already identified ancestors, default none
 	 * @return array with ancestors
 	 */
-
 	function &ancestors($pm_id=0,$ancestors=array())
 	{
 		static $ancestors_cache = array();	// some caching
@@ -541,6 +555,48 @@ class boprojectmanager extends soprojectmanager
 		}
 		//echo "<p>ancestors($pm_id)=".print_r($ancestors_cache[$pm_id],true)."</p>\n";
 		return array_merge($ancestors,$ancestors_cache[$pm_id]);
+	}
+	
+	/**
+	 * gets recursive all children (only projects) of a given project (calls itself recursivly)
+	 *
+	 * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
+	 * To get all children of a project C, we use all links to the project, which link_id1=C.pm_id.
+	 *
+	 * @param int $pm_id=0 id or 0 to use $this->pm_id
+	 * @param array $children=array() already identified ancestors, default none
+	 * @return array with children
+	 */
+	function &children($pm_id=0,$children=array())
+	{
+		static $children_cache = array();	// some caching
+
+		if (!$pm_id && !($pm_id = $this->pm_id)) return false;
+		
+		if (!isset($children_cache[$pm_id]))
+		{
+			$children_cache[$pm_id] = array();
+
+			// read all projectmanager entries attached to this one
+			foreach($this->link->get_links('projectmanager',$pm_id,'projectmanager') as $link_id => $data)
+			{
+				// we need to read the complete link, to know if the entry is a child (link_id1 == pm_id)
+				$link = $this->link->get_link($link_id);
+				if ($link['link_id1'] != $pm_id)
+				{
+					continue;	// we are NOT the parent in this link ==> ignore it
+				}
+				$child = (int) $link['link_id2'];
+				if (!in_array($child,$children_cache[$pm_id]))
+				{
+					$children_cache[$pm_id][] = $child;
+					// now we call ourself recursivly to get all parents of the parents
+					$children_cache[$pm_id] =& $this->children($child,$children_cache[$pm_id]);
+				}			
+			}
+		}
+		//echo "<p>children($pm_id)=".print_r($children_cache[$pm_id],true)."</p>\n";
+		return array_merge($children,$children_cache[$pm_id]);
 	}
 	
 	/**

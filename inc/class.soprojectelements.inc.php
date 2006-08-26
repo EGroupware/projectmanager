@@ -1,16 +1,14 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - Elements storage object                    *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - Elements storage object
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
@@ -20,24 +18,25 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
  * Tables: egw_pm_elements, egw_links
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class soprojectelements extends so_sql
 {
 	/**
-	 * @var string $links_table table name 'egw_links'
+	 * Table name 'egw_links'
+	 * 
+	 * @var string
 	 */
 	var $links_table = 'egw_links';
 	/**
-	 * @var string $links_join join in the links table
+	 * Join in the links table
+	 *
+	 *  @var string
 	 */
 	var $links_join = ',egw_links WHERE pe_id=link_id';
 	/**
-	 * @var array $links_extracols extracolumns from the links table
+	 * Extracolumns from the links table
+	 * 
+	 * @var array
 	 */
 	var $links_extracols = array(
 		"CASE WHEN link_app1='projectmanager' AND link_id1=pm_id THEN link_app2 ELSE link_app1 END AS pe_app",
@@ -45,7 +44,9 @@ class soprojectelements extends so_sql
 		'link_remark AS pe_remark',
 	);
 	/**
-	 * @var int $default_share default share in minutes (on the whole project), used if no planned time AND no pe_share set
+	 * Default share in minutes (on the whole project), used if no planned time AND no pe_share set
+	 * 
+	 * @var int
 	 */
 	var $default_share = 240; // minutes
 
@@ -56,6 +57,7 @@ class soprojectelements extends so_sql
 	 *
 	 * @param int $pm_id pm_id of the project to use, default null
 	 * @param int $pe_id pe_id of the project-element to load, default null
+	 * @return soprojectelements
 	 */
 	function soprojectelements($pm_id=null,$pe_id=null)
 	{
@@ -129,7 +131,7 @@ class soprojectelements extends so_sql
 	}
 
 	/**
-	 * search elements, reimplemented to use $this->pm_id, if no pm_id given in criteria or filter
+	 * search elements, reimplemented to join in some information from the links table and fix some filters
 	 *
 	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
 	 * @param boolean $only_keys True returns only keys, False returns all cols
@@ -145,10 +147,6 @@ class soprojectelements extends so_sql
 	 */
 	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
 	{
-		if ($this->pm_id && (!isset($filter['pm_id']) || !$filter['pm_id']))
-		{
-			$filter['pm_id'] = $this->pm_id;
-		}
 		if ($join === true)	// add join with links-table and extra-columns
 		{
 			$join = $this->links_join;
@@ -161,7 +159,8 @@ class soprojectelements extends so_sql
 			{
 				$extra_cols = array_merge($this->links_extracols,
 					is_array($extra_cols) ? $extra_cols : explode(',',$extra_cols));
-			}			
+			}
+			$order_by = "(link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
 		}
 		// fix some special filters: resources, cats
 		$filter = $this->_fix_filter($filter);
@@ -169,6 +168,12 @@ class soprojectelements extends so_sql
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
 	}
 	
+	/**
+	 * Fix some special filters: resources, cats, ...
+	 *
+	 * @param array $filter
+	 * @return array
+	 */
 	function _fix_filter($filter)
 	{
 		// handle search for a single resource in comma-separated pe_resources column
@@ -189,6 +194,9 @@ class soprojectelements extends so_sql
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
+		// remove pseudo filter
+		unset($filter['cumulate']);
+
 		return $filter;
 	}
 

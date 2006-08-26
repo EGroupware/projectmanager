@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	en	Create a new empt
 create new links	projectmanager	en	Create new links
 created	projectmanager	en	created
 created a ganttchart from the checked projects	projectmanager	en	Created a ganttchart from the checked projects
+cumulated elements too	projectmanager	en	Cumulated elements too
 custom fields	projectmanager	en	Custom fields
 customer title	projectmanager	en	Customer title
 datasource	projectmanager	en	Datasource
@@ -59,6 +60,8 @@ delete this project	projectmanager	en	Delete this project
 delete this project-element, does not remove the linked entry	projectmanager	en	Delete this project-element, does NOT remove the linked entry
 delete this role	projectmanager	en	Delete this role
 depth of display	projectmanager	en	Depth of display
+details of cumulated	projectmanager	en	Details of cumulated
+details of subelements	projectmanager	en	Details of subelements
 do not use that entry as project-element	projectmanager	en	do not use that entry as project-element
 done (100%)	projectmanager	en	Done (100%)
 edit access, incl. editing budget and elements	projectmanager	en	edit access, incl. editing budget and elements
@@ -105,6 +108,7 @@ health	projectmanager	en	Health
 hours	projectmanager	en	hours
 hours per workday	projectmanager	en	Hours per workday
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.
 ignore that entry	projectmanager	en	ignore that entry
 ignored	projectmanager	en	ignored
 last modified	projectmanager	en	last modified
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	en	Select multiple projects for a further action
 select the accounting types visible for users of projectmanager	projectmanager	en	select the accounting types visible for users of projectmanager
 select this project and show it's elements	projectmanager	en	Select this project and show it's elements
+selectbox with %1	projectmanager	en	Selectbox with %1
 share	projectmanager	en	Share
 share on the whole project	projectmanager	en	Share on the whole project
 share on the whole project in hours or percent, defaults to planned time	projectmanager	en	Share on the whole project in hours or percent, defaults to planned time
@@ -183,6 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	en	Show constraints and milestones
 show planned times instead of the real times	projectmanager	en	Show planned times instead of the real times
 show status icons of the datasources	projectmanager	en	Show status icons of the datasources
+show the project selection as	projectmanager	en	Show the project selection as
 site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
 start working on %1	projectmanager	en	Start working on %1
@@ -191,6 +197,7 @@ start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
 state	projectmanager	en	State
 status filter	projectmanager	en	Status filter
+subelements	projectmanager	en	Subelements
 subprojects	projectmanager	en	Subprojects
 synchronise all	projectmanager	en	Synchronise all
 template	projectmanager	en	Template
@@ -198,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	en	Template i
 time	projectmanager	en	Time
 times	projectmanager	en	Times
 title must not be empty	projectmanager	en	Title must not be empty
+tree with %1	projectmanager	en	Tree with %1
 unit	projectmanager	en	Unit
 unitprice	projectmanager	en	Unitprice
 used	projectmanager	en	used

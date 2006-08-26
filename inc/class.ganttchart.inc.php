@@ -23,6 +23,7 @@ if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 	// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
 	foreach(array(
 		'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
+		'/usr/share/fonts/msttcorefonts/', 		// manual for install this fonts search at http://www.aditus.nu/jpgraph/jpdownload.php
 		'C:/windows/fonts/',					// windows default
 		// add your location here ...
 		EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/',	// our bundled Vera font
