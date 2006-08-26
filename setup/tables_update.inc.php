@@ -1,16 +1,15 @@
 <?php
-	/**************************************************************************\
-	* eGroupWare - Setup                                                       *
-	* http://www.eGroupWare.org                                                *
-	* Created by eTemplates DB-Tools written by ralfbecker@outdoor-training.de *
-	* --------------------------------------------                             *
-	* This program is free software; you can redistribute it and/or modify it  *
-	* under the terms of the GNU General Public License as published by the    *
-	* Free Software Foundation; either version 2 of the License, or (at your   *
-	* option) any later version.                                               *
-	\**************************************************************************/
-	
-	/* tables_update.inc.php,v 1.10 2006/01/11 05:15:43 ralfbecker Exp */
+/**
+ * ProjectManager - table update scripts
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @subpackage setup
+ * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 	$test[] = '0.1.008';
 	function projectmanager_upgrade0_1_008()

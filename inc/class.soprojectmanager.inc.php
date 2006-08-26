@@ -1,16 +1,14 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - General storage object                     *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - General (projects) storage object
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
@@ -20,41 +18,63 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
  * Tables: egw_pm_projects, egw_pm_extra, egw_pm_roles, egw_pm_members
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class soprojectmanager extends so_sql
 {
 	/**
-	 * @var string $links_table table name 'egw_links'
+	 * Table name 'egw_links'
+	 * 
+	 * @var string
 	 */
 	var $links_table = 'egw_links';
 	/**
-	 * @var array $config configuration data
+	 * Configuration data
+	 * 
+	 * @var array
 	 */
 	var $config = array(
 		'customfields' => array(),
 	);
+	/**
+	 * Custom fields
+	 *
+	 * @var array
+	 */
 	var $customfields;
 	/**
-	 * @var string $extra_table name of customefields table
+	 * Name of customefields table
+	 * 
+	 * @var string
 	 */
 	var $extra_table = 'egw_pm_extra';
+	/**
+	 * Name of project-members table
+	 * 
+	 * @var string
+	 */
 	var $members_table = 'egw_pm_members';
+	/**
+	 * Name of roles table
+	 * 
+	 * @var string
+	 */
 	var $roles_table = 'egw_pm_roles';
 	/**
-	 * @var string $acl_join join with the members and the roles table to get the role-ACL of the current user
+	 * Join with the members and the roles table to get the role-ACL of the current user
+	 * 
+	 * @var string
 	 */
 	var $acl_join;
 	/**
-	 * @var array $acl_extracols extracolumns from the members table
+	 * Extracolumns from the members table
+	 * 
+	 * @var array/string
 	 */
 	var $acl_extracols='role_acl';
 	/**
-	 * @var array $grants ACL grants from other users
+	 * ACL grants from other users
+	 * 
+	 * @var array
 	 */
 	var $grants;
 	var $read_grants,$private_grants;
@@ -63,6 +83,7 @@ class soprojectmanager extends so_sql
 	 * Constructor, calls the constructor of the extended class
 	 * 
 	 * @param int $pm_id id of the project to load, default null
+	 * @return soprojectmanger
 	 */
 	function soprojectmanager($pm_id=null)
 	{

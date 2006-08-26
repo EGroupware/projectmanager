@@ -1,32 +1,27 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - UI list and edit projects                  *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - Projects user interface
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
 include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.uietemplate.inc.php');
 
 /**
  * ProjectManager UI: list and edit projects
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class uiprojectmanager extends boprojectmanager 
 {
 	/**
-	 * @var array $public_functions Functions to call via menuaction
+	 * Functions to call via menuaction
+	 * 
+	 * @var array
 	 */
 	var $public_functions = array(
 		'index' => true,
@@ -34,20 +29,28 @@ class uiprojectmanager extends boprojectmanager
 		'view'  => true,
 	);
 	/**
-	 * @var array $status_labels for pm_status, value - label pairs
+	 * Labels for pm_status, value - label pairs
+	 * 
+	 * @var array
 	 */
 	var $status_labels;
 	/**
-	 * @var array $access_labels for pm_access, value - label pairs
+	 * Labels for pm_access, value - label pairs
+	 * 
+	 * @var array
 	 */
 	var $access_labels;
 	/**
-	 * @var array $filter_labels for mains- & sub-projects
+	 * Labels for mains- & sub-projects filter
+	 * 
+	 * @var array
 	 */
 	var $filter_labels;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
+	 * 
+	 * @return uiprojectmanager
 	 */
 	function uiprojectmanager()
 	{

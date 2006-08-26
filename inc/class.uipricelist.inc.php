@@ -1,30 +1,28 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - Pricelist user interface                   *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - Pricelist user interface
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.bopricelist.inc.php');
 include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.uietemplate.inc.php');
 
 /**
  * Pricelist user interface of the projectmanager
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class uipricelist extends bopricelist
 {
+	/**
+	 * Functions callable via menuaction
+	 *
+	 * @var unknown_type
+	 */
 	var $public_functions = array(
 		'index' => true,
 		'view'  => true,
@@ -34,7 +32,8 @@ class uipricelist extends bopricelist
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
-	 * @param int $pm_id project to use
+	 * @param int $pm_id=null project to use
+	 * @return uipricelist
 	 */
 	function uipricelist($pm_id=null)
 	{

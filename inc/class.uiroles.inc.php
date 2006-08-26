@@ -1,16 +1,14 @@
 <?php
-/**************************************************************************\
-* eGroupWare - ProjectManager - UI roles                                   *
-* http://www.egroupware.org                                                *
-* Written and (c) 2005 by Ralf Becker <RalfBecker@outdoor-training.de>     *
-* --------------------------------------------                             *
-*  This program is free software; you can redistribute it and/or modify it *
-*  under the terms of the GNU General Public License as published by the   *
-*  Free Software Foundation; either version 2 of the License, or (at your  *
-*  option) any later version.                                              *
-\**************************************************************************/
-
-/* $Id$ */
+/**
+ * ProjectManager - Roles user interface
+ *
+ * @link http://www.egroupware.org
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager
+ * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$ 
+ */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
 include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.uietemplate.inc.php');
@@ -19,16 +17,13 @@ define('EGW_ACL_ROLES',EGW_ACL_EDIT);	// maybe this gets an own ACL later
 
 /**
  * ProjectManager UI: roles
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class uiroles extends boprojectmanager  
 {
 	/**
-	 * @var array $public_functions Functions to call via menuaction
+	 * Functions to call via menuaction
+	 * 
+	 * @var array
 	 */
 	var $public_functions = array(
 		'roles' => true,
@@ -41,10 +36,17 @@ class uiroles extends boprojectmanager
 		'budget' => EGW_ACL_BUDGET,
 		'edit_budget' => EGW_ACL_EDIT_BUDGET,
 	);
+	/**
+	 * Instance of the boprojectmanger class
+	 *
+	 * @var boprojectmanager
+	 */
 	var $project;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
+	 * 
+	 * @return uiroles
 	 */
 	function uiroles()
 	{
