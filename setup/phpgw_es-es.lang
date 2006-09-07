@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	es-es	Crear un nuevo
 create new links	projectmanager	es-es	Crear enlaces nuevos
 created	projectmanager	es-es	creado
 created a ganttchart from the checked projects	projectmanager	es-es	Se ha creado un gráfico Gantt a partir de los proyectos seleccionados
+cumulated elements too	projectmanager	es-es	También los elementos acumulados
 custom fields	projectmanager	es-es	Campos personalizados
 customer title	projectmanager	es-es	Cargo del cliente
 datasource	projectmanager	es-es	Fuente de datos
@@ -59,6 +60,8 @@ delete this project	projectmanager	es-es	Borrar este proyecto
 delete this project-element, does not remove the linked entry	projectmanager	es-es	Borrar este elemento de proyecto NO borra la entrada vinculada
 delete this role	projectmanager	es-es	Borrar este rol
 depth of display	projectmanager	es-es	Profundidad de visualización
+details of cumulated	projectmanager	es-es	Detalles de los acumulados
+details of subelements	projectmanager	es-es	Detalles de los subelementos
 do not use that entry as project-element	projectmanager	es-es	no usar esa entrada como elemento de proyecto
 done (100%)	projectmanager	es-es	Finalizado (100%)
 edit access, incl. editing budget and elements	projectmanager	es-es	editar acceso, incluyendo edición de presupuesto y elementos
@@ -105,6 +108,7 @@ health	projectmanager	es-es	Salud
 hours	projectmanager	es-es	horas
 hours per workday	projectmanager	es-es	Horas por día de trabajo
 how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
 ignore that entry	projectmanager	es-es	ignorar esa entrada
 ignored	projectmanager	es-es	ignorado
 last modified	projectmanager	es-es	última modificación
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	es-es	Seleccionar múltiples proyectos para una acción posterior
 select the accounting types visible for users of projectmanager	projectmanager	es-es	seleccionar los tipos de cuentas visibles para los usuarios del administrador de proyectos
 select this project and show it's elements	projectmanager	es-es	Seleccionar este proyecto y mostrar sus elementos
+selectbox with %1	projectmanager	es-es	Lista con %1
 share	projectmanager	es-es	Compartir
 share on the whole project	projectmanager	es-es	Compartir en todo el proyecto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	es-es	Compartir en todo el proyecto en horas o porcentaje. Por defecto, el tiempo planificado
@@ -183,7 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	es-es	Mostrar restricciones y puntos de destino
 show planned times instead of the real times	projectmanager	es-es	Mostrar tiempos planificados en vez de los reales
 show status icons of the datasources	projectmanager	es-es	Mostrar iconos de estado de las fuentes de datos
-site configuration	projectmanager	es-es	Configuración del sitio
+show the project selection as	projectmanager	es-es	Mostrar la selección del proyecto como
 site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
 start after	projectmanager	es-es	Comenzar después de
 start working on %1	projectmanager	es-es	Comenzar a trabajar en %1
@@ -192,6 +197,7 @@ start- & enddate	projectmanager	es-es	Fecha de inicio y fin
 startdate	projectmanager	es-es	Fecha de inicio
 state	projectmanager	es-es	Estado
 status filter	projectmanager	es-es	Filtro de estados
+subelements	projectmanager	es-es	Subelementos
 subprojects	projectmanager	es-es	Subproyectos
 synchronise all	projectmanager	es-es	Sincronizar todo
 template	projectmanager	es-es	Plantilla
@@ -199,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	es-es	Se ha g
 time	projectmanager	es-es	Tiempo
 times	projectmanager	es-es	Tiempos
 title must not be empty	projectmanager	es-es	El título no debe estar vacío
+tree with %1	projectmanager	es-es	Arbol con %1
 unit	projectmanager	es-es	Unidad
 unitprice	projectmanager	es-es	Precio por unidad
 used	projectmanager	es-es	usado
