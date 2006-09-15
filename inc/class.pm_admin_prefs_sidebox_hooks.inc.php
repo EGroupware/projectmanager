@@ -154,10 +154,6 @@ class pm_admin_prefs_sidebox_hooks
 				'Grant Access'    => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
 				'Edit Categories' => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
 			);
-			if (!$this->config['allow_change_workingtimes'] && !$GLOBALS['egw_info']['user']['apps']['admin'])
-			{
-				unset($file['Preferences']);	// atm. prefs are only working times
-			}
 			if ($location == 'preferences')
 			{
 				display_section($appname,$file);
