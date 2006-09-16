@@ -46,6 +46,7 @@ create a new empty project or use a template	projectmanager	sk	Vytvori» nový prá
 create new links	projectmanager	sk	Vytvori» nové odkazy
 created	projectmanager	sk	vytvorené
 created a ganttchart from the checked projects	projectmanager	sk	Vytvorený postupový diagram pre oznaèené projekty
+cumulated elements too	projectmanager	sk	Taktie¾ aj kumulované elementy
 custom fields	projectmanager	sk	Pou¾ívateµské polo¾ky
 customer title	projectmanager	sk	Meno klienta
 datasource	projectmanager	sk	Zdroj dát
@@ -58,6 +59,8 @@ delete this project	projectmanager	sk	Zmaza» tento projekt
 delete this project-element, does not remove the linked entry	projectmanager	sk	Zmaza» tento projektový element. Pripojená polo¾ka sa NEzma¾e.
 delete this role	projectmanager	sk	Zmaza» túto úlohu
 depth of display	projectmanager	sk	Håbka displeja
+details of cumulated	projectmanager	sk	Podrobnosti kumulovaných
+details of subelements	projectmanager	sk	Podrobnosti pod-elementov
 do not use that entry as project-element	projectmanager	sk	Nepou¾íva» túto polo¾ku ako projektový element
 done (100%)	projectmanager	sk	Hotovo (100%)
 edit access, incl. editing budget and elements	projectmanager	sk	Oprávnenia k úpravám, vrátane rozpoètu a elementov
@@ -104,6 +107,7 @@ health	projectmanager	sk	Zdravie
 hours	projectmanager	sk	hodín
 hours per workday	projectmanager	sk	Hodín pracovného dòa
 how long do you work on the given day.	projectmanager	sk	Koµko hodín pracujete v daný deò.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazova» výber projektov v menu: Strom ponúka lep¹í prehµad, výberové okno zase výkon.
 ignore that entry	projectmanager	sk	ignorova» túto polo¾ku
 ignored	projectmanager	sk	Ignorované
 last modified	projectmanager	sk	Naposledy upravené
@@ -175,6 +179,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	sk	Vyberte viacero projektov pre ïal¹ie akcie
 select the accounting types visible for users of projectmanager	projectmanager	sk	vyberte typy úètovania viditeµné pre pou¾ívateµov Projektovníka
 select this project and show it's elements	projectmanager	sk	Vybra» tento projekt a zobrazi» jeho elementy
+selectbox with %1	projectmanager	sk	Výberové okno s %1
 share	projectmanager	sk	Podiel
 share on the whole project	projectmanager	sk	Podiel na celom projekte
 share on the whole project in hours or percent, defaults to planned time	projectmanager	sk	Podiel na celom projekte v hodinách alebo percentách, predvolene je to plánovaný èas
@@ -182,6 +187,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	sk	Zobrazi» obmedzenia a medzníky
 show planned times instead of the real times	projectmanager	sk	Zobrazi» plánované èasy namiesto skutoèných
 show status icons of the datasources	projectmanager	sk	Zobrazi» ikonu stavu zdrojov dát
+show the project selection as	projectmanager	sk	Zobrazi» výber projektov ako
 site configuration saved	projectmanager	sk	Nastavenia stránky ulo¾ené
 start after	projectmanager	sk	Zaèa» po
 start working on %1	projectmanager	sk	Zaèa» prácu na %1
@@ -190,6 +196,7 @@ start- & enddate	projectmanager	sk	Dátumy zaèiatku a konca
 startdate	projectmanager	sk	Dátum zaèiatku
 state	projectmanager	sk	Stav
 status filter	projectmanager	sk	Filter stavov
+subelements	projectmanager	sk	Pod-elementy
 subprojects	projectmanager	sk	Podprojekty
 synchronise all	projectmanager	sk	Synchronizova» v¹etko
 template	projectmanager	sk	©ablóna
@@ -197,6 +204,7 @@ template including elment-tree saved as new project	projectmanager	sk	©ablóna, v
 time	projectmanager	sk	Èas
 times	projectmanager	sk	Èasy
 title must not be empty	projectmanager	sk	Názov nesmie by» prázdny
+tree with %1	projectmanager	sk	Strom s %1
 unit	projectmanager	sk	Jednotka
 unitprice	projectmanager	sk	Cena za jednotku
 used	projectmanager	sk	Pou¾ité

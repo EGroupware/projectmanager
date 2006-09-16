@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	pt-br	Criar um proje
 create new links	projectmanager	pt-br	Criar novos links
 created	projectmanager	pt-br	criado
 created a ganttchart from the checked projects	projectmanager	pt-br	Criado um gráfico de Gantt a partir dos projetos marcados
+cumulated elements too	projectmanager	pt-br	Elementos acumulados também
 custom fields	projectmanager	pt-br	Campos customizados
 customer title	projectmanager	pt-br	Tratamento do Cliente
 datasource	projectmanager	pt-br	Origem de dados
@@ -59,6 +60,8 @@ delete this project	projectmanager	pt-br	Remover este projeto
 delete this project-element, does not remove the linked entry	projectmanager	pt-br	Remover este elemento de projeto, NÃO remova a entrada relacionada
 delete this role	projectmanager	pt-br	Remover este perfil
 depth of display	projectmanager	pt-br	Profundidade da visualização
+details of cumulated	projectmanager	pt-br	Detalhes dos acumulados
+details of subelements	projectmanager	pt-br	Detalhes dos subelementos
 do not use that entry as project-element	projectmanager	pt-br	não use esta entrada como elemento de projeto
 done (100%)	projectmanager	pt-br	Feito (100%)
 edit access, incl. editing budget and elements	projectmanager	pt-br	editar acesso, incl. edição de orçamento e elementos
@@ -105,6 +108,7 @@ health	projectmanager	pt-br	Saúde
 hours	projectmanager	pt-br	horas
 hours per workday	projectmanager	pt-br	Horas por dias de trabalho
 how long do you work on the given day.	projectmanager	pt-br	Quanto tempo você trabalha em um dado dia.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a seleção de projeto deverá ser exibida no menu: Uma árvore dá uma melhor visão; uma caixa de seleção pode ter uma melhor performance.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
 last modified	projectmanager	pt-br	última modificação
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	pt-br	Selecione múltiplos projetos para continuar
 select the accounting types visible for users of projectmanager	projectmanager	pt-br	selecione os tipos de contabilização visíveis para usuários do módulo Gerência de Projetos
 select this project and show it's elements	projectmanager	pt-br	Selecione este projeto e mostre seus elementos
+selectbox with %1	projectmanager	pt-br	Caixa de seleção com %1
 share	projectmanager	pt-br	Compartilhamento
 share on the whole project	projectmanager	pt-br	Compartilhamento em todo o projeto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	pt-br	Compartilhamento em todo o projeto em horas ou percentual, o padrão e hora planejada
@@ -183,7 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	pt-br	Mostra regras e marcos
 show planned times instead of the real times	projectmanager	pt-br	Mostra horas planejadas no lugar de horas reais
 show status icons of the datasources	projectmanager	pt-br	Mostra ícones de estado das origens de dados
-site configuration	projectmanager	pt-br	Configuração do site
+show the project selection as	projectmanager	pt-br	Exibir a seleção do projeto como
 site configuration saved	projectmanager	pt-br	Configuração do site salva
 start after	projectmanager	pt-br	Começar depois
 start working on %1	projectmanager	pt-br	Iniciando o trabalho em %1
@@ -192,6 +197,7 @@ start- & enddate	projectmanager	pt-br	Data Inicial- & Final
 startdate	projectmanager	pt-br	Data inicial
 state	projectmanager	pt-br	Estado
 status filter	projectmanager	pt-br	Filtro de estado
+subelements	projectmanager	pt-br	Subelementos
 subprojects	projectmanager	pt-br	Subprojetos
 synchronise all	projectmanager	pt-br	Sincronizar tudo
 template	projectmanager	pt-br	Modelo
@@ -199,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	pt-br	Modelo 
 time	projectmanager	pt-br	Hora
 times	projectmanager	pt-br	Horas
 title must not be empty	projectmanager	pt-br	Tratamento não pode ser vazio
+tree with %1	projectmanager	pt-br	Árvore com %1
 unit	projectmanager	pt-br	Unidade
 unitprice	projectmanager	pt-br	Preço da unidade
 used	projectmanager	pt-br	usado
