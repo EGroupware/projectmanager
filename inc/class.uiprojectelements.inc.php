@@ -390,13 +390,13 @@ class uiprojectelements extends boprojectelements
 	 *
 	 * reimplemented from so_sql to disable action-buttons based on the acl and make some modification on the data
 	 *
-	 * @param array $query
+	 * @param array &$query_in
 	 * @param array &$rows returned rows/cups
 	 * @param array &$readonlys eg. to disable buttons based on acl
 	 */
-	function get_rows(&$query,&$rows,&$readonlys)
+	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
-		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query);
+		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
 	
 		if ($this->status_filter[$query['filter']])
 		{
@@ -409,12 +409,12 @@ class uiprojectelements extends boprojectelements
 		if ($query['cat_id'])
 		{
 			$query['col_filter']['cat_id'] = $query['cat_id'];
-			$query['link_add']['extra'] = array('cat_id' => $query['cat_id']);
+			$query_in['link_add']['extra'] = array('cat_id' => $query['cat_id']);
 		}
 		else
 		{
 			unset($query['col_filter']['cat_id']);
-			unset($query['link_add']['extra']);
+			unset($query_in['link_add']['extra']);
 		}
 		if (!$query['col_filter']['pe_resources'])
 		{
@@ -571,6 +571,7 @@ class uiprojectelements extends boprojectelements
 					4 => 'Cumulated elements too',
 					5 => 'Details of cumulated',
 				),
+				'col_filter' => array('pe_resources' => 0),	// default value, to suppress loop
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 			);
