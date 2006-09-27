@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.5.001">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="0.6.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -92,12 +92,13 @@
 					<hbox align="center" class="noPrint">
 						<image label="Ganttchart" onclick="return confirm('window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]'),'view-projects','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;');" src="ganttchart" options="projectmanager.ganttchart.show&amp;pm_id=$row_cont[pm_id]" statustext="View Ganttchart of this project"/>
 						<image label="View" src="view" options="projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
-						<button label="Edit" id="edit" image="edit" statustext="Edit this project"/>
+						<image label="Edit" src="edit" options="projectmanager.uiprojectmanager.edit&amp;pm_id=$row_cont[pm_id]" statustext="Edit this project"/>
 					</hbox>
 				</row>
 				<row class="row">
 					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
 					<vbox>
+						<link id="${row}[pm_link]" no_lang="1"/>
 						<link no_lang="1" id="${row}[link]"/>
 						<html id="${row}[pe_details]" no_lang="1"/>
 						<description no_lang="1" id="${row}[pe_remark]"/>

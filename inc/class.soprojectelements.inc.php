@@ -49,6 +49,12 @@ class soprojectelements extends so_sql
 	 * @var int
 	 */
 	var $default_share = 240; // minutes
+	/**
+	 * Id of the project
+	 *
+	 * @var int
+	 */
+	var $pm_id;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -117,7 +123,7 @@ class soprojectelements extends so_sql
 			'MIN(pe_planned_start) AS pe_planned_start',
 			'MAX(pe_real_end) AS pe_real_end',
 			'MAX(pe_planned_end) AS pe_planned_end',
-		),$filter,__LINE__,__FILE__);
+		),$filter,__LINE__,__FILE__,false,'',false,0,$this->links_join);
 		
 		if (!($data = $this->db->row(true)))
 		{
@@ -196,7 +202,7 @@ class soprojectelements extends so_sql
 		}
 		// remove pseudo filter
 		unset($filter['cumulate']);
-
+		
 		return $filter;
 	}
 

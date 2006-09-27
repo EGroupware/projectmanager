@@ -424,6 +424,8 @@ class uiprojectelements extends boprojectelements
 		{
 			$query['col_filter']['pm_id'] = $this->project->children($this->pm_id,array($this->pm_id));
 			if (count($query['col_filter']['pm_id']) <= 1) $query['col_filter']['pm_id'] = $this->pm_id;
+			// dont show the sub-projects
+			$query['col_filter'][] = "link_app1!='projectmanager'";
 		}
 		// cumulate eg. timesheets in also included infologs
 		$query['col_filter']['cumulate'] = !($query['filter2'] & 4);
@@ -471,6 +473,17 @@ class uiprojectelements extends boprojectelements
 			}
 			if (!($query['filter2']&1)) unset($row['pe_details']);
 			
+			// add project-title for elements from sub-projects
+			if (($query['filter2']&2) && $row['pm_id'] != $this->pm_id)
+			{
+				$row['pm_title'] = $this->project->link_title($row['pm_id']);
+				$row['pm_link'] = array(
+					'app'  => 'projectmanager',
+					'id'   => $row['pm_id'],
+					'title'=> $this->project->link_title($row['pm_id']),
+					'help' => lang("Select this project and show it's elements"),
+				);
+			}
 			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : $row['pe_completion'];
 			
 			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
@@ -491,10 +504,8 @@ class uiprojectelements extends boprojectelements
 		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
 		$rows['no_times']  = $this->project->data['pm_accounting_type'] == 'status';
 		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
-
 		// calculate the filter-specific summary if we have a filter, beside the default pe_status=used=array(new,regular)
-		if ((count($query['col_filter']) > (int)isset($query['col_filter']['pe_status']) || !is_array($query['col_filter']['pe_status'])) &&
-			!($query['filter2'] & 2))	// dont show summary on recursive view, as it's wrong, because the subprojects count now double
+		if (array_diff(array_keys($query['col_filter']),array(0,'pe_status','pm_id')) || !is_array($query['col_filter']['pe_status']))
 		{
 			$rows += $this->summary(null,$query['col_filter']);
 		}
