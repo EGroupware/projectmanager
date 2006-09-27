@@ -304,9 +304,7 @@ class uiprojectmanager extends boprojectmanager
 		}
 		$content = $this->data + array(
 			'msg'  => $msg,
-			'general|description|members|accounting|custom|links' => !$content['general|description|members|accounting|custom|links'] && 
-				!$view && $tpl->html->user_agent == 'mozilla' ? 'projectmanager.edit.description' : 
-				$content['general|description|members|accounting|custom|links'],
+			'general|description|members|accounting|custom|links' => $content['general|description|members|accounting|custom|links'],
 			'view' => $view,
 			'ds'   => $pe_summary,
 			'link_to' => array(
