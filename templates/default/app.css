@@ -1,4 +1,4 @@
 .redItalic { color: red; font-style: italic; }
 .planned { font-style: italic; font-size: 95%; }
-.solidBorder table { border: 2px solid black; }
+div.solidBorder { border: 2px solid black; }
 .divSidebox { width: 190px; }
