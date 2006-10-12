@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	zh-tw	建立一個�
 create new links	projectmanager	zh-tw	建立新連結
 created	projectmanager	zh-tw	建立日期
 created a ganttchart from the checked projects	projectmanager	zh-tw	從選擇的專案建立甘特圖
+cumulated elements too	projectmanager	zh-tw	包括集合的元件
 custom fields	projectmanager	zh-tw	自訂欄位
 customer title	projectmanager	zh-tw	客戶名稱
 datasource	projectmanager	zh-tw	資料來源
@@ -59,6 +60,8 @@ delete this project	projectmanager	zh-tw	刪除這個專案
 delete this project-element, does not remove the linked entry	projectmanager	zh-tw	刪除這個專案元件，但不會移除相連結的資料
 delete this role	projectmanager	zh-tw	刪除這個角色
 depth of display	projectmanager	zh-tw	顯示的深度
+details of cumulated	projectmanager	zh-tw	集合的細節
+details of subelements	projectmanager	zh-tw	次元件的細節
 do not use that entry as project-element	projectmanager	zh-tw	不要使用那筆資料作為專案元件
 done (100%)	projectmanager	zh-tw	完成(100%)
 edit access, incl. editing budget and elements	projectmanager	zh-tw	編輯存取權限，包括編輯預算與元件
@@ -105,6 +108,7 @@ health	projectmanager	zh-tw	健全的
 hours	projectmanager	zh-tw	時
 hours per workday	projectmanager	zh-tw	工作日時數
 how long do you work on the given day.	projectmanager	zh-tw	在指定的這天您工作多久。
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	zh-tw	選擇的專案在選單中如何顯示： 樹狀顯示可以提供較佳的概要，下拉選單執行較快
 ignore that entry	projectmanager	zh-tw	略過那筆資料
 ignored	projectmanager	zh-tw	忽略
 last modified	projectmanager	zh-tw	最後更新
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	zh-tw	選擇多個專案來執行接下來的動作
 select the accounting types visible for users of projectmanager	projectmanager	zh-tw	選擇專案管理員使用者能夠使用的會計類型
 select this project and show it's elements	projectmanager	zh-tw	選擇這個專案並且顯示它的元素
+selectbox with %1	projectmanager	zh-tw	%1 的下拉選單
 share	projectmanager	zh-tw	分工
 share on the whole project	projectmanager	zh-tw	整個專案的分工
 share on the whole project in hours or percent, defaults to planned time	projectmanager	zh-tw	整個專案的分工（時數或百分比），預設是已規劃的時間
@@ -183,6 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	zh-tw	顯示限制與里程碑
 show planned times instead of the real times	projectmanager	zh-tw	顯示已規劃的時間來取代實際時間
 show status icons of the datasources	projectmanager	zh-tw	顯示資料來源的狀態圖示
+show the project selection as	projectmanager	zh-tw	顯示選擇的專案為
 site configuration saved	projectmanager	zh-tw	網站設定儲存了
 start after	projectmanager	zh-tw	開始日期
 start working on %1	projectmanager	zh-tw	開始工作於 %1
@@ -191,6 +197,7 @@ start- & enddate	projectmanager	zh-tw	開始與結束日期
 startdate	projectmanager	zh-tw	開始日期
 state	projectmanager	zh-tw	狀態
 status filter	projectmanager	zh-tw	狀態過濾
+subelements	projectmanager	zh-tw	子元件
 subprojects	projectmanager	zh-tw	子專案
 synchronise all	projectmanager	zh-tw	全部同步
 template	projectmanager	zh-tw	樣板
@@ -198,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	zh-tw	使用�
 time	projectmanager	zh-tw	次
 times	projectmanager	zh-tw	次
 title must not be empty	projectmanager	zh-tw	標題不能為空白
+tree with %1	projectmanager	zh-tw	%1 的樹狀結構
 unit	projectmanager	zh-tw	單位
 unitprice	projectmanager	zh-tw	單價
 used	projectmanager	zh-tw	使用的

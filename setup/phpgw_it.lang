@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	it	Crea un nuovo pro
 create new links	projectmanager	it	Crea nuovi collegamenti
 created	projectmanager	it	creato
 created a ganttchart from the checked projects	projectmanager	it	Creato un grafico gantt dai progetti selezionati
+cumulated elements too	projectmanager	it	Anche gli elementi cumulati
 custom fields	projectmanager	it	Campi personalizzati
 customer title	projectmanager	it	Titolo cliente
 datasource	projectmanager	it	Sorgente dati
@@ -59,6 +60,8 @@ delete this project	projectmanager	it	Cancella questo progetto
 delete this project-element, does not remove the linked entry	projectmanager	it	Cancella questo elemento-progetto, NON rimuove la voce collegata
 delete this role	projectmanager	it	Cancella questo ruolo
 depth of display	projectmanager	it	Profondità visualizzazione
+details of cumulated	projectmanager	it	Dettagli dei cumulati
+details of subelements	projectmanager	it	Dettagli dei sottoelementi
 do not use that entry as project-element	projectmanager	it	non usare quella voce come elemento-progetto
 done (100%)	projectmanager	it	Completato (100%)
 edit access, incl. editing budget and elements	projectmanager	it	modifica accesso, incl. modifica budget ed elementi
@@ -105,6 +108,7 @@ health	projectmanager	it	Salute
 hours	projectmanager	it	ore
 hours per workday	projectmanager	it	Ore per giorno lavorativo
 how long do you work on the given day.	projectmanager	it	Quanto lavori il dato giorno.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	it	Come deve essere visualizzata la selezione progetti nel menù: un albero dà un quadro d'insieme migliore, una selectbox può avere prestazioni migliori.
 ignore that entry	projectmanager	it	ignora quella voce
 ignored	projectmanager	it	ignorato
 last modified	projectmanager	it	ultima modifica
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	it	Seleziona più progetti per una successiva azione
 select the accounting types visible for users of projectmanager	projectmanager	it	seleziona i tipi contabilità visibili agli utenti di Gestione Progetti
 select this project and show it's elements	projectmanager	it	Seleziona questo progetto e mostra i suoi elementi
+selectbox with %1	projectmanager	it	Selectbox con %1
 share	projectmanager	it	Condividi
 share on the whole project	projectmanager	it	Condividi su tutto il progetto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	it	Condividi su tutto il progetto i ore o percentuale, predefinito a tempo pianificato
@@ -183,6 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	it	Mostra vincoli e traguardi
 show planned times instead of the real times	projectmanager	it	Mostra tempi pianificati invece di quelli reali
 show status icons of the datasources	projectmanager	it	Mostra icone di stato delle sorgenti dati
+show the project selection as	projectmanager	it	Mostra la selezione progetti come
 site configuration saved	projectmanager	it	Configurazione sito salvata
 start after	projectmanager	it	Inizia dopo
 start working on %1	projectmanager	it	Ha iniziato a lavorare il %1
@@ -191,6 +197,7 @@ start- & enddate	projectmanager	it	Data Inizio e Fine
 startdate	projectmanager	it	Data inizio
 state	projectmanager	it	Stato
 status filter	projectmanager	it	Filtro di stato
+subelements	projectmanager	it	Sottoelementi
 subprojects	projectmanager	it	Sottoprogetti
 synchronise all	projectmanager	it	Sincronizza tutto
 template	projectmanager	it	Template
@@ -198,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	it	Template c
 time	projectmanager	it	Tempo
 times	projectmanager	it	Tempi
 title must not be empty	projectmanager	it	Il titolo non deve essere vuoto
+tree with %1	projectmanager	it	Albero con %1
 unit	projectmanager	it	Unità
 unitprice	projectmanager	it	Prezzo unitario
 used	projectmanager	it	usato

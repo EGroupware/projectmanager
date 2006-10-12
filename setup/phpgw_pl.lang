@@ -1,0 +1,214 @@
+%1 element(s) updated	projectmanager	pl	%1 sk³adników zaktualizowanych
+%1 new project-elements imported	projectmanager	pl	%1 sk³adników projektu zaimportowanych
+%1 projects deleted	projectmanager	pl	%1 projektów usuniêtych
+%1 times permission denied, %2 projects deleted	projectmanager	pl	%1
+- planned	projectmanager	pl	- zaplanowany
+0ngoing (0 < % < 100)	projectmanager	pl	Trwaj±cy (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	pl	pole opisowego tytu³u projektu nie mo¿e pozostaæ puste
+accounting	projectmanager	pl	Ksiêgowo¶æ
+accounting options	projectmanager	pl	Opcje ksiêgowo¶ci
+accounting type	projectmanager	pl	Rodzaj ksiêgowo¶ci
+actions	projectmanager	pl	Dzia³ania
+activity	projectmanager	pl	Aktywno¶æ
+add a new milestone	projectmanager	pl	Dodaj nowy kamieñ milowy
+add a new project	projectmanager	pl	Dodaj nowy projekt
+add element	projectmanager	pl	Dodaj sk³adnik
+add existing	projectmanager	pl	Dodaj istniej±cy
+add milestone	projectmanager	pl	Dodaj kamieñ milowy
+add or edit roles and their acl	projectmanager	pl	Dodaj lub edytuj role oraz ich ACL
+add price	projectmanager	pl	Dodaj cenê
+add project	projectmanager	pl	Dodaj projekt
+add project-elements	projectmanager	pl	Dodaj sk³adniki projektu
+add this role	projectmanager	pl	Dodaj tê rolê
+allow users to change their working times	projectmanager	pl	Pozwól u¿ytkownikom na zmianê ich czasu pracy
+allowed accounting types	projectmanager	pl	Dozwolone rodzaje ksiêgowo¶ci
+allowed units	projectmanager	pl	Dozwolone jednostki
+anonymous public	projectmanager	pl	Anonimowy publiczny
+app.	projectmanager	pl	Aplikacja
+apply the changes	projectmanager	pl	Zastosuj zmiany
+archive	projectmanager	pl	Archiwum
+assistant	projectmanager	pl	Asystent
+at which time do you start working on the given day.	projectmanager	pl	O której godzinie zaczynasz pracê w podanym dniu.
+availible	projectmanager	pl	Dostêpny
+billable	projectmanager	pl	do rozliczenia
+bookable	projectmanager	pl	do rezerwacji
+budget	projectmanager	pl	Bud¿et
+budget (no pricelist)	projectmanager	pl	Bud¿et (bez cennika)
+budget and pricelist	projectmanager	pl	Bud¿et i cennik
+by	projectmanager	pl	przez
+calculate budget by quantity (eg. time) and price	projectmanager	pl	Przelicz bud¿et z uwzglêdnieniem ilo¶ci (np. czasu) oraz ceny
+check all	projectmanager	pl	Zaznacz wszystko
+close the window, discard the changes made	projectmanager	pl	Zamknij okno, anuluj poczynione zmiany
+constraints	projectmanager	pl	Ograniczenia
+coordinator	projectmanager	pl	Koordynator
+cost per time	projectmanager	pl	Koszt/Czas
+create a new empty project or use a template	projectmanager	pl	Utwórz nowy pusty projekt lub u¿yj szablonu
+create new links	projectmanager	pl	Utwórz nowe odsy³acze
+created	projectmanager	pl	utworzony
+created a ganttchart from the checked projects	projectmanager	pl	Utworzony wykres Gantta z zaznaczonych projektów
+custom fields	projectmanager	pl	W³asne pola
+customer title	projectmanager	pl	W³asny tytu³
+datasource	projectmanager	pl	¬ród³o danych
+dates	projectmanager	pl	Terminy
+delete all checked projects	projectmanager	pl	Usuñ wszystkie zaznaczone projekty
+delete this milestone	projectmanager	pl	Usuñ ten kamieñ milowy
+delete this price	projectmanager	pl	Usuñ t± cenê
+delete this project	projectmanager	pl	Usuñ ten projekt
+delete this project-element, does not remove the linked entry	projectmanager	pl	Usuñ ten sk³adnik projektu, Nie usuwaj powi±zanego wpisu
+delete this role	projectmanager	pl	Usuñ tê rolê
+depth of display	projectmanager	pl	G³êbia wy¶wietlania
+do not use that entry as project-element	projectmanager	pl	Nie u¿ywaj tego wpisu jako sk³adnika projektu
+done (100%)	projectmanager	pl	Wykonane (100%)
+edit access, incl. editing budget and elements	projectmanager	pl	Edytuj dostêp wraz z edycj± bud¿etu i elementów
+edit budget	projectmanager	pl	Edytuj bud¿et
+edit milestone	projectmanager	pl	Edytuj kamieñ milowy
+edit price	projectmanager	pl	Edytuj cenê
+edit project	projectmanager	pl	Edytuj projekt
+edit project-elements	projectmanager	pl	Edytuj sk³adniki projektu
+edit this milestone	projectmanager	pl	Edytuj ten kamieñ milowy
+edit this price	projectmanager	pl	Edytuj t± cenê
+edit this project	projectmanager	pl	Edytuj ten projekt
+edit this project-element	projectmanager	pl	Edytuj ten sk³adnik projektu
+edit this role	projectmanager	pl	Edytuj tê rolê
+elementlist	projectmanager	pl	Lista sk³adników
+elements of elements	projectmanager	pl	Sk³adniki sk³adników
+elements that can't start before this one is finished	projectmanager	pl	Sk³adniki, które nie mogê siê zacz±c zanim ten nie bêdzie ukoñczony
+elements which have to be finished before this can start	projectmanager	pl	Sk³adniki, które musz± zostaæ zakoñczone zanim ten bêdzie móg³ siê zacz±æ
+empty	projectmanager	pl	Pusty
+end before	projectmanager	pl	Zakoñcz przed
+enddate	projectmanager	pl	Termin zakoñczenia
+error: deleting price !!!	projectmanager	pl	B³±d: kasowanie ceny !!!
+error: deleting project !!!	projectmanager	pl	B³±d: kasowanie projektu !!!
+error: deleting project-element !!!	projectmanager	pl	B³±d: kasowanie sk³adnika projektu !!!
+error: deleting role !!!	projectmanager	pl	B³±d: kasowanie roli !!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	pl	B³±d: ID projektu ju¿ istnieje, wybierz inne lub otrzymaj wygenerowane pozostawiaj±c puste pole !!!
+error: saving milestone	projectmanager	pl	B³±d: zapisywanie kamienia milowego
+error: saving role !!!	projectmanager	pl	B³±d: zapisywanie roli !!!
+error: saving the price (%1) !!!	projectmanager	pl	B³±d: zapisywanie ceny (%1) !!!
+error: saving the project (%1) !!!	projectmanager	pl	B³±d: zapisywanie projektu (%1) !!!
+error: saving the project-element (%1) !!!	projectmanager	pl	B³±d: zapisywanie sk³adnika projektu (%1) !!!
+existing links	projectmanager	pl	Istniej±ce odsy³acze
+exit without saving	projectmanager	pl	Wyjd¼ bez zapisywania
+free descriptiv text	projectmanager	pl	Dowolny test opisowy
+from %1 to %2	projectmanager	pl	od 1% do 2%
+full access	projectmanager	pl	pe³ny dostêp
+ganttchart	projectmanager	pl	Wykres Gantta
+ganttchart parameter	projectmanager	pl	Paramentr wykresu Gantta
+general	projectmanager	pl	Ogólnie
+general availibility	projectmanager	pl	Ogólna dostêpno¶æ
+general pricelist	projectmanager	pl	Ogólny cennik
+h	projectmanager	pl	h
+health	projectmanager	pl	Zdrowie
+hours	projectmanager	pl	godziny
+hours per workday	projectmanager	pl	Godziny/dzieñ pracy
+how long do you work on the given day.	projectmanager	pl	Jak d³ugo pracujesz w podanym dniu.
+ignore that entry	projectmanager	pl	pomiñ t± pozycjê
+ignored	projectmanager	pl	pominiêty
+last modified	projectmanager	pl	ostatnio zmodyfikowany
+leave it empty if you dont need a different customer title	projectmanager	pl	pozostaw puste pole je¶li nie potrzebujesz innego tytu³u klienta
+leave it empty to have one generated	projectmanager	pl	pozostaw puste pole je¶li chcesz by zosta³o wygenerowane
+leave it empty, if identitcal to the time	projectmanager	pl	pozostaw puste pole je¶li jest identyczne z terminem
+linked elements	projectmanager	pl	Sk³adniki powi±zane
+links	projectmanager	pl	Odsy³acze
+mainproject only	projectmanager	pl	Tylko g³ówne projekty
+mainprojects	projectmanager	pl	G³ówne projekty
+members	projectmanager	pl	Cz³onkowie
+milestone deleted	projectmanager	pl	Kamieñ milowy usuniêty
+milestone saved	projectmanager	pl	kamieñ milowy zapisany
+milestones	projectmanager	pl	Kamienie milowe
+milestones before this element has to be finished	projectmanager	pl	Kamienie milowe, które musz± zostaæ ukoñczone przed tym sk³adnikiem
+modified	projectmanager	pl	Zmodyfikowany
+modified by	projectmanager	pl	zmodyfikowany przez
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pl	Niezbêdne rozszerzenia PHP %1 nie za³adowane i mog± byæ za³adowane
+new	projectmanager	pl	nowy
+no accounting, only status	projectmanager	pl	Bez ksiêgowo¶ci, tylko stan
+no accounting, only times and status	projectmanager	pl	Bez ksiêgowo¶ci, tylko termin i stan
+no details	projectmanager	pl	bez szczegó³ów
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	pl	Brak dostêpu do odczytu danych: usuniêcie nadpisanych warto¶ci spowoduje ich wyczyszczenie
+no save necessary	projectmanager	pl	zapisywanie neipotrzebne
+nonactive	projectmanager	pl	Nieaktywny
+not started (0%)	projectmanager	pl	Nie rozpoczêty (0%)
+not working	projectmanager	pl	niepracuj±cy
+only this project	projectmanager	pl	Tylko ten projekt
+overwrite the datasource	projectmanager	pl	Nadpisz dane
+percentage the member is availible for projects	projectmanager	pl	Procentowo cz³onek jest dostêpny dla projektów
+percentage the member is availible for this project	projectmanager	pl	Procentowo cz³onek jest dostêpny dla tego projektu
+permission denied !!!	projectmanager	pl	Odmowa dostêpu !!!
+planned	projectmanager	pl	zaplanowany
+planned times	projectmanager	pl	Zaplanowane terminy
+please download a recent version from %1 and install it in %2.	projectmanager	pl	Prosimy ¶ci±gn±æ ostatni± wersjê z %1 i zainstalowaæ j± w %2.
+price	projectmanager	pl	Cena
+price / unit	projectmanager	pl	Cena / Jednostka
+price deleted	projectmanager	pl	Cena usuniêta
+price saved	projectmanager	pl	Cena zachowana
+pricelist	projectmanager	pl	Cennik
+project availibility	projectmanager	pl	Dostêpno¶æ dla projektu
+project deleted	projectmanager	pl	Projekt usuniêty
+project id	projectmanager	pl	ID projektu
+project members and roles	projectmanager	pl	Cz³onkowie projektu i role
+project overview	projectmanager	pl	podgl±d projektu
+project saved	projectmanager	pl	Projekt zachowany
+project specific title, prices, ...	projectmanager	pl	Charakterystyczny tytu³ projektu, ceny, ...
+project-element deleted	projectmanager	pl	Sk³adnik Projektu usuniêty
+project-element saved	projectmanager	pl	Sk³adnik Projektu zapisany
+project-elements	projectmanager	pl	Sk³adniki Projektu
+projectlist	projectmanager	pl	Lista projektów
+projectmanager	common	pl	Mened¿er Projektów
+projectmember	projectmanager	pl	Cz³onek projektu
+quantity	projectmanager	pl	Ilo¶æ
+read access, incl. budget and adding elements	projectmanager	pl	dostêp do odczytu, tak¿e do bud¿etu oraz dodawania sk³adników
+read access, no budget	projectmanager	pl	dostêp do odczytu, bez bud¿etu
+real end	projectmanager	pl	Rzeczywisty koniec
+real start	projectmanager	pl	Rzeczywisty pocz±tek
+resources	projectmanager	pl	Zasoby
+role	projectmanager	pl	Rola
+role deleted	projectmanager	pl	Rola usuniêta
+role saved	projectmanager	pl	Rola zapisana
+roles	projectmanager	pl	Role
+save the changes made	projectmanager	pl	Zapisz poczynione zmiany
+save this project element	projectmanager	pl	Zapisz ten sk³adnik projektu
+select a project	projectmanager	pl	wybierz projekt
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	pl	wybierz polecenie je¶li chcesz przeliczyæ koszty z uwzglêdnieniem ilo¶ci (czasu) i ceny
+select multiple projects for a further action	projectmanager	pl	Wybierz kilka projektów do dalszych czynno¶ci
+select the accounting types visible for users of projectmanager	projectmanager	pl	wybierz rodzaje ksiêgowa¶ci widoczne dla u¿ytkowników Mened¿era Projektów
+select this project and show it's elements	projectmanager	pl	Wybierz ten projekt i poka¿ jego elementy
+share	projectmanager	pl	Podziel siê
+share on the whole project	projectmanager	pl	Podziel siê ca³ym projektem
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	pl	Czy Mened¿er Projektów powinien pokazywaæ ikonki statusu danych (np. InfoLog) czy tylko pasek postêpu ze statusem liczbowym (szybsza opcja).
+show constraints and milestones	projectmanager	pl	Poka¿ ograniczenia i kamienie milowe
+show planned times instead of the real times	projectmanager	pl	Poka¿ zaplanowane terminy zamiast faktycznych
+show status icons of the datasources	projectmanager	pl	Poka¿ ikonki statusu danych
+site configuration saved	projectmanager	pl	Konfiguracja strony zapisana
+start after	projectmanager	pl	Rozpocznij po
+start working on %1	projectmanager	pl	Rozpocznij pracê od %1
+start, end, category, ...	projectmanager	pl	Pocz±tek, Koniec, Kategoria, ...
+start- & enddate	projectmanager	pl	Pocz±tkowy & Koñcowy termin
+startdate	projectmanager	pl	Termin rozpoczêcia
+state	projectmanager	pl	Stan
+status filter	projectmanager	pl	Filtr statusu
+subprojects	projectmanager	pl	Podprojekty
+synchronise all	projectmanager	pl	Zsynchronizuj wszystko
+template	projectmanager	pl	Szablon
+template including elment-tree saved as new project	projectmanager	pl	Szablon zawieraj±cy drzewo sk³adników zapisany jako nowy projekt
+time	projectmanager	pl	Termin
+times	projectmanager	pl	Czas
+title must not be empty	projectmanager	pl	Tytu³ nie mo¿e byæ pusty
+unit	projectmanager	pl	Jednostka
+unitprice	projectmanager	pl	Cena jednostkowa
+used	projectmanager	pl	u¿ywany
+valid since	projectmanager	pl	Wa¿ny od
+view ganttchart of this project	projectmanager	pl	Poka¿ wykres Gantta tego projektu
+view milestone	projectmanager	pl	Poka¿ kamieñ milowy
+view price	projectmanager	pl	Poka¿ cenê
+view project	projectmanager	pl	Poka¿ projekt
+view project-elements	projectmanager	pl	Poka¿ elementy projektu
+view this element in %1	projectmanager	pl	Pok±¿ ten sk³adnik w %1
+view this milestone	projectmanager	pl	Poka¿ ten kamieñ milowy
+view this price	projectmanager	pl	Poka¿ tê cenê
+view this project	projectmanager	pl	Poka¿ ten projekt
+view this project-element	projectmanager	pl	Poka¿ ten sk³adnik projektu
+working duration on %1	projectmanager	pl	Czas wykonywania pracy %1
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	pl	U¿ywasz starej wersji JPGraph do³±czonej do eGroupware, która ma ograniczon± funkcjonalno¶æ.
+you can leave the date of the first price empty	projectmanager	pl	Mo¿esz nie wype³niaæ daty pierwszej ceny
+you need to select a project first	projectmanager	pl	Musisz najpierw wybraæ projekt
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	pl	Twoja baza jest nieaktualna (%1 vs. %2), prosimy uruchomiæ %3setup%4 by zaktualizowaæ bazê.
