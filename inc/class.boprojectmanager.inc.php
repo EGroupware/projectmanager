@@ -484,9 +484,9 @@ class boprojectmanager extends soprojectmanager
 			$criteria[$col] = $pattern;
 		}
 		$result = array();
-		foreach((array) $this->search($criteria,false,'pm_number','','%',false,'OR') as $prj )
+		foreach((array) $this->search($criteria,false,'pm_number','','%',false,'OR',false,array('pm_status'=>'active')) as $prj )
 		{
-			$result[$prj['pm_id']] = $this->link_title($prj);
+			if ($prj['pm_id']) $result[$prj['pm_id']] = $this->link_title($prj);
 		}
 		return $result;
 	}
