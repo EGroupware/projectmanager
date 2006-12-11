@@ -31,5 +31,5 @@ foreach(array(
 		'role_acl'         => 1),				// READ
 ) as $role_id => $data)
 {
-	$GLOBALS['phpgw_setup']->oProc->insert('egw_pm_roles',$data,array('role_id'=>$role_id),__LINE__,__FILE__,'projectmanager');
+	$GLOBALS['egw_setup']->oProc->insert('egw_pm_roles',$data,array('role_id'=>$role_id),__LINE__,__FILE__,'projectmanager');
 }
