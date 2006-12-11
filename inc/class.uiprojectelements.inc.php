@@ -609,7 +609,11 @@ class uiprojectelements extends boprojectelements
 		$content['nm']['link_add'] = array(
 			'to_id'    => $this->pm_id,
 			'to_app'   => 'projectmanager',
+			'add_app'  => 'infolog',
 		);
+		// set id for automatic linking via quick add
+		$GLOBALS['egw_info']['flags']['currentid'] = $this->pm_id;
+
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
