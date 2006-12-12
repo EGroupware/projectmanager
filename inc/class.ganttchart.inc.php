@@ -198,11 +198,16 @@ class ganttchart extends boprojectelements
 		
 		if (strlen($lang) == 2)
 		{
-			if (setlocale(LC_ALL,$locale=$lang.'_'.$country)) return $locale;
-			if (setlocale(LC_ALL,$locale=$lang.'_'.strtoupper($lang))) return $locale;
+			$country_from_lang = strtoupper($lang);
 		}
+		else
+		{
+			list($lang,$country_from_lang) = explode('-',$lang);
+			$country_from_lang = strtoupper($country_from_lang);
+		}
+		if (setlocale(LC_ALL,$locale=$lang.'_'.$country)) return $locale;
+		if (setlocale(LC_ALL,$locale=$lang.'_'.$country_from_lang)) return $locale;
 		if (setlocale(LC_ALL,$locale=$lang)) return $locale;
-		
 		if (setlocale(LC_ALL,$locale='en_EN')) return $locale;
 		
 		return 'C';
