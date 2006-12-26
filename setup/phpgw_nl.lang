@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	nl	Een nieuw leeg pr
 create new links	projectmanager	nl	Nieuwe links aanmaken
 created	projectmanager	nl	aangemaakt
 created a ganttchart from the checked projects	projectmanager	nl	Maak een ganttchart van de gemarkeerde projecten
+cumulated elements too	projectmanager	nl	Ook gecumuleerde elementen
 custom fields	projectmanager	nl	Aangepaste velden
 customer title	projectmanager	nl	Klant titel
 datasource	projectmanager	nl	Gegevensbron
@@ -59,6 +60,8 @@ delete this project	projectmanager	nl	Dit project verwijderen
 delete this project-element, does not remove the linked entry	projectmanager	nl	Dit projectelement verwijderen, verwijdert NIET de gelinkte entry
 delete this role	projectmanager	nl	Deze rol verwijderen
 depth of display	projectmanager	nl	Weergavediepte
+details of cumulated	projectmanager	nl	Details van gecumuleerd
+details of subelements	projectmanager	nl	Details van subelementen
 do not use that entry as project-element	projectmanager	nl	gebruik die entry niet als een projectelement
 done (100%)	projectmanager	nl	Voltooid (100%)
 edit access, incl. editing budget and elements	projectmanager	nl	bewerk toegang, incl. budget en elementen bewerken
@@ -105,6 +108,7 @@ health	projectmanager	nl	Gezondheid
 hours	projectmanager	nl	uren
 hours per workday	projectmanager	nl	Uren per werkdag
 how long do you work on the given day.	projectmanager	nl	Hoe lang werkt u op de gegeven dag.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	nl	Hoe moet de project keuze in het menu worden weergegeven: een boomstructuur geeft een beter overzicht, een keuzelijst werkt sneller.
 ignore that entry	projectmanager	nl	negeer die entry
 ignored	projectmanager	nl	genegeerd
 last modified	projectmanager	nl	laatst gewijzigd
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	nl	Selecteer meerdere projecten voor verdere actie
 select the accounting types visible for users of projectmanager	projectmanager	nl	selecteer de calculatie types die zichtbaar zijn voor gebruikers van de projectmanager
 select this project and show it's elements	projectmanager	nl	Selecteer dit project en toon de elementen
+selectbox with %1	projectmanager	nl	Keuzelijst met %1
 share	projectmanager	nl	Delen
 share on the whole project	projectmanager	nl	Aandeel in het hele project
 share on the whole project in hours or percent, defaults to planned time	projectmanager	nl	Aandeel in het hele project in uren of percentage, standaard de geplande tijd
@@ -183,6 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	nl	Beperkingen en mijlpalen weergeven
 show planned times instead of the real times	projectmanager	nl	Toon geplande tijden in plaats van de werkelijke tijden
 show status icons of the datasources	projectmanager	nl	Toon statuspictogrammen van de gegevensbronnen
+show the project selection as	projectmanager	nl	Toon de project keuze als
 site configuration saved	projectmanager	nl	Site configuratie bewaard
 start after	projectmanager	nl	Start na
 start working on %1	projectmanager	nl	Start met werken op %1
@@ -191,6 +197,7 @@ start- & enddate	projectmanager	nl	Start- & Einddatum
 startdate	projectmanager	nl	Startdatum
 state	projectmanager	nl	Staat
 status filter	projectmanager	nl	Status filter
+subelements	projectmanager	nl	Subelementen
 subprojects	projectmanager	nl	Subprojecten
 synchronise all	projectmanager	nl	Alles synchroniseren
 template	projectmanager	nl	Template
@@ -198,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	nl	Template i
 time	projectmanager	nl	Tijd
 times	projectmanager	nl	Tijden
 title must not be empty	projectmanager	nl	Titel mag niet leeg zijn
+tree with %1	projectmanager	nl	Boom met %1
 unit	projectmanager	nl	Eenheid
 unitprice	projectmanager	nl	Eenheidstarief
 used	projectmanager	nl	gebruikt
