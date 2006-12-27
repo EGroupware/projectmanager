@@ -133,14 +133,14 @@ class bopricelist extends sopricelist
 		{
 			foreach(array_merge($old['prices'],$old['project_prices']) as $old_price)
 			{
-				$old_prices[(int)$old_price['pm_id']][date('Y-m-d',$old_price['pl_validsince'])] = $old_price;
+				$old_prices[(int)$old_price['pm_id']][date('Y-m-d',(int)$old_price['pl_validsince'])] = $old_price;
 			}
 		}
 		foreach($prices as $key => $nul)
 		{
 			$price =& $prices[$key];
 			if (!isset($price['pl_id'])) $price['pl_id'] = $this->data['pl_id'];
-			$old_price = $old_prices[(int)$price['pm_id']][date('Y-m-d',$price['pl_validsince'])];
+			$old_price = $old_prices[(int)$price['pm_id']][date('Y-m-d',(int)$price['pl_validsince'])];
 			if (!$this->prices_equal($price,$old_price))
 			{
 				// price needs saving, checking acl now
@@ -149,14 +149,14 @@ class bopricelist extends sopricelist
 					return lang('permission denied !!!').' check_acl(EGW_ACL_EDIT(pm_id='.(int)$price[pm_id].')';
 				}
 				// maintain time of old price, to not create doublets with different times by users operating in different TZ's
-				$price['pl_validsince'] = $old_price['pl_validsince'];
+				if ($old_price) $price['pl_validsince'] = $old_price['pl_validsince'];
 
 				if (($err = parent::save_price($price)))
 				{
 					return $err;
 				}
 			}
-			unset($old_prices[(int)$price['pm_id']][date('Y-m-d',$old_price['pl_validsince'])]);
+			unset($old_prices[(int)$price['pm_id']][date('Y-m-d',(int)$old_price['pl_validsince'])]);
 		}
 		// check if there are old prices not longer set ==> delete them
 		foreach($old_prices as $pm_id => $prices)
@@ -326,7 +326,7 @@ class bopricelist extends sopricelist
 					$equal = (int) $price['pm_id'] == (int) $price2['pm_id'];
 					break;
 				case 'pl_validsince':
-					$equal = date('Y-m-d',$price['pl_validsince']) == date('Y-m-d',$price2['pl_validsince']);
+					$equal = date('Y-m-d',(int)$price['pl_validsince']) == date('Y-m-d',(int)$price2['pl_validsince']);
 					break;
 				default:
 					$equal = $price[$key] == $price2[$key];
