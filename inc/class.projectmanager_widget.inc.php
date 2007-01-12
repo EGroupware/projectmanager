@@ -64,8 +64,6 @@ class projectmanager_widget
 			$value = '';
 			return false;
 		}
-		list($rows,$type,$type2,$type3) = explode(',',$cell['size']);
-
 		$extension_data['type'] = $cell['type'];
 
 		switch ($cell['type'])
@@ -79,18 +77,44 @@ class projectmanager_widget
 				if (!$cell['help']) $cell['help'] = /*lang(*/ 'Select a project' /*)*/;
 				break;
 
-			case 'projectmanager-pricelist':
-				$pm_id = (int) $tmpl->content['pm_id'];
-				// some caching for the pricelist, in case it's needed multiple times
-				if (!isset($pricelist[$pm_id]))
+			case 'projectmanager-pricelist':			// rows, pm_id-var, price-var
+				list($rows,$pm_id_var,$price_var) = explode(',',$cell['size']);
+				if (!$pm_id_var) $pm_id_var = 'pm_id';	// where are the pm_id(s) storered
+				$pm_ids = $tmpl->content[$pm_id_var];
+				$cell['sel_options'] = array();
+				foreach((array) $pm_ids as $pm_id)
 				{
-					if (!is_object($this->pricelist))
+					// some caching for the pricelist, in case it's needed multiple times
+					if (!isset($pricelist[$pm_id]))
 					{
-						$this->pricelist =& CreateObject('projectmanager.bopricelist');
+						if (!is_object($this->pricelist))
+						{
+							require_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.bopricelist.inc.php');
+							$this->pricelist =& new bopricelist();
+						}
+						$pricelist[$pm_id] = $this->pricelist->pricelist($pm_id);
 					}
-					$pricelist[$pm_id] = $this->pricelist->pricelist($pm_id);
+					foreach($pricelist[$pm_id] as $pl_id => $label) 
+					{
+						if (!isset($cell['sel_options'][$pl_id]))
+						{
+							$cell['sel_options'][$pl_id] = $label;
+						}
+						// if pl_id already used as index, we use pl_id-price as index
+						elseif (preg_match('/\(([0-9.,]+)\)$/',$label,$matches) && 
+								!isset($cell['sel_options'][$pl_id.'-'.$matches[1]]))
+						{
+							$cell['sel_options'][$pl_id.'-'.$matches[1]] = $label;
+						}
+					}
 				}
-				$cell['sel_options'] = $pricelist[$pm_id];
+				// check if we have a match with pl_id & price --> use it
+				if ($price_var && ($price = $tmpl->content[$price_var]) && isset($cell['sel_options'][$value.'-'.$price]))
+				{
+					$value .= '-'.$price;
+				}
+				$cell['size'] = $rows;	// as the other options are not understood by the select-widget
+
 				if (!$cell['help']) $cell['help'] = /*lang(*/ 'Select a price' /*)*/;
 				break;
 		}
