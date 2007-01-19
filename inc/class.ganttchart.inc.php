@@ -484,6 +484,7 @@ class ganttchart extends boprojectelements
 				"$end IS NOT NULL",
 				"$start <= ".(int)$this->scale_end,	// starts befor the end of our period AND
 				"$end >= ".(int)$this->scale_start,	// ends after the start of our period
+				'cumulate' => true,
 			);
 			switch ($params['filter'])
 			{
