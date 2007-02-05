@@ -121,7 +121,7 @@ class bopricelist extends sopricelist
 			$price =& $this->data['project_prices'][$key];
 			foreach(array('pm_id','pl_billable','pl_customertitle') as $key)
 			{
-				if (!isset($this->data[$key])) $price[$key] = $this->data[$key];
+				if (!isset($price[$key])) $price[$key] = $this->data[$key];
 			}
 			if (count($this->data['project_prices']) == 1) $price['pl_validsince'] = 0;	// no date for first price
 			$prices[] =& $price;
