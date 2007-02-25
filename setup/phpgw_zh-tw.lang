@@ -1,8 +1,8 @@
-%1 element(s) updated	projectmanager	zh-tw	%1 個元素更新了
+%1 element(s) updated	projectmanager	zh-tw	%1 個項目更新了
 %1 new project-elements imported	projectmanager	zh-tw	匯入了 %1 個專案元件
 %1 projects deleted	projectmanager	zh-tw	刪除了 %1 個專案
 %1 times permission denied, %2 projects deleted	projectmanager	zh-tw	%1 次沒有權限的存取，%2個專案刪除了
-- planned	projectmanager	zh-tw	- 已規劃
+- planned	projectmanager	zh-tw	- 規劃
 0ngoing (0 < % < 100)	projectmanager	zh-tw	進行中(0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	zh-tw	一個適當的專案名稱，不能空白
 accounting	projectmanager	zh-tw	會計
@@ -18,7 +18,7 @@ add milestone	projectmanager	zh-tw	新增里程碑
 add or edit roles and their acl	projectmanager	zh-tw	新增或編輯角色以及他們的權限
 add price	projectmanager	zh-tw	新增價格
 add project	projectmanager	zh-tw	新增專案
-add project-elements	projectmanager	zh-tw	新增專案元素
+add project-elements	projectmanager	zh-tw	新增專案項目
 add this role	projectmanager	zh-tw	新增這個角色
 allow users to change their working times	projectmanager	zh-tw	允許使用者修改他們的工作時間
 allowed accounting types	projectmanager	zh-tw	允許的會計類型
