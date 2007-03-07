@@ -1,14 +1,22 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="0.4.001">
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.3.001">
 		<grid width="100%">
 			<columns>
 				<column/>
-				<column width="33%"/>
 				<column/>
 				<column/>
 				<column/>
+				<column disabled="@no_role0"/>
+				<column disabled="@no_role1"/>
+				<column disabled="@no_role2"/>
+				<column disabled="@no_role3"/>
+				<column disabled="@no_role4"/>
+				<column/>
+				<column/>
+				<column disabled="@no_pm_used_budget_pm_planned_budget"/>
+				<column disabled="@no_pm_used_time_pm_planned_time"/>
 				<column/>
 				<column/>
 				<column/>
@@ -19,9 +27,29 @@
 					<nextmatch-sortheader label="Title" id="pm_title"/>
 					<nextmatch-sortheader label="Priority" align="center" id="pm_priority"/>
 					<nextmatch-sortheader label="Owner" id="pm_creator"/>
-					<nextmatch-sortheader label="last modified" id="pm_modified"/>
-					<nextmatch-sortheader label="modified by" id="pm_modifier"/>
+					<nextmatch-header label="@roles[0]" id="role0"/>
+					<nextmatch-header label="@roles[1]" id="role1"/>
+					<nextmatch-header label="@roles[2]" id="role2"/>
+					<nextmatch-header label="@roles[3]" id="role3"/>
+					<nextmatch-header label="@roles[4]" id="role4"/>
+					<vbox options="0,0">
+						<nextmatch-sortheader label="Startdate" id="pm_real_start"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_start" class="planned"/>
+					</vbox>
+					<vbox options="0,0">
+						<nextmatch-sortheader label="Enddate" id="pm_real_end"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_end" class="planned"/>
+					</vbox>
+					<vbox options="0,0">
+						<nextmatch-sortheader label="Budget" id="pm_used_budget"/>
+						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_budget"/>
+					</vbox>
+					<vbox options="0,0">
+						<nextmatch-sortheader label="Times" id="pm_used_time"/>
+						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_time"/>
+					</vbox>
 					<nextmatch-sortheader label="Status" id="pm_completion" align="center"/>
+					<nextmatch-sortheader label="last modified" id="pm_modified"/>
 					<hbox align="center" class="noPrint">
 						<description value="Actions" align="center"/>
 						<button image="check" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('checked[]')); return false;" needed="1"/>
@@ -34,11 +62,34 @@
 					<menulist>
 						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>
 					</menulist>
-					<date-time id="${row}[pm_modified]" readonly="true"/>
-					<menulist>
-						<menupopup type="select-account" id="${row}[pm_modifier]" readonly="true"/>
-					</menulist>
+					<listbox type="select-account" id="${row}[role0]" readonly="true" rows="2"/>
+					<listbox type="select-account" id="${row}[role1]" readonly="true" rows="2"/>
+					<listbox type="select-account" id="${row}[role2]" readonly="true" rows="2"/>
+					<listbox type="select-account" id="${row}[role3]" readonly="true" rows="2"/>
+					<listbox type="select-account" id="${row}[role4]" readonly="true" rows="2"/>
+					<vbox options="0,0">
+						<date id="${row}[pm_real_start]" readonly="true"/>
+						<date id="${row}[pm_planned_start]" readonly="true" class="planned"/>
+					</vbox>
+					<vbox options="0,0">
+						<date id="${row}[pm_real_end]" readonly="true"/>
+						<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>
+					</vbox>
+					<vbox readonly="true">
+						<textbox type="float" readonly="true" id="${row}[pm_used_budget]" max="2"/>
+						<textbox type="float" readonly="true" no_lang="1" id="${row}[pm_planned_budget]" max="2" class="planned"/>
+					</vbox>
+					<vbox readonly="true">
+						<date-duration readonly="true" id="${row}[pm_used_time]" options="@duration_format"/>
+						<date-duration readonly="true" id="${row}[pm_planned_time]" class="planned" options="@duration_format"/>
+					</vbox>
 					<image src="${row}[pm_completion]" label="$row_cont[pm_completion]" no_lang="1" align="center"/>
+					<vbox readonly="true" options="0,0">
+						<date-time id="${row}[pm_modified]" readonly="true"/>
+						<menulist>
+							<menupopup type="select-account" id="${row}[pm_modifier]" readonly="true"/>
+						</menulist>
+					</vbox>
 					<hbox align="center" class="noPrint">
 						<button image="ganttchart" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" statustext="View ganttchart of this project"/>
 						<button image="view" label="View" id="view[$row_cont[pm_id]]" statustext="View this project"/>

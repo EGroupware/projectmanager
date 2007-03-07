@@ -397,7 +397,7 @@ class uiprojectelements extends boprojectelements
 	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
-	
+		
 		if ($this->status_filter[$query['filter']])
 		{
 			$query['col_filter']['pe_status'] = $this->status_filter[$query['filter']];
@@ -501,9 +501,29 @@ class uiprojectelements extends boprojectelements
 				}
 			}
 		}
-		$rows['no_budget'] = !$this->project->check_acl(EGW_ACL_BUDGET);
-		$rows['no_times']  = $this->project->data['pm_accounting_type'] == 'status';
+		if (!$this->project->check_acl(EGW_ACL_BUDGET))
+		{
+			$rows['no_pe_used_budget_pe_planned_budget'] = true;
+		}
+		if ($this->project->data['pm_accounting_type'] == 'status')
+		{
+			$rows['no_pe_used_time_pe_planned_time'] = true;
+		}
+		// disable time & budget columns if pm is configures for status or status and time only
+		if ($this->config['accounting_types'] == 'status')
+		{
+			$rows['no_pm_used_time_pm_planned_time'] = true;
+			$rows['no_pm_used_budget_pm_planned_budget'] = true;
+			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_planned_time'] = false;
+			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
+		}
+		if ($this->config['accounting_types'] == 'status,times')
+		{
+			$rows['no_pm_used_budget_pm_planned_budget'] = true;
+			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
+		}
 		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
+		if ($query['cat_id']) $rows['no_cat_id'] = true;
 		// calculate the filter-specific summary if we have a filter, beside the default pe_status=used=array(new,regular)
 		if (array_diff(array_keys($query['col_filter']),array(0,'pe_status','pm_id')) || !is_array($query['col_filter']['pe_status']))
 		{
@@ -585,6 +605,7 @@ class uiprojectelements extends boprojectelements
 				'col_filter' => array('pe_resources' => 0),	// default value, to suppress loop
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
+				'default_cols'   => '!cat_id',
 			);
 		}
 		// add "buttons" only with add-rights

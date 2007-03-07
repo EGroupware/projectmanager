@@ -140,6 +140,7 @@ class soprojectmanager extends so_sql
 			}
 		}
 		// query project_members and their roles
+/*
 		$this->db->select($this->members_table,'*',$this->members_table.'.pm_id='.(int)$this->data['pm_id'],__LINE__,__FILE__,
 			False,'',False,0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id");
 	
@@ -147,9 +148,30 @@ class soprojectmanager extends so_sql
 		{
 			$this->data['pm_members'][$row['member_uid']] = $row;
 		}
+*/
+		$this->data['pm_members'] = $this->read_members($this->data['pm_id']);
 		$this->data['role_acl'] = $this->data['pm_members'][$this->user]['role_acl'];
 		
 		return $this->data;
+	}
+	
+	/**
+	 * Read the projectmembers of one or more projects
+	 *
+	 * @param int/array $pm_id
+	 * @return array with projectmembers
+	 */
+	function read_members($pm_id)
+	{
+		$this->db->select($this->members_table,'*,'.$this->members_table.'.pm_id AS pm_id',
+			$this->db->expression($this->members_table,$this->members_table.'.',array('pm_id'=>$pm_id)),__LINE__,__FILE__,
+			False,'',False,0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id");
+		
+		while(($row = $this->db->row(true)))
+		{
+			$members[$row['pm_id']][$row['member_uid']] = $row;
+		}
+		return is_array($pm_id) ? $members : $members[$pm_id];
 	}
 	
 	/**

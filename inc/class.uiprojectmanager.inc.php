@@ -424,9 +424,9 @@ class uiprojectmanager extends boprojectmanager
 	 * @param array &$rows returned rows/cups
 	 * @param array &$readonlys eg. to disable buttons based on acl
 	 */
-	function get_rows($query,&$rows,&$readonlys)
+	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
-		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query);
+		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query=$query_in);
 
 		// handle nextmatch filters like col_filters
 		foreach(array('cat_id' => 'cat_id','filter2' => 'pm_status') as $nm_name => $pm_name)
@@ -437,6 +437,8 @@ class uiprojectmanager extends boprojectmanager
 		$query['col_filter']['subs_or_mains'] = $query['filter'];
 
 		$total = parent::get_rows($query,$rows,$readonlys,true,true);
+		
+		$this->instanciate('roles');
 		
 		$readonlys = array();
 		foreach($rows as $n => $val)
@@ -450,11 +452,59 @@ class uiprojectmanager extends boprojectmanager
 			{
 				$readonlys["delete[$row[pm_id]]"] = true;
 			}
+			$pm_ids[] = $row['pm_id'];
+			
+			if (!($row['role_acl'] & EGW_ACL_BUDGET))
+			{
+				unset($row['pm_used_budget']);
+				unset($row['pm_planned_budget']);
+			}
 		}
+		$roles = $this->roles->query_list();
+		// query the project-members only, if user choose to display them
+		if ($pm_ids && strstr($GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-projectmanager.list.rows'],',role') !== false)
+		{
+			$all_members = $this->read_members($pm_ids);
+			foreach($rows as $n => $val)
+			{
+				$row =& $rows[$n];
+				$members = $row['pm_members'] = $all_members[$row['pm_id']];
+				if (!$members) continue;
+				
+				foreach($members as $uid => $data)
+				{
+					if (($pos = array_search($data['role_id'],array_keys($roles))) !== false)
+					{
+						$row['role'.$pos][] = $uid;
+					}
+				}
+			}
+		}
+		//_debug_array($rows);
 		if ((int) $this->debug >= 2 || $this->debug == 'get_rows')
 		{
 			$this->debug_message("uiprojectmanager::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."\nreadonlys=".print_r($readonlys,true));
 		}
+		$rows['roles'] = array_values($roles);
+		for($i = count($roles); $i < 5; ++$i)
+		{
+			$rows['no_role'.$i] = true;
+		}
+		// disable time & budget columns if pm is configures for status or status and time only
+		if ($this->config['accounting_types'] == 'status')
+		{
+			$rows['no_pm_used_time_pm_planned_time'] = true;
+			$rows['no_pm_used_budget_pm_planned_budget'] = true;
+			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_planned_time'] = false;
+			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
+		}
+		if ($this->config['accounting_types'] == 'status,times')
+		{
+			$rows['no_pm_used_budget_pm_planned_budget'] = true;
+			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
+		}
+		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
+
 		return $total;		
 	}
 
@@ -573,6 +623,7 @@ class uiprojectmanager extends boprojectmanager
 //				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
 				'order'          =>	'pm_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
+				'default_cols'   => '!role0,role1,role2,role3,role4',
 			);
 		}
 		$templates = array();
