@@ -131,7 +131,7 @@ necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	es
 new	projectmanager	es-es	nuevo
 no accounting, only status	projectmanager	es-es	Sin cuentas, sólo estado
 no accounting, only times and status	projectmanager	es-es	Sin cuentas, sólo tiempos y estado
-no details	projectmanager	es-es	no hay detalles
+no details	projectmanager	es-es	Sin detalles
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	es-es	¡¡Sin acceso de LECTURA a la fuente de datos: eliminar los valores sobreescritos sólo los vaciará!!
 no save necessary	projectmanager	es-es	No es necesario guardar
 nonactive	projectmanager	es-es	No activo
