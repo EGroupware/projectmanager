@@ -12,7 +12,7 @@
  */
 
 $setup_info['projectmanager']['name']      = 'projectmanager';
-$setup_info['projectmanager']['version']   = '0.5.005';
+$setup_info['projectmanager']['version']   = '1.4';
 $setup_info['projectmanager']['app_order'] = 5;
 $setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones','egw_pm_roles','egw_pm_members','egw_pm_pricelist','egw_pm_prices');
 $setup_info['projectmanager']['enable']    = 1;
@@ -48,11 +48,11 @@ $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager.boprojec
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'phpgwapi',
-	 'versions' => Array('1.0.0','1.0.1','1.2','1.3')
+	 'versions' => Array('1.3','1.4','1.5')
 );
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'etemplate',
-	 'versions' => Array('1.0.0','1.0.1','1.2','1.3')
+	 'versions' => Array('1.3','1.4','1.5')
 );
 // installation checks for email
 $setup_info['projectmanager']['check_install'] = array(

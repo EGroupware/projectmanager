@@ -349,4 +349,11 @@
 
 		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '0.5.005';
 	}
+
+
+	$test[] = '0.5.005';
+	function projectmanager_upgrade0_5_005()
+	{
+		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.4';
+	}
 ?>

@@ -462,7 +462,7 @@ class uiprojectmanager extends boprojectmanager
 		}
 		$roles = $this->roles->query_list();
 		// query the project-members only, if user choose to display them
-		if ($pm_ids && strstr($GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-projectmanager.list.rows'],',role') !== false)
+		if ($pm_ids && @strstr($GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-projectmanager.list.rows'],',role') !== false)
 		{
 			$all_members = $this->read_members($pm_ids);
 			foreach($rows as $n => $val)
