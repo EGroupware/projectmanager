@@ -37,6 +37,7 @@ budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
 budget and pricelist	projectmanager	de	Budget und Preisliste
 by	projectmanager	de	von
 calculate budget by quantity (eg. time) and price	projectmanager	de	Budget nach Menge (Zeit) und Preis berechnen
+charset of the above selected font	projectmanager	de	Zeichensatz des oben ausgewählten Font
 check all	projectmanager	de	Alle auswählen
 close the window, discard the changes made	projectmanager	de	Fenster schließen und die gemachten Veränderungen verwerfen
 constraints	projectmanager	de	Bedingungen
@@ -80,6 +81,7 @@ elements of elements	projectmanager	de	Element der Elemente
 elements that can't start before this one is finished	projectmanager	de	Elemente die nicht starten können bevor dieses beendet ist
 elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
 empty	projectmanager	de	Leer
+encode non-ascii	projectmanager	de	Nicht ASCII kodieren
 end before	projectmanager	de	Endet vor
 enddate	projectmanager	de	Enddatum
 error: deleting price !!!	projectmanager	de	Fehler: Preis löschen !!!
@@ -95,6 +97,11 @@ error: saving the project-element (%1) !!!	projectmanager	de	Fehler: Projektelem
 everything recursive	projectmanager	de	Alles rekursiv
 existing links	projectmanager	de	Bestehende Verknüpfungen
 exit without saving	projectmanager	de	Abbrechen ohne zu Speichern
+font	projectmanager	de	Font
+font charset	projectmanager	de	Font Zeichensatz
+font style	projectmanager	de	Font Stil
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	de	Font für das Ganttchart. Nur der Vera Font ist beim Projektmanager dabei.
+fontfile '%1' not found!!!	projectmanager	de	Fontdatei '%1' nicht gefunden!!!
 free descriptiv text	projectmanager	de	Freier Text
 from %1 to %2	projectmanager	de	von %1 bis %2
 full access	projectmanager	de	unbeschränkter Zugriff
@@ -109,6 +116,7 @@ hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
 last modified	projectmanager	de	Zuletzt geändert
@@ -197,11 +205,13 @@ start- & enddate	projectmanager	de	Start- & Enddatum
 startdate	projectmanager	de	Startdatum
 state	projectmanager	de	Zustand
 status filter	projectmanager	de	Status Filter
+style used for everything but elements. some fonts have only normal style.	projectmanager	de	Stil der für alles außer Elementen verwendet wird. Einige Fonts haben nur den Stil Normal.
 subelements	projectmanager	de	Unterelemente
 subprojects	projectmanager	de	Unterprojekte
 synchronise all	projectmanager	de	Alle synchronisieren
 template	projectmanager	de	Vorlage
 template including elment-tree saved as new project	projectmanager	de	Vorlage einschl. Elementbaum als neues Projekt gespeichert
+the charset depends on the font you want to use.	projectmanager	de	Der Zeichensatz hängt vom Font ab den Sie verwenden wollen.
 time	projectmanager	de	Zeit
 times	projectmanager	de	Zeiten
 title must not be empty	projectmanager	de	Titel darf nicht leer sein

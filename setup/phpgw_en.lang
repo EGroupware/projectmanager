@@ -37,6 +37,7 @@ budget (no pricelist)	projectmanager	en	Budget (no pricelist)
 budget and pricelist	projectmanager	en	Budget and pricelist
 by	projectmanager	en	by
 calculate budget by quantity (eg. time) and price	projectmanager	en	Calculate budget by quantity (eg. time) and price
+charset of the above selected font	projectmanager	en	Charset of the above selected font
 check all	projectmanager	en	Check all
 close the window, discard the changes made	projectmanager	en	Close the window, discard the changes made
 constraints	projectmanager	en	Constraints
@@ -80,6 +81,7 @@ elements of elements	projectmanager	en	Elements of elements
 elements that can't start before this one is finished	projectmanager	en	Elements that can't start before this one is finished
 elements which have to be finished before this can start	projectmanager	en	Elements which have to be finished before this can start
 empty	projectmanager	en	Empty
+encode non-ascii	projectmanager	en	Encode non-ascii
 end before	projectmanager	en	End before
 enddate	projectmanager	en	Enddate
 error: deleting price !!!	projectmanager	en	Error: deleting price !!!
@@ -95,6 +97,11 @@ error: saving the project-element (%1) !!!	projectmanager	en	Error: saving the p
 everything recursive	projectmanager	en	Everything recursive
 existing links	projectmanager	en	Existing links
 exit without saving	projectmanager	en	Exit without saving
+font	projectmanager	en	Font
+font charset	projectmanager	en	Font charset
+font style	projectmanager	en	Font style
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	en	Font to use in the Ganttchart, only the Vera fonts are included in the ProjectManager.
+fontfile '%1' not found!!!	projectmanager	en	Fontfile '%1' not found!!!
 free descriptiv text	projectmanager	en	free descriptiv text
 from %1 to %2	projectmanager	en	from %1 to %2
 full access	projectmanager	en	full access
@@ -109,6 +116,7 @@ hours	projectmanager	en	hours
 hours per workday	projectmanager	en	Hours per workday
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	en	If you see entities (eg. &#123;) in the Ganttchart, switch this off.
 ignore that entry	projectmanager	en	ignore that entry
 ignored	projectmanager	en	ignored
 last modified	projectmanager	en	last modified
@@ -197,11 +205,13 @@ start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
 state	projectmanager	en	State
 status filter	projectmanager	en	Status filter
+style used for everything but elements. some fonts have only normal style.	projectmanager	en	Style used for everything but elements. Some fonts have only normal style.
 subelements	projectmanager	en	Subelements
 subprojects	projectmanager	en	Subprojects
 synchronise all	projectmanager	en	Synchronise all
 template	projectmanager	en	Template
 template including elment-tree saved as new project	projectmanager	en	Template including elment-tree saved as new project
+the charset depends on the font you want to use.	projectmanager	en	The charset depends on the font you want to use.
 time	projectmanager	en	Time
 times	projectmanager	en	Times
 title must not be empty	projectmanager	en	Title must not be empty
