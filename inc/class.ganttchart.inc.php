@@ -18,22 +18,55 @@ if (isset($GLOBALS['php_errormsg'])) { unset ($GLOBALS['php_errormsg']); }
 // check if the admin installed a recent JPGraph parallel to eGroupWare
 if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 {
-	// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
-	foreach(array(
-		'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
-		'/usr/share/fonts/msttcorefonts/', 		// manual for install this fonts search at http://www.aditus.nu/jpgraph/jpdownload.php
-		'C:/windows/fonts/',					// windows default
-		// add your location here ...
-		EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/',	// our bundled Vera font
-	) as $dir)
+	if (!isset($GLOBALS['egw_info']['apps']['projectmanager']['config']))
 	{
-		if (@is_dir($dir) && (is_readable($dir.'arial.ttf') || is_readable($dir.'Vera.ttf')))
+		// read the pm ganttchart configuration and set some default if there's none
+		require_once(EGW_API_INC.'/class.config.inc.php');
+		$pm_config = new config('projectmanager');
+		$GLOBALS['egw_info']['apps']['projectmanager']['config'] = $pm_config->read_repository();
+		//_debug_array($GLOBALS['egw_info']['apps']['projectmanager']['config']);
+		unset($pm_config);
+		foreach(array(
+			'TTF_DIR'          => '',
+			'LANGUAGE_CHARSET' => 'iso-8859-1',
+			'GANTT_FONT'       => 15, //FF_ARIAL
+			'GANTT_FONT_FILE'  => 'arial.ttf',
+			'GANTT_STYLE'      => 9002, //FS_BOLD,
+			'GANTT_CHAR_ENCODE'=> true,
+		) as $name => $default)
 		{
-			define('TTF_DIR',$dir);
-			unset($dir);
-			break;
+			if ($GLOBALS['egw_info']['apps']['projectmanager']['config'][$name])
+			{
+				define($name,$GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]);
+			}
+			elseif($default)
+			{
+				define($name,$default);
+			}
 		}
 	}
+	if (!defined('TTF_DIR'))
+	{
+		// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
+		foreach(array(
+			'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
+			'/usr/share/fonts/ja/TrueType/',		// japanese fonts
+			'/usr/share/fonts/msttcorefonts/', 		// manual for install this fonts search at http://www.aditus.nu/jpgraph/jpdownload.php
+			'C:/windows/fonts/',					// windows default
+			// add your location here ...
+			EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/',	// our bundled Vera font
+		) as $dir)
+		{
+			if (@is_dir($dir) && (is_readable($dir.GANTT_FONT_FILE) || is_readable($dir.'Vera.ttf')))
+			{
+				define('TTF_DIR',$dir);
+				unset($dir);
+				break;
+			}
+		}
+	}
+	if (!defined('MBTTF_DIR')) define('MBTTF_DIR',TTF_DIR);
+
 	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php');
 	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph_gantt.php');
 }
@@ -42,6 +75,10 @@ else
 	include(EGW_SERVER_ROOT . '/projectmanager/inc/jpgraph-1.5.2/src/jpgraph.php');
 	include(EGW_SERVER_ROOT . '/projectmanager/inc/jpgraph-1.5.2/src/jpgraph_gantt.php');
 	define('TTF_DIR',EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/');
+	define('GANTT_FONT',FF_VERA);
+	define('GANTT_STYLE',FS_BOLD);
+	define('LANGUAGE_CHARSET','iso-8859-1');
+	define('GANTT_CHAR_ENCODE',true);
 }
 
 // some constanst for pre php4.3
@@ -86,21 +123,21 @@ class ganttchart extends boprojectelements
 	/**
 	 * Font used for the Gantt Chart, in the form used by JPGraphs SetFont method
 	 * 
-	 * The constructor checks for FF_ARIAL if TTF_DIR.'arial.ttf' is readable and sets FF_VERA instead if not
-	 * 
-	 * You can try with every font-family specified in jpgraph.php AND availible on your system:
-	 * eg. FF_CHINESE, FF_MINCHO, ...
-	 * Dont forget to also set $gantt_charset accordingly!
-	 * 
 	 * @var string
 	 */
-	var $gantt_font = FF_ARIAL;
+	var $gantt_font = GANTT_FONT;
 	/**
-	 * Charset used by the above font, gets set by constructor if $gannt_font is NOT set!
+	 * Charset used by the above font
 	 * 
 	 * @var string
 	 */
-	var $gantt_charset = 'iso-8859-1';
+	var $gantt_charset = LANGUAGE_CHARSET;
+	/**
+	 * Should non-ascii chars be encoded
+	 *
+	 * @var boolean
+	 */
+	var $gantt_char_encode = GANTT_CHAR_ENDCODE;
 
 	var $debug;
 	var $scale_start,$scale_end;
@@ -126,6 +163,7 @@ class ganttchart extends boprojectelements
 		}
 		$this->modernJPGraph = version_compare('1.13',JPG_VERSION) < 0;
 		//echo "version=".JPG_VERSION.", modernJPGraph=".(int)$this->modernJPGraph; exit;
+		error_log("JPG_VERSION=".JPG_VERSION.", modernJPGraph=".(int)$this->modernJPGraph);
 
 		if (isset($_REQUEST['pm_id']))
 		{
@@ -155,9 +193,9 @@ class ganttchart extends boprojectelements
 		}
 		$this->charset = $GLOBALS['egw']->translation->charset();
 		$this->prefs =& $GLOBALS['egw_info']['user']['preferences'];
-		
+
 		// check if a arial font is availible and set FF_VERA (or bundled font) if not
-		if ($this->gantt_font == FF_ARIAL && !is_readable(TTF_DIR.'arial.ttf'))
+		if (!is_readable((FF_MINCHO <= GANTT_FONT && GANTT_FONT <= FF_PGOTHI ? MBTTF_DIR : TTF_DIR).GANTT_FONT_FILE))
 		{
 			$this->gantt_font = FF_VERA;
 		}
@@ -180,7 +218,7 @@ class ganttchart extends boprojectelements
 
 		// convert everything above ascii to nummeric html entities
 		// not sure if this is necessary for non iso-8859-1 charsets, try to comment it out if you have problems
-		$text = preg_replace('/[^\x00-\x7F]/e', '"&#".ord("$0").";"',$text);
+		if ($this->gantt_char_encode) $text = preg_replace('/[^\x00-\x7F]/e', '"&#".ord("$0").";"',$text);
 		
 		return $text;
 	}
@@ -299,11 +337,11 @@ class ganttchart extends boprojectelements
 		}
 		// Change the font scale 
 		$graph->scale->week->SetFont($this->gantt_font,FS_NORMAL,8);
-		$graph->scale->year->SetFont($this->gantt_font,FS_BOLD,10);
+		$graph->scale->year->SetFont($this->gantt_font,GANTT_STYLE,10);
 		
 		// Title & subtitle
 		$graph->title->Set($this->text_encode($title));
-		$graph->title->SetFont($this->gantt_font,FS_BOLD,12);
+		$graph->title->SetFont($this->gantt_font,GANTT_STYLE,12);
 		$graph->subtitle->Set($this->text_encode($subtitle));
 		$graph->subtitle->SetFont($this->gantt_font,FS_NORMAL,10);
 		
@@ -339,7 +377,7 @@ class ganttchart extends boprojectelements
 		$bar =& $this->element2bar($pe,$level,$line,$planned_times);
 
 		// set project-specific attributes: bold, solid bar, ...
-		$bar->title->SetFont($this->gantt_font,FS_BOLD,!$level ? 9 : 8);
+		$bar->title->SetFont($this->gantt_font,GANTT_STYLE,!$level ? 9 : 8);
 		$bar->SetPattern(BAND_SOLID,"#9999FF");
 		
 		if ($this->modernJPGraph && !$pe['pe_id'])	// main-project
@@ -407,6 +445,8 @@ class ganttchart extends boprojectelements
 			$bar->title->SetCSIMTarget($GLOBALS['egw']->link('/index.php',$this->link->view($pe['pe_app'],$pe['pe_app_id'])),
 				lang('View this element in %1',lang($pe['pe_app'])));
 		}
+		$bar->title->SetFont($this->gantt_font,FS_NORMAL,!$level ? 9 : 8);
+
 		return $bar;
 	}
 
@@ -705,6 +745,21 @@ class ganttchart extends boprojectelements
 
 		return $params;		
 	}
+	
+	/**
+	 * Return message to install a new jpgraph version
+	 *
+	 * @static 
+	 * @return string/boolean message or false if a new version is installed
+	 */
+	function msg_install_new_jpgraph()
+	{
+		return version_compare('1.13',JPG_VERSION) < 0 ? false :
+			lang('You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.').
+			"<br />\n".lang('Please download a recent version from %1 and install it in %2.',
+			'<a href="http://www.aditus.nu/jpgraph/jpdownload.php" target="_blank">www.aditus.nu/jpgraph</a>',
+			realpath(EGW_SERVER_ROOT.'/..').SEP.'jpgraph');
+	}
 
 	/**
 	 * Shows a ganttchart
@@ -725,10 +780,7 @@ class ganttchart extends boprojectelements
 
 		if (!$GLOBALS['egw']->session->appsession('ganttchart','projectmanager') && !$this->modernJPGraph)
 		{
-			$msg .= lang('You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.').
-				"<br />\n".lang('Please download a recent version from %1 and install it in %2.',
-				'<a href="http://www.aditus.nu/jpgraph/jpdownload.php" target="_blank">www.aditus.nu/jpgraph</a>',
-				realpath(EGW_SERVER_ROOT.'/..').SEP.'jpgraph');
+			$msg .= $this->msg_install_new_jpgraph();
 		}
 		unset($content['update']);
 		$content = $this->url2params($content);

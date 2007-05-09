@@ -219,9 +219,12 @@ class pm_admin_prefs_sidebox_hooks
 		{
 			return null;
 		}
+		$tree = $GLOBALS['egw']->html->tree($projects,$selected_project,false,'load_project');
+		// hack for stupid ie (cant set it as a class!)
+		if ($GLOBALS['egw']->html->user_agent == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
+		
 		return array(
-			'text' => "<script>function load_project(_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".
-				$GLOBALS['egw']->html->tree($projects,$selected_project,false,'load_project'),
+			'text' => "<script>function load_project(_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".$tree,
 			'no_lang' => True,
 			'link' => False,
 			'icon' => False,
