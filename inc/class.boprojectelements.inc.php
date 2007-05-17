@@ -674,7 +674,7 @@ class boprojectelements extends soprojectelements
 			if ($cumulate)
 			{
 				//echo "<p align=right>cumulate-filter: ".$this->db->expression($this->table_name,'NOT ',array('pe_id' => array_keys($cumulate)))."</p>\n";
-				$filter[] = $this->db->expression($this->table_name,'NOT ',array('pe_id' => array_keys($cumulate)));
+				$filter[] = $this->db->expression($this->table_name,'NOT (',array('pe_id' => array_keys($cumulate)),')');
 			}
 		}
 		$rows = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
