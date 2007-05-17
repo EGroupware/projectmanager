@@ -308,9 +308,9 @@ class uiprojectelements extends boprojectelements
 			}
 		}
 		$js .= "\nfunction calc_budget(form) {
-			form['exec[pe_used_budget]'].value = form['exec[pe_used_quantity]'].value * form['exec[pe_unitprice]'].value;
+			form['exec[pe_used_budget]'].value = form['exec[pe_used_quantity]'].value.replace(/,/,'.') * form['exec[pe_unitprice]'].value.replace(/,/,'.');
 			if (form['exec[pe_used_budget]'].value == '0') form['exec[pe_used_budget]'].value = '';
-			form['exec[pe_planned_budget]'].value = form['exec[pe_planned_quantity]'].value * form['exec[pe_unitprice]'].value;
+			form['exec[pe_planned_budget]'].value = form['exec[pe_planned_quantity]'].value.replace(/,/,'.') * form['exec[pe_unitprice]'].value.replace(/,/,'.');
 			if (form['exec[pe_planned_budget]'].value == '0') form['exec[pe_planned_budget]'].value = '';
 		}";
 		$tabs = 'dates|times|budget|constraints|resources|details';

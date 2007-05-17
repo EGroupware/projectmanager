@@ -82,7 +82,7 @@
 			</columns>
 			<rows>
 				<row valign="top">
-					<htmlarea id="pm_description" style="width: 100%; height:100%;" plugins="TableOperations,ContextMenu,ColorChooser,FontChooser,SearchReplace,InsertDateTime"/>
+					<htmlarea id="pm_description" mode="extended" height="250px" width="100%" toolbar="true"/>
 				</row>
 			</rows>
 		</grid>
@@ -111,7 +111,7 @@
 					</menulist>
 					<textbox type="float" id="general_avail[1]" statustext="Percentage the member is availible for projects"/>
 					<textbox type="float" id="availibility[1]" statustext="Percentage the member is availible for this project"/>
-					<hbox orient=",0,0">
+					<hbox options="0,0">
 						<menulist>
 							<menupopup id="role[1]"/>
 						</menulist>
@@ -245,13 +245,13 @@
 				</row>
 				<row class="row" disabled="!@pm_id">
 					<description value="Modified"/>
-					<hbox span="2" orient=",2,0">
+					<hbox span="2" options="2,0">
 						<date-time readonly="true" id="pm_modified"/>
 						<menulist>
 							<menupopup type="select-account" label="by" readonly="true" id="pm_modifier"/>
 						</menulist>
 					</hbox>
-					<hbox span="2" orient=",2,0" align="right">
+					<hbox span="2" options="2,0" align="right">
 						<date-time readonly="true" label="created" no_lang="1" id="pm_created"/>
 						<menulist>
 							<menupopup type="select-account" label="by" readonly="true" id="pm_creator"/>
