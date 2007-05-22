@@ -31,7 +31,7 @@
 				</row>
 				<row class="row" disabled="!@no_times">
 					<description options=",,,pe_share" value="Share"/>
-					<hbox span="all" orient=",1,1">
+					<hbox options="1,1" span="all">
 						<textbox id="pe_share" statustext="Share on the whole project" size="10" validator="/^[0-9.]*\.?[0-9%]*$/"/>
 						<textbox type="float" id="default_percentage" label="default" readonly="true"/>
 					</hbox>
@@ -59,7 +59,7 @@
 				</row>
 				<row class="row">
 					<description options=",,,pe_share" value="Share"/>
-					<hbox orient=",0,0">
+					<hbox options="0,0">
 						<date-duration id="pe_share" statustext="Share on the whole project in hours or percent, defaults to planned time" options=",%$cont[duration_format],1"/>
 						<date-duration id="share_total" label="/" readonly="true" options=",$cont[duration_format],1"/>
 						<description id="share_percentage" value="=" no_lang="1"/>
@@ -78,7 +78,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.5.001">
+	<template id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.5.002">
 		<grid width="100%" height="170">
 			<columns>
 				<column width="95"/>
@@ -101,7 +101,7 @@
 				</row>
 				<row class="row" disabled="@no_pricelist">
 					<description value="Activity"/>
-					<projectmanager-pricelist id="pl_id" statustext="select an activity if you want to calculate costs by quantity (time) and price" options="None" onchange="this.form['exec[pe_unitprice]'].value=this.options[this.selectedIndex].text.lastIndexOf('(') &lt; 0 ? '' : this.options[this.selectedIndex].text.slice(this.options[this.selectedIndex].text.lastIndexOf('(')+1,-1);"/>
+					<projectmanager-pricelist id="pl_id" statustext="select an activity if you want to calculate costs by quantity (time) and price" options="None" onchange="this.form['exec[pe_unitprice]'].value=this.options[this.selectedIndex].text.lastIndexOf('(') &lt; 0 ? '' : this.options[this.selectedIndex].text.slice(this.options[this.selectedIndex].text.lastIndexOf('(')+1,-1); calc_budget(this.form);"/>
 					<projectmanager-pricelist span="all" id="ds[pl_id]" readonly="true"/>
 				</row>
 				<row class="row" valign="top">
@@ -153,7 +153,7 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description data="" rows="1" cols="1" value="Resources"/>
+					<description rows="1" cols="1" value="Resources"/>
 					<listbox type="select-account" rows="12" id="pe_resources"/>
 					<listbox type="select-account" rows="8" id="ds[pe_resources]" readonly="true"/>
 				</row>
@@ -209,7 +209,7 @@
 				</row>
 				<row class="row">
 					<description options=",,,pe_completion" value="Status"/>
-					<hbox orient="0,0">
+					<hbox options="0" orient="0">
 						<menulist>
 							<menupopup type="select-percent" options="None" id="pe_completion"/>
 						</menulist>

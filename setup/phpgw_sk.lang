@@ -35,6 +35,7 @@ bookable	projectmanager	sk	rezervovateµné
 budget	projectmanager	sk	Rozpoèet
 budget (no pricelist)	projectmanager	sk	Rozpoèet (bez cenníka)
 budget and pricelist	projectmanager	sk	Rozpoèet a cenník
+by	projectmanager	sk	(kým)
 calculate budget by quantity (eg. time) and price	projectmanager	sk	Vypoèíta» rozpoèet na základe mno¾stva (napr.èasu) a ceny
 check all	projectmanager	sk	Oznaèi» v¹etko
 close the window, discard the changes made	projectmanager	sk	Zavrie» okno, zahodi» vykonané zmeny

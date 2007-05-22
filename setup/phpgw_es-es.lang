@@ -37,6 +37,7 @@ budget (no pricelist)	projectmanager	es-es	Presupuesto (sin lista de precios)
 budget and pricelist	projectmanager	es-es	Presupuesto y lista de precios
 by	projectmanager	es-es	por
 calculate budget by quantity (eg. time) and price	projectmanager	es-es	Calcular presupuesto por cantidad (p. ej. tiempo) y precio
+charset of the above selected font	projectmanager	es-es	Juego de caracteres del tipo de letra seleccionado arriba
 check all	projectmanager	es-es	Comprobar todo
 close the window, discard the changes made	projectmanager	es-es	Cerrar la ventana, descartar los cambios
 constraints	projectmanager	es-es	Restricciones
@@ -95,6 +96,11 @@ error: saving the project-element (%1) !!!	projectmanager	es-es	¡¡Error: guardan
 everything recursive	projectmanager	es-es	Todo recursivo
 existing links	projectmanager	es-es	Enlaces existentes
 exit without saving	projectmanager	es-es	Salir sin guardar
+font	projectmanager	es-es	Tipo de letra
+font charset	projectmanager	es-es	Juego de caracteres del tipo de letra
+font style	projectmanager	es-es	Estilo del tipo de letra
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	es-es	Tipo de letra a usar en el diagrama de Gantt. Sólo los tipos de la familia Vera están incluidos en el Administrador de proyectos.
+fontfile '%1' not found!!!	projectmanager	es-es	No se encontró el fichero de tipo de letra '%1'
 free descriptiv text	projectmanager	es-es	Texto descriptivo libre
 from %1 to %2	projectmanager	es-es	desde %1 hasta %2
 full access	projectmanager	es-es	acceso total
@@ -109,6 +115,7 @@ hours	projectmanager	es-es	horas
 hours per workday	projectmanager	es-es	Horas por día de trabajo
 how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	es-es	Si ve entidades (p. ej. {) en el diagrama de Gantt, desactive esta opción.
 ignore that entry	projectmanager	es-es	ignorar esa entrada
 ignored	projectmanager	es-es	ignorado
 last modified	projectmanager	es-es	última modificación
@@ -197,11 +204,13 @@ start- & enddate	projectmanager	es-es	Fecha de inicio y fin
 startdate	projectmanager	es-es	Fecha de inicio
 state	projectmanager	es-es	Estado
 status filter	projectmanager	es-es	Filtro de estados
+style used for everything but elements. some fonts have only normal style.	projectmanager	es-es	Estilo utilizado para todo excepto los elementos. Algunos tipos de letra sólo tienen estilo normal.
 subelements	projectmanager	es-es	Subelementos
 subprojects	projectmanager	es-es	Subproyectos
 synchronise all	projectmanager	es-es	Sincronizar todo
 template	projectmanager	es-es	Plantilla
 template including elment-tree saved as new project	projectmanager	es-es	Se ha guardado la plantilla que incluye el árbol de elementos como un proyecto nuevo
+the charset depends on the font you want to use.	projectmanager	es-es	El juego de caracteres depende del tipo de letra que quiera usar.
 time	projectmanager	es-es	Tiempo
 times	projectmanager	es-es	Tiempos
 title must not be empty	projectmanager	es-es	El título no debe estar vacío
