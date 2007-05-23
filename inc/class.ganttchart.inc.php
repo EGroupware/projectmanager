@@ -436,13 +436,14 @@ class ganttchart extends boprojectelements
 		
 		if ($this->modernJPGraph && $pe['pe_id'])
 		{
-			$bar->SetCSIMTarget('@'.$GLOBALS['egw']->link('/index.php',array(	// @ = popup
+			$bar->SetCSIMTarget('@600x450'.$GLOBALS['egw']->link('/index.php',array(	// @ = popup
 				'menuaction' => 'projectmanager.uiprojectelements.view',
 				'pm_id'      => $pe['pm_id'],
 				'pe_id'      => $pe['pe_id'],
 			)),$pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element'));
 			
-			$bar->title->SetCSIMTarget($GLOBALS['egw']->link('/index.php',$this->link->view($pe['pe_app'],$pe['pe_app_id'])),
+			if (($popup = $GLOBALS['egw']->link->is_popup($pe['pe_app']))) $popup = '@'.$popup;
+			$bar->title->SetCSIMTarget($popup.$GLOBALS['egw']->link('/index.php',$this->link->view($pe['pe_app'],$pe['pe_app_id'])),
 				lang('View this element in %1',lang($pe['pe_app'])));
 		}
 		$bar->title->SetFont($this->gantt_font,FS_NORMAL,!$level ? 9 : 8);
@@ -484,8 +485,8 @@ class ganttchart extends boprojectelements
 				'ms_id'      => $milestone['ms_id'],
 			));
 			$title = lang('View this milestone');
-			$ms->SetCSIMTarget('@'.$link,$title);	// @ = popup
-			$ms->title->SetCSIMTarget('@'.$link,$title);
+			$ms->SetCSIMTarget('@600x450'.$link,$title);	// @ = popup
+			$ms->title->SetCSIMTarget('@600x450'.$link,$title);
 		}
 		return $ms;
 	}
@@ -794,8 +795,7 @@ class ganttchart extends boprojectelements
 		$img_name = basename($img);
 		$map = $this->create($content,$img,'ganttchart');
 		// replace the regular links with popups
-		$map = preg_replace('/href="@([^"]+)"/i','href="#" onclick="window.open(\'\\1\',\'_blank\',\'dependent=yes,width=600,height=450,scrollbars=yes,status=yes\'); return false;"'
-		//.$tmpl->html->tooltip('Hallo Ralf<br>das ist ja <b>fett</b>')
+		$map = preg_replace('/href="@(\d+)x(\d+)([^"]+)"/i','href="#" onclick="egw_openWindowCentered2(\'\\3\',\'_blank\',\'dependent=yes,width=\\1,height=\\2,scrollbars=yes,status=yes\'); return false;"'
 		,$map);
 		
 		$content['ganttchart'] = $GLOBALS['egw']->link('/projectmanager/ganttchart.php',$content+array(
