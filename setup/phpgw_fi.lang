@@ -26,6 +26,7 @@ allowed units	projectmanager	fi	Sallitut yksiköt
 anonymous public	projectmanager	fi	Anonyymi julkaisu
 app.	projectmanager	fi	Sov.
 apply the changes	projectmanager	fi	Hyväksy muutokset
+archive	projectmanager	fi	Arkisto
 assistant	projectmanager	fi	Assistantti
 at which time do you start working on the given day.	projectmanager	fi	Mihin aikaan aloitat työskentelyn kyseisenä päivänä
 availible	projectmanager	fi	Vapaana
@@ -35,6 +36,7 @@ budget	projectmanager	fi	Budjetti
 budget (no pricelist)	projectmanager	fi	Budjetti (ei hinnastoa)
 budget and pricelist	projectmanager	fi	Budjetti ja hinnasto
 calculate budget by quantity (eg. time) and price	projectmanager	fi	Laske budjetti määrän (esim. tuntien) ja hinnan mukaan
+charset of the above selected font	projectmanager	fi	Merkistökoodaus yllä valitulla fontilla
 check all	projectmanager	fi	Tarkista kaikki
 close the window, discard the changes made	projectmanager	fi	Sulje ikkuna ja hylkää tehdyt muutokset
 constraints	projectmanager	fi	Rajoitukset
@@ -48,6 +50,7 @@ created a ganttchart from the checked projects	projectmanager	fi	Luotu ganttchar
 cumulated elements too	projectmanager	fi	Myös kumulatiiviset elementit
 custom fields	projectmanager	fi	Omat kentät
 customer title	projectmanager	fi	Asiakkaan titteli
+datasource	projectmanager	fi	Tietolähde
 dates	projectmanager	fi	Päivät
 default all and a selectbox to choose	projectmanager	fi	oletuksena kaikka ja valitaan alasvetolaatikosta
 delete all checked projects	projectmanager	fi	Poista kaikki valitut projektit
@@ -76,6 +79,7 @@ elements of elements	projectmanager	fi	Elementtien elementit
 elements that can't start before this one is finished	projectmanager	fi	Elementit jotka voidaan aloittaa ennen kuin tämä on valmis
 elements which have to be finished before this can start	projectmanager	fi	Elementit joiden pitää olla valmiita ennen kuin tämä voidaan aloittaa
 empty	projectmanager	fi	Tyhjä
+encode non-ascii	projectmanager	fi	Koodaa non-ascii
 end before	projectmanager	fi	Päättyy ennen
 enddate	projectmanager	fi	Päättymispäivä
 error: deleting price !!!	projectmanager	fi	Virhe: Poistettaessa hintaa !!!
@@ -91,6 +95,11 @@ error: saving the project-element (%1) !!!	projectmanager	fi	Virhe: Tallennettae
 everything recursive	projectmanager	fi	Kaikki rekursiivisesti
 existing links	projectmanager	fi	Olemassa olevat linkit
 exit without saving	projectmanager	fi	Poistu ilman tallentamista
+font	projectmanager	fi	Fontti
+font charset	projectmanager	fi	Fontin merkistökoodaus
+font style	projectmanager	fi	Fontin tyyli
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	fi	Ganttchartissa käytettävät fontit, vain Vera fontti sisältyy Projektinhallintaan.
+fontfile '%1' not found!!!	projectmanager	fi	Fonttitiedostoa '%1' ei löydy!!!
 free descriptiv text	projectmanager	fi	vapaa kuvauskenttä
 from %1 to %2	projectmanager	fi	%1:lta %2:n
 full access	projectmanager	fi	Täysi pääsy
@@ -126,10 +135,13 @@ new	projectmanager	fi	uusi
 no accounting, only status	projectmanager	fi	Ei laskutusta, vain tila
 no accounting, only times and status	projectmanager	fi	Ei laskutusta, vain aikataulut ja tilat
 no details	projectmanager	fi	Ei lisätietoja
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	fi	Tietolähteeseen ei ole LUKU oikeuksia: ylikirjoitettujen arvojen poistaminen vain tyhjentää ne !!!
+no save necessary	projectmanager	fi	tallennus ei ole tarpeellinen
 nonactive	projectmanager	fi	Ei-aktiivinen
 not started (0%)	projectmanager	fi	Aloittamatta (0%)
 not working	projectmanager	fi	ei työskentele
 only this project	projectmanager	fi	Vain tämä projekti
+overwrite the datasource	projectmanager	fi	Ylikirjoita tietolähde
 percentage the member is availible for projects	projectmanager	fi	Prosenttia jäsenistä on käytettävissä projekteihin
 percentage the member is availible for this project	projectmanager	fi	Prosenttia jäsenistä on käytettävissä tähän projektiin
 permission denied !!!	projectmanager	fi	Pääsy estetty !!!
@@ -175,7 +187,10 @@ selectbox with %1	projectmanager	fi	Valintalaatikko %1:lla
 share	projectmanager	fi	Jaa
 share on the whole project	projectmanager	fi	Jaa koko projekti
 share on the whole project in hours or percent, defaults to planned time	projectmanager	fi	Jaa koko projekti tunteihin tai prosentteihin, oletuksena suunnitellun ajankäytön mukaan.
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	fi	Näyttääkö Projektinhallinta projektin tilan kuvakkeina (kuten InfoLog) vai ainoastaan etenemisjanana ja numeroina (nopeampi).
+show constraints and milestones	projectmanager	fi	Näytä rajat ja välivaiheet
 show planned times instead of the real times	projectmanager	fi	Näytä suunniteltu aikataulu, ei toteutunut aikataulu
+show status icons of the datasources	projectmanager	fi	Näytä tilat kuvakkeena tietolähteestä
 show the project selection as	projectmanager	fi	Näytä projektin valinta
 site configuration saved	projectmanager	fi	Sivun konfiguroinnit tallennettu
 start after	projectmanager	fi	Aloita jälkeen
@@ -185,11 +200,13 @@ start- & enddate	projectmanager	fi	Aloitus ja päätös päivä
 startdate	projectmanager	fi	Aloituspäivä
 state	projectmanager	fi	Tila
 status filter	projectmanager	fi	Tila suodatus
+style used for everything but elements. some fonts have only normal style.	projectmanager	fi	Tyyli käytetään muualla, mutta ei elementeissä. Jotkin fontit käyttävät vain normaali tyyliä.
 subelements	projectmanager	fi	Alielementit
 subprojects	projectmanager	fi	Aliprojektit
 synchronise all	projectmanager	fi	Synkronisoi kaikki
 template	projectmanager	fi	Mallipohja
 template including elment-tree saved as new project	projectmanager	fi	Mallipohja sisältää elementtipuun tallennuksen uutena projektina
+the charset depends on the font you want to use.	projectmanager	fi	Merkistökoodaus riippuu käyttämästäsi fontista.
 time	projectmanager	fi	Aika
 times	projectmanager	fi	Ajat
 title must not be empty	projectmanager	fi	Nimi ei saa olla tyhjä
@@ -197,6 +214,7 @@ tree with %1	projectmanager	fi	Puu %1
 unit	projectmanager	fi	Yksikkö
 unitprice	projectmanager	fi	Yksikköhinta
 used	projectmanager	fi	käytetty
+valid since	projectmanager	fi	Voimassa tähän asti
 view ganttchart of this project	projectmanager	fi	Näytä projektin ganttchart
 view milestone	projectmanager	fi	Näytä tavoite
 view price	projectmanager	fi	Näytä hinta

@@ -37,6 +37,7 @@ budget (no pricelist)	projectmanager	pt-br	Orçamento (sem lista de preços)
 budget and pricelist	projectmanager	pt-br	Orçamento e lista de preços
 by	projectmanager	pt-br	por
 calculate budget by quantity (eg. time) and price	projectmanager	pt-br	Calcular orçamento por quantidade (ex. tempo) e preço
+charset of the above selected font	projectmanager	pt-br	Codificação de caracteres para a fonte acima selecionada
 check all	projectmanager	pt-br	Marcar todos
 close the window, discard the changes made	projectmanager	pt-br	Feche a janela, descarte as modificações feitas
 constraints	projectmanager	pt-br	Regras
@@ -80,6 +81,7 @@ elements of elements	projectmanager	pt-br	Elementos de elementos
 elements that can't start before this one is finished	projectmanager	pt-br	Elementos que não podem iniciar antes deste terminar
 elements which have to be finished before this can start	projectmanager	pt-br	Elementos que devem terminar antes que esse possa iniciar
 empty	projectmanager	pt-br	Vazio
+encode non-ascii	projectmanager	pt-br	Codificar não-ASCII
 end before	projectmanager	pt-br	Termina antes
 enddate	projectmanager	pt-br	Data Final
 error: deleting price !!!	projectmanager	pt-br	Erro: removendo preço !!!
@@ -95,6 +97,11 @@ error: saving the project-element (%1) !!!	projectmanager	pt-br	Erro: salvando o
 everything recursive	projectmanager	pt-br	Tudo recursivo
 existing links	projectmanager	pt-br	Links existentes
 exit without saving	projectmanager	pt-br	Sair sem salvar
+font	projectmanager	pt-br	Fonte
+font charset	projectmanager	pt-br	Codificação de caracteres da fonte
+font style	projectmanager	pt-br	Estilo da fonte
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	pt-br	Fonte a ser usada no gráfico de Gantt. Somente fontes Vera são incluídas no Gerenciador de Projetos.
+fontfile '%1' not found!!!	projectmanager	pt-br	Arquivo de fonte '%1' não encontrado !!!
 free descriptiv text	projectmanager	pt-br	texto descritivo livre
 from %1 to %2	projectmanager	pt-br	de %1 a %2
 full access	projectmanager	pt-br	acesso completo
@@ -109,6 +116,7 @@ hours	projectmanager	pt-br	horas
 hours per workday	projectmanager	pt-br	Horas por dias de trabalho
 how long do you work on the given day.	projectmanager	pt-br	Quanto tempo você trabalha em um dado dia.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a seleção de projeto deverá ser exibida no menu: Uma árvore dá uma melhor visão; uma caixa de seleção pode ter uma melhor performance.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se você ver entidades (exemplo: {) no gráfico de Gantt, desabilite-o.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
 last modified	projectmanager	pt-br	última modificação
@@ -197,11 +205,13 @@ start- & enddate	projectmanager	pt-br	Data Inicial- & Final
 startdate	projectmanager	pt-br	Data inicial
 state	projectmanager	pt-br	Estado
 status filter	projectmanager	pt-br	Filtro de estado
+style used for everything but elements. some fonts have only normal style.	projectmanager	pt-br	Estilo usado por tudo, exceto elementos. Algumas fontes têm somente estilo normal.
 subelements	projectmanager	pt-br	Subelementos
 subprojects	projectmanager	pt-br	Subprojetos
 synchronise all	projectmanager	pt-br	Sincronizar tudo
 template	projectmanager	pt-br	Modelo
 template including elment-tree saved as new project	projectmanager	pt-br	Modelo incluindo árvore de elementos salva como novo projeto
+the charset depends on the font you want to use.	projectmanager	pt-br	A codificação de caracteres depende da fonte que você irá usar.
 time	projectmanager	pt-br	Hora
 times	projectmanager	pt-br	Horas
 title must not be empty	projectmanager	pt-br	Tratamento não pode ser vazio
