@@ -37,19 +37,23 @@ budget (no pricelist)	projectmanager	pl	Bud¿et (bez cennika)
 budget and pricelist	projectmanager	pl	Bud¿et i cennik
 by	projectmanager	pl	przez
 calculate budget by quantity (eg. time) and price	projectmanager	pl	Przelicz bud¿et z uwzglêdnieniem ilo¶ci (np. czasu) oraz ceny
+charset of the above selected font	projectmanager	pl	Zestaw znaków dla wybranej powy¿ej czcionki
 check all	projectmanager	pl	Zaznacz wszystko
 close the window, discard the changes made	projectmanager	pl	Zamknij okno, anuluj poczynione zmiany
 constraints	projectmanager	pl	Ograniczenia
+conversation between days and hours, default 8	projectmanager	pl	przelicznik miêdzy dniami a godzinami - domy¶lnie 8
 coordinator	projectmanager	pl	Koordynator
 cost per time	projectmanager	pl	Koszt/Czas
 create a new empty project or use a template	projectmanager	pl	Utwórz nowy pusty projekt lub u¿yj szablonu
 create new links	projectmanager	pl	Utwórz nowe odsy³acze
 created	projectmanager	pl	utworzony
 created a ganttchart from the checked projects	projectmanager	pl	Utworzony wykres Gantta z zaznaczonych projektów
+cumulated elements too	projectmanager	pl	Skumulowane elementy równie¿
 custom fields	projectmanager	pl	W³asne pola
 customer title	projectmanager	pl	W³asny tytu³
 datasource	projectmanager	pl	¬ród³o danych
 dates	projectmanager	pl	Terminy
+default all and a selectbox to choose	projectmanager	pl	domy¶lnie wszystkie i lista rozwijana do wyboru
 delete all checked projects	projectmanager	pl	Usuñ wszystkie zaznaczone projekty
 delete this milestone	projectmanager	pl	Usuñ ten kamieñ milowy
 delete this price	projectmanager	pl	Usuñ t± cenê
@@ -57,6 +61,8 @@ delete this project	projectmanager	pl	Usuñ ten projekt
 delete this project-element, does not remove the linked entry	projectmanager	pl	Usuñ ten sk³adnik projektu, Nie usuwaj powi±zanego wpisu
 delete this role	projectmanager	pl	Usuñ tê rolê
 depth of display	projectmanager	pl	G³êbia wy¶wietlania
+details of cumulated	projectmanager	pl	Szczegó³y skumulowanych
+details of subelements	projectmanager	pl	Szczegó³y dla elementów podrzêdnych
 do not use that entry as project-element	projectmanager	pl	Nie u¿ywaj tego wpisu jako sk³adnika projektu
 done (100%)	projectmanager	pl	Wykonane (100%)
 edit access, incl. editing budget and elements	projectmanager	pl	Edytuj dostêp wraz z edycj± bud¿etu i elementów
@@ -75,6 +81,7 @@ elements of elements	projectmanager	pl	Sk³adniki sk³adników
 elements that can't start before this one is finished	projectmanager	pl	Sk³adniki, które nie mogê siê zacz±c zanim ten nie bêdzie ukoñczony
 elements which have to be finished before this can start	projectmanager	pl	Sk³adniki, które musz± zostaæ zakoñczone zanim ten bêdzie móg³ siê zacz±æ
 empty	projectmanager	pl	Pusty
+encode non-ascii	projectmanager	pl	Zakoduj znaki spoza ASCII
 end before	projectmanager	pl	Zakoñcz przed
 enddate	projectmanager	pl	Termin zakoñczenia
 error: deleting price !!!	projectmanager	pl	B³±d: kasowanie ceny !!!
@@ -87,8 +94,14 @@ error: saving role !!!	projectmanager	pl	B³±d: zapisywanie roli !!!
 error: saving the price (%1) !!!	projectmanager	pl	B³±d: zapisywanie ceny (%1) !!!
 error: saving the project (%1) !!!	projectmanager	pl	B³±d: zapisywanie projektu (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	pl	B³±d: zapisywanie sk³adnika projektu (%1) !!!
+everything recursive	projectmanager	pl	Wszystko rekursywnie
 existing links	projectmanager	pl	Istniej±ce odsy³acze
 exit without saving	projectmanager	pl	Wyjd¼ bez zapisywania
+font	projectmanager	pl	Czcionka
+font charset	projectmanager	pl	Zestaw znaków czcionki
+font style	projectmanager	pl	Styl czcionki
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	pl	Czcionka do wykorzystania w wykresach Gantta - Menad¿er Projektów ma za³±czone wy³±cznie czcionki Vera.
+fontfile '%1' not found!!!	projectmanager	pl	Plik czcionki '%1' nie zosta³ znaleziony!
 free descriptiv text	projectmanager	pl	Dowolny test opisowy
 from %1 to %2	projectmanager	pl	od 1% do 2%
 full access	projectmanager	pl	pe³ny dostêp
@@ -102,6 +115,8 @@ health	projectmanager	pl	Zdrowie
 hours	projectmanager	pl	godziny
 hours per workday	projectmanager	pl	Godziny/dzieñ pracy
 how long do you work on the given day.	projectmanager	pl	Jak d³ugo pracujesz w podanym dniu.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pl	W jaki sposób pokazywaæ wybór projektu w menu: drzewko oznacza lepszy przekrój ale lista wyboru dzia³a szybciej.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pl	Je¿eli widzisz encje (np. {) na wykresach Gantta, wy³±cz to.
 ignore that entry	projectmanager	pl	pomiñ t± pozycjê
 ignored	projectmanager	pl	pominiêty
 last modified	projectmanager	pl	ostatnio zmodyfikowany
@@ -119,6 +134,7 @@ milestones	projectmanager	pl	Kamienie milowe
 milestones before this element has to be finished	projectmanager	pl	Kamienie milowe, które musz± zostaæ ukoñczone przed tym sk³adnikiem
 modified	projectmanager	pl	Zmodyfikowany
 modified by	projectmanager	pl	zmodyfikowany przez
+necessary for project-elements doing that not automatic	projectmanager	pl	konieczne dla elementów projektu, które nie robi± tego automatycznie
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pl	Niezbêdne rozszerzenia PHP %1 nie za³adowane i mog± byæ za³adowane
 new	projectmanager	pl	nowy
 no accounting, only status	projectmanager	pl	Bez ksiêgowo¶ci, tylko stan
@@ -170,14 +186,16 @@ save this project element	projectmanager	pl	Zapisz ten sk³adnik projektu
 select a project	projectmanager	pl	wybierz projekt
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	pl	wybierz polecenie je¶li chcesz przeliczyæ koszty z uwzglêdnieniem ilo¶ci (czasu) i ceny
 select multiple projects for a further action	projectmanager	pl	Wybierz kilka projektów do dalszych czynno¶ci
-select the accounting types visible for users of projectmanager	projectmanager	pl	wybierz rodzaje ksiêgowa¶ci widoczne dla u¿ytkowników Mened¿era Projektów
+select the accounting types visible for users of projectmanager	projectmanager	pl	wybierz rodzaje ksiêgowo¶ci widoczne dla u¿ytkowników Mened¿era Projektów
 select this project and show it's elements	projectmanager	pl	Wybierz ten projekt i poka¿ jego elementy
+selectbox with %1	projectmanager	pl	Lista wyboru z %1
 share	projectmanager	pl	Podziel siê
 share on the whole project	projectmanager	pl	Podziel siê ca³ym projektem
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	pl	Czy Mened¿er Projektów powinien pokazywaæ ikonki statusu danych (np. InfoLog) czy tylko pasek postêpu ze statusem liczbowym (szybsza opcja).
 show constraints and milestones	projectmanager	pl	Poka¿ ograniczenia i kamienie milowe
 show planned times instead of the real times	projectmanager	pl	Poka¿ zaplanowane terminy zamiast faktycznych
 show status icons of the datasources	projectmanager	pl	Poka¿ ikonki statusu danych
+show the project selection as	projectmanager	pl	Pokazuj wybór projektu jako
 site configuration saved	projectmanager	pl	Konfiguracja strony zapisana
 start after	projectmanager	pl	Rozpocznij po
 start working on %1	projectmanager	pl	Rozpocznij pracê od %1
@@ -186,13 +204,16 @@ start- & enddate	projectmanager	pl	Pocz±tkowy & Koñcowy termin
 startdate	projectmanager	pl	Termin rozpoczêcia
 state	projectmanager	pl	Stan
 status filter	projectmanager	pl	Filtr statusu
+subelements	projectmanager	pl	Elementy podrzêdne
 subprojects	projectmanager	pl	Podprojekty
 synchronise all	projectmanager	pl	Zsynchronizuj wszystko
 template	projectmanager	pl	Szablon
 template including elment-tree saved as new project	projectmanager	pl	Szablon zawieraj±cy drzewo sk³adników zapisany jako nowy projekt
+the charset depends on the font you want to use.	projectmanager	pl	Zestaw znaków jest zale¿ny od czcionki, która bêdzie u¿yta
 time	projectmanager	pl	Termin
 times	projectmanager	pl	Czas
 title must not be empty	projectmanager	pl	Tytu³ nie mo¿e byæ pusty
+tree with %1	projectmanager	pl	Drzewko z %1
 unit	projectmanager	pl	Jednostka
 unitprice	projectmanager	pl	Cena jednostkowa
 used	projectmanager	pl	u¿ywany
