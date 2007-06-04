@@ -1,0 +1,237 @@
+%1 element(s) updated	projectmanager	cs	%1 souèástí aktualizováno
+%1 new project-elements imported	projectmanager	cs	%1 nových souèástí projektu importováno
+%1 projects deleted	projectmanager	cs	%1 projektù smazáno
+%1 times permission denied, %2 projects deleted	projectmanager	cs	%1 krát pøístup zamítnut, %2 projektù smazáno
+- planned	projectmanager	cs	- plánované
+0ngoing (0 < % < 100)	projectmanager	cs	Pokraèující (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	cs	Popisný název projektu, nesmí být prázdný
+accounting	projectmanager	cs	Úètování
+accounting options	projectmanager	cs	Volby úètování
+accounting type	projectmanager	cs	Typ úètování
+actions	projectmanager	cs	Akce
+activity	projectmanager	cs	Èinnost
+add a new milestone	projectmanager	cs	Pøidat nový milník
+add a new project	projectmanager	cs	Pøidat nový projekt
+add element	projectmanager	cs	Pøidat souèást
+add existing	projectmanager	cs	Pøidat existující
+add milestone	projectmanager	cs	Pøidat milník
+add or edit roles and their acl	projectmanager	cs	Pøidat nebo editovat role a jejich ACL
+add price	projectmanager	cs	Pøidat cenu
+add project	projectmanager	cs	Pøidat projekt
+add project-elements	projectmanager	cs	Pøidat souèásti projektu
+add this role	projectmanager	cs	Pøidat roli
+allow users to change their working times	projectmanager	cs	Povolit u¾ivatelùm zmìnit jejich pracovní èasy
+allowed accounting types	projectmanager	cs	Povolené typy úètování
+allowed units	projectmanager	cs	Povolené jednotky
+anonymous public	projectmanager	cs	Anonymní veøejné
+app.	projectmanager	cs	Apl.
+apply the changes	projectmanager	cs	Pou¾ít zmìny
+archive	projectmanager	cs	Archiv
+assistant	projectmanager	cs	Asistent
+at which time do you start working on the given day.	projectmanager	cs	V kolik hodin zaèínáte daný den pracovat.
+availible	projectmanager	cs	Dostupný
+billable	projectmanager	cs	vyúètovatelný
+bookable	projectmanager	cs	rezervovatelný
+budget	projectmanager	cs	Rozpoèet
+budget (no pricelist)	projectmanager	cs	Rozpoèet (bez ceníku)
+budget and pricelist	projectmanager	cs	Rozpoèet a ceník
+by	projectmanager	cs	od
+calculate budget by quantity (eg. time) and price	projectmanager	cs	Spoèítat rozpoèet na základì mno¾ství (napø. èasu) a ceny
+charset of the above selected font	projectmanager	cs	Znaková sada vý¹e vybraného písma
+check all	projectmanager	cs	Vybrat v¹e
+close the window, discard the changes made	projectmanager	cs	Zavøít okno, zahodit provedené zmìny
+constraints	projectmanager	cs	Omezení
+conversation between days and hours, default 8	projectmanager	cs	pøevod mezi dny a hodinamy, výchozí 8
+coordinator	projectmanager	cs	Koordinátor
+cost per time	projectmanager	cs	Cena za èas
+create a new empty project or use a template	projectmanager	cs	Vytvoøit nový projekt nebo pou¾ít ¹ablonu
+create new links	projectmanager	cs	Vytvoøit nové odkazy
+created	projectmanager	cs	vytvoøeno
+created a ganttchart from the checked projects	projectmanager	cs	Vytvoøen Ganttùv diagram z vybraných projektù
+cumulated elements too	projectmanager	cs	Také kumulované prvky
+custom fields	projectmanager	cs	U¾ivatelsky definované polo¾ky
+customer title	projectmanager	cs	Jméno klienta
+datasource	projectmanager	cs	Datový zdroj
+dates	projectmanager	cs	Datumy
+default all and a selectbox to choose	projectmanager	cs	výchozí v¹e a rozbalovací nabídka pro výbìr
+delete all checked projects	projectmanager	cs	Smazat v¹echny vybrané projekty
+delete this milestone	projectmanager	cs	Smazat milník
+delete this price	projectmanager	cs	Smazat cenu
+delete this project	projectmanager	cs	Smazat projekt
+delete this project-element, does not remove the linked entry	projectmanager	cs	Smazat prvek projektu, neodstraní odkazovaný záznam
+delete this role	projectmanager	cs	Smazat roli
+depth of display	projectmanager	cs	Hloubka zobrazení
+details of cumulated	projectmanager	cs	Detaily kumulovaných
+details of subelements	projectmanager	cs	Detaily dílèích souèástí
+do not use that entry as project-element	projectmanager	cs	nepou¾ívat tento záznam jako souèást projektu
+done (100%)	projectmanager	cs	Hotovo (100%)
+edit access, incl. editing budget and elements	projectmanager	cs	oprávnìní k editaci, vèetnì úprav rozpoètu a souèástí
+edit budget	projectmanager	cs	Editovat rozpoèet
+edit milestone	projectmanager	cs	Editovat milník
+edit price	projectmanager	cs	Editovat cenu
+edit project	projectmanager	cs	Editovat projekt
+edit project-elements	projectmanager	cs	Editovat souèásti projektu
+edit this milestone	projectmanager	cs	Editovat tento milník
+edit this price	projectmanager	cs	Editovat tuto cenu
+edit this project	projectmanager	cs	Editovat tento projekt
+edit this project-element	projectmanager	cs	Editovat tuto souèást projektu
+edit this role	projectmanager	cs	Editovat tuto roli
+elementlist	projectmanager	cs	Seznam souèástí
+elements of elements	projectmanager	cs	Souèásti souèástí
+elements that can't start before this one is finished	projectmanager	cs	Souèásti které nemohou zaèít døíve, ne¾ je tato dokonèena
+elements which have to be finished before this can start	projectmanager	cs	Souèásti, které musí být ukonèeny døíve ne¾ tato bude moci zaèít
+empty	projectmanager	cs	Prázdný
+encode non-ascii	projectmanager	cs	Kódovat ne-ascii
+end before	projectmanager	cs	Konec pøed
+enddate	projectmanager	cs	Koncové datum
+error: deleting price !!!	projectmanager	cs	Chyba: mazání ceny !!!
+error: deleting project !!!	projectmanager	cs	Chyba: mazání projektu !!!
+error: deleting project-element !!!	projectmanager	cs	Chyba: mazání souèásti projektu !!!
+error: deleting role !!!	projectmanager	cs	Chyba: mazání role !!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	cs	Chyba: ID projektu ji¾ existuje, vyberte jiné nebo ponechte prázdné pro automatické vygenerování
+error: saving milestone	projectmanager	cs	Chyba: ukládání milníku
+error: saving role !!!	projectmanager	cs	Chyba: ukládání role !!!
+error: saving the price (%1) !!!	projectmanager	cs	Chyba: ukládání ceny (%1) !!!
+error: saving the project (%1) !!!	projectmanager	cs	Chyba: ukládání projektu (%1) !!!
+error: saving the project-element (%1) !!!	projectmanager	cs	Chyba: ukládání souèásti projektu (%1) !!!
+everything recursive	projectmanager	cs	V¹e rekurzivní
+existing links	projectmanager	cs	Stávající odkazy
+exit without saving	projectmanager	cs	Ukoèit bez ulo¾ení
+font	projectmanager	cs	Písmo
+font charset	projectmanager	cs	Znaková sada písma
+font style	projectmanager	cs	Styl písma
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	cs	Písmo, které má být pou¾ito v Ganntovì diagramu. Souèástí Správce projektù je jen písmo Vera.
+fontfile '%1' not found!!!	projectmanager	cs	Soubor písma %1' nebyl nalezen!!!
+free descriptiv text	projectmanager	cs	volný popisný text
+from %1 to %2	projectmanager	cs	od %1 do %2
+full access	projectmanager	cs	plný pøístup
+ganttchart	projectmanager	cs	Ganttùv postupový diagram
+ganttchart parameter	projectmanager	cs	parametr Ganttova diagramu
+general	projectmanager	cs	Obecné
+general availibility	projectmanager	cs	V¹eobecná  dostupnost
+general pricelist	projectmanager	cs	Hlavní ceník
+h	projectmanager	cs	h
+health	projectmanager	cs	Zdraví
+hours	projectmanager	cs	hodin
+hours per workday	projectmanager	cs	Hodin za pracovní den
+how long do you work on the given day.	projectmanager	cs	Jak dlouho pracujete daný den.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	cs	Jak se má v menu zobrazovat výbìr projektù. Strom bývá pøehlednìj¹í, rozbalovací nabídka umo¾òuje rychlej¹í výbìr.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	cs	Pokud uvidíte entity (napø. {) v Ganttovì diagramu, vypnìte tuto volbu.
+ignore that entry	projectmanager	cs	ignorovat záznam
+ignored	projectmanager	cs	ignorován
+last modified	projectmanager	cs	Naposledy zmìnìno
+leave it empty if you dont need a different customer title	projectmanager	cs	ponechte prázdné, pokud nepotøebujete jiné jméno klienta
+leave it empty to have one generated	projectmanager	cs	ponechte prázdné pro automatické vygenerování
+leave it empty, if identitcal to the time	projectmanager	cs	ponechte prázdné shoduje-li se s èasem
+linked elements	projectmanager	cs	Odkazované souèásti
+links	projectmanager	cs	Odkazy
+mainproject only	projectmanager	cs	Jen hlavní projekt
+mainprojects	projectmanager	cs	Hlavní projekty
+members	projectmanager	cs	Èlenové
+milestone deleted	projectmanager	cs	Milník smazán
+milestone saved	projectmanager	cs	Milník ulo¾en
+milestones	projectmanager	cs	Milníky
+milestones before this element has to be finished	projectmanager	cs	Milníky pøed touto souèástí musí být ukonèeny
+modified	projectmanager	cs	Zmìnìno
+modified by	projectmanager	cs	Zmìnil(a)
+necessary for project-elements doing that not automatic	projectmanager	cs	nezbytné pro souèásti projektu, aby se to nedìlalo automaticky
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	cs	Potøebné roz¹íøení PHP %1 není nahráno a nelze nahrát !!!
+new	projectmanager	cs	Nové
+no accounting, only status	projectmanager	cs	Bez úètování, jen stav
+no accounting, only times and status	projectmanager	cs	Bez úètování, jen èasy a stav
+no details	projectmanager	cs	bez detailù
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	cs	Chybí oprávnìní ke ètení datového zdroje, odstranìní pøepsaných hodnot je jen vyprázdní !!!
+no save necessary	projectmanager	cs	ulo¾ení neni potøeba
+nonactive	projectmanager	cs	Neaktivní
+not started (0%)	projectmanager	cs	Nzapoèatý (0%)
+not working	projectmanager	cs	nepracuje
+only this project	projectmanager	cs	Jen tento projekt
+overwrite the datasource	projectmanager	cs	Pøepsat datový zdroj
+percentage the member is availible for projects	projectmanager	cs	Na kolik procent je èlen dostupný pro projekty
+percentage the member is availible for this project	projectmanager	cs	Na kolik procent je èlen dostupný pro tento projekt
+permission denied !!!	projectmanager	cs	Pøístup zablokován!!!
+planned	projectmanager	cs	plánované
+planned times	projectmanager	cs	Plánované èasy
+please download a recent version from %1 and install it in %2.	projectmanager	cs	Stáhnìte si prosím aktuální verzi z %1 a nainstalujte ji do %2.
+price	projectmanager	cs	Cena
+price / unit	projectmanager	cs	Cena na jednotku
+price deleted	projectmanager	cs	Cena smazána
+price saved	projectmanager	cs	Cena ulo¾ena
+pricelist	projectmanager	cs	Ceník
+project availibility	projectmanager	cs	Dostupnost pro projekt
+project deleted	projectmanager	cs	Projekt smazán
+project id	projectmanager	cs	ID projektu
+project members and roles	projectmanager	cs	Èlenové a role projektu
+project overview	projectmanager	cs	pøehled projektu
+project saved	projectmanager	cs	Projekt ulo¾en
+project specific title, prices, ...	projectmanager	cs	Projektovì specifický název, ceny, ...
+project-element deleted	projectmanager	cs	Souèást projektu smazána
+project-element saved	projectmanager	cs	Souèást projektu ulo¾ena
+project-elements	projectmanager	cs	Souèásti projektu
+projectlist	projectmanager	cs	Seznam projektù
+projectmanager	common	cs	Správce projektù
+projectmember	projectmanager	cs	Èlen projektu
+quantity	projectmanager	cs	Mno¾ství
+read access, incl. budget and adding elements	projectmanager	cs	oprávnìní ke ètení, vèetnì rozpoètu a pøidávání souèástí
+read access, no budget	projectmanager	cs	oprávnìní ke ètení, bez rozpoètu
+real end	projectmanager	cs	Skuteèný konec
+real start	projectmanager	cs	Skuteèný zaèátek
+resources	projectmanager	cs	Zdroje
+role	projectmanager	cs	Role
+role deleted	projectmanager	cs	Role smazána
+role saved	projectmanager	cs	Role ulo¾ena
+roles	projectmanager	cs	Role
+save the changes made	projectmanager	cs	Ulo¾it provedené zmìny
+save this project element	projectmanager	cs	Ulo¾it tuto souèást projektu
+select a project	projectmanager	cs	vybrat projekt
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	cs	vyberte èinnost chcete-li spoèítat náklady na základì mno¾ství (èasu) a ceny
+select multiple projects for a further action	projectmanager	cs	Vyberte více projektù pro dal¹í akci
+select the accounting types visible for users of projectmanager	projectmanager	cs	vyberte typy úètování viditelné pro u¾ivatele Správce projektù
+select this project and show it's elements	projectmanager	cs	Vybrat projekt a zobrazit jeho souèásti
+selectbox with %1	projectmanager	cs	Rozbalovací nabídka s %1
+share	projectmanager	cs	Podíl
+share on the whole project	projectmanager	cs	Podíl na celém projektu
+share on the whole project in hours or percent, defaults to planned time	projectmanager	cs	Podíl na celém projektu v hodinách nebo procentech, výchozí je plánovaný èas
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	cs	Má Správce projektù zobrazovat stavové ikony datových zdrojù (napø. InfoLogu) nebo jen ukazatel stavu s èíselným vyjádøením (rychlej¹í).
+show constraints and milestones	projectmanager	cs	Zobrazovat omezení a milníky
+show planned times instead of the real times	projectmanager	cs	Zobrazovat plánované èasy místo skuteèných èasù
+show status icons of the datasources	projectmanager	cs	Zobrazovat stavové ikony datových zdrojù
+show the project selection as	projectmanager	cs	Zobrazovat výbìr projektù jako
+site configuration saved	projectmanager	cs	Konfigurace webu ulo¾ena
+start after	projectmanager	cs	Zaèít po
+start working on %1	projectmanager	cs	Zaèít práci v %1
+start, end, category, ...	projectmanager	cs	Zaèátek, Konec, kategorie, ...
+start- & enddate	projectmanager	cs	Poèáteèní a koncové datum
+startdate	projectmanager	cs	Poèáteèní datum
+state	projectmanager	cs	Stav
+status filter	projectmanager	cs	Filtr stavù
+style used for everything but elements. some fonts have only normal style.	projectmanager	cs	Styl pou¾itý pro v¹e kromì souèástí. Nìkterá písma mají jen normální styl.
+subelements	projectmanager	cs	Dílèí souèásti
+subprojects	projectmanager	cs	Dílèí projekty
+synchronise all	projectmanager	cs	Synchronizovat v¹e
+template	projectmanager	cs	©ablona
+template including elment-tree saved as new project	projectmanager	cs	©ablona vèetnì stromu souèástí ulo¾ena jako nový projekt
+the charset depends on the font you want to use.	projectmanager	cs	Znaková sada zavisí na písmu, které chcete pou¾ít.
+time	projectmanager	cs	Èas
+times	projectmanager	cs	Èasy
+title must not be empty	projectmanager	cs	Název nesmí být prázdný
+tree with %1	projectmanager	cs	Strom s %1
+unit	projectmanager	cs	Jednotka
+unitprice	projectmanager	cs	Jednotková cena
+used	projectmanager	cs	pou¾ito
+valid since	projectmanager	cs	Platné od
+view ganttchart of this project	projectmanager	cs	Zobrazit Ganttùv diagram projektu
+view milestone	projectmanager	cs	Zobrazit milník
+view price	projectmanager	cs	Zobrazit cenu
+view project	projectmanager	cs	Zobrazit projekt
+view project-elements	projectmanager	cs	Zobrazit souèásti projektu
+view this element in %1	projectmanager	cs	Zobrazit tuto souèást v %1
+view this milestone	projectmanager	cs	Zobrazit tento milník
+view this price	projectmanager	cs	Zobrazit tuto cenu
+view this project	projectmanager	cs	Zobrazit tento projekt
+view this project-element	projectmanager	cs	Zobrazit tuto souèást projektu
+working duration on %1	projectmanager	cs	Délka práce v %1
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	cs	Pou¾íváte starou verzi JPGraph dodávanou s eGroupWarem. Má jen omezenou funkcionalitu.
+you can leave the date of the first price empty	projectmanager	cs	Datum první ceny mù¾ete ponechat prázdné
+you need to select a project first	projectmanager	cs	Musíte nejprve vybrat projekt
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	cs	Va¹e databáze NENÍ aktuální (%1 vs. %2), spus»te prosím %3setup%4 a zaktualizujte Va¹í databázi.

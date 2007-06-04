@@ -81,6 +81,7 @@ elements of elements	projectmanager	es-es	Elementos de elementos
 elements that can't start before this one is finished	projectmanager	es-es	Elementos que no pueden comenzar antes de que éste esté terminado
 elements which have to be finished before this can start	projectmanager	es-es	Elementos que tienen que estar terminados antes de que éste pueda comenzar
 empty	projectmanager	es-es	Vacío
+encode non-ascii	projectmanager	es-es	No codificar en ascii
 end before	projectmanager	es-es	Finalizar antes
 enddate	projectmanager	es-es	Fecha de finalización
 error: deleting price !!!	projectmanager	es-es	¡¡Error al borrar el precio!!

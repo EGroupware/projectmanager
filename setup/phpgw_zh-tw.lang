@@ -37,6 +37,7 @@ budget (no pricelist)	projectmanager	zh-tw	預算（沒有價格表）
 budget and pricelist	projectmanager	zh-tw	預算與價格表
 by	projectmanager	zh-tw	由
 calculate budget by quantity (eg. time) and price	projectmanager	zh-tw	依據數量（像時間）與價格計算預算
+charset of the above selected font	projectmanager	zh-tw	上面選擇字型的字集
 check all	projectmanager	zh-tw	全部勾選
 close the window, discard the changes made	projectmanager	zh-tw	關閉視窗，取消修改
 constraints	projectmanager	zh-tw	限制
@@ -80,6 +81,7 @@ elements of elements	projectmanager	zh-tw	元素的元素
 elements that can't start before this one is finished	projectmanager	zh-tw	元件不能夠在這個項目完成前開始
 elements which have to be finished before this can start	projectmanager	zh-tw	在這個項目開始前必須完成的元件
 empty	projectmanager	zh-tw	清空
+encode non-ascii	projectmanager	zh-tw	非拉丁編碼
 end before	projectmanager	zh-tw	截止日期
 enddate	projectmanager	zh-tw	結束日期
 error: deleting price !!!	projectmanager	zh-tw	錯誤：刪除價格時！
@@ -95,6 +97,11 @@ error: saving the project-element (%1) !!!	projectmanager	zh-tw	錯誤：儲存�
 everything recursive	projectmanager	zh-tw	遞迴選取
 existing links	projectmanager	zh-tw	已經存在的連結
 exit without saving	projectmanager	zh-tw	離開且不儲存
+font	projectmanager	zh-tw	字型
+font charset	projectmanager	zh-tw	字型字集
+font style	projectmanager	zh-tw	字型風格
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	zh-tw	甘特圖要使用的字型，ProjectManager只有內建 Vera 字型。
+fontfile '%1' not found!!!	projectmanager	zh-tw	找不到字型檔案'%1' ！
 free descriptiv text	projectmanager	zh-tw	自由說明文字
 from %1 to %2	projectmanager	zh-tw	從 %1 到 %2
 full access	projectmanager	zh-tw	完全存取
@@ -109,6 +116,7 @@ hours	projectmanager	zh-tw	時
 hours per workday	projectmanager	zh-tw	工作日時數
 how long do you work on the given day.	projectmanager	zh-tw	在指定的這天您工作多久。
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	zh-tw	選擇的專案在選單中如何顯示： 樹狀顯示可以提供較佳的概要，下拉選單執行較快
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	zh-tw	如果您看到甘特圖資料（例如 {），將這個功能關閉。
 ignore that entry	projectmanager	zh-tw	略過那筆資料
 ignored	projectmanager	zh-tw	忽略
 last modified	projectmanager	zh-tw	最後更新
@@ -197,11 +205,13 @@ start- & enddate	projectmanager	zh-tw	開始與結束日期
 startdate	projectmanager	zh-tw	開始日期
 state	projectmanager	zh-tw	狀態
 status filter	projectmanager	zh-tw	狀態過濾
+style used for everything but elements. some fonts have only normal style.	projectmanager	zh-tw	用在元件以外的風格，部份字型只有一般風格。
 subelements	projectmanager	zh-tw	子元件
 subprojects	projectmanager	zh-tw	子專案
 synchronise all	projectmanager	zh-tw	全部同步
 template	projectmanager	zh-tw	樣板
 template including elment-tree saved as new project	projectmanager	zh-tw	使用包含元素樹的樣板新增專案
+the charset depends on the font you want to use.	projectmanager	zh-tw	字集依賴您想要使用的字型
 time	projectmanager	zh-tw	次
 times	projectmanager	zh-tw	次
 title must not be empty	projectmanager	zh-tw	標題不能為空白
