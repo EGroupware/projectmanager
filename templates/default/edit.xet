@@ -175,7 +175,7 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<customfields id="customfields"/>
+					<customfields/>
 				</row>
 			</rows>
 		</grid>
