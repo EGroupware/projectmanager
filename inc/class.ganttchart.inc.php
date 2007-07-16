@@ -32,10 +32,10 @@ if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 			'GANTT_FONT'       => 15, //FF_ARIAL
 			'GANTT_FONT_FILE'  => 'arial.ttf',
 			'GANTT_STYLE'      => 9002, //FS_BOLD,
-			'GANTT_CHAR_ENCODE'=> true,
+			'GANTT_CHAR_ENCODE'=> false,
 		) as $name => $default)
 		{
-			if ($GLOBALS['egw_info']['apps']['projectmanager']['config'][$name])
+			if (isset($GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]))
 			{
 				define($name,$GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]);
 			}
@@ -137,7 +137,7 @@ class ganttchart extends boprojectelements
 	 *
 	 * @var boolean
 	 */
-	var $gantt_char_encode = GANTT_CHAR_ENDCODE;
+	var $gantt_char_encode = GANTT_CHAR_ENCODE;
 
 	var $debug;
 	var $scale_start,$scale_end;
