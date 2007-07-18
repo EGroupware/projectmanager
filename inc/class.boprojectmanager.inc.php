@@ -808,7 +808,7 @@ class boprojectmanager extends soprojectmanager
 	 * @param int $source id of project to copy
 	 * @param int $only_stage=0 0=both stages plus saving the project, 1=copy of the project, 2=copying the element tree
 	 * @param string $parent_number='' number of the parent project, to create a sub-project-number
-	 * @return boolean true on successful copy, false otherwise (eg. permission denied)
+	 * @return int/boolean successful copy new pm_id or true if $only_stage==1, false otherwise (eg. permission denied)
 	 */
 	function copy($source,$only_stage=0,$parent_number='')
 	{
@@ -860,6 +860,6 @@ class boprojectmanager extends soprojectmanager
 		// copying the element tree
 		$elements =& CreateObject('projectmanager.boprojectelements',$this->data['pm_id']);
 		
-		return $elements->copytree((int) $source);
+		return $elements->copytree((int) $source) ? $elements->pm_id : false;
 	}
 }
