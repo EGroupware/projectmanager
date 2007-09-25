@@ -47,6 +47,7 @@ create a new empty project or use a template	projectmanager	ru	Создайте новый пр
 create new links	projectmanager	ru	Создайте новые ссылки
 created	projectmanager	ru	создано
 created a ganttchart from the checked projects	projectmanager	ru	Созданная диаграмма Гантта из отмеченных проектов
+cumulated elements too	projectmanager	ru	Сводные элементы также
 custom fields	projectmanager	ru	Пользовательские Поля
 customer title	projectmanager	ru	Пользовательские названия
 datasource	projectmanager	ru	Источник данных
@@ -59,6 +60,8 @@ delete this project	projectmanager	ru	Удалить этот проект
 delete this project-element, does not remove the linked entry	projectmanager	ru	Удалить этот элемент проекта, НЕ удаляя связанную запись
 delete this role	projectmanager	ru	Удалить эту роль
 depth of display	projectmanager	ru	Глубина дисплея
+details of cumulated	projectmanager	ru	Детали сводных элементов
+details of subelements	projectmanager	ru	Детали подэлементов
 do not use that entry as project-element	projectmanager	ru	не использовать эту запись как элемент проекта
 done (100%)	projectmanager	ru	Сделано (100%)
 edit access, incl. editing budget and elements	projectmanager	ru	редактировать доступ, вкл. редактирование бюджетов и элементов
@@ -105,6 +108,7 @@ health	projectmanager	ru	Здоровье
 hours	projectmanager	ru	часы
 hours per workday	projectmanager	ru	Часов в рабочем дне
 how long do you work on the given day.	projectmanager	ru	Сколько вы работаете в данный день.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	ru	Как должно отображаться выбор проекта в меню: Дерево даёт лучший осмотр, Выбор даёт лучший результат.
 ignore that entry	projectmanager	ru	игнорировать эту запись
 ignored	projectmanager	ru	игнорировано
 last modified	projectmanager	ru	последнее изменение
@@ -176,6 +180,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	ru	Выбирите проекты для дальнейших действий
 select the accounting types visible for users of projectmanager	projectmanager	ru	Выбирите типы учета доступные для других пользователей проект-менеджера
 select this project and show it's elements	projectmanager	ru	Выбирите проект и покажите егео элементы
+selectbox with %1	projectmanager	ru	Выбор с %1
 share	projectmanager	ru	Доля
 share on the whole project	projectmanager	ru	Доля в проекте
 share on the whole project in hours or percent, defaults to planned time	projectmanager	ru	Доля в проекте в часахили процентах,по умолчанию время не распланировано
@@ -183,6 +188,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	ru	Показывать органичения и метки времени
 show planned times instead of the real times	projectmanager	ru	Показывать распланированное время,вместо текущего
 show status icons of the datasources	projectmanager	ru	Показывать статус на источнике данных
+show the project selection as	projectmanager	ru	Показать выбор проекта как
 site configuration saved	projectmanager	ru	Конфигурация сохранена
 start after	projectmanager	ru	Запуск после
 start working on %1	projectmanager	ru	Начало работы %1
@@ -191,6 +197,7 @@ start- & enddate	projectmanager	ru	Дата запуска и завершения
 startdate	projectmanager	ru	Дата запуска
 state	projectmanager	ru	Состояние
 status filter	projectmanager	ru	Фильтр статуса
+subelements	projectmanager	ru	Подэлементы
 subprojects	projectmanager	ru	Под-проекты
 synchronise all	projectmanager	ru	Синхронизировать все
 template	projectmanager	ru	Шаблон
@@ -198,6 +205,7 @@ template including elment-tree saved as new project	projectmanager	ru	Шаблон,вкл
 time	projectmanager	ru	Время
 times	projectmanager	ru	Количество раз
 title must not be empty	projectmanager	ru	Название должно быть заполнено
+tree with %1	projectmanager	ru	Дерево с %1
 unit	projectmanager	ru	Единица
 unitprice	projectmanager	ru	Цена за единицу
 used	projectmanager	ru	использовано
