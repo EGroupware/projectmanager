@@ -1,219 +1,238 @@
-%1 element(s) updated	projectmanager	hu	%1 elem frissÌtve
-%1 new project-elements imported	projectmanager	hu	%1 ˙j projekt elem import·lva
-%1 projects deleted	projectmanager	hu	%1 projekt tˆrˆlve
-%1 times permission denied, %2 projects deleted	projectmanager	hu	%1 alkalommal hozz·fÈrÈs megtagadva, %2 projekt tˆrˆlve
+%1 element(s) updated	projectmanager	hu	%1 elem friss√≠tve
+%1 new project-elements imported	projectmanager	hu	%1 √∫j projekt elem import√°lva
+%1 projects deleted	projectmanager	hu	%1 projekt t√∂r√∂lve
+%1 times permission denied, %2 projects deleted	projectmanager	hu	%1 alkalommal hozz√°f√©r√©s megtagadva, %2 projekt t√∂r√∂lve
 - planned	projectmanager	hu	- tervezett
 0ngoing (0 < % < 100)	projectmanager	hu	Folyamatban (0 < % < 100)
-a describtive title for the project, must not be empty	projectmanager	hu	Projekt beszÈdes cÌme, nem lehet ¸res
-accounting	projectmanager	hu	Sz·ml·z·s
-accounting options	projectmanager	hu	Sz·ml·z·si be·llÌt·sok
-accounting type	projectmanager	hu	Sz·ml·z·s tÌpusa
-actions	projectmanager	hu	M˚veletek
-activity	projectmanager	hu	TevÈkenysÈg
-add a new milestone	projectmanager	hu	⁄j mÈrfˆldkı hozz·ad·sa
-add a new project	projectmanager	hu	⁄j projekt hozz·ad·sa
-add element	projectmanager	hu	Elem hozz·ad·sa
-add existing	projectmanager	hu	MeglÈvı hozz·ad·sa
-add milestone	projectmanager	hu	MÈrfˆldkı hozz·ad·sa
-add or edit roles and their acl	projectmanager	hu	Szerepek hozz·ad·sa/szerkesztÈse Ès ezek ACL-jei
-add price	projectmanager	hu	¡r hozz·ad·sa
-add project	projectmanager	hu	Projekt hozz·ad·sa
-add project-elements	projectmanager	hu	Projektelemek hozz·ad·sa
-add this role	projectmanager	hu	Szerep hozz·ad·sa
-allow users to change their working times	projectmanager	hu	EngedÈlyezi a felhaszn·lÛnak, hogy a saj·t munkaidıt mÛdosÌtsa
-allowed accounting types	projectmanager	hu	Sz·ml·z·si tÌpusok engedÈlyezÈse
-allowed units	projectmanager	hu	EngedÈlyezett egysÈgek
-anonymous public	projectmanager	hu	NÈvtelen¸l nyilv·nos (vil·g sz·m·ra)
+a describtive title for the project, must not be empty	projectmanager	hu	Projekt besz√©des c√≠me, nem lehet √ºres
+accounting	projectmanager	hu	Sz√°ml√°z√°s
+accounting options	projectmanager	hu	Sz√°ml√°z√°si be√°ll√≠t√°sok
+accounting type	projectmanager	hu	Sz√°ml√°z√°s t√≠pusa
+actions	projectmanager	hu	M≈±veletek
+activity	projectmanager	hu	Tev√©kenys√©g
+add a new milestone	projectmanager	hu	√öj m√©rf√∂ldk≈ë hozz√°ad√°sa
+add a new project	projectmanager	hu	√öj projekt hozz√°ad√°sa
+add element	projectmanager	hu	Elem hozz√°ad√°sa
+add existing	projectmanager	hu	Megl√©v≈ë hozz√°ad√°sa
+add milestone	projectmanager	hu	M√©rf√∂ldk≈ë hozz√°ad√°sa
+add or edit roles and their acl	projectmanager	hu	Szerepek hozz√°ad√°sa/szerkeszt√©se √©s ezek ACL-jei
+add price	projectmanager	hu	√År hozz√°ad√°sa
+add project	projectmanager	hu	Projekt hozz√°ad√°sa
+add project-elements	projectmanager	hu	Projektelemek hozz√°ad√°sa
+add this role	projectmanager	hu	Szerep hozz√°ad√°sa
+allow users to change their working times	projectmanager	hu	Enged√©lyezi a felhaszn√°l√≥nak, hogy a saj√°t munkaid≈ët m√≥dos√≠tsa
+allowed accounting types	projectmanager	hu	Sz√°ml√°z√°si t√≠pusok enged√©lyez√©se
+allowed units	projectmanager	hu	Enged√©lyezett egys√©gek
+anonymous public	projectmanager	hu	N√©vtelen√ºl nyilv√°nos (vil√°g sz√°m√°ra)
 app.	projectmanager	hu	Alk.
-apply the changes	projectmanager	hu	V·ltoztat·sok alkalmaz·sa
-archive	projectmanager	hu	ArchÌv
+apply the changes	projectmanager	hu	V√°ltoztat√°sok alkalmaz√°sa
+archive	projectmanager	hu	Arch√≠v
 assistant	projectmanager	hu	Asszisztens
-at which time do you start working on the given day.	projectmanager	hu	A megadott napon a munkaidı kezdete.
-availible	projectmanager	hu	RendelkezÈsre ·ll
-billable	projectmanager	hu	sz·ml·zhatÛ
-bookable	projectmanager	hu	lefoglalhatÛ
-budget	projectmanager	hu	KˆltsÈgvetÈs
-budget (no pricelist)	projectmanager	hu	KˆltsÈgvetÈs (·rlista nÈlk¸l)
-budget and pricelist	projectmanager	hu	KˆltsÈgvetÈs Ès ·rlista
+at which time do you start working on the given day.	projectmanager	hu	A megadott napon a munkaid≈ë kezdete.
+availible	projectmanager	hu	Rendelkez√©sre √°ll
+billable	projectmanager	hu	sz√°ml√°zhat√≥
+bookable	projectmanager	hu	lefoglalhat√≥
+budget	projectmanager	hu	K√∂lts√©gvet√©s
+budget (no pricelist)	projectmanager	hu	K√∂lts√©gvet√©s (√°rlista n√©lk√ºl)
+budget and pricelist	projectmanager	hu	K√∂lts√©gvet√©s √©s √°rlista
 by	projectmanager	hu	by
-calculate budget by quantity (eg. time) and price	projectmanager	hu	KˆltsÈgvetÈs kisz·mÌt·sa mennyisÈg (pl. idı) Ès ·r alapj·n
-check all	projectmanager	hu	÷sszes kijelˆlese
-close the window, discard the changes made	projectmanager	hu	Ablak bez·r·sa, v·ltoz·sok elvetÈse
-constraints	projectmanager	hu	MegszorÌt·sok
-conversation between days and hours, default 8	projectmanager	hu	·tv·lt·s Ûr·k Ès napok kˆzˆtt, alapÈrtelemezÈsben 8
-coordinator	projectmanager	hu	Koordin·tor
-cost per time	projectmanager	hu	Idıar·nyos kˆltsÈg
-create a new empty project or use a template	projectmanager	hu	⁄j ¸res projekt lÈtrehoz·sa vagy projektsablon haszn·lata
-create new links	projectmanager	hu	⁄j hivatkoz·sok lÈtrehoz·sa
-created	projectmanager	hu	kÈsz¸lt
-created a ganttchart from the checked projects	projectmanager	hu	Gantt diagramm a kijelˆlt projektekbıl
-custom fields	projectmanager	hu	Egyedi mezık
-customer title	projectmanager	hu	Vevı cÌme
-datasource	projectmanager	hu	Adatforr·s
-dates	projectmanager	hu	D·tumok
-default all and a selectbox to choose	projectmanager	hu	Alapbe·llÌt·skÈnt az ˆsszes Ès selectbox a v·laszt·shoz
-delete all checked projects	projectmanager	hu	÷sszes kijelˆlt projekt tˆrlÈse
-delete this milestone	projectmanager	hu	MÈrfˆldkı tˆrlÈse
-delete this price	projectmanager	hu	¡r tˆrlÈse
-delete this project	projectmanager	hu	Projekt tˆrlÈse
-delete this project-element, does not remove the linked entry	projectmanager	hu	Projekt elem tˆrlÈse, hivatkozott elemek nem ker¸lnek tˆrlÈsre.
-delete this role	projectmanager	hu	Szerepkˆr tˆrlÈse
-depth of display	projectmanager	hu	MegjelenÌtÈs mÈlysÈge
-do not use that entry as project-element	projectmanager	hu	Ne haszn·lja a bejegyzÈst projekt-elemkÈnt
-done (100%)	projectmanager	hu	KÈsz (100%)
-edit access, incl. editing budget and elements	projectmanager	hu	hozz·fÈrÈs szerkesztÈse, beleÈrtve a kˆltsÈgkeret Ès elem szerkesztÈst
-edit budget	projectmanager	hu	KˆltsÈgkeret szerkeszÈse
-edit milestone	projectmanager	hu	MÈrfˆldkı szerkesztÈse
-edit price	projectmanager	hu	¡r szerkesztÈse
-edit project	projectmanager	hu	Projekt szerkesztÈse
-edit project-elements	projectmanager	hu	Projekt-elemek szerkesztÈse
-edit this milestone	projectmanager	hu	MÈrfˆldı szerkesztÈse
-edit this price	projectmanager	hu	¡r szerkesztÈse
-edit this project	projectmanager	hu	Projekt szerkesztÈse
-edit this project-element	projectmanager	hu	Projekt-elem szerkesztÈse
-edit this role	projectmanager	hu	Szerepkˆr szerkesztÈse
+calculate budget by quantity (eg. time) and price	projectmanager	hu	K√∂lts√©gvet√©s kisz√°m√≠t√°sa mennyis√©g (pl. id≈ë) √©s √°r alapj√°n
+charset of the above selected font	projectmanager	hu	A kor√°bban kiv√°lasztott font karakterk√≥dol√°sa
+check all	projectmanager	hu	√ñsszes kijel√∂lese
+close the window, discard the changes made	projectmanager	hu	Ablak bez√°r√°sa, v√°ltoz√°sok elvet√©se
+constraints	projectmanager	hu	Megszor√≠t√°sok
+conversation between days and hours, default 8	projectmanager	hu	√°tv√°lt√°s √≥r√°k √©s napok k√∂z√∂tt, alap√©rtelemez√©sben 8
+coordinator	projectmanager	hu	Koordin√°tor
+cost per time	projectmanager	hu	Id≈ëar√°nyos k√∂lts√©g
+create a new empty project or use a template	projectmanager	hu	√öj √ºres projekt l√©trehoz√°sa vagy projektsablon haszn√°lata
+create new links	projectmanager	hu	√öj hivatkoz√°sok l√©trehoz√°sa
+created	projectmanager	hu	k√©sz√ºlt
+created a ganttchart from the checked projects	projectmanager	hu	Gantt diagramm a kijel√∂lt projektekb≈ël
+cumulated elements too	projectmanager	hu	Halmozott elemeket is
+custom fields	projectmanager	hu	Egyedi mez≈ëk
+customer title	projectmanager	hu	Vev≈ë c√≠me
+datasource	projectmanager	hu	Adatforr√°s
+dates	projectmanager	hu	D√°tumok
+default all and a selectbox to choose	projectmanager	hu	Alapbe√°ll√≠t√°sk√©nt az √∂sszes √©s selectbox a v√°laszt√°shoz
+delete all checked projects	projectmanager	hu	√ñsszes kijel√∂lt projekt t√∂rl√©se
+delete this milestone	projectmanager	hu	M√©rf√∂ldk≈ë t√∂rl√©se
+delete this price	projectmanager	hu	√År t√∂rl√©se
+delete this project	projectmanager	hu	Projekt t√∂rl√©se
+delete this project-element, does not remove the linked entry	projectmanager	hu	Projekt elem t√∂rl√©se, hivatkozott elemek nem ker√ºlnek t√∂rl√©sre.
+delete this role	projectmanager	hu	Szerepk√∂r t√∂rl√©se
+depth of display	projectmanager	hu	Megjelen√≠t√©s m√©lys√©ge
+details of cumulated	projectmanager	hu	Halmoz√°s r√©szletei
+details of subelements	projectmanager	hu	Al-elemek r√©szletei
+do not use that entry as project-element	projectmanager	hu	Ne haszn√°lja a bejegyz√©st projekt-elemk√©nt
+done (100%)	projectmanager	hu	K√©sz (100%)
+edit access, incl. editing budget and elements	projectmanager	hu	hozz√°f√©r√©s szerkeszt√©se, bele√©rtve a k√∂lts√©gkeret √©s elem szerkeszt√©st
+edit budget	projectmanager	hu	K√∂lts√©gkeret szerkesz√©se
+edit milestone	projectmanager	hu	M√©rf√∂ldk≈ë szerkeszt√©se
+edit price	projectmanager	hu	√År szerkeszt√©se
+edit project	projectmanager	hu	Projekt szerkeszt√©se
+edit project-elements	projectmanager	hu	Projekt-elemek szerkeszt√©se
+edit this milestone	projectmanager	hu	M√©rf√∂ld≈ë szerkeszt√©se
+edit this price	projectmanager	hu	√År szerkeszt√©se
+edit this project	projectmanager	hu	Projekt szerkeszt√©se
+edit this project-element	projectmanager	hu	Projekt-elem szerkeszt√©se
+edit this role	projectmanager	hu	Szerepk√∂r szerkeszt√©se
 elementlist	projectmanager	hu	Elemlista
 elements of elements	projectmanager	hu	Az Elemek elemei
-elements that can't start before this one is finished	projectmanager	hu	Elemek, melyek nem indulhatnak a jelenlegi elem befejezÈse elıtt.
-elements which have to be finished before this can start	projectmanager	hu	Elemek, melyek be kell fejezıdjenek a jelenlegi elem indul·sa elıtt.
-empty	projectmanager	hu	‹res
-end before	projectmanager	hu	BefejezÈs ezelıtt
-enddate	projectmanager	hu	BefejezÈs d·tuma
-error: deleting price !!!	projectmanager	hu	Hiba tˆrtÈnt az ·r tˆrlÈsekor!
-error: deleting project !!!	projectmanager	hu	Hiba tˆrtÈnt a projekt tˆrlÈsekor!
-error: deleting project-element !!!	projectmanager	hu	Hiba tˆrtÈnt a projekt-elem tˆrlÈsekor!
-error: deleting role !!!	projectmanager	hu	Hiba tˆrtÈnt a szerepkˆr tˆrlÈsekor!
-error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	hu	Hiba: projekt azonosÌtÛ m·r lÈtezik, v·lasszon m·sikat vagy hagyja ¸resen az automatikus azonosÌtÛ gener·l·shoz.
-error: saving milestone	projectmanager	hu	Hiba tˆrtÈnt a mÈrfˆldkı mentÈsekor!
-error: saving role !!!	projectmanager	hu	Hiba tˆrtÈnt a szerepkˆr mentÈsekor!
-error: saving the price (%1) !!!	projectmanager	hu	Hiba tˆrtÈnt az ·r (%1) mentÈsekor!
-error: saving the project (%1) !!!	projectmanager	hu	Hiba tˆrtÈnt a projekt (%1) mentÈsekor!
-error: saving the project-element (%1) !!!	projectmanager	hu	Hiba tˆrtÈnt a projekt-elem mentÈsekor!
-everything recursive	projectmanager	hu	RekurzÌvan minden
-existing links	projectmanager	hu	M·r lÈtezı linkek
-exit without saving	projectmanager	hu	KilÈpÈs mentÈs nÈlk¸l
-free descriptiv text	projectmanager	hu	szabad leÌrÛ szˆveg
-from %1 to %2	projectmanager	hu	%1-tıl %2-ig
-full access	projectmanager	hu	teljes hozz·fÈrÈs
+elements that can't start before this one is finished	projectmanager	hu	Elemek, melyek nem indulhatnak a jelenlegi elem befejez√©se el≈ëtt.
+elements which have to be finished before this can start	projectmanager	hu	Elemek, melyek be kell fejez≈ëdjenek a jelenlegi elem indul√°sa el≈ëtt.
+empty	projectmanager	hu	√úres
+encode non-ascii	projectmanager	hu	Nem-ASCII k√≥dol√°s
+end before	projectmanager	hu	Befejez√©s ezel≈ëtt
+enddate	projectmanager	hu	Befejez√©s d√°tuma
+error: deleting price !!!	projectmanager	hu	Hiba t√∂rt√©nt az √°r t√∂rl√©sekor!
+error: deleting project !!!	projectmanager	hu	Hiba t√∂rt√©nt a projekt t√∂rl√©sekor!
+error: deleting project-element !!!	projectmanager	hu	Hiba t√∂rt√©nt a projekt-elem t√∂rl√©sekor!
+error: deleting role !!!	projectmanager	hu	Hiba t√∂rt√©nt a szerepk√∂r t√∂rl√©sekor!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	hu	Hiba: projekt azonos√≠t√≥ m√°r l√©tezik, v√°lasszon m√°sikat vagy hagyja √ºresen az automatikus azonos√≠t√≥ gener√°l√°shoz.
+error: saving milestone	projectmanager	hu	Hiba t√∂rt√©nt a m√©rf√∂ldk≈ë ment√©sekor!
+error: saving role !!!	projectmanager	hu	Hiba t√∂rt√©nt a szerepk√∂r ment√©sekor!
+error: saving the price (%1) !!!	projectmanager	hu	Hiba t√∂rt√©nt az √°r (%1) ment√©sekor!
+error: saving the project (%1) !!!	projectmanager	hu	Hiba t√∂rt√©nt a projekt (%1) ment√©sekor!
+error: saving the project-element (%1) !!!	projectmanager	hu	Hiba t√∂rt√©nt a projekt-elem ment√©sekor!
+everything recursive	projectmanager	hu	Rekurz√≠van minden
+existing links	projectmanager	hu	M√°r l√©tez≈ë linkek
+exit without saving	projectmanager	hu	Kil√©p√©s ment√©s n√©lk√ºl
+font	projectmanager	hu	Font
+font charset	projectmanager	hu	Font karakterk√≥dol√°s
+font style	projectmanager	hu	Font st√≠lus
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	hu	Ganttchart k√©sz√≠t√©s√©hez haszn√°lt font, csak a Vera fontokat tartalmazza alapk√©nt a Projectkezel≈ë.
+fontfile '%1' not found!!!	projectmanager	hu	Fontf√°jl '%1' nem tal√°lhat√≥!!!
+free descriptiv text	projectmanager	hu	szabad le√≠r√≥ sz√∂veg
+from %1 to %2	projectmanager	hu	%1-t≈ël %2-ig
+full access	projectmanager	hu	teljes hozz√°f√©r√©s
 ganttchart	projectmanager	hu	Gantt diagramm
-ganttchart parameter	projectmanager	hu	Gantt diagramm paramÈterek
-general	projectmanager	hu	¡ltal·nos
-general availibility	projectmanager	hu	RendelkezÈsre ·ll·s
-general pricelist	projectmanager	hu	¡ltal·nos ·rlista
-h	projectmanager	hu	Ûra
-health	projectmanager	hu	EgÈszsÈg
-hours	projectmanager	hu	Ûr·k
-hours per workday	projectmanager	hu	Napi munkaÛr·k sz·ma
-how long do you work on the given day.	projectmanager	hu	Az egy ·tlagos napra esı munkaÛr·k sz·ma.
-ignore that entry	projectmanager	hu	bejegyzÈs figyelmen kÌv¸l hagy·sa
-ignored	projectmanager	hu	figyelmen kÌv¸l hagyva
-last modified	projectmanager	hu	utolsÛ mÛdosÌt·s
-leave it empty if you dont need a different customer title	projectmanager	hu	hagyja ¸resen, ha nincs sz¸ksÈg m·s ¸gyfÈl megnevezÈsre
-leave it empty to have one generated	projectmanager	hu	hagyja ¸resen  Ès gener·lÛdik ez ÈrtÈke
-leave it empty, if identitcal to the time	projectmanager	hu	hagyja ¸resen, ha megegyezik az idıvel
+ganttchart parameter	projectmanager	hu	Gantt diagramm param√©terek
+general	projectmanager	hu	√Åltal√°nos
+general availibility	projectmanager	hu	Rendelkez√©sre √°ll√°s
+general pricelist	projectmanager	hu	√Åltal√°nos √°rlista
+h	projectmanager	hu	√≥ra
+health	projectmanager	hu	Eg√©szs√©g
+hours	projectmanager	hu	√≥r√°k
+hours per workday	projectmanager	hu	Napi munka√≥r√°k sz√°ma
+how long do you work on the given day.	projectmanager	hu	Az egy √°tlagos napra es≈ë munka√≥r√°k sz√°ma.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	hu	A men√ºben hogyan jelenjen meg a projekt kiv√°laszt√°sa: A fa k√∂nnyebb √°ttekinthet≈ës√©get biztos√≠t, m√≠g a kiv√°laszt√≥doboz gyorsabb.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	hu	Ha furcsas√°gokat l√°t (pl. {) a Ganttchart-ban, akkor ezt kapcsolja ki.
+ignore that entry	projectmanager	hu	bejegyz√©s figyelmen k√≠v√ºl hagy√°sa
+ignored	projectmanager	hu	figyelmen k√≠v√ºl hagyva
+last modified	projectmanager	hu	utols√≥ m√≥dos√≠t√°s
+leave it empty if you dont need a different customer title	projectmanager	hu	hagyja √ºresen, ha nincs sz√ºks√©g m√°s √ºgyf√©l megnevez√©sre
+leave it empty to have one generated	projectmanager	hu	hagyja √ºresen  √©s gener√°l√≥dik ez √©rt√©ke
+leave it empty, if identitcal to the time	projectmanager	hu	hagyja √ºresen, ha megegyezik az id≈ëvel
 linked elements	projectmanager	hu	Hivatkozott elemek
-links	projectmanager	hu	Hivatkoz·sok
-mainproject only	projectmanager	hu	Csak a fıprojektek
-mainprojects	projectmanager	hu	Fıprojektek
-members	projectmanager	hu	RÈsztvevık
-milestone deleted	projectmanager	hu	MÈrfˆldkı tˆrˆlve
-milestone saved	projectmanager	hu	MÈrfˆldkı elmentve
-milestones	projectmanager	hu	MÈrfˆldkˆvek
-milestones before this element has to be finished	projectmanager	hu	MÈrfˆldkˆvek mielıtt a jelenlegi elem befejezıdik
-modified	projectmanager	hu	MÛdosÌtva
-modified by	projectmanager	hu	mÛdosÌtotta
-necessary for project-elements doing that not automatic	projectmanager	hu	projekt elemekhez erre sz¸ksÈg van, nem tˆrtÈnik automatikusan
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	hu	%1 PHP kiterjesztÈs nem tˆltıdˆtt be Ès nem lehetsÈges a betˆltÈse!!!
-new	projectmanager	hu	˙j
-no accounting, only status	projectmanager	hu	Nincs sz·ml·z·s, csak st·tusz
-no accounting, only times and status	projectmanager	hu	Nincs sz·ml·z·s, csak idık Ès st·tusz
-no details	projectmanager	hu	RÈszletek nÈlk¸l
-no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	hu	Adatforr·s olvas·s·ra nem jogosult: fel¸lÌrt ÈrtÈkek tˆrlÈse esetÈn ezek a mezık ¸resen maradnak!!!
-no save necessary	projectmanager	hu	mentÈs nem sz¸ksÈges
-nonactive	projectmanager	hu	InaktÌv
+links	projectmanager	hu	Hivatkoz√°sok
+mainproject only	projectmanager	hu	Csak a f≈ëprojektek
+mainprojects	projectmanager	hu	F≈ëprojektek
+members	projectmanager	hu	R√©sztvev≈ëk
+milestone deleted	projectmanager	hu	M√©rf√∂ldk≈ë t√∂r√∂lve
+milestone saved	projectmanager	hu	M√©rf√∂ldk≈ë elmentve
+milestones	projectmanager	hu	M√©rf√∂ldk√∂vek
+milestones before this element has to be finished	projectmanager	hu	M√©rf√∂ldk√∂vek miel≈ëtt a jelenlegi elem befejez≈ëdik
+modified	projectmanager	hu	M√≥dos√≠tva
+modified by	projectmanager	hu	m√≥dos√≠totta
+necessary for project-elements doing that not automatic	projectmanager	hu	projekt elemekhez erre sz√ºks√©g van, nem t√∂rt√©nik automatikusan
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	hu	%1 PHP kiterjeszt√©s nem t√∂lt≈ëd√∂tt be √©s nem lehets√©ges a bet√∂lt√©se!!!
+new	projectmanager	hu	√∫j
+no accounting, only status	projectmanager	hu	Nincs sz√°ml√°z√°s, csak st√°tusz
+no accounting, only times and status	projectmanager	hu	Nincs sz√°ml√°z√°s, csak id≈ëk √©s st√°tusz
+no details	projectmanager	hu	R√©szletek n√©lk√ºl
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	hu	Adatforr√°s olvas√°s√°ra nem jogosult: fel√ºl√≠rt √©rt√©kek t√∂rl√©se eset√©n ezek a mez≈ëk √ºresen maradnak!!!
+no save necessary	projectmanager	hu	ment√©s nem sz√ºks√©ges
+nonactive	projectmanager	hu	Inakt√≠v
 not started (0%)	projectmanager	hu	Nem idult el (0%)
-not working	projectmanager	hu	nem m˚kˆdı
+not working	projectmanager	hu	nem m≈±k√∂d≈ë
 only this project	projectmanager	hu	Csak ez a projekt
-overwrite the datasource	projectmanager	hu	Adatforr·s fel¸lÌr·sa
-percentage the member is availible for projects	projectmanager	hu	Projekttag rendelkezÈsre ·ll·sa a projektben
-percentage the member is availible for this project	projectmanager	hu	Projekttag rendelkezÈsre ·ll·sa a projektben.
-permission denied !!!	projectmanager	hu	Hozz·fÈrÈs megtagadva!
+overwrite the datasource	projectmanager	hu	Adatforr√°s fel√ºl√≠r√°sa
+percentage the member is availible for projects	projectmanager	hu	Projekttag rendelkez√©sre √°ll√°sa a projektben
+percentage the member is availible for this project	projectmanager	hu	Projekttag rendelkez√©sre √°ll√°sa a projektben.
+permission denied !!!	projectmanager	hu	Hozz√°f√©r√©s megtagadva!
 planned	projectmanager	hu	tervezett
-planned times	projectmanager	hu	Tervezett idır·fordÌt·s
-please download a recent version from %1 and install it in %2.	projectmanager	hu	KÈrem tˆltse le a leg˙jabb verziÛt %1 helyrıl Ès telepÌtse %2 helyre.
-price	projectmanager	hu	¡r
-price / unit	projectmanager	hu	EgysÈg·r
-price deleted	projectmanager	hu	Az ·r tˆrˆlve
-price saved	projectmanager	hu	Az ·r elmentve
-pricelist	projectmanager	hu	¡rlista
-project availibility	projectmanager	hu	Projekt rendelkezÈsre ·ll·s
-project deleted	projectmanager	hu	A projekt tˆrˆlve
+planned times	projectmanager	hu	Tervezett id≈ër√°ford√≠t√°s
+please download a recent version from %1 and install it in %2.	projectmanager	hu	K√©rem t√∂ltse le a leg√∫jabb verzi√≥t %1 helyr≈ël √©s telep√≠tse %2 helyre.
+price	projectmanager	hu	√År
+price / unit	projectmanager	hu	Egys√©g√°r
+price deleted	projectmanager	hu	Az √°r t√∂r√∂lve
+price saved	projectmanager	hu	Az √°r elmentve
+pricelist	projectmanager	hu	√Årlista
+project availibility	projectmanager	hu	Projekt rendelkez√©sre √°ll√°s
+project deleted	projectmanager	hu	A projekt t√∂r√∂lve
 project id	projectmanager	hu	Projekt ID
 project members and roles	projectmanager	hu	A projekt tagjai
-project overview	projectmanager	hu	projekt ·ttekintı
-project saved	projectmanager	hu	A projekt mentÈsre ker¸lt
-project specific title, prices, ...	projectmanager	hu	Projekt specifikus cÌm, ·rak, ...
-project-element deleted	projectmanager	hu	Projekt elem tˆrˆlve
+project overview	projectmanager	hu	projekt √°ttekint≈ë
+project saved	projectmanager	hu	A projekt ment√©sre ker√ºlt
+project specific title, prices, ...	projectmanager	hu	Projekt specifikus c√≠m, √°rak, ...
+project-element deleted	projectmanager	hu	Projekt elem t√∂r√∂lve
 project-element saved	projectmanager	hu	Projekt elem elmentve
 project-elements	projectmanager	hu	Projekt-elemek
 projectlist	projectmanager	hu	Projektlista
-projectmanager	common	hu	Projektkezelı
+projectmanager	common	hu	Projektkezel≈ë
 projectmember	projectmanager	hu	Projekt tag
-quantity	projectmanager	hu	MennyisÈg
-read access, incl. budget and adding elements	projectmanager	hu	olvas·si (beleÈrtve a kˆltsÈgvetÈst), elem-hozz·ad·si jogosults·g
-read access, no budget	projectmanager	hu	olvas·si (kˆltsÈgvetÈs nÈlk¸l) jogosults·g
-real end	projectmanager	hu	TÈnyleges befejezÈs
-real start	projectmanager	hu	TÈnyleges indul·s
-resources	projectmanager	hu	Erıforr·sok
+quantity	projectmanager	hu	Mennyis√©g
+read access, incl. budget and adding elements	projectmanager	hu	olvas√°si (bele√©rtve a k√∂lts√©gvet√©st), elem-hozz√°ad√°si jogosults√°g
+read access, no budget	projectmanager	hu	olvas√°si (k√∂lts√©gvet√©s n√©lk√ºl) jogosults√°g
+real end	projectmanager	hu	T√©nyleges befejez√©s
+real start	projectmanager	hu	T√©nyleges indul√°s
+resources	projectmanager	hu	Er≈ëforr√°sok
 role	projectmanager	hu	Szerep
-role deleted	projectmanager	hu	A szerepkˆr tˆrˆlve
-role saved	projectmanager	hu	A szerepkˆr mentÈsre ker¸lt
+role deleted	projectmanager	hu	A szerepk√∂r t√∂r√∂lve
+role saved	projectmanager	hu	A szerepk√∂r ment√©sre ker√ºlt
 roles	projectmanager	hu	Szerepek
-save the changes made	projectmanager	hu	V·ltoz·sok elmentÈse
-save this project element	projectmanager	hu	Projekt elem elmentÈse
-select a project	projectmanager	hu	projekt kiv·laszt·sa
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	hu	M˚velet v·laszt·sa, a kˆltsÈgek mennyisÈg Ès egysÈg·r alapj·n tˆrtÈnı sz·mÌt·s·hoz
-select multiple projects for a further action	projectmanager	hu	Tˆbb projekt kiv·laszt·sa tov·bbi m˚veletekhez
-select the accounting types visible for users of projectmanager	projectmanager	hu	Sz·ml·z·si tÌpusok v·laszt·sa, amelyek l·thatÛak a felhaszn·lÛk Ès projekvezetık sz·m·ra
-select this project and show it's elements	projectmanager	hu	Projekt kiv·laszt·sa Ès elemeinek mutat·sa
-share	projectmanager	hu	Megoszt·s
-share on the whole project	projectmanager	hu	Teljes projekten valÛ megoszt·s
-share on the whole project in hours or percent, defaults to planned time	projectmanager	hu	Teljes projekten valÛ megoszt·s Ûr·kban vagy sz·zalÈkben, alapÈrtelmezÈsben a tervezett idıre
-should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	hu	Adatforr·s (pl. TennivalÛk) St·tusz ikonj·nak megjelenÌtÈse, vagy csak az elırehalad·s jelzÈse numerikus st·tuszjelzÈssel (gyorsabb megjelenÌtÈs).
-show constraints and milestones	projectmanager	hu	MegszorÌt·sok Ès mÈrfˆldkˆvek  mutat·sa
-show planned times instead of the real times	projectmanager	hu	Tervezett idı mutat·sa a tÈnyleges idık helyett
-show status icons of the datasources	projectmanager	hu	Adatforr·sok st·tusz ikonjainak mutat·sa
-site configuration saved	projectmanager	hu	Webhely konfigur·ciÛ elmentve
-start after	projectmanager	hu	Indul·s kÈsıbb
-start working on %1	projectmanager	hu	Munkaidı kezdete %1
-start, end, category, ...	projectmanager	hu	Indul·s, befejezÈs, kategÛria ...
-start- & enddate	projectmanager	hu	Indul·si- Ès befejezÈsi d·tum
-startdate	projectmanager	hu	Indul·si d·tum
-state	projectmanager	hu	¡llapot
-status filter	projectmanager	hu	¡llapot sz˚rı
+save the changes made	projectmanager	hu	V√°ltoz√°sok elment√©se
+save this project element	projectmanager	hu	Projekt elem elment√©se
+select a project	projectmanager	hu	projekt kiv√°laszt√°sa
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	hu	M≈±velet v√°laszt√°sa, a k√∂lts√©gek mennyis√©g √©s egys√©g√°r alapj√°n t√∂rt√©n≈ë sz√°m√≠t√°s√°hoz
+select multiple projects for a further action	projectmanager	hu	T√∂bb projekt kiv√°laszt√°sa tov√°bbi m≈±veletekhez
+select the accounting types visible for users of projectmanager	projectmanager	hu	Sz√°ml√°z√°si t√≠pusok v√°laszt√°sa, amelyek l√°that√≥ak a felhaszn√°l√≥k √©s projekvezet≈ëk sz√°m√°ra
+select this project and show it's elements	projectmanager	hu	Projekt kiv√°laszt√°sa √©s elemeinek mutat√°sa
+selectbox with %1	projectmanager	hu	Kiv√°laszt√≥doboz a k√∂vetkez≈ëvel %1
+share	projectmanager	hu	Megoszt√°s
+share on the whole project	projectmanager	hu	Teljes projekten val√≥ megoszt√°s
+share on the whole project in hours or percent, defaults to planned time	projectmanager	hu	Teljes projekten val√≥ megoszt√°s √≥r√°kban vagy sz√°zal√©kben, alap√©rtelmez√©sben a tervezett id≈ëre
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	hu	Adatforr√°s (pl. Tennival√≥k) St√°tusz ikonj√°nak megjelen√≠t√©se, vagy csak az el≈ërehalad√°s jelz√©se numerikus st√°tuszjelz√©ssel (gyorsabb megjelen√≠t√©s).
+show constraints and milestones	projectmanager	hu	Megszor√≠t√°sok √©s m√©rf√∂ldk√∂vek  mutat√°sa
+show planned times instead of the real times	projectmanager	hu	Tervezett id≈ë mutat√°sa a t√©nyleges id≈ëk helyett
+show status icons of the datasources	projectmanager	hu	Adatforr√°sok st√°tusz ikonjainak mutat√°sa
+show the project selection as	projectmanager	hu	Mutasd a projekt v√°laszt√°st mint
+site configuration	projectmanager	hu	Webhely be√°ll√≠t√°sai
+site configuration saved	projectmanager	hu	Webhely konfigur√°ci√≥ elmentve
+start after	projectmanager	hu	Indul√°s ezut√°n
+start working on %1	projectmanager	hu	Munkaid≈ë kezdete %1
+start, end, category, ...	projectmanager	hu	Indul√°s, befejez√©s, kateg√≥ria ...
+start- & enddate	projectmanager	hu	Indul√°si- √©s befejez√©si d√°tum
+startdate	projectmanager	hu	Indul√°si d√°tum
+state	projectmanager	hu	√Ållapot
+status filter	projectmanager	hu	√Ållapot sz≈±r≈ë
+style used for everything but elements. some fonts have only normal style.	projectmanager	hu	A st√≠lus mindenre vonatkozik, kiv√©ve az elemekre. N√©h√°ny fontnak csak norm√°l st√≠lusa van (nincs pl. d≈ëlt, vastag stb.).
+subelements	projectmanager	hu	Al-elemek
 subprojects	projectmanager	hu	Alprojektek
-synchronise all	projectmanager	hu	÷sszes szinkroniz·l·sa
+synchronise all	projectmanager	hu	√ñsszes szinkroniz√°l√°sa
 template	projectmanager	hu	Sablon
-template including elment-tree saved as new project	projectmanager	hu	A sablon a hozz· tartozÛ elemekkel egy¸tt az ˙jonnan lÈtrehozott projektbe ·tm·solva.
-time	projectmanager	hu	Idı
-times	projectmanager	hu	Idıtartam
-title must not be empty	projectmanager	hu	CÌm nem lehet ¸res
-unit	projectmanager	hu	EgysÈg
-unitprice	projectmanager	hu	EgysÈg·r
-used	projectmanager	hu	haszn·lt
-valid since	projectmanager	hu	…rvÈnyessÈg kezdete
-view ganttchart of this project	projectmanager	hu	Projekt gantt diagrammj·nak megtekintÈse
-view milestone	projectmanager	hu	MÈrfˆldkı megtekintÈse
-view price	projectmanager	hu	¡r megtekintÈse
-view project	projectmanager	hu	Projekt megtekintÈse
-view project-elements	projectmanager	hu	Projekt-elemek megtekintÈse
-view this element in %1	projectmanager	hu	Elem megtekintÈse itt %1
-view this milestone	projectmanager	hu	MÈrfˆldkı megtekintÈse
-view this price	projectmanager	hu	¡r megtekintÈse
-view this project	projectmanager	hu	Projekt megtekintÈse
-view this project-element	projectmanager	hu	Projekt-elem megtekintÈse
-working duration on %1	projectmanager	hu	Munkaidı %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	hu	RÈgi JPGraph verziÛt haszn·l, ami korl·tozott kÈpessÈgekkel rendelkezik. FrissÌtÈs javasolt.
-you can leave the date of the first price empty	projectmanager	hu	az elsı ·r bejegyzÈs d·tum mezıjÈt ¸resen lehet hagyni
-you need to select a project first	projectmanager	hu	Elıbb projekt kiv·laszt·sa sz¸ksÈges
-your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	hu	Az adatb·zis nem friss (%1 <-> %2), kÈrem %3frissÌtse%4 az adatb·zist.
+template including elment-tree saved as new project	projectmanager	hu	A sablon a hozz√° tartoz√≥ elemekkel egy√ºtt az √∫jonnan l√©trehozott projektbe √°tm√°solva.
+the charset depends on the font you want to use.	projectmanager	hu	A karakterk√≥dol√°s f√ºgg att√≥l a fontt√≥l, amit haszn√°lni k√≠v√°n.
+time	projectmanager	hu	Id≈ë
+times	projectmanager	hu	Id≈ëtartam
+title must not be empty	projectmanager	hu	C√≠m nem lehet √ºres
+tree with %1	projectmanager	hu	Fa a k√∂vetkez≈ëvel %1
+unit	projectmanager	hu	Egys√©g
+unitprice	projectmanager	hu	Egys√©g√°r
+used	projectmanager	hu	haszn√°lt
+valid since	projectmanager	hu	√ârv√©nyess√©g kezdete
+view ganttchart of this project	projectmanager	hu	Projekt gantt diagrammj√°nak megtekint√©se
+view milestone	projectmanager	hu	M√©rf√∂ldk≈ë megtekint√©se
+view price	projectmanager	hu	√År megtekint√©se
+view project	projectmanager	hu	Projekt megtekint√©se
+view project-elements	projectmanager	hu	Projekt-elemek megtekint√©se
+view this element in %1	projectmanager	hu	Elem megtekint√©se itt %1
+view this milestone	projectmanager	hu	M√©rf√∂ldk≈ë megtekint√©se
+view this price	projectmanager	hu	√År megtekint√©se
+view this project	projectmanager	hu	Projekt megtekint√©se
+view this project-element	projectmanager	hu	Projekt-elem megtekint√©se
+working duration on %1	projectmanager	hu	Munkaid≈ë %1
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	hu	R√©gi JPGraph verzi√≥t haszn√°l, ami korl√°tozott k√©pess√©gekkel rendelkezik. Friss√≠t√©s javasolt.
+you can leave the date of the first price empty	projectmanager	hu	az els≈ë √°r bejegyz√©s d√°tum mez≈ëj√©t √ºresen lehet hagyni
+you need to select a project first	projectmanager	hu	El≈ëbb projekt kiv√°laszt√°sa sz√ºks√©ges
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	hu	Az adatb√°zis nem friss (%1 <-> %2), k√©rem %3friss√≠tse%4 az adatb√°zist.
