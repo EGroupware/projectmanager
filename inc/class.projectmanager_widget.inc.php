@@ -74,6 +74,10 @@ class projectmanager_widget
 					CreateObject('projectmanager.boprojectmanager');	// assigns itselft to $GLOBALS['boprojectmanager']
 				}
 				$cell['sel_options'] = $GLOBALS['boprojectmanager']->link_query('');
+				if ($value && !isset($cell['sel_options'][$value]) && ($title = $GLOBALS['boprojectmanager']->link_title($value)))
+				{
+					$cell['sel_options'][$value] = $title;
+				}
 				if (!$cell['help']) $cell['help'] = /*lang(*/ 'Select a project' /*)*/;
 				break;
 
