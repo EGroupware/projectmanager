@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
@@ -19,6 +19,13 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
  */
 class somilestones extends so_sql
 {
+	/**
+	 * pm_id of current project
+	 *
+	 * @var int
+	 */
+	var $pm_id;
+
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 * 
@@ -62,7 +69,7 @@ class somilestones extends so_sql
 	 */
 	function &search($criteria,$only_keys=True,$order_by='ms_date',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join='')
 	{
-		if (!$this->pm_id && !isset($criteria['pm_id']) && !isset($filter['pm_id']))
+		if ($this->pm_id && !isset($criteria['pm_id']) && !isset($filter['pm_id']))
 		{
 			$filter['pm_id'] = $this->pm_id;
 		}
@@ -80,5 +87,33 @@ class somilestones extends so_sql
 				': '.$milestone['ms_title'];
 		}
 		return $milestones;
+	}
+	
+	/**
+	 * Copy the milestones from an other project
+	 *
+	 * @param int $source pm_id of the project to copy
+	 * @param int $pm_id=null pm_id to use, default null to use the current pm_id
+	 * @return array with source => new ms_id's
+	 */
+	function copy($source,$pm_id=null)
+	{
+		if (is_null($pm_id)) $pm_id = $this->pm_id;
+
+		$copied = array();
+		if (($milestones = $this->search(array('pm_id' => $source),false)))
+		{
+			foreach($milestones as $milestone)
+			{
+				$old = $milestone['ms_id'];
+				unset($milestone['ms_id']);
+				$milestone['pm_id'] = $pm_id;
+				$this->init($milestone);
+				$this->save();
+				
+				$copied[$old] = $this->data['ms_id'];
+			}
+		}
+		return $copied;
 	}
 }

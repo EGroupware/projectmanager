@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
@@ -484,10 +484,13 @@ class boprojectelements extends soprojectelements
 	 * deletes a project-element or all project-elements of a project, reimplemented to remove the link too
 	 *
 	 * @param array/int $keys if given array with pm_id and/or pe_id or just an integer pe_id
+	 * @param boolean $delete_sources=false true=delete datasources of the elements too (if supported by the datasource), false dont do it
 	 * @return int affected rows, should be 1 if ok, 0 if an error
 	 */
-	function delete($keys=null)
+	function delete($keys=null,$delete_sources=false)
 	{
+		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("boprojectelements::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
+
 		if (!is_array($keys) && (int) $keys)
 		{
 			$keys = array('pe_id' => (int) $keys);
@@ -501,6 +504,10 @@ class boprojectelements extends soprojectelements
 		{
 			$pe_id = $this->data['pe_id'];
 			$pm_id = $this->data['pm_id'];
+		}
+		if ($delete_sources)
+		{
+			$this->run_on_sources('delete',$keys);
 		}
 		$ret = parent::delete($keys);
 		
@@ -576,15 +583,16 @@ class boprojectelements extends soprojectelements
 	 * This is done by calling the copy method of the datasource (if existent) and then calling update with the (new) app_id
 	 *
 	 * @param int $source
-	 * @return boolean true on success, false otherwise
+	 * @return array with old => new pe_id's on success
 	 */
 	function copytree($source)
 	{
 		if ((int) $this->debug >= 2 || $this->debug == 'copytree') $this->debug_message("boprojectelements::copytree($source) this->pm_id=$this->pm_id");
 
-		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start');
-		if (!$elements) return true;
+		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start,pe_title');
+		if (!$elements) return array();
 		
+		$copied = array();
 		foreach($elements as $element)
 		{
 			$ds =& $this->datasource($element['pe_app']);
@@ -630,12 +638,43 @@ class boprojectelements extends soprojectelements
 				}
 			}	
 			if ($need_save) $this->save(null,true,false);
+			
+			$copied[$element['pe_id']] = $link_id;
 		}
 		// now we do one update of our project
 		if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling project->update() this->pm_id=$this->pm_id");
 		$this->project->update();
 
-		return true;
+		return $copied;
+	}
+
+	/**
+	 * Runs a certain method on the datasources of given elements
+	 *
+	 * @param string $method datasource method to call
+	 * @param array $keys to specifiy the elements
+	 * @param mixed $args=null 2. argument, after the pe_app_id
+	 * @return boolean true on success, false otherwise
+	 */
+	function run_on_sources($method,$keys,$args=null)
+	{
+		if ((int) $this->debug >= 2 || $this->debug == 'run_on_sources') $this->debug_message("boprojectelements::run_on_sources($method,".print_r($keys,true).','.print_r($args,true).") this->pm_id=$this->pm_id");
+
+		$elements =& $this->search($keys,array('pe_id','pe_title'),'pe_planned_start');
+		if (!$elements) return true;
+		
+		$Ok = true;
+		foreach($elements as $element)
+		{
+			$ds =& $this->datasource($element['pe_app']);
+			
+			if (method_exists($ds,$method))
+			{
+				if ((int) $this->debug >= 3 || $this->debug == 'run_on_sources') $this->debug_message("calling $method for $element[pe_app]:$element[pe_app_id] $element[pe_title]");
+				if (!$ds->$method($element['pe_app_id'],$args)) $Ok = false;
+			}
+		}
+		return $Ok;
 	}
 
 	/**

@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
@@ -59,7 +59,7 @@ class soconstraints extends so_sql
 	 */
 	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join='')
 	{
-		if (!$this->pm_id && !isset($criteria['pm_id']) && !isset($filter['pm_id']))
+		if ($this->pm_id && !isset($criteria['pm_id']) && !isset($filter['pm_id']))
 		{
 			$filter['pm_id'] = $this->pm_id;
 		}
@@ -255,5 +255,49 @@ class soconstraints extends so_sql
 			return $this->db->delete($this->table_name,$keys,__LINE__,__FILE__);
 		}
 		return parent::delete($keys);
+	}
+	
+	/**
+	 * Copy the constrains from an other project
+	 *
+	 * @param int $source pm_id of the project to copy
+	 * @param array $elements array with old => new pe_id's
+	 * @param array $milestones array with old => new ms_id's
+	 * @param int $pm_id=null pm_id to use, default null to use the current pm_id
+	 * @return true if all contrains copied successful to the new project, false otherwise
+	 */
+	function copy($source,$elements,$milestones,$pm_id=null)
+	{
+		if (is_null($pm_id)) $pm_id = $this->pm_id;
+
+		$copied = 0;
+		if (($constrains = $this->search(array('pm_id' => $source),false)))
+		{
+			foreach($constrains as $n => $constrain)
+			{
+				if ($constrain['pe_id_start'])
+				{
+					if (!isset($elements[$constrain['pe_id_start']])) continue;
+					$constrain['pe_id_start'] = $elements[$constrain['pe_id_start']];
+				}
+				if ($constrain['pe_id_end'])
+				{
+					if (!isset($elements[$constrain['pe_id_end']])) continue;
+					$constrain['pe_id_end'] = $elements[$constrain['pe_id_end']];
+				}
+				if ($constrain['ms_id'])
+				{
+					if (!isset($milestones[$constrain['ms_id']])) continue;
+					$constrain['ms_id'] = $milestones[$constrain['ms_id']];
+				}
+				$constrain['pm_id'] = $pm_id;
+				$this->init($constrain);
+				$this->save();
+				
+				$copied++;
+			}
+		}
+		return $copied == count($constrains);
+		
 	}
 }

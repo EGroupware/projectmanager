@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
@@ -25,6 +25,12 @@ class datasource_projectmanager extends datasource
 	 * @var array $get_cache return value or the last call to the get method, used by the re-implemented read method
 	 */
 	var $get_cache=null;
+	/**
+	 * Reference to $GLOBALS['boprojectmanager']
+	 *
+	 * @var boprojectmanager
+	 */
+	var $boprojectmanager;
 
 	/**
 	 * Constructor
@@ -34,6 +40,14 @@ class datasource_projectmanager extends datasource
 		$this->datasource('projectmanager');
 		
 		$this->valid = PM_ALL_DATA;
+
+		// we use $GLOBALS['boprojectmanager'] as an already running instance may be availible there
+		if (!is_object($GLOBALS['boprojectmanager']))
+		{
+			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
+			$GLOBALS['boprojectmanager'] =& new boprojectmanager();
+		}
+		$this->boprojectmanager =& $GLOBALS['boprojectmanager'];
 	}
 	
 	/**
@@ -49,29 +63,31 @@ class datasource_projectmanager extends datasource
 	function read($data_id,$pe_data=null)
 	{
 		$ds = parent::read($data_id,$pe_data);	// calls $this->get($data_id) to fetch the data
-		// we use $GLOBALS['boprojectmanager'] instanciated by get
 
 		if ((int) $this->debug > 1 || $this->debug == 'read')
 		{
-			$GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::read(pm_id=$data_id,".print_r($pe_data,true).')='.print_r($ds,true));
+			$this->boprojectmanager->debug_message("datasource_projectmanager::read(pm_id=$data_id,".print_r($pe_data,true).')='.print_r($ds,true));
 		}
 		// check if datasource::read changed our planned start, because it's determined by the constrains or parent
 		if (!is_null($pe_data) && $pe_data['pe_id'] && $ds['pe_planned_start'] != $pe_data['pe_planned_start'])
 		{
 			$pm_id = is_array($data_id) ? $data_id['pm_id'] : $data_id;
 
-			$GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) planned start changed from $pe_data[pe_planned_start]=".date('Y-m-d H:i',$pe_data['pe_planned_start'])." to $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start'])/*.", pe_data=".print_r($pe_data,true)*/);
-
-			$bope =& CreateObject('projectmanager.boprojectelements',$pm_id);
+			if ((int) $this->debug > 2 || $this->debug == 'read')
+			{
+				$this->boprojectmanager->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) planned start changed from $pe_data[pe_planned_start]=".date('Y-m-d H:i',$pe_data['pe_planned_start'])." to $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start'])/*.", pe_data=".print_r($pe_data,true)*/);
+			}
+			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
+			$bope =& new boprojectelements($pm_id);
 			
 			if (!($bope->project->data['pm_overwrite'] & PM_PLANNED_START))
 			{
 				// set the planned start, as it came from the project elements and then call sync_all to move the elements
 				$bope->project->data['pm_planned_start'] = $ds['pe_planned_start'];
 				$bope->project->save(null,false,false);	// not modification and NO notification
-				if (($updated_pes = $bope->sync_all()))
+				if (($updated_pes = $bope->sync_all()) && ((int) $this->debug > 2 || $this->debug == 'read'))
 				{
-					$GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) $updated_pes elements updated to new project-start $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start']));					
+					$this->boprojectmanager->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) $updated_pes elements updated to new project-start $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start']));					
 				}
 			}
 		}
@@ -86,17 +102,11 @@ class datasource_projectmanager extends datasource
 	 */
 	function get($data_id)
 	{
-		// we use $GLOBALS['boprojectmanager'] as an already running instance may be availible there
-		if (!is_object($GLOBALS['boprojectmanager']))
-		{
-			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
-			$GLOBALS['boprojectmanager'] =& new boprojectmanager();
-		}
 		if (!is_array($data_id))
 		{
-			if (!$GLOBALS['boprojectmanager']->read((int) $data_id)) return false;
+			if (!$this->boprojectmanager->read((int) $data_id)) return false;
 
-			$data =& $GLOBALS['boprojectmanager']->data;
+			$data =& $this->boprojectmanager->data;
 		}
 		else
 		{
@@ -118,13 +128,13 @@ class datasource_projectmanager extends datasource
 				$ds[$name] = $data[$pm_name];
 			}
 		}
-		$ds['pe_title'] = $GLOBALS['boprojectmanager']->link_title($data['pm_id'],$data);
+		$ds['pe_title'] = $this->boprojectmanager->link_title($data['pm_id'],$data);
 		// return the projectmembers as resources
 		$ds['pe_resources'] = $data['pm_members'] ? array_keys($data['pm_members']) : array($data['pm_creator']);
 		$ds['pe_details'] = $data['pm_description'];
 		if (is_numeric($ds['pe_completion'])) $ds['pe_completion'] .= '%';
 
-		if ((int) $this->debug > 1 || $this->debug == 'get') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::get($data_id) =".print_r($ds,true));
+		if ((int) $this->debug > 1 || $this->debug == 'get') $this->boprojectmanager->debug_message("datasource_projectmanager::get($data_id) =".print_r($ds,true));
 
 		return $ds;
 	}
@@ -139,26 +149,54 @@ class datasource_projectmanager extends datasource
 	 */
 	function copy($element,$target,$target_data=null)
 	{
-		if (!is_object($GLOBALS['boprojectmanager']))
-		{
-			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
-			$GLOBALS['boprojectmanager'] =& new boprojectmanager();
-		}
-		if ((int) $this->debug > 1 || $this->debug == 'copy') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::copy(".print_r($element,true).",$target)");
+		if ((int) $this->debug > 1 || $this->debug == 'copy') $this->boprojectmanager->debug_message("datasource_projectmanager::copy(".print_r($element,true).",$target)");
 
-		$data_backup = $GLOBALS['boprojectmanager']->data;
+		$data_backup = $this->boprojectmanager->data;
 
-		if (($pm_id = $GLOBALS['boprojectmanager']->copy((int) $element['pe_app_id'],0,$target_data['pm_number'])))
+		if (($pm_id = $this->boprojectmanager->copy((int) $element['pe_app_id'],0,$target_data['pm_number'])))
 		{
-			if ($this->debug > 3 || $this->debug == 'copy') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::copy() data=".print_r($GLOBALS['boprojectmanager']->data,true));
+			if ($this->debug > 3 || $this->debug == 'copy') $this->boprojectmanager->debug_message("datasource_projectmanager::copy() data=".print_r($this->boprojectmanager->data,true));
 
 			// link the new sub-project with the project
-			$link_id = $GLOBALS['boprojectmanager']->link->link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
+			$link_id = $this->boprojectmanager->link->link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
 		}
-		$GLOBALS['boprojectmanager']->data = $data_backup;
+		$this->boprojectmanager->data = $data_backup;
 
-		if ($this->debug > 2 || $this->debug == 'copy') $GLOBALS['boprojectmanager']->debug_message("datasource_projectmanager::copy() returning pm_id=$pm_id, link_id=$link_id, data=".print_r($GLOBALS['boprojectmanager']->data,true));
+		if ($this->debug > 2 || $this->debug == 'copy') $this->boprojectmanager->debug_message("datasource_projectmanager::copy() returning pm_id=$pm_id, link_id=$link_id, data=".print_r($this->boprojectmanager->data,true));
 
 		return $pm_id ? array($pm_id,$link_id) : false;
+	}
+	
+	/**
+	 * Delete the datasource of a project element
+	 *
+	 * @param int $id
+	 * @return boolean true on success, false on error
+	 */
+	function delete($id)
+	{
+		return $this->boprojectmanager->delete($id,true);	// true = propagate the source deletion
+	}
+	
+	/**
+	 * Change the status of an infolog entry according to the project status
+	 *
+	 * @param int $id
+	 * @param string $status
+	 * @return boolean true if status changed, false otherwise
+	 */
+	function change_status($id,$status)
+	{
+		$data_backup = $this->boprojectmanager->data;
+
+		if (($Ok = (boolean) $this->boprojectmanager->read((int) $id)))
+		{
+			$Ok = $this->boprojectmanager->save(array('pm_status' => $status)) == 0;
+		}
+		$this->boprojectmanager->data = $data_backup;
+		
+		if (!$Ok) return false;
+
+		return ExecMethod2('projectmanager.boprojectelements.run_on_sources','change_status',array('pm_id'=>$id),$status);
 	}
 }

@@ -52,6 +52,7 @@ cumulated elements too	projectmanager	de	Auch zusammengefaßte Elemente
 custom fields	projectmanager	de	Extra
 customer title	projectmanager	de	Kundentitel
 datasource	projectmanager	de	Datenquelle
+datasources too	projectmanager	de	auch Datenquellen
 dates	projectmanager	de	Datum
 default all and a selectbox to choose	projectmanager	de	Vorgabe alle und eine Auswahlbox
 delete all checked projects	projectmanager	de	Ausgewählten Projekte löschen
@@ -116,6 +117,8 @@ hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreutzt werden die Datenquellen der Element (zB. InfoLog Einträge) mit gelöscht.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreutzt werden der Status der Datenquellen der Element (zB. InfoLog Einträge) mit geändert.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert

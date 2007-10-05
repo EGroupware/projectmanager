@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
@@ -97,6 +97,8 @@ class uiprojectmanager extends boprojectmanager
 
 		if (is_array($content))
 		{
+			$old_status = $content['old_status'];
+
 			if ($content['cancel'])
 			{
 				$tpl->location(array(
@@ -217,6 +219,11 @@ class uiprojectmanager extends boprojectmanager
 						$msg = lang('Template including elment-tree saved as new project');
 						unset($content['template']);
 					}
+					if ($content['status_sources'] && $old_status != $this->data['pm_status'])
+					{
+						ExecMethod2('projectmanager.boprojectelements.run_on_sources','change_status',
+							array('pm_id'=>$this->data['pm_id']),$this->data['pm_status']);
+					}
 				}
 			}
 			if ($content['save'])
@@ -229,9 +236,10 @@ class uiprojectmanager extends boprojectmanager
 			if ($content['delete'] && $this->check_acl(EGW_ACL_DELETE))
 			{
 				// all delete are done by index
-				return $this->index(array('nm'=>array('rows'=>array(
-					'delete' => array($this->data['pm_id']=>true)
-				))));
+				return $this->index(array(
+					'nm'=>array('rows'=>array('delete' => array($this->data['pm_id']=>true))),
+					'delete_sources' => $content['delete_sources'],
+				));
 			}
 			$referer = $content['referer'];
 			$template = $content['template'];
@@ -290,6 +298,8 @@ class uiprojectmanager extends boprojectmanager
 			}
 			// no pm-number set, generate one
 			if (!$this->data['pm_number']) $this->generate_pm_number(true);
+			
+			$old_status = $this->data['pm_status'];
 		}
 		if (!$pe_summary) $pe_summary = $this->pe_summary();
 
@@ -313,6 +323,7 @@ class uiprojectmanager extends boprojectmanager
 			),
 			'duration_format' => ','.$this->config['duration_format'],
 			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET,0,true) || in_array($this->data['pm_accounting_type'],array('status','times')),
+			'status_sources' => $content['status_sources'],
 		);
 		if ($add_link && !is_array($content['link_to']['to_id']))
 		{
@@ -343,6 +354,8 @@ class uiprojectmanager extends boprojectmanager
 			'customfields' => $view,
 			'general_avail[1]' => !$GLOBALS['egw_info']['user']['apps']['admin'],
 		);
+		if ($readonlys['delete']) $tpl->disable_cells('delete_sources');
+
 		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))
 		{
 			$readonlys['pm_planned_budget'] = $readonlys['pm_used_budget'] = true;
@@ -366,6 +379,7 @@ class uiprojectmanager extends boprojectmanager
 			'member'   => $content['member'],
 			'referer'  => $referer,
 			'template' => $template,
+			'old_status' => $old_status,
 		);
 		$this->instanciate('roles');
 
@@ -549,13 +563,12 @@ class uiprojectmanager extends boprojectmanager
 				$deleted = $no_perms = 0;
 				foreach($checked as $pm_id)
 				{
-					if ($this->read($pm_id) && !$this->check_acl(EGW_ACL_DELETE))
+					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_DELETE))
 					{
 						$no_perms++;
 					}
-					else
+					elseif ($this->delete($pm_id,$content['delete_sources']))
 					{
-						$this->delete($pm_id);
 						$deleted++;
 					}
 				}
@@ -563,6 +576,7 @@ class uiprojectmanager extends boprojectmanager
 					lang('%1 projects deleted',$deleted);
 			}
 		}
+		$delete_sources = $content['delete_sources'];
 		$content = $content['nm']['rows'];
 		
 		if ($content['view'] || $content['edit'] || $content['delete'] || $content['ganttchart'])
@@ -593,13 +607,13 @@ class uiprojectmanager extends boprojectmanager
 					break;
 					
 				case 'delete':
-					if ($this->read($pm_id) && !$this->check_acl(EGW_ACL_DELETE))
+					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_DELETE))
 					{
 						$msg = lang('Permission denied !!!');
 					}
 					else
 					{
-						$msg = $this->delete($pm_id) ? lang('Project deleted') : 
+						$msg = $this->delete($pm_id,$delete_sources) ? lang('Project deleted') : 
 							lang('Error: deleting project !!!');
 					}
 					break;

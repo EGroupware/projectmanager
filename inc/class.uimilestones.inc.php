@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
@@ -58,10 +58,7 @@ class uimilestones extends boprojectmanager
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
-		if (!is_object($this->milestones))
-		{
-			$this->milestones =& CreateObject('projectmanager.somilestones');
-		}
+		$this->instanciate('milestones');
 	}
 	
 	/**
@@ -149,6 +146,9 @@ class uimilestones extends boprojectmanager
 			'js'  => '<script>'.$js.'</script>',
 		);
 
+		$sel_options = array(
+			'pm_id' => array($this->data['pm_id'] => $this->data['pm_title']),
+		);
 		if ($view)
 		{
 			$readonlys = array(
@@ -161,18 +161,13 @@ class uimilestones extends boprojectmanager
 				'ms_date'  => true,
 				'ms_description' => true,
 			);
-			$sel_options = array(
-				'pm_id' => array($this->data['pm_id'] => $this->data['pm_title']),
-			);
 		}
 		else
 		{
 			$readonlys = array(
 				'edit'   => true,
 			);
-			$sel_options = array(
-				'pm_id' => $this->query_list('pm_title','pm_id'),
-			);
+			$sel_options['pm_id'] += $this->query_list('pm_title','pm_id');
 		}
 		$readonlys['delete'] = !$this->milestones->data['ms_id'] || !$this->check_acl(EGW_ACL_EDIT);
 

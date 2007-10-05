@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
@@ -184,11 +184,11 @@ class boprojectmanager extends soprojectmanager
 			// we need to restore it later
 			$save_data = $this->data;
 
-			$this->read(array('pm_id' => $pm_id));
+			if (!$this->read(array('pm_id' => $pm_id))) return;	// project does (no longer) exist
 		}
 		$pe_summary = $this->pe_summary($pm_id);
 
-		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectmanager::update($pm_id) pe_summary=".print_r($pe_summary,true));
+		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectmanager::update($pm_id,$update_necessary) pe_summary=".print_r($pe_summary,true));
 		
 		if (!$this->pe_name2id)
 		{
@@ -264,17 +264,22 @@ class boprojectmanager extends soprojectmanager
 	 * deletes a project identified by $keys or the loaded one, reimplemented to remove the project-elements too
 	 *
 	 * @param array $keys if given array with col => value pairs to characterise the rows to delete
+	 * @param boolean $delete_sources=false true=delete datasources of the elements too (if supported by the datasource), false dont do it
 	 * @return int affected rows, should be 1 if ok, 0 if an error
 	 */
-	function delete($keys=null)
+	function delete($keys=null,$delete_sources=false)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("boprojectmanager::delete(".print_r($keys,true).") this->data[pm_id] = ".$this->data['pm_id']);
+		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("boprojectmanager::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
 
-		$pm_id = is_null($keys) ? $this->data['pm_id'] : (is_array($keys) ? $keys['pm_id'] : $keys);
+		if (!is_array($keys) && (int) $keys)
+		{
+			$keys = array('pm_id' => (int) $keys);
+		}
+		$pm_id = is_null($keys) ? $this->data['pm_id'] : $keys['pm_id'];
 		
 		if (($ret = parent::delete($keys)) && $pm_id)
 		{
-			ExecMethod('projectmanager.boprojectelements.delete',array('pm_id' => $pm_id));
+			ExecMethod2('projectmanager.boprojectelements.delete',array('pm_id' => $pm_id),$delete_sources);
 
 			// the following is not really necessary, as it's already one in boprojectelements::delete
 			// delete all links to project $pm_id
@@ -857,9 +862,20 @@ class boprojectmanager extends soprojectmanager
 			}
 			if ($this->save() != 0) return false;
 		}
+		$this->instanciate('milestones,constraints');
+
+		// copying the milestones
+		$milestones = $this->milestones->copy((int)$source,$this->data['pm_id']);
+
 		// copying the element tree
-		$elements =& CreateObject('projectmanager.boprojectelements',$this->data['pm_id']);
+		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
+		$boelements =& new boprojectelements($this->data['pm_id']);
 		
-		return $elements->copytree((int) $source) ? $elements->pm_id : false;
+		if (($elements = $boelements->copytree((int) $source)))
+		{
+			// copying the constrains
+			$this->constraints->copy((int)$source,$elements,$milestones,$boelements->pm_id);
+		}
+		return $boelements->pm_id;
 	}
 }

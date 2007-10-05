@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.edit.general" template="" lang="" group="0" version="0.4.001">
+	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%" height="260">
 			<columns>
 				<column width="95"/>
@@ -26,9 +26,12 @@
 						<menupopup type="select-number" options=",1,10" id="pm_priority"/>
 					</menulist>
 					<description value="State" options=",,,pm_status"/>
-					<menulist>
-						<menupopup id="pm_status" no_lang="1"/>
-					</menulist>
+					<hbox options="0,0">
+						<menulist>
+							<menupopup id="pm_status" no_lang="1"/>
+						</menulist>
+						<checkbox id="status_sources" label="datasources too" statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." class="leftPad5"/>
+					</hbox>
 				</row>
 				<row class="th">
 					<description value="Value"/>
@@ -202,7 +205,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.edit" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%">
 			<columns>
 				<column width="100"/>
@@ -265,7 +268,10 @@
 						<button label="Apply" id="apply" statustext="Apply the changes"/>
 						<button label="Cancel" id="cancel" statustext="Exit without saving"/>
 					</hbox>
-					<button label="Delete" align="right" onclick="return confirm('Delete this project');" id="delete" statustext="Delete this project"/>
+					<hbox align="right">
+						<checkbox id="delete_sources" label="datasources too" statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too."/>
+						<button label="Delete" onclick="return confirm('Delete this project');" id="delete" statustext="Delete this project"/>
+					</hbox>
 				</row>
 			</rows>
 		</grid>

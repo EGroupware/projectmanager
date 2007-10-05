@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.milestone.edit" template="" lang="" group="0" version="0.2.001">
+	<template id="projectmanager.milestone.edit" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -30,7 +30,7 @@
 					<html id="js"/>
 				</row>
 				<row class="row">
-					<htmlarea span="all" id="ms_description"/>
+					<htmlarea span="all" id="ms_description" mode="extended" height="300px" width="100%" toolbar="true"/>
 				</row>
 				<row>
 					<hbox span="2">

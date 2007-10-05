@@ -52,6 +52,7 @@ cumulated elements too	projectmanager	en	Cumulated elements too
 custom fields	projectmanager	en	Custom fields
 customer title	projectmanager	en	Customer title
 datasource	projectmanager	en	Datasource
+datasources too	projectmanager	en	datasources too
 dates	projectmanager	en	Dates
 default all and a selectbox to choose	projectmanager	en	default all and a selectbox to choose
 delete all checked projects	projectmanager	en	Delete all checked projects
@@ -116,6 +117,8 @@ hours	projectmanager	en	hours
 hours per workday	projectmanager	en	Hours per workday
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	en	If checked the datasources of the elements (eg. InfoLog entries) are deleted too.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	en	If checked the datasources of the elements (eg. InfoLog entries) will change their status too.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	en	If you see entities (eg. &#123;) in the Ganttchart, switch this off.
 ignore that entry	projectmanager	en	ignore that entry
 ignored	projectmanager	en	ignored
