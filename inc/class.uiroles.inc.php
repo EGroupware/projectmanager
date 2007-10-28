@@ -150,7 +150,7 @@ class uiroles extends boprojectmanager
 			1       => $role_to_edit,
 		);
 		$n = 2;
-		foreach((array)$this->roles->search(array('pm_id'=>array(0,$pm_id)),false,'pm_id DESC,role_acl DESC') as $role)
+		foreach((array)$this->roles->search(array(),false,'pm_id DESC,role_acl DESC','','',false,'AND',false,array('pm_id'=>array(0,$pm_id))) as $role)
 		{
 			foreach($this->acl2id as $acl => $id)
 			{
