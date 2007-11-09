@@ -1,0 +1,238 @@
+%1 element(s) updated	projectmanager	gl	%1 elementos actualizados
+%1 new project-elements imported	projectmanager	gl	%1 novos elementos do proxecto importados
+%1 projects deleted	projectmanager	gl	%1 proxectos eliminados
+%1 times permission denied, %2 projects deleted	projectmanager	gl	Acceso negado %1 veces, %2 proxectos eliminados
+- planned	projectmanager	gl	- planificado
+0ngoing (0 < % < 100)	projectmanager	gl	De saída (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	gl	un título descritivo para o proxecto; non debe estar baleiro
+accounting	projectmanager	gl	Contas
+accounting options	projectmanager	gl	Opcións de contas
+accounting type	projectmanager	gl	Tipo de contas
+actions	projectmanager	gl	Accións
+activity	projectmanager	gl	Actividade
+add a new milestone	projectmanager	gl	Engadir un novo fito
+add a new project	projectmanager	gl	Engadir un novo proxecto
+add element	projectmanager	gl	Engadir elemento
+add existing	projectmanager	gl	Engadir existente
+add milestone	projectmanager	gl	Engadir fito
+add or edit roles and their acl	projectmanager	gl	Engadir ou editar roles e ACL
+add price	projectmanager	gl	Engadir prezo
+add project	projectmanager	gl	Engadir proxecto
+add project-elements	projectmanager	gl	Engadir elementos do proxecto
+add this role	projectmanager	gl	Engadir este papel
+allow users to change their working times	projectmanager	gl	Permitir aos usuarios modificar as súas horas de traballo
+allowed accounting types	projectmanager	gl	Tipos de conta permitidos
+allowed units	projectmanager	gl	Unidades permitidas
+anonymous public	projectmanager	gl	Público anónimo
+app.	projectmanager	gl	Aplicación
+apply the changes	projectmanager	gl	Aplicar as modificacións
+archive	projectmanager	gl	Arquivado
+assistant	projectmanager	gl	Asistente
+at which time do you start working on the given day.	projectmanager	gl	Hora de inicio do traballo no día indicado.
+availible	projectmanager	gl	Dispoñible
+billable	projectmanager	gl	Facturable
+bookable	projectmanager	gl	Reservable
+budget	projectmanager	gl	Orzamento
+budget (no pricelist)	projectmanager	gl	Orzamento (sen lista de prezos)
+budget and pricelist	projectmanager	gl	Orzamento con lista de prezos
+by	projectmanager	gl	por
+calculate budget by quantity (eg. time) and price	projectmanager	gl	Calcular orzamento por cantidade (p. ex. tempo) e prezo
+charset of the above selected font	projectmanager	gl	Conxunto de caracteres do tipo de letra seleccionado arriba
+check all	projectmanager	gl	Marcar todo
+close the window, discard the changes made	projectmanager	gl	Pechar a ventá, ignorar modificacións
+constraints	projectmanager	gl	Restricións
+conversation between days and hours, default 8	projectmanager	gl	correspondencia entre días e horas. Predefinido: 8
+coordinator	projectmanager	gl	Coordinador
+cost per time	projectmanager	gl	Custo por tempo
+create a new empty project or use a template	projectmanager	gl	Crear un novo proxecto en branco ou utilizar un modelo
+create new links	projectmanager	gl	Crear novas ligazóns
+created	projectmanager	gl	creado
+created a ganttchart from the checked projects	projectmanager	gl	Creouse unha gráfica Gantt a partir dos proxectos seleccionados
+cumulated elements too	projectmanager	gl	Tamén elementos acumulados
+custom fields	projectmanager	gl	Campos personalizados
+customer title	projectmanager	gl	Cargo do cliente
+datasource	projectmanager	gl	Fonte de datos
+dates	projectmanager	gl	Datas
+default all and a selectbox to choose	projectmanager	gl	establecer todo como predefinido e unha caixa de selección para escoller
+delete all checked projects	projectmanager	gl	Eliminar todos os proxectos seleccionados
+delete this milestone	projectmanager	gl	Eliminar este fito
+delete this price	projectmanager	gl	Eliminar este prezo
+delete this project	projectmanager	gl	Eliminar este proxecto
+delete this project-element, does not remove the linked entry	projectmanager	gl	Eliminar este elemento do proxecto NON elimina a entrada ligada
+delete this role	projectmanager	gl	Eliminar este papel
+depth of display	projectmanager	gl	Profundidade da pantalla
+details of cumulated	projectmanager	gl	Detalles de acumulados
+details of subelements	projectmanager	gl	Detalles de sublementos
+do not use that entry as project-element	projectmanager	gl	non utilizar esa entrada como elemento do proxecto
+done (100%)	projectmanager	gl	Concluído (100%)
+edit access, incl. editing budget and elements	projectmanager	gl	editar acceso, incluíndo edición de orzamento e elementos
+edit budget	projectmanager	gl	Editar orzamento
+edit milestone	projectmanager	gl	Editar fito
+edit price	projectmanager	gl	Editar prezo
+edit project	projectmanager	gl	Editar proxecto
+edit project-elements	projectmanager	gl	Editar elementos do proxecto
+edit this milestone	projectmanager	gl	Editar este fito
+edit this price	projectmanager	gl	Editar este prezo
+edit this project	projectmanager	gl	Editar este proxecto
+edit this project-element	projectmanager	gl	Editar este elemento do proxecto
+edit this role	projectmanager	gl	Editar este papel
+elementlist	projectmanager	gl	Lista de elementos
+elements of elements	projectmanager	gl	Elementos de elementos
+elements that can't start before this one is finished	projectmanager	gl	Elementos que non poden comezar antes de concluír este
+elements which have to be finished before this can start	projectmanager	gl	Elementos que deben estar concluídos antes de poder comezar este
+empty	projectmanager	gl	En branco
+encode non-ascii	projectmanager	gl	Codificación non-ascii
+end before	projectmanager	gl	Finalizar antes
+enddate	projectmanager	gl	Data de finalización
+error: deleting price !!!	projectmanager	gl	Erro: eliminando o prezo
+error: deleting project !!!	projectmanager	gl	Erro: eliminando proxecto
+error: deleting project-element !!!	projectmanager	gl	Erro: eliminando elemento do proxecto
+error: deleting role !!!	projectmanager	gl	Erro: eliminando papel
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	gl	Erro: o ID do proxecto xa existe. Escolla outro ou deixe o campo en branco para que se xere un.
+error: saving milestone	projectmanager	gl	Erro: gardando fito
+error: saving role !!!	projectmanager	gl	Erro: gardando papel
+error: saving the price (%1) !!!	projectmanager	gl	Erro: gardando o prezo (%1)
+error: saving the project (%1) !!!	projectmanager	gl	Erro: gardando o proxecto (%1)
+error: saving the project-element (%1) !!!	projectmanager	gl	Erro: gardando o elemento do proxecto
+everything recursive	projectmanager	gl	Todo recursivo
+existing links	projectmanager	gl	Ligazóns existentes
+exit without saving	projectmanager	gl	Saír sen gardar
+font	projectmanager	gl	Tipo de letra
+font charset	projectmanager	gl	Conxunto de caracteres do tipo de letra
+font style	projectmanager	gl	Estilo do tipo de letra
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	gl	Tipo de letra para utilizar no gráfico Gantt, os único tipo de letra incluído no Xestor de proxectos é Vera.
+fontfile '%1' not found!!!	projectmanager	gl	Non se encontrou o ficheiro de tipo de letra '%1'!!!
+free descriptiv text	projectmanager	gl	Texto descritivo libre
+from %1 to %2	projectmanager	gl	desde %1 até %2
+full access	projectmanager	gl	acceso total
+ganttchart	projectmanager	gl	Gráfica Gantt
+ganttchart parameter	projectmanager	gl	Parámetro de gráfica Gantt
+general	projectmanager	gl	Xeral
+general availibility	projectmanager	gl	Dispoñibilidade xeral
+general pricelist	projectmanager	gl	Lista de prezos xeral
+h	projectmanager	gl	h
+health	projectmanager	gl	Saúde
+hours	projectmanager	gl	horas
+hours per workday	projectmanager	gl	Horas por día de traballo
+how long do you work on the given day.	projectmanager	gl	Canto se traballa no día indicado
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	gl	Como se debería mostrar a selección do proxecto no menú: a mostra en árbore ofrece unha mellor visualización xeral e unha caixa de selección podería mellorara a execución.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	gl	Se visualiza entidades (ex.{) na gráfica Gantt, desactívea.
+ignore that entry	projectmanager	gl	ignorar esa entrada
+ignored	projectmanager	gl	ignorado
+last modified	projectmanager	gl	última modificación
+leave it empty if you dont need a different customer title	projectmanager	gl	deixar en branco se non é preciso un cargo de cliente diferente
+leave it empty to have one generated	projectmanager	gl	deixar en branco para xerar un
+leave it empty, if identitcal to the time	projectmanager	gl	deixar en branco se é idéntico á hora
+linked elements	projectmanager	gl	Elementos ligados
+links	projectmanager	gl	Ligazóns
+mainproject only	projectmanager	gl	Só proxecto principal
+mainprojects	projectmanager	gl	Proxectos principais
+members	projectmanager	gl	Membros
+milestone deleted	projectmanager	gl	Fito eliminado
+milestone saved	projectmanager	gl	Fito gardado
+milestones	projectmanager	gl	Fitos
+milestones before this element has to be finished	projectmanager	gl	Fitos antes de este elemento estar concluído
+modified	projectmanager	gl	Modificado
+modified by	projectmanager	gl	modificado por
+necessary for project-elements doing that not automatic	projectmanager	gl	necesario  para elementos do proxecto que non o fagan automaticamente
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	gl	As extensións PHP precisas %1 non foron cargadas porque non é posible
+new	projectmanager	gl	novo
+no accounting, only status	projectmanager	gl	Sen contas, só estado
+no accounting, only times and status	projectmanager	gl	Sen contas, só tempos e estado
+no details	projectmanager	gl	sen detalles
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	gl	Sen acceso de LECTURA á fonte de datos: se elimina os valores substituídos só os baleirará.
+no save necessary	projectmanager	gl	non é preciso gardar
+nonactive	projectmanager	gl	Non activo
+not started (0%)	projectmanager	gl	Sen iniciar (0%)
+not working	projectmanager	gl	sen traballar
+only this project	projectmanager	gl	Só este proxecto
+overwrite the datasource	projectmanager	gl	Substituír a fonte de datos
+percentage the member is availible for projects	projectmanager	gl	Porcentaxe de dispoñibilidade do membro para os proxectos
+percentage the member is availible for this project	projectmanager	gl	Porcentaxe de dispoñibilidade do membro para este proxecto
+permission denied !!!	projectmanager	gl	Permiso negado
+planned	projectmanager	gl	planificado
+planned times	projectmanager	gl	Tempos planificados
+please download a recent version from %1 and install it in %2.	projectmanager	gl	Descargue unha versión recente desde %1 e instálea en %2.
+price	projectmanager	gl	Prezo
+price / unit	projectmanager	gl	Prezo / Unidade
+price deleted	projectmanager	gl	Prezo eliminado
+price saved	projectmanager	gl	Prezo gardado
+pricelist	projectmanager	gl	Lista de prezos
+project availibility	projectmanager	gl	Dispoñibilidade do proxecto
+project deleted	projectmanager	gl	Proxecto eliminado
+project id	projectmanager	gl	ID do proxecto
+project members and roles	projectmanager	gl	Membros e papeis do proxecto
+project overview	projectmanager	gl	visión xeral do proxecto
+project saved	projectmanager	gl	Proxecto gardado
+project specific title, prices, ...	projectmanager	gl	Prezos, título, etc. específicos do proxecto
+project-element deleted	projectmanager	gl	Elemento do proxecto eliminado
+project-element saved	projectmanager	gl	Elemento do proxecto gardado
+project-elements	projectmanager	gl	Elementos do proxecto
+projectlist	projectmanager	gl	Lista de proxectos
+projectmanager	common	gl	Xestor de proxectos
+projectmember	projectmanager	gl	Membro do proxecto
+quantity	projectmanager	gl	Cantidade
+read access, incl. budget and adding elements	projectmanager	gl	accesso de lectura, inclusive orzamento e engadir elementos
+read access, no budget	projectmanager	gl	acceso de lectura, sen orzamento
+real end	projectmanager	gl	Fin real
+real start	projectmanager	gl	Inicio real
+resources	projectmanager	gl	Recursos
+role	projectmanager	gl	Papel
+role deleted	projectmanager	gl	Papel eliminado
+role saved	projectmanager	gl	Papel gardado
+roles	projectmanager	gl	Papeis
+save the changes made	projectmanager	gl	Gardar as modificacións realizadas
+save this project element	projectmanager	gl	Gardar este elemento do proxecto
+select a project	projectmanager	gl	seleccionar un proxecto
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	gl	seleccionar unha actividade se desexa calcular o custo por cantidade (tempo) e prezo
+select multiple projects for a further action	projectmanager	gl	Seleccionar varios proxectos para unha acción posterior
+select the accounting types visible for users of projectmanager	projectmanager	gl	seleccionar os tipos de contas visibles para os usuarios do xestor de proxectos
+select this project and show it's elements	projectmanager	gl	Seleccionar este proxecto e mostrar os seus elementos
+selectbox with %1	projectmanager	gl	Caixa de selección con %1
+share	projectmanager	gl	Compartir
+share on the whole project	projectmanager	gl	Compartir en todo o proxecto
+share on the whole project in hours or percent, defaults to planned time	projectmanager	gl	Compartir en todo o proxecto en horas ou porcentaxe. Por defecto, o tempo planificado
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	gl	Debe o xestor de proxectos mostrar as iconas de estado da fonte de datos (p. ex. o rexistro de tarefas) ou só unha barra de progreso co estado numérico (máis rápido)
+show constraints and milestones	projectmanager	gl	Mostrar restricións e fitos
+show planned times instead of the real times	projectmanager	gl	Mostrar tempos planificados en vez dos reais
+show status icons of the datasources	projectmanager	gl	Mostrar iconas de estado das fontes de datos
+show the project selection as	projectmanager	gl	Mostrar a selección do proxecto como
+site configuration	projectmanager	gl	Configuración do sitio
+site configuration saved	projectmanager	gl	Configuración do sitio gardada
+start after	projectmanager	gl	Iniciar após
+start working on %1	projectmanager	gl	Comezar a traballar en %1
+start, end, category, ...	projectmanager	gl	Inicio, fin, categoría...
+start- & enddate	projectmanager	gl	Data de inicio e fin
+startdate	projectmanager	gl	Data de inicio
+state	projectmanager	gl	Estado
+status filter	projectmanager	gl	Filtro de estados
+style used for everything but elements. some fonts have only normal style.	projectmanager	gl	Estilo utilizado para todos os elementos. Algúns tipos de letra só teñen estilo normal.
+subelements	projectmanager	gl	Subelementos
+subprojects	projectmanager	gl	Subproxectos
+synchronise all	projectmanager	gl	Sincronizar todo
+template	projectmanager	gl	Modelo
+template including elment-tree saved as new project	projectmanager	gl	Gardouse o modelo que inclúe a árbore de elementos como un novo proxecto
+the charset depends on the font you want to use.	projectmanager	gl	O conxunto de caracteres depende do tipo de letra que desexe utilizar
+time	projectmanager	gl	Tempo
+times	projectmanager	gl	Tempos
+title must not be empty	projectmanager	gl	O título non pode ficar en branco
+tree with %1	projectmanager	gl	Árbore con %1
+unit	projectmanager	gl	Unidade
+unitprice	projectmanager	gl	Prezo por unidade
+used	projectmanager	gl	utilizado
+valid since	projectmanager	gl	Válido desde
+view ganttchart of this project	projectmanager	gl	Ver gráfica Gantt deste proxecto
+view milestone	projectmanager	gl	Ver fito
+view price	projectmanager	gl	Ver prezo
+view project	projectmanager	gl	Ver proxecto
+view project-elements	projectmanager	gl	Ver elementos do proxecto
+view this element in %1	projectmanager	gl	Ver este elemento en %1
+view this milestone	projectmanager	gl	Ver este fito
+view this price	projectmanager	gl	Ver este prezo
+view this project	projectmanager	gl	Ver este proxecto
+view this project-element	projectmanager	gl	Ver este elemento do proxecto
+working duration on %1	projectmanager	gl	Duración do traballo en %1
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	gl	Está a utilizar a versión antiga de JPGraph incluída en eGroupWare. Só ten funcionalidades limitadas.
+you can leave the date of the first price empty	projectmanager	gl	pode deixar en branco a data do primeiro prezo
+you need to select a project first	projectmanager	gl	Precisa seleccionar primeiro un proxecto
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	gl	A base de datos NON está actualizada (%1 en vez de %2). Execute %3setup%4 para actualizar a base de datos.
