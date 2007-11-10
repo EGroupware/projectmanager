@@ -1,10 +1,10 @@
 %1 element(s) updated	projectmanager	ca	%1 element(s) actualitzat
 %1 new project-elements imported	projectmanager	ca	%1 elements nous de projecte importats
 %1 projects deleted	projectmanager	ca	%1 projectes esborrats
-%1 times permission denied, %2 projects deleted	projectmanager	ca	%1 vegades s'ha denegat el permís, %2 projectes esborrats
+%1 times permission denied, %2 projects deleted	projectmanager	ca	%1 vegades s'ha denegat el permÃ­s, %2 projectes esborrats
 - planned	projectmanager	ca	- planificat
 0ngoing (0 < % < 100)	projectmanager	ca	Va fent (0 < % < 100)
-a describtive title for the project, must not be empty	projectmanager	ca	un títol descriptiu per al projecte. No pot ser buit
+a describtive title for the project, must not be empty	projectmanager	ca	un tÃ­tol descriptiu per al projecte. No pot ser buit
 accounting	projectmanager	ca	Comptabilitat
 accounting options	projectmanager	ca	Opcions de Comptabilitat
 accounting type	projectmanager	ca	Tipus de comptabilitat
@@ -13,7 +13,7 @@ activity	projectmanager	ca	Activitat
 add a new milestone	projectmanager	ca	Afegeix una nova fita
 add a new project	projectmanager	ca	Afegeix un projecte nou
 add element	projectmanager	ca	Afegeix un element
-add existing	projectmanager	ca	Afegeix existència
+add existing	projectmanager	ca	Afegeix existÃ¨ncia
 add milestone	projectmanager	ca	Afegeix fita
 add or edit roles and their acl	projectmanager	ca	Afegeix o edita rols i els seus ACL
 add price	projectmanager	ca	Afegeix preu
@@ -23,7 +23,7 @@ add this role	projectmanager	ca	Afegeix aquest rol
 allow users to change their working times	projectmanager	ca	Permet als usuaris canviar els seus horaris de treball
 allowed accounting types	projectmanager	ca	Tipus de comptes permesos
 allowed units	projectmanager	ca	Unitats permeses
-anonymous public	projectmanager	ca	Públic anònim
+anonymous public	projectmanager	ca	PÃºblic anÃ²nim
 app.	projectmanager	ca	App.
 apply the changes	projectmanager	ca	Aplica els canvis
 archive	projectmanager	ca	Archiva
@@ -40,28 +40,28 @@ calculate budget by quantity (eg. time) and price	projectmanager	ca	Calcula pres
 check all	projectmanager	ca	Comprova-ho tot
 close the window, discard the changes made	projectmanager	ca	Tanca la finestra, descarta els canvis fets
 constraints	projectmanager	ca	Restriccions
-conversation between days and hours, default 8	projectmanager	ca	correspondència entre dies i hores, per defecte 8
+conversation between days and hours, default 8	projectmanager	ca	correspondÃ¨ncia entre dies i hores, per defecte 8
 coordinator	projectmanager	ca	Coordinador
 cost per time	projectmanager	ca	Cost per Hora
 create a new empty project or use a template	projectmanager	ca	Crea un nou projecte buit o utilitza una plantilla
-create new links	projectmanager	ca	Crea nous enllaços
+create new links	projectmanager	ca	Crea nous enllaÃ§os
 created	projectmanager	ca	creat
 created a ganttchart from the checked projects	projectmanager	ca	Creat un diagrama de Gantt dels projectes senyalats
 custom fields	projectmanager	ca	Camps personalitzats
-customer title	projectmanager	ca	Títol del client
+customer title	projectmanager	ca	TÃ­tol del client
 datasource	projectmanager	ca	Font de les dades
 dates	projectmanager	ca	Dades
-default all and a selectbox to choose	projectmanager	ca	tot per defecte i un camp de sel·lecció per triar
+default all and a selectbox to choose	projectmanager	ca	tot per defecte i un camp de selÂ·lecciÃ³ per triar
 delete all checked projects	projectmanager	ca	Esborra tots els projectes senyalats
 delete this milestone	projectmanager	ca	Esborra aquesta fita
 delete this price	projectmanager	ca	Esborra aquest preu
 delete this project	projectmanager	ca	Esborra aquest projecte
-delete this project-element, does not remove the linked entry	projectmanager	ca	Esborra aquest element de projecte, NO esborra l'enllaç
+delete this project-element, does not remove the linked entry	projectmanager	ca	Esborra aquest element de projecte, NO esborra l'enllaÃ§
 delete this role	projectmanager	ca	Esborra aquest rol
-depth of display	projectmanager	ca	Profunditat de visualització
+depth of display	projectmanager	ca	Profunditat de visualitzaciÃ³
 do not use that entry as project-element	projectmanager	ca	no utilitza aquesta entrada com a element de projecte
 done (100%)	projectmanager	ca	Fet (100%)
-edit access, incl. editing budget and elements	projectmanager	ca	edita l'accés, incl. editar pressuposts i elements
+edit access, incl. editing budget and elements	projectmanager	ca	edita l'accÃ©s, incl. editar pressuposts i elements
 edit budget	projectmanager	ca	Edita pressupost
 edit milestone	projectmanager	ca	Edita fita
 edit price	projectmanager	ca	Edita preu
@@ -74,8 +74,8 @@ edit this project-element	projectmanager	ca	Edita aquest element de projecte
 edit this role	projectmanager	ca	Edita aquest rol
 elementlist	projectmanager	ca	Llista d'elements
 elements of elements	projectmanager	ca	Elements d'elements
-elements that can't start before this one is finished	projectmanager	ca	Elements que no poden començar fins que aquest hagi acabat
-elements which have to be finished before this can start	projectmanager	ca	Elements que han d'haver acabat abans que aquest pugui començar
+elements that can't start before this one is finished	projectmanager	ca	Elements que no poden comenÃ§ar fins que aquest hagi acabat
+elements which have to be finished before this can start	projectmanager	ca	Elements que han d'haver acabat abans que aquest pugui comenÃ§ar
 empty	projectmanager	ca	Buit
 end before	projectmanager	ca	Acaba abans de
 enddate	projectmanager	ca	Data final
@@ -90,13 +90,13 @@ error: saving the price (%1) !!!	projectmanager	ca	Error guardant el preu (%1) !
 error: saving the project (%1) !!!	projectmanager	ca	Error guardant el projecte (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	ca	Error guardant l'element de projecte (%1) !!!
 everything recursive	projectmanager	ca	Tot recursiu
-existing links	projectmanager	ca	Enllaços existents
+existing links	projectmanager	ca	EnllaÃ§os existents
 exit without saving	projectmanager	ca	Surt sense guardar
 free descriptiv text	projectmanager	ca	text descriptiu lliure
 from %1 to %2	projectmanager	ca	des de %1 fins a %2
-full access	projectmanager	ca	accés total
+full access	projectmanager	ca	accÃ©s total
 ganttchart	projectmanager	ca	Diagrama de Gantt
-ganttchart parameter	projectmanager	ca	Paràmetre del diagrama de Gantt
+ganttchart parameter	projectmanager	ca	ParÃ metre del diagrama de Gantt
 general	projectmanager	ca	General
 general availibility	projectmanager	ca	Disponibilitat general
 general pricelist	projectmanager	ca	Llista General de Preus
@@ -107,13 +107,13 @@ hours per workday	projectmanager	ca	Hores per dia de feina
 how long do you work on the given day.	projectmanager	ca	Quant de temps fas feina aquest dia.
 ignore that entry	projectmanager	ca	ignora aquesta entrada
 ignored	projectmanager	ca	ignorat
-last modified	projectmanager	ca	darrera modificació
-leave it empty if you dont need a different customer title	projectmanager	ca	deixa-ho buit si no necessites un títol de client diferent
+last modified	projectmanager	ca	darrera modificaciÃ³
+leave it empty if you dont need a different customer title	projectmanager	ca	deixa-ho buit si no necessites un tÃ­tol de client diferent
 leave it empty to have one generated	projectmanager	ca	deixa-ho buit per generar-ne un
-leave it empty, if identitcal to the time	projectmanager	ca	deixa-ho buit si és idèntic a l'horari
-linked elements	projectmanager	ca	Elements enllaçats
-links	projectmanager	ca	Enllaços
-mainproject only	projectmanager	ca	Només projecte principal
+leave it empty, if identitcal to the time	projectmanager	ca	deixa-ho buit si Ã©s idÃ¨ntic a l'horari
+linked elements	projectmanager	ca	Elements enllaÃ§ats
+links	projectmanager	ca	EnllaÃ§os
+mainproject only	projectmanager	ca	NomÃ©s projecte principal
 mainprojects	projectmanager	ca	Projectes principals
 members	projectmanager	ca	Membres
 milestone deleted	projectmanager	ca	Fita esborrada
@@ -122,25 +122,25 @@ milestones	projectmanager	ca	Fites
 milestones before this element has to be finished	projectmanager	ca	Les fites anteriors a aquests elements han d'haver acabat
 modified	projectmanager	ca	Modificat
 modified by	projectmanager	ca	modificat per
-necessary for project-elements doing that not automatic	projectmanager	ca	necessari per elements de projecte fent això de manera no automàtica
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	ca	Les extensions de PHP %1 són necessàries però no s'han carregat i no poden carregar-se !!!
+necessary for project-elements doing that not automatic	projectmanager	ca	necessari per elements de projecte fent aixÃ² de manera no automÃ tica
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	ca	Les extensions de PHP %1 sÃ³n necessÃ ries perÃ² no s'han carregat i no poden carregar-se !!!
 new	projectmanager	ca	nou
-no accounting, only status	projectmanager	ca	Sense comptabilitat, només estats
-no accounting, only times and status	projectmanager	ca	Sense comptabilitat, només hores i estats
+no accounting, only status	projectmanager	ca	Sense comptabilitat, nomÃ©s estats
+no accounting, only times and status	projectmanager	ca	Sense comptabilitat, nomÃ©s hores i estats
 no details	projectmanager	ca	sense detalls
-no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	ca	No tens accés per LLEGIR la font de dades: esborrar els valors sobreescrits farà que se buidin !!!
-no save necessary	projectmanager	ca	no és necessari guardar
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	ca	No tens accÃ©s per LLEGIR la font de dades: esborrar els valors sobreescrits farÃ  que se buidin !!!
+no save necessary	projectmanager	ca	no Ã©s necessari guardar
 nonactive	projectmanager	ca	No actiu
 not started (0%)	projectmanager	ca	No iniciat (0%)
 not working	projectmanager	ca	no funciona
-only this project	projectmanager	ca	Només aquest projecte
+only this project	projectmanager	ca	NomÃ©s aquest projecte
 overwrite the datasource	projectmanager	ca	Sobreescriu la font de dades
-percentage the member is availible for projects	projectmanager	ca	Percentatge en que el membre està disponible pels projectes
-percentage the member is availible for this project	projectmanager	ca	Percentatge en que el membre està disponible per aquest projecte
-permission denied !!!	projectmanager	ca	Permís denegat !!!
+percentage the member is availible for projects	projectmanager	ca	Percentatge en que el membre estÃ  disponible pels projectes
+percentage the member is availible for this project	projectmanager	ca	Percentatge en que el membre estÃ  disponible per aquest projecte
+permission denied !!!	projectmanager	ca	PermÃ­s denegat !!!
 planned	projectmanager	ca	Planificat
 planned times	projectmanager	ca	Horaris planificats
-please download a recent version from %1 and install it in %2.	projectmanager	ca	Per favor, descarrega una versió recent de %1 i instal·la-la a %2.
+please download a recent version from %1 and install it in %2.	projectmanager	ca	Per favor, descarrega una versiÃ³ recent de %1 i instalÂ·la-la a %2.
 price	projectmanager	ca	Preu
 price / unit	projectmanager	ca	Preu / Unitat
 price deleted	projectmanager	ca	Preu esborrat
@@ -152,7 +152,7 @@ project id	projectmanager	ca	ID del projecte
 project members and roles	projectmanager	ca	Membres del projecte i rols
 project overview	projectmanager	ca	Vista general del projecte
 project saved	projectmanager	ca	Projecte guardat
-project specific title, prices, ...	projectmanager	ca	Títol, preus,... específic del projecte
+project specific title, prices, ...	projectmanager	ca	TÃ­tol, preus,... especÃ­fic del projecte
 project-element deleted	projectmanager	ca	Element de projecte esborrat
 project-element saved	projectmanager	ca	Element de projecte guardat
 project-elements	projectmanager	ca	Elements de projecte
@@ -160,8 +160,8 @@ projectlist	projectmanager	ca	Llista de projectes
 projectmanager	common	ca	Gestor de Projectes
 projectmember	projectmanager	ca	Membres de projecte
 quantity	projectmanager	ca	Quantitat
-read access, incl. budget and adding elements	projectmanager	ca	accés de lectura, incl. pressupost i afegir elements
-read access, no budget	projectmanager	ca	accés de lectura, sense pressupost
+read access, incl. budget and adding elements	projectmanager	ca	accÃ©s de lectura, incl. pressupost i afegir elements
+read access, no budget	projectmanager	ca	accÃ©s de lectura, sense pressupost
 real end	projectmanager	ca	Final real
 real start	projectmanager	ca	Inici real
 resources	projectmanager	ca	Recursos
@@ -173,20 +173,20 @@ save the changes made	projectmanager	ca	Guarda els canvis fets
 save this project element	projectmanager	ca	Guarda aquest element de projecte
 select a project	projectmanager	ca	Selecciona un projecte
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	ca	selecciona una activitat si vols calcular els costs per quantitat (temps) i preu
-select multiple projects for a further action	projectmanager	ca	Selecciona múltiples projectes per a una acció futura
+select multiple projects for a further action	projectmanager	ca	Selecciona mÃºltiples projectes per a una acciÃ³ futura
 select the accounting types visible for users of projectmanager	projectmanager	ca	selecciona els tipus de comptabilitat visibles pels usuaris del gestor de projectes
 select this project and show it's elements	projectmanager	ca	Selecciona aquest projecte i mostra els seus elements
 share	projectmanager	ca	Comparteix
 share on the whole project	projectmanager	ca	Comparteix a tot el projecte
 share on the whole project in hours or percent, defaults to planned time	projectmanager	ca	Comparteix a tot el projecte en hores o percentatge, per defecte a l'hora planificada
-should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	ca	El Gestor de Projectes ha de mostrar les icones d'estat de les fonts de dades (ex. Tasques i Notes) o només una barra de progrés amb un estat numèric (més ràpid)?
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	ca	El Gestor de Projectes ha de mostrar les icones d'estat de les fonts de dades (ex. Tasques i Notes) o nomÃ©s una barra de progrÃ©s amb un estat numÃ¨ric (mÃ©s rÃ pid)?
 show constraints and milestones	projectmanager	ca	Mostra restriccions i fites
 show planned times instead of the real times	projectmanager	ca	Mostra hores planificades
 show status icons of the datasources	projectmanager	ca	Mostra les icones d'estat de les fonsts de dades
-site configuration	projectmanager	ca	Configuració del lloc
-site configuration saved	projectmanager	ca	Configuració del lloc guardada
-start after	projectmanager	ca	Inicia després
-start working on %1	projectmanager	ca	Comença fent feina amb %1
+site configuration	projectmanager	ca	ConfiguraciÃ³ del lloc
+site configuration saved	projectmanager	ca	ConfiguraciÃ³ del lloc guardada
+start after	projectmanager	ca	Inicia desprÃ©s
+start working on %1	projectmanager	ca	ComenÃ§a fent feina amb %1
 start, end, category, ...	projectmanager	ca	Inici, Fi, Categoria,...
 start- & enddate	projectmanager	ca	Dates d'inici i Fi
 startdate	projectmanager	ca	Data d'inici
@@ -198,11 +198,11 @@ template	projectmanager	ca	Plantilla
 template including elment-tree saved as new project	projectmanager	ca	Plantilla que inclou l'arbre d'elements guardat com un projecte nou
 time	projectmanager	ca	Hora
 times	projectmanager	ca	Hores
-title must not be empty	projectmanager	ca	El títol no pot estar buit
+title must not be empty	projectmanager	ca	El tÃ­tol no pot estar buit
 unit	projectmanager	ca	Unitat
 unitprice	projectmanager	ca	Unitat de Preu
 used	projectmanager	ca	utilitzat
-valid since	projectmanager	ca	Vàlid des de
+valid since	projectmanager	ca	VÃ lid des de
 view ganttchart of this project	projectmanager	ca	Veure diagrama de Gantt d'aquest projecte
 view milestone	projectmanager	ca	Veure fita
 view price	projectmanager	ca	Veure preu
@@ -214,8 +214,8 @@ view this price	projectmanager	ca	Veure aquest preu
 view this project	projectmanager	ca	Veure aquest projecte
 view this project-element	projectmanager	ca	Veure aquest element de projecte
 working duration on %1	projectmanager	ca	Durada de la feina a %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	ca	Estàs utilitzant la versió antiga de JPGraph, lligat a eGroupware.
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	ca	EstÃ s utilitzant la versiÃ³ antiga de JPGraph, lligat a eGroupware.
 you can leave the date of the first price empty	projectmanager	ca	pots deixar la data del primer preu buida
 you need to select a project first	projectmanager	ca	Primer has de seleccionar un projecte
-your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ca	La teva base de dades NO està al dia (%1 vs. %2), per favor, executa %3setup%4 per actualitzar la teva base de dades.
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ca	La teva base de dades NO estÃ  al dia (%1 vs. %2), per favor, executa %3setup%4 per actualitzar la teva base de dades.
 

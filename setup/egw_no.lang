@@ -3,8 +3,8 @@
 %1 projects deleted	projectmanager	no	%1 prosjekt(er) ble slettet
 %1 times permission denied, %2 projects deleted	projectmanager	no	%1 ganger tillatelse nekter, %2 prosjekter slettet
 - planned	projectmanager	no	- planlagt
-0ngoing (0 < % < 100)	projectmanager	no	Pågående (0 < % < 100)
-a describtive title for the project, must not be empty	projectmanager	no	En beskrivende tittel for dette prosjektet; kan ikke være tom.
+0ngoing (0 < % < 100)	projectmanager	no	PÃ¥gÃ¥ende (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	no	En beskrivende tittel for dette prosjektet; kan ikke vÃ¦re tom.
 accounting	projectmanager	no	Fakturering
 accounting options	projectmanager	no	Faktureringsvalg
 accounting type	projectmanager	no	Faktureringstype
@@ -20,7 +20,7 @@ add price	projectmanager	no	Legg til pris
 add project	projectmanager	no	Legg til prosjekt
 add project-elements	projectmanager	no	Legg til prosjekt-elementer
 add this role	projectmanager	no	Legg til rolle
-allow users to change their working times	projectmanager	no	Tillate brukere å endre arbeidede timer
+allow users to change their working times	projectmanager	no	Tillate brukere Ã¥ endre arbeidede timer
 allowed accounting types	projectmanager	no	Tilatte faktureringstyper
 allowed units	projectmanager	no	Tilatte enheter
 anonymous public	projectmanager	no	Anonym tilgang
@@ -28,7 +28,7 @@ app.	projectmanager	no	Prg.
 apply the changes	projectmanager	no	Oppdater endringene
 archive	projectmanager	no	Arkiver
 assistant	projectmanager	no	Assistent
-at which time do you start working on the given day.	projectmanager	no	Ved hvilken tid startet du å arbeide denne dagen.
+at which time do you start working on the given day.	projectmanager	no	Ved hvilken tid startet du Ã¥ arbeide denne dagen.
 availible	projectmanager	no	Tilgjengelig
 billable	projectmanager	no	Fakturerbar
 bookable	projectmanager	no	Reserveres
@@ -38,7 +38,7 @@ budget and pricelist	projectmanager	no	Budsjett og prisliste
 by	projectmanager	no	ved
 calculate budget by quantity (eg. time) and price	projectmanager	no	Kalkuler budsjett ved kvantum ( eg. timer) og pris.
 check all	projectmanager	no	Kontroller alle
-close the window, discard the changes made	projectmanager	no	Lukk vinduet, tap av utførte endringer
+close the window, discard the changes made	projectmanager	no	Lukk vinduet, tap av utfÃ¸rte endringer
 constraints	projectmanager	no	Tvinger
 conversation between days and hours, default 8	projectmanager	no	konvertering mellom dager og timer, standard 8
 coordinator	projectmanager	no	Koordinator
@@ -51,7 +51,7 @@ custom fields	projectmanager	no	Tilpasse felt
 customer title	projectmanager	no	Tilpasset tittel
 datasource	projectmanager	no	Datakilde
 dates	projectmanager	no	Datoer
-default all and a selectbox to choose	projectmanager	no	standard alle og en nedtrekksmeny for å velge
+default all and a selectbox to choose	projectmanager	no	standard alle og en nedtrekksmeny for Ã¥ velge
 delete all checked projects	projectmanager	no	Slett all avkryssede prosjekter
 delete this milestone	projectmanager	no	Slett denne milepelen
 delete this price	projectmanager	no	Slett denne prisen
@@ -60,8 +60,8 @@ delete this project-element, does not remove the linked entry	projectmanager	no	
 delete this role	projectmanager	no	Slett denne rollen
 depth of display	projectmanager	no	Dypde av visningen
 do not use that entry as project-element	projectmanager	no	ikke benytt denne forekomsten som et prosjektelement
-done (100%)	projectmanager	no	Utført (100%)
-edit access, incl. editing budget and elements	projectmanager	no	Endre adgang, inkl. å endre budsjetter og elementer
+done (100%)	projectmanager	no	UtfÃ¸rt (100%)
+edit access, incl. editing budget and elements	projectmanager	no	Endre adgang, inkl. Ã¥ endre budsjetter og elementer
 edit budget	projectmanager	no	Endre budsjett
 edit milestone	projectmanager	no	Endre milepel
 edit price	projectmanager	no	Endre pris
@@ -74,16 +74,16 @@ edit this project-element	projectmanager	no	Endre dette prosjektelementet
 edit this role	projectmanager	no	Endre denne rollen
 elementlist	projectmanager	no	Elementliste
 elements of elements	projectmanager	no	Elementer av elementer
-elements that can't start before this one is finished	projectmanager	no	Elementer som ikke kan starte før denne er avsluttet
-elements which have to be finished before this can start	projectmanager	no	Elementer som må være avsluttet før denne kan starte
+elements that can't start before this one is finished	projectmanager	no	Elementer som ikke kan starte fÃ¸r denne er avsluttet
+elements which have to be finished before this can start	projectmanager	no	Elementer som mÃ¥ vÃ¦re avsluttet fÃ¸r denne kan starte
 empty	projectmanager	no	Uten innhold
-end before	projectmanager	no	Slutte før
+end before	projectmanager	no	Slutte fÃ¸r
 enddate	projectmanager	no	Sluttdato
 error: deleting price !!!	projectmanager	no	Feil : Slette pris !
 error: deleting project !!!	projectmanager	no	Feil : Slette prosjekt !
 error: deleting project-element !!!	projectmanager	no	Feil : Slette prosjektelement !
 error: deleting role !!!	projectmanager	no	Feil : Slette rolle !
-error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	no	Feil : Prosjektidenten er benyttet, velg en annen eller opprett en automatisk ved å la det stå blankt !
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	no	Feil : Prosjektidenten er benyttet, velg en annen eller opprett en automatisk ved Ã¥ la det stÃ¥ blankt !
 error: saving milestone	projectmanager	no	Feil : Lagre milepel
 error: saving role !!!	projectmanager	no	Feil : Lagre rolle !
 error: saving the price (%1) !!!	projectmanager	no	Feil : Lagring av pris (%1) !
@@ -91,7 +91,7 @@ error: saving the project (%1) !!!	projectmanager	no	Feil : Lagre prosjekt (%1) 
 error: saving the project-element (%1) !!!	projectmanager	no	Feil : Lagre prosjektelement (%1)
 everything recursive	projectmanager	no	Alt rekursiv
 existing links	projectmanager	no	Eksisterende lenker
-exit without saving	projectmanager	no	Avslutte uten å lagre
+exit without saving	projectmanager	no	Avslutte uten Ã¥ lagre
 free descriptiv text	projectmanager	no	Fri beskrivende tekst
 from %1 to %2	projectmanager	no	fra %1 til %2
 full access	projectmanager	no	Full adgang
@@ -108,9 +108,9 @@ how long do you work on the given day.	projectmanager	no	Hvor lenge arbeidet du 
 ignore that entry	projectmanager	no	Ingnorer denne forekomsten
 ignored	projectmanager	no	oversett
 last modified	projectmanager	no	Sist endret
-leave it empty if you dont need a different customer title	projectmanager	no	La det stå tomt dersom du ikke trenger en annen tilpasset tittel
-leave it empty to have one generated	projectmanager	no	la det stå blank for å få et automatisk
-leave it empty, if identitcal to the time	projectmanager	no	La det stå tomt dersom det er indentisk med tiden
+leave it empty if you dont need a different customer title	projectmanager	no	La det stÃ¥ tomt dersom du ikke trenger en annen tilpasset tittel
+leave it empty to have one generated	projectmanager	no	la det stÃ¥ blank for Ã¥ fÃ¥ et automatisk
+leave it empty, if identitcal to the time	projectmanager	no	La det stÃ¥ tomt dersom det er indentisk med tiden
 linked elements	projectmanager	no	Tilknyttede elementer
 links	projectmanager	no	Lenker
 mainproject only	projectmanager	no	Bare hovedprosjekt
@@ -119,17 +119,17 @@ members	projectmanager	no	Medlemmer
 milestone deleted	projectmanager	no	Milepel slettet
 milestone saved	projectmanager	no	Milepel oppdatert
 milestones	projectmanager	no	Milepeler
-milestones before this element has to be finished	projectmanager	no	Milepeler før dette elementet må være utført.
+milestones before this element has to be finished	projectmanager	no	Milepeler fÃ¸r dette elementet mÃ¥ vÃ¦re utfÃ¸rt.
 modified	projectmanager	no	Endret
 modified by	projectmanager	no	Endret av
-necessary for project-elements doing that not automatic	projectmanager	no	nødvendig for prosjektelementer hvor dette ikke skjer automatisk
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	no	Nødvendig PHP extentions %1 er ikke lastet og kan ikke lastes inn !
+necessary for project-elements doing that not automatic	projectmanager	no	nÃ¸dvendig for prosjektelementer hvor dette ikke skjer automatisk
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	no	NÃ¸dvendig PHP extentions %1 er ikke lastet og kan ikke lastes inn !
 new	projectmanager	no	Ny
 no accounting, only status	projectmanager	no	Ingen fakturering, bare status
 no accounting, only times and status	projectmanager	no	Ingen fakturering, bare timer og status
 no details	projectmanager	no	Ingen detaljer
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	no	Ingen leseaksess til datakilden; fjerne overskrevne verdier vil bare blanke dem !
-no save necessary	projectmanager	no	Ingen lagring nødvendig.
+no save necessary	projectmanager	no	Ingen lagring nÃ¸dvendig.
 nonactive	projectmanager	no	Ikke aktiv
 not started (0%)	projectmanager	no	Ikke startet (0%)
 not working	projectmanager	no	arbeider ikke
@@ -160,7 +160,7 @@ projectlist	projectmanager	no	Prosjektliste
 projectmanager	common	no	Prosjektadm.
 projectmember	projectmanager	no	Prosjektmedlem
 quantity	projectmanager	no	Antall
-read access, incl. budget and adding elements	projectmanager	no	leseadgang, inkl. budsjett og til å legge til elementer
+read access, incl. budget and adding elements	projectmanager	no	leseadgang, inkl. budsjett og til Ã¥ legge til elementer
 read access, no budget	projectmanager	no	leseadgang, ikke budsjett
 real end	projectmanager	no	Virkelig slutt
 real start	projectmanager	no	Virkelig start
@@ -172,7 +172,7 @@ roles	projectmanager	no	Roller
 save the changes made	projectmanager	no	Lagre endringene
 save this project element	projectmanager	no	Lagre dette prosjektelementet
 select a project	projectmanager	no	Velg et prosjekt
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	no	Velg en aktivitet dersom du ønsker å kalkulere kostnader ved kvantum(timer) og pris
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	no	Velg en aktivitet dersom du Ã¸nsker Ã¥ kalkulere kostnader ved kvantum(timer) og pris
 select multiple projects for a further action	projectmanager	no	Velg flere prosjekter for videre behandling
 select the accounting types visible for users of projectmanager	projectmanager	no	velg faktureringstyper som skal vises for bruker av prosjektmanager.
 select this project and show it's elements	projectmanager	no	Velg dette prosjektet og vis dets elementer
@@ -197,7 +197,7 @@ template	projectmanager	no	Mal
 template including elment-tree saved as new project	projectmanager	no	Mal inklusive elementtre lagret som et nytt prosjekt.
 time	projectmanager	no	Tid
 times	projectmanager	no	Tider
-title must not be empty	projectmanager	no	Tittel kan ikke være tom
+title must not be empty	projectmanager	no	Tittel kan ikke vÃ¦re tom
 unit	projectmanager	no	Enhet
 unitprice	projectmanager	no	Enhetspris
 used	projectmanager	no	brukt
@@ -213,7 +213,7 @@ view this price	projectmanager	no	Vis denne prisen
 view this project	projectmanager	no	Vis dette prosjektet
 view this project-element	projectmanager	no	Vis dette prosjektelementet
 working duration on %1	projectmanager	no	Arbeidet varighet for %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	no	Du benytter en gammel versjon av JPGraph som følger med eGroupware.  Denne har bare begrenset funksjonalitet
-you can leave the date of the first price empty	projectmanager	no	Du kan la dato for den første prisen stå tom
-you need to select a project first	projectmanager	no	Du må velge et prosjekt først
-your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	no	Din database er ikke oppdatert (%1 vs. %2. Start %3setup%4 for å oppdatere databasen.
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	no	Du benytter en gammel versjon av JPGraph som fÃ¸lger med eGroupware.  Denne har bare begrenset funksjonalitet
+you can leave the date of the first price empty	projectmanager	no	Du kan la dato for den fÃ¸rste prisen stÃ¥ tom
+you need to select a project first	projectmanager	no	Du mÃ¥ velge et prosjekt fÃ¸rst
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	no	Din database er ikke oppdatert (%1 vs. %2. Start %3setup%4 for Ã¥ oppdatere databasen.

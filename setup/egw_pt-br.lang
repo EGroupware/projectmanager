@@ -1,14 +1,14 @@
 %1 element(s) updated	projectmanager	pt-br	%1 elemento(s) atualizados
 %1 new project-elements imported	projectmanager	pt-br	%1 novos elementos de projeto importados
 %1 projects deleted	projectmanager	pt-br	%1 projetos apagados
-%1 times permission denied, %2 projects deleted	projectmanager	pt-br	permiss„o negada %1 vezes, %2 projetos removidos
+%1 times permission denied, %2 projects deleted	projectmanager	pt-br	permiss√£o negada %1 vezes, %2 projetos removidos
 - planned	projectmanager	pt-br	- planejado
 0ngoing (0 < % < 100)	projectmanager	pt-br	Acontecendo (0 < % < 100)
-a describtive title for the project, must not be empty	projectmanager	pt-br	um tÌtulo descritivo para o projeto, n„o pode ser deixado em branco
-accounting	projectmanager	pt-br	ContabilizaÁ„o
-accounting options	projectmanager	pt-br	OpÁıes de contabilizaÁ„o
-accounting type	projectmanager	pt-br	Tipos de contabilizaÁ„o
-actions	projectmanager	pt-br	AÁıes
+a describtive title for the project, must not be empty	projectmanager	pt-br	um t√≠tulo descritivo para o projeto, n√£o pode ser deixado em branco
+accounting	projectmanager	pt-br	Contabiliza√ß√£o
+accounting options	projectmanager	pt-br	Op√ß√µes de contabiliza√ß√£o
+accounting type	projectmanager	pt-br	Tipos de contabiliza√ß√£o
+actions	projectmanager	pt-br	A√ß√µes
 activity	projectmanager	pt-br	Atividades
 add a new milestone	projectmanager	pt-br	Adicionar um novo marco
 add a new project	projectmanager	pt-br	Adicionar um novo projeto
@@ -16,113 +16,113 @@ add element	projectmanager	pt-br	Adicionar elemento
 add existing	projectmanager	pt-br	Adicionar existente
 add milestone	projectmanager	pt-br	Adicionar marco
 add or edit roles and their acl	projectmanager	pt-br	Adicionar ou editar perfis e suas ACL
-add price	projectmanager	pt-br	Adicionar preÁo
+add price	projectmanager	pt-br	Adicionar pre√ßo
 add project	projectmanager	pt-br	Adicionar projeto
 add project-elements	projectmanager	pt-br	Adicionar elementos de projeto
 add this role	projectmanager	pt-br	Adicionar este perfil
-allow users to change their working times	projectmanager	pt-br	Permitir que usu·rios modifiquem suas horas de trabalho
-allowed accounting types	projectmanager	pt-br	Tipos de contabilizaÁ„o permitidas
+allow users to change their working times	projectmanager	pt-br	Permitir que usu√°rios modifiquem suas horas de trabalho
+allowed accounting types	projectmanager	pt-br	Tipos de contabiliza√ß√£o permitidas
 allowed units	projectmanager	pt-br	Unidades permitidas
-anonymous public	projectmanager	pt-br	P˙blico anÙnimo
+anonymous public	projectmanager	pt-br	P√∫blico an√¥nimo
 app.	projectmanager	pt-br	Aplic.
-apply the changes	projectmanager	pt-br	Aplicar alteraÁıes
+apply the changes	projectmanager	pt-br	Aplicar altera√ß√µes
 archive	projectmanager	pt-br	Arquivar
 assistant	projectmanager	pt-br	Assistente
-at which time do you start working on the given day.	projectmanager	pt-br	A que horas vocÍ comeÁa a trabalhar no dia em quest„o.
-availible	projectmanager	pt-br	DisponÌvel
-billable	projectmanager	pt-br	sujeito a cobranÁa
+at which time do you start working on the given day.	projectmanager	pt-br	A que horas voc√™ come√ßa a trabalhar no dia em quest√£o.
+availible	projectmanager	pt-br	Dispon√≠vel
+billable	projectmanager	pt-br	sujeito a cobran√ßa
 bookable	projectmanager	pt-br	sujeito a agendamento
-budget	projectmanager	pt-br	OrÁamento
-budget (no pricelist)	projectmanager	pt-br	OrÁamento (sem lista de preÁos)
-budget and pricelist	projectmanager	pt-br	OrÁamento e lista de preÁos
+budget	projectmanager	pt-br	Or√ßamento
+budget (no pricelist)	projectmanager	pt-br	Or√ßamento (sem lista de pre√ßos)
+budget and pricelist	projectmanager	pt-br	Or√ßamento e lista de pre√ßos
 by	projectmanager	pt-br	por
-calculate budget by quantity (eg. time) and price	projectmanager	pt-br	Calcular orÁamento por quantidade (ex. tempo) e preÁo
-charset of the above selected font	projectmanager	pt-br	CodificaÁ„o de caracteres para a fonte acima selecionada
+calculate budget by quantity (eg. time) and price	projectmanager	pt-br	Calcular or√ßamento por quantidade (ex. tempo) e pre√ßo
+charset of the above selected font	projectmanager	pt-br	Codifica√ß√£o de caracteres para a fonte acima selecionada
 check all	projectmanager	pt-br	Marcar todos
-close the window, discard the changes made	projectmanager	pt-br	Feche a janela, descarte as modificaÁıes feitas
+close the window, discard the changes made	projectmanager	pt-br	Feche a janela, descarte as modifica√ß√µes feitas
 constraints	projectmanager	pt-br	Regras
-conversation between days and hours, default 8	projectmanager	pt-br	convers„o de dias para horas, padr„o 8
+conversation between days and hours, default 8	projectmanager	pt-br	convers√£o de dias para horas, padr√£o 8
 coordinator	projectmanager	pt-br	Coordenador
 cost per time	projectmanager	pt-br	Custo por Tempo
 create a new empty project or use a template	projectmanager	pt-br	Criar um projeto novo ou usar um modelo
 create new links	projectmanager	pt-br	Criar novos links
 created	projectmanager	pt-br	criado
-created a ganttchart from the checked projects	projectmanager	pt-br	Criado um gr·fico de Gantt a partir dos projetos marcados
-cumulated elements too	projectmanager	pt-br	Elementos acumulados tambÈm
+created a ganttchart from the checked projects	projectmanager	pt-br	Criado um gr√°fico de Gantt a partir dos projetos marcados
+cumulated elements too	projectmanager	pt-br	Elementos acumulados tamb√©m
 custom fields	projectmanager	pt-br	Campos customizados
 customer title	projectmanager	pt-br	Tratamento do Cliente
 datasource	projectmanager	pt-br	Origem de dados
 dates	projectmanager	pt-br	Datas
-default all and a selectbox to choose	projectmanager	pt-br	padr„o todos e uma caixa de seleÁ„o para escolher
+default all and a selectbox to choose	projectmanager	pt-br	padr√£o todos e uma caixa de sele√ß√£o para escolher
 delete all checked projects	projectmanager	pt-br	Remover todos os projetos marcados
 delete this milestone	projectmanager	pt-br	Remover este marco
-delete this price	projectmanager	pt-br	Remover este preÁo
+delete this price	projectmanager	pt-br	Remover este pre√ßo
 delete this project	projectmanager	pt-br	Remover este projeto
-delete this project-element, does not remove the linked entry	projectmanager	pt-br	Remover este elemento de projeto, N√O remova a entrada relacionada
+delete this project-element, does not remove the linked entry	projectmanager	pt-br	Remover este elemento de projeto, N√ÉO remova a entrada relacionada
 delete this role	projectmanager	pt-br	Remover este perfil
-depth of display	projectmanager	pt-br	Profundidade da visualizaÁ„o
+depth of display	projectmanager	pt-br	Profundidade da visualiza√ß√£o
 details of cumulated	projectmanager	pt-br	Detalhes dos acumulados
 details of subelements	projectmanager	pt-br	Detalhes dos subelementos
-do not use that entry as project-element	projectmanager	pt-br	n„o use esta entrada como elemento de projeto
+do not use that entry as project-element	projectmanager	pt-br	n√£o use esta entrada como elemento de projeto
 done (100%)	projectmanager	pt-br	Feito (100%)
-edit access, incl. editing budget and elements	projectmanager	pt-br	editar acesso, incl. ediÁ„o de orÁamento e elementos
-edit budget	projectmanager	pt-br	Editar orÁamento
+edit access, incl. editing budget and elements	projectmanager	pt-br	editar acesso, incl. edi√ß√£o de or√ßamento e elementos
+edit budget	projectmanager	pt-br	Editar or√ßamento
 edit milestone	projectmanager	pt-br	Editar marco
-edit price	projectmanager	pt-br	Editar preÁo
+edit price	projectmanager	pt-br	Editar pre√ßo
 edit project	projectmanager	pt-br	Editar projeto
 edit project-elements	projectmanager	pt-br	Editar elementos de projeto
 edit this milestone	projectmanager	pt-br	Editar este marco
-edit this price	projectmanager	pt-br	Editar este preÁo
+edit this price	projectmanager	pt-br	Editar este pre√ßo
 edit this project	projectmanager	pt-br	Editar este projeto
 edit this project-element	projectmanager	pt-br	Editar este elemento de projeto
 edit this role	projectmanager	pt-br	Editar este perfil
 elementlist	projectmanager	pt-br	Lista de elementos
 elements of elements	projectmanager	pt-br	Elementos de elementos
-elements that can't start before this one is finished	projectmanager	pt-br	Elementos que n„o podem iniciar antes deste terminar
+elements that can't start before this one is finished	projectmanager	pt-br	Elementos que n√£o podem iniciar antes deste terminar
 elements which have to be finished before this can start	projectmanager	pt-br	Elementos que devem terminar antes que esse possa iniciar
 empty	projectmanager	pt-br	Vazio
-encode non-ascii	projectmanager	pt-br	Codificar n„o-ASCII
+encode non-ascii	projectmanager	pt-br	Codificar n√£o-ASCII
 end before	projectmanager	pt-br	Termina antes
 enddate	projectmanager	pt-br	Data Final
-error: deleting price !!!	projectmanager	pt-br	Erro: removendo preÁo !!!
+error: deleting price !!!	projectmanager	pt-br	Erro: removendo pre√ßo !!!
 error: deleting project !!!	projectmanager	pt-br	Erro: removendo projeto !!!
 error: deleting project-element !!!	projectmanager	pt-br	Erro: removendo elementos de projeto !!!
 error: deleting role !!!	projectmanager	pt-br	Erro: removendo perfil !!!
-error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	pt-br	Erro: ID de projeto j· existe, escolha um outro ou deixe em branco para gerar automaticamente !!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	pt-br	Erro: ID de projeto j√° existe, escolha um outro ou deixe em branco para gerar automaticamente !!!
 error: saving milestone	projectmanager	pt-br	Erro: salvando marco
 error: saving role !!!	projectmanager	pt-br	Error: salvando perfil !!!
-error: saving the price (%1) !!!	projectmanager	pt-br	Erro: salvando o preÁo (%1) !!!
+error: saving the price (%1) !!!	projectmanager	pt-br	Erro: salvando o pre√ßo (%1) !!!
 error: saving the project (%1) !!!	projectmanager	pt-br	Erro: salvando o projeto (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	pt-br	Erro: salvando o elemento de projeto (%1) !!!
 everything recursive	projectmanager	pt-br	Tudo recursivo
 existing links	projectmanager	pt-br	Links existentes
 exit without saving	projectmanager	pt-br	Sair sem salvar
 font	projectmanager	pt-br	Fonte
-font charset	projectmanager	pt-br	CodificaÁ„o de caracteres da fonte
+font charset	projectmanager	pt-br	Codifica√ß√£o de caracteres da fonte
 font style	projectmanager	pt-br	Estilo da fonte
-font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	pt-br	Fonte a ser usada no gr·fico de Gantt. Somente fontes Vera s„o incluÌdas no Gerenciador de Projetos.
-fontfile '%1' not found!!!	projectmanager	pt-br	Arquivo de fonte '%1' n„o encontrado !!!
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	pt-br	Fonte a ser usada no gr√°fico de Gantt. Somente fontes Vera s√£o inclu√≠das no Gerenciador de Projetos.
+fontfile '%1' not found!!!	projectmanager	pt-br	Arquivo de fonte '%1' n√£o encontrado !!!
 free descriptiv text	projectmanager	pt-br	texto descritivo livre
 from %1 to %2	projectmanager	pt-br	de %1 a %2
 full access	projectmanager	pt-br	acesso completo
-ganttchart	projectmanager	pt-br	Gr·fico de Gantt
-ganttchart parameter	projectmanager	pt-br	par‚metro do gr·fico de Gantt
+ganttchart	projectmanager	pt-br	Gr√°fico de Gantt
+ganttchart parameter	projectmanager	pt-br	par√¢metro do gr√°fico de Gantt
 general	projectmanager	pt-br	Geral
 general availibility	projectmanager	pt-br	Disponibilidade geral
-general pricelist	projectmanager	pt-br	Lista de preÁos geral
+general pricelist	projectmanager	pt-br	Lista de pre√ßos geral
 h	projectmanager	pt-br	h
-health	projectmanager	pt-br	Sa˙de
+health	projectmanager	pt-br	Sa√∫de
 hours	projectmanager	pt-br	horas
 hours per workday	projectmanager	pt-br	Horas por dias de trabalho
-how long do you work on the given day.	projectmanager	pt-br	Quanto tempo vocÍ trabalha em um dado dia.
-how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a seleÁ„o de projeto dever· ser exibida no menu: Uma ·rvore d· uma melhor vis„o; uma caixa de seleÁ„o pode ter uma melhor performance.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se vocÍ ver entidades (exemplo: {) no gr·fico de Gantt, desabilite-o.
+how long do you work on the given day.	projectmanager	pt-br	Quanto tempo voc√™ trabalha em um dado dia.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a sele√ß√£o de projeto dever√° ser exibida no menu: Uma √°rvore d√° uma melhor vis√£o; uma caixa de sele√ß√£o pode ter uma melhor performance.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se voc√™ ver entidades (exemplo: {) no gr√°fico de Gantt, desabilite-o.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
-last modified	projectmanager	pt-br	˙ltima modificaÁ„o
-leave it empty if you dont need a different customer title	projectmanager	pt-br	deixe em branco se vocÍ n„o precisar de um tratamento diferente para o cliente
+last modified	projectmanager	pt-br	√∫ltima modifica√ß√£o
+leave it empty if you dont need a different customer title	projectmanager	pt-br	deixe em branco se voc√™ n√£o precisar de um tratamento diferente para o cliente
 leave it empty to have one generated	projectmanager	pt-br	deixe em branco para gerar automaticamente
-leave it empty, if identitcal to the time	projectmanager	pt-br	deixe em branco, se idÍntico ao tempo
+leave it empty, if identitcal to the time	projectmanager	pt-br	deixe em branco, se id√™ntico ao tempo
 linked elements	projectmanager	pt-br	Elementos relacionados
 links	projectmanager	pt-br	Links
 mainproject only	projectmanager	pt-br	Apenas projeto Principal
@@ -134,37 +134,37 @@ milestones	projectmanager	pt-br	Marcos
 milestones before this element has to be finished	projectmanager	pt-br	Marcos antes deste elemento devem ser finalizados
 modified	projectmanager	pt-br	Modificado
 modified by	projectmanager	pt-br	modificado por
-necessary for project-elements doing that not automatic	projectmanager	pt-br	necess·rio para elementos de projeto que n„o o fazem automaticamente
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pt-br	Necess·ria a extens„o PHP %1: n„o carregada e n„o pode ser carregada !!!
+necessary for project-elements doing that not automatic	projectmanager	pt-br	necess√°rio para elementos de projeto que n√£o o fazem automaticamente
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pt-br	Necess√°ria a extens√£o PHP %1: n√£o carregada e n√£o pode ser carregada !!!
 new	projectmanager	pt-br	novo
-no accounting, only status	projectmanager	pt-br	Sem contabilizaÁ„o, apenas estado
-no accounting, only times and status	projectmanager	pt-br	Sem contabilizaÁ„o, apenas horas e estado
+no accounting, only status	projectmanager	pt-br	Sem contabiliza√ß√£o, apenas estado
+no accounting, only times and status	projectmanager	pt-br	Sem contabiliza√ß√£o, apenas horas e estado
 no details	projectmanager	pt-br	sem detalhes
-no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	pt-br	Sem acesso de LEITURA ‡ origem de dados: a remoÁ„o de valores sobrescritos apenas vai deix·-los em branco !!!
-no save necessary	projectmanager	pt-br	n„o È necess·rio salvar
-nonactive	projectmanager	pt-br	N„o ativo
-not started (0%)	projectmanager	pt-br	N„o iniciado (0%)
-not working	projectmanager	pt-br	N„o trabalhando
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	pt-br	Sem acesso de LEITURA √† origem de dados: a remo√ß√£o de valores sobrescritos apenas vai deix√°-los em branco !!!
+no save necessary	projectmanager	pt-br	n√£o √© necess√°rio salvar
+nonactive	projectmanager	pt-br	N√£o ativo
+not started (0%)	projectmanager	pt-br	N√£o iniciado (0%)
+not working	projectmanager	pt-br	N√£o trabalhando
 only this project	projectmanager	pt-br	Apenas este projeto
 overwrite the datasource	projectmanager	pt-br	Sobrescrever a origem de dados
 percentage the member is availible for projects	projectmanager	pt-br	Percentual de disponibilidade do membro para projetos
 percentage the member is availible for this project	projectmanager	pt-br	Percentual de disponibilidade do membro para este projeto
-permission denied !!!	projectmanager	pt-br	Permiss„o negada !!!
+permission denied !!!	projectmanager	pt-br	Permiss√£o negada !!!
 planned	projectmanager	pt-br	planejado
 planned times	projectmanager	pt-br	Horas planejadas
-please download a recent version from %1 and install it in %2.	projectmanager	pt-br	Por favor, faÁa o download de uma vers„o recente de %1 e instale-a em %2.
-price	projectmanager	pt-br	PreÁo
-price / unit	projectmanager	pt-br	PreÁo / Unidade
-price deleted	projectmanager	pt-br	PreÁo removido
+please download a recent version from %1 and install it in %2.	projectmanager	pt-br	Por favor, fa√ßa o download de uma vers√£o recente de %1 e instale-a em %2.
+price	projectmanager	pt-br	Pre√ßo
+price / unit	projectmanager	pt-br	Pre√ßo / Unidade
+price deleted	projectmanager	pt-br	Pre√ßo removido
 price saved	projectmanager	pt-br	Price salvo
-pricelist	projectmanager	pt-br	Lista de preÁos
+pricelist	projectmanager	pt-br	Lista de pre√ßos
 project availibility	projectmanager	pt-br	Disponibilidade para projeto
 project deleted	projectmanager	pt-br	Projeto removido
 project id	projectmanager	pt-br	ID de Projeto
 project members and roles	projectmanager	pt-br	Membros do projeto e seus perfis
-project overview	projectmanager	pt-br	vis„o geral do projeto
+project overview	projectmanager	pt-br	vis√£o geral do projeto
 project saved	projectmanager	pt-br	Projeto salvo
-project specific title, prices, ...	projectmanager	pt-br	TÌtulo, preÁo, ... especÌfico do projeto
+project specific title, prices, ...	projectmanager	pt-br	T√≠tulo, pre√ßo, ... espec√≠fico do projeto
 project-element deleted	projectmanager	pt-br	Elemento de projeto removido
 project-element saved	projectmanager	pt-br	Elemento de projeto salvo
 project-elements	projectmanager	pt-br	Elementos de projeto
@@ -172,66 +172,66 @@ projectlist	projectmanager	pt-br	Lista de projeto
 projectmanager	common	pt-br	Gerenciador de Projetos
 projectmember	projectmanager	pt-br	Membro do Projeto
 quantity	projectmanager	pt-br	Quantidade
-read access, incl. budget and adding elements	projectmanager	pt-br	acesso de leitura, incl. orÁamento e adiÁ„o de elementos
-read access, no budget	projectmanager	pt-br	acesso de leitura, sem orÁamento
+read access, incl. budget and adding elements	projectmanager	pt-br	acesso de leitura, incl. or√ßamento e adi√ß√£o de elementos
+read access, no budget	projectmanager	pt-br	acesso de leitura, sem or√ßamento
 real end	projectmanager	pt-br	Fim real
-real start	projectmanager	pt-br	InÌcio real
+real start	projectmanager	pt-br	In√≠cio real
 resources	projectmanager	pt-br	Recursos
 role	projectmanager	pt-br	Perfil
 role deleted	projectmanager	pt-br	Perfil removido
 role saved	projectmanager	pt-br	Perfil salvo
 roles	projectmanager	pt-br	Perfis
-save the changes made	projectmanager	pt-br	Salvar as modificaÁıes realizadas
+save the changes made	projectmanager	pt-br	Salvar as modifica√ß√µes realizadas
 save this project element	projectmanager	pt-br	Salvar este elemento de projeto
 select a project	projectmanager	pt-br	selecionar um projeto
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	pt-br	selecione uma atividade se vocÍ quer calcular custo por quantidade (tempo) e preÁo
-select multiple projects for a further action	projectmanager	pt-br	Selecione m˙ltiplos projetos para continuar
-select the accounting types visible for users of projectmanager	projectmanager	pt-br	selecione os tipos de contabilizaÁ„o visÌveis para usu·rios do mÛdulo GerÍncia de Projetos
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	pt-br	selecione uma atividade se voc√™ quer calcular custo por quantidade (tempo) e pre√ßo
+select multiple projects for a further action	projectmanager	pt-br	Selecione m√∫ltiplos projetos para continuar
+select the accounting types visible for users of projectmanager	projectmanager	pt-br	selecione os tipos de contabiliza√ß√£o vis√≠veis para usu√°rios do m√≥dulo Ger√™ncia de Projetos
 select this project and show it's elements	projectmanager	pt-br	Selecione este projeto e mostre seus elementos
-selectbox with %1	projectmanager	pt-br	Caixa de seleÁ„o com %1
+selectbox with %1	projectmanager	pt-br	Caixa de sele√ß√£o com %1
 share	projectmanager	pt-br	Compartilhamento
 share on the whole project	projectmanager	pt-br	Compartilhamento em todo o projeto
-share on the whole project in hours or percent, defaults to planned time	projectmanager	pt-br	Compartilhamento em todo o projeto em horas ou percentual, o padr„o e hora planejada
-should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	pt-br	O mÛdulo GerÍncia de Projetos deve mostrar os Ìcones de estado da origem de dados (ex. InfoLog) ou apenas uma barra de progresso com o estado numÈrico(mais r·pido).
+share on the whole project in hours or percent, defaults to planned time	projectmanager	pt-br	Compartilhamento em todo o projeto em horas ou percentual, o padr√£o e hora planejada
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	pt-br	O m√≥dulo Ger√™ncia de Projetos deve mostrar os √≠cones de estado da origem de dados (ex. InfoLog) ou apenas uma barra de progresso com o estado num√©rico(mais r√°pido).
 show constraints and milestones	projectmanager	pt-br	Mostra regras e marcos
 show planned times instead of the real times	projectmanager	pt-br	Mostra horas planejadas no lugar de horas reais
-show status icons of the datasources	projectmanager	pt-br	Mostra Ìcones de estado das origens de dados
-show the project selection as	projectmanager	pt-br	Exibir a seleÁ„o do projeto como
-site configuration saved	projectmanager	pt-br	ConfiguraÁ„o do site salva
-start after	projectmanager	pt-br	ComeÁar depois
+show status icons of the datasources	projectmanager	pt-br	Mostra √≠cones de estado das origens de dados
+show the project selection as	projectmanager	pt-br	Exibir a sele√ß√£o do projeto como
+site configuration saved	projectmanager	pt-br	Configura√ß√£o do site salva
+start after	projectmanager	pt-br	Come√ßar depois
 start working on %1	projectmanager	pt-br	Iniciando o trabalho em %1
-start, end, category, ...	projectmanager	pt-br	InÌcio, Fim, Categoria, ...
+start, end, category, ...	projectmanager	pt-br	In√≠cio, Fim, Categoria, ...
 start- & enddate	projectmanager	pt-br	Data Inicial- & Final
 startdate	projectmanager	pt-br	Data inicial
 state	projectmanager	pt-br	Estado
 status filter	projectmanager	pt-br	Filtro de estado
-style used for everything but elements. some fonts have only normal style.	projectmanager	pt-br	Estilo usado por tudo, exceto elementos. Algumas fontes tÍm somente estilo normal.
+style used for everything but elements. some fonts have only normal style.	projectmanager	pt-br	Estilo usado por tudo, exceto elementos. Algumas fontes t√™m somente estilo normal.
 subelements	projectmanager	pt-br	Subelementos
 subprojects	projectmanager	pt-br	Subprojetos
 synchronise all	projectmanager	pt-br	Sincronizar tudo
 template	projectmanager	pt-br	Modelo
-template including elment-tree saved as new project	projectmanager	pt-br	Modelo incluindo ·rvore de elementos salva como novo projeto
-the charset depends on the font you want to use.	projectmanager	pt-br	A codificaÁ„o de caracteres depende da fonte que vocÍ ir· usar.
+template including elment-tree saved as new project	projectmanager	pt-br	Modelo incluindo √°rvore de elementos salva como novo projeto
+the charset depends on the font you want to use.	projectmanager	pt-br	A codifica√ß√£o de caracteres depende da fonte que voc√™ ir√° usar.
 time	projectmanager	pt-br	Hora
 times	projectmanager	pt-br	Horas
-title must not be empty	projectmanager	pt-br	Tratamento n„o pode ser vazio
-tree with %1	projectmanager	pt-br	¡rvore com %1
+title must not be empty	projectmanager	pt-br	Tratamento n√£o pode ser vazio
+tree with %1	projectmanager	pt-br	√Årvore com %1
 unit	projectmanager	pt-br	Unidade
-unitprice	projectmanager	pt-br	PreÁo da unidade
+unitprice	projectmanager	pt-br	Pre√ßo da unidade
 used	projectmanager	pt-br	usado
-valid since	projectmanager	pt-br	V·lido desde
-view ganttchart of this project	projectmanager	pt-br	Visualizar o gr·fico de Gantt deste projeto
+valid since	projectmanager	pt-br	V√°lido desde
+view ganttchart of this project	projectmanager	pt-br	Visualizar o gr√°fico de Gantt deste projeto
 view milestone	projectmanager	pt-br	Visualizar marco
-view price	projectmanager	pt-br	Visualizar preÁo
+view price	projectmanager	pt-br	Visualizar pre√ßo
 view project	projectmanager	pt-br	Visualizar projeto
 view project-elements	projectmanager	pt-br	Visualizar elementos de projeto
 view this element in %1	projectmanager	pt-br	Visualizar este elemento em %1
 view this milestone	projectmanager	pt-br	Visualizar este marco
-view this price	projectmanager	pt-br	Visualizar este preÁo
+view this price	projectmanager	pt-br	Visualizar este pre√ßo
 view this project	projectmanager	pt-br	Visualizar este projeto
 view this project-element	projectmanager	pt-br	Visualizar este elemento de projeto
-working duration on %1	projectmanager	pt-br	DuraÁ„o do trabalho em %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	pt-br	VocÍ est· usando a vers„o antiga do JPGraph, que veio com o eGroupWare. Ela possui funcionalidades limitadas.
-you can leave the date of the first price empty	projectmanager	pt-br	vocÍ pode deixar a data do primeiro preÁo vazia
-you need to select a project first	projectmanager	pt-br	VocÍ deve selecionar um projeto primeiro
-your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	pt-br	O seu banco de dados N√O est· atualizado (%1 vs. %2), por favor execute o %3setup%4 para atualiz·-lo.
+working duration on %1	projectmanager	pt-br	Dura√ß√£o do trabalho em %1
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	pt-br	Voc√™ est√° usando a vers√£o antiga do JPGraph, que veio com o eGroupWare. Ela possui funcionalidades limitadas.
+you can leave the date of the first price empty	projectmanager	pt-br	voc√™ pode deixar a data do primeiro pre√ßo vazia
+you need to select a project first	projectmanager	pt-br	Voc√™ deve selecionar um projeto primeiro
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	pt-br	O seu banco de dados N√ÉO est√° atualizado (%1 vs. %2), por favor execute o %3setup%4 para atualiz√°-lo.

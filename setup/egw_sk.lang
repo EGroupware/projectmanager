@@ -1,237 +1,237 @@
-%1 element(s) updated	projectmanager	sk	%1 prvkov bolo aktualizovanıch
-%1 new project-elements imported	projectmanager	sk	%1 novıch projektovıch prvkovov bolo naimportovanıch
-%1 projects deleted	projectmanager	sk	%1 projektov bolo odstránenıch
-%1 times permission denied, %2 projects deleted	projectmanager	sk	%1 -krát odopretı prístup, %2 projektov bolo odstránenıch
-- planned	projectmanager	sk	- plánované
+%1 element(s) updated	projectmanager	sk	%1 prvkov bolo aktualizovanÃ½ch
+%1 new project-elements imported	projectmanager	sk	%1 novÃ½ch projektovÃ½ch prvkovov bolo naimportovanÃ½ch
+%1 projects deleted	projectmanager	sk	%1 projektov bolo odstrÃ¡nenÃ½ch
+%1 times permission denied, %2 projects deleted	projectmanager	sk	%1 -krÃ¡t odopretÃ½ prÃ­stup, %2 projektov bolo odstrÃ¡nenÃ½ch
+- planned	projectmanager	sk	- plÃ¡novanÃ©
 0ngoing (0 < % < 100)	projectmanager	sk	Vybavuje sa (0 < % < 100)
-a describtive title for the project, must not be empty	projectmanager	sk	Opisnı názov projektu, nesmie by» prázdny
-accounting	projectmanager	sk	Úètovanie
-accounting options	projectmanager	sk	Mo¾nosti úètovania
-accounting type	projectmanager	sk	Typ úètovania
+a describtive title for the project, must not be empty	projectmanager	sk	OpisnÃ½ nÃ¡zov projektu, nesmie byÅ¥ prÃ¡zdny
+accounting	projectmanager	sk	ÃšÄtovanie
+accounting options	projectmanager	sk	MoÅ¾nosti ÃºÄtovania
+accounting type	projectmanager	sk	Typ ÃºÄtovania
 actions	projectmanager	sk	Akcie
 activity	projectmanager	sk	Aktivita
-add a new milestone	projectmanager	sk	Prida» novı medzník
-add a new project	projectmanager	sk	Prida» novı projekt
-add element	projectmanager	sk	Prida» prvok
-add existing	projectmanager	sk	Prida» existujúce
-add milestone	projectmanager	sk	Prida» medzník
-add or edit roles and their acl	projectmanager	sk	Prida» alebo upravi» úlohy a ich ACL oprávnenia
-add price	projectmanager	sk	Prida» cenu
-add project	projectmanager	sk	Prida» projekt
-add project-elements	projectmanager	sk	Prida» prvok projektu
-add this role	projectmanager	sk	Prida» túto úlohu
-allow users to change their working times	projectmanager	sk	Povoli» pou¾ívateµom zmenu ich pracovnıch èasov
-allowed accounting types	projectmanager	sk	Povolené typy úètovania
-allowed units	projectmanager	sk	Povolené jednotky
-anonymous public	projectmanager	sk	Anonymné verejné
+add a new milestone	projectmanager	sk	PridaÅ¥ novÃ½ medznÃ­k
+add a new project	projectmanager	sk	PridaÅ¥ novÃ½ projekt
+add element	projectmanager	sk	PridaÅ¥ prvok
+add existing	projectmanager	sk	PridaÅ¥ existujÃºce
+add milestone	projectmanager	sk	PridaÅ¥ medznÃ­k
+add or edit roles and their acl	projectmanager	sk	PridaÅ¥ alebo upraviÅ¥ Ãºlohy a ich ACL oprÃ¡vnenia
+add price	projectmanager	sk	PridaÅ¥ cenu
+add project	projectmanager	sk	PridaÅ¥ projekt
+add project-elements	projectmanager	sk	PridaÅ¥ prvok projektu
+add this role	projectmanager	sk	PridaÅ¥ tÃºto Ãºlohu
+allow users to change their working times	projectmanager	sk	PovoliÅ¥ pouÅ¾Ã­vateÄ¾om zmenu ich pracovnÃ½ch Äasov
+allowed accounting types	projectmanager	sk	PovolenÃ© typy ÃºÄtovania
+allowed units	projectmanager	sk	PovolenÃ© jednotky
+anonymous public	projectmanager	sk	AnonymnÃ© verejnÃ©
 app.	projectmanager	sk	Apl.
-apply the changes	projectmanager	sk	Uplatni» zmeny
-archive	projectmanager	sk	Archív
-assistant	projectmanager	sk	Pomocník
-at which time do you start working on the given day.	projectmanager	sk	Kedy zaèína Vá¹ pracovnı èas v danı deò?
-availible	projectmanager	sk	Dostupné
-billable	projectmanager	sk	úètovateµné
-bookable	projectmanager	sk	rezervovateµné
-budget	projectmanager	sk	Rozpoèet
-budget (no pricelist)	projectmanager	sk	Rozpoèet (bez cenníka)
-budget and pricelist	projectmanager	sk	Rozpoèet a cenník
-by	projectmanager	sk	(kım)
-calculate budget by quantity (eg. time) and price	projectmanager	sk	Vypoèíta» rozpoèet na základe mno¾stva (napr.èasu) a ceny
-charset of the above selected font	projectmanager	sk	Znaková sada vybraného písma
-check all	projectmanager	sk	Oznaèi» v¹etko
-close the window, discard the changes made	projectmanager	sk	Zavrie» okno, zahodi» vykonané zmeny
+apply the changes	projectmanager	sk	UplatniÅ¥ zmeny
+archive	projectmanager	sk	ArchÃ­v
+assistant	projectmanager	sk	PomocnÃ­k
+at which time do you start working on the given day.	projectmanager	sk	Kedy zaÄÃ­na VÃ¡Å¡ pracovnÃ½ Äas v danÃ½ deÅˆ?
+availible	projectmanager	sk	DostupnÃ©
+billable	projectmanager	sk	ÃºÄtovateÄ¾nÃ©
+bookable	projectmanager	sk	rezervovateÄ¾nÃ©
+budget	projectmanager	sk	RozpoÄet
+budget (no pricelist)	projectmanager	sk	RozpoÄet (bez cennÃ­ka)
+budget and pricelist	projectmanager	sk	RozpoÄet a cennÃ­k
+by	projectmanager	sk	(kÃ½m)
+calculate budget by quantity (eg. time) and price	projectmanager	sk	VypoÄÃ­taÅ¥ rozpoÄet na zÃ¡klade mnoÅ¾stva (napr.Äasu) a ceny
+charset of the above selected font	projectmanager	sk	ZnakovÃ¡ sada vybranÃ©ho pÃ­sma
+check all	projectmanager	sk	OznaÄiÅ¥ vÅ¡etko
+close the window, discard the changes made	projectmanager	sk	ZavrieÅ¥ okno, zahodiÅ¥ vykonanÃ© zmeny
 constraints	projectmanager	sk	Obmedzenia
-conversation between days and hours, default 8	projectmanager	sk	vz»ah medzi dòami a hodinami, predvolené: 8
-coordinator	projectmanager	sk	Koordinátor
-cost per time	projectmanager	sk	Cena za èas
-create a new empty project or use a template	projectmanager	sk	Vytvori» novı prázdny projekt alebo pou¾i» ¹ablónu
-create new links	projectmanager	sk	Vytvori» nové odkazy
-created	projectmanager	sk	vytvorené
-created a ganttchart from the checked projects	projectmanager	sk	Vytvorenı postupovı diagram pre oznaèené projekty
-cumulated elements too	projectmanager	sk	Taktie¾ aj kumulované prvky
-custom fields	projectmanager	sk	Vlastné polia
+conversation between days and hours, default 8	projectmanager	sk	vzÅ¥ah medzi dÅˆami a hodinami, predvolenÃ©: 8
+coordinator	projectmanager	sk	KoordinÃ¡tor
+cost per time	projectmanager	sk	Cena za Äas
+create a new empty project or use a template	projectmanager	sk	VytvoriÅ¥ novÃ½ prÃ¡zdny projekt alebo pouÅ¾iÅ¥ Å¡ablÃ³nu
+create new links	projectmanager	sk	VytvoriÅ¥ novÃ© odkazy
+created	projectmanager	sk	vytvorenÃ©
+created a ganttchart from the checked projects	projectmanager	sk	VytvorenÃ½ postupovÃ½ diagram pre oznaÄenÃ© projekty
+cumulated elements too	projectmanager	sk	TaktieÅ¾ aj kumulovanÃ© prvky
+custom fields	projectmanager	sk	VlastnÃ© polia
 customer title	projectmanager	sk	Meno klienta
-datasource	projectmanager	sk	Zdroj dát
-dates	projectmanager	sk	Dátumy
-default all and a selectbox to choose	projectmanager	sk	predvolene v¹etko a vıber pomocou vıberového menu
-delete all checked projects	projectmanager	sk	Odstráni» v¹etky oznaèené projekty
-delete this milestone	projectmanager	sk	Odstráni» tento medzník
-delete this price	projectmanager	sk	Odstráni» túto cenu
-delete this project	projectmanager	sk	Odstráni» tento projekt
-delete this project-element, does not remove the linked entry	projectmanager	sk	Odstráni» tento projektovı element. Pripojená polo¾ka sa NEodstráni.
-delete this role	projectmanager	sk	Odstráni» túto rolu
-depth of display	projectmanager	sk	Håbka displeja
-details of cumulated	projectmanager	sk	Podrobnosti kumulovanıch
+datasource	projectmanager	sk	Zdroj dÃ¡t
+dates	projectmanager	sk	DÃ¡tumy
+default all and a selectbox to choose	projectmanager	sk	predvolene vÅ¡etko a vÃ½ber pomocou vÃ½berovÃ©ho menu
+delete all checked projects	projectmanager	sk	OdstrÃ¡niÅ¥ vÅ¡etky oznaÄenÃ© projekty
+delete this milestone	projectmanager	sk	OdstrÃ¡niÅ¥ tento medznÃ­k
+delete this price	projectmanager	sk	OdstrÃ¡niÅ¥ tÃºto cenu
+delete this project	projectmanager	sk	OdstrÃ¡niÅ¥ tento projekt
+delete this project-element, does not remove the linked entry	projectmanager	sk	OdstrÃ¡niÅ¥ tento projektovÃ½ element. PripojenÃ¡ poloÅ¾ka sa NEodstrÃ¡ni.
+delete this role	projectmanager	sk	OdstrÃ¡niÅ¥ tÃºto rolu
+depth of display	projectmanager	sk	HÄºbka displeja
+details of cumulated	projectmanager	sk	Podrobnosti kumulovanÃ½ch
 details of subelements	projectmanager	sk	Podrobnosti pod-elementov
-do not use that entry as project-element	projectmanager	sk	Nepou¾íva» túto polo¾ku ako projektovı element
+do not use that entry as project-element	projectmanager	sk	NepouÅ¾Ã­vaÅ¥ tÃºto poloÅ¾ku ako projektovÃ½ element
 done (100%)	projectmanager	sk	Hotovo (100%)
-edit access, incl. editing budget and elements	projectmanager	sk	Oprávnenia k úpravám, vrátane rozpoètu a elementov
-edit budget	projectmanager	sk	Upravi» rozpoèet
-edit milestone	projectmanager	sk	Upravi» medzník
-edit price	projectmanager	sk	Upravi» cenu
-edit project	projectmanager	sk	Upravi» projekt
-edit project-elements	projectmanager	sk	Upravi» projektové elementy
-edit this milestone	projectmanager	sk	Upravi» tento medzník
-edit this price	projectmanager	sk	Upravi» túto cenu
-edit this project	projectmanager	sk	Upravi» tento projekt
-edit this project-element	projectmanager	sk	Upravi» tento prvok projektu
-edit this role	projectmanager	sk	Upravi» túto úlohu
+edit access, incl. editing budget and elements	projectmanager	sk	OprÃ¡vnenia k ÃºpravÃ¡m, vrÃ¡tane rozpoÄtu a elementov
+edit budget	projectmanager	sk	UpraviÅ¥ rozpoÄet
+edit milestone	projectmanager	sk	UpraviÅ¥ medznÃ­k
+edit price	projectmanager	sk	UpraviÅ¥ cenu
+edit project	projectmanager	sk	UpraviÅ¥ projekt
+edit project-elements	projectmanager	sk	UpraviÅ¥ projektovÃ© elementy
+edit this milestone	projectmanager	sk	UpraviÅ¥ tento medznÃ­k
+edit this price	projectmanager	sk	UpraviÅ¥ tÃºto cenu
+edit this project	projectmanager	sk	UpraviÅ¥ tento projekt
+edit this project-element	projectmanager	sk	UpraviÅ¥ tento prvok projektu
+edit this role	projectmanager	sk	UpraviÅ¥ tÃºto Ãºlohu
 elementlist	projectmanager	sk	Zoznam prvkov
 elements of elements	projectmanager	sk	Prvky prvkov
-elements that can't start before this one is finished	projectmanager	sk	Prvky, ktoré sa nemô¾u zaèa» skôr, ne¾ sa tento dokonèí
-elements which have to be finished before this can start	projectmanager	sk	Prvkyy, ktoré musia by» dokonèené, ne¾ sa tento mô¾e zaèa»
-empty	projectmanager	sk	Prázdne
-encode non-ascii	projectmanager	sk	Ne-ASCII kódovanie
-end before	projectmanager	sk	Skonèi» pred
-enddate	projectmanager	sk	Dátum ukonèenie
-error: deleting price !!!	projectmanager	sk	Chyba: odstraòovanie ceny !!!
-error: deleting project !!!	projectmanager	sk	Chyba: odstraòovanie projektu !!!
-error: deleting project-element !!!	projectmanager	sk	Chyba: odstraòovanie prvku projektu !!!
-error: deleting role !!!	projectmanager	sk	Chyba: odstraòovanie role !!!
-error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	sk	Chyba: ID projektu u¾ existuje, vyberte odli¹né alebo ponechajte prázdne aby sa vygenerovalo automaticky!!!
-error: saving milestone	projectmanager	sk	Chyba: ukladanie medzníka
+elements that can't start before this one is finished	projectmanager	sk	Prvky, ktorÃ© sa nemÃ´Å¾u zaÄaÅ¥ skÃ´r, neÅ¾ sa tento dokonÄÃ­
+elements which have to be finished before this can start	projectmanager	sk	Prvkyy, ktorÃ© musia byÅ¥ dokonÄenÃ©, neÅ¾ sa tento mÃ´Å¾e zaÄaÅ¥
+empty	projectmanager	sk	PrÃ¡zdne
+encode non-ascii	projectmanager	sk	Ne-ASCII kÃ³dovanie
+end before	projectmanager	sk	SkonÄiÅ¥ pred
+enddate	projectmanager	sk	DÃ¡tum ukonÄenie
+error: deleting price !!!	projectmanager	sk	Chyba: odstraÅˆovanie ceny !!!
+error: deleting project !!!	projectmanager	sk	Chyba: odstraÅˆovanie projektu !!!
+error: deleting project-element !!!	projectmanager	sk	Chyba: odstraÅˆovanie prvku projektu !!!
+error: deleting role !!!	projectmanager	sk	Chyba: odstraÅˆovanie role !!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	sk	Chyba: ID projektu uÅ¾ existuje, vyberte odliÅ¡nÃ© alebo ponechajte prÃ¡zdne aby sa vygenerovalo automaticky!!!
+error: saving milestone	projectmanager	sk	Chyba: ukladanie medznÃ­ka
 error: saving role !!!	projectmanager	sk	Chyba: ukladanie role !!!
 error: saving the price (%1) !!!	projectmanager	sk	Chyba: ukladanie ceny (%1) !!!
 error: saving the project (%1) !!!	projectmanager	sk	Chyba: ukladanie projektu (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	sk	Chyba: ukladanie prvku projektu (%1) !!!
-everything recursive	projectmanager	sk	V¹etko rekurzívne
-existing links	projectmanager	sk	Existujúce odkazy
-exit without saving	projectmanager	sk	Skonèi» bez ulo¾enia
-font	projectmanager	sk	Písmo
-font charset	projectmanager	sk	Znaková sada písma
-font style	projectmanager	sk	©tıl písma
-font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	sk	Písmo, ktoré sa má pou¾i» v postupovom diagrame. V Projektovníku sú zahrnuté iba písma Vera.
-fontfile '%1' not found!!!	projectmanager	sk	Súbor písma '%1' sa nena¹iel!!!
-free descriptiv text	projectmanager	sk	voµnı opisnı text
+everything recursive	projectmanager	sk	VÅ¡etko rekurzÃ­vne
+existing links	projectmanager	sk	ExistujÃºce odkazy
+exit without saving	projectmanager	sk	SkonÄiÅ¥ bez uloÅ¾enia
+font	projectmanager	sk	PÃ­smo
+font charset	projectmanager	sk	ZnakovÃ¡ sada pÃ­sma
+font style	projectmanager	sk	Å tÃ½l pÃ­sma
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	sk	PÃ­smo, ktorÃ© sa mÃ¡ pouÅ¾iÅ¥ v postupovom diagrame. V ProjektovnÃ­ku sÃº zahrnutÃ© iba pÃ­sma Vera.
+fontfile '%1' not found!!!	projectmanager	sk	SÃºbor pÃ­sma '%1' sa nenaÅ¡iel!!!
+free descriptiv text	projectmanager	sk	voÄ¾nÃ½ opisnÃ½ text
 from %1 to %2	projectmanager	sk	od %1 do %2
-full access	projectmanager	sk	plnı prístup
-ganttchart	projectmanager	sk	Postupovı diagram
-ganttchart parameter	projectmanager	sk	Parameter postupového diagramu
-general	projectmanager	sk	V¹eobecné
-general availibility	projectmanager	sk	V¹eobecná dostupnos»
-general pricelist	projectmanager	sk	V¹eobecnı cenník
+full access	projectmanager	sk	plnÃ½ prÃ­stup
+ganttchart	projectmanager	sk	PostupovÃ½ diagram
+ganttchart parameter	projectmanager	sk	Parameter postupovÃ©ho diagramu
+general	projectmanager	sk	VÅ¡eobecnÃ©
+general availibility	projectmanager	sk	VÅ¡eobecnÃ¡ dostupnosÅ¥
+general pricelist	projectmanager	sk	VÅ¡eobecnÃ½ cennÃ­k
 h	projectmanager	sk	h
 health	projectmanager	sk	Zdravie
-hours	projectmanager	sk	hodín
-hours per workday	projectmanager	sk	Hodín pracovného dòa
-how long do you work on the given day.	projectmanager	sk	Koµko hodín pracujete v danı deò.
-how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazova» vıber projektov v menu: Strom ponúka lep¹í prehµad, vıberové okno zase vıkon.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
-ignore that entry	projectmanager	sk	ignorova» túto polo¾ku
-ignored	projectmanager	sk	Ignorované
-last modified	projectmanager	sk	Naposledy zmenené
-leave it empty if you dont need a different customer title	projectmanager	sk	Ponechajte prázdne, ak nepotrebujete odli¹né meno klienta
-leave it empty to have one generated	projectmanager	sk	ponechajte prázdne, ak chcete aby sa automaticky pridelilo
-leave it empty, if identitcal to the time	projectmanager	sk	ponechajte prázdne, ak je toto¾né s tımto èasom
-linked elements	projectmanager	sk	Odkazované prvky
+hours	projectmanager	sk	hodÃ­n
+hours per workday	projectmanager	sk	HodÃ­n pracovnÃ©ho dÅˆa
+how long do you work on the given day.	projectmanager	sk	KoÄ¾ko hodÃ­n pracujete v danÃ½ deÅˆ.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa mÃ¡ zobrazovaÅ¥ vÃ½ber projektov v menu: Strom ponÃºka lepÅ¡Ã­ prehÄ¾ad, vÃ½berovÃ© okno zase vÃ½kon.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidÃ­te entity (napr. {), tak to vypnite.
+ignore that entry	projectmanager	sk	ignorovaÅ¥ tÃºto poloÅ¾ku
+ignored	projectmanager	sk	IgnorovanÃ©
+last modified	projectmanager	sk	Naposledy zmenenÃ©
+leave it empty if you dont need a different customer title	projectmanager	sk	Ponechajte prÃ¡zdne, ak nepotrebujete odliÅ¡nÃ© meno klienta
+leave it empty to have one generated	projectmanager	sk	ponechajte prÃ¡zdne, ak chcete aby sa automaticky pridelilo
+leave it empty, if identitcal to the time	projectmanager	sk	ponechajte prÃ¡zdne, ak je totoÅ¾nÃ© s tÃ½mto Äasom
+linked elements	projectmanager	sk	OdkazovanÃ© prvky
 links	projectmanager	sk	Odkazy
-mainproject only	projectmanager	sk	Iba hlavnı projekt
-mainprojects	projectmanager	sk	Hlavné projekty
-members	projectmanager	sk	Èlenovia
-milestone deleted	projectmanager	sk	Medzník bol odstránenı
-milestone saved	projectmanager	sk	Medzník bol ulo¾enı
-milestones	projectmanager	sk	Medzníky
-milestones before this element has to be finished	projectmanager	sk	Medzníky pred tımto prvkom musia by» ukonèené
-modified	projectmanager	sk	Upravené
+mainproject only	projectmanager	sk	Iba hlavnÃ½ projekt
+mainprojects	projectmanager	sk	HlavnÃ© projekty
+members	projectmanager	sk	ÄŒlenovia
+milestone deleted	projectmanager	sk	MedznÃ­k bol odstrÃ¡nenÃ½
+milestone saved	projectmanager	sk	MedznÃ­k bol uloÅ¾enÃ½
+milestones	projectmanager	sk	MedznÃ­ky
+milestones before this element has to be finished	projectmanager	sk	MedznÃ­ky pred tÃ½mto prvkom musia byÅ¥ ukonÄenÃ©
+modified	projectmanager	sk	UpravenÃ©
 modified by	projectmanager	sk	Zmeny vykonal
-necessary for project-elements doing that not automatic	projectmanager	sk	nevyhnutné pre prvky projektu, ktoré to nerobia automaticky
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	sk	Nevyhnutné PHP roz¹írenia %1 neboli naèítané a nedajú sa naèíta»!!!
-new	projectmanager	sk	Nové
-no accounting, only status	projectmanager	sk	Bez úètovania, iba stav
-no accounting, only times and status	projectmanager	sk	Bez úètovania, iba èasy a stav
-no details	projectmanager	sk	bez podrobností
-no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	sk	Nemáte prístup na ÈÍTANIE zo zdroja dát: odstránenie prepísanıch hodnôt ich len vyprázdni!!!
-no save necessary	projectmanager	sk	ulo¾enie nie je nevyhnutné
-nonactive	projectmanager	sk	Neaktívne
-not started (0%)	projectmanager	sk	Nezaèaté (0%)
+necessary for project-elements doing that not automatic	projectmanager	sk	nevyhnutnÃ© pre prvky projektu, ktorÃ© to nerobia automaticky
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	sk	NevyhnutnÃ© PHP rozÅ¡Ã­renia %1 neboli naÄÃ­tanÃ© a nedajÃº sa naÄÃ­taÅ¥!!!
+new	projectmanager	sk	NovÃ©
+no accounting, only status	projectmanager	sk	Bez ÃºÄtovania, iba stav
+no accounting, only times and status	projectmanager	sk	Bez ÃºÄtovania, iba Äasy a stav
+no details	projectmanager	sk	bez podrobnostÃ­
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	sk	NemÃ¡te prÃ­stup na ÄŒÃTANIE zo zdroja dÃ¡t: odstrÃ¡nenie prepÃ­sanÃ½ch hodnÃ´t ich len vyprÃ¡zdni!!!
+no save necessary	projectmanager	sk	uloÅ¾enie nie je nevyhnutnÃ©
+nonactive	projectmanager	sk	NeaktÃ­vne
+not started (0%)	projectmanager	sk	NezaÄatÃ© (0%)
 not working	projectmanager	sk	nepracuje sa
 only this project	projectmanager	sk	Iba tento projekt
-overwrite the datasource	projectmanager	sk	Prepísa» zdroj dát
-percentage the member is availible for projects	projectmanager	sk	Na koµko percent je èlen dostupnı pre projekty
-percentage the member is availible for this project	projectmanager	sk	Na koµko percent je èlen dostupnı pre tento projekt
-permission denied !!!	projectmanager	sk	Prístup bol odmietnutı!!!
-planned	projectmanager	sk	plánované
-planned times	projectmanager	sk	Plánované èasy
-please download a recent version from %1 and install it in %2.	projectmanager	sk	Prosím stiahnite aktuálnu verziu z %1 a nain¹talujte ju na %2.
+overwrite the datasource	projectmanager	sk	PrepÃ­saÅ¥ zdroj dÃ¡t
+percentage the member is availible for projects	projectmanager	sk	Na koÄ¾ko percent je Älen dostupnÃ½ pre projekty
+percentage the member is availible for this project	projectmanager	sk	Na koÄ¾ko percent je Älen dostupnÃ½ pre tento projekt
+permission denied !!!	projectmanager	sk	PrÃ­stup bol odmietnutÃ½!!!
+planned	projectmanager	sk	plÃ¡novanÃ©
+planned times	projectmanager	sk	PlÃ¡novanÃ© Äasy
+please download a recent version from %1 and install it in %2.	projectmanager	sk	ProsÃ­m stiahnite aktuÃ¡lnu verziu z %1 a nainÅ¡talujte ju na %2.
 price	projectmanager	sk	Cena
 price / unit	projectmanager	sk	Cena / jednotku
-price deleted	projectmanager	sk	Cena bola odstránená
-price saved	projectmanager	sk	Cena bola ulo¾ená
-pricelist	projectmanager	sk	Cenník
-project availibility	projectmanager	sk	Dostupnos» pre projekt
-project deleted	projectmanager	sk	Projekt bol odstránenı
+price deleted	projectmanager	sk	Cena bola odstrÃ¡nenÃ¡
+price saved	projectmanager	sk	Cena bola uloÅ¾enÃ¡
+pricelist	projectmanager	sk	CennÃ­k
+project availibility	projectmanager	sk	DostupnosÅ¥ pre projekt
+project deleted	projectmanager	sk	Projekt bol odstrÃ¡nenÃ½
 project id	projectmanager	sk	ID projektu
-project members and roles	projectmanager	sk	Èlenovia projektu a ich úlohy
-project overview	projectmanager	sk	Prehµad projektu
-project saved	projectmanager	sk	Projekt ulo¾enı
-project specific title, prices, ...	projectmanager	sk	Projektovo ¹pecifickı názov, ceny, ...
-project-element deleted	projectmanager	sk	Prvok projektu bol odstránenı
-project-element saved	projectmanager	sk	Prvok projektu bol ulo¾enı
+project members and roles	projectmanager	sk	ÄŒlenovia projektu a ich Ãºlohy
+project overview	projectmanager	sk	PrehÄ¾ad projektu
+project saved	projectmanager	sk	Projekt uloÅ¾enÃ½
+project specific title, prices, ...	projectmanager	sk	Projektovo Å¡pecifickÃ½ nÃ¡zov, ceny, ...
+project-element deleted	projectmanager	sk	Prvok projektu bol odstrÃ¡nenÃ½
+project-element saved	projectmanager	sk	Prvok projektu bol uloÅ¾enÃ½
 project-elements	projectmanager	sk	Prvky projektu
 projectlist	projectmanager	sk	Zoznam projektov
-projectmanager	common	sk	Projektovník
-projectmember	projectmanager	sk	Èlen projektu
-quantity	projectmanager	sk	Mno¾stvo
-read access, incl. budget and adding elements	projectmanager	sk	prístup na èítanie, vrátane rozpoètu a pridávania prvkov
-read access, no budget	projectmanager	sk	prístup na èítanie, bez rozpoètu
-real end	projectmanager	sk	Skutoènı koniec
-real start	projectmanager	sk	Skutoènı zaèiatok
+projectmanager	common	sk	ProjektovnÃ­k
+projectmember	projectmanager	sk	ÄŒlen projektu
+quantity	projectmanager	sk	MnoÅ¾stvo
+read access, incl. budget and adding elements	projectmanager	sk	prÃ­stup na ÄÃ­tanie, vrÃ¡tane rozpoÄtu a pridÃ¡vania prvkov
+read access, no budget	projectmanager	sk	prÃ­stup na ÄÃ­tanie, bez rozpoÄtu
+real end	projectmanager	sk	SkutoÄnÃ½ koniec
+real start	projectmanager	sk	SkutoÄnÃ½ zaÄiatok
 resources	projectmanager	sk	Zdroje
 role	projectmanager	sk	Rola
-role deleted	projectmanager	sk	Rola bola odstránená
-role saved	projectmanager	sk	Rola bola ulo¾ená
+role deleted	projectmanager	sk	Rola bola odstrÃ¡nenÃ¡
+role saved	projectmanager	sk	Rola bola uloÅ¾enÃ¡
 roles	projectmanager	sk	Role
-save the changes made	projectmanager	sk	Ulo¾i» vykonané zmeny
-save this project element	projectmanager	sk	Ulo¾i» tento prvok projektu
+save the changes made	projectmanager	sk	UloÅ¾iÅ¥ vykonanÃ© zmeny
+save this project element	projectmanager	sk	UloÅ¾iÅ¥ tento prvok projektu
 select a project	projectmanager	sk	Vyberte projekt
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	sk	Vyberte aktivitu, ak chcete vypoèíta» náklady podµa mno¾stva (èasu) a ceny
-select multiple projects for a further action	projectmanager	sk	Vyberte viacero projektov pre ïal¹ie akcie
-select the accounting types visible for users of projectmanager	projectmanager	sk	vyberte typy úètovania viditeµné pre pou¾ívateµov Projektovníka
-select this project and show it's elements	projectmanager	sk	Vybra» tento projekt a zobrazi» jeho prvky
-selectbox with %1	projectmanager	sk	Vıberové okno s %1
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	sk	Vyberte aktivitu, ak chcete vypoÄÃ­taÅ¥ nÃ¡klady podÄ¾a mnoÅ¾stva (Äasu) a ceny
+select multiple projects for a further action	projectmanager	sk	Vyberte viacero projektov pre ÄalÅ¡ie akcie
+select the accounting types visible for users of projectmanager	projectmanager	sk	vyberte typy ÃºÄtovania viditeÄ¾nÃ© pre pouÅ¾Ã­vateÄ¾ov ProjektovnÃ­ka
+select this project and show it's elements	projectmanager	sk	VybraÅ¥ tento projekt a zobraziÅ¥ jeho prvky
+selectbox with %1	projectmanager	sk	VÃ½berovÃ© okno s %1
 share	projectmanager	sk	Podiel
 share on the whole project	projectmanager	sk	Podiel na celom projekte
-share on the whole project in hours or percent, defaults to planned time	projectmanager	sk	Podiel na celom projekte v hodinách alebo percentách, predvolene je to plánovanı èas
-should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	sk	Zobrazova» v Projektovníku ikonu stavu zdroja dát (napr. Záznamníka) alebo len ukazovateµ stavu s èíselnım vyjadrením (toto je rıchlej¹ie).
-show constraints and milestones	projectmanager	sk	Zobrazi» obmedzenia a medzníky
-show planned times instead of the real times	projectmanager	sk	Zobrazi» plánované èasy namiesto skutoènıch
-show status icons of the datasources	projectmanager	sk	Zobrazi» ikonu stavu zdrojov údajov
-show the project selection as	projectmanager	sk	Zobrazi» vıber projektov ako
-site configuration saved	projectmanager	sk	Nastavenia stránky boli ulo¾ené
-start after	projectmanager	sk	Zaèa» po
-start working on %1	projectmanager	sk	Zaèa» prácu na %1
-start, end, category, ...	projectmanager	sk	Zaèiatok, koniec, kategória, ...
-start- & enddate	projectmanager	sk	Dátumy zaèiatku a konca
-startdate	projectmanager	sk	Dátum zaèatia
+share on the whole project in hours or percent, defaults to planned time	projectmanager	sk	Podiel na celom projekte v hodinÃ¡ch alebo percentÃ¡ch, predvolene je to plÃ¡novanÃ½ Äas
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	sk	ZobrazovaÅ¥ v ProjektovnÃ­ku ikonu stavu zdroja dÃ¡t (napr. ZÃ¡znamnÃ­ka) alebo len ukazovateÄ¾ stavu s ÄÃ­selnÃ½m vyjadrenÃ­m (toto je rÃ½chlejÅ¡ie).
+show constraints and milestones	projectmanager	sk	ZobraziÅ¥ obmedzenia a medznÃ­ky
+show planned times instead of the real times	projectmanager	sk	ZobraziÅ¥ plÃ¡novanÃ© Äasy namiesto skutoÄnÃ½ch
+show status icons of the datasources	projectmanager	sk	ZobraziÅ¥ ikonu stavu zdrojov Ãºdajov
+show the project selection as	projectmanager	sk	ZobraziÅ¥ vÃ½ber projektov ako
+site configuration saved	projectmanager	sk	Nastavenia strÃ¡nky boli uloÅ¾enÃ©
+start after	projectmanager	sk	ZaÄaÅ¥ po
+start working on %1	projectmanager	sk	ZaÄaÅ¥ prÃ¡cu na %1
+start, end, category, ...	projectmanager	sk	ZaÄiatok, koniec, kategÃ³ria, ...
+start- & enddate	projectmanager	sk	DÃ¡tumy zaÄiatku a konca
+startdate	projectmanager	sk	DÃ¡tum zaÄatia
 state	projectmanager	sk	Stav
 status filter	projectmanager	sk	Filter stavov
-style used for everything but elements. some fonts have only normal style.	projectmanager	sk	©tıl pou¾itı pre èokoµvek okrem prvkov. Niektoré písma majú len normálny ¹tıl.
+style used for everything but elements. some fonts have only normal style.	projectmanager	sk	Å tÃ½l pouÅ¾itÃ½ pre ÄokoÄ¾vek okrem prvkov. NiektorÃ© pÃ­sma majÃº len normÃ¡lny Å¡tÃ½l.
 subelements	projectmanager	sk	Podprvky
 subprojects	projectmanager	sk	Podprojekty
-synchronise all	projectmanager	sk	Synchronizova» v¹etko
-template	projectmanager	sk	©ablóna
-template including elment-tree saved as new project	projectmanager	sk	©ablóna, vrátane stromu elementov, bola ulo¾ená ako novı projekt
-the charset depends on the font you want to use.	projectmanager	sk	Znaková sada závisí na fonte, ktorı chcete pou¾íva».
-time	projectmanager	sk	Èas
-times	projectmanager	sk	Èasy
-title must not be empty	projectmanager	sk	Názov nesmie by» prázdny
+synchronise all	projectmanager	sk	SynchronizovaÅ¥ vÅ¡etko
+template	projectmanager	sk	Å ablÃ³na
+template including elment-tree saved as new project	projectmanager	sk	Å ablÃ³na, vrÃ¡tane stromu elementov, bola uloÅ¾enÃ¡ ako novÃ½ projekt
+the charset depends on the font you want to use.	projectmanager	sk	ZnakovÃ¡ sada zÃ¡visÃ­ na fonte, ktorÃ½ chcete pouÅ¾Ã­vaÅ¥.
+time	projectmanager	sk	ÄŒas
+times	projectmanager	sk	ÄŒasy
+title must not be empty	projectmanager	sk	NÃ¡zov nesmie byÅ¥ prÃ¡zdny
 tree with %1	projectmanager	sk	Strom s %1
 unit	projectmanager	sk	Jednotka
 unitprice	projectmanager	sk	Cena za jednotku
-used	projectmanager	sk	Pou¾ité
-valid since	projectmanager	sk	Platné od
-view ganttchart of this project	projectmanager	sk	Zobrazi» priebehovı diagram tohto projektu
-view milestone	projectmanager	sk	Zobrazi» medzník
-view price	projectmanager	sk	Zobrazi» cenu
-view project	projectmanager	sk	Zobrazi» projekt
-view project-elements	projectmanager	sk	Zobrazi» prvky projektu
-view this element in %1	projectmanager	sk	Zobrazi» tento prvok v %1
-view this milestone	projectmanager	sk	Zobrazi» tento medzník
-view this price	projectmanager	sk	Zobrazi» túto cenu
-view this project	projectmanager	sk	Zobrazi» tento projekt
-view this project-element	projectmanager	sk	Zobrazi» tento prvok projektu
-working duration on %1	projectmanager	sk	Trvanie prác na %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	sk	Pou¾ívate starú verziu JPGraph-u, dodávanú s eGroupWare. Jej funkènos» je obmedzená.
-you can leave the date of the first price empty	projectmanager	sk	Dátum prvej ceny mô¾ete ponecha» prázdny
-you need to select a project first	projectmanager	sk	Musíte najprv vybra» projekt
-your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sk	Va¹a databáza NIE JE aktuálna (%1 oproti %2), prosím spustite %3Setup%4 a zaktualizujte ju.
+used	projectmanager	sk	PouÅ¾itÃ©
+valid since	projectmanager	sk	PlatnÃ© od
+view ganttchart of this project	projectmanager	sk	ZobraziÅ¥ priebehovÃ½ diagram tohto projektu
+view milestone	projectmanager	sk	ZobraziÅ¥ medznÃ­k
+view price	projectmanager	sk	ZobraziÅ¥ cenu
+view project	projectmanager	sk	ZobraziÅ¥ projekt
+view project-elements	projectmanager	sk	ZobraziÅ¥ prvky projektu
+view this element in %1	projectmanager	sk	ZobraziÅ¥ tento prvok v %1
+view this milestone	projectmanager	sk	ZobraziÅ¥ tento medznÃ­k
+view this price	projectmanager	sk	ZobraziÅ¥ tÃºto cenu
+view this project	projectmanager	sk	ZobraziÅ¥ tento projekt
+view this project-element	projectmanager	sk	ZobraziÅ¥ tento prvok projektu
+working duration on %1	projectmanager	sk	Trvanie prÃ¡c na %1
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	sk	PouÅ¾Ã­vate starÃº verziu JPGraph-u, dodÃ¡vanÃº s eGroupWare. Jej funkÄnosÅ¥ je obmedzenÃ¡.
+you can leave the date of the first price empty	projectmanager	sk	DÃ¡tum prvej ceny mÃ´Å¾ete ponechaÅ¥ prÃ¡zdny
+you need to select a project first	projectmanager	sk	MusÃ­te najprv vybraÅ¥ projekt
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sk	VaÅ¡a databÃ¡za NIE JE aktuÃ¡lna (%1 oproti %2), prosÃ­m spustite %3Setup%4 a zaktualizujte ju.
