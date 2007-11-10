@@ -37,6 +37,7 @@ budget (no pricelist)	projectmanager	ca	Pressupost (sense llista de preus)
 budget and pricelist	projectmanager	ca	Pressupost i llista de preus
 by	projectmanager	ca	per
 calculate budget by quantity (eg. time) and price	projectmanager	ca	Calcula pressupost per quantitat (ex. temps) i preu
+charset of the above selected font	projectmanager	ca	Joc de caràcters de la font seleccionada més amunt
 check all	projectmanager	ca	Comprova-ho tot
 close the window, discard the changes made	projectmanager	ca	Tanca la finestra, descarta els canvis fets
 constraints	projectmanager	ca	Restriccions
@@ -47,6 +48,7 @@ create a new empty project or use a template	projectmanager	ca	Crea un nou proje
 create new links	projectmanager	ca	Crea nous enllaços
 created	projectmanager	ca	creat
 created a ganttchart from the checked projects	projectmanager	ca	Creat un diagrama de Gantt dels projectes senyalats
+cumulated elements too	projectmanager	ca	També elements acumulats
 custom fields	projectmanager	ca	Camps personalitzats
 customer title	projectmanager	ca	Títol del client
 datasource	projectmanager	ca	Font de les dades
@@ -59,6 +61,8 @@ delete this project	projectmanager	ca	Esborra aquest projecte
 delete this project-element, does not remove the linked entry	projectmanager	ca	Esborra aquest element de projecte, NO esborra l'enllaç
 delete this role	projectmanager	ca	Esborra aquest rol
 depth of display	projectmanager	ca	Profunditat de visualització
+details of cumulated	projectmanager	ca	Detalls d'acumulat
+details of subelements	projectmanager	ca	Detalls de subelements
 do not use that entry as project-element	projectmanager	ca	no utilitza aquesta entrada com a element de projecte
 done (100%)	projectmanager	ca	Fet (100%)
 edit access, incl. editing budget and elements	projectmanager	ca	edita l'accés, incl. editar pressuposts i elements
@@ -77,6 +81,7 @@ elements of elements	projectmanager	ca	Elements d'elements
 elements that can't start before this one is finished	projectmanager	ca	Elements que no poden començar fins que aquest hagi acabat
 elements which have to be finished before this can start	projectmanager	ca	Elements que han d'haver acabat abans que aquest pugui començar
 empty	projectmanager	ca	Buit
+encode non-ascii	projectmanager	ca	Codifica no-ASCII
 end before	projectmanager	ca	Acaba abans de
 enddate	projectmanager	ca	Data final
 error: deleting price !!!	projectmanager	ca	Error esborrant el preu !!!
@@ -92,6 +97,11 @@ error: saving the project-element (%1) !!!	projectmanager	ca	Error guardant l'el
 everything recursive	projectmanager	ca	Tot recursiu
 existing links	projectmanager	ca	Enllaços existents
 exit without saving	projectmanager	ca	Surt sense guardar
+font	projectmanager	ca	Font
+font charset	projectmanager	ca	Joc de caràcters de la font
+font style	projectmanager	ca	Estil de la font
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	ca	Font a utilitzar en el diagrama de Gantt. Només les fonts Vera estan incloses en el Gestor de Projectes.
+fontfile '%1' not found!!!	projectmanager	ca	Fitxer de la font '%1' no trobat!!!
 free descriptiv text	projectmanager	ca	text descriptiu lliure
 from %1 to %2	projectmanager	ca	des de %1 fins a %2
 full access	projectmanager	ca	accés total
@@ -105,6 +115,8 @@ health	projectmanager	ca	Salud
 hours	projectmanager	ca	hores
 hours per workday	projectmanager	ca	Hores per dia de feina
 how long do you work on the given day.	projectmanager	ca	Quant de temps fas feina aquest dia.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	ca	Com s'hauria de mostrar la selecció de projectes en el menú: Un arbre ofereix una millor visió global, una caixa de selecció es treballa millor.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ca	Si veus entitats (per ex. {) en el diagrama de Gantt, desactiva això.
 ignore that entry	projectmanager	ca	ignora aquesta entrada
 ignored	projectmanager	ca	ignorat
 last modified	projectmanager	ca	darrera modificació
@@ -176,6 +188,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	ca	Selecciona múltiples projectes per a una acció futura
 select the accounting types visible for users of projectmanager	projectmanager	ca	selecciona els tipus de comptabilitat visibles pels usuaris del gestor de projectes
 select this project and show it's elements	projectmanager	ca	Selecciona aquest projecte i mostra els seus elements
+selectbox with %1	projectmanager	ca	Caixa de selecció amb %1
 share	projectmanager	ca	Comparteix
 share on the whole project	projectmanager	ca	Comparteix a tot el projecte
 share on the whole project in hours or percent, defaults to planned time	projectmanager	ca	Comparteix a tot el projecte en hores o percentatge, per defecte a l'hora planificada
@@ -183,6 +196,7 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	ca	Mostra restriccions i fites
 show planned times instead of the real times	projectmanager	ca	Mostra hores planificades
 show status icons of the datasources	projectmanager	ca	Mostra les icones d'estat de les fonsts de dades
+show the project selection as	projectmanager	ca	Mostra la selecció de projectes com
 site configuration	projectmanager	ca	Configuració del lloc
 site configuration saved	projectmanager	ca	Configuració del lloc guardada
 start after	projectmanager	ca	Inicia després
@@ -192,13 +206,17 @@ start- & enddate	projectmanager	ca	Dates d'inici i Fi
 startdate	projectmanager	ca	Data d'inici
 state	projectmanager	ca	Estat
 status filter	projectmanager	ca	Filtre d'estat
+style used for everything but elements. some fonts have only normal style.	projectmanager	ca	Estil utilitzat per tot excepte els elements. Algunes fonts només tenen l'estil normal.
+subelements	projectmanager	ca	Subelements
 subprojects	projectmanager	ca	Subprojectes
 synchronise all	projectmanager	ca	Sincronitza-ho tot
 template	projectmanager	ca	Plantilla
 template including elment-tree saved as new project	projectmanager	ca	Plantilla que inclou l'arbre d'elements guardat com un projecte nou
+the charset depends on the font you want to use.	projectmanager	ca	El joc de caràcters depen de la font que vulguis utilitzar.
 time	projectmanager	ca	Hora
 times	projectmanager	ca	Hores
 title must not be empty	projectmanager	ca	El títol no pot estar buit
+tree with %1	projectmanager	ca	Arbre amb %1
 unit	projectmanager	ca	Unitat
 unitprice	projectmanager	ca	Unitat de Preu
 used	projectmanager	ca	utilitzat
@@ -214,8 +232,7 @@ view this price	projectmanager	ca	Veure aquest preu
 view this project	projectmanager	ca	Veure aquest projecte
 view this project-element	projectmanager	ca	Veure aquest element de projecte
 working duration on %1	projectmanager	ca	Durada de la feina a %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	ca	Estàs utilitzant la versió antiga de JPGraph, lligat a eGroupware.
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	ca	Estàs utilitzant la versió antiga de JPGraph, lligat a eGroupware. Té una funcionalitat limitada.
 you can leave the date of the first price empty	projectmanager	ca	pots deixar la data del primer preu buida
 you need to select a project first	projectmanager	ca	Primer has de seleccionar un projecte
-your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ca	La teva base de dades NO està al dia (%1 vs. %2), per favor, executa %3setup%4 per actualitzar la teva base de dades.
-
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ca	La teva base de dades NO està al dia (%1 vs. %2), si us plau, executa %3setup%4 per actualitzar la teva base de dades.
