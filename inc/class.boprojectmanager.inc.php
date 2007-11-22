@@ -280,7 +280,7 @@ class boprojectmanager extends soprojectmanager
 			// delete all links to project $pm_id
 			$this->link->unlink(0,'projectmanager',$pm_id);
 
-			$this->instanciate('constraints,milestones,pricelist');
+			$this->instanciate('constraints,milestones,pricelist,roles');
 
 			// delete all constraints of the project
 			$this->constraints->delete(array('pm_id' => $pm_id));
@@ -290,6 +290,9 @@ class boprojectmanager extends soprojectmanager
 			
 			// delete all pricelist items of the project
 			$this->pricelist->delete(array('pm_id' => $pm_id));
+			
+			// delete all project specific roles
+			$this->roles->delete(array('pm_id' => $pm_id));
 		}
 		return $ret;
 	}
