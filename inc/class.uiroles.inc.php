@@ -142,10 +142,14 @@ class uiroles extends boprojectmanager
 				}
 			}
 		}
+		if (($view = !($pm_id && $project_rights) && !$this->is_admin))
+		{
+			$readonlys['save'] = $readonlys['apply'] = true;
+		}
 		$content = array(
 			'pm_id' => $pm_id,
 			'msg'   => $msg,
-			'view'  => !$project_rights && !$this->is_admin,
+			'view'  => !($pm_id && $project_rights) && !$this->is_admin,
 			'js'    => '<script>'.$js.'</script>',
 			1       => $role_to_edit,
 		);
