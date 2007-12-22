@@ -52,8 +52,9 @@ cumulated elements too	projectmanager	sk	Taktiež aj kumulované prvky
 custom fields	projectmanager	sk	Vlastné polia
 customer title	projectmanager	sk	Meno klienta
 datasource	projectmanager	sk	Zdroj dát
+datasources too	projectmanager	sk	Vrátane zdrojov dát
 dates	projectmanager	sk	Dátumy
-default all and a selectbox to choose	projectmanager	sk	predvolene všetko a výber pomocou výberového menu
+default all and a selectbox to choose	projectmanager	sk	predvolene všetko a výber pomocou ponuky
 delete all checked projects	projectmanager	sk	Odstrániť všetky označené projekty
 delete this milestone	projectmanager	sk	Odstrániť tento medzník
 delete this price	projectmanager	sk	Odstrániť túto cenu
@@ -115,7 +116,9 @@ health	projectmanager	sk	Zdravie
 hours	projectmanager	sk	hodín
 hours per workday	projectmanager	sk	Hodín pracovného dňa
 how long do you work on the given day.	projectmanager	sk	Koľko hodín pracujete v daný deň.
-how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v menu: Strom ponúka lepší prehľad, výberové okno zase výkon.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke: Strom ponúka lepší prehľad, výberové okno zase lepší výkon.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) sa tiež odstránia.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
 ignore that entry	projectmanager	sk	ignorovať túto položku
 ignored	projectmanager	sk	Ignorované

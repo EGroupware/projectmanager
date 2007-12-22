@@ -52,6 +52,7 @@ cumulated elements too	projectmanager	pt-br	Elementos acumulados também
 custom fields	projectmanager	pt-br	Campos customizados
 customer title	projectmanager	pt-br	Tratamento do Cliente
 datasource	projectmanager	pt-br	Origem de dados
+datasources too	projectmanager	pt-br	Origens de dados também
 dates	projectmanager	pt-br	Datas
 default all and a selectbox to choose	projectmanager	pt-br	padrão todos e uma caixa de seleção para escolher
 delete all checked projects	projectmanager	pt-br	Remover todos os projetos marcados
@@ -116,6 +117,8 @@ hours	projectmanager	pt-br	horas
 hours per workday	projectmanager	pt-br	Horas por dias de trabalho
 how long do you work on the given day.	projectmanager	pt-br	Quanto tempo você trabalha em um dado dia.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a seleção de projeto deverá ser exibida no menu: Uma árvore dá uma melhor visão; uma caixa de seleção pode ter uma melhor performance.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) são removidas também.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) terão seus status alterados também.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se você ver entidades (exemplo: {) no gráfico de Gantt, desabilite-o.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
