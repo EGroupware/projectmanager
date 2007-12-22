@@ -1,0 +1,247 @@
+%1 element(s) updated	projectmanager	fa	%1 عنصر به روز شد
+%1 new project-elements imported	projectmanager	fa	%1 عنصر جدید پروژه وارد شد
+%1 projects deleted	projectmanager	fa	%1 پروژه حذف شد
+%1 times permission denied, %2 projects deleted	projectmanager	fa	ممنوعیت مجوز زمانها، %2 پروژه %1 حذف شد
+- planned	projectmanager	fa	برنامه ریزی شده
+0ngoing (0 < % < 100)	projectmanager	fa	خروجی (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	fa	عنوان توضیحی برای پروژه - نمی تواند خالی باشد
+a pattern to be searched for	projectmanager	fa	الگوئی که می خواهید جستجو شود
+accounting	projectmanager	fa	حسابداری
+accounting options	projectmanager	fa	تنظیمات حسابداری
+accounting type	projectmanager	fa	نوع حسابداری
+actions	projectmanager	fa	فعالیتها
+activity	projectmanager	fa	فعالیتها
+add a new entry of the selected application	projectmanager	fa	افزودن ورودی جدید به کاربرد انتخاب شده
+add a new milestone	projectmanager	fa	اضافه کردن یک مرحله جدید
+add a new project	projectmanager	fa	اضافه کردن یک پروژه جدید
+add element	projectmanager	fa	اضافه کردن عنصر جدید
+add existing	projectmanager	fa	اضافه کردن موجود
+add milestone	projectmanager	fa	اضافه کردن مرحله
+add new	projectmanager	fa	افزودن جدید
+add or edit roles and their acl	projectmanager	fa	اضافه کردن یا ویرایش نقش و لیست دسترسی مربوطه اش
+add price	projectmanager	fa	اضافه کردن قیمت
+add project	projectmanager	fa	اضافه کردن پروژه
+add project-elements	projectmanager	fa	اضافه کردن عناصر پروژه
+add this role	projectmanager	fa	اضافه کردن این نقش
+allow users to change their working times	projectmanager	fa	کاربران حق تغییر ساعت کار را دارند
+allowed accounting types	projectmanager	fa	انواع مجاز حسابداری
+allowed units	projectmanager	fa	واحدهای مجاز
+am	projectmanager	fa	صبح
+anonymous public	projectmanager	fa	بی نام عمومی
+app.	projectmanager	fa	برنامه
+apply the changes	projectmanager	fa	اعمال تغییرات
+archive	projectmanager	fa	آرشیو
+assistant	projectmanager	fa	دستیار
+at which time do you start working on the given day.	projectmanager	fa	در روز مورد نظر چه ساعتی کارتان را شروع میکنید
+attach	projectmanager	fa	پیوست
+attach file	projectmanager	fa	پیوست پرونده
+availible	projectmanager	fa	موجود است
+billable	projectmanager	fa	قابل بودجه ریزی است
+bookable	projectmanager	fa	قابل رزرو کردن است
+budget	projectmanager	fa	بودجه
+budget (no pricelist)	projectmanager	fa	بودجه ای (بدون لیست قیمت)
+budget and pricelist	projectmanager	fa	بودجه ای با لیست قیمت
+by	projectmanager	fa	بوسیله
+calculate budget by quantity (eg. time) and price	projectmanager	fa	محاسبه بودجه با کمیت(مثل زمان) و قیمت
+check all	projectmanager	fa	چک کردن همه
+checkbox	projectmanager	fa	جعبه چک
+click here to start a search	projectmanager	fa	برای شروع جستجو اینجا کلیک کنید
+click to order after that criteria	projectmanager	fa	برای مرتب شدن بر اساس شرط، کلیک کنید
+close the window, discard the changes made	projectmanager	fa	بستن پنجره و نادیده گرفتن تغییرات انجام شده
+comment	projectmanager	fa	شرح
+constraints	projectmanager	fa	محدودیتها
+conversation between days and hours, default 8	projectmanager	fa	محاوره بین روزها و ساعات - پیش فرض 8 است
+coordinator	projectmanager	fa	مدیر
+cost per time	projectmanager	fa	هزینه بر اساس زمان
+create a new empty project or use a template	projectmanager	fa	ساختن یک پروژه خالی یا استفاده از روی تمپلیت
+create new links	projectmanager	fa	ایجاد اتصال جدید
+created	projectmanager	fa	ایجاد شد
+created a ganttchart from the checked projects	projectmanager	fa	یک نموار گانت از پروژه های چک شده ساخته شد
+custom	projectmanager	fa	سفارشی
+custom fields	projectmanager	fa	فیلدهای سفارشی
+customer title	projectmanager	fa	عنوان سفارشی
+datasource	projectmanager	fa	منبع داده
+dates	projectmanager	fa	تاریخها
+days	projectmanager	fa	روز
+default	projectmanager	fa	پیش فرض
+default all and a selectbox to choose	projectmanager	fa	پیش فرض همه در نظر بگیر و جعبه انتخاب
+delete all checked projects	projectmanager	fa	حذف همه پروژه های انتخاب شده
+delete this milestone	projectmanager	fa	این مرحله را حذف کن
+delete this price	projectmanager	fa	این قیمت را حذف کن
+delete this project	projectmanager	fa	این پروژه را حذف کن
+delete this project-element, does not remove the linked entry	projectmanager	fa	این عنصر پروژه را حذف کن - موجودیت پیوند شده حذف نمی شود
+delete this role	projectmanager	fa	این نقش را حذف کن
+depth of display	projectmanager	fa	عمق نمایش
+do not use that entry as project-element	projectmanager	fa	این موجودیت را بعنوان عنصری در پروژه استفاده نکن
+done (100%)	projectmanager	fa	تمام شد(100٪)
+edit access, incl. editing budget and elements	projectmanager	fa	ویرایش دسترسی بهمراه بودجه و عناصر
+edit budget	projectmanager	fa	ویرایش بودجه
+edit milestone	projectmanager	fa	ویرایش مرحله
+edit price	projectmanager	fa	ویرایش قیمت
+edit project	projectmanager	fa	ویرایش پروژه
+edit project-elements	projectmanager	fa	ویرایش عناصر پروژه
+edit this milestone	projectmanager	fa	ویرایش این مرحله
+edit this price	projectmanager	fa	ویرایش این قیمت
+edit this project	projectmanager	fa	ویرایش این پروژه
+edit this project-element	projectmanager	fa	ویرایش این عنصر پروژه
+edit this role	projectmanager	fa	ویرایش این نقش
+elementlist	projectmanager	fa	لیست عناصر
+elements of elements	projectmanager	fa	عنصرهای عناصر
+elements that can't start before this one is finished	projectmanager	fa	عناصری که نمی توانند قبل از تمام شدن این یکی شروع شوند
+elements which have to be finished before this can start	projectmanager	fa	عناصری که باید قبل از شروع شدن این یکی تمام شوند
+empty	projectmanager	fa	خالی
+end before	projectmanager	fa	پایان قبل از
+enddate	projectmanager	fa	تاریخ اتمام
+enter a search pattern	projectmanager	fa	یک الگوی جستجو وارد کنید
+error: deleting price !!!	projectmanager	fa	خطا: حذف قیمت!!!
+error: deleting project !!!	projectmanager	fa	خطا: حذف پروژه
+error: deleting project-element !!!	projectmanager	fa	خطا: حذف عنصر پروژه
+error: deleting role !!!	projectmanager	fa	خطا: حذف نقش
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	fa	خطا: کد پروژه قبلا وجود دارد یکی دیگر انتخاب کنید یا خالی بگذارید تا بطور خودکار ایجاد شود
+error: saving milestone	projectmanager	fa	خطا: ذخیره مرحله !!!
+error: saving role !!!	projectmanager	fa	خطا: ذخیره نقش !!!
+error: saving the price (%1) !!!	projectmanager	fa	خطا: ذخیره قیمت (%1) !!!
+error: saving the project (%1) !!!	projectmanager	fa	خطا: ذخیره پروژه (%1) !!!
+error: saving the project-element (%1) !!!	projectmanager	fa	خطا: ذخیره عنصر پروژه (%1) !!!
+everything recursive	projectmanager	fa	همه چیز بازگشتی است
+existing links	projectmanager	fa	اتصالهای موجود
+exit without saving	projectmanager	fa	خروج بدون ذخیره سازی
+field must not be empty !!!	projectmanager	fa	فیلد نمیتواند خالی باشد!!!
+first	projectmanager	fa	اولین
+free descriptiv text	projectmanager	fa	متن توضیحی آزاد
+from %1 to %2	projectmanager	fa	از %1 الی %2
+full access	projectmanager	fa	دسترسی کامل
+ganttchart	projectmanager	fa	نمودار وضعیت
+ganttchart parameter	projectmanager	fa	پارامتر نمودار وضعیت
+general	projectmanager	fa	عمومی
+general availibility	projectmanager	fa	دسترسی عمومی
+general pricelist	projectmanager	fa	لیست قیمت عمومی
+h	projectmanager	fa	ساعت
+health	projectmanager	fa	سلامت
+hours	projectmanager	fa	ساعت
+hours per workday	projectmanager	fa	ساعات در روز کاری
+how long do you work on the given day.	projectmanager	fa	در روز گفته شده چقدر کار می کنید
+how many entries should the list show	projectmanager	fa	تعداد مواردی که باید لیست نمایش دهد
+ignore that entry	projectmanager	fa	ورودی را نادیده بگیر
+ignored	projectmanager	fa	نادیده گرفته شده
+label	projectmanager	fa	برچسب
+last	projectmanager	fa	آخرین
+last modified	projectmanager	fa	آخرین تغییرات
+leave it empty if you dont need a different customer title	projectmanager	fa	اگر عنوان مشتری متفاوتی نمی خواهید، خالی بگذارید
+leave it empty to have one generated	projectmanager	fa	برای ایجاد یکی ، خالی بگذارید
+leave it empty, if identitcal to the time	projectmanager	fa	برای شناسائی زمانی، خالی بگذارید
+link	projectmanager	fa	پیوند
+linked elements	projectmanager	fa	عناصر پیوند شده
+links	projectmanager	fa	پیوندها
+mainproject only	projectmanager	fa	فقط پروژه اصلی
+mainprojects	projectmanager	fa	پروژه های اصلی
+members	projectmanager	fa	اعضا
+milestone deleted	projectmanager	fa	مرحله حذف شد
+milestone saved	projectmanager	fa	مرحله ذخیره شد
+milestones	projectmanager	fa	مراحل
+milestones before this element has to be finished	projectmanager	fa	مراحل قبل از این عنصر که باید تمام شوند
+modified	projectmanager	fa	تغییر یافته
+modified by	projectmanager	fa	تغییر یافته بوسیله
+necessary for project-elements doing that not automatic	projectmanager	fa	برای عناصر پروژه ضروری است - انجامش خودکار نیست
+new	projectmanager	fa	جدید
+new search	projectmanager	fa	جستجوی جدید
+no accounting, only status	projectmanager	fa	بدون حسابداری، فقط وضعیت
+no accounting, only times and status	projectmanager	fa	بدون حسابداری، فقط زمانبندی و وضعیت
+no details	projectmanager	fa	بدون جزئیات
+no save necessary	projectmanager	fa	ذخیره ضرورتی ندارد
+nonactive	projectmanager	fa	غیر فعال
+not started (0%)	projectmanager	fa	شروع نشده(0 درصد)
+not working	projectmanager	fa	کار نمی کند
+of	projectmanager	fa	از
+only this project	projectmanager	fa	فقط این پروژه
+overwrite the datasource	projectmanager	fa	رونویسی منبع داده
+percentage the member is availible for projects	projectmanager	fa	درصدی که عضو برای پروژه موجود است
+percentage the member is availible for this project	projectmanager	fa	درصدی که عضو برای این پروژه موجود است
+permission denied !!!	projectmanager	fa	دسترسی غیر ممکن!!!
+planned	projectmanager	fa	برنامه ریزی شده
+planned times	projectmanager	fa	زمانهای برنامه ریزی شده
+please download a recent version from %1 and install it in %2.	projectmanager	fa	لطفا آخرین نسخه را از %1 دریافت و در %2 نصب کنبد
+pm	projectmanager	fa	عصر
+price	projectmanager	fa	قیمت
+price / unit	projectmanager	fa	قیمت/واحد
+price deleted	projectmanager	fa	قیمت حذف شد
+price saved	projectmanager	fa	قیمت ذخیره شد
+pricelist	projectmanager	fa	لیست قیمت
+project availibility	projectmanager	fa	دسترسی پروژه
+project deleted	projectmanager	fa	پروژه حذف شد
+project id	projectmanager	fa	شناسه پروژه
+project members and roles	projectmanager	fa	اعضا و وظایف پروژه
+project overview	projectmanager	fa	دورنمای پروژه
+project saved	projectmanager	fa	پروژه ذخیره شد
+project specific title, prices, ...	projectmanager	fa	عنوان و قیمتها و ... تعریف شده پروژه
+project-element deleted	projectmanager	fa	عنصر پروژه
+project-element saved	projectmanager	fa	عنصر پروژه ذخیره شد
+project-elements	projectmanager	fa	عناصر پروژه
+projectlist	projectmanager	fa	لیست پروژه ها
+projectmanager	common	fa	مدیریت پروژه
+projectmember	projectmanager	fa	عضو پروژه
+quantity	projectmanager	fa	مقدار
+radiobutton	projectmanager	fa	کلیدرادیوئی
+read access, incl. budget and adding elements	projectmanager	fa	دسترسی خواندن، بعلاوه بودجه و اضافه کردن عنصر
+read access, no budget	projectmanager	fa	دسترسی خواندن، بدون بودجه
+real end	projectmanager	fa	پایان قطعی
+real start	projectmanager	fa	شروع قطعی
+resources	projectmanager	fa	منابع
+role	projectmanager	fa	وظیفه
+role deleted	projectmanager	fa	وظیفه حذف شد
+role saved	projectmanager	fa	وظیفه ذخیره شد
+roles	projectmanager	fa	وظایف
+save the changes made	projectmanager	fa	تغییرات انجام شده، ذخیره شود
+save this project element	projectmanager	fa	این عنصر پروژه را ذخیره کن
+select a category	projectmanager	fa	یک دسته را انتخاب کنید
+select a project	projectmanager	fa	یک پروژه انتخاب کنید
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	fa	در صورتی که می خواهید هزینه ها بوسیله کمیت (زمان) و قیمت محاسبه شوند، یک فعالیت انتخاب کنید
+select an app to search in	projectmanager	fa	کاربرد را برای جستجو در آن انتخاب کنید
+select multiple projects for a further action	projectmanager	fa	برای پیشبرد فعالیت چند پروژه انتخاب کنید
+select the accounting types visible for users of projectmanager	projectmanager	fa	نوع حسابداری قابل نمایش را برای کاربران مدیریت پروژه انتخاب کنید
+select this project and show it's elements	projectmanager	fa	این پروژه انتخاب شود و عناصرش نمایش داده شود
+select which accounts to show	projectmanager	fa	انتخاب کنید کدام حساب باید نمایش داده شود
+share	projectmanager	fa	اشتراکی
+share on the whole project	projectmanager	fa	مشترک در تمام پروژه
+share on the whole project in hours or percent, defaults to planned time	projectmanager	fa	همه پروژه را در ساعات و درصد مشترک کن، پیش فرض برای زمان برنامه ریزی شده
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	fa	آیا مدیر پروژه باید نمایه های وضعیت منبع اطلاعات (مانند ثبت کارها) را نمایش دهد یا فقط نوار پیشرفت بهمراه وضعیت عددی کافیست(سریعتر است)؟
+show constraints and milestones	projectmanager	fa	نمایش قید و مرحله
+show planned times instead of the real times	projectmanager	fa	نمایش زمان برنامه ریزی شده بجای زمان واقعی
+show status icons of the datasources	projectmanager	fa	نمایش وضعیت نمایه ها از منبع داده
+showing	projectmanager	fa	نمایش
+site configuration saved	projectmanager	fa	پیکربندی سایت ذخیره شد
+start after	projectmanager	fa	شروع بعد از
+start working on %1	projectmanager	fa	شروع کار در %1
+start, end, category, ...	projectmanager	fa	شروع، پایان، دسته ...
+start- & enddate	projectmanager	fa	تاریخ شروع و پایان
+startdate	projectmanager	fa	تاریخ شروع
+state	projectmanager	fa	موقعیت
+status filter	projectmanager	fa	صافی وضعیت
+subprojects	projectmanager	fa	زیر پروژه ها
+synchronise all	projectmanager	fa	همگون سازی همه
+template	projectmanager	fa	قالب
+template including elment-tree saved as new project	projectmanager	fa	قالب بهمراه درخت-عنصر ذخیره شده بعنوان پروژه جدید
+text	projectmanager	fa	متن
+time	projectmanager	fa	زمان
+times	projectmanager	fa	زمانها
+title must not be empty	projectmanager	fa	عنوان نباید خالی باشد
+to start the search	projectmanager	fa	شروع جستجو
+unit	projectmanager	fa	واحد
+unitprice	projectmanager	fa	واحد قیمت
+used	projectmanager	fa	استفاده شده
+valid since	projectmanager	fa	معتبر است تا
+value	projectmanager	fa	مقدار
+view ganttchart of this project	projectmanager	fa	دیدن نمودار وضعیت این پروژه
+view milestone	projectmanager	fa	دیدن مرحله
+view price	projectmanager	fa	دیدن قیمت
+view project	projectmanager	fa	دیدن پروژه
+view project-elements	projectmanager	fa	دیدن عناصر پروژه
+view this element in %1	projectmanager	fa	دیدن عناصر پروژه در %1
+view this linked entry in its application	projectmanager	fa	نمایش این ورودی پیوند شده در کاربرد خودش
+view this milestone	projectmanager	fa	دیدن این مرحله
+view this price	projectmanager	fa	دیدن این قیمت
+view this project	projectmanager	fa	دیدن این پروژه
+view this project-element	projectmanager	fa	دیدن این عنصر پروژه
+working duration on %1	projectmanager	fa	مدت کار در %1
+you can leave the date of the first price empty	projectmanager	fa	شما می توانید تاریخ اولین قیمت را خالی بگذارید
+you need to select a project first	projectmanager	fa	شما باید یک پروژه را انتخاب کنید
