@@ -163,7 +163,7 @@ class ganttchart extends boprojectelements
 		}
 		$this->modernJPGraph = version_compare('1.13',JPG_VERSION) < 0;
 		//echo "version=".JPG_VERSION.", modernJPGraph=".(int)$this->modernJPGraph; exit;
-		error_log("JPG_VERSION=".JPG_VERSION.", modernJPGraph=".(int)$this->modernJPGraph);
+		if ($debug) error_log("JPG_VERSION=".JPG_VERSION.", modernJPGraph=".(int)$this->modernJPGraph);
 
 		if (isset($_REQUEST['pm_id']))
 		{
