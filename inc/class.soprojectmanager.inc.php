@@ -5,12 +5,10 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
-
-include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
 /**
  * General storage object of the projectmanager: access the main project data
@@ -26,7 +24,7 @@ class soprojectmanager extends so_sql
 	 * 
 	 * @var string
 	 */
-	var $links_table = 'egw_links';
+	var $links_table = solink::TABLE;
 	/**
 	 * Configuration data
 	 * 
@@ -87,13 +85,10 @@ class soprojectmanager extends so_sql
 	 */
 	function soprojectmanager($pm_id=null)
 	{
-		$this->so_sql('projectmanager','egw_pm_projects');
+		$this->so_sql('projectmanager','egw_pm_projects',null,'',true);	// true = no need to clone the db-object
 		
-		$config =& CreateObject('phpgwapi.config','projectmanager');
-		$config->read_repository();
-		$this->config =& $config->config_data;
-		unset($config);
-		$this->customfields =& $this->config['customfields'];
+		$this->config = config::read('projectmanager');
+		$this->customfields = config::get_customfields('projectmanager');
 		$this->config['duration_format'] = str_replace(',','',$this->config['duration_units']).','.$this->config['hours_per_workday'];
 
 		$this->grants = $GLOBALS['egw']->acl->get_grants('projectmanager');
@@ -132,19 +127,15 @@ class soprojectmanager extends so_sql
 		}
 		if ($this->customfields)
 		{
-			$this->db->select($this->extra_table,'*',array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__);
-
-			while (($row = $this->db->row(true)))
+			foreach($this->db->select($this->extra_table,'*',array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__,false,'','projectmanager') as $row)
 			{
 				$this->data['#'.$row['pm_extra_name']] = $row['pm_extra_value'];
 			}
 		}
 		// query project_members and their roles
 /*
-		$this->db->select($this->members_table,'*',$this->members_table.'.pm_id='.(int)$this->data['pm_id'],__LINE__,__FILE__,
-			False,'',False,0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id");
-	
-		while (($row = $this->db->row(true)))
+		foreach($this->db->select($this->members_table,'*',$this->members_table.'.pm_id='.(int)$this->data['pm_id'],__LINE__,__FILE__,
+			False,'','projectmanager',0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id") as $row)
 		{
 			$this->data['pm_members'][$row['member_uid']] = $row;
 		}
@@ -163,11 +154,10 @@ class soprojectmanager extends so_sql
 	 */
 	function read_members($pm_id)
 	{
-		$this->db->select($this->members_table,'*,'.$this->members_table.'.pm_id AS pm_id',
-			$this->db->expression($this->members_table,$this->members_table.'.',array('pm_id'=>$pm_id)),__LINE__,__FILE__,
-			False,'',False,0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id");
-		
-		while(($row = $this->db->row(true)))
+		$members_table_def = $this->db->get_table_definitions('projectmanager',$this->members_table);
+		foreach($this->db->select($this->members_table,'*,'.$this->members_table.'.pm_id AS pm_id',
+			$this->db->expression($members_table_def,$this->members_table.'.',array('pm_id'=>$pm_id)),__LINE__,__FILE__,
+			False,'','projectmanager',0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id") as $row)
 		{
 			$members[$row['pm_id']][$row['member_uid']] = $row;
 		}
@@ -196,7 +186,7 @@ class soprojectmanager extends so_sql
 			if ($this->customfields)
 			{
 				// custome fields: first delete all, then save the ones with non-empty content
-				$this->db->delete($this->extra_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__);
+				$this->db->delete($this->extra_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__,'projectmanager');
 				foreach($this->customfields as $name => $data)
 				{
 					if ($name && isset($this->data['#'.$name]) && !empty($this->data['#'.$name]))
@@ -205,12 +195,12 @@ class soprojectmanager extends so_sql
 							'pm_id'          => $this->data['pm_id'],
 							'pm_extra_name'  => $name,
 							'pm_extra_value' => $this->data['#'.$name],
-						),false,__LINE__,__FILE__);
+						),false,__LINE__,__FILE__,'projectmanager');
 					}
 				}
 			}
 			// project-members: first delete all, then save the (still) assigned ones
-			$this->db->delete($this->members_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__);
+			$this->db->delete($this->members_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__,'projectmanager');
 			foreach((array)$this->data['pm_members'] as $uid => $data)
 			{
 				$this->db->insert($this->members_table,array(
@@ -218,7 +208,7 @@ class soprojectmanager extends so_sql
 					'member_uid' => $uid,
 					'role_id'    => $data['role_id'],
 					'member_availibility' => $data['member_availibility'], 
-				),false,__LINE__,__FILE__);
+				),false,__LINE__,__FILE__,'projectmanager');
 			}
 		}
 		return $this->db->Errno;
@@ -269,7 +259,7 @@ class soprojectmanager extends so_sql
 		{
 			if (!is_object($GLOBALS['egw']->categories))
 			{
-				$GLOBALS['egw']->categories =& CreateObject('phpgwapi.categories');
+				$GLOBALS['egw']->categories = new categories();
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
@@ -311,11 +301,10 @@ class soprojectmanager extends so_sql
 			}
 			if (!$this->db->capabilities['sub_queries'])
 			{
-				$this->db->query($ids,__LINE__,__FILE__);
 				$ids = array();
-				while($this->db->next_record())
+				foreach($this->db->query($ids,__LINE__,__FILE__) as $row)
 				{
-					$ids[] = $this->db->f(0);
+					$ids[] = $row[0];
 				}
 				$ids = count($ids) ? implode(',',$ids) : 0;
 			}
@@ -368,9 +357,8 @@ class soprojectmanager extends so_sql
 		
 		if ($uid) $where['member_uid'] = $uid;
 		
-		$this->db->select($this->members_table,'member_uid,member_availibility',$where,__LINE__,__FILE__);
 		$avails = array();
-		while (($row = $this->db->row(true)))
+		foreach($this->db->select($this->members_table,'member_uid,member_availibility',$where,__LINE__,__FILE__,flase,'','projectmanager') as $row)
 		{
 			$avails[$row['member_uid']] = empty($row['member_availibility']) ? 100.0 : $row['member_availibility'];
 		}
@@ -396,14 +384,14 @@ class soprojectmanager extends so_sql
 			),array(
 				'member_uid' => $uid,
 				'pm_id'      => 0,
-			),__LINE__,__FILE__);
+			),__LINE__,__FILE__,'projectmanager');
 		}
 		else
 		{
 			$this->db->delete($this->members_table,array(
 				'pm_id' => 0,
 				'member_uid' => $uid,
-			),__LINE__,__FILE__);
+			),__LINE__,__FILE__,'projectmanager');
 		}
 	}
 }

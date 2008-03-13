@@ -5,12 +5,10 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$ 
  */
-
-include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
 /**
  * Elements storage object of the projectmanager
@@ -26,7 +24,7 @@ class soprojectelements extends so_sql
 	 * 
 	 * @var string
 	 */
-	var $links_table = 'egw_links';
+	var $links_table = solink::TABLE;
 	/**
 	 * Join in the links table
 	 *
@@ -67,7 +65,7 @@ class soprojectelements extends so_sql
 	 */
 	function soprojectelements($pm_id=null,$pe_id=null)
 	{
-		$this->so_sql('projectmanager','egw_pm_elements');
+		$this->so_sql('projectmanager','egw_pm_elements',null,'',true);		// true = no need to clone the db-object
 
 		if ((int) $pm_id || (int) $pe_id) 
 		{
@@ -111,7 +109,7 @@ class soprojectelements extends so_sql
 		// fix some special filters: resources, cats
 		$filter = $this->_fix_filter($filter);
 
-		$this->db->select($this->table_name,array(
+		foreach($this->db->select($this->table_name,array(
 			"SUM(pe_completion * ($share)) AS pe_sum_completion_shares",
 			"SUM(CASE WHEN pe_completion IS NULL THEN NULL ELSE ($share) END) AS pe_total_shares",
 //			'AVG(pe_completion) AS pe_completion',
@@ -123,17 +121,15 @@ class soprojectelements extends so_sql
 			'MIN(pe_planned_start) AS pe_planned_start',
 			'MAX(pe_real_end) AS pe_real_end',
 			'MAX(pe_planned_end) AS pe_planned_end',
-		),$filter,__LINE__,__FILE__,false,'',false,0,$this->links_join);
-		
-		if (!($data = $this->db->row(true)))
+		),$filter,__LINE__,__FILE__,false,'','projectmanager',0,$this->links_join) as $data)
 		{
-			return false;
+			if ($data['pe_total_shares'])
+			{
+				$data['pe_completion'] = round($data['pe_sum_completion_shares'] / $data['pe_total_shares'],1);
+			}
+			return $this->db2data($data);
 		}
-		if ($data['pe_total_shares'])
-		{
-			$data['pe_completion'] = round($data['pe_sum_completion_shares'] / $data['pe_total_shares'],1);
-		}
-		return $this->db2data($data);
+		return false;
 	}
 
 	/**
@@ -196,7 +192,7 @@ class soprojectelements extends so_sql
 		{
 			if (!is_object($GLOBALS['egw']->categories))
 			{
-				$GLOBALS['egw']->categories =& CreateObject('phpgwapi.categories');
+				$GLOBALS['egw']->categories = new categories();
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}

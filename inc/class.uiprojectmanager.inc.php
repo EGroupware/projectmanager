@@ -207,12 +207,12 @@ class uiprojectmanager extends boprojectmanager
 					if ($content['add_link'])
 					{
 						list($app,$app_id) = explode(':',$content['add_link'],2);
-						$this->link->link($app,$app_id,'projectmanager',$this->data['pm_id']);
+						egw_link::link($app,$app_id,'projectmanager',$this->data['pm_id']);
 					}
 					// writing links for new entry, existing ones are handled by the widget itself
 					if (!$content['pm_id'] && is_array($content['link_to']['to_id']))	
 					{
-						$this->link->link('projectmanager',$this->data['pm_id'],$content['link_to']['to_id']);
+						egw_link::link('projectmanager',$this->data['pm_id'],$content['link_to']['to_id']);
 					}
 					if ($content['template'] && $this->copy($content['template'],2))
 					{
@@ -328,7 +328,7 @@ class uiprojectmanager extends boprojectmanager
 		if ($add_link && !is_array($content['link_to']['to_id']))
 		{
 			list($app,$app_id) = explode(':',$add_link,2);
-			$this->link->link('projectmanager',$content['link_to']['to_id'],$app,$app_id);
+			egw_link::link('projectmanager',$content['link_to']['to_id'],$app,$app_id);
 		}
 		$content['links'] = $content['link_to'];
 

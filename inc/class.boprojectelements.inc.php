@@ -24,12 +24,6 @@ class boprojectelements extends soprojectelements
 	 */
 	var $debug=false;
 	/**
-	 * Instance of the link-class
-	 * 
-	 * @var bolink
-	 */
-	var $link;
-	/**
 	 * Instance of the boprojectmanager-class
 	 * 
 	 * @var boprojectmanager
@@ -116,13 +110,6 @@ class boprojectelements extends soprojectelements
 		
 		$this->soprojectelements($pm_id,$pe_id);
 		
-		if (!is_object($GLOBALS['egw']->link))
-		{
-			$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
-		}
-		$this->link =& $GLOBALS['egw']->link;
-		$this->links_table = $this->link->link_table;
-
 		$this->project =& CreateObject('projectmanager.boprojectmanager',$pm_id);
 		$this->config =& $this->project->config;
 		
@@ -162,7 +149,7 @@ class boprojectelements extends soprojectelements
 				// for projectmanager we need to check the direction of the link
 				if ($data['target_app'] == 'projectmanager')
 				{
-					$link = $this->link->get_link($data['link_id']);
+					$link = egw_link::get_link($data['link_id']);
 					if ($link['link_id2'] == $data['id'])
 					{
 						return;	// this is a notification to a child / subproject --> ignore it
@@ -452,7 +439,7 @@ class boprojectelements extends soprojectelements
 		{
 			unset($keys['update_remark']);
 			unset($this->data['update_remark']);
-			$this->link->update_remark($this->data['pe_id'],$this->data['pe_remark']);
+			egw_link::update_remark($this->data['pe_id'],$this->data['pe_remark']);
 		}
 		if ($keys) $this->data_merge($keys);
 		
@@ -514,7 +501,7 @@ class boprojectelements extends soprojectelements
 		if ($pe_id)
 		{
 			// delete one link
-			$this->link->unlink($pe_id);
+			egw_link::unlink($pe_id);
 			// update the project
 			$this->project->update($pm_id);
 			
@@ -523,7 +510,7 @@ class boprojectelements extends soprojectelements
 		elseif ($pm_id)
 		{
 			// delete all links to project $pm_id
-			$this->link->unlink(0,'projectmanager',$pm_id);
+			egw_link::unlink(0,'projectmanager',$pm_id);
 		}	
 		return $ret;
 	}
@@ -606,7 +593,7 @@ class boprojectelements extends soprojectelements
 			{
 				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("linking $element[pe_app]:$element[pe_app_id] $element[pe_title]");
 				$app_id = $element['pe_app_id'];
-				$link_id = $this->link->link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
+				$link_id = egw_link::link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
 			}
 			if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling update($element[pe_app],$app_id,$link_id,$this->pm_id,false);");
 

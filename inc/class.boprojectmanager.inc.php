@@ -36,12 +36,6 @@ class boprojectmanager extends soprojectmanager
 	 */
 	var $logfile='/tmp/pm_log';
 	/**
-	 * Instance of the link-class
-	 * 
-	 * @var bolink
-	 */
-	var $link;
-	/**
 	 * Timestaps that need to be adjusted to user-time on reading or saving
 	 * 
 	 * @var array
@@ -112,14 +106,6 @@ class boprojectmanager extends soprojectmanager
 		{
 			$GLOBALS['boprojectmanager'] =& $this;
 		}
-		// instanciation of link-class has to be after making us globaly availible, as it calls us to get the search_link
-		if (!is_object($GLOBALS['egw']->link))
-		{
-			$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
-		}
-		$this->link =& $GLOBALS['egw']->link;
-		$this->links_table = $this->link->link_table;
-		
 		// atm. projectmanager-admins are identical to eGW admins, this might change in the future
 		$this->is_admin = isset($GLOBALS['egw_info']['user']['apps']['admin']);
 
@@ -255,7 +241,7 @@ class boprojectmanager extends soprojectmanager
 		if (!($err = parent::save()) && $do_notify)
 		{
 			// notify the link-class about the update, as other apps may be subscribt to it
-			$this->link->notify_update('projectmanager',$this->data['pm_id'],$this->data);
+			egw_link::notify_update('projectmanager',$this->data['pm_id'],$this->data);
 		}
 		return $err;
 	}
@@ -283,7 +269,7 @@ class boprojectmanager extends soprojectmanager
 
 			// the following is not really necessary, as it's already one in boprojectelements::delete
 			// delete all links to project $pm_id
-			$this->link->unlink(0,'projectmanager',$pm_id);
+			egw_link::unlink(0,'projectmanager',$pm_id);
 
 			$this->instanciate('constraints,milestones,pricelist,roles');
 
@@ -461,7 +447,7 @@ class boprojectmanager extends soprojectmanager
 	 * Is called as hook to participate in the linking
 	 *
 	 * @param int/array $entry int pm_id or array with project entry
-	 * @param string/boolean string with title, null if project not found or false if no perms to view it
+	 * @return string/boolean string with title, null if project not found or false if no perms to view it
 	 */
 	function link_title( $entry )
 	{
@@ -474,6 +460,35 @@ class boprojectmanager extends soprojectmanager
 			return $entry;
 		}
 		return $entry['pm_number'].': '.$entry['pm_title'];
+	}
+
+	/**
+	 * get titles for multiple project identified by $ids
+	 * 
+	 * Is called as hook to participate in the linking
+	 *
+	 * @param int/array $entry int pm_id or array with project entry
+	 * @return array or titles, see link_title
+	 */
+	function link_titles( array $ids )
+	{
+		$titles = array();
+		if (($projects = $this->search(array('pm_id' => $ids),'pm_number,pm_title')))
+		{
+			foreach($projects as $project)
+			{
+				$titles[$project['pm_id']] = $this->link_title($project);
+			}
+		}
+		// we assume all not returned projects are not readable by the user, as we notify egw_link about all deletes
+		foreach($ids as $id)
+		{
+			if (!isset($titles[$id]))
+			{
+				$titles[$id] = false;
+			}
+		}
+		return $titles;
 	}
 
 	/**
@@ -510,6 +525,7 @@ class boprojectmanager extends soprojectmanager
 		return array(
 			'query' => 'projectmanager.boprojectmanager.link_query',
 			'title' => 'projectmanager.boprojectmanager.link_title',
+			'titles' => 'projectmanager.boprojectmanager.link_titles',
 			'view'  => array(
 				'menuaction' => 'projectmanager.uiprojectelements.index',
 			),
@@ -544,10 +560,10 @@ class boprojectmanager extends soprojectmanager
 			$ancestors_cache[$pm_id] = array();
 
 			// read all projectmanager entries attached to this one
-			foreach($this->link->get_links('projectmanager',$pm_id,'projectmanager') as $link_id => $data)
+			foreach(egw_link::get_links('projectmanager',$pm_id,'projectmanager') as $link_id => $data)
 			{
 				// we need to read the complete link, to know if the entry is a child (link_id1 == pm_id)
-				$link = $this->link->get_link($link_id);
+				$link = egw_link::get_link($link_id);
 				if ($link['link_id1'] == $pm_id)
 				{
 					continue;	// we are the parent in this link ==> ignore it
@@ -586,10 +602,10 @@ class boprojectmanager extends soprojectmanager
 			$children_cache[$pm_id] = array();
 
 			// read all projectmanager entries attached to this one
-			foreach($this->link->get_links('projectmanager',$pm_id,'projectmanager') as $link_id => $data)
+			foreach(egw_link::get_links('projectmanager',$pm_id,'projectmanager') as $link_id => $data)
 			{
 				// we need to read the complete link, to know if the entry is a child (link_id1 == pm_id)
-				$link = $this->link->get_link($link_id);
+				$link = egw_link::get_link($link_id);
 				if ($link['link_id1'] != $pm_id)
 				{
 					continue;	// we are NOT the parent in this link ==> ignore it
