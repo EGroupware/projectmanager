@@ -37,8 +37,9 @@ class soprojectelements extends so_sql
 	 * @var array
 	 */
 	var $links_extracols = array(
-		"CASE WHEN link_app1='projectmanager' AND link_id1=pm_id THEN link_app2 ELSE link_app1 END AS pe_app",
-		"CASE WHEN link_app1='projectmanager' AND link_id1=pm_id THEN link_id2 ELSE link_id1 END AS pe_app_id",
+		// postgres 8.3 requires cast as link_idx is varchar and pm_id an integer, the cast should be no problem for other DB's
+		"CASE WHEN link_app1='projectmanager' AND link_id1=CAST(pm_id AS CHAR) THEN link_app2 ELSE link_app1 END AS pe_app",
+		"CASE WHEN link_app1='projectmanager' AND link_id1=CAST(pm_id AS CHAR) THEN link_id2 ELSE link_id1 END AS pe_app_id",
 		'link_remark AS pe_remark',
 	);
 	/**
