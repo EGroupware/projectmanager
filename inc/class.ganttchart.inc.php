@@ -442,7 +442,7 @@ class ganttchart extends boprojectelements
 				'pe_id'      => $pe['pe_id'],
 			)),$pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element'));
 			
-			if (($popup = $GLOBALS['egw']->link->is_popup($pe['pe_app']))) $popup = '@'.$popup;
+			if (($popup = egw_link::is_popup($pe['pe_app']))) $popup = '@'.$popup;
 			$bar->title->SetCSIMTarget($popup.$GLOBALS['egw']->link('/index.php',$this->link->view($pe['pe_app'],$pe['pe_app_id'])),
 				lang('View this element in %1',lang($pe['pe_app'])));
 		}
