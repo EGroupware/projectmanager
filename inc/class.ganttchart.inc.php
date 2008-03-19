@@ -777,7 +777,7 @@ class ganttchart extends boprojectelements
 			unset($content['sync_all']);
 		}		
 		// run $_GET[msg] through htmlspecialchars, as we output it raw, to allow the link in the jpgraph message.
-		if (!$msg) $msg = $this->tmpl->html->htmlspecialchars($_GET['msg']);
+		if (!$msg) $msg = html::htmlspecialchars($_GET['msg']);
 
 		if (!$GLOBALS['egw']->session->appsession('ganttchart','projectmanager') && !$this->modernJPGraph)
 		{
