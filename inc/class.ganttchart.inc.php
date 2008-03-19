@@ -443,7 +443,7 @@ class ganttchart extends boprojectelements
 			)),$pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element'));
 			
 			if (($popup = egw_link::is_popup($pe['pe_app']))) $popup = '@'.$popup;
-			$bar->title->SetCSIMTarget($popup.$GLOBALS['egw']->link('/index.php',$this->link->view($pe['pe_app'],$pe['pe_app_id'])),
+			$bar->title->SetCSIMTarget($popup.$GLOBALS['egw']->link('/index.php',egw_link::view($pe['pe_app'],$pe['pe_app_id'])),
 				lang('View this element in %1',lang($pe['pe_app'])));
 		}
 		$bar->title->SetFont($this->gantt_font,FS_NORMAL,!$level ? 9 : 8);
