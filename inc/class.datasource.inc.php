@@ -118,12 +118,6 @@ class datasource
 	function datasource($type=null)
 	{
 		$this->type = $type;
-
-		if (!is_object($GLOBALS['egw']->link))
-		{
-			$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
-		}
-		$this->link =& $GLOBALS['egw']->link;
 	}
 	
 	/**
@@ -140,7 +134,7 @@ class datasource
 	 */
 	function get($data_id)
 	{
-		if (($title = $this->link->title($this->type,$data_id)))
+		if (($title = egw_link::title($this->type,$data_id)))
 		{
 			return array(
 				'pe_title'  => $title,

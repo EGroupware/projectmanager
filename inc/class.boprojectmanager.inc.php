@@ -92,10 +92,6 @@ class boprojectmanager extends soprojectmanager
 	{
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message(function_backtrace()."\nboprojectmanager::boprojectmanager($pm_id) started");
 
-		if (!is_object($GLOBALS['egw']->datetime))
-		{
-			$GLOBALS['egw']->datetime =& CreateObject('phpgwapi.datetime');
-		}
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
 		

@@ -239,10 +239,6 @@ class sopricelist extends so_sql
 		// include sub-categories in the search
 		if ($filter['cat_id'])
 		{
-			if (!is_object($GLOBALS['egw']->categories))
-			{
-				$GLOBALS['egw']->categories =& CreateObject('phpgwapi.categories');
-			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);

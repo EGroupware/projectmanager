@@ -30,10 +30,7 @@ class pm_admin_prefs_sidebox_hooks
 
 	function pm_admin_prefs_sidebox_hooks()
 	{
-		$config =& CreateObject('phpgwapi.config','projectmanager');
-		$config->read_repository();
-		$this->config =& $config->config_data;
-		unset($config);
+		$this->config = config::read('projectmanager');
 	}
 
 	/**
@@ -50,10 +47,6 @@ class pm_admin_prefs_sidebox_hooks
 		if ($location == 'sidebox_menu')
 		{
 			// project-dropdown in sidebox menu
-			if (!is_object($GLOBALS['egw']->html))
-			{
-				$GLOBALS['egw']->html =& CreateObject('phpgwapi.html');
-			}
 			if (!is_object($GLOBALS['boprojectmanager']))
 			{
 				// dont assign it to $GLOBALS['boprojectmanager'], as the constructor does it!!!
@@ -219,9 +212,9 @@ class pm_admin_prefs_sidebox_hooks
 		{
 			return null;
 		}
-		$tree = $GLOBALS['egw']->html->tree($projects,$selected_project,false,'load_project');
+		$tree = html::tree($projects,$selected_project,false,'load_project');
 		// hack for stupid ie (cant set it as a class!)
-		if ($GLOBALS['egw']->html->user_agent == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
+		if (html::$user_agent == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
 		
 		return array(
 			'text' => "<script>function load_project(_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".$tree,
@@ -260,8 +253,8 @@ class pm_admin_prefs_sidebox_hooks
 			$projects[0] = lang('Select a project');
 		}
 		return array(
-			'text' => $GLOBALS['egw']->html->select('pm_id',$pm_id,$projects,true,' style="width: 100%;"'.
-				' onchange="location.href=\''.$select_link.'\'+this.value;" title="'.$GLOBALS['egw']->html->htmlspecialchars(
+			'text' => html::select('pm_id',$pm_id,$projects,true,' style="width: 100%;"'.
+				' onchange="location.href=\''.$select_link.'\'+this.value;" title="'.html::htmlspecialchars(
 				$pm_id && isset($projects[$pm_id]) ? $projects[$pm_id] : lang('Select a project')).'"'),
 			'no_lang' => True,
 			'link' => False

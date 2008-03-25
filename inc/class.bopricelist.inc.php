@@ -42,10 +42,6 @@ class bopricelist extends sopricelist
 	{
 		$this->sopricelist($pm_id);
 
-		if (!is_object($GLOBALS['egw']->datetime))
-		{
-			$GLOBALS['egw']->datetime =& CreateObject('phpgwapi.datetime');
-		}
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now = time() + $this->tz_offset_s;
 		
