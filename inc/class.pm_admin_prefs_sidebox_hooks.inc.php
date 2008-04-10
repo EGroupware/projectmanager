@@ -166,6 +166,7 @@ class pm_admin_prefs_sidebox_hooks
 					'menuaction' => 'admin.uicategories.index',
 					'appname'    => $appname,
 					'global_cats'=> True)),
+					'CSV-Import'         => $GLOBALS['egw']->link('/projectmanager/csv_import.php')
 			);
 			if ($location == 'admin')
 			{
