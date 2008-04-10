@@ -21,7 +21,7 @@
 <!-- BEGIN fheader -->
 			<tr>
 				<td><b>{lang_csv_fieldname}</b></td>
-				<td><b>{lang_info_fieldname}</b></td>
+				<td><b>{lang_project_fieldname}</b></td>
 				<td><b>{lang_translation}</b></td>
 			</tr>
 <!-- END fheader -->

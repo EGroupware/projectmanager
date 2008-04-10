@@ -191,7 +191,7 @@ function cat_id($cats)
 			$defaults = array();
 		}
 		$GLOBALS['egw']->template->set_var('lang_csv_fieldname',lang('CSV-Fieldname'));
-		$GLOBALS['egw']->template->set_var('lang_info_fieldname',lang('InfoLog-Fieldname'));
+		$GLOBALS['egw']->template->set_var('lang_project_fieldname',lang('Projectmanager-Fieldname'));
 		$GLOBALS['egw']->template->set_var('lang_translation',lang("Translation").' <a href="#help">'.lang('help').'</a>');
 		$GLOBALS['egw']->template->set_var('submit',
 		$GLOBALS['egw']->html->submit_button('convert','Import') . '&nbsp;'.
