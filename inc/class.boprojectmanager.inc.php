@@ -274,6 +274,9 @@ class boprojectmanager extends soprojectmanager
 		
 		if (($ret = parent::delete($keys)) && $pm_id)
 		{
+			// delete the projectmembers
+			parent::delete_members($pm_id);
+
 			ExecMethod('projectmanager.boprojectelements.delete',array('pm_id' => $pm_id));
 
 			// the following is not really necessary, as it's already one in boprojectelements::delete

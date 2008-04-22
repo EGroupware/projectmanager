@@ -175,6 +175,19 @@ class soprojectmanager extends so_sql
 	}
 	
 	/**
+	 * Delete the projectmembers of one or more projects
+	 *
+	 * @param int/array $pm_id
+	 * @return int number of deleted projectmembers
+	 */
+	function delete_members($pm_id)
+	{
+		$this->db->delete($this->members_table,array('pm_id' => $pm_id),__LINE__,__FILE__,'projectmanager');
+
+		return $this->db->affected_rows();
+	}
+
+	/**
 	 * saves a project
 	 *
 	 * reimplemented to handle custom fields and set modification and creation data
