@@ -7,7 +7,7 @@
  * @package projectmanager
  * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 /**
@@ -21,13 +21,13 @@ class soprojectmanager extends so_sql
 {
 	/**
 	 * Table name 'egw_links'
-	 * 
+	 *
 	 * @var string
 	 */
 	var $links_table = solink::TABLE;
 	/**
 	 * Configuration data
-	 * 
+	 *
 	 * @var array
 	 */
 	var $config = array(
@@ -41,37 +41,37 @@ class soprojectmanager extends so_sql
 	var $customfields;
 	/**
 	 * Name of customefields table
-	 * 
+	 *
 	 * @var string
 	 */
 	var $extra_table = 'egw_pm_extra';
 	/**
 	 * Name of project-members table
-	 * 
+	 *
 	 * @var string
 	 */
 	var $members_table = 'egw_pm_members';
 	/**
 	 * Name of roles table
-	 * 
+	 *
 	 * @var string
 	 */
 	var $roles_table = 'egw_pm_roles';
 	/**
 	 * Join with the members and the roles table to get the role-ACL of the current user
-	 * 
+	 *
 	 * @var string
 	 */
 	var $acl_join;
 	/**
 	 * Extracolumns from the members table
-	 * 
+	 *
 	 * @var array/string
 	 */
 	var $acl_extracols='role_acl';
 	/**
 	 * ACL grants from other users
-	 * 
+	 *
 	 * @var array
 	 */
 	var $grants;
@@ -79,14 +79,14 @@ class soprojectmanager extends so_sql
 
 	/**
 	 * Constructor, calls the constructor of the extended class
-	 * 
+	 *
 	 * @param int $pm_id id of the project to load, default null
 	 * @return soprojectmanger
 	 */
 	function soprojectmanager($pm_id=null)
 	{
 		$this->so_sql('projectmanager','egw_pm_projects',null,'',true);	// true = no need to clone the db-object
-		
+
 		$this->config = config::read('projectmanager');
 		$this->customfields = config::get_customfields('projectmanager');
 		$this->config['duration_format'] = str_replace(',','',$this->config['duration_units']).','.$this->config['hours_per_workday'];
@@ -98,7 +98,7 @@ class soprojectmanager extends so_sql
 		foreach($this->grants as $owner => $rights)
 		{
 			if ($rights) $this->read_grants[] = $owner;		// ANY ACL implies READ!
-			
+
 			if ($rights & EGW_ACL_PRIVATE) $this->private_grants[] = $owner;
 		}
 		$this->acl_join = "LEFT JOIN $this->members_table ON ($this->table_name.pm_id=$this->members_table.pm_id AND member_uid=$this->user) ".
@@ -106,7 +106,7 @@ class soprojectmanager extends so_sql
 
 		if ($pm_id) $this->read($pm_id);
 	}
-	
+
 	/**
 	 * reads a project
 	 *
@@ -142,10 +142,10 @@ class soprojectmanager extends so_sql
 */
 		$this->data['pm_members'] = $this->read_members($this->data['pm_id']);
 		$this->data['role_acl'] = $this->data['pm_members'][$this->user]['role_acl'];
-		
+
 		return $this->data;
 	}
-	
+
 	/**
 	 * Read the projectmembers of one or more projects
 	 *
@@ -163,7 +163,20 @@ class soprojectmanager extends so_sql
 		}
 		return is_array($pm_id) ? $members : $members[$pm_id];
 	}
-	
+
+	/**
+	 * Delete the projectmembers of one or more projects
+	 *
+	 * @param int/array $pm_id
+	 * @return int number of deleted projectmembers
+	 */
+	function delete_members($pm_id)
+	{
+		$this->db->delete($this->members_table,array('pm_id' => $pm_id),__LINE__,__FILE__,'projectmanager');
+
+		return $this->db->affected_rows();
+	}
+
 	/**
 	 * saves a project
 	 *
@@ -175,7 +188,7 @@ class soprojectmanager extends so_sql
 	function save($keys=null)
 	{
 		//echo "soprojectmanager::save(".print_r($keys,true).") this->data="; _debug_array($this->data);
-		
+
 		if (is_array($keys) && count($keys))
 		{
 			$this->data_merge($keys);
@@ -207,13 +220,13 @@ class soprojectmanager extends so_sql
 					'pm_id'      => $this->data['pm_id'],
 					'member_uid' => $uid,
 					'role_id'    => $data['role_id'],
-					'member_availibility' => $data['member_availibility'], 
+					'member_availibility' => $data['member_availibility'],
 				),false,__LINE__,__FILE__,'projectmanager');
 			}
 		}
 		return $this->db->Errno;
 	}
-	
+
 	/**
 	 * merges in new values from the given new data-array
 	 *
@@ -224,7 +237,7 @@ class soprojectmanager extends so_sql
 	function data_merge($new)
 	{
 		parent::data_merge($new);
-		
+
 		if (is_array($this->customfields))
 		{
 			foreach($this->customfields as $name => $data)
@@ -266,14 +279,14 @@ class soprojectmanager extends so_sql
 		if ($join === true)	// add acl-join, to get role_acl of current user
 		{
 			$join = $this->acl_join;
-			
+
 			if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 			$extra_cols = array_merge($extra_cols,array(
 				$this->acl_extracols,
 				$this->table_name.'.pm_id AS pm_id',
 			));
 			if ($only_keys === true) $only_keys='';	// otherwise we use ambigues pm_id
-	
+
 			if (isset($criteria['pm_id']))
 			{
 				$criteria[$this->table_name.'.pm_id'] = $criteria['pm_id'];
@@ -293,7 +306,7 @@ class soprojectmanager extends so_sql
 		{
 /* old code using a sub-query
 			$ids = "SELECT link_id2 FROM $this->links_table WHERE link_app2='projectmanager' AND link_app1='projectmanager'";
-			
+
 			if (is_array($filter['subs_or_mains']))		// sub-projects of given parent-projects
 			{
 				$ids .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
@@ -325,10 +338,10 @@ class soprojectmanager extends so_sql
 			}
 		}
 		unset($filter['subs_or_mains']);
-		
+
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
-	
+
 	/**
 	 * reimplemented to set some defaults and cope with ambigues pm_id column
 	 *
@@ -340,10 +353,10 @@ class soprojectmanager extends so_sql
 	function query_list($value_col='pm_title',$key_col='pm_id',$filter=array('pm_status'=>'active'))
 	{
 		if ($key_col == 'pm_id') $key_col = $this->table_name.'.pm_id AS pm_id';
-		
+
 		return parent::query_list($value_col,$key_col,$filter);
 	}
-	
+
 	/**
 	 * read the general availebility of one or all users
 	 *
@@ -355,9 +368,9 @@ class soprojectmanager extends so_sql
 	function get_availibility($uid=0)
 	{
 		$where = array('pm_id' => 0);
-		
+
 		if ($uid) $where['member_uid'] = $uid;
-		
+
 		$avails = array();
 		foreach($this->db->select($this->members_table,'member_uid,member_availibility',$where,__LINE__,__FILE__,flase,'','projectmanager') as $row)
 		{
@@ -365,7 +378,7 @@ class soprojectmanager extends so_sql
 		}
 		return $avails;
 	}
-	
+
 	/**
 	 * set or delete the general availibility of a user
 	 *

@@ -7,7 +7,7 @@
  * @package projectmanager
  * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectmanager.inc.php');
@@ -21,62 +21,62 @@ define('EGW_ACL_EDIT_BUDGET',EGW_ACL_CUSTOM_2);
  * This class does all the timezone-conversation: All function expect user-time and convert them to server-time
  * before calling the storage object.
  */
-class boprojectmanager extends soprojectmanager 
+class boprojectmanager extends soprojectmanager
 {
 	/**
 	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
-	 * 
+	 *
 	 * @var int/string
 	 */
 	var $debug=false;
 	/**
 	 * File to log debug-messages, ''=echo them
-	 * 
+	 *
 	 * @var string
 	 */
 	var $logfile='/tmp/pm_log';
 	/**
 	 * Timestaps that need to be adjusted to user-time on reading or saving
-	 * 
+	 *
 	 * @var array
 	 */
 	var $timestamps = array(
 		'pm_created','pm_modified','pm_planned_start','pm_planned_end','pm_real_start','pm_real_end',
 	);
 	/**
-	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time 
+	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time
 	 * or substracted from a user-time to get the server-time
-	 * 
+	 *
 	 * @var int
 	 */
 	var $tz_offset_s;
 	/**
 	 * Current time as timestamp in user-time
-	 * 
+	 *
 	 * @var int
 	 */
 	var $now_su;
 	/**
 	 * Instance of the soconstraints-class
-	 * 
+	 *
 	 * @var soconstraints
 	 */
 	var $constraints;
 	/**
 	 * Instance of the somilestones-class
-	 * 
+	 *
 	 * @var somilestones
 	 */
 	var $milestones;
 	/**
 	 * Instance of the soroles-class, not instanciated automatic!
-	 * 
+	 *
 	 * @var soroles
 	 */
 	var $roles;
 	/**
 	 * Atm. projectmanager-admins are identical to eGW admins, this might change in the future
-	 * 
+	 *
 	 * @var boolean
 	 */
 	var $is_admin;
@@ -94,9 +94,9 @@ class boprojectmanager extends soprojectmanager
 
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
-		
+
 		$this->soprojectmanager($pm_id);
-		
+
 		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
 		if (!is_object($GLOBALS['boprojectmanager']))
 		{
@@ -106,10 +106,10 @@ class boprojectmanager extends soprojectmanager
 		$this->is_admin = isset($GLOBALS['egw_info']['user']['apps']['admin']);
 
 		if ($instanciate) $this->instanciate($instanciate);
-		
+
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("boprojectmanager::boprojectmanager($pm_id) finished");
 	}
-	
+
 	/**
 	 * Instanciates some classes which dont get instanciated by default
 	 *
@@ -124,7 +124,7 @@ class boprojectmanager extends soprojectmanager
 			{
 				$this->$class =& CreateObject('projectmanager.'.$pre.$class);
 			}
-		}		
+		}
 	}
 
 	/**
@@ -138,16 +138,16 @@ class boprojectmanager extends soprojectmanager
 	function pe_summary($pm_id=null)
 	{
 		if (is_null($pm_id)) $pm_id = $this->data['pm_id'];
-		
+
 		if (!$pm_id) return array();
-		
+
 		return ExecMethod('projectmanager.boprojectelements.summary',$pm_id);
 	}
 
 	/**
 	 * update a project after a change in one of it's project-elements
 	 *
-	 * If the data and the exact changes gets supplied (see params), 
+	 * If the data and the exact changes gets supplied (see params),
 	 * an whole update or even the update itself might be avoided.
 	 * Not used at the moment!
 	 *
@@ -171,16 +171,16 @@ class boprojectmanager extends soprojectmanager
 		$pe_summary = $this->pe_summary($pm_id);
 
 		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectmanager::update($pm_id,$update_necessary) pe_summary=".print_r($pe_summary,true));
-		
+
 		if (!$this->pe_name2id)
 		{
 			// we need the PM_ id's
 			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
-			
+
 			$ds =& new datasource();
 			$this->pe_name2id = $ds->name2id;
 			unset($ds);
-		}		
+		}
 		$save_necessary = false;
 		foreach($this->pe_name2id as $name => $id)
 		{
@@ -199,9 +199,9 @@ class boprojectmanager extends soprojectmanager
 		if (is_array($save_data) && $save_data['pm_id'])
 		{
 			$this->data = $save_data;
-		}	
+		}
 	}
-	
+
 	/**
 	 * saves a project
 	 *
@@ -241,7 +241,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		return $err;
 	}
-	
+
 	/**
 	 * deletes a project identified by $keys or the loaded one, reimplemented to remove the project-elements too
 	 *
@@ -258,9 +258,12 @@ class boprojectmanager extends soprojectmanager
 			$keys = array('pm_id' => (int) $keys);
 		}
 		$pm_id = is_null($keys) ? $this->data['pm_id'] : $keys['pm_id'];
-		
+
 		if (($ret = parent::delete($keys)) && $pm_id)
 		{
+			// delete the projectmembers
+			parent::delete_members($pm_id);
+
 			ExecMethod2('projectmanager.boprojectelements.delete',array('pm_id' => $pm_id),$delete_sources);
 
 			// the following is not really necessary, as it's already one in boprojectelements::delete
@@ -271,13 +274,13 @@ class boprojectmanager extends soprojectmanager
 
 			// delete all constraints of the project
 			$this->constraints->delete(array('pm_id' => $pm_id));
-	
+
 			// delete all milestones of the project
 			$this->milestones->delete(array('pm_id' => $pm_id));
-			
+
 			// delete all pricelist items of the project
 			$this->pricelist->delete(array('pm_id' => $pm_id));
-			
+
 			// delete all project specific roles
 			$this->roles->delete(array('pm_id' => $pm_id));
 		}
@@ -331,7 +334,7 @@ class boprojectmanager extends soprojectmanager
 
 		return $data;
 	}
-	
+
 	/**
 	 * generate a project-ID / pm_number in the form P-YYYY-nnnn (YYYY=year, nnnn=incrementing number)
 	 *
@@ -354,12 +357,12 @@ class boprojectmanager extends soprojectmanager
 			}
 		}
 		while ($this->not_unique(array('pm_number' => $pm_number)));
-		
+
 		if ($set_data) $this->data['pm_number'] = $pm_number;
-		
+
 		return $pm_number;
 	}
-	
+
 	/**
 	 * checks if the user has enough rights for a certain operation
 	 *
@@ -374,7 +377,7 @@ class boprojectmanager extends soprojectmanager
 	{
 		static $rights = array();
 		$pm_id = (!$data ? $this->data['pm_id'] : (is_array($data) ? $data['pm_id'] : $data));
-		
+
 		if (!$pm_id)	// new entry, everything allowed, but delete
 		{
 			return $required != EGW_ACL_DELETE;
@@ -388,7 +391,7 @@ class boprojectmanager extends soprojectmanager
 					$data_backup =& $this->data; unset($this->data);
 					$data =& $this->read($data);
 					$this->data =& $data_backup; unset($data_backup);
-				
+
 					if (!$data) return null;	// $pm_id not found ==> no rights
 				}
 			}
@@ -398,7 +401,7 @@ class boprojectmanager extends soprojectmanager
 			}
 			// rights come from owner grants or role based acl
 			$rights[$pm_id] = (int) $this->grants[$data['pm_creator']] | (int) $data['role_acl'];
-			
+
 			// for status or times accounting-type (no accounting) remove the budget-rights from everyone
 			if ($data['pm_accounting_type'] == 'status' || $data['pm_accounting_type'] == 'times')
 			{
@@ -415,10 +418,10 @@ class boprojectmanager extends soprojectmanager
 
 		return (boolean) ($rights[$pm_id] & $required);
 	}
-	
+
 	/**
 	 * Read a project
-	 * 
+	 *
 	 * reimplemented to add an acl check
 	 *
 	 * @param array $keys
@@ -436,10 +439,10 @@ class boprojectmanager extends soprojectmanager
 		}
 		return $this->data;
 	}
-	
+
 	/**
 	 * get title for an project identified by $entry
-	 * 
+	 *
 	 * Is called as hook to participate in the linking
 	 *
 	 * @param int/array $entry int pm_id or array with project entry
@@ -460,7 +463,7 @@ class boprojectmanager extends soprojectmanager
 
 	/**
 	 * get titles for multiple project identified by $ids
-	 * 
+	 *
 	 * Is called as hook to participate in the linking
 	 *
 	 * @param int/array $entry int pm_id or array with project entry
@@ -509,7 +512,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * Hook called by link-class to include projectmanager in the appregistry of the linkage
 	 *
@@ -531,10 +534,10 @@ class boprojectmanager extends soprojectmanager
 				'menuaction' => 'projectmanager.uiprojectmanager.edit',
 			),
 			'add_app'    => 'link_app',
-			'add_id'     => 'link_id',		
+			'add_id'     => 'link_id',
 		);
 	}
-	
+
 	/**
 	 * gets all ancestors of a given project (calls itself recursivly)
 	 *
@@ -550,7 +553,7 @@ class boprojectmanager extends soprojectmanager
 		static $ancestors_cache = array();	// some caching
 
 		if (!$pm_id && !($pm_id = $this->pm_id)) return false;
-		
+
 		if (!isset($ancestors_cache[$pm_id]))
 		{
 			$ancestors_cache[$pm_id] = array();
@@ -570,13 +573,13 @@ class boprojectmanager extends soprojectmanager
 					$ancestors_cache[$pm_id][] = $parent;
 					// now we call ourself recursivly to get all parents of the parents
 					$ancestors_cache[$pm_id] =& $this->ancestors($parent,$ancestors_cache[$pm_id]);
-				}			
+				}
 			}
 		}
 		//echo "<p>ancestors($pm_id)=".print_r($ancestors_cache[$pm_id],true)."</p>\n";
 		return array_merge($ancestors,$ancestors_cache[$pm_id]);
 	}
-	
+
 	/**
 	 * gets recursive all children (only projects) of a given project (calls itself recursivly)
 	 *
@@ -592,7 +595,7 @@ class boprojectmanager extends soprojectmanager
 		static $children_cache = array();	// some caching
 
 		if (!$pm_id && !($pm_id = $this->pm_id)) return false;
-		
+
 		if (!isset($children_cache[$pm_id]))
 		{
 			$children_cache[$pm_id] = array();
@@ -612,13 +615,13 @@ class boprojectmanager extends soprojectmanager
 					$children_cache[$pm_id][] = $child;
 					// now we call ourself recursivly to get all parents of the parents
 					$children_cache[$pm_id] =& $this->children($child,$children_cache[$pm_id]);
-				}			
+				}
 			}
 		}
 		//echo "<p>children($pm_id)=".print_r($children_cache[$pm_id],true)."</p>\n";
 		return array_merge($children,$children_cache[$pm_id]);
 	}
-	
+
 	/**
 	 * Query the project-tree from the DB, project tree is indexed by a path consisting of pm_id's delimited by slashes (/)
 	 *
@@ -635,13 +638,13 @@ class boprojectmanager extends soprojectmanager
 			'pm_status,pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
 			//echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents); _debug_array($children);
-			
+
 			// sort the children behind the parents
 			$parents = $both = array();
 			foreach ($projects as $parent)
 			{
 				$both[$parent['path']] = $parent;
-				
+
 				foreach($children as $key => $child)
 				{
 					if ($child['pm_parent'] == $parent['pm_id'])
@@ -659,7 +662,7 @@ class boprojectmanager extends soprojectmanager
 				$child['path'] = '/' . $child['pm_id'];
 				$both[$child['path']] = $child;
 				$parents[] = $child['pm_id'];
-				
+
 			}
 			$projects = $both;
 		}
@@ -681,7 +684,7 @@ class boprojectmanager extends soprojectmanager
 			fclose($f);
 		}
 	}
-	
+
 	/**
 	 * EITHER echos a (preformatted / no-html) debug-message OR logs it to a file
 	 *
@@ -750,7 +753,7 @@ class boprojectmanager extends soprojectmanager
 			return false;
 		}
 		$time_s = $time * 60 / $availibility;
-		
+
 		if (!is_object($this->bocal))
 		{
 			$this->bocal =& CreateObject('calendar.bocal');
@@ -777,7 +780,7 @@ class boprojectmanager extends soprojectmanager
 			$work_start_s = $user_prefs['start_'.$day] * 60;
 			$max_add_s = 60 * $user_prefs['duration_'.$day];
 			$time_of_day_s = $end_s - mktime(0,0,0,date('m',$end_s),date('d',$end_s),date('Y',$end_s));
-			
+
 			// befor workday starts ==> go to start of workday
 			if ($max_add_s && $time_of_day_s < $work_start_s)
 			{
@@ -798,9 +801,9 @@ class boprojectmanager extends soprojectmanager
 				$max_add_s -= $time_of_day_s - $work_start_s;
 			}
 			$add_s = min($max_add_s,$time_s);
-			
+
 			//echo date('D Y-m-d H:i',$end_s)." + ".($add_s/60/60)."h / ".($time_s/60/60)."h<br>\n";
-			
+
 			if ($event)
 			{
 				//echo "<p>checking event $event[title] (".date('Y-m-d H:i',$event['start']).") against end_s=$end_s=".date('Y-m-d H:i',$end_s)." + add_s=$add_s</p>\n";
@@ -821,7 +824,7 @@ class boprojectmanager extends soprojectmanager
 
 		return $end_s;
 	}
-	
+
 	/**
 	 * Copies a project
 	 *
@@ -885,7 +888,7 @@ class boprojectmanager extends soprojectmanager
 		// copying the element tree
 		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
 		$boelements =& new boprojectelements($this->data['pm_id']);
-		
+
 		if (($elements = $boelements->copytree((int) $source)))
 		{
 			// copying the constrains
