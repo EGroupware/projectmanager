@@ -134,6 +134,7 @@ class datasource_projectmanager extends datasource
 		if (!($data['pm_overwrite'] & PM_COMPLETION) && $data['pm_planned_time'] && $data['pm_used_time'])
 		{
 			$ds['pe_completion'] = round(100*$data['pm_used_time']/$data['pm_planned_time']).'%';
+			if ($ds['pe_completion'] > 100) $ds['pe_completion'] = '100%';
 		}
 		elseif (is_numeric($ds['pe_completion']))
 		{
