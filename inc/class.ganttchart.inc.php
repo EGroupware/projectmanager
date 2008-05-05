@@ -542,6 +542,14 @@ class ganttchart extends boprojectelements
 				$start.' AS pe_start',
 				$end.' AS pe_end',
 			);
+			if ($params['cat_id'])
+			{
+				$filter['cat_id'] = $params['cat_id'];
+			}
+			else
+			{
+				unset($filter['cat_id']);
+			}
 		}
 		$filter['pm_id'] = $pm_id;	// this is NOT static
 
@@ -805,6 +813,7 @@ class ganttchart extends boprojectelements
 		}
 		$img = tempnam($tmp,'ganttchart');
 		$img_name = basename($img);
+
 		$map = $this->create($content,$img,'ganttchart');
 		// replace the regular links with popups
 		$map = preg_replace('/href="@(\d+)x(\d+)([^"]+)"/i','href="#" onclick="egw_openWindowCentered2(\'\\3\',\'_blank\',\'dependent=yes,width=\\1,height=\\2,scrollbars=yes,status=yes\'); return false;"'

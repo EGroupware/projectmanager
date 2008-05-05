@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="0.5.002">
+	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="1.5.001">
 		<grid>
 			<columns>
 				<column/>
@@ -11,12 +11,10 @@
 					<html span="all" class="redItalic" id="msg" align="center"/>
 				</row>
 				<row>
-					<groupbox data="" rows="2" cols="5">
+					<groupbox rows="2" cols="5">
 						<caption label="Ganttchart parameter"/>
 						<grid>
 							<columns>
-								<column/>
-								<column/>
 								<column/>
 								<column/>
 								<column/>
@@ -29,30 +27,35 @@
 								<row>
 									<description options=",,,start" value="Startdate"/>
 									<date id="start" onchange="1"/>
-									<description/>
 									<description options=",,,depth" value="Depth of display"/>
 									<menulist>
 										<menupopup no_lang="1" id="depth" onchange="1"/>
 									</menulist>
 									<checkbox label="Planned times" id="planned_times" onchange="1" statustext="Show planned times instead of the real times"/>
 									<description/>
-									<description value="Resources"/>
 									<button label="Update" id="update"/>
 								</row>
 								<row>
 									<description options=",,,end" value="Enddate"/>
 									<date id="end" onchange="1"/>
-									<description/>
 									<description options=",,,filter" value="Status filter"/>
 									<menulist>
 										<menupopup no_lang="1" id="filter" onchange="1"/>
 									</menulist>
 									<checkbox label="Constraints" id="constraints" onchange="1" statustext="Show constraints and milestones"/>
 									<description/>
+									<button label="Synchronise all" id="sync_all" statustext="necessary for project-elements doing that not automatic"/>
+								</row>
+								<row>
+									<description value="Resources"/>
 									<menulist>
 										<menupopup type="select-account" onchange="1" options="All" id="pe_resources"/>
 									</menulist>
-									<button label="Synchronise all" id="sync_all" statustext="necessary for project-elements doing that not automatic"/>
+									<description value="Category"/>
+									<menulist span="3">
+										<menupopup type="select-cat" id="cat_id" options="All" onchange="1"/>
+									</menulist>
+									<description/>
 								</row>
 							</rows>
 						</grid>
