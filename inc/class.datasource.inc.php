@@ -7,7 +7,7 @@
  * @package projectmanager
  * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 /**
@@ -28,7 +28,7 @@ define('PM_USED_BUDGET',16);
 /** int timestamp planned start-date */
 define('PM_PLANNED_START',32);
 /** int timestamp real start-date */
-define('PM_REAL_START',64);		
+define('PM_REAL_START',64);
 /** int timestamp planned end-date */
 define('PM_PLANNED_END',128);
 /** int timestamp real end-date */
@@ -53,7 +53,7 @@ define('PM_ALL_DATA',65535);
 /**
  * DataSource baseclass of the ProjectManager
  *
- * This is the baseclass of all DataSources, each spezific DataSource extends it and implement 
+ * This is the baseclass of all DataSources, each spezific DataSource extends it and implement
  * an own get method.
  *
  * The read method of this class sets (if not set by the get method) the planned start- and endtime:
@@ -103,7 +103,7 @@ class datasource
 		'pl_id'				=> PM_PRICELIST_ID,
 		'pe_unitprice'      => PM_UNITPRICE,
 		'pe_planned_quantity' => PM_PLANNED_QUANTITY,
-		'pe_used_quantity'  => PM_USED_QUANTITY,		
+		'pe_used_quantity'  => PM_USED_QUANTITY,
 	);
 	/**
 	 * @var boprojectelements-object $bo_pe pe object to read other pe's (eg. for constraints)
@@ -119,7 +119,7 @@ class datasource
 	{
 		$this->type = $type;
 	}
-	
+
 	/**
 	 * get an item from the underlaying app and convert applying data ia a datasource array
 	 *
@@ -128,7 +128,7 @@ class datasource
 	 * Not set values mean they are not supported by the datasource.
 	 *
 	 * Reimplent this function for spezial datasource types (not read!)
-	 * 
+	 *
 	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
 	 * @return array/boolean array with the data supported by that source or false on error (eg. not found, not availible)
 	 */
@@ -143,14 +143,14 @@ class datasource
 		}
 		return false;
 	}
-	
+
 	/**
 	 * read an item from a datasource (via the get methode) and try to set (guess) some not supported values
 	 *
 	 * A datasource array can contain values for the keys: completiton, {planned|used}_time, {planned|used}_budget,
 	 *	{planned|real}_start, {planned|real}_end
 	 * Not set values mean they are not supported by the datasource.
-	 * 
+	 *
 	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
 	 * @param array $pe_data data of the project-element or null, eg. to use the constraints
 	 * @return array/boolean array with the data supported by that source or false on error (eg. not found, not availible)
@@ -158,9 +158,9 @@ class datasource
 	function read($data_id,$pe_data=null)
 	{
 		$ds = $this->get($data_id);
-		
+
 		//echo "<p>datasource::read($data_id,$pe_data) ds="; _debug_array($ds);
-		
+
 		if ($ds)
 		{
 			// setting a not set planned start from a contrains
@@ -206,7 +206,7 @@ class datasource
 				}
 				if ($this->bo_pe->project->data['pm_planned_start'] || $this->bo_pe->project->data['pm_real_start'])
 				{
-					$ds['pe_planned_start'] = $this->bo_pe->project->data['pm_planned_start'] ? 
+					$ds['pe_planned_start'] = $this->bo_pe->project->data['pm_planned_start'] ?
 						$this->bo_pe->project->data['pm_planned_start'] : $this->bo_pe->project->data['pm_real_start'];
 					unset($ds['ignore_planned_start']);
 				}
@@ -220,6 +220,15 @@ class datasource
 					//echo "<p>$ds[pe_title] set planned end to ".date('D Y-m-d H:i',$ds['pe_planned_end'])."</p>\n";
 					unset($ds['ignore_planned_end']);
 				}
+			}
+			// calculating the real end-date from the real or planned time
+			if ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] && 
+				($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_planned_time']) && is_object($this->project))
+			{
+				$ds['pe_real_end'] = $this->project->date_add($ds['pe_real_start'],
+					($t = $ds['pe_used_time'] && !$ds['ignore_used_time'] ? $ds['pe_used_time'] : $ds['pe_planned_time']),$ds['pe_resources'][0]);
+				//echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end'])."</p>\n";
+				unset($ds['ignore_real_end']);
 			}
 			// setting real or planned start- or end-date, from each other if not set
 			foreach(array('start','end') as $name)
@@ -254,7 +263,7 @@ class datasource
 			if(!empty($ds['pe_used_budget']) && $ds['pe_planned_budget'] > 0)
 			{
 				$compl_by_budget = $ds['pe_used_budget'] / $ds['pe_planned_budget'];
-			
+
 				// if no completion is given by the datasource use the calculated one
 				if (!isset($ds['pe_completion']))
 				{
@@ -290,11 +299,10 @@ class datasource
 					}
 				}
 			}
-				
 		}
 		return $ds;
 	}
-	
+
 	/**
 	 * reading the not-overwritten values from the element-data
 	 *

@@ -112,13 +112,20 @@ class datasource_projectmanager extends datasource
 		{
 			$data =& $data_id;
 		}
-		// if pm_ds_ignore_elements is set, ignore planned start&end for the element-list (not overwritten)
-		$ds = !$GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'] ? array() :	array(
-			'ignore_planned_start' => !($data['pm_overwrite'] & PM_PLANNED_START),
-			'ignore_planned_end'   => !($data['pm_overwrite'] & PM_PLANNED_END),
-			'ignore_real_start'    => !($data['pm_overwrite'] & PM_REAL_START),
+		// we ignore used time or real ends, comming only from the element list
+		$ds = array(
 			'ignore_real_end'      => !($data['pm_overwrite'] & PM_REAL_END),
+			'ignore_used_time'     => !($data['pm_overwrite'] & PM_USED_TIME),
 		);
+		// if pm_ds_ignore_elements is set, ignore planned start&end for the element-list (not overwritten)
+		if ($GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'])
+		{
+			$ds += array(
+				'ignore_planned_start' => !($data['pm_overwrite'] & PM_PLANNED_START),
+				'ignore_planned_end'   => !($data['pm_overwrite'] & PM_PLANNED_END),
+				'ignore_real_start'    => !($data['pm_overwrite'] & PM_REAL_START),
+			);
+		}
 		foreach($this->name2id as $name => $id)
 		{
 			$pm_name = str_replace('pe_','pm_',$name);
@@ -132,8 +139,16 @@ class datasource_projectmanager extends datasource
 		// return the projectmembers as resources
 		$ds['pe_resources'] = $data['pm_members'] ? array_keys($data['pm_members']) : array($data['pm_creator']);
 		$ds['pe_details'] = $data['pm_description'];
-		if (is_numeric($ds['pe_completion'])) $ds['pe_completion'] .= '%';
 
+		// use completition calculated by times, if completion is only set from the elements
+		if (!($data['pm_overwrite'] & PM_COMPLETION) && $data['pm_planned_time'] && $data['pm_used_time'])
+		{
+			$ds['pe_completion'] = round(100*$data['pm_used_time']/$data['pm_planned_time']).'%';
+		}
+		elseif (is_numeric($ds['pe_completion']))
+		{
+			$ds['pe_completion'] .= '%';
+		}
 		if ((int) $this->debug > 1 || $this->debug == 'get') $this->boprojectmanager->debug_message("datasource_projectmanager::get($data_id) =".print_r($ds,true));
 
 		return $ds;
