@@ -7,7 +7,7 @@
  * @package projectmanager
  * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
@@ -38,7 +38,7 @@ class datasource_projectmanager extends datasource
 	function datasource_projectmanager()
 	{
 		$this->datasource('projectmanager');
-		
+
 		$this->valid = PM_ALL_DATA;
 
 		// we use $GLOBALS['boprojectmanager'] as an already running instance may be availible there
@@ -49,13 +49,13 @@ class datasource_projectmanager extends datasource
 		}
 		$this->boprojectmanager =& $GLOBALS['boprojectmanager'];
 	}
-	
+
 	/**
 	 * read an item from a datasource (via the get methode) and try to set (guess) some not supported values
 	 *
 	 * Reimplemented from the datasource parent to set the start-date of the project itself and call it's sync-all
-	 * method if necessary to move it's elements 
-	 * 
+	 * method if necessary to move it's elements
+	 *
 	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
 	 * @param array $pe_data data of the project-element or null, eg. to use the constraints
 	 * @return array/boolean array with the data supported by that source or false on error (eg. not found, not availible)
@@ -79,7 +79,7 @@ class datasource_projectmanager extends datasource
 			}
 			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
 			$bope =& new boprojectelements($pm_id);
-			
+
 			if (!($bope->project->data['pm_overwrite'] & PM_PLANNED_START))
 			{
 				// set the planned start, as it came from the project elements and then call sync_all to move the elements
@@ -87,7 +87,7 @@ class datasource_projectmanager extends datasource
 				$bope->project->save(null,false,false);	// not modification and NO notification
 				if (($updated_pes = $bope->sync_all()) && ((int) $this->debug > 2 || $this->debug == 'read'))
 				{
-					$this->boprojectmanager->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) $updated_pes elements updated to new project-start $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start']));					
+					$this->boprojectmanager->debug_message("datasource_projectmanager::read(pm_id=$pm_id: $ds[pe_title]) $updated_pes elements updated to new project-start $ds[pe_planned_start]=".date('Y-m-d H:i',$ds['pe_planned_start']));
 				}
 			}
 		}
@@ -96,7 +96,7 @@ class datasource_projectmanager extends datasource
 
 	/**
 	 * get an entry from the underlaying app (if not given) and convert it into a datasource array
-	 * 
+	 *
 	 * @param mixed $data_id id as used in the link-class for that app, or complete entry as array
 	 * @return array/boolean array with the data supported by that source or false on error (eg. not found, not availible)
 	 */
@@ -129,7 +129,7 @@ class datasource_projectmanager extends datasource
 		foreach($this->name2id as $name => $id)
 		{
 			$pm_name = str_replace('pe_','pm_',$name);
-			
+
 			if (isset($data[$pm_name]))
 			{
 				$ds[$name] = $data[$pm_name];
@@ -144,6 +144,7 @@ class datasource_projectmanager extends datasource
 		if (!($data['pm_overwrite'] & PM_COMPLETION) && $data['pm_planned_time'] && $data['pm_used_time'])
 		{
 			$ds['pe_completion'] = round(100*$data['pm_used_time']/$data['pm_planned_time']).'%';
+			if ($ds['pe_completion'] > 100) $ds['pe_completion'] = '100%';
 		}
 		elseif (is_numeric($ds['pe_completion']))
 		{
@@ -153,7 +154,7 @@ class datasource_projectmanager extends datasource
 
 		return $ds;
 	}
-	
+
 	/**
 	 * Copy the datasource of a projectelement (sub-project) and re-link it with project $target
 	 *
@@ -181,7 +182,7 @@ class datasource_projectmanager extends datasource
 
 		return $pm_id ? array($pm_id,$link_id) : false;
 	}
-	
+
 	/**
 	 * Delete the datasource of a project element
 	 *
@@ -192,7 +193,7 @@ class datasource_projectmanager extends datasource
 	{
 		return $this->boprojectmanager->delete($id,true);	// true = propagate the source deletion
 	}
-	
+
 	/**
 	 * Change the status of an infolog entry according to the project status
 	 *
@@ -209,7 +210,7 @@ class datasource_projectmanager extends datasource
 			$Ok = $this->boprojectmanager->save(array('pm_status' => $status)) == 0;
 		}
 		$this->boprojectmanager->data = $data_backup;
-		
+
 		if (!$Ok) return false;
 
 		return ExecMethod2('projectmanager.boprojectelements.run_on_sources','change_status',array('pm_id'=>$id),$status);
