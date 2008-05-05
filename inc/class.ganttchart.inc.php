@@ -5,9 +5,9 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
@@ -93,13 +93,8 @@ if (!defined('PHP_SHLIB_PREFIX'))
 
 /**
  * ProjectManager: Ganttchart creation
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
-class ganttchart extends boprojectelements  
+class ganttchart extends boprojectelements
 {
 	/**
 	 * @var array $public_functions Functions to call via menuaction
@@ -110,7 +105,7 @@ class ganttchart extends boprojectelements
 	);
 	/**
 	 * true if JPGraph version > 1.13
-	 * 
+	 *
 	 * @var boolean
 	 */
 	var $modernJPGraph;
@@ -122,13 +117,13 @@ class ganttchart extends boprojectelements
 	var $charset;
 	/**
 	 * Font used for the Gantt Chart, in the form used by JPGraphs SetFont method
-	 * 
+	 *
 	 * @var string
 	 */
 	var $gantt_font = GANTT_FONT;
 	/**
 	 * Charset used by the above font
-	 * 
+	 *
 	 * @var string
 	 */
 	var $gantt_charset = LANGUAGE_CHARSET;
@@ -152,7 +147,7 @@ class ganttchart extends boprojectelements
 		$this->tmpl =& CreateObject('etemplate.etemplate');
 
 		$php_extension = 'gd';
-		if (!extension_loaded($php_extension) && (!function_exists('dl') || 
+		if (!extension_loaded($php_extension) && (!function_exists('dl') ||
 			!dl(PHP_SHLIB_PREFIX.$php_extension.'.'.PHP_SHLIB_SUFFIX)) ||
 			!function_exists('imagecopyresampled'))
 		{
@@ -182,7 +177,7 @@ class ganttchart extends boprojectelements
 			));
 		}
 		$this->boprojectelements($pm_id);
-		
+
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
@@ -200,14 +195,14 @@ class ganttchart extends boprojectelements
 			$this->gantt_font = FF_VERA;
 		}
 	}
-	
+
 	/**
 	 * Converts text from eGW's internal encoding to something understood by JPGraph / GD
 	 *
 	 * The only working thing I found so far is numeric html-entities from iso-8859-1.
 	 * If you found other encoding do work, please let mit know: RalfBecker-AT-outdoor-training.de
 	 * It would be nice if we could use the full utf-8 charset, if supported by the used font.
-	 * 
+	 *
 	 * @param string $text
 	 * @return string
 	 */
@@ -219,10 +214,10 @@ class ganttchart extends boprojectelements
 		// convert everything above ascii to nummeric html entities
 		// not sure if this is necessary for non iso-8859-1 charsets, try to comment it out if you have problems
 		if ($this->gantt_char_encode) $text = preg_replace('/[^\x00-\x7F]/e', '"&#".ord("$0").";"',$text);
-		
+
 		return $text;
 	}
-	
+
 	/**
 	 * Try to guess a locale supported by the server, with fallback to 'en_EN' and 'C'
 	 *
@@ -232,7 +227,7 @@ class ganttchart extends boprojectelements
 	{
 		$lang = $this->prefs['common']['lang'];
 		$country = $this->prefs['common']['country'];
-		
+
 		if (strlen($lang) == 2)
 		{
 			$country_from_lang = strtoupper($lang);
@@ -246,7 +241,7 @@ class ganttchart extends boprojectelements
 		if (setlocale(LC_ALL,$locale=$lang.'_'.$country_from_lang)) return $locale;
 		if (setlocale(LC_ALL,$locale=$lang)) return $locale;
 		if (setlocale(LC_ALL,$locale='en_EN')) return $locale;
-		
+
 		return 'C';
 	}
 
@@ -263,13 +258,13 @@ class ganttchart extends boprojectelements
 	{
 		// create new graph object
 		$graph =& new GanttGraph($width,-1,'auto');
-		
+
 		$graph->SetShadow();
-		$graph->SetBox();	
+		$graph->SetBox();
 
 		// set the start and end date
 		$graph->SetDateRange(date('Y-m-d',$start), date('Y-m-d',$end));
-		
+
 		// some localizations
 		if ($this->modernJPGraph)
 		{
@@ -278,7 +273,7 @@ class ganttchart extends boprojectelements
 		elseif ($this->prefs['common']['lang'] == 'de')
 		{
 			$graph->scale->SetDateLocale(LOCALE_DE);	// others use english
-		}		
+		}
 		// set start-day of the week from the cal-pref weekdaystarts
 		$weekdaystarts2day = array(
 			'Sunday'   => 0,
@@ -335,19 +330,19 @@ class ganttchart extends boprojectelements
 		{
 			$graph->ShowHeaders(GANTT_HYEAR | GANTT_HMONTH);
 		}
-		// Change the font scale 
+		// Change the font scale
 		$graph->scale->week->SetFont($this->gantt_font,FS_NORMAL,8);
 		$graph->scale->year->SetFont($this->gantt_font,GANTT_STYLE,10);
-		
+
 		// Title & subtitle
 		$graph->title->Set($this->text_encode($title));
 		$graph->title->SetFont($this->gantt_font,GANTT_STYLE,12);
 		$graph->subtitle->Set($this->text_encode($subtitle));
 		$graph->subtitle->SetFont($this->gantt_font,FS_NORMAL,10);
-		
+
 		return $graph;
 	}
-	
+
 	/**
 	 * Ganttbar for a project
 	 *
@@ -379,7 +374,7 @@ class ganttchart extends boprojectelements
 		// set project-specific attributes: bold, solid bar, ...
 		$bar->title->SetFont($this->gantt_font,GANTT_STYLE,!$level ? 9 : 8);
 		$bar->SetPattern(BAND_SOLID,"#9999FF");
-		
+
 		if ($this->modernJPGraph && !$pe['pe_id'])	// main-project
 		{
 			$link = $GLOBALS['egw']->link('/index.php',array(
@@ -387,13 +382,13 @@ class ganttchart extends boprojectelements
 				'pm_id'      => $pe['pm_id'],
 			));
 			$title = lang('View this project');
-			
+
 			$bar->SetCSIMTarget($link,$title);
 			$bar->title->SetCSIMTarget($link,$title);
 		}
 		return $bar;
 	}
-	
+
 	/**
 	 * Ganttbar for a project-element
 	 *
@@ -411,14 +406,14 @@ class ganttchart extends boprojectelements
 			list(,$title) = explode(': ',$pe['pe_title'],2);
 		}
 		if (!$title) $title = $pe['pe_title'];
-		
-		if ((int) $this->debug >= 1) 
+
+		if ((int) $this->debug >= 1)
 		{
 			echo "<p>GanttBar($line,'".($level ? str_repeat(' ',$level) : '').
 				$this->text_encode($title).'   '."','".
 				date('Y-m-d H:i',$pe['pe_start'])."','".date('Y-m-d H:i',$pe['pe_end'])."','".
 				round($pe['pe_completion']).'%'."',0.5)</p>\n";
-		}		
+		}
 		if (!$this->modernJPGraph)	// for an old JPGraph we have to clip the bar ourself
 		{
 			if ($pe['pe_start'] < $this->scale_start) $pe['pe_start'] = $this->scale_start;
@@ -430,10 +425,10 @@ class ganttchart extends boprojectelements
 			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_start']),
 			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_end']),
 			round($pe['pe_completion']).'%',0.5);
-			
+
 		$bar->progress->Set($pe['pe_completion']/100);
 		$bar->progress->SetHeight(0.5);
-		
+
 		if ($this->modernJPGraph && $pe['pe_id'])
 		{
 			$bar->SetCSIMTarget('@600x450'.$GLOBALS['egw']->link('/index.php',array(	// @ = popup
@@ -441,7 +436,7 @@ class ganttchart extends boprojectelements
 				'pm_id'      => $pe['pm_id'],
 				'pe_id'      => $pe['pe_id'],
 			)),$pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element'));
-			
+
 			if (($popup = $GLOBALS['egw']->link->is_popup($pe['pe_app']))) $popup = '@'.$popup;
 			$bar->title->SetCSIMTarget($popup.$GLOBALS['egw']->link('/index.php',$this->link->view($pe['pe_app'],$pe['pe_app_id'])),
 				lang('View this element in %1',lang($pe['pe_app'])));
@@ -461,7 +456,7 @@ class ganttchart extends boprojectelements
 	 */
 	function &milestone2bar($milestone,$level,$line)
 	{
-		if ((int) $this->debug >= 1) 
+		if ((int) $this->debug >= 1)
 		{
 		 	echo "<p>MileStone($line,'$milestone[ms_title],".
 		 		date('Y-m-d',$milestone['ms_date']).','.
@@ -471,7 +466,7 @@ class ganttchart extends boprojectelements
 			$this->text_encode($milestone['ms_title']),
 			date('Y-m-d',$milestone['ms_date']),
 			date($this->prefs['common']['dateformat'],$milestone['ms_date']));
-		
+
 		$ms->title->SetFont($this->gantt_font,FS_ITALIC,8);
 		$ms->title->SetColor('blue');
 		$ms->mark->SetColor('black');
@@ -556,7 +551,7 @@ class ganttchart extends boprojectelements
 		{
 			//echo "$line: ".print_r($pe,true)."<br>\n";
 			if (!$pe) continue;
-			
+
 			$pe_id = $pe['pe_id'];
 			$pe_id2line[$pe_id] = $line;	// need to remember the line to draw the constraints
 			$pes[$pe_id] = $pe;
@@ -581,7 +576,7 @@ class ganttchart extends boprojectelements
 			foreach((array)$this->milestones->search(array(),'pm_id,ms_id,ms_title,ms_date','ms_date','','',false,'AND',false,array(
 				'pm_id' => $pm_id,
 				(int)$this->scale_start.' <= ms_date',
-				'ms_date <= '.(int)$this->scale_end, 
+				'ms_date <= '.(int)$this->scale_end,
 			)) as $milestone)
 			{
 				if (!$milestone || !($ms_id = $milestone['ms_id'])) continue;
@@ -597,7 +592,7 @@ class ganttchart extends boprojectelements
 				if (isset($bars[$pe_id]))
 				{
 					$bar =& $bars[$pe_id];
-					
+
 					if ($constraint['pe_id_start'] && isset($pe_id2line[$constraint['pe_id_start']]))
 					{
 						// show violated constrains in red
@@ -646,9 +641,11 @@ class ganttchart extends boprojectelements
 				{
 					continue;
 				}
+				// set used start- and end-times of the project
+				$this->_set_start_end($this->project->data,$params['planned_times']);
 			}
 			$graph->Add($this->project2bar($this->project->data,0,$line++,$params['planned_times']));
-	
+
 			if ($params['depth'] > 0)
 			{
 				$this->add_elements($this->project->data['pm_id'],$params,$line,$bars);
@@ -659,10 +656,10 @@ class ganttchart extends boprojectelements
 			$graph->Add($bar);
 		}
 		if (!$this->debug) $graph->Stroke($filename);
-		
+
 		if ($filename && $imagemap) return $graph->GetHTMLImageMap($imagemap);
 	}
-	
+
 	/**
 	 * read the ganttchart params from the URL
 	 *
@@ -672,7 +669,7 @@ class ganttchart extends boprojectelements
 	function url2params($params = array())
 	{
 		if ((int) $this->debug >= 1) echo "<p>ganttchart::url2params(".print_r($params,true).")</p>\n";
-		
+
 		if (!count($params))
 		{
 			if (!($params = $GLOBALS['egw']->session->appsession('ganttchart','projectmanager')))
@@ -680,9 +677,9 @@ class ganttchart extends boprojectelements
 				$params = array(				// some defaults, if called the first time
 					'constraints' => true,
 				);
-			}			
+			}
 			// check if project changed => not use start and end
-			if ($params['pm_id'] != $this->project->data['pm_id'])
+			if ((int)$params['pm_id'] != $this->project->data['pm_id'])
 			{
 				$params['pm_id'] = $this->project->data['pm_id'];
 				unset($params['start']);
@@ -690,17 +687,11 @@ class ganttchart extends boprojectelements
 			}
 		}
 		$data =& $this->project->data;
+		// set used start- and end-times of the project
+		$this->_set_start_end($data,$params['planned_times']);
+
 		foreach(array('start','end') as $var)
 		{
-			// set used start- and end-times of the project
-			if ($params['planned_times'] && $data['pe_planned_'.$var] || !$data['pe_real_'.$var])
-			{
-				$data['pm_'.$var] = $data['pm_planned_'.$var];
-			}
-			else
-			{
-				$data['pm_'.$var] = $data['pm_real_'.$var];
-			}
 			// set start- and end-times of the ganttchart
 			if (isset($_GET[$var]))
 			{
@@ -719,7 +710,7 @@ class ganttchart extends boprojectelements
 				$params[$var] = $var == 'start' ? date('Y-m-1') : date('Y-m-1',time()+61*24*60*60);
 			}
 			$params[$var] = is_numeric($params[$var]) ? (int) $params[$var] : strtotime($params[$var]);
-			
+
 			if ((int) $this->debug >= 1) echo "<p>$var=".$params[$var].'='.date('Y-m-d',$params[$var])."</p>\n";
 		}
 		if ((int) $_GET['width'])
@@ -728,7 +719,7 @@ class ganttchart extends boprojectelements
 		}
 		else
 		{
-			$params['width'] = $this->tmpl->innerWidth - 
+			$params['width'] = $this->tmpl->innerWidth -
 				($this->prefs['common']['auto_hide_sidebox'] ? 60 : 245);
 		}
 		if (!isset($params['pm_id']) && $this->project->data['pm_id'])
@@ -736,7 +727,7 @@ class ganttchart extends boprojectelements
 			$params['pm_id'] = $this->project->data['pm_id'];
 		}
 		if (!isset($params['depth'])) $params['depth'] = 1;
-		
+
 		if ($_GET['pm_id'] && !is_numeric($_GET['pm_id']))
 		{
 			$params['pm_id'] = $_GET['pm_id'];
@@ -744,13 +735,34 @@ class ganttchart extends boprojectelements
 		$GLOBALS['egw']->session->appsession('ganttchart','projectmanager',$params);
 		if ((int) $this->debug >= 1) _debug_array($params);
 
-		return $params;		
+		return $params;
 	}
-	
+
+	/**
+	 * set used start- and end-times of the project
+	 *
+	 * @param array &$data
+	 * @param boolean $planned_times use planned or real times, fallback to the other if not set
+	 */
+	private function _set_start_end(&$data,$planned_times)
+	{
+		foreach(array('start','end') as $var)
+		{
+			if ($planned_times && $data['pe_planned_'.$var] || !$data['pe_real_'.$var])
+			{
+				$data['pm_'.$var] = $data['pm_planned_'.$var];
+			}
+			else
+			{
+				$data['pm_'.$var] = $data['pm_real_'.$var];
+			}
+		}
+	}
+
 	/**
 	 * Return message to install a new jpgraph version
 	 *
-	 * @static 
+	 * @static
 	 * @return string/boolean message or false if a new version is installed
 	 */
 	function msg_install_new_jpgraph()
@@ -775,7 +787,7 @@ class ganttchart extends boprojectelements
 		{
 			$msg = lang('%1 element(s) updated',$this->sync_all());
 			unset($content['sync_all']);
-		}		
+		}
 		// run $_GET[msg] through htmlspecialchars, as we output it raw, to allow the link in the jpgraph message.
 		if (!$msg) $msg = $this->tmpl->html->htmlspecialchars($_GET['msg']);
 
@@ -785,7 +797,7 @@ class ganttchart extends boprojectelements
 		}
 		unset($content['update']);
 		$content = $this->url2params($content);
-	
+
 		$tmp = $GLOBALS['egw_info']['server']['temp_dir'];
 		if (!is_dir($tmp) || !is_writable($tmp))
 		{
@@ -797,13 +809,13 @@ class ganttchart extends boprojectelements
 		// replace the regular links with popups
 		$map = preg_replace('/href="@(\d+)x(\d+)([^"]+)"/i','href="#" onclick="egw_openWindowCentered2(\'\\3\',\'_blank\',\'dependent=yes,width=\\1,height=\\2,scrollbars=yes,status=yes\'); return false;"'
 		,$map);
-		
+
 		$content['ganttchart'] = $GLOBALS['egw']->link('/projectmanager/ganttchart.php',$content+array(
 			'img'   => $img_name,
 		));
 		$content['map'] = $map;
 		$content['msg'] = $msg;
-		
+
 		$sel_options = array(
 			'depth' => array(
 				0  => '0: '.lang('Mainproject only'),
