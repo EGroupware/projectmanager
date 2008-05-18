@@ -5,9 +5,9 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectelements.inc.php');
@@ -19,64 +19,64 @@ class boprojectelements extends soprojectelements
 {
 	/**
 	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
-	 * 
+	 *
 	 * @var int/string
 	 */
 	var $debug=false;
 	/**
 	 * Instance of the boprojectmanager-class
-	 * 
+	 *
 	 * @var boprojectmanager
 	 */
 	var $project;
 	/**
 	 * Summary information of the current project
-	 * 
+	 *
 	 * @var array
 	 */
 	var $project_summary;
 	/**
 	 * Instance of the soconstraints-class
-	 * 
+	 *
 	 * @var soconstraints
 	 */
 	var $constraints;
 	/**
 	 * Instance of the somilestones-class
-	 * 
+	 *
 	 * @var somilestones
 	 */
 	var $milestones;
 	/**
 	 * Instances of the different datasources
-	 * 
+	 *
 	 * @var array
 	 */
 	var $datasources = array();
 	/**
 	 * Timestaps that need to be adjusted to user-time on reading or saving
-	 * 
+	 *
 	 * @var array
 	 */
 	var $timestamps = array(
 		'pe_synced','pe_modified','pe_planned_start','pe_real_start','pe_planned_end','pe_real_end',
 	);
 	/**
-	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time 
+	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time
 	 * or substracted from a user-time to get the server-time
-	 * 
+	 *
 	 * @var int
 	 */
 	var $tz_offset_s;
 	/**
 	 * Current time as timestamp in user-time
-	 * 
+	 *
 	 * @var int
 	 */
 	var $now_su;
 	/**
 	 * Translates filter-values to allowed stati
-	 * 
+	 *
 	 * @var array
 	 */
 	var $status_filter = array(
@@ -87,14 +87,14 @@ class boprojectelements extends soprojectelements
 	);
 	/**
 	 * Or'ed id's of the values set by the last call to the updated method
-	 * 
+	 *
 	 * @var int
 	 */
 	var $updated = 0;
 
 	/**
 	 * Constructor, class the constructor of the extended class
-	 * 
+	 *
 	 * @param int $pm_id pm_id of the project to use, default null
 	 * @param int $pe_id pe_id of the project-element to load, default null
 	 * @return boprojectelements
@@ -103,18 +103,18 @@ class boprojectelements extends soprojectelements
 	{
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
-		
+
 		$this->soprojectelements($pm_id,$pe_id);
-		
+
 		$this->project =& CreateObject('projectmanager.boprojectmanager',$pm_id);
 		$this->config =& $this->project->config;
-		
+
 		$this->project->instanciate('constraints,milestones');
 		$this->constraints =& $this->project->constraints;
 		$this->milestones  =& $this->project->milestones;
-		
+
 		$this->project_summary = $this->summary();
-		
+
 		if ((int)$this->debug >= 3 || $this->debug == 'boprojectelements')
 		{
 			$this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
@@ -125,7 +125,7 @@ class boprojectelements extends soprojectelements
 			$GLOBALS['boprojectselements'] =& $this;
 		}
 	}
-	
+
 	/**
 	 * receives notifications from the link-class: new, deleted links to pm entries, or updated content of linked entries
 	 *
@@ -167,7 +167,7 @@ class boprojectelements extends soprojectelements
 			case 'unlink':
 				$this->delete(array('pm_id' => $data['id'],'pe_id' => $data['link_id']));
 				break;
-				
+
 		}
 	}
 
@@ -188,7 +188,7 @@ class boprojectelements extends soprojectelements
 	function &update($app,$id,$pe_id=0,$pm_id=null,$update_project=true)
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
-		
+
 		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectelements::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 
 		if (!$app || !$id || !(int) $pm_id)
@@ -203,9 +203,9 @@ class boprojectelements extends soprojectelements
 			$this->data['pm_id'] = $pm_id;
 			$this->data['pe_id'] = $pe_id;
 			$this->data['pe_overwrite'] = 0;		// none set so far
-			
+
 			// only set status if it's not set by the datasource
-			if (!isset($this->data['pe_status'])) 
+			if (!isset($this->data['pe_status']))
 			{
 				$this->data['pe_status']= 'new';
 			}
@@ -233,7 +233,7 @@ class boprojectelements extends soprojectelements
 			}
 		}
 		$this->data['pe_synced'] = $this->now_su;
-		
+
 		if((int) $pe_id && ($need_save_anyway || $this->updated))
 		{
 			$this->save(null,false,$update_project ? $this->updated & ~PM_TITLE & ~PM_DETAILS & ~PM_RESOURCES : 0);	// dont set modified, only synced
@@ -245,7 +245,7 @@ class boprojectelements extends soprojectelements
 	 * sync all project-elements
 	 *
 	 * The sync of the elements is done by calling the update-method for each (not ignored) element
-	 * in the order of their planned starts and after that calling the projects update methode only 
+	 * in the order of their planned starts and after that calling the projects update methode only
 	 * once if necessary!
 	 *
 	 * @param int $pm_id=null id of project to use, default null=use $this->pm_id
@@ -258,7 +258,7 @@ class boprojectelements extends soprojectelements
 			$GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'] = array();
 		}
 		if (!$pm_id && !($pm_id = $this->pm_id)) return 0;
-		
+
 		if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("boprojectelements::sync_all(pm_id=$pm_id)");
 
 		if ($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id])	// project already visited
@@ -267,15 +267,15 @@ class boprojectelements extends soprojectelements
 			return 0;							// no further recursion, might lead to an infinit loop
 		}
 		$GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id] = true;
-		
+
 		$save_project = $this->project->data;
-		
+
 		$updated = $update_project = 0;
 		++$GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'];
 		foreach((array) $this->search(array('pm_id'=>$pm_id,"pe_status != 'ignore'"),false,'pe_planned_start') as $data)
 		{
 			$this->update($data['pe_app'],$data['pe_app_id'],$data['pe_id'],$pm_id,false);
-			
+
 			$update_project |= $this->updated & ~PM_TITLE;
 			if ($this->updated) $updated++;
 		}
@@ -307,7 +307,7 @@ class boprojectelements extends soprojectelements
 	{
 		$pe_id = is_array($data) ? $data['pe_id'] : ($data ? $data : $this->data['pe_id']);
 		$pm_id = is_array($data) ? $data['pm_id'] : ($data ? 0 : $this->data['pm_id']);
-		
+
 		if (!$pe_id && (!$pm_id || $required == EGW_ACL_DELETE))
 		{
 			return false;
@@ -317,9 +317,9 @@ class boprojectelements extends soprojectelements
 			$data_backup =& $this->data; unset($this->data);
 			$data =& $this->read($pe_id);
 			$this->data =& $data_backup; unset($data_backup);
-		
+
 			if (!$data) return false;	// not found ==> no rights
-			
+
 			$pm_id = $data['pm_id'];
 		}
 		if ($required == EGW_ACL_EDIT ||$required ==  EGW_ACL_DELETE)
@@ -328,11 +328,11 @@ class boprojectelements extends soprojectelements
 		}
 		return $this->project->check_acl($required,$pm_id);
 	}
-	
+
 	/**
 	 * Get reference to instance of the datasource used for $app
 	 *
-	 * The class has to be named datasource_$app and is search first in the App's inc-dir and then in the one of 
+	 * The class has to be named datasource_$app and is search first in the App's inc-dir and then in the one of
 	 * ProjectManager. If it's not found PM's datasource baseclass is used.
 	 *
 	 * @param string $app appname
@@ -341,18 +341,21 @@ class boprojectelements extends soprojectelements
 	function &datasource($app)
 	{
 		if (!isset($this->datasources[$app]))
-		{		
-			if (!file_exists($classfile = EGW_INCLUDE_ROOT.'/'.$app.'/inc/class.'.($class='datasource_'.$app).'.inc.php') &&
-				!file_exists($classfile = EGW_INCLUDE_ROOT.'/projectmanager/inc/class.'.($class='datasource_'.$app).'.inc.php'))
+		{
+			if (!class_exists($class = $app.'_datasource'))		// if datasource can NOT be autoloaded --> try include the old names
 			{
-				$classfile = EGW_INCLUDE_ROOT.'/projectmanager/inc/class.'.($class='datasource').'.inc.php';
+				if (!file_exists($classfile = EGW_INCLUDE_ROOT.'/'.$app.'/inc/class.'.($class='datasource_'.$app).'.inc.php') &&
+					!file_exists($classfile = EGW_INCLUDE_ROOT.'/projectmanager/inc/class.'.($class='datasource_'.$app).'.inc.php'))
+				{
+					$classfile = EGW_INCLUDE_ROOT.'/projectmanager/inc/class.'.($class='datasource').'.inc.php';
+				}
+				include_once($classfile);
 			}
-			include_once($classfile);
 			$this->datasources[$app] =& new $class($app);
-			// make the project availible for the datasource
+			// make the project available for the datasource
 			$this->datasources[$app]->project =& $this->project;
 		}
-		return $this->datasources[$app];	
+		return $this->datasources[$app];
 	}
 
 	/**
@@ -418,7 +421,7 @@ class boprojectelements extends soprojectelements
 		}
 		return $data;
 	}
-	
+
 	/**
 	 * saves an project-element, reimplemented from SO, to save the remark in the link, if $keys['update_remark']
 	 *
@@ -438,7 +441,7 @@ class boprojectelements extends soprojectelements
 			egw_link::update_remark($this->data['pe_id'],$this->data['pe_remark']);
 		}
 		if ($keys) $this->data_merge($keys);
-		
+
 		if ($touch_modified || !$this->data['pe_modified'] || !$this->data['pe_modifier'])
 		{
 			$this->data['pe_modified'] = $this->now_su;
@@ -455,7 +458,7 @@ class boprojectelements extends soprojectelements
 					'pe_id' => $this->data['pe_id'],
 				) + $this->data['pe_constraints']);
 			}
-			if ($update_project) 
+			if ($update_project)
 			{
 				$this->project->update($this->data['pm_id'],$update_project,$this->data);
 			}
@@ -493,30 +496,30 @@ class boprojectelements extends soprojectelements
 			$this->run_on_sources('delete',$keys);
 		}
 		$ret = parent::delete($keys);
-		
+
 		if ($pe_id)
 		{
 			// delete one link
 			egw_link::unlink($pe_id);
 			// update the project
 			$this->project->update($pm_id);
-			
+
 			$this->constraints->delete(array('pe_id' => $pe_id));
 		}
 		elseif ($pm_id)
 		{
 			// delete all links to project $pm_id
 			egw_link::unlink(0,'projectmanager',$pm_id);
-		}	
+		}
 		return $ret;
 	}
-	
+
 	/**
 	 * reads row matched by key and puts all cols in the data array, reimplemented to also read the constraints
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
 	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
-	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or 
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or
 	 * @return array/boolean data if row could be retrived else False
 	*/
 	function read($keys,$extra_cols='',$join=true)
@@ -531,7 +534,7 @@ class boprojectelements extends soprojectelements
 		));
 		return $this->data;
 	}
-	
+
 	/**
 	 * reads the titles of all project-elements specified by $keys
 	 *
@@ -574,12 +577,12 @@ class boprojectelements extends soprojectelements
 
 		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start,pe_title');
 		if (!$elements) return array();
-		
+
 		$copied = array();
 		foreach($elements as $element)
 		{
 			$ds =& $this->datasource($element['pe_app']);
-			
+
 			if (method_exists($ds,'copy'))
 			{
 				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("copying $element[pe_app]:$element[pe_app_id] $element[pe_title]");
@@ -619,9 +622,9 @@ class boprojectelements extends soprojectelements
 					$this->data[$name] = $element[$name];
 					$need_save = true;
 				}
-			}	
+			}
 			if ($need_save) $this->save(null,true,false);
-			
+
 			$copied[$element['pe_id']] = $link_id;
 		}
 		// now we do one update of our project
@@ -645,12 +648,12 @@ class boprojectelements extends soprojectelements
 
 		$elements =& $this->search($keys,array('pe_id','pe_title'),'pe_planned_start');
 		if (!$elements) return true;
-		
+
 		$Ok = true;
 		foreach($elements as $element)
 		{
 			$ds =& $this->datasource($element['pe_app']);
-			
+
 			if (method_exists($ds,$method))
 			{
 				if ((int) $this->debug >= 3 || $this->debug == 'run_on_sources') $this->debug_message("calling $method for $element[pe_app]:$element[pe_app_id] $element[pe_title]");
@@ -662,7 +665,7 @@ class boprojectelements extends soprojectelements
 
 	/**
 	 * Search elements
-	 * 
+	 *
 	 * Reimplemented to cumulate eg. timesheets in also included infologs, if $filter['cumulate'] is true.
 	 *
 	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
@@ -700,7 +703,7 @@ class boprojectelements extends soprojectelements
 			}
 		}
 		$rows = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
-		
+
 		if ($rows && $cumulate)
 		{
 			// get the pe_id of all returned rows
