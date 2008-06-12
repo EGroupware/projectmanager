@@ -756,7 +756,7 @@ class boprojectmanager extends soprojectmanager
 
 		if (!is_object($this->bocal))
 		{
-			$this->bocal =& CreateObject('calendar.bocal');
+			$this->bocal = new calendar_bo();
 		}
 		$events =& $this->bocal->search(array(
 			'start' => $start,
