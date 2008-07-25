@@ -52,6 +52,7 @@ cumulated elements too	projectmanager	es-es	También los elementos acumulados
 custom fields	projectmanager	es-es	Campos personalizados
 customer title	projectmanager	es-es	Cargo del cliente
 datasource	projectmanager	es-es	Fuente de datos
+datasources too	projectmanager	es-es	también las fuentes de datos
 dates	projectmanager	es-es	Fechas
 default all and a selectbox to choose	projectmanager	es-es	predeterminar todo y una lista desplegable para elegir
 delete all checked projects	projectmanager	es-es	Borrar todos los proyectos seleccionados
@@ -116,6 +117,8 @@ hours	projectmanager	es-es	horas
 hours per workday	projectmanager	es-es	Horas por día de trabajo
 how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	es-es	Si se selecciona, también se borran los elementos de origen (p. ej, entradas InfoLog).
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	es-es	Si se selecciona, también se cambiará el estado de los elementos de origen (p. ej, entradas InfoLog).
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	es-es	Si ve entidades (p. ej. {) en el diagrama de Gantt, desactive esta opción.
 ignore that entry	projectmanager	es-es	ignorar esa entrada
 ignored	projectmanager	es-es	ignorado
