@@ -1,7 +1,7 @@
 %1 element(s) updated	projectmanager	ru	%1 элемент(ов) обновлен(о)
 %1 new project-elements imported	projectmanager	ru	%1 новых элементов проекта импортированы
 %1 projects deleted	projectmanager	ru	%1 проектов удалено
-%1 times permission denied, %2 projects deleted	projectmanager	ru	%1 раза доступ запрещен, %2 проектов удалено
+%1 times permission denied, %2 projects deleted	projectmanager	ru	%1 раз(а) доступ запрещен, %2 проект(а,ов) удалено
 - planned	projectmanager	ru	- запланировано
 0ngoing (0 < % < 100)	projectmanager	ru	в процессе (0 <%<100)
 a describtive title for the project, must not be empty	projectmanager	ru	Описние для проекта должно быть заполнено
@@ -37,6 +37,7 @@ budget (no pricelist)	projectmanager	ru	Бюджет (без прайслист�
 budget and pricelist	projectmanager	ru	Бюджет и прайслист
 by	projectmanager	ru	к
 calculate budget by quantity (eg. time) and price	projectmanager	ru	Посчитать бюджет по количеству (напр. время (раз?)) и цене
+charset of the above selected font	projectmanager	ru	Таблица символов выбранного выше шрифта
 check all	projectmanager	ru	Отметить все
 close the window, discard the changes made	projectmanager	ru	Закрыть окно, отменив внесенные изменения
 constraints	projectmanager	ru	Ограничения
@@ -51,6 +52,7 @@ cumulated elements too	projectmanager	ru	Сводные элементы так�
 custom fields	projectmanager	ru	Пользовательские Поля
 customer title	projectmanager	ru	Пользовательские названия
 datasource	projectmanager	ru	Источник данных
+datasources too	projectmanager	ru	также источники данных
 dates	projectmanager	ru	Даты
 default all and a selectbox to choose	projectmanager	ru	все по умолчанию и список для выбора
 delete all checked projects	projectmanager	ru	Удалить все отмеченные проекты
@@ -79,7 +81,8 @@ elementlist	projectmanager	ru	Список элементов
 elements of elements	projectmanager	ru	Элементы элементов
 elements that can't start before this one is finished	projectmanager	ru	Элементы, которые не могут начаться перед тем, как этот завершится
 elements which have to be finished before this can start	projectmanager	ru	Элементы, которые должны завершиться перед тем, как этот начнется
-empty	projectmanager	ru	Пусто
+empty	projectmanager	ru	Пусто(очистить)
+encode non-ascii	projectmanager	ru	Кодировать как не-ascii
 end before	projectmanager	ru	Завершить до
 enddate	projectmanager	ru	Дата завершения
 error: deleting price !!!	projectmanager	ru	Ошибка: удаление цены !!!
@@ -95,6 +98,11 @@ error: saving the project-element (%1) !!!	projectmanager	ru	Ошибка: со�
 everything recursive	projectmanager	ru	Всё рекурсивно
 existing links	projectmanager	ru	Существующие ссылки
 exit without saving	projectmanager	ru	Выйти без сохранения
+font	projectmanager	ru	Шрифт
+font charset	projectmanager	ru	Таблица символов шрифта
+font style	projectmanager	ru	Стиль шрифта
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	ru	Шрифт для использования в диаграмме Гантта, в поставке Менеджера проекта включен только шрифт Vera.
+fontfile '%1' not found!!!	projectmanager	ru	Файл шрифта '%1' не найден!!!
 free descriptiv text	projectmanager	ru	свободный описательный текст
 from %1 to %2	projectmanager	ru	от %1 до%2
 full access	projectmanager	ru	полный доступ
@@ -109,8 +117,11 @@ hours	projectmanager	ru	часы
 hours per workday	projectmanager	ru	Часов в рабочем дне
 how long do you work on the given day.	projectmanager	ru	Сколько вы работаете в данный день.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	ru	Как должно отображаться выбор проекта в меню: Дерево даёт лучший осмотр, Выбор даёт лучший результат.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также будут удалены.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также изменят свое состояние.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ru	Если вы видите объекты (напр. {) в диаграмме Гантта, выключите.
 ignore that entry	projectmanager	ru	игнорировать эту запись
-ignored	projectmanager	ru	игнорировано
+ignored	projectmanager	ru	игнорируется
 last modified	projectmanager	ru	последнее изменение
 leave it empty if you dont need a different customer title	projectmanager	ru	оставить незаполненным, если Вам не нужно другое пользовательское название
 leave it empty to have one generated	projectmanager	ru	оставьте это незаполненным для того, чтобы было сгенерировано
@@ -130,7 +141,7 @@ necessary for project-elements doing that not automatic	projectmanager	ru	нео
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	ru	Необходимые расширения PHP %1 не загружен и не может быть загружен !!!
 new	projectmanager	ru	новый
 no accounting, only status	projectmanager	ru	Без учета, только состояние
-no accounting, only times and status	projectmanager	ru	Без учета,только количество раз и статус
+no accounting, only times and status	projectmanager	ru	Без учета, только затраты времени и статус
 no details	projectmanager	ru	без подробного описанияя
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	ru	не читается доступ к источнику данных,удаление перезаписанныз величин только очистит их
 no save necessary	projectmanager	ru	Сохранение не обязательно
@@ -186,7 +197,7 @@ share on the whole project	projectmanager	ru	Доля в проекте
 share on the whole project in hours or percent, defaults to planned time	projectmanager	ru	Доля в проекте в часахили процентах,по умолчанию время не распланировано
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	ru	Показывать статус на источнике данных (например INfoLog) или достаточно номера пользователя(быстрее)
 show constraints and milestones	projectmanager	ru	Показывать органичения и метки времени
-show planned times instead of the real times	projectmanager	ru	Показывать распланированное время,вместо текущего
+show planned times instead of the real times	projectmanager	ru	Показывать запланированное время, вместо реально затраченного
 show status icons of the datasources	projectmanager	ru	Показывать статус на источнике данных
 show the project selection as	projectmanager	ru	Показать выбор проекта как
 site configuration saved	projectmanager	ru	Конфигурация сохранена
@@ -197,20 +208,22 @@ start- & enddate	projectmanager	ru	Дата запуска и завершени
 startdate	projectmanager	ru	Дата запуска
 state	projectmanager	ru	Состояние
 status filter	projectmanager	ru	Фильтр статуса
+style used for everything but elements. some fonts have only normal style.	projectmanager	ru	Стиль используется для всего за исключением элементов. Некоторые шрифты имеют только нормальный стиль.
 subelements	projectmanager	ru	Подэлементы
 subprojects	projectmanager	ru	Под-проекты
 synchronise all	projectmanager	ru	Синхронизировать все
 template	projectmanager	ru	Шаблон
 template including elment-tree saved as new project	projectmanager	ru	Шаблон,включая древо элементов сохранены как новый проект
+the charset depends on the font you want to use.	projectmanager	ru	Таблица символов определяется шрифтом который вы желаете использовать.
 time	projectmanager	ru	Время
-times	projectmanager	ru	Количество раз
+times	projectmanager	ru	Затраты времени
 title must not be empty	projectmanager	ru	Название должно быть заполнено
 tree with %1	projectmanager	ru	Дерево с %1
 unit	projectmanager	ru	Единица
 unitprice	projectmanager	ru	Цена за единицу
 used	projectmanager	ru	использовано
 valid since	projectmanager	ru	Действителен с
-view ganttchart of this project	projectmanager	ru	Показывать диаграмму ганта проекта
+view ganttchart of this project	projectmanager	ru	Показывать диаграмму Гантта данного проекта
 view milestone	projectmanager	ru	Показывать метку времени
 view price	projectmanager	ru	Показывать цену
 view project	projectmanager	ru	Показывать проект
@@ -221,7 +234,7 @@ view this price	projectmanager	ru	Показывать данную цену
 view this project	projectmanager	ru	Показывать данный проект
 view this project-element	projectmanager	ru	Показывать данный элемент проекта
 working duration on %1	projectmanager	ru	Продолжительность работы на %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	ru	В ыиспользуете старую версию JPGraph с eGroupWare.Она имеет органиченную функциональность.
+you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	ru	Вы используете старую версию JPGraph с eGroupWare.Она имеет органиченную функциональность.
 you can leave the date of the first price empty	projectmanager	ru	Вы можете не заполнять дату первоначальной цены
-you need to select a project first	projectmanager	ru	Сначал выбирите проект
-your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ru	Ваша база данных устарела(%1 %2),пожалуйста загрузите %3 обновление %4
+you need to select a project first	projectmanager	ru	Сначала нужно выберать проект
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ru	Ваша база данных устарела(%1 вместо %2),пожалуйста загрузите %3 обновление %4 вашей базы данных.
