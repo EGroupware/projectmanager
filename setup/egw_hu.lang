@@ -197,7 +197,6 @@ show constraints and milestones	projectmanager	hu	Megszorítások és mérföldk
 show planned times instead of the real times	projectmanager	hu	Tervezett idő mutatása a tényleges idők helyett
 show status icons of the datasources	projectmanager	hu	Adatforrások státusz ikonjainak mutatása
 show the project selection as	projectmanager	hu	Mutasd a projekt választást mint
-site configuration	projectmanager	hu	Webhely beállításai
 site configuration saved	projectmanager	hu	Webhely konfiguráció elmentve
 start after	projectmanager	hu	Indulás ezután
 start working on %1	projectmanager	hu	Munkaidő kezdete %1

@@ -197,7 +197,6 @@ show constraints and milestones	projectmanager	ca	Mostra restriccions i fites
 show planned times instead of the real times	projectmanager	ca	Mostra hores planificades
 show status icons of the datasources	projectmanager	ca	Mostra les icones d'estat de les fonsts de dades
 show the project selection as	projectmanager	ca	Mostra la selecció de projectes com
-site configuration	projectmanager	ca	Configuració del lloc
 site configuration saved	projectmanager	ca	Configuració del lloc guardada
 start after	projectmanager	ca	Inicia després
 start working on %1	projectmanager	ca	Comença fent feina amb %1

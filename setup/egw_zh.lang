@@ -200,7 +200,6 @@ show constraints and milestones	projectmanager	zh	显示制约因素与里程碑
 show planned times instead of the real times	projectmanager	zh	显示已计划时间来取代实际时间
 show status icons of the datasources	projectmanager	zh	显示数据源状态图示
 show the project selection as	projectmanager	zh	将所选项目显示为
-site configuration	projectmanager	zh	站点配置
 site configuration saved	projectmanager	zh	站点配置已保存
 start after	projectmanager	zh	开始日期
 start working on %1	projectmanager	zh	%1开始工作时间
