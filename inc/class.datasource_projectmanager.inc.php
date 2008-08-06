@@ -174,7 +174,7 @@ class datasource_projectmanager extends datasource
 			if ($this->debug > 3 || $this->debug == 'copy') $this->boprojectmanager->debug_message("datasource_projectmanager::copy() data=".print_r($this->boprojectmanager->data,true));
 
 			// link the new sub-project with the project
-			$link_id = $this->boprojectmanager->link->link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
+			$link_id = egw_link::link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
 		}
 		$this->boprojectmanager->data = $data_backup;
 
