@@ -45,11 +45,11 @@ if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 			}
 		}
 	}
-	if (!defined('LANGUAGE_CHARSET')) define('LANGUAGE_CHARSET',$GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET']);
-	if (!defined('GANTT_FONT')) define('GANTT_FONT',$GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT']);
-	if (!defined('GANTT_FONT_FILE')) define('GANTT_FONT_FILE',$GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE']);
-	if (!defined('GANTT_STYLE')) define('GANTT_STYLE',$GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_STYLE']);
-	if (!defined('GANTT_CHAR_ENCODE')) define('GANTT_CHAR_ENCODE',$GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_CHAR_ENCODE']);
+	if (!defined('LANGUAGE_CHARSET')) define('LANGUAGE_CHARSET',($GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'], 'iso-8859-1'));
+	if (!defined('GANTT_FONT')) define('GANTT_FONT',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT'] : 15));
+	if (!defined('GANTT_FONT_FILE')) define('GANTT_FONT_FILE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'] : 'arial.ttf'));
+	if (!defined('GANTT_STYLE')) define('GANTT_STYLE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_STYLE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_STYLE'] : 9002));
+	if (!defined('GANTT_CHAR_ENCODE')) define('GANTT_CHAR_ENCODE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_CHAR_ENCODE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_CHAR_ENCODE'] : false));
 	if (!defined('TTF_DIR'))
 	{
 		// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
