@@ -45,7 +45,7 @@ if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 			}
 		}
 	}
-	if (!defined('LANGUAGE_CHARSET')) define('LANGUAGE_CHARSET',($GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'], 'iso-8859-1'));
+	if (!defined('LANGUAGE_CHARSET')) define('LANGUAGE_CHARSET',($GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'] : 'iso-8859-1'));
 	if (!defined('GANTT_FONT')) define('GANTT_FONT',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT'] : 15));
 	if (!defined('GANTT_FONT_FILE')) define('GANTT_FONT_FILE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'] : 'arial.ttf'));
 	if (!defined('GANTT_STYLE')) define('GANTT_STYLE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_STYLE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_STYLE'] : 9002));
