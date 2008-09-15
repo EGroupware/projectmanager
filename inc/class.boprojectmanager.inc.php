@@ -637,12 +637,19 @@ class boprojectmanager extends soprojectmanager
 		while (($children = $this->search($filter,$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent',
 			'pm_status,pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
-			//echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents); _debug_array($children);
-
+			#echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents)."<br>"; #_debug_array($children);
 			// sort the children behind the parents
 			$parents = $both = array();
 			foreach ($projects as $parent)
 			{
+				#echo "Parent:".$parent['path']."<br>";
+				$arr = explode("/",$parent['path']);
+				$search =array_pop($arr);
+				if (count($arr)>=1 && in_array($search,$arr)) {
+					echo "<div>".lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']."</div>";
+					error_log(lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']);
+					break 2;
+				}
 				$both[$parent['path']] = $parent;
 
 				foreach($children as $key => $child)
