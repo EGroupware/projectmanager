@@ -646,8 +646,8 @@ class boprojectmanager extends soprojectmanager
 				$arr = explode("/",$parent['path']);
 				$search =array_pop($arr);
 				if (count($arr)>=1 && in_array($search,$arr)) {
-					echo "<div>".lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']."</div>";
-					error_log(lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']);
+					echo "<div>".lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']._debug_array($projects[$parent['path']])."</div>";
+					error_log(lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']."\n".print_r($projects[$parent['path']],true));
 					break 2;
 				}
 				$both[$parent['path']] = $parent;
