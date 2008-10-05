@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	cs	%1 součástí aktualizováno
 %1 new project-elements imported	projectmanager	cs	%1 nových součástí projektu importováno
 %1 projects deleted	projectmanager	cs	%1 projektů smazáno
+%1 records imported	projectmanager	cs	%1 záznamů naimportováno
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	cs	%1 záznamů načteno (zatím nebyly naimportovány, můžete se vrátit %2zpět%3 a odškrtnout Testovat import)
 %1 times permission denied, %2 projects deleted	projectmanager	cs	%1 krát přístup zamítnut, %2 projektů smazáno
 - planned	projectmanager	cs	- plánované
 0ngoing (0 < % < 100)	projectmanager	cs	Pokračující (0 < % < 100)
@@ -37,6 +39,7 @@ budget (no pricelist)	projectmanager	cs	Rozpočet (bez ceníku)
 budget and pricelist	projectmanager	cs	Rozpočet a ceník
 by	projectmanager	cs	od
 calculate budget by quantity (eg. time) and price	projectmanager	cs	Spočítat rozpočet na základě množství (např. času) a ceny
+charset of file	projectmanager	cs	Znaková sada souboru
 charset of the above selected font	projectmanager	cs	Znaková sada výše vybraného písma
 check all	projectmanager	cs	Vybrat vše
 close the window, discard the changes made	projectmanager	cs	Zavřít okno, zahodit provedené změny
@@ -48,6 +51,8 @@ create a new empty project or use a template	projectmanager	cs	Vytvořit nový p
 create new links	projectmanager	cs	Vytvořit nové odkazy
 created	projectmanager	cs	vytvořeno
 created a ganttchart from the checked projects	projectmanager	cs	Vytvořen Ganttův diagram z vybraných projektů
+csv-fieldname	projectmanager	cs	CSV-jméno položky
+csv-filename	projectmanager	cs	CSV-jméno souboru
 cumulated elements too	projectmanager	cs	Také kumulované prvky
 custom fields	projectmanager	cs	Uživatelsky definované položky
 customer title	projectmanager	cs	Jméno klienta
@@ -82,6 +87,7 @@ elements of elements	projectmanager	cs	Součásti součástí
 elements that can't start before this one is finished	projectmanager	cs	Součásti které nemohou začít dříve, než je tato dokončena
 elements which have to be finished before this can start	projectmanager	cs	Součásti, které musí být ukončeny dříve než tato bude moci začít
 empty	projectmanager	cs	Prázdný
+empty for all	projectmanager	cs	prázdné znamená vše
 encode non-ascii	projectmanager	cs	Kódovat ne-ascii
 end before	projectmanager	cs	Konec před
 enddate	projectmanager	cs	Koncové datum
@@ -98,6 +104,7 @@ error: saving the project-element (%1) !!!	projectmanager	cs	Chyba: ukládání 
 everything recursive	projectmanager	cs	Vše rekurzivní
 existing links	projectmanager	cs	Stávající odkazy
 exit without saving	projectmanager	cs	Ukočit bez uložení
+fieldseparator	projectmanager	cs	Oddělovač položek
 font	projectmanager	cs	Písmo
 font charset	projectmanager	cs	Znaková sada písma
 font style	projectmanager	cs	Styl písma
@@ -119,9 +126,11 @@ how long do you work on the given day.	projectmanager	cs	Jak dlouho pracujete da
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	cs	Jak se má v menu zobrazovat výběr projektů. Strom bývá přehlednější, rozbalovací nabídka umožňuje rychlejší výběr.
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	cs	Pokud zaškrtnete, datové zdroje jednotlivých součástí (např. záznamů InfoLogu) budou také smazány.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	cs	Pokud zaškrtnete, datové zdroje jednotlivých součástí (např. záznamů InfoLogu) také změní svůj status.
+if checked, existing data will be overwrited)	projectmanager	cs	Pokud je zaškrtnuto, stávající data budou přepsána
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	cs	Pokud uvidíte entity (např. {) v Ganttově diagramu, vypněte tuto volbu.
 ignore that entry	projectmanager	cs	ignorovat záznam
 ignored	projectmanager	cs	ignorován
+import	projectmanager	cs	Importovat
 last modified	projectmanager	cs	Naposledy změněno
 leave it empty if you dont need a different customer title	projectmanager	cs	ponechte prázdné, pokud nepotřebujete jiné jméno klienta
 leave it empty to have one generated	projectmanager	cs	ponechte prázdné pro automatické vygenerování
@@ -148,6 +157,7 @@ no save necessary	projectmanager	cs	uložení neni potřeba
 nonactive	projectmanager	cs	Neaktivní
 not started (0%)	projectmanager	cs	Nzapočatý (0%)
 not working	projectmanager	cs	nepracuje
+number of records to read (%1)	projectmanager	cs	Počet záznamů k načtení (%1)
 only this project	projectmanager	cs	Jen tento projekt
 overwrite the datasource	projectmanager	cs	Přepsat datový zdroj
 percentage the member is availible for projects	projectmanager	cs	Na kolik procent je člen dostupný pro projekty
@@ -173,6 +183,8 @@ project-element saved	projectmanager	cs	Součást projektu uložena
 project-elements	projectmanager	cs	Součásti projektu
 projectlist	projectmanager	cs	Seznam projektů
 projectmanager	common	cs	Správce projektů
+projectmanager - import csv-file	projectmanager	cs	Správce projektů - Importovat CSV soubor
+projectmanager-fieldname	projectmanager	cs	Správce projektů - Název položky
 projectmember	projectmanager	cs	Člen projektu
 quantity	projectmanager	cs	Množství
 read access, incl. budget and adding elements	projectmanager	cs	oprávnění ke čtení, včetně rozpočtu a přidávání součástí
@@ -206,6 +218,7 @@ start working on %1	projectmanager	cs	Začít práci v %1
 start, end, category, ...	projectmanager	cs	Začátek, Konec, kategorie, ...
 start- & enddate	projectmanager	cs	Počáteční a koncové datum
 startdate	projectmanager	cs	Počáteční datum
+startrecord	projectmanager	cs	První záznam
 state	projectmanager	cs	Stav
 status filter	projectmanager	cs	Filtr stavů
 style used for everything but elements. some fonts have only normal style.	projectmanager	cs	Styl použitý pro vše kromě součástí. Některá písma mají jen normální styl.
@@ -214,10 +227,13 @@ subprojects	projectmanager	cs	Dílčí projekty
 synchronise all	projectmanager	cs	Synchronizovat vše
 template	projectmanager	cs	Šablona
 template including elment-tree saved as new project	projectmanager	cs	Šablona včetně stromu součástí uložena jako nový projekt
+test import (show importable records <u>only</u> in browser)	projectmanager	cs	Testovat import (záznamy, které lze importovat <u>jen zobrazí</u> v prohlížeči)
 the charset depends on the font you want to use.	projectmanager	cs	Znaková sada zavisí na písmu, které chcete použít.
 time	projectmanager	cs	Čas
 times	projectmanager	cs	Časy
 title must not be empty	projectmanager	cs	Název nesmí být prázdný
+to many might exceed your execution-time-limit	projectmanager	cs	příliš mnoho může překročit nastavený časový limit spuštění
+translation	projectmanager	cs	Překlad
 tree with %1	projectmanager	cs	Strom s %1
 unit	projectmanager	cs	Jednotka
 unitprice	projectmanager	cs	Jednotková cena
