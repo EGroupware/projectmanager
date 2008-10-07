@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -60,11 +60,6 @@ define('PM_ALL_DATA',65535);
  *  - planned start from the end of a start constrain or the project start-time
  *  - planned end from the planned time and a start-time
  *  - real or planned start and end from each other
- *
- * @package projectmanager
- * @author RalfBecker-AT-outdoor-training.de
- * @copyright (c) 2005 by RalfBecker-AT-outdoor-training.de
- * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
 class datasource
 {
@@ -222,7 +217,7 @@ class datasource
 				}
 			}
 			// calculating the real end-date from the real or planned time
-			if ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] && 
+			if ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] &&
 				($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_planned_time']) && is_object($this->project))
 			{
 				$ds['pe_real_end'] = $this->project->date_add($ds['pe_real_start'],
