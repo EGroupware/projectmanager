@@ -356,4 +356,20 @@
 	{
 		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.4';
 	}
+
+	$test[] = '1.4';
+	function projectmanager_upgrade1_4()
+	{
+		$GLOBALS['egw_setup']->oProc->AddColumn('egw_pm_projects','pm_replanned_time',array(
+			'type' => 'int',
+			'precision' => '4'
+		));
+		$GLOBALS['egw_setup']->oProc->AddColumn('egw_pm_elements','pe_replanned_time',array(
+			'type' => 'int',
+			'precision' => '4'
+		));
+
+		return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.5.001';
+	}
+	
 ?>

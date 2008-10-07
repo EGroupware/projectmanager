@@ -265,7 +265,7 @@ class uiprojectmanager extends boprojectmanager
 				else
 				{
 					$this->generate_pm_number(true,$this->data['pm_number']);
-					foreach(array('pm_id','pm_title','pm_description','pm_creator','pm_created','pm_modified','pm_modifier','pm_real_start','pm_real_end','pm_completion','pm_status','pm_used_time','pm_planned_time','pm_used_budget','pm_planned_budget') as $key)
+					foreach(array('pm_id','pm_title','pm_description','pm_creator','pm_created','pm_modified','pm_modifier','pm_real_start','pm_real_end','pm_completion','pm_status','pm_used_time','pm_planned_time','pm_replanned_time','pm_used_budget','pm_planned_budget') as $key)
 					{
 						unset($this->data[$key]);
 					}
@@ -508,7 +508,9 @@ class uiprojectmanager extends boprojectmanager
 		if ($this->config['accounting_types'] == 'status')
 		{
 			$rows['no_pm_used_time_pm_planned_time'] = true;
+			$rows['no_pm_used_time_pm_replanned_time'] = true;
 			$rows['no_pm_used_budget_pm_planned_budget'] = true;
+			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_planned_time'] = false;
 			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_planned_time'] = false;
 			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
 		}

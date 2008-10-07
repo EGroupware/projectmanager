@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.3.001">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -42,6 +42,8 @@
 						<date-duration id="pe_used_time" readonly="true" options="@duration_format"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
 						<date-duration id="pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
+						<nextmatch-sortheader label="re-planned" id="pe_replanned_time" class="replanned"/>
+						<date-duration id="pe_replanned_time" readonly="true" options="@duration_format" class="replanned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Budget" id="pe_used_budget"/>
@@ -82,6 +84,7 @@
 					<vbox readonly="true">
 						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
 						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
+						<date-duration readonly="true" id="${row}[pe_replanned_time]" class="replanned" options="@duration_format"/>
 					</vbox>
 					<vbox readonly="true">
 						<textbox type="float" readonly="true" id="${row}[pe_used_budget]" max="2"/>
@@ -121,8 +124,18 @@
 						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
-						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
+						<hbox options="1,0" id="pe_used_time">
+							<image label="Times" src="timesheet"/>
+							<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
+						</hbox>
+						<hbox options="1,0" id="planified">
+							<image label="planned time" src="k_alarm.png" readonly="true"/>
+							<date-duration id="${row}[pe_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+						</hbox>
+						<hbox options="1,0" id="replanified">
+							<image label="Re-planned time" src="agt_reload.png"/>
+							<date-duration id="${row}[pe_replanned_time]" span="all" class="replanned" readonly="true" options="@duration_format"/>
+						</hbox>
 					</vbox>
 					<vbox readonly="true">
 						<textbox type="float" readonly="true" id="${row}[pe_used_budget]" max="2"/>

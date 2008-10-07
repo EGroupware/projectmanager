@@ -47,8 +47,10 @@ define('PM_UNITPRICE',8192);
 define('PM_PLANNED_QUANTITY',16384);
 /** double used quantity */
 define('PM_USED_QUANTITY',32768);
+/** int seconds replanned time */
+define('PM_REPLANNED_TIME',65536);
 /** all data-types or'ed together, need to be changed if new data-types get added */
-define('PM_ALL_DATA',65535);
+define('PM_ALL_DATA',131071);
 
 /**
  * DataSource baseclass of the ProjectManager
@@ -85,6 +87,7 @@ class datasource
 	var $name2id = array(
 		'pe_completion'     => PM_COMPLETION,
 		'pe_planned_time'   => PM_PLANNED_TIME,
+		'pe_replanned_time' => PM_REPLANNED_TIME,
 		'pe_used_time'      => PM_USED_TIME,
 		'pe_planned_budget' => PM_PLANNED_BUDGET,
 		'pe_used_budget'    => PM_USED_BUDGET,
@@ -206,8 +209,8 @@ class datasource
 					unset($ds['ignore_planned_start']);
 				}
 			}
-			// calculating the planned end-date from the planned time
-			if ((!$ds['pe_planned_end'] || $ds['ignore_planned_end']) && $ds['pe_planned_time'])
+			// calculating the planned end-date from the planned or replanned time
+			if ((!$ds['pe_planned_end'] || $ds['ignore_planned_end']) && $ds['pe_replanned_time'])
 			{
 				if ($ds['pe_planned_start'] && is_object($this->project))
 				{
@@ -216,15 +219,32 @@ class datasource
 					unset($ds['ignore_planned_end']);
 				}
 			}
-			// calculating the real end-date from the real or planned time
+			elseif ((!$ds['pe_planned_end'] || $ds['ignore_planned_end']) && $ds['pe_planned_time'])
+			{
+				if ($ds['pe_planned_start'] && is_object($this->project))
+				{
+					$ds['pe_planned_end'] = $this->project->date_add($ds['pe_planned_start'],$ds['pe_planned_time'],$ds['pe_resources'][0]);
+					unset($ds['ignore_planned_end']);
+				}
+			}
+			// calculating the real end-date from the real or planned/replanned time
 			if ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] &&
-				($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_planned_time']) && is_object($this->project))
+				($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_replanned_time']) && is_object($this->project))
 			{
 				$ds['pe_real_end'] = $this->project->date_add($ds['pe_real_start'],
-					($t = $ds['pe_used_time'] && !$ds['ignore_used_time'] ? $ds['pe_used_time'] : $ds['pe_planned_time']),$ds['pe_resources'][0]);
+					($t = $ds['pe_used_time'] && !$ds['ignore_used_time'] ? $ds['pe_used_time'] : $ds['pe_replanned_time']),$ds['pe_resources'][0]);
 				//echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end'])."</p>\n";
 				unset($ds['ignore_real_end']);
 			}
+                        elseif ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] &&
+                                ($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_planned_time']) && is_object($this->project))
+                        {
+                                $ds['pe_real_end'] = $this->project->date_add($ds['pe_real_start'],
+                                        ($t = $ds['pe_used_time'] && !$ds['ignore_used_time'] ? $ds['pe_used_time'] : $ds['pe_planned_time']),$ds['pe_resources'][0]);
+                                //echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end'])."</p>\n";
+                                unset($ds['ignore_real_end']);
+                        }
+				
 			// setting real or planned start- or end-date, from each other if not set
 			foreach(array('start','end') as $name)
 			{
@@ -254,6 +274,21 @@ class datasource
 					$ds['warning']['completion_by_time'] = $compl_by_time;
 				}
 			}
+			// try calculating a (second) completion from the times
+			if (!empty($ds['pe_used_time']) && (int) $ds['pe_replanned_time'] > 0)
+			{
+				$compl_by_time = $ds['pe_used_time'] / $ds['pe_replanned_time'];
+
+				// if no completion is given by the datasource use the calculated one
+				if (!isset($ds['pe_completion']))
+				{
+					$ds['pe_completion'] = $compl_by_time;
+				}
+				elseif ($compl_by_time < $ds['pe_completion'])
+				{
+					$ds['warning']['completion_by_time'] = $compl_by_time;
+				}
+			}			
 			// try calculating a (second) completion from the budget
 			if(!empty($ds['pe_used_budget']) && $ds['pe_planned_budget'] > 0)
 			{

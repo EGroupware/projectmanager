@@ -153,7 +153,18 @@ class uiprojectelements extends boprojectelements
 				
 				// calculate the new summary and if a percentage give the share in hours
 				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, old_pe_share={$content['old_pe_share']}, old_default_share=$content[old_default_share], content[pe_share]={$content['pe_share']}</p>\n";
-				$planned_time = $content['pe_planned_time'] ? $content['pe_planned_time'] : $ds['pe_planned_time'];
+				if ($this->data['pe_replanned_time'])
+				{
+					$planned_time = $this->data['pe_replanned_time'];
+				}
+				elseif ($this->data['pe_planned_time'])
+				{
+					$planned_time = $this->data['pe_planned_time'];
+				}
+				else
+				{
+					$planned_time = $ds['pe_planned_time'];
+				}				
 				$default_share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? $planned_time : $this->default_share;
 
 				$this->project_summary['pe_total_shares'] -= round((string) $content['old_pe_share'] !== '' ? $content['old_pe_share'] : $content['old_default_share']);
@@ -283,7 +294,19 @@ class uiprojectelements extends boprojectelements
 				$this->data['pe_title'] = $ds['pe_title'];	// updating the title, not all datasources do it automatic
 			}
 		}
-		$planned_time = $this->data['pe_planned_time'] ? $this->data['pe_planned_time'] : $ds['pe_planned_time'];
+		if ($this->data['pe_replanned_time'])
+		{
+			$planned_time = $this->data['pe_replanned_time'];
+		}
+		elseif ($this->data['pe_planned_time'])
+		{
+			$planned_time = $this->data['pe_planned_time'];
+		}
+		else
+		{
+			$planned_time = $ds['pe_planned_time'];
+		}
+		
 		$default_share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? $planned_time : $this->default_share;
 
 		if ($ds_read_from_element && !$view)
@@ -314,6 +337,19 @@ class uiprojectelements extends boprojectelements
 			if (form['exec[pe_planned_budget]'].value == '0') form['exec[pe_planned_budget]'].value = '';
 		}";
 		$tabs = 'dates|times|budget|constraints|resources|details';
+		if ($this->data['pe_replanned_time'])
+		{
+			$planned_quantity_blur = $this->data['pe_replanned_time'] / 60;
+		}
+		elseif ($this->data['pe_planned_time'])
+		{
+			$planned_quantity_blur = $this->data['pe_planned_time'] / 60;
+		}
+		else
+		{
+			$planned_quantity_blur = $ds['pe_planned_quantity'];
+		}
+		
 		$content = $this->data + array(
 			'ds'  => $ds,
 			'msg' => $msg,
@@ -323,7 +359,7 @@ class uiprojectelements extends boprojectelements
 			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
 			$tabs => $content[$tabs],
 			'no_pricelist' => $this->project->data['pm_accounting_type'] != 'pricelist',
-			'planned_quantity_blur' => $this->data['pe_planned_time'] ? $this->data['pe_planned_time'] / 60 : $ds['pe_planned_quantity'],
+			'planned_quantity_blur' => $planned_quantity_blur,
 			'used_quantity_blur' => $this->data['pe_used_time'] ? $this->data['pe_used_time'] / 60 : $ds['pe_used_quantity'],
 		);
 		// calculate percentual shares
@@ -513,8 +549,10 @@ class uiprojectelements extends boprojectelements
 		if ($this->config['accounting_types'] == 'status')
 		{
 			$rows['no_pm_used_time_pm_planned_time'] = true;
+			$rows['no_pm_used_time_pm_replanned_time'] = true;
 			$rows['no_pm_used_budget_pm_planned_budget'] = true;
 			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_planned_time'] = false;
+			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_replanned_time'] = false;
 			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
 		}
 		if ($this->config['accounting_types'] == 'status,times')

@@ -47,6 +47,7 @@
 					<vbox options="0,0">
 						<nextmatch-sortheader label="Times" id="pm_used_time"/>
 						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_time"/>
+						<nextmatch-sortheader class="replanned" label="re-planned" id="pm_replanned_time"/>
 					</vbox>
 					<nextmatch-sortheader label="Status" id="pm_completion" align="center"/>
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
@@ -80,8 +81,18 @@
 						<textbox type="float" readonly="true" no_lang="1" id="${row}[pm_planned_budget]" max="2" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date-duration readonly="true" id="${row}[pm_used_time]" options="@duration_format"/>
-						<date-duration readonly="true" id="${row}[pm_planned_time]" class="planned" options="@duration_format"/>
+						<hbox options="1,0" id="pml_used_time">
+							<image label="Times" src="timesheet"/>
+							<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
+						</hbox>
+						<hbox options="1,0" id="planified">
+							<image label="planned time" src="k_alarm.png" readonly="true"/>
+							<date-duration id="${row}[pm_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+						</hbox>
+						<hbox options="1,0" id="replanified">
+							<image label="Re-planned time" src="agt_reload.png"/>
+							<date-duration id="${row}[pm_replanned_time]" span="all" class="replanned" readonly="true" options="@duration_format"/>
+						</hbox>
 					</vbox>
 					<image src="${row}[pm_completion]" label="$row_cont[pm_completion]" no_lang="1" align="center"/>
 					<vbox readonly="true" options="0,0">
@@ -101,7 +112,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.list" template="" lang="" group="0" version="0.4.001">
+	<template id="projectmanager.list" template="" lang="" group="0" version="1.5.002">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -124,6 +135,7 @@
 						<hbox align="right">
 							<button id="gantt_checked" image="ganttchart" label="Ganttchart" statustext="Created a ganttchart from the checked projects"/>
 							<button id="delete_checked" image="delete" label="Delete" statustext="Delete all checked projects" onclick="return confirm('Delete all checked projects');"/>
+							<checkbox id="delete_sources" label="datasources too" statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too."/>
 							<button image="arrow_ltr" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('nm[rows][checked][]')); return false;" needed="1" class="check_all_arrow"/>
 						</hbox>
 					</hbox>

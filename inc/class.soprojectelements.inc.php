@@ -101,7 +101,7 @@ class soprojectelements extends so_sql
 		}
 		else
 		{
-			$share = "CASE WHEN pe_share IS NULL AND pe_planned_time IS NULL THEN $this->default_share WHEN pe_share IS NULL THEN pe_planned_time ELSE pe_share END";
+			$share = "CASE WHEN pe_share IS NULL AND pe_planned_time IS NULL AND pe_replanned_time IS NULL THEN $this->default_share WHEN pe_share IS NULL AND pe_planned_time IS NULL THEN pe_replanned_time WHEN pe_share IS NULL THEN pe_planned_time ELSE pe_share END";
 		}
 		if ($save_data) $this->project->data = $save_data;
 
@@ -116,6 +116,7 @@ class soprojectelements extends so_sql
 //			'AVG(pe_completion) AS pe_completion',
 			'SUM(pe_used_time) AS pe_used_time',
 			'SUM(pe_planned_time) AS pe_planned_time',
+			'SUM(pe_replanned_time) AS pe_replanned_time',
 			'SUM(pe_used_budget) AS pe_used_budget',
 			'SUM(pe_planned_budget) AS pe_planned_budget',
 			'MIN(pe_real_start) AS pe_real_start',

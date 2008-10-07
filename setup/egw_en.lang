@@ -5,6 +5,7 @@
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	en	%1 records read (not yet imported, you may go %2back%3 and uncheck Test Import)
 %1 times permission denied, %2 projects deleted	projectmanager	en	%1 times permission denied, %2 projects deleted
 - planned	projectmanager	en	- planned
+- re-planned	projectmanager	en	- re-planned
 0ngoing (0 < % < 100)	projectmanager	en	0ngoing (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	en	a describtive title for the project, must not be empty
 accounting	projectmanager	en	Accounting
@@ -187,6 +188,7 @@ projectmanager - import csv-file	projectmanager	en	Projectmanager - Import CSV-F
 projectmanager-fieldname	projectmanager	en	Projectmanager-Fieldname
 projectmember	projectmanager	en	Projectmember
 quantity	projectmanager	en	Quantity
+re-planned	projectmanager	en	re-planned
 read access, incl. budget and adding elements	projectmanager	en	read access, incl. budget and adding elements
 read access, no budget	projectmanager	en	read access, no budget
 real end	projectmanager	en	Real end
