@@ -5,21 +5,19 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005/6 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
 
 /**
  * ProjectManage UI: list and edit projects-elements
  */
-class uiprojectelements extends boprojectelements  
+class projectmanager_elements_ui extends projectmanager_elements_bo
 {
 	/**
 	 * Functions to call via menuaction
-	 * 
+	 *
 	 * @var array
 	 */
 	var $public_functions = array(
@@ -29,19 +27,19 @@ class uiprojectelements extends boprojectelements
 	);
 	/**
 	 * Instance of the etemplate class
-	 * 
+	 *
 	 * @var etemplate
 	 */
 	var $tpl;
 	/**
 	 * Labels for status-filter
-	 * 
+	 *
 	 * @var array
 	 */
 	var $status_labels;
 	/**
 	 * Config-settings for projectmanager
-	 * 
+	 *
 	 * @var array
 	 */
 	var $config;
@@ -49,11 +47,11 @@ class uiprojectelements extends boprojectelements
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
-	 * @return uiprojectelements
+	 * @return projectmanager_elements_ui
 	 */
-	function uiprojectelements()
+	function __construct()
 	{
-		$this->tpl =& CreateObject('etemplate.etemplate');
+		$this->tpl = new etemplate();
 
 		if ((int) $_REQUEST['pm_id'])
 		{
@@ -71,8 +69,8 @@ class uiprojectelements extends boprojectelements
 				'msg'        => lang('You need to select a project first'),
 			));
 		}
-		$this->boprojectelements($pm_id);
-	
+		parent::__construct($pm_id);
+
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
@@ -81,7 +79,7 @@ class uiprojectelements extends boprojectelements
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
-		
+
 		$this->status_labels = array(
 			'all'     => lang('all'),
 			'used'    => lang('used'),
@@ -89,8 +87,8 @@ class uiprojectelements extends boprojectelements
 			'ignored' => lang('ignored'),
 		);
 	}
-	
-	
+
+
 	/**
 	 * View a project-element, just calls edit with view-param set
 	 */
@@ -98,7 +96,7 @@ class uiprojectelements extends boprojectelements
 	{
 		$this->edit(null,true);
 	}
-	
+
 	/**
 	 * Edit or view a project-element
 	 *
@@ -107,7 +105,7 @@ class uiprojectelements extends boprojectelements
 	 */
 	function edit($content=null,$view=false)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("uiprojectelements::edit(".print_r($content,true).",$view)");
+		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("projectmanager_elements_ui::edit(".print_r($content,true).",$view)");
 
 		if (is_array($content))
 		{
@@ -133,7 +131,7 @@ class uiprojectelements extends boprojectelements
 						$this->data['pe_overwrite'] |= $id;
 						$update_necessary |= $id;
 					}
-					// check if a field is no longer set, or it's not set and datasource changed 
+					// check if a field is no longer set, or it's not set and datasource changed
 					// => set it from the datasource
 					elseif (($this->data['pe_overwrite'] & $id) && !$content[$name] ||
 						    !($this->data['pe_overwrite'] & $id) && (int)$this->data[$name] != (int)$ds[$name])
@@ -150,7 +148,7 @@ class uiprojectelements extends boprojectelements
 					}
 				}
 				$content['cat_id'] = (int) $content['cat_id'];	// as All='' and cat_id column is int
-				
+
 				// calculate the new summary and if a percentage give the share in hours
 				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, old_pe_share={$content['old_pe_share']}, old_default_share=$content[old_default_share], content[pe_share]={$content['pe_share']}</p>\n";
 				if ($this->data['pe_replanned_time'])
@@ -164,7 +162,7 @@ class uiprojectelements extends boprojectelements
 				else
 				{
 					$planned_time = $ds['pe_planned_time'];
-				}				
+				}
 				$default_share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? $planned_time : $this->default_share;
 
 				$this->project_summary['pe_total_shares'] -= round((string) $content['old_pe_share'] !== '' ? $content['old_pe_share'] : $content['old_default_share']);
@@ -177,7 +175,7 @@ class uiprojectelements extends boprojectelements
 					}
 					else
 					{
-						$content['pe_share'] = round($this->project_summary['pe_total_shares'] * (float) $content['pe_share'] / 
+						$content['pe_share'] = round($this->project_summary['pe_total_shares'] * (float) $content['pe_share'] /
 							(100 - (float) $content['pe_share']),1);
 					}
 					//echo "<p>pe_share={$content['pe_share']}</p>\n";
@@ -201,7 +199,7 @@ class uiprojectelements extends boprojectelements
 							}
 						}
 					}
-					if ($content[$name] != $this->data[$name] || 
+					if ($content[$name] != $this->data[$name] ||
 						$name == 'pe_share' && $content[$name] !== $this->data[$name])	// for pe_share we differ between 0 and empty!
 					{
 						//echo "need to update $name as content[$name] changed to '".print_r($content[$name],true)."' != '".print_r($this->data[$name],true)."'<br>\n";
@@ -212,7 +210,7 @@ class uiprojectelements extends boprojectelements
 					}
 				}
 			}
-			//echo "uiprojectelements::edit(): save_necessary=".(int)$save_necessary.", update_necessary=$update_necessary, data="; _debug_array($this->data);
+			//echo "projectmanager_elements_ui::edit(): save_necessary=".(int)$save_necessary.", update_necessary=$update_necessary, data="; _debug_array($this->data);
 
 			$view = $content['view'] && !($content['edit'] && $this->check_acl(EGW_ACL_EDIT));
 
@@ -229,7 +227,7 @@ class uiprojectelements extends boprojectelements
 					{
 						$msg = lang('Project-Element saved');
 						$js = "opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
-							'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.uiprojectelements.index',
+							'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.projectmanager_elements_ui.index',
 							'msg'        => $msg,
 						))."';";
 					}
@@ -243,7 +241,7 @@ class uiprojectelements extends boprojectelements
 			{
 				// all delete are done by index
 				$js = "opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
-					'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.uiprojectelements.index',
+					'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.projectmanager_elements_ui.index',
 					'delete'     => $this->data['pe_id'],
 				))."';";
 				/*
@@ -259,7 +257,7 @@ class uiprojectelements extends boprojectelements
 				$GLOBALS['egw']->common->egw_exit();
 				/*
 				$this->tpl->location(array(
-					'menuaction' => 'projectmanager.uiprojectelements.index',
+					'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
 					'msg'        => $msg,
 				));
 				*/
@@ -276,7 +274,7 @@ class uiprojectelements extends boprojectelements
 				if (!$this->check_acl(EGW_ACL_READ))
 				{
 					$this->tpl->location(array(
-						'menuaction' => 'projectmanager.uiprojectelements.index',
+						'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
 						'msg' => lang('Permission denied !!!'),
 					));
 				}
@@ -306,7 +304,7 @@ class uiprojectelements extends boprojectelements
 		{
 			$planned_time = $ds['pe_planned_time'];
 		}
-		
+
 		$default_share = $planned_time && $this->project->data['pm_accounting_type'] != 'status' ? $planned_time : $this->default_share;
 
 		if ($ds_read_from_element && !$view)
@@ -349,7 +347,7 @@ class uiprojectelements extends boprojectelements
 		{
 			$planned_quantity_blur = $ds['pe_planned_quantity'];
 		}
-		
+
 		$content = $this->data + array(
 			'ds'  => $ds,
 			'msg' => $msg,
@@ -386,7 +384,7 @@ class uiprojectelements extends boprojectelements
 				"pe_status != 'ignore'",
 //				'(pe_planned_start IS NOT NULL OR pe_real_start IS NOT NULL)',
 //				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',
-				'pe_id != '.(int)$this->data['pe_id'],	// dont show own title	
+				'pe_id != '.(int)$this->data['pe_id'],	// dont show own title
 			)),
 			'milestone'     => $this->milestones->titles(array('pm_id' => $this->data['pm_id'])),
 		);
@@ -415,10 +413,10 @@ class uiprojectelements extends boprojectelements
 			$readonlys['save'] = $readonlys['apply'] = true;
 			$readonlys['pe_constraints[start]'] = $readonlys['pe_constraints[end]'] = $readonlys['pe_constraints[milestone]'] = true;
 		}
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' . 
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project-elements') : lang('Edit project-elements')) : lang('Add project-elements'));
 		$this->tpl->read('projectmanager.elements.edit');
-		$this->tpl->exec('projectmanager.uiprojectelements.edit',$content,$sel_options,$readonlys,$preserv,2);
+		$this->tpl->exec('projectmanager.projectmanager_elements_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
 	}
 
 	/**
@@ -433,7 +431,7 @@ class uiprojectelements extends boprojectelements
 	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
-		
+
 		if ($this->status_filter[$query['filter']])
 		{
 			$query['col_filter']['pe_status'] = $this->status_filter[$query['filter']];
@@ -476,7 +474,7 @@ class uiprojectelements extends boprojectelements
 		$self['pe_modified'] = $this->project->data['pm_modified'];
 		$self['pe_modifier'] = $this->project->data['pm_modifier'];
 		$rows = array_merge(array($self),$rows);
-		
+
 		$readonlys = array();
 		foreach($rows as $n => $val)
 		{
@@ -503,12 +501,12 @@ class uiprojectelements extends boprojectelements
 					'app'  => $row['pe_app'],
 					'id'   => $row['pe_app_id'],
 					'title'=> $row['pe_title'],
-					'help' => $row['pe_app'] == 'projectmanager' ? lang("Select this project and show it's elements") : 
+					'help' => $row['pe_app'] == 'projectmanager' ? lang("Select this project and show it's elements") :
 						lang('View this element in %1',lang($row['pe_app'])),
 				);
 			}
 			if (!($query['filter2']&1)) unset($row['pe_details']);
-			
+
 			// add project-title for elements from sub-projects
 			if (($query['filter2']&2) && $row['pm_id'] != $this->pm_id)
 			{
@@ -521,7 +519,7 @@ class uiprojectelements extends boprojectelements
 				);
 			}
 			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : $row['pe_completion'];
-			
+
 			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
 		}
 		if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_custom_app_icons'])
@@ -569,9 +567,9 @@ class uiprojectelements extends boprojectelements
 		}
 		if ((int)$this->debug >= 2 || $this->debug == 'get_rows')
 		{
-			$this->debug_message("uiprojectelements::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."readonlys=".print_r($readonlys,true));
+			$this->debug_message("projectmanager_elements_ui::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."readonlys=".print_r($readonlys,true));
 		}
-		return $total;		
+		return $total;
 	}
 
 	/**
@@ -582,7 +580,7 @@ class uiprojectelements extends boprojectelements
 	 */
 	function index($content=null,$msg='')
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("uiprojectelements::index(".print_r($content,true).",$msg)");
+		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_elements_ui::index(".print_r($content,true).",$msg)");
 
 		// store the current project (only for index, as popups may be called by other parent-projects)
 		$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$this->project->data['pm_id']);
@@ -616,7 +614,7 @@ class uiprojectelements extends boprojectelements
 			}
 			else
 			{
-				$msg = $this->delete($pe_id) ? lang('Project-Element deleted') : 
+				$msg = $this->delete($pe_id) ? lang('Project-Element deleted') :
 					lang('Error: deleting project-element !!!');
 			}
 		}
@@ -627,7 +625,7 @@ class uiprojectelements extends boprojectelements
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
-				'get_rows'       =>	'projectmanager.uiprojectelements.get_rows',
+				'get_rows'       =>	'projectmanager.projectmanager_elements_ui.get_rows',
 				'filter'         => 'used',// I initial value for the filter
 				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
 				'options-filter' => $this->status_labels,
@@ -657,7 +655,7 @@ class uiprojectelements extends boprojectelements
 			unset($content['nm']['header_right']);
 			unset($content['nm']['header_left']);
 			$readonlys['sync_all'] = true;
-		}			
+		}
 		$content['nm']['link_to'] = array(
 			'to_id'    => $this->pm_id,
 			'to_app'   => 'projectmanager',
@@ -676,6 +674,6 @@ class uiprojectelements extends boprojectelements
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
-		$this->tpl->exec('projectmanager.uiprojectelements.index',$content,'',$readonlys);
+		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index',$content,'',$readonlys);
 	}
 }

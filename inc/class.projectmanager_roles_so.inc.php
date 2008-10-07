@@ -5,35 +5,33 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
 /**
  * Roles storage object of the projectmanager
  *
  * Tables: egw_pm_roles
  */
-class soroles extends so_sql
+class projectmanager_roles_so extends so_sql
 {
 	/**
 	 * Constructor, calls the constructor of the extended class
-	 * 
+	 *
 	 * @param int $pm_id pm_id of the project to use, default null
 	 */
-	function soroles($pm_id=null)
+	function __construct($pm_id=null)
 	{
-		$this->so_sql('projectmanager','egw_pm_roles');
+		parent::__construct('projectmanager','egw_pm_roles');
 
-		if ((int) $pm_id) 
+		if ((int) $pm_id)
 		{
 			$this->pm_id = (int) $pm_id;
 		}
 	}
-	
+
 	/**
 	 * reimplemented to set some defaults and order by 'pm_id DESC,role_acl DESC'
 	 *

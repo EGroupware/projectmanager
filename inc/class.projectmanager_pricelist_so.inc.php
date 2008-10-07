@@ -5,19 +5,17 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
 /**
  * Pricelist storage object of the projectmanager
  *
  * Tables: egw_pm_pricelist, egw_pm_prices
  */
-class sopricelist extends so_sql
+class projectmanager_pricelist_so extends so_sql
 {
 	/**
 	 * @var string $prices_table table name of the prices table
@@ -38,16 +36,16 @@ class sopricelist extends so_sql
 
 	/**
 	 * Constructor, calls the constructor of the extended class
-	 * 
+	 *
 	 * @param int $pm_id=0 pm_id of the project to use, default 0 (project independent / standard prices)
 	 */
-	function sopricelist($pm_id=0)
+	function __construct($pm_id=0)
 	{
-		$this->so_sql('projectmanager','egw_pm_pricelist');	// sets $this->table_name
+		parent::__construct('projectmanager','egw_pm_pricelist');	// sets $this->table_name
 
 		$this->pm_id = (int) $pm_id;
 	}
-	
+
 	/**
 	 * reads one pricelist-itme specified by $keys, reimplemented to use $this->pm_id, if no pm_id given
 	 *
@@ -65,7 +63,7 @@ class sopricelist extends so_sql
 			// just pl_id would be ambigues
 			$keys[] = $this->table_name.'.pl_id='.(int)$keys['pl_id'];
 			unset($keys['pl_id']);
-			
+
 			if (isset($keys['pl_validsince']))
 			{
 				$keys[] = 'pl_validsince <= '.(int)$keys['pl_validsince'];
@@ -77,17 +75,17 @@ class sopricelist extends so_sql
 				unset($keys['pm_id']);
 			}
 			$join = $this->prices_join;
-			
+
 			if (!$extra_cols) $extra_cols = $this->prices_extracols;
-			
+
 			// we use search as the join might return multiple columns, which we put in the prices and project_prices array
 			if (!($prices = $this->search(false,false,'pm_id DESC,pl_validsince DESC',$extra_cols,'',false,'AND',false,$keys,$join)))
 			{
 				return false;
 			}
 			list(,$this->data) = each($prices);
-			$this->data['prices'] = $this->data['project_prices'] = array();			
-			
+			$this->data['prices'] = $this->data['project_prices'] = array();
+
 			foreach($prices as $price)
 			{
 				if ($price['pm_id'])
@@ -103,7 +101,7 @@ class sopricelist extends so_sql
 		}
 		return parent::read($keys,$extra_cols,$join);
 	}
-	
+
 	/**
 	 * sql to define a priority depending on the relation-ship of the project the price was defined for to the given one
 	 *
@@ -117,9 +115,9 @@ class sopricelist extends so_sql
 	function sql_priority($pm_id=0,$col='pm_id',$use_general=true)
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
-		
+
 		$ancestors = array($pm_id);
-		
+
 		if (!($ancestors = $this->project->ancestors($pm_id,$ancestors)))
 		{
 			echo "<p>sql_priority($pm_id,$col,$use_general) ancestory returnd false</p>\n";
@@ -135,7 +133,7 @@ class sopricelist extends so_sql
 			$sql .= ' WHEN 0 THEN 0';
 		}
 		$sql .= ' END';
-	
+
 		return $sql;
 	}
 
@@ -159,7 +157,7 @@ class sopricelist extends so_sql
 		if ($join === true)	// add join with prices-table
 		{
 			$join = $this->prices_join;
-			
+
 			if (isset($filter['pl_validsince']))
 			{
 				$filter[] = 'pl_validsince <= '.($validsince=(int)$filter['pl_validsince']);
@@ -243,9 +241,9 @@ class sopricelist extends so_sql
 		}
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
 	}
-	
+
 	/**
-	 * saves a single price 
+	 * saves a single price
 	 *
 	 * @param array $price price-data
 	 * @param boolean $touch_modified=true should the modififcation date and user be set
@@ -266,12 +264,12 @@ class sopricelist extends so_sql
 			'pl_id' => $price['pl_id'],
 			'pl_validsince' => $price['pl_validsince'],
 		),__LINE__,__FILE__);
-		
+
 		$price = $this->db2data($price);
 
 		return $this->db->Errno;
 	}
-	
+
 	/**
 	 * delete pricelist-entries and price(s) specified by keys pl_id, pm_id and/or pl_validsince
 	 *
@@ -284,7 +282,7 @@ class sopricelist extends so_sql
 	{
 		//echo "<p>sopricelist::delete(".print_r($keys,true).",$touch_modified)</p>\n";
 		if (!is_array($keys) && (int) $keys) $keys = array('pm_id' => (int) $keys);
-		
+
 		$keys = $this->data2db($keys);	// adjust the validsince timestampt to server-time
 
 		$where = array();

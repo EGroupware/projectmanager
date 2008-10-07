@@ -3,9 +3,9 @@
  * Projectmanager - CSV import
  *
  * @link http://www.egroupware.org
- * @author Ralf Becker <RalfBecker-AT-outdoor-training.de> and Stefan Becker <StefanBecker-AT-outdoor-training.de> 
+ * @author Ralf Becker <RalfBecker-AT-outdoor-training.de> and Stefan Becker <StefanBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2008-04 by Ralf Becker <RalfBecker-AT-outdoor-training.de> and Stefan Becker <StefanBecker-AT-outdoor-training.de>
+ * @copyright (c) 2008 by Ralf Becker <RalfBecker-AT-outdoor-training.de> and Stefan Becker <StefanBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: csv_import.php 23917 2007-05-22 13:40:35Z ralfbecker $
  */
@@ -41,7 +41,7 @@
 	$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager - Import CSV-File');
 	$GLOBALS['egw']->common->egw_header();
 
-	$boprojectmanager = createobject('projectmanager.boprojectmanager');
+	$projectmanager_bo = new projectmanager_bo();
 
 	$GLOBALS['egw']->template->set_file(array('import_t' => 'csv_import.tpl'));
 	$GLOBALS['egw']->template->set_block('import_t','filename','filenamehandle');
@@ -69,7 +69,7 @@ function addr_id( $n_family,$n_given=null,$org_name=null )
 	static $contacts;
 	if (!is_object($contacts))
 	{
-		$contacts =& CreateObject('phpgwapi.contacts');
+		$contacts = new contacts();
 	}
 	if (!is_null($org_name))	// org_name given?
 	{
@@ -102,7 +102,7 @@ function project_id($num_or_title)
 
 	if (!is_object($boprojects))
 	{
-		$boprojects =& CreateObject('projectmanager.boprojectmanager');
+		$boprojects = new projectmanager_bo();
 	}
 	if (($projects = $boprojects->search(array('pm_number' => $num_or_title))) ||
 		($projects = $boprojects->search(array('pm_title'  => $num_or_title))))
@@ -132,12 +132,12 @@ function cat_id($cats)
 		{
 			if (!is_object($GLOBALS['egw']->categories))
 			{
-				$GLOBALS['egw']->categories = createobject('phpgwapi.categories');
+				$GLOBALS['egw']->categories = new categories();
 			}
 			if (is_numeric($cat) && $GLOBALS['egw']->categories->id2name($cat) != '--')
 			{
 				$cat2id[$cat] = $ids[$cat] = $cat;
-			}	
+			}
 			elseif (($id = $GLOBALS['egw']->categories->name2id( addslashes($cat) )))
 			{	// cat exists
 				$cat2id[$cat] = $ids[$cat] = $id;
@@ -155,14 +155,9 @@ function cat_id($cats)
 	{
 		$id_str = ",$id_str,";
 	}
-	
+
 	return  $id_str;
 }
-
-	if (!is_object($GLOBALS['egw']->html))
-	{
-		$GLOBALS['egw']->html =& CreateObject('phpgwapi.html');
-	}
 
 	if ($_POST['next']) $_POST['action'] = 'next';
 	switch ($_POST['action'])
@@ -172,7 +167,7 @@ function cat_id($cats)
 		$GLOBALS['egw']->template->set_var('lang_fieldsep',lang('Fieldseparator'));
 		$GLOBALS['egw']->template->set_var('lang_charset',lang('Charset of file'));
 		$GLOBALS['egw']->template->set_var('select_charset',
-			$GLOBALS['egw']->html->select('charset','',
+			html::select('charset','',
 			$GLOBALS['egw']->translation->get_installed_charsets()+
 			array('utf-8' => 'utf-8 (Unicode)'),True));
 		$GLOBALS['egw']->template->set_var('fieldsep',$_POST['fieldsep'] ? $_POST['fieldsep'] : ';');
@@ -194,13 +189,13 @@ function cat_id($cats)
 		$GLOBALS['egw']->template->set_var('lang_project_fieldname',lang('Projectmanager-Fieldname'));
 		$GLOBALS['egw']->template->set_var('lang_translation',lang("Translation").' <a href="#help">'.lang('help').'</a>');
 		$GLOBALS['egw']->template->set_var('submit',
-		$GLOBALS['egw']->html->submit_button('convert','Import') . '&nbsp;'.
-		$GLOBALS['egw']->html->submit_button('cancel','Cancel'));
+		html::submit_button('convert','Import') . '&nbsp;'.
+		html::submit_button('cancel','Cancel'));
 		$GLOBALS['egw']->template->set_var('lang_debug',lang('Test Import (show importable records <u>only</u> in browser)'));
 		$GLOBALS['egw']->template->set_var('lang_field_overwrite',lang('If checked, existing Data will be overwrited)'));
 		$GLOBALS['egw']->template->parse('rows','fheader');
 
-		$info_names = array(	
+		$info_names = array(
 			'number'      		=> 'Number: varchar(64) ',
 			'title'				=> 'Title: varchar(64) ',
 			'description'		=> 'Description: text long free text',
@@ -230,9 +225,9 @@ function cat_id($cats)
 //			'link_3'      => '3. link: appname:appid the entry should be linked to, eg.: addressbook:123',
 		);
 		// add custom fields
-		if ($boprojectmanager->customfields)
+		if ($projectmanager_bo->customfields)
 		{
-			foreach($boprojectmanager->customfields as $name => $field)
+			foreach($projectmanager_bo->customfields as $name => $field)
 			{
 				if ($field['type'] == 'label' || !count($field['values']) && $field['rows'] <= 1 && $field['len'] <= 0) continue;
 
@@ -257,7 +252,7 @@ function cat_id($cats)
 									'no CSV 2'		=>	"subject${PSep}@substr(${CPre}Notiz$CPos,0,60).' ...'" );
 		*/
 		$info_name_options = "<option value=\"\">none\n";
-		foreach($info_names as $field => $name) 
+		foreach($info_names as $field => $name)
 		{
 			$info_name_options .= "<option value=\"$field\">".$GLOBALS['egw']->strip_html($name)."\n";
 		}
@@ -266,18 +261,18 @@ function cat_id($cats)
 		$csv_fields[] = 'no CSV 1'; 						// eg. for static assignments
 		$csv_fields[] = 'no CSV 2';
 		$csv_fields[] = 'no CSV 3';
-		foreach($csv_fields as $csv_idx => $csv_field) 
+		foreach($csv_fields as $csv_idx => $csv_field)
 		{
 			$GLOBALS['egw']->template->set_var('csv_field',$csv_field);
 			$GLOBALS['egw']->template->set_var('csv_idx',$csv_idx);
-			
+
 			if (($def = $defaults[$csv_field]))
 			{
 				list( $info,$trans ) = explode($PSep,$def,2);
 				$GLOBALS['egw']->template->set_var('trans',$trans);
 				$GLOBALS['egw']->template->set_var('info_fields',str_replace('="'.$info.'">','="'.$info.'" selected>',$info_name_options));
-			} 
-			else 
+			}
+			else
 			{
 				$GLOBALS['egw']->template->set_var('trans','');
 				$GLOBALS['egw']->template->set_var('info_fields',$info_name_options);
@@ -295,7 +290,7 @@ function cat_id($cats)
 		$GLOBALS['egw']->template->parse('rows','ffooter',True);
 		fclose($fp);
 
-		$hiddenvars = $GLOBALS['egw']->html->input_hidden(array(
+		$hiddenvars = html::input_hidden(array(
 			'action'  => 'import',
 			'fieldsep'=> $_POST['fieldsep'],
 			'charset' => $_POST['charset']
@@ -325,7 +320,7 @@ function cat_id($cats)
 		$_POST['trans']       = unserialize(stripslashes($_POST['trans']));
 		// fall-through
 	case 'import':
-		$hiddenvars = $GLOBALS['egw']->html->input_hidden(array(
+		$hiddenvars = html::input_hidden(array(
 			'action'  => 'continue',
 			'fieldsep'=> $_POST['fieldsep'],
 			'charset' => $_POST['charset'],
@@ -367,14 +362,14 @@ function cat_id($cats)
 			// if (!$debug) echo "<p>$csv_idx: ".$csv_fields[$csv_idx].": $info".($trans[$csv_idx] ? ': '.$trans[$csv_idx] : '')."</p>";
 			$pat_reps = explode($PSep,stripslashes($_POST['trans'][$csv_idx]));
 			$replaces = ''; $values = '';
-			if ($pat_reps[0] != '') 
+			if ($pat_reps[0] != '')
 			{
-				foreach($pat_reps as $k => $pat_rep) 
+				foreach($pat_reps as $k => $pat_rep)
 				{
 					list($pattern,$replace) = explode($ASep,$pat_rep,2);
-					if ($replace == '') 
-					{ 
-						$replace = $pattern; $pattern = '^.*$'; 
+					if ($replace == '')
+					{
+						$replace = $pattern; $pattern = '^.*$';
 					}
 					$values[$pattern] = $replace;	// replace two with only one, added by the form
 					$replaces .= ($replaces != '' ? $PSep : '') . $pattern . $ASep . $replace;
@@ -445,7 +440,7 @@ function cat_id($cats)
 			if ($values['cat_id'] && !is_numeric($values['cat_id']))
 			{
 				$values['cat_id'] = cat_id($values['cat_id']);
-				
+
 			}
 			// convert dates to timestamps
 			foreach(array('planned_start','planned_end','real_start','real_end','created','modified') as $date)
@@ -466,7 +461,7 @@ function cat_id($cats)
 			if (isset($values['modifier']) && !is_numeric($values['modifier']))
 			{
 				$values['modifier'] = $GLOBALS['egw']->accounts->name2id($values['modifier']);
-			}	
+			}
 			if (isset($values['responsible']))
 			{
 				$responsible = $values['responsible'];
@@ -485,7 +480,7 @@ function cat_id($cats)
 			if ($values['project_id'] && !is_numeric($values['project_id']))
 				{
 					$values['project_id'] = project_id($values['project_id']);
-				}		
+				}
 			if(!$_POST['debug'] && !$empty)	// dont import empty contacts
 			{
 				// create new names with pm_ prefix
@@ -493,21 +488,21 @@ function cat_id($cats)
 				foreach($values as $name => $value)
 				{
 					$to_write[substr($name,0,5) != 'pm_' && $name{0} != '#' ? 'pm_'.$name : $name] = $value;
-				}				
-				if (isset($values['cat_id'])) 
+				}
+				if (isset($values['cat_id']))
 				{
 					$to_write['cat_id']=$values['cat_id'];
 					unset($to_write['pm_cat_id']);
-				}		
+				}
 				if ($values['addr_id'] && !is_numeric($values['addr_id']))
 				{
 					list($lastname,$firstname,$org_name) = explode(',',$values['addr_id']);
 					$values['addr_id'] = addr_id($lastname,$firstname,$org_name);
-				}				
+				}
 				if ($values['number'] && !is_numeric($values['number']))
 				{
-					$to_write['pm_id'] = project_id($values['number']);					
-				}								
+					$to_write['pm_id'] = project_id($values['number']);
+				}
 			$datasource = CreateObject('projectmanager.datasource');
 			foreach($datasource->name2id as $name => $id)
 			{
@@ -515,7 +510,7 @@ function cat_id($cats)
 				if ($to_write[$name]) $to_write['pm_overwrite'] |= $id;
 			}
 			if (($to_write['pm_id']!="") & (!$_POST['field_overwrite']))  break;
-			if (($id = $boprojectmanager->save($to_write,True,False)))
+			if (($id = $projectmanager_bo->save($to_write,True,False)))
 			{
 				$info_link_id = false;
 				foreach(array(
@@ -528,7 +523,7 @@ function cat_id($cats)
 					if ($app && $app_id)
 					{
 						//echo "<p>linking infolog:$id with $app:$app_id</p>\n";
-						$link_id = $boprojectmanager->link->link('infolog',$id,$app,$app_id);
+						$link_id = $projectmanager_bo->link->link('infolog',$id,$app,$app_id);
 						if ($link_id && !$info_link_id)
 						{
 							$to_write = array(
@@ -536,7 +531,7 @@ function cat_id($cats)
 								'info_link_id' => $link_id,
 								);
 							if (($to_write['pm_id']!="") & (!$_POST['field_overwrite']))  break;
-							$boprojectmanager->save($to_write);
+							$projectmanager_bo->save($to_write);
 							$info_link_id = true;
 						}
 					}
@@ -550,9 +545,9 @@ function cat_id($cats)
 		lang('%1 records read (not yet imported, you may go %2back%3 and uncheck Test Import)',
 		$anz,'','') :
 		lang('%1 records imported',$anz)). '&nbsp;'.
-		(!$_POST['debug'] && $fields ? $GLOBALS['egw']->html->submit_button('next','Import next set') . '&nbsp;':'').
-		$GLOBALS['egw']->html->submit_button('continue','Back') . '&nbsp;'.
-		$GLOBALS['egw']->html->submit_button('cancel','Cancel'));
+		(!$_POST['debug'] && $fields ? html::submit_button('next','Import next set') . '&nbsp;':'').
+		html::submit_button('continue','Back') . '&nbsp;'.
+		html::submit_button('cancel','Cancel'));
 	$GLOBALS['egw']->template->set_var('log',$log);
 	$GLOBALS['egw']->template->parse('rows','imported');
 	break;

@@ -17,7 +17,7 @@
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  */
-class soprojectmanager extends so_sql
+class projectmanager_so extends so_sql
 {
 	/**
 	 * Table name 'egw_links'
@@ -81,11 +81,10 @@ class soprojectmanager extends so_sql
 	 * Constructor, calls the constructor of the extended class
 	 *
 	 * @param int $pm_id id of the project to load, default null
-	 * @return soprojectmanger
 	 */
-	function soprojectmanager($pm_id=null)
+	function __construct($pm_id=null)
 	{
-		$this->so_sql('projectmanager','egw_pm_projects',null,'',true);	// true = no need to clone the db-object
+		parent::__construct('projectmanager','egw_pm_projects',null,'',true);	// true = no need to clone the db-object
 
 		$this->config = config::read('projectmanager');
 		$this->customfields = config::get_customfields('projectmanager');

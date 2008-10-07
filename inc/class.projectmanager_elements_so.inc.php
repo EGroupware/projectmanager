@@ -7,7 +7,7 @@
  * @package projectmanager
  * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 /**
@@ -17,11 +17,11 @@
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  */
-class soprojectelements extends so_sql
+class projectmanager_elements_so extends so_sql
 {
 	/**
 	 * Table name 'egw_links'
-	 * 
+	 *
 	 * @var string
 	 */
 	var $links_table = solink::TABLE;
@@ -33,7 +33,7 @@ class soprojectelements extends so_sql
 	var $links_join = ',egw_links WHERE pe_id=link_id';
 	/**
 	 * Extracolumns from the links table
-	 * 
+	 *
 	 * @var array
 	 */
 	var $links_extracols = array(
@@ -44,7 +44,7 @@ class soprojectelements extends so_sql
 	);
 	/**
 	 * Default share in minutes (on the whole project), used if no planned time AND no pe_share set
-	 * 
+	 *
 	 * @var int
 	 */
 	var $default_share = 240; // minutes
@@ -57,28 +57,28 @@ class soprojectelements extends so_sql
 
 	/**
 	 * Constructor, calls the constructor of the extended class
-	 * 
+	 *
 	 * It is sufficent to give just the pe_id, as it is unique!
 	 *
 	 * @param int $pm_id pm_id of the project to use, default null
 	 * @param int $pe_id pe_id of the project-element to load, default null
 	 * @return soprojectelements
 	 */
-	function soprojectelements($pm_id=null,$pe_id=null)
+	function __construct($pm_id=null,$pe_id=null)
 	{
-		$this->so_sql('projectmanager','egw_pm_elements',null,'',true);		// true = no need to clone the db-object
+		parent::__construct('projectmanager','egw_pm_elements',null,'',true);		// true = no need to clone the db-object
 
-		if ((int) $pm_id || (int) $pe_id) 
+		if ((int) $pm_id || (int) $pe_id)
 		{
 			$this->pm_id = (int) $pm_id;
-			
+
 			if ((int) $pe_id)
 			{
 				if ($this->read($pe_id)) $this->pm_id = $this->data['pm_id'];
 			}
 		}
 	}
-	
+
 	/**
 	 * Summarize the information of all elements of a project: min(start-time), sum(time), avg(completion), ...
 	 *
@@ -154,7 +154,7 @@ class soprojectelements extends so_sql
 		if ($join === true)	// add join with links-table and extra-columns
 		{
 			$join = $this->links_join;
-			
+
 			if (!$extra_cols)
 			{
 				$extra_cols = $this->links_extracols;
@@ -171,7 +171,7 @@ class soprojectelements extends so_sql
 
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
 	}
-	
+
 	/**
 	 * Fix some special filters: resources, cats, ...
 	 *
@@ -200,7 +200,7 @@ class soprojectelements extends so_sql
 		}
 		// remove pseudo filter
 		unset($filter['cumulate']);
-		
+
 		return $filter;
 	}
 
@@ -222,7 +222,7 @@ class soprojectelements extends so_sql
 		if ($join === true)	// add join with links-table and extra-columns
 		{
 			$join = $this->links_join;
-			
+
 			if (!$extra_cols) $extra_cols = $this->links_extracols;
 		}
 		return parent::read($keys,$extra_cols,$join);

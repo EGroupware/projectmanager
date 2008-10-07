@@ -5,12 +5,10 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectmanager.inc.php');
 
 define('EGW_ACL_BUDGET',EGW_ACL_CUSTOM_1);
 define('EGW_ACL_EDIT_BUDGET',EGW_ACL_CUSTOM_2);
@@ -21,7 +19,7 @@ define('EGW_ACL_EDIT_BUDGET',EGW_ACL_CUSTOM_2);
  * This class does all the timezone-conversation: All function expect user-time and convert them to server-time
  * before calling the storage object.
  */
-class boprojectmanager extends soprojectmanager
+class projectmanager_bo extends projectmanager_so
 {
 	/**
 	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
@@ -86,28 +84,28 @@ class boprojectmanager extends soprojectmanager
 	 *
 	 * @param int $pm_id id of the project to load, default null
 	 * @param string $instanciate='' comma-separated: constraints,milestones,roles
-	 * @return boprojectmanager
+	 * @return projectmanager_bo
 	 */
-	function boprojectmanager($pm_id=null,$instanciate='')
+	function __construct($pm_id=null,$instanciate='')
 	{
-		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message(function_backtrace()."\nboprojectmanager::boprojectmanager($pm_id) started");
+		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message(function_backtrace()."\nprojectmanager_bo::projectmanager_bo($pm_id) started");
 
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
 
-		$this->soprojectmanager($pm_id);
+		parent::__construct($pm_id);
 
 		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
-		if (!is_object($GLOBALS['boprojectmanager']))
+		if (!is_object($GLOBALS['projectmanager_bo']))
 		{
-			$GLOBALS['boprojectmanager'] =& $this;
+			$GLOBALS['projectmanager_bo'] =& $this;
 		}
 		// atm. projectmanager-admins are identical to eGW admins, this might change in the future
 		$this->is_admin = isset($GLOBALS['egw_info']['user']['apps']['admin']);
 
 		if ($instanciate) $this->instanciate($instanciate);
 
-		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("boprojectmanager::boprojectmanager($pm_id) finished");
+		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("projectmanager_bo::projectmanager_bo($pm_id) finished");
 	}
 
 	/**
@@ -122,7 +120,8 @@ class boprojectmanager extends soprojectmanager
 		{
 			if (!is_object($this->$class))
 			{
-				$this->$class =& CreateObject('projectmanager.'.$pre.$class);
+				$cname = 'projectmanager_'.$class.'_'.$pre;
+				$this->$class = new $cname();
 			}
 		}
 	}
@@ -141,7 +140,7 @@ class boprojectmanager extends soprojectmanager
 
 		if (!$pm_id) return array();
 
-		return ExecMethod('projectmanager.boprojectelements.summary',$pm_id);
+		return ExecMethod('projectmanager.projectmanager_elements_bo.summary',$pm_id);
 	}
 
 	/**
@@ -170,7 +169,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		$pe_summary = $this->pe_summary($pm_id);
 
-		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectmanager::update($pm_id,$update_necessary) pe_summary=".print_r($pe_summary,true));
+		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("projectmanager_bo::update($pm_id,$update_necessary) pe_summary=".print_r($pe_summary,true));
 
 		if (!$this->pe_name2id)
 		{
@@ -232,7 +231,7 @@ class boprojectmanager extends soprojectmanager
 			$this->data['pm_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
 			$this->data['pm_modified'] = $this->now_su;
 		}
-		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectmanager::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
+		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("projectmanager_bo::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
 
 		if (!($err = parent::save()) && $do_notify)
 		{
@@ -251,7 +250,7 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function delete($keys=null,$delete_sources=false)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("boprojectmanager::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
+		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("projectmanager_bo::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
 
 		if (!is_array($keys) && (int) $keys)
 		{
@@ -264,9 +263,9 @@ class boprojectmanager extends soprojectmanager
 			// delete the projectmembers
 			parent::delete_members($pm_id);
 
-			ExecMethod2('projectmanager.boprojectelements.delete',array('pm_id' => $pm_id),$delete_sources);
+			ExecMethod2('projectmanager.projectmanager_elements_bo.delete',array('pm_id' => $pm_id),$delete_sources);
 
-			// the following is not really necessary, as it's already one in boprojectelements::delete
+			// the following is not really necessary, as it's already one in projectmanager_elements_bo::delete
 			// delete all links to project $pm_id
 			egw_link::unlink(0,'projectmanager',$pm_id);
 
@@ -408,7 +407,7 @@ class boprojectmanager extends soprojectmanager
 				$rights[$pm_id] &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
 			}
 		}
-		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message("boprojectmanager::check_acl($required,pm_id=$pm_id) rights[$pm_id]=".$rights[$pm_id]);
+		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message("projectmanager_bo::check_acl($required,pm_id=$pm_id) rights[$pm_id]=".$rights[$pm_id]);
 
 		if ($required == EGW_ACL_READ)	// read-rights are implied by all other rights
 		{
@@ -514,28 +513,20 @@ class boprojectmanager extends soprojectmanager
 	}
 
 	/**
-	 * Hook called by link-class to include projectmanager in the appregistry of the linkage
+	 * Check access to the projects file store
 	 *
-	 * @param array/string $location location and other parameters (not used)
-	 * @return array with method-names
+	 * We currently map file access rights:
+	 *  - file read rights = project read rights
+	 *  - file write or delete rights = project edit rights
+	 *
+	 * @ToDo Implement own acl rights for file access
+	 * @param int $id pm_id of project
+	 * @param int $check EGW_ACL_READ for read and EGW_ACL_EDIT for write or delete access
+	 * @return boolean true if access is granted or false otherwise
 	 */
-	function search_link($location)
+	function file_access($id,$check,$rel_path)
 	{
-		return array(
-			'query' => 'projectmanager.boprojectmanager.link_query',
-			'title' => 'projectmanager.boprojectmanager.link_title',
-			'titles' => 'projectmanager.boprojectmanager.link_titles',
-			'view'  => array(
-				'menuaction' => 'projectmanager.uiprojectelements.index',
-			),
-			'view_id' => 'pm_id',
-			'notify' => 'projectmanager.boprojectelements.notify',
-			'add' => array(
-				'menuaction' => 'projectmanager.uiprojectmanager.edit',
-			),
-			'add_app'    => 'link_app',
-			'add_id'     => 'link_id',
-		);
+		return $this->check_acl($check,$id);
 	}
 
 	/**
@@ -634,7 +625,7 @@ class boprojectmanager extends soprojectmanager
 		$projects = array();
 		$parents = 'mains';
 		// get the children
-		while (($children = $this->search($filter,$GLOBALS['boprojectmanager']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent',
+		while (($children = $this->search($filter,$GLOBALS['projectmanager_bo']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent',
 			'pm_status,pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
 			#echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents)."<br>"; #_debug_array($children);
@@ -733,7 +724,7 @@ class boprojectmanager extends soprojectmanager
 			}
 			else
 			{
-				$prefs =& CreateObject('phpgwapi.preferences',$uid);
+				$prefs = new preferences($uid);
 				$prefs->read_repository();
 				$user_prefs =& $prefs->data['projectmanager'];
 				unset($prefs);
@@ -827,7 +818,7 @@ class boprojectmanager extends soprojectmanager
 			$time_s -= $add_s;
 		} while ($time_s > 0);
 
-		if ((int) $this->debug >= 3 || $this->debug == 'date_add') $this->debug_message("boprojectmanager::date_add($start=".date('D Y-m-d H:i',$start).", $time=".($time/60.0)."h, $uid)=".date('D Y-m-d H:i',$end_s));
+		if ((int) $this->debug >= 3 || $this->debug == 'date_add') $this->debug_message("projectmanager_bo::date_add($start=".date('D Y-m-d H:i',$start).", $time=".($time/60.0)."h, $uid)=".date('D Y-m-d H:i',$end_s));
 
 		return $end_s;
 	}
@@ -842,7 +833,7 @@ class boprojectmanager extends soprojectmanager
 	 */
 	function copy($source,$only_stage=0,$parent_number='')
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'copy') $this->debug_message("boprojectmanager::copy($source,$only_stage)");
+		if ((int) $this->debug >= 1 || $this->debug == 'copy') $this->debug_message("projectmanager_bo::copy($source,$only_stage)");
 
 		if ($only_stage == 2)
 		{
@@ -852,7 +843,7 @@ class boprojectmanager extends soprojectmanager
 		}
 		if (!$this->read((int) $source) || !$this->check_acl(EGW_ACL_READ))
 		{
-			if ((int) $this->debug >= 1 || $this->debug == 'copy') $this->debug_message("boprojectmanager::copy($source,$only_stage) returning false (not found or no perms), data=".print_r($this->data,true));
+			if ((int) $this->debug >= 1 || $this->debug == 'copy') $this->debug_message("projectmanager_bo::copy($source,$only_stage) returning false (not found or no perms), data=".print_r($this->data,true));
 			return false;
 		}
 		if ($only_stage == 2)
@@ -893,8 +884,8 @@ class boprojectmanager extends soprojectmanager
 		$milestones = $this->milestones->copy((int)$source,$this->data['pm_id']);
 
 		// copying the element tree
-		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
-		$boelements =& new boprojectelements($this->data['pm_id']);
+		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_elements_bo.inc.php');
+		$boelements =& new projectmanager_elements_bo($this->data['pm_id']);
 
 		if (($elements = $boelements->copytree((int) $source)))
 		{

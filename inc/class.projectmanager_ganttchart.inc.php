@@ -10,8 +10,6 @@
  * @version $Id$
  */
 
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectelements.inc.php');
-
 // JPGraph does not work, if that got somehow set, so unset it
 if (isset($GLOBALS['php_errormsg'])) { unset ($GLOBALS['php_errormsg']); }
 
@@ -99,7 +97,7 @@ if (!defined('PHP_SHLIB_PREFIX'))
 /**
  * ProjectManager: Ganttchart creation
  */
-class ganttchart extends boprojectelements
+class projectmanager_ganttchart extends projectmanager_elements_bo
 {
 	/**
 	 * @var array $public_functions Functions to call via menuaction
@@ -147,9 +145,9 @@ class ganttchart extends boprojectelements
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 */
-	function ganttchart()
+	function __construct()
 	{
-		$this->tmpl =& CreateObject('etemplate.etemplate');
+		$this->tmpl = new etemplate();
 
 		$php_extension = 'gd';
 		if (!extension_loaded($php_extension) && (!function_exists('dl') ||
@@ -181,7 +179,7 @@ class ganttchart extends boprojectelements
 				'msg'        => lang('You need to select a project first'),
 			));
 		}
-		$this->boprojectelements($pm_id);
+		parent::__construct($pm_id);
 
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
@@ -847,6 +845,6 @@ class ganttchart extends boprojectelements
 		);
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Ganttchart').': '.$this->project->data['pm_title'];;
 		$this->tmpl->read('projectmanager.ganttchart');
-		return $this->tmpl->exec('projectmanager.ganttchart.show',$content,$sel_options,'',array('pm_id'=>$content['pm_id']));
+		return $this->tmpl->exec('projectmanager.projectmanager_ganttchart.show',$content,$sel_options,'',array('pm_id'=>$content['pm_id']));
 	}
 }

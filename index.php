@@ -5,14 +5,14 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 $GLOBALS['egw_info'] = array(
 	'flags' => array(
-		'currentapp'	=> 'projectmanager', 
+		'currentapp'	=> 'projectmanager',
 		'noheader'		=> True,
 		'nonavbar'		=> True
 ));
@@ -30,11 +30,11 @@ if ($setup_info['projectmanager']['version'] != $GLOBALS['egw_info']['apps']['pr
 }
 unset($setup_info);
 
-ExecMethod('projectmanager.pm_admin_prefs_sidebox_hooks.check_set_default_prefs');
+projectmanager_hooks::check_set_default_prefs();
 
 $pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 
 $GLOBALS['egw']->redirect_link('/index.php',array(
-	'menuaction' => $pm_id ? 'projectmanager.uiprojectelements.index' : 'projectmanager.uiprojectmanager.index',
+	'menuaction' => $pm_id ? 'projectmanager.projectmanager_elements_ui.index' : 'projectmanager.projectmanager_ui.index',
 ));
 $GLOBALS['egw']->common->egw_exit();

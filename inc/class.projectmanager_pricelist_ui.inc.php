@@ -7,16 +7,13 @@
  * @package projectmanager
  * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.bopricelist.inc.php');
-include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.uietemplate.inc.php');
 
 /**
  * Pricelist user interface of the projectmanager
  */
-class uipricelist extends bopricelist
+class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 {
 	/**
 	 * Functions callable via menuaction
@@ -33,9 +30,9 @@ class uipricelist extends bopricelist
 	 * Constructor, calls the constructor of the extended class
 	 *
 	 * @param int $pm_id=null project to use
-	 * @return uipricelist
+	 * @return projectmanager_pricelist_ui
 	 */
-	function uipricelist($pm_id=null)
+	function __construct($pm_id=null)
 	{
 		if (!is_null($pm_id) || isset($_REQUEST['pm_id']))
 		{
@@ -46,19 +43,19 @@ class uipricelist extends bopricelist
 		{
 			$pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 		}
-		$this->bopricelist($pm_id);	// sets $this->pm_id
+		parent::__construct($pm_id);	// sets $this->pm_id
 	}
-	
+
 	function view()
 	{
 		return $this->edit(null,true);
 	}
-	
+
 	function edit($content=null,$view=false,$msg='')
 	{
 		$tpl =& new etemplate('projectmanager.pricelist.edit');
 		$tabs = 'price|project|description';
-		
+
 		if (!is_array($content))
 		{
 			if (($pl_id = (int) $_GET['pl_id']) && $this->read(array(
@@ -66,7 +63,7 @@ class uipricelist extends bopricelist
 				'pm_id' => $this->pm_id ? array($this->pm_id,0) : 0,
 			)))
 			{
-				
+
 				// perms are checked later, see view_...prices
 			}
 			else	// add new price
@@ -80,7 +77,7 @@ class uipricelist extends bopricelist
 				);
 			}
 			// no READ or EDIT/ADD rights ==> close the popup
-			if (!$this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT) && 
+			if (!$this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT) &&
 				!($this->pm_id && $this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT,$this->pm_id)))
 			{
 				$js = "alert('".lang('Permission denied !!!')."'); window.close();";
@@ -132,7 +129,7 @@ class uipricelist extends bopricelist
 						$button = 'apply';	// dont close the window
 					}
 					$js = "window.opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
-						'menuaction' => 'projectmanager.uipricelist.index',
+						'menuaction' => 'projectmanager.projectmanager_pricelist_ui.index',
 						'msg' => $msg,
 					))."';";
 					if ($button == 'apply') break;
@@ -142,7 +139,7 @@ class uipricelist extends bopricelist
 					echo '<html><body onload="'.$js.'"></body></html>';
 					$GLOBALS['egw']->common->egw_exit();
 					break;
-					
+
 				case 'edit':
 					$view = false;	// acl is ensured later, see $view_*prices
 					break;
@@ -193,11 +190,11 @@ class uipricelist extends bopricelist
 			}
 			for($n = 0; $n <= count($this->data['prices']); ++$n)
 			{
-				$readonlys['prices['.(1+$n).'][pl_price]'] = 
+				$readonlys['prices['.(1+$n).'][pl_price]'] =
 				$readonlys['prices['.(1+$n).'][pl_validsince]'] = true;
 			}
 		}
-		// set project-spez. prices readonly, if view or no edit-rights there 
+		// set project-spez. prices readonly, if view or no edit-rights there
 		if ($view || !$this->check_acl(EGW_ACL_EDIT,$this->pm_id))
 		{
 			foreach(array('pl_billable','pl_customertitle') as $name)
@@ -206,13 +203,13 @@ class uipricelist extends bopricelist
 			}
 			for($n = 0; $n <= count($this->data['project_prices']); ++$n)
 			{
-				$readonlys['project_prices['.(3+$n).'][pl_price]'] = 
+				$readonlys['project_prices['.(3+$n).'][pl_price]'] =
 				$readonlys['project_prices['.(3+$n).'][pl_validsince]'] = true;
 			}
 		}
 		$readonlys['button[save]'] = $readonlys['button[apply]'] = $view;
 		$readonlys['button[edit]'] = !$view || !$this->check_acl(EGW_ACL_EDIT) && !$this->check_acl(EGW_ACL_EDIT,$this->pm_id);
-		
+
 		if (!$this->pm_id)	// no project tab for the general pricelist
 		{
 			$readonlys[$tabs]['project'] = true;
@@ -228,11 +225,11 @@ class uipricelist extends bopricelist
 
 		//_debug_array($content);
 		//_debug_array($readonlys);
-		return $tpl->exec('projectmanager.uipricelist.edit',$content,array(
+		return $tpl->exec('projectmanager.projectmanager_pricelist_ui.edit',$content,array(
 			'pl_billable' => $this->billable_lables,
 		),$readonlys,$preserv,2);
 	}
-	
+
 	/**
 	 * query pricelist for nextmatch
 	 *
@@ -245,7 +242,7 @@ class uipricelist extends bopricelist
 	function get_rows(&$query,&$rows,&$readonlys)
 	{
 		$GLOBALS['egw']->session->appsession('pricelist','projectmanager',$query);
-	
+
 		if ($query['cat_id'])
 		{
 			$query['col_filter']['cat_id'] = $query['cat_id'];
@@ -256,7 +253,7 @@ class uipricelist extends bopricelist
 		}
 		elseif ($query['col_filter']['pm_id'] != $this->pm_id)
 		{
-			$this->uipricelist($query['col_filter']['pm_id']);
+			$this->projectmanager_pricelist_ui($query['col_filter']['pm_id']);
 		}
 		if ($query['col_filter']['pl_billable'] === '') unset($query['col_filter']['pl_billable']);
 
@@ -278,7 +275,7 @@ class uipricelist extends bopricelist
 		}
 		$rows['standard_only'] = !$this->pm_id;
 
-		return $total;		
+		return $total;
 	}
 
 	function index($content=null,$msg='')
@@ -292,7 +289,7 @@ class uipricelist extends bopricelist
 			else
 			{
 				$GLOBALS['egw']->redirect_link('/index.php',array(
-					'menuaction' => 'projectmanager.uiprojectmanager.index',
+					'menuaction' => 'projectmanager.projectmanager_ui.index',
 					'msg' => lang('Permission denied !!!'),
 				));
 			}
@@ -322,7 +319,7 @@ class uipricelist extends bopricelist
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
-				'get_rows'       =>	'projectmanager.uipricelist.get_rows',
+				'get_rows'       =>	'projectmanager.projectmanager_pricelist_ui.get_rows',
 				'no_filter'      => true,
 				'no_filter2'     => true,
 				'order'          =>	'pl_title',// IO name of the column to sort after (optional for the sortheaders)
@@ -331,8 +328,8 @@ class uipricelist extends bopricelist
 		}
 		$content['nm']['col_filter']['pm_id'] = $this->pm_id;
 
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($this->pm_id ? 
-			lang('Pricelist') .': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] : 
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($this->pm_id ?
+			lang('Pricelist') .': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] :
 			lang('General pricelist'));
 
 		$projects = array();
@@ -344,12 +341,12 @@ class uipricelist extends bopricelist
 			$projects[$project['pm_id']] = $project['pm_number'].': '.$project['pm_title'];
 		}
 		$projects[0] = lang('General pricelist');
-		
+
 		$readonlys = array(
 			// show add button only, if user has rights to add a new price
 			'add' => !$this->check_acl(EGW_ACL_EDIT,$this->pm_id),
 		);
-		return $tpl->exec('projectmanager.uipricelist.index',$content,array(
+		return $tpl->exec('projectmanager.projectmanager_pricelist_ui.index',$content,array(
 			'pl_billable' => $this->billable_lables,
 			'pm_id' => $projects,
 		),$readonlys);

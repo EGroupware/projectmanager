@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.3.001">
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -58,7 +58,7 @@
 				</row>
 				<row class="row">
 					<description id="${row}[pm_number]" no_lang="1"/>
-					<description id="${row}[pm_title]" no_lang="1" options=",projectmanager.uiprojectelements.index&amp;pm_id=$row_cont[pm_id]" statustext="Select this project and show it's elements"/>
+					<description id="${row}[pm_title]" no_lang="1" options=",projectmanager.projectmanager_elements_ui.index&amp;pm_id=$row_cont[pm_id]" statustext="Select this project and show it's elements"/>
 					<description no_lang="1" id="${row}[pm_priority]" align="center"/>
 					<menulist>
 						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>

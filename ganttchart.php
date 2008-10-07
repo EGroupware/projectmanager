@@ -5,15 +5,15 @@
  * As ganttcharts contain an image-map and the image, we save the image as a temporary file.
  * This for performance reasons, it saves a second creation / script-run.
  * This script reads and output the temporary file/image and unlinks it after.
- * If the temp. image is not found, it creates a new one. 
+ * If the temp. image is not found, it creates a new one.
  * It can be used standalone, eg. from SiteMgr.
- * 
+ *
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
 
 error_reporting(E_ALL & ~E_NOTICE);
@@ -34,12 +34,12 @@ if (isset($_GET['img']) && is_readable($ganttchart = $tmp.'/'.basename($_GET['im
 
 $GLOBALS['egw_info'] = array(
 	'flags' => array(
-		'currentapp'	=> 'projectmanager', 
+		'currentapp'	=> 'projectmanager',
 		'noheader'		=> True,
 		'nonavbar'		=> True
 ));
 include('../header.inc.php');
 
-ExecMethod('projectmanager.ganttchart.create');
+ExecMethod('projectmanager.projectmanager_ganttchart.create');
 
 $GLOBALS['egw']->common->egw_exit();

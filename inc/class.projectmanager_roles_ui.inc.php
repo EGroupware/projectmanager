@@ -5,24 +5,21 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
-include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.uietemplate.inc.php');
 
 define('EGW_ACL_ROLES',EGW_ACL_EDIT);	// maybe this gets an own ACL later
 
 /**
  * ProjectManager UI: roles
  */
-class uiroles extends boprojectmanager  
+class projectmanager_roles_ui extends projectmanager_bo
 {
 	/**
 	 * Functions to call via menuaction
-	 * 
+	 *
 	 * @var array
 	 */
 	var $public_functions = array(
@@ -39,20 +36,20 @@ class uiroles extends boprojectmanager
 	/**
 	 * Instance of the boprojectmanger class
 	 *
-	 * @var boprojectmanager
+	 * @var projectmanager_bo
 	 */
 	var $project;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
-	 * 
-	 * @return uiroles
+	 *
+	 * @return projectmanager_roles_ui
 	 */
-	function uiroles()
+	function __construct()
 	{
-		$this->boprojectmanager(null,'roles');
+		parent::__construct(null,'roles');
 	}
-	
+
 	/**
 	 * Create and edit roles
 	 *
@@ -61,15 +58,15 @@ class uiroles extends boprojectmanager
 	function roles($content=null)
 	{
 		$tpl =& new etemplate('projectmanager.roles');
-		
+
 		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
-		
+
 		$only = !!$pm_id;
 		if (!($project_rights = $this->check_acl(EGW_ACL_ROLES,$pm_id)) || !$this->is_admin)
 		{
 			$only = $project_rights ? 1 : 0;
 			$readonlys['1[pm_id]'] = true;
-			
+
 			if (!$project_rights && !$this->is_admin)
 			{
 				$readonlys['edit'] = $readonlys['apply'] = true;
@@ -101,7 +98,7 @@ class uiroles extends boprojectmanager
 				if ($this->roles->save($role) == 0)
 				{
 					$msg = lang('Role saved');
-					
+
 					$js = 'opener.document.eTemplate.submit();';
 
 					if ($content['save']) $js .= 'window.close();';
@@ -161,16 +158,16 @@ class uiroles extends boprojectmanager
 				$role['acl_'.$acl] = $role['role_acl'] & $id;
 			}
 			$content[$n++] = $role;
-			
+
 			$readonlys['delete['.$role['role_id'].']'] = $readonlys['edit['.$role['role_id'].']'] =
 				!$role['pm_id'] && !$this->is_admin || $role['pm_id'] && !$this->check_acl(EGW_ACL_ROLES,$role['pm_id']);
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Add or edit roles and their ACL');
-		$tpl->exec('projectmanager.uiroles.roles',$content,array(
+		$tpl->exec('projectmanager.projectmanager_roles_ui.roles',$content,array(
 			'pm_id' => $this->query_list(),
 		),$readonlys,array(
 			'pm_id' => $pm_id,
 			1       => array('role_id' => $content[1]['role_id']),
 		),2);
-	}		
+	}
 }

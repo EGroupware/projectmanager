@@ -5,17 +5,15 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.sopricelist.inc.php');
 
 /**
  * Pricelist buisness object of the projectmanager
  */
-class bopricelist extends sopricelist
+class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 {
 	/**
 	 * @var array $timestamps timestaps that need to be adjusted to user-time on reading or saving
@@ -35,23 +33,23 @@ class bopricelist extends sopricelist
 
 	/**
 	 * Constructor, calls the constructor of the extended class
-	 * 
+	 *
 	 * @param int $pm_id=0 pm_id of the project to use, default 0 (project independent / standard prices)
 	 */
-	function bopricelist($pm_id=0)
+	function __construct($pm_id=0)
 	{
-		$this->sopricelist($pm_id);
+		parent::__construct($pm_id);
 
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now = time() + $this->tz_offset_s;
-		
-		if (!is_object($GLOBALS['boprojectmanager']))
+
+		if (!is_object($GLOBALS['projectmanager_bo']))
 		{
-			CreateObject('projectmanager.boprojectmanager',$pm_id);
+			$GLOBALS['projectmanager_bo'] = new projectmanager_bo($pm_id);
 		}
-		$this->project =& $GLOBALS['boprojectmanager'];
+		$this->project = $GLOBALS['projectmanager_bo'];
 	}
-	
+
 	/**
 	 * saves the content of data to the db, also checks acl and deletes not longer set prices!
 	 *
@@ -61,10 +59,10 @@ class bopricelist extends sopricelist
 	function save($keys=null)
 	{
 		if (is_array($keys) && count($keys)) $this->data_merge($keys);
-		
+
 		if ((int)$this->debug >= 2)
 		{
-			echo "<p>sopricelist::save(".print_r($keys,true).") data=";
+			echo "<p>projectmanager_pricelist_so::save(".print_r($keys,true).") data=";
 			_debug_array($this->data);
 		}
 		if ($this->data['pl_id'])
@@ -122,7 +120,7 @@ class bopricelist extends sopricelist
 			if (count($this->data['project_prices']) == 1) $price['pl_validsince'] = 0;	// no date for first price
 			$prices[] =& $price;
 		}
-		
+
 		// index prices in old by pm_id and date (!) of validsince
 		$old_prices = array();
 		if ($old)
@@ -171,7 +169,7 @@ class bopricelist extends sopricelist
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * search elements, reimplemented to use $this->pm_id, if no pm_id given in criteria or filter and join with the prices table
 	 *
@@ -195,7 +193,7 @@ class bopricelist extends sopricelist
 		}
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
 	}
-	
+
 	/**
 	 * return priceslist of a given project (only bookable or billable price, no general pricelist)
 	 *
@@ -204,7 +202,7 @@ class bopricelist extends sopricelist
 	 */
 	function pricelist($pm_id)
 	{
-		//echo "<p>bopricelist::pricelist($pm_id)</p>\n";
+		//echo "<p>projectmanager_pricelist_bo::pricelist($pm_id)</p>\n";
 		if (!($prices =& $this->search(array('pm_id' => $pm_id))))
 		{
 			return false;
@@ -230,7 +228,7 @@ class bopricelist extends sopricelist
 	function read($keys,$extra_cols='',$join=true)
 	{
 		// check if we have the requested access to all given pricelists
-		foreach(!is_array($keys) || !isset($keys['pm_id']) ? array($this->pm_id) : 
+		foreach(!is_array($keys) || !isset($keys['pm_id']) ? array($this->pm_id) :
 			(is_array($keys['pm_id']) ? $keys['pm_id'] : array($keys['pm_id'])) as $pm_id)
 		{
 			if (!$this->check_acl(EGW_ACL_READ,(int)$pm_id)) return false;
@@ -258,7 +256,7 @@ class bopricelist extends sopricelist
 	/**
 	 * checks if the user has sufficent rights for a certain action
 	 *
-	 * For project-spez. prices/data you need a EGW_ACL_BUDGET right of the project for read or 
+	 * For project-spez. prices/data you need a EGW_ACL_BUDGET right of the project for read or
 	 * EGW_ACL_EDIT_BUDGET for write or delete.
 	 * For general pricelist data you need atm. no extra read rights, but is_admin to write/delete.
 	 *
@@ -307,9 +305,9 @@ class bopricelist extends sopricelist
 	function prices_equal($price,$price2)
 	{
 		if (!is_array($price) || !is_array($price2)) return false;
-		
+
 		$to_compare = array('pl_id','pm_id','pl_price','pl_validsince','pl_modified','pl_modifier');
-		
+
 		if ($price['pm_id'])
 		{
 			$to_compare[] = 'pl_customertitle';
@@ -332,7 +330,7 @@ class bopricelist extends sopricelist
 			}
 			if (!$equal) break;
 		}
-		if ((int)$this->debug >= 3) echo "<p>bopricelist::prices_equal(".print_r($price,true).','.print_r($price2,true).') = '.($equal ? 'true' : "differ in $key: {$price[$key]} != {$price2[$key]}")."</p>\n";
+		if ((int)$this->debug >= 3) echo "<p>projectmanager_pricelist_bo::prices_equal(".print_r($price,true).','.print_r($price2,true).') = '.($equal ? 'true' : "differ in $key: {$price[$key]} != {$price2[$key]}")."</p>\n";
 
 		return $equal;
 	}

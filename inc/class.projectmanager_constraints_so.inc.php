@@ -5,12 +5,10 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
 
 /**
  * Constraints storage object of the projectmanager
@@ -22,18 +20,18 @@ include_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.so_sql.inc.php');
  *
  * Tables: egw_pm_constraints
  */
-class soconstraints extends so_sql
+class projectmanager_constraints_so extends so_sql
 {
 	/**
 	 * Constructor, calls the constructor of the extended class
-	 * 
+	 *
 	 * @param int $pm_id pm_id of the project to use, default null
 	 */
-	function soconstraints($pm_id=null)
+	function __construct($pm_id=null)
 	{
-		$this->so_sql('projectmanager','egw_pm_constraints');
+		parent::__construct('projectmanager','egw_pm_constraints');
 
-		if ((int) $pm_id) 
+		if ((int) $pm_id)
 		{
 			$this->pm_id = (int) $pm_id;
 		}
@@ -53,7 +51,7 @@ class soconstraints extends so_sql
 	 * @param string $op='AND' defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
 	 * @param mixed $start=false if != false, return only maxmatch rows begining with start, or array($start,$num)
 	 * @param array $filter=null if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or 
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or
 	 *	"LEFT JOIN table2 ON (x=y)", Note: there's no quoting done on $join!
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
@@ -84,7 +82,7 @@ class soconstraints extends so_sql
 		}
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
 	}
-	
+
 	/**
 	 * reads all constraints of a milestone (ms_id given), an element (pe_id given) or a project (pm_id given)
 	 *
@@ -92,8 +90,8 @@ class soconstraints extends so_sql
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
 	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
-	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or 
-	 * @return array/boolean milestones: array with pe_id's, element: array with subarrays for start, end, milestone, 
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or
+	 * @return array/boolean milestones: array with pe_id's, element: array with subarrays for start, end, milestone,
 	 *	or same as search($keys) would return
 	*/
 	function read($keys,$extra_cols='',$join='')
@@ -144,8 +142,8 @@ class soconstraints extends so_sql
 	/**
 	 * saves the given data to the db
 	 *
-	 * @param array $data with either data for one row or null, or 
-	 *	for the constraints of an elements the keys pe_id, start, end, milestone, or 
+	 * @param array $data with either data for one row or null, or
+	 *	for the constraints of an elements the keys pe_id, start, end, milestone, or
 	 *	for the constraints of a milestone the keys ms_id, pe_id (pm_id can be given or is taken from $this->pm_id)
 	 * @return int 0 on success and errno != 0 else
 	 */
@@ -218,7 +216,7 @@ class soconstraints extends so_sql
 			foreach($data['pe_id'] as $pe_id);
 			{
 				$keys['pe_id_end'] = $pe_id;
-				
+
 				if (($err = parent::save($keys)))
 				{
 					return $err;
@@ -227,8 +225,8 @@ class soconstraints extends so_sql
 			return 0;
 		}
 		return parent::save($data);
-	}		
-		
+	}
+
 	/**
 	 * reimplented to delete all constraints from a project-element if a pe_id is given
 	 *
@@ -251,12 +249,12 @@ class soconstraints extends so_sql
 				$pe_id = (int) $keys;
 				$keys = array();
 			}
-			$keys[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";		
+			$keys[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";
 			return $this->db->delete($this->table_name,$keys,__LINE__,__FILE__);
 		}
 		return parent::delete($keys);
 	}
-	
+
 	/**
 	 * Copy the constrains from an other project
 	 *
@@ -293,11 +291,11 @@ class soconstraints extends so_sql
 				$constrain['pm_id'] = $pm_id;
 				$this->init($constrain);
 				$this->save();
-				
+
 				$copied++;
 			}
 		}
 		return $copied == count($constrains);
-		
+
 	}
 }

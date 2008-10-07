@@ -1,21 +1,19 @@
 <?php
 /**
- * ProjectManager - Milestones user interface
+ * projectmanager_bo - Milestones user interface
  *
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
- * @package projectmanager
- * @copyright (c) 2005-7 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @package projectmanager_bo
+ * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$ 
+ * @version $Id$
  */
-
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.boprojectmanager.inc.php');
 
 /**
- * Milestones user interface of the projectmanager
+ * Milestones user interface of the projectmanager_bo_bo
  */
-class uimilestones extends boprojectmanager 
+class projectmanager_milestones_ui extends projectmanager_bo
 {
 	/**
 	 * @var array $public_functions Functions to call via menuaction
@@ -25,13 +23,13 @@ class uimilestones extends boprojectmanager
 		'view'  => true,
 	);
 	var $tpl;
-	
+
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 */
-	function uimilestones()
+	function __construct()
 	{
-		$this->tpl =& CreateObject('etemplate.etemplate');
+		$this->tpl = new etemplate();
 
 		if ((int) $_REQUEST['pm_id'])
 		{
@@ -39,28 +37,28 @@ class uimilestones extends boprojectmanager
 		}
 		else
 		{
-			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager_bo');
 		}
 		if (!$pm_id)
 		{
 			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager_bo.uiprojectmanager_bo.index',
 				'msg'        => lang('You need to select a project first'),
 			));
 		}
-		$this->boprojectmanager($pm_id);
-		
+		parent::__construct($pm_id);
+
 		// check if we have at least read-access to this project
 		if (!$this->check_acl(EGW_ACL_READ))
 		{
 			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager_bo.uiprojectmanager_bo.index',
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
 		$this->instanciate('milestones');
 	}
-	
+
 	/**
 	 * View a milestone, only calls edit(null,true);
 	 */
@@ -78,7 +76,7 @@ class uimilestones extends boprojectmanager
 	function edit($content=null,$view=false)
 	{
 		$view = $view || $content['view'] || !$this->check_acl(EGW_ACL_EDIT);
-		
+
 		if (is_array($content))
 		{
 			if ($content['pm_id'] != $this->data['pm_id'])
@@ -100,7 +98,7 @@ class uimilestones extends boprojectmanager
 					{
 						$msg = lang('Milestone saved');
 						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => 'projectmanager.ganttchart.show',
+							'menuaction' => 'projectmanager_bo.projectmanager_ganttchart.show',
 							'msg'        => $msg,
 						))."';";
 					}
@@ -114,7 +112,7 @@ class uimilestones extends boprojectmanager
 					{
 						$msg = lang('Milestone deleted');
 						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => 'projectmanager.ganttchart.show',
+							'menuaction' => 'projectmanager_bo.projectmanager_ganttchart.show',
 							'msg'        => $msg,
 						))."';";
 					}
@@ -171,11 +169,11 @@ class uimilestones extends boprojectmanager
 		}
 		$readonlys['delete'] = !$this->milestones->data['ms_id'] || !$this->check_acl(EGW_ACL_EDIT);
 
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($view ? lang('View milestone') : 
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager_bo').' - '.($view ? lang('View milestone') :
 			($this->milestones->data['ms_id'] ? lang('Edit milestone') : lang('Add milestone')));
-		$this->tpl->read('projectmanager.milestone.edit');
-		$this->tpl->exec('projectmanager.uimilestones.edit',$content,$sel_options,$readonlys,$this->milestones->data+array(
+		$this->tpl->read('projectmanager_bo.milestone.edit');
+		$this->tpl->exec('projectmanager_bo.projectmanager_milestones_ui.edit',$content,$sel_options,$readonlys,$this->milestones->data+array(
 			'view'  => $view,
 		),2);
-	}	 
+	}
 }

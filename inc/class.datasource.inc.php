@@ -104,7 +104,7 @@ class datasource
 		'pe_used_quantity'  => PM_USED_QUANTITY,
 	);
 	/**
-	 * @var boprojectelements-object $bo_pe pe object to read other pe's (eg. for constraints)
+	 * @var projectmanager_elements_bo-object $bo_pe pe object to read other pe's (eg. for constraints)
 	 */
 	var $bo_pe;
 
@@ -113,9 +113,17 @@ class datasource
 	 *
 	 * @param string $type=null type of the datasource
 	 */
-	function datasource($type=null)
+	function __construct($type=null)
 	{
 		$this->type = $type;
+	}
+
+	/**
+	 * PHP4 constructor
+	 */
+	function datasource($type=null)
+	{
+		self::__construct($type);
 	}
 
 	/**
@@ -168,7 +176,7 @@ class datasource
 				$start = 0;
 				if (!is_object($this->bo_pe))
 				{
-					$this->bo_pe =& CreateObject('projectmanager.boprojectelements',$pe_data['pm_id']);
+					$this->bo_pe = new projectmanager_elements_bo($pe_data['pm_id']);
 				}
 				foreach($pe_data['pe_constraints']['start'] as $start_pe_id)
 				{
@@ -196,11 +204,11 @@ class datasource
 			{
 				if (!is_object($this->bo_pe))
 				{
-					$this->bo_pe =& CreateObject('projectmanager.boprojectelements',$pe_data['pm_id']);
+					$this->bo_pe = new projectmanager_elements_bo($pe_data['pm_id']);
 				}
 				if ($this->bo_pe->pm_id != $pe_data['pm_id'])
 				{
-					$this->bo_pe->boprojectelements($pe_data['pm_id']);
+					$this->bo_pe->projectmanager_elements_bo($pe_data['pm_id']);
 				}
 				if ($this->bo_pe->project->data['pm_planned_start'] || $this->bo_pe->project->data['pm_real_start'])
 				{
@@ -244,7 +252,7 @@ class datasource
                                 //echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end'])."</p>\n";
                                 unset($ds['ignore_real_end']);
                         }
-				
+
 			// setting real or planned start- or end-date, from each other if not set
 			foreach(array('start','end') as $name)
 			{
@@ -288,7 +296,7 @@ class datasource
 				{
 					$ds['warning']['completion_by_time'] = $compl_by_time;
 				}
-			}			
+			}
 			// try calculating a (second) completion from the budget
 			if(!empty($ds['pe_used_budget']) && $ds['pe_planned_budget'] > 0)
 			{

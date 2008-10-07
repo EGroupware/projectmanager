@@ -10,12 +10,10 @@
  * @version $Id$
  */
 
-include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.soprojectelements.inc.php');
-
 /**
  * Elements business object of the projectmanager
  */
-class boprojectelements extends soprojectelements
+class projectmanager_elements_bo extends projectmanager_elements_so
 {
 	/**
 	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
@@ -24,9 +22,9 @@ class boprojectelements extends soprojectelements
 	 */
 	var $debug=false;
 	/**
-	 * Instance of the boprojectmanager-class
+	 * Instance of the projectmanager_bo-class
 	 *
-	 * @var boprojectmanager
+	 * @var projectmanager_bo
 	 */
 	var $project;
 	/**
@@ -97,16 +95,15 @@ class boprojectelements extends soprojectelements
 	 *
 	 * @param int $pm_id pm_id of the project to use, default null
 	 * @param int $pe_id pe_id of the project-element to load, default null
-	 * @return boprojectelements
 	 */
-	function boprojectelements($pm_id=null,$pe_id=null)
+	function __construct($pm_id=null,$pe_id=null)
 	{
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
 
-		$this->soprojectelements($pm_id,$pe_id);
+		parent::__construct($pm_id,$pe_id);
 
-		$this->project =& CreateObject('projectmanager.boprojectmanager',$pm_id);
+		$this->project = new projectmanager_bo($pm_id);
 		$this->config =& $this->project->config;
 
 		$this->project->instanciate('constraints,milestones');
@@ -115,14 +112,14 @@ class boprojectelements extends soprojectelements
 
 		$this->project_summary = $this->summary();
 
-		if ((int)$this->debug >= 3 || $this->debug == 'boprojectelements')
+		if ((int)$this->debug >= 3 || $this->debug == 'projectmanager_elements_bo')
 		{
-			$this->debug_message(function_backtrace()."\nboprojectelements::boprojectelements($pm_id,$pe_id) data=".print_r($this->data,true));
+			$this->debug_message(function_backtrace()."\nprojectmanager_elements_bo::projectmanager_elements_bo($pm_id,$pe_id) data=".print_r($this->data,true));
 		}
-		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
-		if (!is_object($GLOBALS['boprojectselements']))
+		// save us in $GLOBALS['projectmanager_elements_bo'] for ExecMethod used in hooks
+		if (!is_object($GLOBALS['projectmanager_elements_bo']))
 		{
-			$GLOBALS['boprojectselements'] =& $this;
+			$GLOBALS['projectmanager_elements_bo'] =& $this;
 		}
 	}
 
@@ -136,7 +133,7 @@ class boprojectelements extends soprojectelements
 	 */
 	function notify($data)
 	{
-		if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("boprojectelements::notify(link_id=$data[link_id], type=$data[type], target=$data[target_app]-$data[target_id])");
+		if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify(link_id=$data[link_id], type=$data[type], target=$data[target_app]-$data[target_id])");
 
 		switch($data['type'])
 		{
@@ -155,10 +152,10 @@ class boprojectelements extends soprojectelements
 					{
 						if (($ancestors = $this->project->ancestors($data['id'])) && in_array($data['target_id'],$ancestors))
 						{
-							if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("boprojectelements::notify: cant use pm_id=$data[target_id] as child as it's one of our (pm_id=$data[id]) ancestors=".print_r($ancestors,true));
+							if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify: cant use pm_id=$data[target_id] as child as it's one of our (pm_id=$data[id]) ancestors=".print_r($ancestors,true));
 							return;	// the link is not used as an project-element, thought it's still a regular link
 						}
-						if ((int) $this->debug >= 3 || $this->debug == 'notify') $this->debug_message("boprojectelements::notify: ancestors($data[id])=".print_r($ancestors,true));
+						if ((int) $this->debug >= 3 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify: ancestors($data[id])=".print_r($ancestors,true));
 					}
 				}
 				$this->update($data['target_app'],$data['target_id'],$data['link_id'],$data['id']);
@@ -189,7 +186,7 @@ class boprojectelements extends soprojectelements
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
 
-		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("boprojectelements::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
+		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("projectmanager_elements_bo::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 
 		if (!$app || !$id || !(int) $pm_id)
 		{
@@ -227,7 +224,7 @@ class boprojectelements extends soprojectelements
 			if (isset($datasource->name2id[$name]) && !($this->data['pe_overwrite'] & $datasource->name2id[$name]) &&
 				$this->data[$name] != $value)
 			{
-				//if ((int) $pe_id) echo "<p>boprojectelements::update($app,$id,$pe_id,$pm_id) $name updated: '{$this->data[$name]}' != '$value'</p>\n";
+				//if ((int) $pe_id) echo "<p>projectmanager_elements_bo::update($app,$id,$pe_id,$pm_id) $name updated: '{$this->data[$name]}' != '$value'</p>\n";
 				$this->data[$name] = $value;
 				$this->updated |= $datasource->name2id[$name];
 			}
@@ -259,11 +256,11 @@ class boprojectelements extends soprojectelements
 		}
 		if (!$pm_id && !($pm_id = $this->pm_id)) return 0;
 
-		if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("boprojectelements::sync_all(pm_id=$pm_id)");
+		if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("projectmanager_elements_bo::sync_all(pm_id=$pm_id)");
 
 		if ($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id])	// project already visited
 		{
-			if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("boprojectelements::sync_all(pm_id=$pm_id) stoped recursion, as pm_id in (".implode(',',array_keys($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'])).")");
+			if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("projectmanager_elements_bo::sync_all(pm_id=$pm_id) stoped recursion, as pm_id in (".implode(',',array_keys($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'])).")");
 			return 0;							// no further recursion, might lead to an infinit loop
 		}
 		$GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id] = true;
@@ -432,7 +429,7 @@ class boprojectelements extends soprojectelements
 	 */
 	function save($keys=null,$touch_modified=true,$update_project=-1)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("boprojectelements::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
+		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("projectmanager_elements_bo::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
 
 		if ($keys['update_remark'] || $this->data['update_remark'])
 		{
@@ -475,7 +472,7 @@ class boprojectelements extends soprojectelements
 	 */
 	function delete($keys=null,$delete_sources=false)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("boprojectelements::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
+		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("projectmanager_elements_bo::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
 
 		if (!is_array($keys) && (int) $keys)
 		{
@@ -554,7 +551,7 @@ class boprojectelements extends soprojectelements
 	/**
 	 * echos a (preformatted / no-html) debug-message and evtl. log it to a file
 	 *
-	 * It uses the debug_message method of boprojectmanager
+	 * It uses the debug_message method of projectmanager_bo
 	 *
 	 * @param string $msg
 	 */
@@ -573,7 +570,7 @@ class boprojectelements extends soprojectelements
 	 */
 	function copytree($source)
 	{
-		if ((int) $this->debug >= 2 || $this->debug == 'copytree') $this->debug_message("boprojectelements::copytree($source) this->pm_id=$this->pm_id");
+		if ((int) $this->debug >= 2 || $this->debug == 'copytree') $this->debug_message("projectmanager_elements_bo::copytree($source) this->pm_id=$this->pm_id");
 
 		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start,pe_title');
 		if (!$elements) return array();
@@ -644,7 +641,7 @@ class boprojectelements extends soprojectelements
 	 */
 	function run_on_sources($method,$keys,$args=null)
 	{
-		if ((int) $this->debug >= 2 || $this->debug == 'run_on_sources') $this->debug_message("boprojectelements::run_on_sources($method,".print_r($keys,true).','.print_r($args,true).") this->pm_id=$this->pm_id");
+		if ((int) $this->debug >= 2 || $this->debug == 'run_on_sources') $this->debug_message("projectmanager_elements_bo::run_on_sources($method,".print_r($keys,true).','.print_r($args,true).") this->pm_id=$this->pm_id");
 
 		$elements =& $this->search($keys,array('pe_id','pe_title'),'pe_planned_start');
 		if (!$elements) return true;

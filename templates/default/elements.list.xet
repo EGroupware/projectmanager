@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.5.001">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.5.002">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -98,9 +98,9 @@
 						</menulist>
 					</vbox>
 					<hbox align="center" class="noPrint">
-						<image label="Ganttchart" src="ganttchart" options="projectmanager.ganttchart.show&amp;pm_id=$row_cont[pm_id]" statustext="View Ganttchart of this project"/>
-						<image label="View" src="view" options="projectmanager.uiprojectmanager.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
-						<image label="Edit" src="edit" options="projectmanager.uiprojectmanager.edit&amp;pm_id=$row_cont[pm_id]" statustext="Edit this project"/>
+						<image label="Ganttchart" src="ganttchart" options="projectmanager.projectmanager_ganttchart.show&amp;pm_id=$row_cont[pm_id]" statustext="View Ganttchart of this project"/>
+						<image label="View" src="view" options="projectmanager.projectmanager_ui.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
+						<image label="Edit" src="edit" options="projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]" statustext="Edit this project"/>
 					</hbox>
 				</row>
 				<row class="row">
@@ -152,8 +152,8 @@
 						</menulist>
 					</vbox>
 					<hbox align="center" class="noPrint">
-						<button label="View" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectelements.view&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'view-elements','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="view[$row_cont[pe_id]]" image="view" statustext="View this project-element"/>
-						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.uiprojectelements.edit&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="edit[$row_cont[pe_id]]" image="edit" statustext="Edit this project-element"/>
+						<button label="View" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_elements_ui.view&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'view-elements','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="view[$row_cont[pe_id]]" image="view" statustext="View this project-element"/>
+						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_elements_ui.edit&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="edit[$row_cont[pe_id]]" image="edit" statustext="Edit this project-element"/>
 						<button label="Delete" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');" id="delete[$row_cont[pe_id]]" image="delete" statustext="Delete this project-element, does NOT remove the linked entry"/>
 					</hbox>
 				</row>
