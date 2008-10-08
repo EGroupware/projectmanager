@@ -541,13 +541,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if ($this->project->data['pm_accounting_type'] == 'status')
 		{
-			$rows['no_pe_used_time_pe_planned_time'] = true;
+			$rows['no_pe_used_time_pe_planned_time_pe_replanned_time'] = true;
 		}
 		// disable time & budget columns if pm is configures for status or status and time only
 		if ($this->config['accounting_types'] == 'status')
 		{
-			$rows['no_pm_used_time_pm_planned_time'] = true;
-			$rows['no_pm_used_time_pm_replanned_time'] = true;
+			$rows['no_pm_used_time_pm_planned_time_pe_replanned_time'] = true;
 			$rows['no_pm_used_budget_pm_planned_budget'] = true;
 			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_planned_time'] = false;
 			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_replanned_time'] = false;
