@@ -15,7 +15,7 @@ include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
 /**
  * DataSource for ProjectManager itself
  */
-class projectmanager_projectmanager extends datasource
+class projectmanager_datasource extends datasource
 {
 	/**
 	 * @var int/string $debug 0 = no debug-messages, 1 = main, 2 = more, 3 = all, or string function-name to debug
