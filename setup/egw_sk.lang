@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	sk	%1 prvkov bolo aktualizovaných
 %1 new project-elements imported	projectmanager	sk	%1 nových projektových prvkovov bolo naimportovaných
 %1 projects deleted	projectmanager	sk	%1 projektov bolo odstránených
+%1 records imported	projectmanager	sk	%1 záznamov bolo naimportovaných
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	sk	%1 záznamov bolo prečítaných (ešte neboli naimportované; ak ich chcete naimportovať, vraťte sa %2späť%3 a odznačte Test importu)
 %1 times permission denied, %2 projects deleted	projectmanager	sk	%1 -krát odopretý prístup, %2 projektov bolo odstránených
 - planned	projectmanager	sk	- plánované
 0ngoing (0 < % < 100)	projectmanager	sk	Vybavuje sa (0 < % < 100)
@@ -37,6 +39,7 @@ budget (no pricelist)	projectmanager	sk	Rozpočet (bez cenníka)
 budget and pricelist	projectmanager	sk	Rozpočet a cenník
 by	projectmanager	sk	(kým)
 calculate budget by quantity (eg. time) and price	projectmanager	sk	Vypočítať rozpočet na základe množstva (napr.času) a ceny
+charset of file	projectmanager	sk	Znaková sada súboru
 charset of the above selected font	projectmanager	sk	Znaková sada vybraného písma
 check all	projectmanager	sk	Označiť všetko
 close the window, discard the changes made	projectmanager	sk	Zavrieť okno, zahodiť vykonané zmeny
@@ -48,6 +51,8 @@ create a new empty project or use a template	projectmanager	sk	Vytvoriť nový p
 create new links	projectmanager	sk	Vytvoriť nové odkazy
 created	projectmanager	sk	vytvorené
 created a ganttchart from the checked projects	projectmanager	sk	Vytvorený postupový diagram pre označené projekty
+csv-fieldname	projectmanager	sk	CSV-názov poľa
+csv-filename	projectmanager	sk	CSV-názov súboru
 cumulated elements too	projectmanager	sk	Taktiež aj kumulované prvky
 custom fields	projectmanager	sk	Vlastné polia
 customer title	projectmanager	sk	Meno klienta
@@ -82,6 +87,7 @@ elements of elements	projectmanager	sk	Prvky prvkov
 elements that can't start before this one is finished	projectmanager	sk	Prvky, ktoré sa nemôžu začať skôr, než sa tento dokončí
 elements which have to be finished before this can start	projectmanager	sk	Prvkyy, ktoré musia byť dokončené, než sa tento môže začať
 empty	projectmanager	sk	Prázdne
+empty for all	projectmanager	sk	Prázdne znamená: všetko
 encode non-ascii	projectmanager	sk	Ne-ASCII kódovanie
 end before	projectmanager	sk	Skončiť pred
 enddate	projectmanager	sk	Dátum ukončenie
@@ -98,6 +104,7 @@ error: saving the project-element (%1) !!!	projectmanager	sk	Chyba: ukladanie pr
 everything recursive	projectmanager	sk	Všetko rekurzívne
 existing links	projectmanager	sk	Existujúce odkazy
 exit without saving	projectmanager	sk	Skončiť bez uloženia
+fieldseparator	projectmanager	sk	Oddeľovač polí
 font	projectmanager	sk	Písmo
 font charset	projectmanager	sk	Znaková sada písma
 font style	projectmanager	sk	Štýl písma
@@ -119,9 +126,11 @@ how long do you work on the given day.	projectmanager	sk	Koľko hodín pracujete
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke: Strom ponúka lepší prehľad, výberové okno zase lepší výkon.
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) sa tiež odstránia.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
+if checked, existing data will be overwrited)	projectmanager	sk	Ak je označené, údaje budú prepísané)
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
 ignore that entry	projectmanager	sk	ignorovať túto položku
 ignored	projectmanager	sk	Ignorované
+import	projectmanager	sk	Import
 last modified	projectmanager	sk	Naposledy zmenené
 leave it empty if you dont need a different customer title	projectmanager	sk	Ponechajte prázdne, ak nepotrebujete odlišné meno klienta
 leave it empty to have one generated	projectmanager	sk	ponechajte prázdne, ak chcete aby sa automaticky pridelilo
@@ -148,6 +157,7 @@ no save necessary	projectmanager	sk	uloženie nie je nevyhnutné
 nonactive	projectmanager	sk	Neaktívne
 not started (0%)	projectmanager	sk	Nezačaté (0%)
 not working	projectmanager	sk	nepracuje sa
+number of records to read (%1)	projectmanager	sk	Počet záznamov, ktoré sa majú načítať (%1)
 only this project	projectmanager	sk	Iba tento projekt
 overwrite the datasource	projectmanager	sk	Prepísať zdroj dát
 percentage the member is availible for projects	projectmanager	sk	Na koľko percent je člen dostupný pre projekty
@@ -173,6 +183,8 @@ project-element saved	projectmanager	sk	Prvok projektu bol uložený
 project-elements	projectmanager	sk	Prvky projektu
 projectlist	projectmanager	sk	Zoznam projektov
 projectmanager	common	sk	Projektovník
+projectmanager - import csv-file	projectmanager	sk	Projektovník - Importovať CSV-súbor
+projectmanager-fieldname	projectmanager	sk	Projektovník -názov poľa
 projectmember	projectmanager	sk	Člen projektu
 quantity	projectmanager	sk	Množstvo
 read access, incl. budget and adding elements	projectmanager	sk	prístup na čítanie, vrátane rozpočtu a pridávania prvkov
@@ -200,12 +212,14 @@ show constraints and milestones	projectmanager	sk	Zobraziť obmedzenia a medzní
 show planned times instead of the real times	projectmanager	sk	Zobraziť plánované časy namiesto skutočných
 show status icons of the datasources	projectmanager	sk	Zobraziť ikonu stavu zdrojov údajov
 show the project selection as	projectmanager	sk	Zobraziť výber projektov ako
+site configuration	projectmanager	sk	Konfigurácia stránky
 site configuration saved	projectmanager	sk	Nastavenia stránky boli uložené
 start after	projectmanager	sk	Začať po
 start working on %1	projectmanager	sk	Začať prácu na %1
 start, end, category, ...	projectmanager	sk	Začiatok, koniec, kategória, ...
 start- & enddate	projectmanager	sk	Dátumy začiatku a konca
 startdate	projectmanager	sk	Dátum začatia
+startrecord	projectmanager	sk	Prvý záznam
 state	projectmanager	sk	Stav
 status filter	projectmanager	sk	Filter stavov
 style used for everything but elements. some fonts have only normal style.	projectmanager	sk	Štýl použitý pre čokoľvek okrem prvkov. Niektoré písma majú len normálny štýl.
@@ -214,10 +228,13 @@ subprojects	projectmanager	sk	Podprojekty
 synchronise all	projectmanager	sk	Synchronizovať všetko
 template	projectmanager	sk	Šablóna
 template including elment-tree saved as new project	projectmanager	sk	Šablóna, vrátane stromu elementov, bola uložená ako nový projekt
+test import (show importable records <u>only</u> in browser)	projectmanager	sk	Test Importu (zobrazí importovateľné záznamy <u>iba</u> v prehliadači)
 the charset depends on the font you want to use.	projectmanager	sk	Znaková sada závisí na fonte, ktorý chcete používať.
 time	projectmanager	sk	Čas
 times	projectmanager	sk	Časy
 title must not be empty	projectmanager	sk	Názov nesmie byť prázdny
+to many might exceed your execution-time-limit	projectmanager	sk	Príliš veľa záznamov môže spôsobiť prekročenie povoleného časového limitu
+translation	projectmanager	sk	Preklad
 tree with %1	projectmanager	sk	Strom s %1
 unit	projectmanager	sk	Jednotka
 unitprice	projectmanager	sk	Cena za jednotku
