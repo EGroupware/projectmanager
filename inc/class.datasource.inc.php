@@ -208,7 +208,7 @@ class datasource
 				}
 				if ($this->bo_pe->pm_id != $pe_data['pm_id'])
 				{
-					$this->bo_pe->projectmanager_elements_bo($pe_data['pm_id']);
+					$this->bo_pe->__construct($pe_data['pm_id']);
 				}
 				if ($this->bo_pe->project->data['pm_planned_start'] || $this->bo_pe->project->data['pm_real_start'])
 				{
