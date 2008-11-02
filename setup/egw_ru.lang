@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	ru	%1 элемент(ов) обновлен(о)
 %1 new project-elements imported	projectmanager	ru	%1 новых элементов проекта импортированы
 %1 projects deleted	projectmanager	ru	%1 проектов удалено
+%1 records imported	projectmanager	ru	%1 записей импортировано
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ru	%1 записей считано (пока не импортировано, вы можете вернуться %2назад%3 и снять флажек Тестовый Импорт)
 %1 times permission denied, %2 projects deleted	projectmanager	ru	%1 раз(а) доступ запрещен, %2 проект(а,ов) удалено
 - planned	projectmanager	ru	- запланировано
 0ngoing (0 < % < 100)	projectmanager	ru	в процессе (0 <%<100)
@@ -37,6 +39,7 @@ budget (no pricelist)	projectmanager	ru	Бюджет (без прайслист�
 budget and pricelist	projectmanager	ru	Бюджет и прайслист
 by	projectmanager	ru	к
 calculate budget by quantity (eg. time) and price	projectmanager	ru	Посчитать бюджет по количеству (напр. время (раз?)) и цене
+charset of file	projectmanager	ru	Таблица символов файла
 charset of the above selected font	projectmanager	ru	Таблица символов выбранного выше шрифта
 check all	projectmanager	ru	Отметить все
 close the window, discard the changes made	projectmanager	ru	Закрыть окно, отменив внесенные изменения
@@ -48,6 +51,8 @@ create a new empty project or use a template	projectmanager	ru	Создайте 
 create new links	projectmanager	ru	Создайте новые ссылки
 created	projectmanager	ru	создано
 created a ganttchart from the checked projects	projectmanager	ru	Созданная диаграмма Гантта из отмеченных проектов
+csv-fieldname	projectmanager	ru	Название поля CSV
+csv-filename	projectmanager	ru	Название файла CSV
 cumulated elements too	projectmanager	ru	Сводные элементы также
 custom fields	projectmanager	ru	Пользовательские Поля
 customer title	projectmanager	ru	Пользовательские названия
@@ -82,6 +87,7 @@ elements of elements	projectmanager	ru	Элементы элементов
 elements that can't start before this one is finished	projectmanager	ru	Элементы, которые не могут начаться перед тем, как этот завершится
 elements which have to be finished before this can start	projectmanager	ru	Элементы, которые должны завершиться перед тем, как этот начнется
 empty	projectmanager	ru	Пусто(очистить)
+empty for all	projectmanager	ru	пусто для всех
 encode non-ascii	projectmanager	ru	Кодировать как не-ascii
 end before	projectmanager	ru	Завершить до
 enddate	projectmanager	ru	Дата завершения
@@ -98,6 +104,7 @@ error: saving the project-element (%1) !!!	projectmanager	ru	Ошибка: со�
 everything recursive	projectmanager	ru	Всё рекурсивно
 existing links	projectmanager	ru	Существующие ссылки
 exit without saving	projectmanager	ru	Выйти без сохранения
+fieldseparator	projectmanager	ru	Разделитель полей
 font	projectmanager	ru	Шрифт
 font charset	projectmanager	ru	Таблица символов шрифта
 font style	projectmanager	ru	Стиль шрифта
@@ -119,9 +126,11 @@ how long do you work on the given day.	projectmanager	ru	Сколько вы р�
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	ru	Как должно отображаться выбор проекта в меню: Дерево даёт лучший осмотр, Выбор даёт лучший результат.
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также будут удалены.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также изменят свое состояние.
+if checked, existing data will be overwrited)	projectmanager	ru	Если установлено, существующая Дата будет перезаписана)
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ru	Если вы видите объекты (напр. {) в диаграмме Гантта, выключите.
 ignore that entry	projectmanager	ru	игнорировать эту запись
 ignored	projectmanager	ru	игнорируется
+import	projectmanager	ru	Импорт
 last modified	projectmanager	ru	последнее изменение
 leave it empty if you dont need a different customer title	projectmanager	ru	оставить незаполненным, если Вам не нужно другое пользовательское название
 leave it empty to have one generated	projectmanager	ru	оставьте это незаполненным для того, чтобы было сгенерировано
@@ -148,6 +157,7 @@ no save necessary	projectmanager	ru	Сохранение не обязатель
 nonactive	projectmanager	ru	Не активен
 not started (0%)	projectmanager	ru	Не запущен
 not working	projectmanager	ru	Не работает
+number of records to read (%1)	projectmanager	ru	Количество записей для чтения (%1)
 only this project	projectmanager	ru	Толкьо данный проект
 overwrite the datasource	projectmanager	ru	Перезаписать источник данных
 percentage the member is availible for projects	projectmanager	ru	Количество участников проекта (в %)
@@ -173,6 +183,8 @@ project-element saved	projectmanager	ru	Элементы проекта сохр
 project-elements	projectmanager	ru	Элементы проекта удалены
 projectlist	projectmanager	ru	Список проектов
 projectmanager	common	ru	Управление Проектами
+projectmanager - import csv-file	projectmanager	ru	Управление проектами - Импорт файла CSV
+projectmanager-fieldname	projectmanager	ru	Название поля Управления проектами
 projectmember	projectmanager	ru	Участник проекта
 quantity	projectmanager	ru	Количество
 read access, incl. budget and adding elements	projectmanager	ru	получить доступ,включая бюджет и добавление элементов
@@ -206,6 +218,7 @@ start working on %1	projectmanager	ru	Начало работы %1
 start, end, category, ...	projectmanager	ru	Запуск,завершение,категории
 start- & enddate	projectmanager	ru	Дата запуска и завершения
 startdate	projectmanager	ru	Дата запуска
+startrecord	projectmanager	ru	Начальная запись
 state	projectmanager	ru	Состояние
 status filter	projectmanager	ru	Фильтр статуса
 style used for everything but elements. some fonts have only normal style.	projectmanager	ru	Стиль используется для всего за исключением элементов. Некоторые шрифты имеют только нормальный стиль.
@@ -214,10 +227,13 @@ subprojects	projectmanager	ru	Под-проекты
 synchronise all	projectmanager	ru	Синхронизировать все
 template	projectmanager	ru	Шаблон
 template including elment-tree saved as new project	projectmanager	ru	Шаблон,включая древо элементов сохранены как новый проект
+test import (show importable records <u>only</u> in browser)	projectmanager	ru	Тестовый Импорт (показать импортируемые записи <u>только</u> в браузере)
 the charset depends on the font you want to use.	projectmanager	ru	Таблица символов определяется шрифтом который вы желаете использовать.
 time	projectmanager	ru	Время
 times	projectmanager	ru	Затраты времени
 title must not be empty	projectmanager	ru	Название должно быть заполнено
+to many might exceed your execution-time-limit	projectmanager	ru	слишком много может превысить ваше ограничение на время выполнения
+translation	projectmanager	ru	Перевод
 tree with %1	projectmanager	ru	Дерево с %1
 unit	projectmanager	ru	Единица
 unitprice	projectmanager	ru	Цена за единицу
