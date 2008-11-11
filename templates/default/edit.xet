@@ -111,7 +111,7 @@
 					<description value="Project availibility"/>
 					<hbox>
 						<description value="Role"/>
-						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanger_roles_ui.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=740,height=450,scrollbars=yes,status=yes'); return false;" statustext="Add or edit roles and their ACL" id="edit_roles"/>
+						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_roles_ui.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;" statustext="Add or edit roles and their ACL" id="edit_roles"/>
 					</hbox>
 				</row>
 				<row class="row" height="12" disabled="@view">
