@@ -1,17 +1,17 @@
 <?php
 /**
- * projectmanager_bo - Milestones user interface
+ * Projectmanager - Milestones user interface
  *
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
- * @package projectmanager_bo
+ * @package projectmanager
  * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
 
 /**
- * Milestones user interface of the projectmanager_bo_bo
+ * Milestones user interface of the Projectmanager
  */
 class projectmanager_milestones_ui extends projectmanager_bo
 {
@@ -37,12 +37,12 @@ class projectmanager_milestones_ui extends projectmanager_bo
 		}
 		else
 		{
-			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager_bo');
+			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 		}
 		if (!$pm_id)
 		{
 			$this->tpl->location(array(
-				'menuaction' => 'projectmanager_bo.uiprojectmanager_bo.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('You need to select a project first'),
 			));
 		}
@@ -52,7 +52,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 		if (!$this->check_acl(EGW_ACL_READ))
 		{
 			$this->tpl->location(array(
-				'menuaction' => 'projectmanager_bo.uiprojectmanager_bo.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
@@ -98,7 +98,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 					{
 						$msg = lang('Milestone saved');
 						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => 'projectmanager_bo.projectmanager_ganttchart.show',
+							'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
 							'msg'        => $msg,
 						))."';";
 					}
@@ -112,7 +112,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 					{
 						$msg = lang('Milestone deleted');
 						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => 'projectmanager_bo.projectmanager_ganttchart.show',
+							'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
 							'msg'        => $msg,
 						))."';";
 					}
@@ -169,10 +169,10 @@ class projectmanager_milestones_ui extends projectmanager_bo
 		}
 		$readonlys['delete'] = !$this->milestones->data['ms_id'] || !$this->check_acl(EGW_ACL_EDIT);
 
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager_bo').' - '.($view ? lang('View milestone') :
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($view ? lang('View milestone') :
 			($this->milestones->data['ms_id'] ? lang('Edit milestone') : lang('Add milestone')));
 		$this->tpl->read('projectmanager.milestone.edit');
-		$this->tpl->exec('projectmanager_bo.projectmanager_milestones_ui.edit',$content,$sel_options,$readonlys,$this->milestones->data+array(
+		$this->tpl->exec('projectmanager.projectmanager_milestones_ui.edit',$content,$sel_options,$readonlys,$this->milestones->data+array(
 			'view'  => $view,
 		),2);
 	}
