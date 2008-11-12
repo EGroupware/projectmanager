@@ -171,7 +171,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager_bo').' - '.($view ? lang('View milestone') :
 			($this->milestones->data['ms_id'] ? lang('Edit milestone') : lang('Add milestone')));
-		$this->tpl->read('projectmanager_bo.milestone.edit');
+		$this->tpl->read('projectmanager.milestone.edit');
 		$this->tpl->exec('projectmanager_bo.projectmanager_milestones_ui.edit',$content,$sel_options,$readonlys,$this->milestones->data+array(
 			'view'  => $view,
 		),2);
