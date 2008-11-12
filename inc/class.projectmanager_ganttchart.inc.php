@@ -11,63 +11,57 @@
  */
 
 // JPGraph does not work, if that got somehow set, so unset it
-if (isset($GLOBALS['php_errormsg'])) { unset ($GLOBALS['php_errormsg']); }
+if (isset($GLOBALS['php_errormsg'])) unset ($GLOBALS['php_errormsg']);
 
 // check if the admin installed a recent JPGraph parallel to eGroupWare
 if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 {
-	if (!isset($GLOBALS['egw_info']['apps']['projectmanager']['config']))
+	$GLOBALS['egw_info']['apps']['projectmanager']['config'] = config::read('projectmanager');
+
+	foreach(array(
+		'TTF_DIR'          => '',
+		'LANGUAGE_CHARSET' => 'iso-8859-1',
+		'GANTT_FONT'       => 15, //FF_ARIAL
+		'GANTT_FONT_FILE'  => 'arial.ttf',
+		'GANTT_STYLE'      => 9002, //FS_BOLD,
+		'GANTT_CHAR_ENCODE'=> false,
+	) as $name => $default)
 	{
-		// read the pm ganttchart configuration and set some default if there's none
-		require_once(EGW_API_INC.'/class.config.inc.php');
-		$pm_config = new config('projectmanager');
-		$GLOBALS['egw_info']['apps']['projectmanager']['config'] = $pm_config->read_repository();
-		//_debug_array($GLOBALS['egw_info']['apps']['projectmanager']['config']);
-		unset($pm_config);
-		foreach(array(
-			'TTF_DIR'          => '',
-			'LANGUAGE_CHARSET' => 'iso-8859-1',
-			'GANTT_FONT'       => 15, //FF_ARIAL
-			'GANTT_FONT_FILE'  => 'arial.ttf',
-			'GANTT_STYLE'      => 9002, //FS_BOLD,
-			'GANTT_CHAR_ENCODE'=> false,
-		) as $name => $default)
+		if (isset($GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]))
 		{
-			if (isset($GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]))
+			define($name,$GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]);
+		}
+		elseif($name == 'TTF_DIR')
+		{
+			if (!($font_file = $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'])) $font_file = 'arial.ttf';
+			// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
+			foreach(array(
+				'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
+				'/usr/share/fonts/ja/TrueType/',		// japanese fonts
+				'/usr/share/fonts/msttcorefonts/', 		// to install this fonts see http://www.aditus.nu/jpgraph/jpdownload.php
+				'C:/windows/fonts/',					// windows default
+				// add your location here or to egw_config.config_value for config_app='projectmanger' AND config_name='TTF_DIR'
+				EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/',	// our bundled Vera font
+			) as $dir)
 			{
-				define($name,$GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]);
-			}
-			elseif($default)
-			{
-				define($name,$default);
+				if (@is_dir($dir) && (is_readable($dir.$font_file) || is_readable($dir.'Vera.ttf')))
+				{
+					define('TTF_DIR',$GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]=$dir);
+					if (!is_readable($dir.$font_file))	// fallback to our bundled Vera font
+					{
+						$GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT'] = 18;	// FF_VERA
+						$GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'] = 'Vera.ttf';
+					}
+					break;
+				}
 			}
 		}
-	}
-	if (!defined('LANGUAGE_CHARSET')) define('LANGUAGE_CHARSET',($GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['LANGUAGE_CHARSET'] : 'iso-8859-1'));
-	if (!defined('GANTT_FONT')) define('GANTT_FONT',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT'] : 15));
-	if (!defined('GANTT_FONT_FILE')) define('GANTT_FONT_FILE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'] : 'arial.ttf'));
-	if (!defined('GANTT_STYLE')) define('GANTT_STYLE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_STYLE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_STYLE'] : 9002));
-	if (!defined('GANTT_CHAR_ENCODE')) define('GANTT_CHAR_ENCODE',($GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_CHAR_ENCODE'] ? $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_CHAR_ENCODE'] : false));
-	if (!defined('TTF_DIR'))
-	{
-		// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
-		foreach(array(
-			'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
-			'/usr/share/fonts/ja/TrueType/',		// japanese fonts
-			'/usr/share/fonts/msttcorefonts/', 		// manual for install this fonts search at http://www.aditus.nu/jpgraph/jpdownload.php
-			'C:/windows/fonts/',					// windows default
-			// add your location here ...
-			EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/',	// our bundled Vera font
-		) as $dir)
+		elseif($default)
 		{
-			if (@is_dir($dir) && (is_readable($dir.GANTT_FONT_FILE) || is_readable($dir.'Vera.ttf')))
-			{
-				define('TTF_DIR',$dir);
-				unset($dir);
-				break;
-			}
+			define($name,$GLOBALS['egw_info']['apps']['projectmanager']['config'][$name]=$default);
 		}
 	}
+	//_debug_array($GLOBALS['egw_info']['apps']['projectmanager']['config']);
 	if (!defined('MBTTF_DIR')) define('MBTTF_DIR',TTF_DIR);
 
 	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php');
