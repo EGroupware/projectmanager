@@ -5,6 +5,7 @@
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	es-es	Se han leído %1 registros (todavía no se han importado, así que puede %2volver%2 y desmarcar "Prueba de importar")
 %1 times permission denied, %2 projects deleted	projectmanager	es-es	Se ha denegado el acceso %1 veces, se han borrado %2 proyectos
 - planned	projectmanager	es-es	- planificado
+- re-planned	projectmanager	es-es	- replanificado
 0ngoing (0 < % < 100)	projectmanager	es-es	Saliente (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	es-es	un título descriptivo para el proyecto, y no debe estar vacío
 accounting	projectmanager	es-es	Cuentas
@@ -187,6 +188,7 @@ projectmanager - import csv-file	projectmanager	es-es	Administrador de proyectos
 projectmanager-fieldname	projectmanager	es-es	Administrador de proyectos - Nombre del campo
 projectmember	projectmanager	es-es	Miembro del proyecto
 quantity	projectmanager	es-es	Cantidad
+re-planned	projectmanager	es-es	re-planificado
 read access, incl. budget and adding elements	projectmanager	es-es	accesso de lectura, incluyendo el presupuesto y añadir elementos
 read access, no budget	projectmanager	es-es	acceso de lectura, sin presupuesto
 real end	projectmanager	es-es	Fin real
