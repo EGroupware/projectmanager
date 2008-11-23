@@ -5,6 +5,7 @@
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	nl	%1 records gelezen (nog niet geimporteerd, u kunt %2terug%3 gaan en het Test Import checkbox uitvinken
 %1 times permission denied, %2 projects deleted	projectmanager	nl	%1 keer toegang geweigerd, %2 projecten verwijderd
 - planned	projectmanager	nl	- gepland
+- re-planned	projectmanager	nl	- hergepland
 0ngoing (0 < % < 100)	projectmanager	nl	Onderhanden (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	nl	een beschrijvende titel voor het project, mag niet leeg zijn
 accounting	projectmanager	nl	Calculatie
@@ -187,6 +188,7 @@ projectmanager - import csv-file	projectmanager	nl	Projectmanager - Importeer CS
 projectmanager-fieldname	projectmanager	nl	Projectmanager - Veldnaam
 projectmember	projectmanager	nl	Projectdeelnemer
 quantity	projectmanager	nl	Hoeveelheid
+re-planned	projectmanager	nl	hergepland
 read access, incl. budget and adding elements	projectmanager	nl	lees rechten, incl. budget en elementen toevoegen
 read access, no budget	projectmanager	nl	lees rechten, geen budget
 real end	projectmanager	nl	Werkelijke einde
