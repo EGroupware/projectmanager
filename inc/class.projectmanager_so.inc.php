@@ -17,7 +17,7 @@
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  */
-class projectmanager_so extends so_sql
+class projectmanager_so extends so_sql_cf 
 {
 	/**
 	 * Table name 'egw_links'
@@ -33,18 +33,6 @@ class projectmanager_so extends so_sql
 	var $config = array(
 		'customfields' => array(),
 	);
-	/**
-	 * Custom fields
-	 *
-	 * @var array
-	 */
-	var $customfields;
-	/**
-	 * Name of customefields table
-	 *
-	 * @var string
-	 */
-	var $extra_table = 'egw_pm_extra';
 	/**
 	 * Name of project-members table
 	 *
@@ -84,10 +72,9 @@ class projectmanager_so extends so_sql
 	 */
 	function __construct($pm_id=null)
 	{
-		parent::__construct('projectmanager','egw_pm_projects',null,'',true);	// true = no need to clone the db-object
+		parent::__construct('projectmanager','egw_pm_projects','egw_pm_extra','','pm_extra_name','pm_extra_value','pm_id');
 
 		$this->config = config::read('projectmanager');
-		$this->customfields = config::get_customfields('projectmanager');
 		$this->config['duration_format'] = str_replace(',','',$this->config['duration_units']).','.$this->config['hours_per_workday'];
 
 		$this->grants = $GLOBALS['egw']->acl->get_grants('projectmanager');
@@ -123,13 +110,6 @@ class projectmanager_so extends so_sql
 		if (!parent::read($keys))
 		{
 			return false;
-		}
-		if ($this->customfields)
-		{
-			foreach($this->db->select($this->extra_table,'*',array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__,false,'','projectmanager') as $row)
-			{
-				$this->data['#'.$row['pm_extra_name']] = $row['pm_extra_value'];
-			}
 		}
 		// query project_members and their roles
 /*
@@ -195,22 +175,6 @@ class projectmanager_so extends so_sql
 		}
 		if (parent::save($keys) == 0 && $this->data['pm_id'])
 		{
-			if ($this->customfields)
-			{
-				// custome fields: first delete all, then save the ones with non-empty content
-				$this->db->delete($this->extra_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__,'projectmanager');
-				foreach($this->customfields as $name => $data)
-				{
-					if ($name && isset($this->data['#'.$name]) && !empty($this->data['#'.$name]))
-					{
-						$this->db->insert($this->extra_table,array(
-							'pm_id'          => $this->data['pm_id'],
-							'pm_extra_name'  => $name,
-							'pm_extra_value' => $this->data['#'.$name],
-						),false,__LINE__,__FILE__,'projectmanager');
-					}
-				}
-			}
 			// project-members: first delete all, then save the (still) assigned ones
 			$this->db->delete($this->members_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__,'projectmanager');
 			foreach((array)$this->data['pm_members'] as $uid => $data)
@@ -224,29 +188,6 @@ class projectmanager_so extends so_sql
 			}
 		}
 		return $this->db->Errno;
-	}
-
-	/**
-	 * merges in new values from the given new data-array
-	 *
-	 * reimplemented to also merge the customfields
-	 *
-	 * @param $new array in form col => new_value with values to set
-	 */
-	function data_merge($new)
-	{
-		parent::data_merge($new);
-
-		if (is_array($this->customfields))
-		{
-			foreach($this->customfields as $name => $data)
-			{
-				if (isset($new['#'.$name]))
-				{
-					$this->data['#'.$name] = $new['#'.$name];
-				}
-			}
-		}
 	}
 
 	/**

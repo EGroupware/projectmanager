@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.5.001">
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.7.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -17,6 +17,7 @@
 				<column/>
 				<column disabled="@no_pm_used_budget_pm_planned_budget"/>
 				<column disabled="@no_pm_used_time_pm_planned_time"/>
+				<column/>
 				<column/>
 				<column/>
 				<column/>
@@ -51,6 +52,7 @@
 					</vbox>
 					<nextmatch-sortheader label="Status" id="pm_completion" align="center"/>
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
+					<nextmatch-customfields id="customfields"/>
 					<hbox align="center" class="noPrint">
 						<description value="Actions" align="center"/>
 						<button image="check" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('checked[]')); return false;" needed="1"/>
@@ -101,6 +103,7 @@
 							<menupopup type="select-account" id="${row}[pm_modifier]" readonly="true"/>
 						</menulist>
 					</vbox>
+					<customfields-list id="$row"/>
 					<hbox align="center" class="noPrint">
 						<button image="ganttchart" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" statustext="View ganttchart of this project"/>
 						<button image="view" label="View" id="view[$row_cont[pm_id]]" statustext="View this project"/>
