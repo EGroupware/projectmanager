@@ -311,7 +311,7 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$content = $this->data + array(
 			'msg'  => $msg,
-			'general|description|members|accounting|custom|links' => $content['general|description|members|accounting|custom|links'],
+			'tabs' => $content['tabs'],
 			'view' => $view,
 			'ds'   => $pe_summary,
 			'link_to' => array(
@@ -342,7 +342,7 @@ class projectmanager_ui extends projectmanager_bo
 		$readonlys = array(
 			'delete' => !$this->data['pm_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
-			'general|description|members|accounting|custom|links' => array(
+			'tabs' => array(
 				'accounting' => !$this->check_acl(EGW_ACL_BUDGET) &&	// disable the tab, if no budget rights and no owner or coordinator
 					($this->config['accounting_types'] && count(explode(',',$this->config['accounting_types'])) == 1 ||
 					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)),

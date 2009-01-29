@@ -211,7 +211,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit" template="" lang="" group="0" version="1.5.002">
+	<template id="projectmanager.edit" template="" lang="" group="0" version="1.7.001">
 		<grid width="100%">
 			<columns>
 				<column width="100"/>
@@ -233,7 +233,7 @@
 					<textbox size="64" maxlength="255" needed="1" id="pm_title" statustext="a describtive title for the project, must not be empty"/>
 				</row>
 				<row>
-					<tabbox span="all">
+					<tabbox span="all" id="tabs">
 						<tabs>
 							<tab label="General" statustext="Start, End, Category, ..."/>
 							<tab label="Description" statustext="free descriptiv text"/>
