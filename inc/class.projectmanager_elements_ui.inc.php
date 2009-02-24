@@ -522,6 +522,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
 		}
+		array_unshift($rows,false);	// manually make the array start with index 1!
+
 		if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_custom_app_icons'])
 		{
 			$custom_app_icons['location'] = 'pm_custom_app_icons';
