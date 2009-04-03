@@ -216,33 +216,6 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	}
 
 	/**
-	 * Try to guess a locale supported by the server, with fallback to 'en_EN' and 'C'
-	 *
-	 * @return string
-	 */
-	function guess_locale()
-	{
-		$lang = $this->prefs['common']['lang'];
-		$country = $this->prefs['common']['country'];
-
-		if (strlen($lang) == 2)
-		{
-			$country_from_lang = strtoupper($lang);
-		}
-		else
-		{
-			list($lang,$country_from_lang) = explode('-',$lang);
-			$country_from_lang = strtoupper($country_from_lang);
-		}
-		if (setlocale(LC_ALL,$locale=$lang.'_'.$country)) return $locale;
-		if (setlocale(LC_ALL,$locale=$lang.'_'.$country_from_lang)) return $locale;
-		if (setlocale(LC_ALL,$locale=$lang)) return $locale;
-		if (setlocale(LC_ALL,$locale='en_EN')) return $locale;
-
-		return 'C';
-	}
-
-	/**
 	 * create a new JPGraph Ganttchart object and setup a fitting scale
 	 *
 	 * @param string $title
@@ -265,7 +238,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		// some localizations
 		if ($this->modernJPGraph)
 		{
-			$graph->scale->SetDateLocale($this->guess_locale());
+			$graph->scale->SetDateLocale(common::setlocale());
 		}
 		elseif ($this->prefs['common']['lang'] == 'de')
 		{
