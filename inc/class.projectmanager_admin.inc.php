@@ -125,7 +125,7 @@ class projectmanager_admin
 			),
 			'GANTT_CHAR_ENCODE' => array(
 				1  => 'yes',
-				'' => 'No',
+				'0' => 'No',
 			)
 		));
 	}
