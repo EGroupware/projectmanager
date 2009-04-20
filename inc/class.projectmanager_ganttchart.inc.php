@@ -78,16 +78,6 @@ else
 	define('GANTT_CHAR_ENCODE',true);
 }
 
-// some constanst for pre php4.3
-if (!defined('PHP_SHLIB_SUFFIX'))
-{
-	define('PHP_SHLIB_SUFFIX',strtoupper(substr(PHP_OS, 0,3)) == 'WIN' ? 'dll' : 'so');
-}
-if (!defined('PHP_SHLIB_PREFIX'))
-{
-	define('PHP_SHLIB_PREFIX',PHP_SHLIB_SUFFIX == 'dll' ? 'php_' : '');
-}
-
 /**
  * ProjectManager: Ganttchart creation
  */
@@ -143,14 +133,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	{
 		$this->tmpl = new etemplate();
 
-		$php_extension = 'gd';
-		if (!extension_loaded($php_extension) && (!function_exists('dl') ||
-			!dl(PHP_SHLIB_PREFIX.$php_extension.'.'.PHP_SHLIB_SUFFIX)) ||
-			!function_exists('imagecopyresampled'))
+		if (!check_load_extension($php_extension='gd') || !function_exists('imagecopyresampled'))
 		{
 			$this->tmpl->Location(array(
 				'menuaction' => 'projectmanager.uiprojectmanager.index',
-				'msg'        => lang("Necessary PHP extentions %1 not loaded and can't be loaded !!!",$php_extension.' ('.PHP_SHLIB_PREFIX.$php_extension.'.'.PHP_SHLIB_SUFFIX.')'),
+				'msg'        => lang("Necessary PHP extentions %1 not loaded and can't be loaded !!!",$php_extension),
 			));
 		}
 		$this->modernJPGraph = version_compare('1.13',JPG_VERSION) < 0;
