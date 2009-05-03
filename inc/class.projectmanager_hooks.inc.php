@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-9 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -86,17 +86,17 @@ class projectmanager_hooks
 				$pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 			}
 			$file = array(
-				'Projectlist' => $GLOBALS['egw']->link('/index.php',array(
+				'Projectlist' => egw::link('/index.php',array(
 					'menuaction' => 'projectmanager.projectmanager_ui.index' )),
 				array(
 					'text' => 'Elementlist',
-					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
+					'link' => $pm_id ? egw::link('/index.php',array(
 						'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
 					)) : False,
 				),
 				array(
 					'text' => 'Ganttchart',
-					'link' => $pm_id ? $GLOBALS['egw']->link('/index.php',array(
+					'link' => $pm_id ? egw::link('/index.php',array(
 						'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
 					)) : False,
 				),
@@ -107,11 +107,23 @@ class projectmanager_hooks
 				// menuitem links to project-spezific priclist only if user has rights and it is used
 				// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(EGW_ACL_READ),
 				// specialy the always existing READ right for the general pricelist!!!
-				$file['Pricelist'] = $GLOBALS['egw']->link('/index.php',array(
+				$file['Pricelist'] = egw::link('/index.php',array(
 					'menuaction' => 'projectmanager.projectmanager_pricelist_ui.index',
 					'pm_id' => $pm_id && $GLOBALS['projectmanager_bo']->check_acl(EGW_ACL_BUDGET,$pm_id) &&
 						 $GLOBALS['projectmanager_bo']->data['pm_accounting_type'] == 'pricelist' ? $pm_id : 0,
 				));
+			}
+			if (isset($GLOBALS['egw_info']['user']['apps']['filemanager']))
+			{
+				$file[] = array(
+					'text' => 'Filemanager',
+					'icon' => 'navbar',
+					'app'  => 'filemanager',
+					'link' => egw::link('/index.php',array(
+						'menuaction' => 'filemanager.filemanager_ui.index',
+						'path'       => '/apps/projectmanager'.($pm_id ? '/'.$pm_id : ''),
+					)),
+				);
 			}
 
 			// include the filter of the projectlist into the projectlist, eg. if you watch the list of templates, include them in the tree
@@ -136,7 +148,7 @@ class projectmanager_hooks
 					$selbox_action = 'projectmanager.projectmanager_elements_ui.index';
 					break;
 			}
-			$select_link = $GLOBALS['egw']->link('/index.php',array('menuaction' => $selbox_action)).'&pm_id=';
+			$select_link = egw::link('/index.php',array('menuaction' => $selbox_action)).'&pm_id=';
 
 			// show the project-selection as tree or -selectbox
 			// $_POST['user']['show_projectselection'] is used to give the user immediate feedback, if he changes the prefs
@@ -168,9 +180,9 @@ class projectmanager_hooks
 		if ($GLOBALS['egw_info']['user']['apps']['preferences'] && $location != 'admin')
 		{
 			$file = array(
-				'Preferences'     => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uisettings.index&appname='.$appname),
-				'Grant Access'    => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
-				'Edit Categories' => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
+				'Preferences'     => egw::link('/index.php','menuaction=preferences.uisettings.index&appname='.$appname),
+				'Grant Access'    => egw::link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
+				'Edit Categories' => egw::link('/index.php','menuaction=preferences.uicategories.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
 			);
 			if ($location == 'preferences')
 			{
@@ -185,13 +197,13 @@ class projectmanager_hooks
 		if ($GLOBALS['egw_info']['user']['apps']['admin'] && $location != 'preferences')
 		{
 			$file = Array(
-				'Site configuration' => $GLOBALS['egw']->link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
-				'Custom fields' => $GLOBALS['egw']->link('/index.php','menuaction=admin.customfields.edit&appname=projectmanager'),
-				'Global Categories'  => $GLOBALS['egw']->link('/index.php',array(
+				'Site configuration' => egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
+				'Custom fields' => egw::link('/index.php','menuaction=admin.customfields.edit&appname=projectmanager'),
+				'Global Categories'  => egw::link('/index.php',array(
 					'menuaction' => 'admin.uicategories.index',
 					'appname'    => $appname,
 					'global_cats'=> True)),
-					'CSV-Import'         => $GLOBALS['egw']->link('/projectmanager/csv_import.php')
+					'CSV-Import'         => egw::link('/projectmanager/csv_import.php')
 			);
 			if ($location == 'admin')
 			{
