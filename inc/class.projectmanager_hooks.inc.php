@@ -121,7 +121,7 @@ class projectmanager_hooks
 					'app'  => 'filemanager',
 					'link' => egw::link('/index.php',array(
 						'menuaction' => 'filemanager.filemanager_ui.index',
-						'path'       => '/apps/projectmanager'.($pm_id ? '/'.$pm_id : ''),
+						'pm_id'      => $pm_id,
 					)),
 				);
 			}
@@ -142,6 +142,7 @@ class projectmanager_hooks
 			{
 				case 'projectmanager.projectmanager_ganttchart.show':
 				case 'projectmanager.projectmanager_pricelist_ui.index':
+				case 'filemanager.filemanager_ui.index':
 					$selbox_action = $_GET['menuaction'];
 					break;
 				default:
@@ -175,6 +176,9 @@ class projectmanager_hooks
 			if ($projectlist) $file[] =& $projectlist;
 
 			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
+
+			// allways show sidebox
+			unset($GLOBALS['egw_info']['user']['preferences']['common']['auto_hide_sidebox']);
 		}
 
 		if ($GLOBALS['egw_info']['user']['apps']['preferences'] && $location != 'admin')
