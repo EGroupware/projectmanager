@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.5.002">
+	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.7.001">
 		<grid width="100%" height="260">
 			<columns>
 				<column width="95"/>
@@ -71,8 +71,7 @@
 				<row class="row" disabled="@pm_accounting_type=status">
 					<description options=",,,pm_replanned_time" value="- re-planned"/>
 					<date-duration id="pm_replanned_time" options="@duration_format"/>
-					<description/>
-					<description/>
+					<date-duration id="ds[pe_replanned_time]" readonly="true" span="all" options="@duration_format"/>
 				</row>
 				<row class="row">
 					<description options=",,,pm_completion" value="Status"/>

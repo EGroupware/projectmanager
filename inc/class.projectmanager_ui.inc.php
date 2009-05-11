@@ -504,7 +504,7 @@ class projectmanager_ui extends projectmanager_bo
 		// disable time & budget columns if pm is configures for status or status and time only
 		if ($this->config['accounting_types'] == 'status')
 		{
-			$rows['no_pm_used_time_pm_planned_time_pm_replanned_time'] = true;
+			$rows['no_pm_used_time_pm_planned_time'] = $rows['no_pm_used_time_pm_planned_time_pm_replanned_time'] = true;
 			$rows['no_pm_used_budget_pm_planned_budget'] = true;
 			$query_in['options-selectcols']['pm_used_time'] = $query_in['options-selectcols']['pm_planned_time'] = $query_in['options-selectcols']['pm_replanned_time'] = false;
 			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
@@ -634,7 +634,7 @@ class projectmanager_ui extends projectmanager_bo
 //				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
 				'order'          =>	'pm_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
-				'default_cols'   => '!role0,role1,role2,role3,role4',
+				'default_cols'   => '!role0,role1,role2,role3,role4,pm_used_time_pm_planned_time_pm_replanned_time',
 			);
 		}
 		$templates = array();

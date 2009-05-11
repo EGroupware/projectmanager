@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.5.002">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.7.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -10,7 +10,8 @@
 				<column/>
 				<column/>
 				<column/>
-				<column disabled="@no_pe_used_time_pe_planned_time"/>
+				<column/>
+				<column/>
 				<column disabled="@no_pe_used_budget_pe_planned_budget"/>
 				<column/>
 				<column/>
@@ -36,6 +37,12 @@
 						<date id="pe_real_end" readonly="true"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_end" class="planned"/>
 						<date id="pe_planned_end" readonly="true"/>
+					</vbox>
+					<vbox>
+						<nextmatch-sortheader label="Times" id="pe_used_time"/>
+						<date-duration id="pe_used_time" readonly="true" options="@duration_format"/>
+						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
+						<date-duration id="pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
@@ -84,6 +91,10 @@
 					<vbox readonly="true">
 						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
 						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
+					</vbox>
+					<vbox readonly="true">
+						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
+						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
 						<date-duration readonly="true" id="${row}[pe_replanned_time]" class="replanned" options="@duration_format"/>
 					</vbox>
 					<vbox readonly="true">
@@ -123,13 +134,17 @@
 						<date readonly="true" id="${row}[pe_real_end]"/>
 						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planned"/>
 					</vbox>
-					<vbox readonly="true">
+					<vbox>
+						<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
+						<date-duration id="${row}[pe_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+					</vbox>
+					<vbox>
 						<hbox options="1,0" id="pe_used_time">
 							<image label="Times" src="timesheet"/>
 							<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
 						</hbox>
 						<hbox options="1,0" id="planified">
-							<image label="planned time" src="k_alarm.png" readonly="true"/>
+							<image label="planned time" src="k_alarm.png"/>
 							<date-duration id="${row}[pe_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
 						</hbox>
 						<hbox options="1,0" id="replanified">

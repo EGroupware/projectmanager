@@ -543,7 +543,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if ($this->project->data['pm_accounting_type'] == 'status')
 		{
-			$rows['no_pe_used_time_pe_planned_time_pe_replanned_time'] = true;
+			$rows['no_pe_used_time_pe_planned_time'] = $rows['no_pe_used_time_pe_planned_time_pe_replanned_time'] = true;
 		}
 		// disable time & budget columns if pm is configures for status or status and time only
 		if ($this->config['accounting_types'] == 'status')
@@ -642,7 +642,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'col_filter' => array('pe_resources' => 0),	// default value, to suppress loop
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
-				'default_cols'   => '!cat_id',
+				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time',
 			);
 		}
 		// add "buttons" only with add-rights

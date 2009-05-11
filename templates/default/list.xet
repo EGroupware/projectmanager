@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.7.001">
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.7.002">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -16,7 +16,8 @@
 				<column/>
 				<column/>
 				<column disabled="@no_pm_used_budget_pm_planned_budget"/>
-				<column disabled="@no_pm_used_time_pm_planned_time"/>
+				<column/>
+				<column/>
 				<column/>
 				<column/>
 				<column/>
@@ -44,6 +45,10 @@
 					<vbox options="0,0">
 						<nextmatch-sortheader label="Budget" id="pm_used_budget"/>
 						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_budget"/>
+					</vbox>
+					<vbox options="0,0">
+						<nextmatch-sortheader label="Times" id="pm_used_time"/>
+						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_time"/>
 					</vbox>
 					<vbox options="0,0">
 						<nextmatch-sortheader label="Times" id="pm_used_time"/>
@@ -82,17 +87,21 @@
 						<textbox type="float" readonly="true" id="${row}[pm_used_budget]" max="2"/>
 						<textbox type="float" readonly="true" no_lang="1" id="${row}[pm_planned_budget]" max="2" class="planned"/>
 					</vbox>
+					<vbox options="0,0">
+						<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
+						<date-duration id="${row}[pm_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+					</vbox>
 					<vbox readonly="true">
 						<hbox options="1,0" id="pml_used_time">
 							<image label="Times" src="timesheet"/>
 							<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
 						</hbox>
 						<hbox options="1,0" id="planified">
-							<image label="planned time" src="k_alarm.png" readonly="true"/>
+							<image label="planned time" src="k_alarm"/>
 							<date-duration id="${row}[pm_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
 						</hbox>
 						<hbox options="1,0" id="replanified">
-							<image label="Re-planned time" src="agt_reload.png"/>
+							<image label="Re-planned time" src="agt_reload"/>
 							<date-duration id="${row}[pm_replanned_time]" span="all" class="replanned" readonly="true" options="@duration_format"/>
 						</hbox>
 					</vbox>
