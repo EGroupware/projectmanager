@@ -628,17 +628,18 @@ class projectmanager_bo extends projectmanager_so
 		while (($children = $this->search($filter,$GLOBALS['projectmanager_bo']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent',
 			'pm_status,pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
-			#echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents)."<br>"; #_debug_array($children);
+			//echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents)."<br>"; #_debug_array($children);
 			// sort the children behind the parents
 			$parents = $both = array();
 			foreach ($projects as $parent)
 			{
-				#echo "Parent:".$parent['path']."<br>";
+				//echo "Parent:".$parent['path']."<br>";
 				$arr = explode("/",$parent['path']);
-				$search =array_pop($arr);
-				if (count($arr)>=1 && in_array($search,$arr)) {
-					echo "<div>".lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']._debug_array($projects[$parent['path']])."</div>";
-					error_log(lang("ERROR: Rekursion: found id $search more than once in Projectpath, while building Projecttree:").$parent['path']."\n".print_r($projects[$parent['path']],true));
+				$search = array_pop($arr);
+				if (count($arr) >= 1 && in_array($search,$arr))
+				{
+					echo "<div>".lang('ERROR: Rekursion found: Id %1 more than once in Projectpath, while building Projecttree:',$search).' '.$parent['path'].array2string($projects[$parent['path']])."</div>";
+					error_log(lang('ERROR: Rekursion found: Id %1 more than once in Projectpath, while building Projecttree:',$search).' '.$parent['path']."\n".array2string($projects[$parent['path']]));
 					break 2;
 				}
 				$both[$parent['path']] = $parent;
