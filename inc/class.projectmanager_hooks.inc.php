@@ -27,6 +27,10 @@ class projectmanager_hooks
 	);
 	private static $config = array();
 
+	/**
+	 * Init our static properties
+	 *
+	 */
 	public function init_static()
 	{
 		self::$config = config::read('projectmanager');
@@ -79,11 +83,11 @@ class projectmanager_hooks
 			}
 			if (isset($_REQUEST['pm_id']))
 			{
-				$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id = (int) $_REQUEST['pm_id']);
+				egw_session::appsession('pm_id','projectmanager',$pm_id = (int) $_REQUEST['pm_id']);
 			}
 			else
 			{
-				$pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+				$pm_id = (int) egw_session::appsession('pm_id','projectmanager');
 			}
 			$file = array(
 				'Projectlist' => egw::link('/index.php',array(
@@ -128,7 +132,7 @@ class projectmanager_hooks
 
 			// include the filter of the projectlist into the projectlist, eg. if you watch the list of templates, include them in the tree
 			$filter = array('pm_status' => 'active');
-			$list_filter = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
+			$list_filter = egw_session::appsession('project_list','projectmanager');
 			if ($_GET['menuaction'] == 'projectmanager.projectmanager_ui.index' && isset($_POST['exec']['nm']['filter2']))
 			{
 				//echo "<p align=right>set pm_status={$_POST['exec']['nm']['filter2']}</p>\n";
@@ -304,7 +308,9 @@ class projectmanager_hooks
 	}
 
 	/**
-	 * populates $GLOBALS['settings'] for the preferences
+	 * Return settings for the preferences
+	 *
+	 * @return array
 	 */
 	static function settings()
 	{
@@ -333,7 +339,7 @@ class projectmanager_hooks
 		}
 		foreach(self::$weekdays as $day => $label)
 		{
-			$GLOBALS['settings']['duration_'.$day] = array(
+			$settings['duration_'.$day] = array(
 				'type'   => 'select',
 				'label'  => lang('Working duration on %1',lang($label)),
 				'run_lang' => -1,
@@ -343,7 +349,7 @@ class projectmanager_hooks
 				'xmlrpc' => True,
 				'admin'  => !self::$config['allow_change_workingtimes'],
 			);
-			$GLOBALS['settings']['start_'.$day] = array(
+			$settings['start_'.$day] = array(
 				'type'   => 'select',
 				'label'  => lang('Start working on %1',lang($label)),
 				'run_lang' => -1,
@@ -354,7 +360,7 @@ class projectmanager_hooks
 				'admin'  => !self::$config['allow_change_workingtimes'],
 			);
 		}
-		$GLOBALS['settings']['show_custom_app_icons'] = array(
+		$settings['show_custom_app_icons'] = array(
 			'type'   => 'check',
 			'label'  => 'Show status icons of the datasources',
 			'name'   => 'show_custom_app_icons',
@@ -362,7 +368,7 @@ class projectmanager_hooks
 			'xmlrpc' => True,
 			'admin'  => False,
 		);
-		$GLOBALS['settings']['show_projectselection'] = array(
+		$settings['show_projectselection'] = array(
 			'type'   => 'select',
 			'label'  => 'Show the project selection as',
 			'name'   => 'show_projectselection',
@@ -376,7 +382,7 @@ class projectmanager_hooks
 			'xmlrpc' => True,
 			'admin'  => False,
 		);
-		return true;	// otherwise prefs say it cant find the file ;-)
+		return $settings;
 	}
 
 	/**
@@ -386,11 +392,11 @@ class projectmanager_hooks
 	 */
 	static function check_set_default_prefs()
 	{
-		if ($GLOBALS['egw']->session->appsession('default_prefs_set','projectmanager'))
+		if (egw_session::appsession('default_prefs_set','projectmanager'))
 		{
 			return;
 		}
-		$GLOBALS['egw']->session->appsession('default_prefs_set','projectmanager','set');
+		egw_session::appsession('default_prefs_set','projectmanager','set');
 
 		$default_prefs =& $GLOBALS['egw']->preferences->default['projectmanager'];
 
