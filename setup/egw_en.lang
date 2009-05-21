@@ -122,6 +122,7 @@ ganttchart parameter	projectmanager	en	Ganttchart parameter
 general	projectmanager	en	General
 general availibility	projectmanager	en	General availibility
 general pricelist	projectmanager	en	General pricelist
+global categories	projectmanager	en	Global Categories
 h	projectmanager	en	h
 health	projectmanager	en	Health
 hours	projectmanager	en	hours
@@ -130,7 +131,7 @@ how long do you work on the given day.	projectmanager	en	How long do you work on
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	en	If checked the datasources of the elements (eg. InfoLog entries) are deleted too.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	en	If checked the datasources of the elements (eg. InfoLog entries) will change their status too.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	en	If you see entities (eg. &#123;) in the Ganttchart, switch this off.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	en	If you see entities (eg. {) in the Ganttchart, switch this off.
 ignore that entry	projectmanager	en	ignore that entry
 ignored	projectmanager	en	ignored
 import	projectmanager	en	Import
@@ -218,6 +219,13 @@ show the project selection as	projectmanager	en	Show the project selection as
 site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
 start working on %1	projectmanager	en	Start working on %1
+start working on dienstag	projectmanager	en	Start working on Tuesday
+start working on donnerstag	projectmanager	en	Start working on Thursday
+start working on freitag	projectmanager	en	Start working on Friday
+start working on mittwoch	projectmanager	en	Start working on Wednesday
+start working on montag	projectmanager	en	Start working on Monday
+start working on samstag	projectmanager	en	Start working on Saturday
+start working on sonntag	projectmanager	en	Start working on Sunday
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
@@ -253,6 +261,13 @@ view this price	projectmanager	en	View this price
 view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project-element
 working duration on %1	projectmanager	en	Working duration on %1
+working duration on dienstag	projectmanager	en	Working duration on Tuesday
+working duration on donnerstag	projectmanager	en	Working duration on Thursday
+working duration on freitag	projectmanager	en	Working duration on Freitag
+working duration on mittwoch	projectmanager	en	Working duration on Wednesday
+working duration on montag	projectmanager	en	Working duration on Monday
+working duration on samstag	projectmanager	en	Working duration on Saturday
+working duration on sonntag	projectmanager	en	Working duration on Sonnday
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	en	You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.
 you can leave the date of the first price empty	projectmanager	en	you can leave the date of the first price empty
 you need to select a project first	projectmanager	en	You need to select a project first
