@@ -57,7 +57,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 	 */
 	function roles($content=null)
 	{
-		$tpl =& new etemplate('projectmanager.roles');
+		$tpl = new etemplate('projectmanager.roles');
 
 		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
 

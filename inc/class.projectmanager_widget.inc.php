@@ -93,7 +93,7 @@ class projectmanager_widget
 					{
 						if (!is_object($this->pricelist))
 						{
-							$this->pricelist =& new projectmanager_pricelist_bo();
+							$this->pricelist = new projectmanager_pricelist_bo();
 						}
 						$pricelist[$pm_id] = $this->pricelist->pricelist($pm_id);
 					}

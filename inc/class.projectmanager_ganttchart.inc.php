@@ -214,7 +214,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	function &new_gantt($title,$subtitle,$start,$end,$width=940)
 	{
 		// create new graph object
-		$graph =& new GanttGraph($width,-1,'auto');
+		$graph = new GanttGraph($width,-1,'auto');
 
 		$graph->SetShadow();
 		$graph->SetBox();
@@ -376,7 +376,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			if ($pe['pe_start'] < $this->scale_start) $pe['pe_start'] = $this->scale_start;
 			if ($pe['pe_end'] > $this->scale_end) $pe['pe_end'] = $this->scale_end-1;
 		}
-		$bar =& new GanttBar($line,($level ? str_repeat(' ',$level) : '').
+		$bar = new GanttBar($line,($level ? str_repeat(' ',$level) : '').
 			$this->text_encode($title).
 			($level ? '  ' : ''),	// fix for wrong length calculation in JPGraph
 			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_start']),
@@ -419,7 +419,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		 		date('Y-m-d',$milestone['ms_date']).','.
 				date($this->prefs['common']['dateformat'],$milestone['ms_date']).")</p>\n";
 		}
-		$ms =& new MileStone($line,($level ? str_repeat(' ',$level) : '').
+		$ms = new MileStone($line,($level ? str_repeat(' ',$level) : '').
 			$this->text_encode($milestone['ms_title']),
 			date('Y-m-d',$milestone['ms_date']),
 			date($this->prefs['common']['dateformat'],$milestone['ms_date']));

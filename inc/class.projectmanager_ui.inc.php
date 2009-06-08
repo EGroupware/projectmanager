@@ -90,7 +90,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("projectmanager_ui::edit(,$view) content=".print_r($content,true));
 
-		$tpl =& new etemplate('projectmanager.edit');
+		$tpl = new etemplate('projectmanager.edit');
 
 		if (is_array($content))
 		{
@@ -529,7 +529,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_ui::index(,$msg) content=".print_r($content,true));
 
-		$tpl =& new etemplate('projectmanager.list');
+		$tpl = new etemplate('projectmanager.list');
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 

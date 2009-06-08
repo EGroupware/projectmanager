@@ -53,7 +53,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 
 	function edit($content=null,$view=false,$msg='')
 	{
-		$tpl =& new etemplate('projectmanager.pricelist.edit');
+		$tpl = new etemplate('projectmanager.pricelist.edit');
 		$tabs = 'price|project|description';
 
 		if (!is_array($content))
@@ -294,7 +294,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				));
 			}
 		}
-		$tpl =& new etemplate('projectmanager.pricelist.list');
+		$tpl = new etemplate('projectmanager.pricelist.list');
 
 		if (!is_array($content))
 		{

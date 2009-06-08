@@ -348,7 +348,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				}
 				include_once($classfile);
 			}
-			$this->datasources[$app] =& new $class($app);
+			$this->datasources[$app] = new $class($app);
 			// make the project available for the datasource
 			$this->datasources[$app]->project =& $this->project;
 		}

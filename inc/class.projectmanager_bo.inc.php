@@ -176,7 +176,7 @@ class projectmanager_bo extends projectmanager_so
 			// we need the PM_ id's
 			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
 
-			$ds =& new datasource();
+			$ds = new datasource();
 			$this->pe_name2id = $ds->name2id;
 			unset($ds);
 		}
@@ -886,7 +886,7 @@ class projectmanager_bo extends projectmanager_so
 
 		// copying the element tree
 		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_elements_bo.inc.php');
-		$boelements =& new projectmanager_elements_bo($this->data['pm_id']);
+		$boelements = new projectmanager_elements_bo($this->data['pm_id']);
 
 		if (($elements = $boelements->copytree((int) $source)))
 		{

@@ -44,7 +44,7 @@ class projectmanager_datasource extends datasource
 		// we use $GLOBALS['projectmanager_bo'] as an already running instance may be availible there
 		if (!is_object($GLOBALS['projectmanager_bo']))
 		{
-			$GLOBALS['projectmanager_bo'] =& new projectmanager_bo();
+			$GLOBALS['projectmanager_bo'] = new projectmanager_bo();
 		}
 		$this->projectmanager_bo =& $GLOBALS['projectmanager_bo'];
 	}
