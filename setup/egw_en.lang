@@ -230,7 +230,6 @@ start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
 startrecord	projectmanager	en	Startrecord
-state	projectmanager	en	State
 status filter	projectmanager	en	Status filter
 style used for everything but elements. some fonts have only normal style.	projectmanager	en	Style used for everything but elements. Some fonts have only normal style.
 subelements	projectmanager	en	Subelements

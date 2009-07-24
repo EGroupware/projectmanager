@@ -25,7 +25,7 @@
 					<menulist>
 						<menupopup type="select-number" options=",1,10" id="pm_priority"/>
 					</menulist>
-					<description value="State" options=",,,pm_status"/>
+					<description value="Status" options=",,,pm_status"/>
 					<hbox options="0,0">
 						<menulist>
 							<menupopup id="pm_status" no_lang="1"/>
