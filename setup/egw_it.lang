@@ -1,8 +1,11 @@
 %1 element(s) updated	projectmanager	it	%1 elemento/i aggiornato/i
 %1 new project-elements imported	projectmanager	it	%1 nuovi elementi-progetto importati
 %1 projects deleted	projectmanager	it	%1 progetti eliminati
+%1 records imported	projectmanager	it	%1 record importati
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	it	%1 records letti (non ancora importati, puoi andare %2indietro%3 e delezionare Test Importazione
 %1 times permission denied, %2 projects deleted	projectmanager	it	%1 permessi tempi negati, %2 progetti eliminati
 - planned	projectmanager	it	- pianificato
+- re-planned	projectmanager	it	- ri-pianificato
 0ngoing (0 < % < 100)	projectmanager	it	in corso (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	it	un titolo descrittivo per il progetto, non può essere vuoto
 accounting	projectmanager	it	Contabilità
@@ -37,6 +40,8 @@ budget (no pricelist)	projectmanager	it	Budget (nessun listino)
 budget and pricelist	projectmanager	it	Budget e listino
 by	projectmanager	it	da
 calculate budget by quantity (eg. time) and price	projectmanager	it	Calcola il budget per quantità (es.tempo) e prezzo
+charset of file	projectmanager	it	Set di caratteri del file
+charset of the above selected font	projectmanager	it	Set di caratteri del font selezionato
 check all	projectmanager	it	Seleziona tutto
 close the window, discard the changes made	projectmanager	it	Chiudi la finestra, annulla le modifiche fatte
 constraints	projectmanager	it	Vincoli
@@ -47,10 +52,13 @@ create a new empty project or use a template	projectmanager	it	Crea un nuovo pro
 create new links	projectmanager	it	Crea nuovi collegamenti
 created	projectmanager	it	creato
 created a ganttchart from the checked projects	projectmanager	it	Creato un grafico gantt dai progetti selezionati
+csv-fieldname	projectmanager	it	Nome campo CSV
+csv-filename	projectmanager	it	Nome file CSV
 cumulated elements too	projectmanager	it	Anche gli elementi cumulati
 custom fields	projectmanager	it	Campi personalizzati
 customer title	projectmanager	it	Titolo cliente
 datasource	projectmanager	it	Sorgente dati
+datasources too	projectmanager	it	Anche sorgente dati
 dates	projectmanager	it	Date
 default all and a selectbox to choose	projectmanager	it	tutto predefinito e una selectbox per scegliere
 delete all checked projects	projectmanager	it	Elimina tutti i progetti selezionati
@@ -80,6 +88,8 @@ elements of elements	projectmanager	it	Elementi di elementi
 elements that can't start before this one is finished	projectmanager	it	Elementi che non possono iniziare prima che questo sia finito
 elements which have to be finished before this can start	projectmanager	it	Elementi che devono essere finiti prima che questo possa iniziare
 empty	projectmanager	it	Vuoto
+empty for all	projectmanager	it	vuoto per tutti
+encode non-ascii	projectmanager	it	Codifica non ascii
 end before	projectmanager	it	Fine prima di
 enddate	projectmanager	it	Data fine
 error: deleting price !!!	projectmanager	it	Errore: cancellando prezzo !!!
@@ -95,6 +105,12 @@ error: saving the project-element (%1) !!!	projectmanager	it	Errore: salvando l'
 everything recursive	projectmanager	it	Tutto ricorsivo
 existing links	projectmanager	it	Collegamenti esistenti
 exit without saving	projectmanager	it	Esci senza salvare
+fieldseparator	projectmanager	it	Separatore campi
+font	projectmanager	it	Font
+font charset	projectmanager	it	Font - Set di caratteri
+font style	projectmanager	it	Font - Stile
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	it	Font da usare nel diagramma di Gantt, solo i font Vera sono inclusi nella Gestione Progetti
+fontfile '%1' not found!!!	projectmanager	it	File font '%1' non trovato !!!
 free descriptiv text	projectmanager	it	testo descrittivo libero
 from %1 to %2	projectmanager	it	da %1 a %2
 full access	projectmanager	it	accesso completo
@@ -109,8 +125,13 @@ hours	projectmanager	it	ore
 hours per workday	projectmanager	it	Ore per giorno lavorativo
 how long do you work on the given day.	projectmanager	it	Quanto lavori il dato giorno.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	it	Come deve essere visualizzata la selezione progetti nel menù: un albero dà un quadro d'insieme migliore, una selectbox può avere prestazioni migliori.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	it	Se impostato anche le sorgenti dati degli elementi (es. le voci InfoLog) saranno cancellate.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	it	Se impostato anche lo stato delle sorgenti dati degli elementi (es. le voci InfoLog) sarà modificato.
+if checked, existing data will be overwrited)	projectmanager	it	Se selezionato, i dati esistenti saranno sovrascritti)
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	it	Se vedi entità (es. {) nel diagramma di Gantt, spegnere questa impostazione.
 ignore that entry	projectmanager	it	ignora quella voce
 ignored	projectmanager	it	ignorato
+import	projectmanager	it	Importa
 last modified	projectmanager	it	ultima modifica
 leave it empty if you dont need a different customer title	projectmanager	it	lascialo vuoto se non serve un titolo cliente differente
 leave it empty to have one generated	projectmanager	it	lascialo vuoto per averne uno generato
@@ -137,6 +158,7 @@ no save necessary	projectmanager	it	non necessario salvare
 nonactive	projectmanager	it	non attivo
 not started (0%)	projectmanager	it	Non iniziato (0%)
 not working	projectmanager	it	non funzionante
+number of records to read (%1)	projectmanager	it	Numero di record da leggere (%1)
 only this project	projectmanager	it	Solo questo progetto
 overwrite the datasource	projectmanager	it	Sovrascrivi sorgente dati
 percentage the member is availible for projects	projectmanager	it	Percentuale disponibilità del membro per progetti
@@ -162,8 +184,11 @@ project-element saved	projectmanager	it	Elemento-progetto salvato
 project-elements	projectmanager	it	Elementi-Progetto
 projectlist	projectmanager	it	Elenco progetti
 projectmanager	common	it	Gestione Progetti
+projectmanager - import csv-file	projectmanager	it	Gestione Progetti - Importazione file CSV
+projectmanager-fieldname	projectmanager	it	Gestione Progetti - Nome campo
 projectmember	projectmanager	it	Membro progetto
 quantity	projectmanager	it	Quantità
+re-planned	projectmanager	it	ri-pianificato
 read access, incl. budget and adding elements	projectmanager	it	accesso in lettura, incl. budget e aggiunta elementi
 read access, no budget	projectmanager	it	accesso in lettura, no budget
 real end	projectmanager	it	Fine reale
@@ -195,16 +220,22 @@ start working on %1	projectmanager	it	Ha iniziato a lavorare il %1
 start, end, category, ...	projectmanager	it	Inizio, Fine, Categoria, ...
 start- & enddate	projectmanager	it	Data Inizio e Fine
 startdate	projectmanager	it	Data inizio
+startrecord	projectmanager	it	Record iniziale
 state	projectmanager	it	Stato
 status filter	projectmanager	it	Filtro di stato
+style used for everything but elements. some fonts have only normal style.	projectmanager	it	Stile utilizzato per tutto esclusi gli elementi. Alcuni font hanno solo lo stile normale.
 subelements	projectmanager	it	Sottoelementi
 subprojects	projectmanager	it	Sottoprogetti
 synchronise all	projectmanager	it	Sincronizza tutto
 template	projectmanager	it	Template
 template including elment-tree saved as new project	projectmanager	it	Template contenente albero-elementi salvato come nuovo progetto
+test import (show importable records <u>only</u> in browser)	projectmanager	it	Prova di importazione (visualizza nel browser <u>solo</u> i record importabili)
+the charset depends on the font you want to use.	projectmanager	it	Il set di caratteri dipende dal font che vuoi usare.
 time	projectmanager	it	Tempo
 times	projectmanager	it	Tempi
 title must not be empty	projectmanager	it	Il titolo non deve essere vuoto
+to many might exceed your execution-time-limit	projectmanager	it	troppi potrebbero superare il tuo limite di tempo di esecuzione
+translation	projectmanager	it	Traduzione
 tree with %1	projectmanager	it	Albero con %1
 unit	projectmanager	it	Unità
 unitprice	projectmanager	it	Prezzo unitario
