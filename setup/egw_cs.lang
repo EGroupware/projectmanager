@@ -5,6 +5,7 @@
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	cs	%1 záznamů načteno (zatím nebyly naimportovány, můžete se vrátit %2zpět%3 a odškrtnout Testovat import)
 %1 times permission denied, %2 projects deleted	projectmanager	cs	%1 krát přístup zamítnut, %2 projektů smazáno
 - planned	projectmanager	cs	- plánované
+- re-planned	projectmanager	cs	- přeplánované
 0ngoing (0 < % < 100)	projectmanager	cs	Pokračující (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	cs	Popisný název projektu, nesmí být prázdný
 accounting	projectmanager	cs	Účtování
@@ -187,6 +188,7 @@ projectmanager - import csv-file	projectmanager	cs	Správce projektů - Importov
 projectmanager-fieldname	projectmanager	cs	Správce projektů - Název položky
 projectmember	projectmanager	cs	Člen projektu
 quantity	projectmanager	cs	Množství
+re-planned	projectmanager	cs	přeplánované
 read access, incl. budget and adding elements	projectmanager	cs	oprávnění ke čtení, včetně rozpočtu a přidávání součástí
 read access, no budget	projectmanager	cs	oprávnění ke čtení, bez rozpočtu
 real end	projectmanager	cs	Skutečný konec
