@@ -78,6 +78,58 @@ class projectmanager_bo extends projectmanager_so
 	 * @var boolean
 	 */
 	var $is_admin;
+	/**
+	 * Instance of the timesheet_tracking object
+	 *
+	 * @var timesheet_tracking
+	 */
+	var $historylog;
+	/**
+	 * Translates field / acl-names to labels
+	 *
+	 * @var array
+	 */
+	var $field2label = array(
+		'pm_id'		         => 'Projectid',
+		'pm_title'     	     => 'Title',
+		'pm_number'    	     => 'Projectnumber',
+		'pm_description'     => 'Description',
+		'pm_creator'         => 'Owner',
+		'pm_created'    	 => 'Created',
+		'pm_modifier' 		 => 'Modifier',
+		'pm_modified'    	 => 'Modified',
+		'pm_planned_start'   => 'Planned start',
+		'pm_planned_end'     => 'Planned end',
+		'pm_real_start'      => 'Real start',
+		'pm_real_end'        => 'Real end',
+		'cat_id'             => 'Category',
+		'pm_access'          => 'Access',
+		'pm_priority'        => 'Priority',
+		'pm_status'          => 'Status',
+		'pm_completion'      => 'Completion',
+		'pm_used_time'       => 'Used time',
+		'pm_planned_time'    => 'Planned time',
+		'pm_replanned_time'  => 'Replanned time',
+		'pm_used_budget'     => 'Used budget',
+		'pm_planned_budget'  => 'Planned budget',
+		'pm_overwrite'       => 'Overwrite',
+	    'pm_accounting_type' => 'Accounting type',
+		// pseudo fields used in edit
+		//'link_to'        => 'Attachments & Links',
+		'customfields'   => 'Custom fields',
+	);
+	/**
+	 * setting field-name from DB to history status
+	 *
+	 * @var array
+	 */
+	var $field2history = array();
+	/**
+	 * Names of all config vars
+	 *
+	 * @var array
+	 */
+	var $tracking;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -106,6 +158,11 @@ class projectmanager_bo extends projectmanager_so
 		if ($instanciate) $this->instanciate($instanciate);
 
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("projectmanager_bo::projectmanager_bo($pm_id) finished");
+		//set fields for tracking
+		$this->field2history = array_keys($this->db_cols);
+		$this->field2history = array_diff(array_combine($this->field2history,$this->field2history),
+		array('pm_modified'));
+		$this->field2history = $this->field2history +array('customfields'   => '#c');  //add custom fields for history
 	}
 
 	/**
@@ -233,6 +290,49 @@ class projectmanager_bo extends projectmanager_so
 		}
 		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("projectmanager_bo::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
 
+		// check if we have a real modification
+		// read the old record
+		$new =& $this->data;
+		unset($this->data);
+		$this->read($new['pm_id']);
+		$old =& $this->data;
+		$this->data =& $new;
+		//$changed[] = array();
+		if (isset($old)) foreach($old as $name => $value)
+		{
+			if (isset($new[$name]) && $new[$name] != $value)
+			{
+				$changed[$name] = $name;
+				if ($name =='pm_completion' && $new['pm_completion'].'%' == $value) unset($changed[$name]);
+				if ($name =='pm_modified') unset($changed[$name]);
+				if ($name =='pm_members') unset($changed[$name]);
+			}
+		}
+		if (!$changed)
+		{
+			return false;
+		}
+
+		if (!is_object($this->tracking))
+		{
+			$this->tracking = new projectmanager_tracking($this);
+			$this->tracking->html_content_allow = true;
+		}
+		if ($this->customfields)
+		{
+			$data_custom = $old_custom = array();
+			foreach($this->customfields as $name => $custom)
+			{
+				if (isset($this->data['#'.$name]) && (string)$this->data['#'.$name]!=='') $data_custom[] = $custom['label'].': '.$this->data['#'.$name];
+				if (isset($old['#'.$name]) && (string)$old['#'.$name]!=='') $old_custom[] = $custom['label'].': '.$old['#'.$name];
+			}
+			$this->data['customfields'] = implode("\n",$data_custom);
+			$old['customfields'] = implode("\n",$old_custom);
+		}
+		if (!$this->tracking->track($this->data,$old,$this->user))
+		{
+			return implode(', ',$this->tracking->errors);
+		}
 		if (!($err = parent::save()) && $do_notify)
 		{
 			// notify the link-class about the update, as other apps may be subscribt to it

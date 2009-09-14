@@ -347,6 +347,7 @@ class projectmanager_ui extends projectmanager_bo
 					($this->config['accounting_types'] && count(explode(',',$this->config['accounting_types'])) == 1 ||
 					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)),
 				'custom' => !count($this->customfields),	// only show customfields tab, if there are some
+				'history' => !$this->data['pm_id'],        //suppress history for the first loading without ID
 			),
 			'customfields' => $view,
 			'general_avail[1]' => !$GLOBALS['egw_info']['user']['apps']['admin'],
@@ -396,6 +397,23 @@ class projectmanager_ui extends projectmanager_bo
 				'pricelist' => 'Budget and pricelist',
 			),
 		);
+		$content['history'] = array(
+				'id'  => $this->data['pm_id'],
+				'app' => 'projectmanager',
+				'status-widgets' => array(
+					'pm_modifier' => 'select-account',
+					'cat_id' => 'select-cat',
+					'pm_modified' => 'date-time',
+					'pm_planned_start' => 'date-time',
+					'pm_planned_end' => 'date-time',
+					'pm_real_start' => 'date-time',
+					'pm_real_end' => 'date-time',
+				),
+		);
+		foreach($this->field2history as $field => $status)
+		{
+			$sel_options['status'][$status] = $this->field2label[$field];
+		}
 		if ($this->config['accounting_types'])	// only allow the configured types
 		{
 			$allowed = explode(',',$this->config['accounting_types']);
