@@ -308,7 +308,7 @@ class projectmanager_bo extends projectmanager_so
 				if ($name =='pm_members') unset($changed[$name]);
 			}
 		}
-		if (!$changed)
+		if (!$changed && $old['pm_id']!='')
 		{
 			return false;
 		}
