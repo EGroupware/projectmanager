@@ -291,12 +291,17 @@ class projectmanager_bo extends projectmanager_so
 		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("projectmanager_bo::save(".print_r($keys,true).",".(int)$touch_modified.") data=".print_r($this->data,true));
 
 		// check if we have a real modification
-		// read the old record
+		// read the old record needed for history logging
 		$new =& $this->data;
 		unset($this->data);
 		$this->read($new['pm_id']);
 		$old =& $this->data;
 		$this->data =& $new;
+		if (!($err = parent::save()) && $do_notify)
+		{
+			// notify the link-class about the update, as other apps may be subscribt to it
+			egw_link::notify_update('projectmanager',$this->data['pm_id'],$this->data);
+		}
 		//$changed[] = array();
 		if (isset($old)) foreach($old as $name => $value)
 		{
@@ -312,7 +317,6 @@ class projectmanager_bo extends projectmanager_so
 		{
 			return false;
 		}
-
 		if (!is_object($this->tracking))
 		{
 			$this->tracking = new projectmanager_tracking($this);
@@ -332,11 +336,6 @@ class projectmanager_bo extends projectmanager_so
 		if (!$this->tracking->track($this->data,$old,$this->user))
 		{
 			return implode(', ',$this->tracking->errors);
-		}
-		if (!($err = parent::save()) && $do_notify)
-		{
-			// notify the link-class about the update, as other apps may be subscribt to it
-			egw_link::notify_update('projectmanager',$this->data['pm_id'],$this->data);
 		}
 		return $err;
 	}
