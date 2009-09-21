@@ -319,7 +319,8 @@ class projectmanager_ui extends projectmanager_bo
 				'to_app' => 'projectmanager',
 			),
 			'duration_format' => ','.$this->config['duration_format'],
-			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET,0,true) || in_array($this->data['pm_accounting_type'],array('status','times')),
+			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET,0,true) || in_array($this->data['pm_accounting_type'],array('status','times')) ||
+				!array_intersect(explode(',',$this->config['accounting_types']),array('budget','pricelist')),
 			'status_sources' => $content['status_sources'],
 		);
 		if ($add_link && !is_array($content['link_to']['to_id']))
@@ -345,7 +346,8 @@ class projectmanager_ui extends projectmanager_bo
 			'tabs' => array(
 				'accounting' => !$this->check_acl(EGW_ACL_BUDGET) &&	// disable the tab, if no budget rights and no owner or coordinator
 					($this->config['accounting_types'] && count(explode(',',$this->config['accounting_types'])) == 1 ||
-					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)),
+					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)) ||
+					$this->config['accounting_types'] == 'status' || $this->config['accounting_types'] == 'times',
 				'custom' => !count($this->customfields),	// only show customfields tab, if there are some
 				'history' => !$this->data['pm_id'],        //suppress history for the first loading without ID
 			),
