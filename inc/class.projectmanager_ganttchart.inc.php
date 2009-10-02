@@ -213,6 +213,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 */
 	function &new_gantt($title,$subtitle,$start,$end,$width=940)
 	{
+		//error_log(__METHOD__."($title,$subtitle,$start=".date('Y-m-d H:i:s',$start).",$end=".date('Y-m-d H:i:s',$end).",$width)");
 		// create new graph object
 		$graph = new GanttGraph($width,-1,'auto');
 
@@ -250,7 +251,14 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$month = $days / 31;
 		//echo date('Y-m-d',$this->scale_start).' - '.date('Y-m-d',$this->scale_end).' '.$month;
 		// 2 weeks and less: day (weekday date) and hour headers, only possible with modern JPGraph
-		if($this->modernJPGraph && $days <= 14)
+		if($this->modernJPGraph && $days <= 1 && $width > 600)
+		{
+			$graph->ShowHeaders(GANTT_HHOUR | GANTT_HMIN);
+			$graph->scale->hour->SetStyle($this->prefs['common']['timeformat'] == 12 ? HOURSTYLE_HAMPM : HOURSTYLE_H24);
+			$graph->scale->hour->SetIntervall(1);
+			if ($width < 900) $graph->scale->minute->SetIntervall(30);
+		}
+		elseif($this->modernJPGraph && $days <= 14)
 		{
 			$graph->ShowHeaders(GANTT_HDAY | GANTT_HHOUR);
 			$graph->scale->day->SetStyle($days < 7 ? DAYSTYLE_LONGDAYDATE1 : DAYSTYLE_SHORTDATE3);
