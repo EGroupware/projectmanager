@@ -1,8 +1,11 @@
 %1 element(s) updated	projectmanager	no	%1 element(er) ble oppdatert
 %1 new project-elements imported	projectmanager	no	%1 nye prosjektelementer ble importert
 %1 projects deleted	projectmanager	no	%1 prosjekt(er) ble slettet
+%1 records imported	projectmanager	no	%1 poster importert
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	no	%1 poster lest (ikke importert enda, du kan gå %2tilbake%3 og fjerne haken for Test Import)
 %1 times permission denied, %2 projects deleted	projectmanager	no	%1 ganger tillatelse nekter, %2 prosjekter slettet
 - planned	projectmanager	no	- planlagt
+- re-planned	projectmanager	no	- om-planlagt
 0ngoing (0 < % < 100)	projectmanager	no	Pågående (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	no	En beskrivende tittel for dette prosjektet; kan ikke være tom.
 accounting	projectmanager	no	Fakturering
@@ -37,6 +40,8 @@ budget (no pricelist)	projectmanager	no	Budsjett (ingen prisliste)
 budget and pricelist	projectmanager	no	Budsjett og prisliste
 by	projectmanager	no	ved
 calculate budget by quantity (eg. time) and price	projectmanager	no	Kalkuler budsjett ved kvantum ( eg. timer) og pris.
+charset of file	projectmanager	no	Filens tegnsett
+charset of the above selected font	projectmanager	no	Tegnsettet til valg font
 check all	projectmanager	no	Kontroller alle
 close the window, discard the changes made	projectmanager	no	Lukk vinduet, tap av utførte endringer
 constraints	projectmanager	no	Tvinger
@@ -47,9 +52,13 @@ create a new empty project or use a template	projectmanager	no	Opprett et nytt t
 create new links	projectmanager	no	Opprette nye lenker
 created	projectmanager	no	skapt
 created a ganttchart from the checked projects	projectmanager	no	Lage et Gantt-diagram fra de valgte prosjekter
+csv-fieldname	projectmanager	no	CSV-Felt navn
+csv-filename	projectmanager	no	CSV-Filnavn
+cumulated elements too	projectmanager	no	Akkumulerte elementer også
 custom fields	projectmanager	no	Tilpasse felt
 customer title	projectmanager	no	Tilpasset tittel
 datasource	projectmanager	no	Datakilde
+datasources too	projectmanager	no	data kilder også
 dates	projectmanager	no	Datoer
 default all and a selectbox to choose	projectmanager	no	standard alle og en nedtrekksmeny for å velge
 delete all checked projects	projectmanager	no	Slett all avkryssede prosjekter
@@ -59,6 +68,8 @@ delete this project	projectmanager	no	Slett dette prosjektet
 delete this project-element, does not remove the linked entry	projectmanager	no	Sletting av prosjektelementet, sletter IKKE linkede forekomster
 delete this role	projectmanager	no	Slett denne rollen
 depth of display	projectmanager	no	Dypde av visningen
+details of cumulated	projectmanager	no	Detaljer om akkumulert
+details of subelements	projectmanager	no	Detaljer om sub elementer
 do not use that entry as project-element	projectmanager	no	ikke benytt denne forekomsten som et prosjektelement
 done (100%)	projectmanager	no	Utført (100%)
 edit access, incl. editing budget and elements	projectmanager	no	Endre adgang, inkl. å endre budsjetter og elementer
@@ -77,6 +88,8 @@ elements of elements	projectmanager	no	Elementer av elementer
 elements that can't start before this one is finished	projectmanager	no	Elementer som ikke kan starte før denne er avsluttet
 elements which have to be finished before this can start	projectmanager	no	Elementer som må være avsluttet før denne kan starte
 empty	projectmanager	no	Uten innhold
+empty for all	projectmanager	no	tomt for alle
+encode non-ascii	projectmanager	no	Kode som ikke-ascii
 end before	projectmanager	no	Slutte før
 enddate	projectmanager	no	Sluttdato
 error: deleting price !!!	projectmanager	no	Feil : Slette pris !
@@ -92,6 +105,12 @@ error: saving the project-element (%1) !!!	projectmanager	no	Feil : Lagre prosje
 everything recursive	projectmanager	no	Alt rekursiv
 existing links	projectmanager	no	Eksisterende lenker
 exit without saving	projectmanager	no	Avslutte uten å lagre
+fieldseparator	projectmanager	no	Felt skiller
+font	projectmanager	no	Font
+font charset	projectmanager	no	Font tegnsett
+font style	projectmanager	no	Font stil
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	no	Fon for bruk i Ganttchart, bare Vera fontene er inkludert i  Projekt Styrer.
+fontfile '%1' not found!!!	projectmanager	no	Font fil '%1' ikke funnet!!!
 free descriptiv text	projectmanager	no	Fri beskrivende tekst
 from %1 to %2	projectmanager	no	fra %1 til %2
 full access	projectmanager	no	Full adgang
@@ -105,8 +124,14 @@ health	projectmanager	no	Helse
 hours	projectmanager	no	timer
 hours per workday	projectmanager	no	Timer pr. arbeidsdag
 how long do you work on the given day.	projectmanager	no	Hvor lenge arbeidet du den dagen
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	no	Hvordan bør prosjekt valget i menyen bli vist: Et tre gir bedre oversikt, en valgboks kan fungere bedre.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	no	Hvis huket av vil data kildene til elementer (f.eks Info Logg poster) slettes også.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	no	Hvis huket av vil data kildene til elementer (f.eks Info Logg poster) endre sin status også.
+if checked, existing data will be overwrited)	projectmanager	no	Hvis huket av vil esisterende data bli overskrevet
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	no	Hvis du ser entiteter (f.eks. {) i Granttchart, slå denne av.
 ignore that entry	projectmanager	no	Ingnorer denne forekomsten
 ignored	projectmanager	no	oversett
+import	projectmanager	no	Importer
 last modified	projectmanager	no	Sist endret
 leave it empty if you dont need a different customer title	projectmanager	no	La det stå tomt dersom du ikke trenger en annen tilpasset tittel
 leave it empty to have one generated	projectmanager	no	la det stå blank for å få et automatisk
@@ -133,6 +158,7 @@ no save necessary	projectmanager	no	Ingen lagring nødvendig.
 nonactive	projectmanager	no	Ikke aktiv
 not started (0%)	projectmanager	no	Ikke startet (0%)
 not working	projectmanager	no	arbeider ikke
+number of records to read (%1)	projectmanager	no	Antall poster igjen å lese (%1)
 only this project	projectmanager	no	Bare dette prosjektet
 overwrite the datasource	projectmanager	no	Overskrive kildekoden
 percentage the member is availible for projects	projectmanager	no	Prosent medlemmet er tilgjengelig for prosjektet
@@ -157,9 +183,12 @@ project-element deleted	projectmanager	no	Prosjekt - Element slettet
 project-element saved	projectmanager	no	Prosjekt - Element lagret
 project-elements	projectmanager	no	Prosjekt - Elementer
 projectlist	projectmanager	no	Prosjektliste
-projectmanager	common	no	Prosjektadm.
+projectmanager	projectmanager	no	Prosjekt Styrer
+projectmanager - import csv-file	projectmanager	no	Prosjekt styrer -Importer CSV-Fil
+projectmanager-fieldname	projectmanager	no	Prosjekt styrer-Felt navn
 projectmember	projectmanager	no	Prosjektmedlem
 quantity	projectmanager	no	Antall
+re-planned	projectmanager	no	om-planlagt
 read access, incl. budget and adding elements	projectmanager	no	leseadgang, inkl. budsjett og til å legge til elementer
 read access, no budget	projectmanager	no	leseadgang, ikke budsjett
 real end	projectmanager	no	Virkelig slutt
@@ -176,6 +205,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select multiple projects for a further action	projectmanager	no	Velg flere prosjekter for videre behandling
 select the accounting types visible for users of projectmanager	projectmanager	no	velg faktureringstyper som skal vises for bruker av prosjektmanager.
 select this project and show it's elements	projectmanager	no	Velg dette prosjektet og vis dets elementer
+selectbox with %1	projectmanager	no	Valg boks med %1
 share	projectmanager	no	Deles
 share on the whole project	projectmanager	no	Deles for hele prosjektet
 share on the whole project in hours or percent, defaults to planned time	projectmanager	no	Deles for hele prosjektet i timer eller prosent, standard er planlagt tid
@@ -183,21 +213,30 @@ should projectmanager display the status icons of the datasource (eg. infolog) o
 show constraints and milestones	projectmanager	no	Viser innskrenker og milepel
 show planned times instead of the real times	projectmanager	no	Vis planlagt tid istedet for virkelig tid
 show status icons of the datasources	projectmanager	no	Vis statusikoner for datakildene
+show the project selection as	projectmanager	no	Vis prosjekt valget som
 site configuration saved	projectmanager	no	Konfigurasjon for websidene ble lagret
 start after	projectmanager	no	Start etter
 start working on %1	projectmanager	no	Start arbeidet den %1
 start, end, category, ...	projectmanager	no	Start, slutt, kategori
 start- & enddate	projectmanager	no	Start- og sluttdato
-startdate	projectmanager	no	Startdato
+startdate	projectmanager	no	Start dato
+startrecord	projectmanager	no	Start post
 state	projectmanager	no	Status
 status filter	projectmanager	no	Statusfilter
-subprojects	projectmanager	no	Underprosjekter
+style used for everything but elements. some fonts have only normal style.	projectmanager	no	Stil bruk for alt annet enn elementer. Noen fonter har bare normal stil.
+subelements	projectmanager	no	Under elementer
+subprojects	projectmanager	no	Under prosjekter
 synchronise all	projectmanager	no	Synkroniser alle
 template	projectmanager	no	Mal
 template including elment-tree saved as new project	projectmanager	no	Mal inklusive elementtre lagret som et nytt prosjekt.
+test import (show importable records <u>only</u> in browser)	projectmanager	no	Test Import (vis importer bare poster <u>bare</u> i nettleseren)
+the charset depends on the font you want to use.	projectmanager	no	Tegnsettet kommer ann på fonten du vil bruke.
 time	projectmanager	no	Tid
 times	projectmanager	no	Tider
 title must not be empty	projectmanager	no	Tittel kan ikke være tom
+to many might exceed your execution-time-limit	projectmanager	no	for mange kan overstige din fullførings-tids-begrensning
+translation	projectmanager	no	Oversettelse
+tree with %1	projectmanager	no	Tre med %1
 unit	projectmanager	no	Enhet
 unitprice	projectmanager	no	Enhetspris
 used	projectmanager	no	brukt
