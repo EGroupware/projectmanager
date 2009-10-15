@@ -17,7 +17,7 @@
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  */
-class projectmanager_so extends so_sql_cf 
+class projectmanager_so extends so_sql_cf
 {
 	/**
 	 * Table name 'egw_links'
@@ -270,7 +270,7 @@ class projectmanager_so extends so_sql_cf
 				$join .= ' LEFT';
 			}
 			// postgres 8.3 requires cast as link_idx is varchar and pm_id an integer, the cast should be no problem for other DB's
-			$join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=CAST($this->table_name.pm_id AS CHAR)";
+			$join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=CAST($this->table_name.pm_id AS VARCHAR)";
 
 			if (is_array($filter['subs_or_mains']))	// sub-projects of given parent-projects
 			{
