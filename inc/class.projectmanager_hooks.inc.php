@@ -314,8 +314,6 @@ class projectmanager_hooks
 	 */
 	static function settings()
 	{
-		self::check_set_default_prefs();
-
 		$start = array();
 		for($i = 0; $i < 24*60; $i += 30)
 		{
@@ -348,6 +346,7 @@ class projectmanager_hooks
 				'help'   => 'How long do you work on the given day.',
 				'xmlrpc' => True,
 				'admin'  => !self::$config['allow_change_workingtimes'],
+				'default'=> $day && $day < 5 ? 8*60 : ($day == 5 ? 6*60 : 0),
 			);
 			$settings['start_'.$day] = array(
 				'type'   => 'select',
@@ -358,7 +357,13 @@ class projectmanager_hooks
 				'help'   => 'At which time do you start working on the given day.',
 				'xmlrpc' => True,
 				'admin'  => !self::$config['allow_change_workingtimes'],
+				'default'=> $day && $day < 6 ? 9*60 : 0,
 			);
+			// forcing Saturday (6) and Sunday (0)
+			if ($day == 6 || $day == 0)
+			{
+				$settings['duration_'.$day]['forced'] = $settings['start_'.$day]['forced'] = '0';
+			}
 		}
 		$settings['show_custom_app_icons'] = array(
 			'type'   => 'check',
@@ -367,6 +372,7 @@ class projectmanager_hooks
 			'help'   => 'Should Projectmanager display the status icons of the datasource (eg. InfoLog) or just a progressbar with the numerical status (faster).',
 			'xmlrpc' => True,
 			'admin'  => False,
+			'default'=> true,
 		);
 		$settings['show_projectselection'] = array(
 			'type'   => 'select',
@@ -381,52 +387,8 @@ class projectmanager_hooks
 			'help'   => 'How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.',
 			'xmlrpc' => True,
 			'admin'  => False,
+			'default'=> 'tree_with_title',
 		);
 		return $settings;
-	}
-
-	/**
-	 * Check if reasonable default preferences are set and set them if not
-	 *
-	 * It sets a flag in the app-session-data to be called only once per session
-	 */
-	static function check_set_default_prefs()
-	{
-		if (egw_session::appsession('default_prefs_set','projectmanager'))
-		{
-			return;
-		}
-		egw_session::appsession('default_prefs_set','projectmanager','set');
-
-		$default_prefs =& $GLOBALS['egw']->preferences->default['projectmanager'];
-
-		$defaults = array(
-			'start_1' => 9*60,
-			'duration_1' => 8*60,
-			'start_2' => 9*60,
-			'duration_2' => 8*60,
-			'start_3' => 9*60,
-			'duration_3' => 8*60,
-			'start_4' => 9*60,
-			'duration_4' => 8*60,
-			'start_5' => 9*60,
-			'duration_5' => 6*60,
-			'duration_6' => 0,
-			'duration_0' => 0,
-			'show_custom_app_icons' => '0',
-			'show_tree'  => 'pm_number',
-		);
-		foreach($defaults as $var => $default)
-		{
-			if (!isset($default_prefs[$var]) || (string)$default_prefs[$var] === '')
-			{
-				$GLOBALS['egw']->preferences->add('projectmanager',$var,$default,'default');
-				$need_save = True;
-			}
-		}
-		if ($need_save)
-		{
-			$GLOBALS['egw']->preferences->save_repository(False,'default');
-		}
 	}
 }

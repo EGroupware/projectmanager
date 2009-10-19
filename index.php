@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-9 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -29,8 +29,6 @@ if ($setup_info['projectmanager']['version'] != $GLOBALS['egw_info']['apps']['pr
 	$GLOBALS['egw']->common->egw_exit();
 }
 unset($setup_info);
-
-projectmanager_hooks::check_set_default_prefs();
 
 $pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 
