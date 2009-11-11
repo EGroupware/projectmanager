@@ -260,8 +260,9 @@ class projectmanager_hooks
 		}
 		$tree = html::tree($projects,$selected_project,false,'load_project');
 		// hack for stupid ie (cant set it as a class!)
-		if (html::$user_agent == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
-
+		//if (html::$user_agent == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
+		// do it all the time, as we want distinct behavior here
+		$tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; max-width:400px; width:100%; max-height:450px;"',$tree);
 		return array(
 			'text' => "<script>function load_project(_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".$tree,
 			'no_lang' => True,
