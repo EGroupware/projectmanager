@@ -119,6 +119,7 @@ ganttchart parameter	projectmanager	es-es	Parámetro de diagrama Gantt
 general	projectmanager	es-es	General
 general availibility	projectmanager	es-es	Disponibilidad general
 general pricelist	projectmanager	es-es	Lista de precios general
+global categories	projectmanager	es-es	Categorías globales
 h	projectmanager	es-es	h
 health	projectmanager	es-es	Salud
 hours	projectmanager	es-es	horas
@@ -217,6 +218,13 @@ show the project selection as	projectmanager	es-es	Mostrar la selección del pro
 site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
 start after	projectmanager	es-es	Comenzar después de
 start working on %1	projectmanager	es-es	Comenzar a trabajar en %1
+start working on tuesday	projectmanager	es-es	Comenzar a trabajar en martes
+start working on thursday	projectmanager	es-es	Comenzar a trabajar en jueves
+start working on friday	projectmanager	es-es	Comenzar a trabajar en viernes
+start working on wednesday	projectmanager	es-es	Comenzar a trabajar en miércoles
+start working on monday	projectmanager	es-es	Comenzar a trabajar en lunes
+start working on saturday	projectmanager	es-es	Comenzar a trabajar en sábado
+start working on sunday	projectmanager	es-es	Comenzar a trabajar en domingo
 start, end, category, ...	projectmanager	es-es	Inicio, fin, categoría...
 start- & enddate	projectmanager	es-es	Fecha de inicio y fin
 startdate	projectmanager	es-es	Fecha de inicio
@@ -252,6 +260,13 @@ view this price	projectmanager	es-es	Ver este precio
 view this project	projectmanager	es-es	Ver este proyecto
 view this project-element	projectmanager	es-es	Ver este elemento del proyecto
 working duration on %1	projectmanager	es-es	Duración del trabajo en %1
+working duration on tuesday	projectmanager	es-es	Duración del trabajo en martes
+working duration on thursday	projectmanager	es-es	Duración del trabajo en jueves
+working duration on friday	projectmanager	es-es	Duración del trabajo en viernes
+working duration on wednesday	projectmanager	es-es	Duración del trabajo en miércoles
+working duration on monday	projectmanager	es-es	Duración del trabajo en lunes
+working duration on saturday	projectmanager	es-es	Duración del trabajo en sábado
+working duration on sunday	projectmanager	es-es	Duración del trabajo en domingo
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	es-es	Está usando la versión antigua de JPGraph incluida en eGroupWare. Sólo tiene funcionalidad limitada.
 you can leave the date of the first price empty	projectmanager	es-es	puede dejar la fecha del primer precio en blanco
 you need to select a project first	projectmanager	es-es	Necesita seleccionar un proyecto antes

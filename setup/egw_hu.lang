@@ -220,13 +220,13 @@ show the project selection as	projectmanager	hu	Mutasd a projekt választást mi
 site configuration saved	projectmanager	hu	Webhely konfiguráció elmentve
 start after	projectmanager	hu	Indulás ezután
 start working on %1	projectmanager	hu	Munkaidő kezdete %1
-start working on dienstag	projectmanager	hu	Munkaidő kezdete Kedden
-start working on donnerstag	projectmanager	hu	Munkaidő kezdete Csütörtökön
-start working on freitag	projectmanager	hu	Munkaidő kezdete Pénteken
-start working on mittwoch	projectmanager	hu	Munkaidő kezdete Szerdán
-start working on montag	projectmanager	hu	Munkaidő kezdete Hétfőn
-start working on samstag	projectmanager	hu	Munkaidő kezdete Szombaton
-start working on sonntag	projectmanager	hu	Munkaidő kezdete Vasárnap
+start working on tuesday	projectmanager	hu	Munkaidő kezdete Kedden
+start working on thursday	projectmanager	hu	Munkaidő kezdete Csütörtökön
+start working on friday	projectmanager	hu	Munkaidő kezdete Pénteken
+start working on wednesday	projectmanager	hu	Munkaidő kezdete Szerdán
+start working on monday	projectmanager	hu	Munkaidő kezdete Hétfőn
+start working on saturday	projectmanager	hu	Munkaidő kezdete Szombaton
+start working on sunday	projectmanager	hu	Munkaidő kezdete Vasárnap
 start, end, category, ...	projectmanager	hu	Indulás, befejezés, kategória ...
 start- & enddate	projectmanager	hu	Indulási- és befejezési dátum
 startdate	projectmanager	hu	Indulási dátum
@@ -262,13 +262,13 @@ view this price	projectmanager	hu	Ár megtekintése
 view this project	projectmanager	hu	Projekt megtekintése
 view this project-element	projectmanager	hu	Projekt-elem megtekintése
 working duration on %1	projectmanager	hu	Munkaidő %1
-working duration on dienstag	projectmanager	hu	Munkaidő Kedden
-working duration on donnerstag	projectmanager	hu	Munkaidő Csütörtökön
-working duration on freitag	projectmanager	hu	Munkaidő Pénteken
-working duration on mittwoch	projectmanager	hu	Munkaidő Szerdán
-working duration on montag	projectmanager	hu	Munkaidő Hétfőn
-working duration on samstag	projectmanager	hu	Munkaidő Szombaton
-working duration on sonntag	projectmanager	hu	Munkaidő Vasárnap
+working duration on tuesday	projectmanager	hu	Munkaidő Kedden
+working duration on thursday	projectmanager	hu	Munkaidő Csütörtökön
+working duration on friday	projectmanager	hu	Munkaidő Pénteken
+working duration on wednesday	projectmanager	hu	Munkaidő Szerdán
+working duration on monday	projectmanager	hu	Munkaidő Hétfőn
+working duration on saturday	projectmanager	hu	Munkaidő Szombaton
+working duration on sunday	projectmanager	hu	Munkaidő Vasárnap
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	hu	Régi JPGraph verziót használ, ami korlátozott képességekkel rendelkezik. Frissítés javasolt.
 you can leave the date of the first price empty	projectmanager	hu	az első ár bejegyzés dátum mezőjét üresen lehet hagyni
 you need to select a project first	projectmanager	hu	Előbb projekt kiválasztása szükséges
