@@ -218,13 +218,6 @@ show the project selection as	projectmanager	en	Show the project selection as
 site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
 start working on %1	projectmanager	en	Start working on %1
-start working on tuesday	projectmanager	en	Start working on Tuesday
-start working on thursday	projectmanager	en	Start working on Thursday
-start working on friday	projectmanager	en	Start working on Friday
-start working on wednesday	projectmanager	en	Start working on Wednesday
-start working on monday	projectmanager	en	Start working on Monday
-start working on saturday	projectmanager	en	Start working on Saturday
-start working on sunday	projectmanager	en	Start working on Sunday
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
@@ -260,13 +253,6 @@ view this price	projectmanager	en	View this price
 view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project-element
 working duration on %1	projectmanager	en	Working duration on %1
-working duration on tuesday	projectmanager	en	Working duration on Tuesday
-working duration on thursday	projectmanager	en	Working duration on Thursday
-working duration on friday	projectmanager	en	Working duration on Freitag
-working duration on wednesday	projectmanager	en	Working duration on Wednesday
-working duration on monday	projectmanager	en	Working duration on Monday
-working duration on saturday	projectmanager	en	Working duration on Saturday
-working duration on sunday	projectmanager	en	Working duration on Sunday
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	en	You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.
 you can leave the date of the first price empty	projectmanager	en	you can leave the date of the first price empty
 you need to select a project first	projectmanager	en	You need to select a project first
