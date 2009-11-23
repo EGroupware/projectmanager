@@ -219,13 +219,6 @@ show the project selection as	projectmanager	de	Zeige die Projektauswahl als
 site configuration saved	projectmanager	de	Konfiguration gespeichert
 start after	projectmanager	de	Startet nach
 start working on %1	projectmanager	de	Arbeitsbeginn am %1
-start working on dienstag	projectmanager	de	Arbeitsbeginn am Dienstag
-start working on donnerstag	projectmanager	de	Arbeitsbeginn am Donnerstag
-start working on freitag	projectmanager	de	Arbeitsbeginn am Freitag
-start working on mittwoch	projectmanager	de	Arbeitsbeginn am Mittwoch
-start working on montag	projectmanager	de	Arbeitsbeginn am Samstag
-start working on samstag	projectmanager	de	Arbeitsbeginn am Samstag
-start working on sonntag	projectmanager	de	Arbeitsbeginn am Sonntag
 start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
 start- & enddate	projectmanager	de	Start- & Enddatum
 startdate	projectmanager	de	Startdatum
@@ -260,13 +253,6 @@ view this price	projectmanager	de	Diesen Preis anzeigen
 view this project	projectmanager	de	Dieses Projekt anzeigen
 view this project-element	projectmanager	de	Dieses Projektelement anzeigen
 working duration on %1	projectmanager	de	Arbeitsdauer am %1
-working duration on dienstag	projectmanager	de	Arbeitsdauer am Dienstag
-working duration on donnerstag	projectmanager	de	Arbeitsdauer am Donnerstag
-working duration on freitag	projectmanager	de	Arbeitsdauer am Freitag
-working duration on mittwoch	projectmanager	de	Arbeitsdauer am Mittwoch
-working duration on montag	projectmanager	de	Arbeitsdauer am Samstag
-working duration on samstag	projectmanager	de	Arbeitsdauer am Samstag
-working duration on sonntag	projectmanager	de	Arbeitsdauer am Sonntag
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	de	Sie benützen die alte Version von JPGraph, die mit eGroupWare ausgeliefert wird. Sie hat nur eine beschränkte Funktionalität.
 you can leave the date of the first price empty	projectmanager	de	Sie benötigen kein Datum für den ersten Preis
 you need to select a project first	projectmanager	de	Sie müssen zuerst ein Projekt auswählen
