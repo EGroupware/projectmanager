@@ -122,6 +122,7 @@ ganttchart parameter	projectmanager	es-es	Parámetro de diagrama Gantt
 general	projectmanager	es-es	General
 general availibility	projectmanager	es-es	Disponibilidad general
 general pricelist	projectmanager	es-es	Lista de precios general
+global categories	projectmanager	es-es	Categorías globales
 h	projectmanager	es-es	h
 health	projectmanager	es-es	Salud
 hours	projectmanager	es-es	horas
@@ -222,7 +223,6 @@ start, end, category, ...	projectmanager	es-es	Inicio, fin, categoría...
 start- & enddate	projectmanager	es-es	Fecha de inicio y fin
 startdate	projectmanager	es-es	Fecha de inicio
 startrecord	projectmanager	es-es	Registro de inicio
-state	projectmanager	es-es	Estado
 status filter	projectmanager	es-es	Filtro de estados
 style used for everything but elements. some fonts have only normal style.	projectmanager	es-es	Estilo utilizado para todo excepto los elementos. Algunos tipos de letra sólo tienen estilo normal.
 subelements	projectmanager	es-es	Subelementos
