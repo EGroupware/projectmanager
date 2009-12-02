@@ -1,0 +1,172 @@
+%1 element(s) updated	projectmanager	eu	%1 elementu eguneratu dira
+%1 new project-elements imported	projectmanager	eu	%1 elementu berri inportatu dira proiektura
+%1 projects deleted	projectmanager	eu	%1 proiektut ezabatuta
+- planned	projectmanager	eu	-planifikatuta
+accounting	projectmanager	eu	Kontuak
+accounting options	projectmanager	eu	Kontuko aukerak
+accounting type	projectmanager	eu	Kontu motak
+actions	projectmanager	eu	Ekintzak
+activity	projectmanager	eu	Jarduera
+add a new milestone	projectmanager	eu	Jatorrizko leku berri bat gehitu
+add a new project	projectmanager	eu	Proiektu berri bat gehitu
+add element	projectmanager	eu	Elementua gehitu
+add milestone	projectmanager	eu	Jatorrizko leku bat gehitu
+add price	projectmanager	eu	Prezioa gehitu
+add project	projectmanager	eu	Proiektua gehitu
+add project-elements	projectmanager	eu	Proiektua gehitu
+add this role	projectmanager	eu	Rol hau gehitu
+allow users to change their working times	projectmanager	eu	Erabiltzaileari lan egunak aldatzeko baimena eman
+allowed accounting types	projectmanager	eu	Kontu motak gehitu
+allowed units	projectmanager	eu	Baimendutako unitateak
+anonymous public	projectmanager	eu	Anonimo publiko
+app.	projectmanager	eu	Aplikazioa
+apply the changes	projectmanager	eu	Aldaketak aplikatu
+archive	projectmanager	eu	Artxibatu
+assistant	projectmanager	eu	Morroia
+at which time do you start working on the given day.	projectmanager	eu	Lanean hasteko ordua data honetan.
+availible	projectmanager	eu	Erabilgarria
+billable	projectmanager	eu	Fakturagarria
+bookable	projectmanager	eu	Erresebagarria
+budget	projectmanager	eu	Aurrekontua
+budget (no pricelist)	projectmanager	eu	Aurrekontua (prezioen zerrendarik gabe)
+budget and pricelist	projectmanager	eu	Aurrekontua eta prezioen zerrenda
+check all	projectmanager	eu	Egiaztatu guztia
+close the window, discard the changes made	projectmanager	eu	Itxi leihioa, aldaketak deskargatu
+constraints	projectmanager	eu	Murrizketak
+coordinator	projectmanager	eu	Koordinatzailea
+cost per time	projectmanager	eu	Denborako gastua
+create new links	projectmanager	eu	Lotura berriak sortu
+created	projectmanager	eu	sortua
+custom fields	projectmanager	eu	Eremu pertsonalizatuak
+customer title	projectmanager	eu	Bezeroaren kargua
+datasource	projectmanager	eu	Datuen iturria
+dates	projectmanager	eu	Datak
+delete all checked projects	projectmanager	eu	Aukeratutako proiektu guztiak ezabatu
+delete this price	projectmanager	eu	Prezio hau ezabatu
+delete this project	projectmanager	eu	Proiektu hau ezabatu
+delete this role	projectmanager	eu	Rol hau ezabatu
+depth of display	projectmanager	eu	Bistaratze sakonera
+done (100%)	projectmanager	eu	Eginda (%100)
+edit budget	projectmanager	eu	Aurrekontua editatu
+edit price	projectmanager	eu	Prezioa editatu
+edit project	projectmanager	eu	Proiektua editatu
+edit project-elements	projectmanager	eu	Proiektuaren elementuak editatu
+edit this price	projectmanager	eu	Prezio hau editatu
+edit this project	projectmanager	eu	Proiektu hau editatu
+edit this project-element	projectmanager	eu	Proietkuaren elementu hau editatu
+edit this role	projectmanager	eu	Rol hau editatu
+elementlist	projectmanager	eu	Elementuen zerrenda
+elements of elements	projectmanager	eu	Elementuen elementuak
+empty	projectmanager	eu	Hutsa
+end before	projectmanager	eu	Lehenago bukatu
+enddate	projectmanager	eu	Amaiera data
+error: deleting price !!!	projectmanager	eu	Errorea: prezioa ezabatzerakoan!
+error: deleting project !!!	projectmanager	eu	Errorea: proiektua ezabatzerakoan!
+error: deleting project-element !!!	projectmanager	eu	Errorea: proiektauaren elementau ezabatzerakoan!
+error: deleting role !!!	projectmanager	eu	Errorea: rola ezabatzerakoan!
+error: saving role !!!	projectmanager	eu	Errorea: rola gordetzerakoan!
+error: saving the price (%1) !!!	projectmanager	eu	Errorea: (%1) prezioa gordetzarakoan!
+error: saving the project (%1) !!!	projectmanager	eu	Errorea:  (1%) proiektua gordetzerakoan!
+error: saving the project-element (%1) !!!	projectmanager	eu	Errorea: (%1) proektuaren elementua gordetzerakoan!
+everything recursive	projectmanager	eu	Guztia errekurtsiboa
+existing links	projectmanager	eu	Existitzen direnlokurak
+exit without saving	projectmanager	eu	Gorde gabe irten
+free descriptiv text	projectmanager	eu	Deskribapen testu librea
+from %1 to %2	projectmanager	eu	%1etik %2ra
+full access	projectmanager	eu	guztizko sarrera
+ganttchart	projectmanager	eu	Gantt diagrama
+ganttchart parameter	projectmanager	eu	Gantt diagramaren parametroa
+general	projectmanager	eu	Orokorra
+general availibility	projectmanager	eu	Erabilgarritasun orokorra
+general pricelist	projectmanager	eu	Prezioen zerrenda orokorra
+h	projectmanager	eu	h
+health	projectmanager	eu	Osasuna
+hours	projectmanager	eu	orduak
+hours per workday	projectmanager	eu	Orduak lan eguneko
+how long do you work on the given day.	projectmanager	eu	Zenbait lan egiten da egun honetan.
+ignore that entry	projectmanager	eu	Sarrera hori ez ikusi
+ignored	projectmanager	eu	ez ikusi
+last modified	projectmanager	eu	azken aldaketa
+leave it empty to have one generated	projectmanager	eu	utzi zurian bat sortzeko
+leave it empty, if identitcal to the time	projectmanager	eu	utzi zurian orduaren berdina bada
+linked elements	projectmanager	eu	Elementu lotuak
+links	projectmanager	eu	Loturak
+mainproject only	projectmanager	eu	Proiektu nagusia soilik
+mainprojects	projectmanager	eu	Proiektu nagusiak
+members	projectmanager	eu	Kideak
+modified	projectmanager	eu	Aldaketak
+modified by	projectmanager	eu	Nork aldatu
+new	projectmanager	eu	berria
+no accounting, only status	projectmanager	eu	Konturik gabe, egoera soilik
+no accounting, only times and status	projectmanager	eu	Konturik gabe, denborak eta egoera soilik
+no details	projectmanager	eu	ez dago detailerik
+no save necessary	projectmanager	eu	ez da beharrezkoa gordetzea
+nonactive	projectmanager	eu	Ez aktiboa
+not started (0%)	projectmanager	eu	Hasi gabe (%0)
+not working	projectmanager	eu	ez dago lanean
+only this project	projectmanager	eu	Proiektu hau bakarrik
+overwrite the datasource	projectmanager	eu	Datu iturria beridatzi
+permission denied !!!	projectmanager	eu	Baimena ukatua!
+planned	projectmanager	eu	planifikatua
+planned times	projectmanager	eu	Planifikatutako orduak
+price	projectmanager	eu	Prezioa
+price / unit	projectmanager	eu	Prezioa / Unitate
+price deleted	projectmanager	eu	Prezaioa ezabatuta
+price saved	projectmanager	eu	Prezioa gordeta
+pricelist	projectmanager	eu	Prezioen zerrenda
+project deleted	projectmanager	eu	Proiektua ezabatuta
+project id	projectmanager	eu	Proiektuaren ID-a
+project members and roles	projectmanager	eu	Proiektuko rolak eta kideak
+project overview	projectmanager	eu	Proiektuaren deskribapena
+project saved	projectmanager	eu	Proiektua gordeta
+project specific title, prices, ...	projectmanager	eu	Proiektuaren izenburua, prezioa...
+project-element deleted	projectmanager	eu	Proiektuaren elementua ezabatu da
+project-element saved	projectmanager	eu	Proiektuaren elementua gorde da
+project-elements	projectmanager	eu	Proiektuaren elementuak
+projectlist	projectmanager	eu	Proiektuen zerrenda
+projectmanager	common	eu	Proiektuen administratzailea
+projectmember	projectmanager	eu	Proiketuko kidea
+quantity	projectmanager	eu	Kantitatea
+read access, no budget	projectmanager	eu	irakurtzeko sarrera, aurrekontu gabe
+real end	projectmanager	eu	Amaiera erreala
+real start	projectmanager	eu	Hasiera erreala
+resources	projectmanager	eu	Baliabideak
+role	projectmanager	eu	Rola
+role deleted	projectmanager	eu	Rola ezabatu da
+role saved	projectmanager	eu	Rola gorde da
+roles	projectmanager	eu	Rolak
+save the changes made	projectmanager	eu	Egindako aldaketak gorde
+save this project element	projectmanager	eu	Proiektuko elementu hau gorde
+select a project	projectmanager	eu	Proiektu bat aukeratu
+share	projectmanager	eu	Partekatu
+share on the whole project	projectmanager	eu	Partekatu proiektu guztian zehar
+show planned times instead of the real times	projectmanager	eu	Denbora errealak erakutsi beharrean planifikatuak erakutsi
+site configuration saved	projectmanager	eu	Erakutsi egoera ikonoak dauten iturrietatik
+start after	projectmanager	eu	Beranduago hasi
+start working on %1	projectmanager	eu	Lanean hasi %1
+start, end, category, ...	projectmanager	eu	Hasiera, Amaiera, kategoria...
+start- & enddate	projectmanager	eu	Hasiera eta amaierada data
+startdate	projectmanager	eu	Hasiera data
+state	projectmanager	eu	Egoera
+status filter	projectmanager	eu	Egoeren iragazkia
+subprojects	projectmanager	eu	Azpiproiektuak
+synchronise all	projectmanager	eu	Guztia sinkronizatu
+template	projectmanager	eu	Plantilla
+time	projectmanager	eu	Denbora
+times	projectmanager	eu	Denborak
+title must not be empty	projectmanager	eu	Izenburua ez da hutsik egon behar
+unit	projectmanager	eu	Unitatea
+unitprice	projectmanager	eu	Unitateko prezioa
+used	projectmanager	eu	erabilia
+valid since	projectmanager	eu	Baliagarria noiztik
+view ganttchart of this project	projectmanager	eu	Proiektu honen Gantt diagrama ikusi
+view price	projectmanager	eu	Prezioa ikusi
+view project	projectmanager	eu	Proiektua ikusi
+view project-elements	projectmanager	eu	Proiektuaren osagaiak ikusi
+view this element in %1	projectmanager	eu	Ikusi elementu hau %1ean
+view this price	projectmanager	eu	Prezio hau ikusi
+view this project	projectmanager	eu	Proiektu hau ikusi
+view this project-element	projectmanager	eu	Proiketuaren osagai hau ikusi
+working duration on %1	projectmanager	eu	Lanaren iraupena %1ean
+you can leave the date of the first price empty	projectmanager	eu	Lehenengo prezioaren data zurian utzi dezakezu
+you need to select a project first	projectmanager	eu	Proiektu bat aukeratu behar duzu lehenago
