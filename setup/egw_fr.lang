@@ -1,8 +1,11 @@
 %1 element(s) updated	projectmanager	fr	%1 élément(s) mis à jour
 %1 new project-elements imported	projectmanager	fr	%1 nouveaux éléments de projet importés
 %1 projects deleted	projectmanager	fr	%1 projets supprimés
+%1 records imported	projectmanager	fr	%1 enregistrements importés
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	fr	%1 enregistrements lus ( pas encore importé, vous pouvez aller %2en arrière%3 et décocher Tets d'Importation)
 %1 times permission denied, %2 projects deleted	projectmanager	fr	%1 fois accès refusé, %2 projets supprimés
 - planned	projectmanager	fr	- prévue
+- re-planned	projectmanager	fr	- re-planifiée
 0ngoing (0 < % < 100)	projectmanager	fr	En cours (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	fr	Un titre descriptif pour le projet (ne doit pas être vide)
 accounting	projectmanager	fr	Comptabilité
@@ -37,6 +40,8 @@ budget (no pricelist)	projectmanager	fr	Budget (sans liste de prix)
 budget and pricelist	projectmanager	fr	Budget et liste de prix
 by	projectmanager	fr	par
 calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le budget par quantité (p.ex. temps) et prix
+charset of file	projectmanager	fr	caractères du fichier
+charset of the above selected font	projectmanager	fr	caractères de la police sélectionnée ci-dessus
 check all	projectmanager	fr	Vérifier tout
 close the window, discard the changes made	projectmanager	fr	Fermer la fenêtre en ignorant les modifications
 constraints	projectmanager	fr	Contraintes
@@ -47,10 +52,13 @@ create a new empty project or use a template	projectmanager	fr	Créer un projet 
 create new links	projectmanager	fr	Créer de nouveaux liens
 created	projectmanager	fr	créé
 created a ganttchart from the checked projects	projectmanager	fr	Créé un diagramme de Gantt à partir des projets sélectionnés
+csv-fieldname	projectmanager	fr	Nom du champ CSV
+csv-filename	projectmanager	fr	Nom du fichier CSV
 cumulated elements too	projectmanager	fr	Eléments cumulés aussi
 custom fields	projectmanager	fr	Champs personnalisés
 customer title	projectmanager	fr	Titre client
 datasource	projectmanager	fr	Source de données
+datasources too	projectmanager	fr	Source de données aussi
 dates	projectmanager	fr	Dates
 default all and a selectbox to choose	projectmanager	fr	par défaut tous et une boîte de sélection pour choisir
 delete all checked projects	projectmanager	fr	Supprimer tous les projets sélectionnés
@@ -80,6 +88,8 @@ elements of elements	projectmanager	fr	Eléments d'éléments
 elements that can't start before this one is finished	projectmanager	fr	Eléments ne pouvant commencer avant que celui-ci ne soit terminé
 elements which have to be finished before this can start	projectmanager	fr	Eléments ne pouvant être terminés avant que celui-ci ne commence
 empty	projectmanager	fr	Vide
+empty for all	projectmanager	fr	Vide tout
+encode non-ascii	projectmanager	fr	Encoder en non-ascii
 end before	projectmanager	fr	Fin avant
 enddate	projectmanager	fr	Date de fin
 error: deleting price !!!	projectmanager	fr	Erreur: suppression du prix !!!
@@ -95,6 +105,12 @@ error: saving the project-element (%1) !!!	projectmanager	fr	Erreur: enregistrem
 everything recursive	projectmanager	fr	Tout récursif
 existing links	projectmanager	fr	Liens existants
 exit without saving	projectmanager	fr	Quitter sans enregistrer
+fieldseparator	projectmanager	fr	Séparateur de champs
+font	projectmanager	fr	Police
+font charset	projectmanager	fr	Police de caractères
+font style	projectmanager	fr	Style de Police
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	fr	Police à utiliser dans le diagramme de GANTT , seules les polices Vera sont inclus dans le gestionnaire de projets.
+fontfile '%1' not found!!!	projectmanager	fr	Fichier de police '%1' non trouvé!!!
 free descriptiv text	projectmanager	fr	Descriptif libre
 from %1 to %2	projectmanager	fr	de %1 à %2
 full access	projectmanager	fr	Acccès complet
@@ -103,14 +119,20 @@ ganttchart parameter	projectmanager	fr	Paramètre du diagramme de Gantt
 general	projectmanager	fr	Général
 general availibility	projectmanager	fr	Disponibilité générale
 general pricelist	projectmanager	fr	Liste de prix générale
+global categories	projectmanager	fr	Catégories globales
 h	projectmanager	fr	h
 health	projectmanager	fr	Santé
 hours	projectmanager	fr	heures
 hours per workday	projectmanager	fr	Heures par jour ouvré
 how long do you work on the given day.	projectmanager	fr	Combien de temps travaillez-vous ce jour-là.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	fr	Comment doit apparaître la sélection du projet dans lemenu: une arborescence donne une meilleure vue d'ensemble, une boîte de sélection peut être plus efficace.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	fr	Si coché, les sources de données des éléments ( P.E. entrées JournalInfo ) sont aussi supprimées
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	fr	Si coché, les sources de données des éléments ( P.E. entrées JournalInfo ) auront aussi leurs statu changé.
+if checked, existing data will be overwrited)	projectmanager	fr	Si coché, les données existantes seront ré-écrites)
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	fr	Si vous voyez des entitées ( P.E. {) dans les diagrammes de GANTT, décochez cela.
 ignore that entry	projectmanager	fr	Ignorer cette entrée
 ignored	projectmanager	fr	Ignoré
+import	projectmanager	fr	Importer
 last modified	projectmanager	fr	Dernière modification
 leave it empty if you dont need a different customer title	projectmanager	fr	laissez vide si vous n'avez pas besoin d'un titre de client différent
 leave it empty to have one generated	projectmanager	fr	Laissez ce champ vide pour que la valeur soit générée automatiquement
@@ -137,6 +159,7 @@ no save necessary	projectmanager	fr	Aucun enregistrement nécessaire
 nonactive	projectmanager	fr	Inactif
 not started (0%)	projectmanager	fr	Non commencé (0%)
 not working	projectmanager	fr	ne fonctionne pas
+number of records to read (%1)	projectmanager	fr	Nombre d'enregistrements à lire (%1)
 only this project	projectmanager	fr	Seulement ce projet
 overwrite the datasource	projectmanager	fr	Ecraser la source de données
 percentage the member is availible for projects	projectmanager	fr	Pourcentage de disponibilité pour les projets
@@ -162,8 +185,11 @@ project-element saved	projectmanager	fr	Elément de projet enregistré
 project-elements	projectmanager	fr	Eléments de projet
 projectlist	projectmanager	fr	Liste de projets
 projectmanager	common	fr	Gestionnaire de projets
+projectmanager - import csv-file	projectmanager	fr	Gestionnaire de projets - Import de fichier CSV
+projectmanager-fieldname	projectmanager	fr	Gestionnaire de projets - Noms des champs
 projectmember	projectmanager	fr	Membre de projet
 quantity	projectmanager	fr	Quantité
+re-planned	projectmanager	fr	Re-planifié
 read access, incl. budget and adding elements	projectmanager	fr	Accès en lecture, comprenant le budget et l'ajout d'éléments
 read access, no budget	projectmanager	fr	Accès en lecture, ne comprenant pas le budget
 real end	projectmanager	fr	Fin réelle
@@ -192,19 +218,32 @@ show the project selection as	projectmanager	fr	Montrer la sélection de projet 
 site configuration saved	projectmanager	fr	Configuration du site enregistrée
 start after	projectmanager	fr	Commencer après
 start working on %1	projectmanager	fr	Commencer de travailler sur %1
+start working on dienstag	projectmanager	fr	Début du travail le mardi
+start working on donnerstag	projectmanager	fr	Début du travail le jeudi
+start working on freitag	projectmanager	fr	Début du travail le vendredi
+start working on mittwoch	projectmanager	fr	Début du travail le mercredi
+start working on montag	projectmanager	fr	Début du travail le lundi
+start working on samstag	projectmanager	fr	Début du travail le samedi
+start working on sonntag	projectmanager	fr	Début du travail le dimanche
 start, end, category, ...	projectmanager	fr	Début, Fin, Catégorie...
 start- & enddate	projectmanager	fr	Dates de début et de fin
 startdate	projectmanager	fr	Date de début
+startrecord	projectmanager	fr	Début de l'enregistrement
 state	projectmanager	fr	Etat
 status filter	projectmanager	fr	Filtre de statut
+style used for everything but elements. some fonts have only normal style.	projectmanager	fr	Style utilisé pour tout sauf pour les éléments. Certaines polices ont seulement le style normal.
 subelements	projectmanager	fr	Sous-éléments
 subprojects	projectmanager	fr	Sous-projets
 synchronise all	projectmanager	fr	Tout synchroniser
 template	projectmanager	fr	Modèle
 template including elment-tree saved as new project	projectmanager	fr	Modèle comprenant son arborescence enregistrée comme sous-projet
+test import (show importable records <u>only</u> in browser)	projectmanager	fr	Test d'Import (montre les enregistrement importables <u>seulement</u> dans le navigateur)
+the charset depends on the font you want to use.	projectmanager	fr	Le jeu de caractères dépend de la police que vous souhaitez utiliser.
 time	projectmanager	fr	Temps
 times	projectmanager	fr	Temps
 title must not be empty	projectmanager	fr	Le titre ne doit pas être vide
+to many might exceed your execution-time-limit	projectmanager	fr	un trop grand nombre peut faire dépasser le temps limite d'exécution
+translation	projectmanager	fr	Traduction
 tree with %1	projectmanager	fr	Arborescence avec %1
 unit	projectmanager	fr	Unité
 unitprice	projectmanager	fr	Unité de prix
@@ -221,6 +260,13 @@ view this price	projectmanager	fr	Voir ce prix
 view this project	projectmanager	fr	Voir ce projet
 view this project-element	projectmanager	fr	Voir cet élément de projet
 working duration on %1	projectmanager	fr	Durée de travail sur %1
+working duration on dienstag	projectmanager	fr	La durée de travail le mardi
+working duration on donnerstag	projectmanager	fr	La durée de travail le jeudi
+working duration on freitag	projectmanager	fr	La durée de travail le vendredi
+working duration on mittwoch	projectmanager	fr	La durée de travail le mercredi
+working duration on montag	projectmanager	fr	La durée de travail le lundi
+working duration on samstag	projectmanager	fr	La durée de travail le samedi
+working duration on sonntag	projectmanager	fr	La durée de travail le dimanche
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	fr	Vous utilisez l'ancienne version de JPGraph livrée avec eGroupWare, qui ne possède qu'une fonctionnalité limitée.
 you can leave the date of the first price empty	projectmanager	fr	vous pouvez laisser la date du premier prix vide
 you need to select a project first	projectmanager	fr	Vous devez d'abord sélectionner un projet
