@@ -657,6 +657,9 @@ class projectmanager_ui extends projectmanager_bo
 				'default_cols'   => '!role0,role1,role2,role3,role4,pm_used_time_pm_planned_time_pm_replanned_time',
 			);
 		}
+		if($_GET['search']) {
+			$content['nm']['search'] = $_GET['search'];
+		}
 		$templates = array();
 		foreach((array)$this->search(array(
 			'pm_status' => 'template',

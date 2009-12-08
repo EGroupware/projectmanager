@@ -52,6 +52,7 @@ class projectmanager_hooks
 				'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
 			),
 			'view_id' => 'pm_id',
+			'view_list' => 'projectmanager.projectmanager_ui.index',
 			'notify' => 'projectmanager.projectmanager_elements_bo.notify',
 			'add' => array(
 				'menuaction' => 'projectmanager.projectmanager_ui.edit',
