@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -243,6 +243,8 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		else
 		{
+			if ($_GET['msg']) $msg = strip_tags($_GET['msg']);
+
 			$referer = preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ? $matches[1] : 'projectmanager.projectmanager_ui.index';
 
 			if ((int) $_GET['pm_id'])
