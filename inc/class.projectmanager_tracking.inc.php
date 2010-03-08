@@ -121,11 +121,11 @@ class projectmanager_tracking extends bo_tracking
 		if (!$data['pm_modified'] || !$old)
 		{
 			return lang('New Project submitted by %1 at %2',
-				$GLOBALS['egw']->common->grab_owner_name($data['pm_creator']),
-				$this->datetime($data['pm_created']-$this->tracker->tz_offset_s));
+				common::grab_owner_name($data['pm_creator']),
+				$this->datetime($data['pm_created']));
 		}
 		return lang('Project modified by %1 at %2',
-			$data['pm_modifier'] ? $GLOBALS['egw']->common->grab_owner_name($data['pm_modifier']) : lang('Projectmanager'),
-			$this->datetime($data['pm_modified']-$this->timesheet->tz_offset_s));
+			$data['pm_modifier'] ? common::grab_owner_name($data['pm_modifier']) : lang('Projectmanager'),
+			$this->datetime($data['pm_modified']));
 	}
 }
