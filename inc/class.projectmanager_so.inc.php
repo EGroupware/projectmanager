@@ -65,6 +65,8 @@ class projectmanager_so extends so_sql_cf
 	var $grants;
 	var $read_grants,$private_grants;
 
+	var $columns_to_search = array('pm_number', 'pm_title', 'pm_description', 'pm_priority', 'pm_status', 'pm_used_budget', 'pm_planned_budget');
+
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
@@ -227,7 +229,7 @@ class projectmanager_so extends so_sql_cf
 			));
 			if ($only_keys === true) $only_keys='';	// otherwise we use ambigues pm_id
 
-			if (isset($criteria['pm_id']))
+			if (is_array($criteria) && isset($criteria['pm_id']))
 			{
 				$criteria[$this->table_name.'.pm_id'] = $criteria['pm_id'];
 				unset($criteria['pm_id']);
