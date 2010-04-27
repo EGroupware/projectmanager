@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -732,7 +732,7 @@ class projectmanager_bo extends projectmanager_so
 		$projects = array();
 		$parents = 'mains';
 		// get the children
-		while (($children = $this->search($filter,$GLOBALS['projectmanager_bo']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent',
+		while (($children = $this->search($filter,$GLOBALS['projectmanager_bo']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent,pm_status',
 			'pm_status,pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
 			//echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents)."<br>"; #_debug_array($children);
