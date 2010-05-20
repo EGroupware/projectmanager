@@ -152,6 +152,7 @@ modified by	projectmanager	fi	Muokannut
 necessary for project-elements doing that not automatic	projectmanager	fi	Välttämätön, jotta projektin elementtejä ei tehdä automaattisesti
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fi	Välttämätöntä PHP laajennusta %1 ei ole ladattu ja sitä ei voitu ladata !!!
 new	projectmanager	fi	Uusi
+new project submitted by %1 at %2	projectmanager	fi	Uusi projekti: Henkilö: %1, kello: %2
 no accounting, only status	projectmanager	fi	Ei laskutusta, vain tila
 no accounting, only times and status	projectmanager	fi	Ei laskutusta, vain aikataulut ja tilat
 no details	projectmanager	fi	Ei lisätietoja
@@ -178,6 +179,7 @@ project availibility	projectmanager	fi	Projektin käytettävyys
 project deleted	projectmanager	fi	Projekti poistettu
 project id	projectmanager	fi	Projektin tunnus
 project members and roles	projectmanager	fi	Projektin jäsenet ja roolit
+project modified by %1 at %2	projectmanager	fi	Projektia muokannut %1 kello %2
 project overview	projectmanager	fi	Projektin yleiskatsaus
 project saved	projectmanager	fi	Projekti tallennettu
 project specific title, prices, ...	projectmanager	fi	Projektin nimi, hinnat ...
@@ -218,6 +220,13 @@ show the project selection as	projectmanager	fi	Näytä projektin valinta
 site configuration saved	projectmanager	fi	Palvelun asetukset tallennettu
 start after	projectmanager	fi	Aloita jälkeen
 start working on %1	projectmanager	fi	Aloita työskentely %1na
+start working on keskiviikko	projectmanager	fi	Aloita työskentely keskiviikkona
+start working on lauantai	projectmanager	fi	Aloita työskentely lauantaina
+start working on maanantai	projectmanager	fi	Aloita työskentely maanantaina
+start working on perjantai	projectmanager	fi	Aloita työskentely perjantaina
+start working on sunnuntai	projectmanager	fi	Aloita työskentely sunnuntaina
+start working on tiistai	projectmanager	fi	Aloita työskentely tiistaina
+start working on torstai	projectmanager	fi	Aloita työskentely torstaina
 start, end, category, ...	projectmanager	fi	Aloitus, lopetus, kategoria ...
 start- & enddate	projectmanager	fi	Aloitus- ja päätöspäivä
 startdate	projectmanager	fi	Aloituspäivä
@@ -252,6 +261,13 @@ view this price	projectmanager	fi	Näytä tämä hinta
 view this project	projectmanager	fi	Näytä tämä projekti
 view this project-element	projectmanager	fi	Näytä tämä projekti-elementti
 working duration on %1	projectmanager	fi	Työaika %1
+working duration on keskiviikko	projectmanager	fi	Työajan pituus keskiviikkona
+working duration on lauantai	projectmanager	fi	Työajan pituus lauantaina
+working duration on maanantai	projectmanager	fi	Työajan pituus maanantaina
+working duration on perjantai	projectmanager	fi	Työajan pituus perjantaina
+working duration on sunnuntai	projectmanager	fi	Työajan pituus sunnuntaina
+working duration on tiistai	projectmanager	fi	Työajan pituus tiistaina
+working duration on torstai	projectmanager	fi	Työajan pituus torstaina
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	fi	Käytät vanhaa versiota JPGrah:sta, joka tulee EGroupwaren mukana. Siinä on rajoitetusti toimintoja.
 you can leave the date of the first price empty	projectmanager	fi	Voit jättää ensimmäisen hinnan tiedon tyhjäksi
 you need to select a project first	projectmanager	fi	Valitse projekti ensin
