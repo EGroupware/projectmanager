@@ -153,6 +153,7 @@ modified by	projectmanager	en	modified by
 necessary for project-elements doing that not automatic	projectmanager	en	necessary for project-elements doing that not automatic
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	en	Necessary PHP extentions %1 not loaded and can't be loaded !!!
 new	projectmanager	en	new
+new project submitted by %1 at %2	projectmanager	en	New Project submitted by %1 at %2
 no accounting, only status	projectmanager	en	No accounting, only status
 no accounting, only times and status	projectmanager	en	No accounting, only times and status
 no details	projectmanager	en	no details
@@ -179,6 +180,7 @@ project availibility	projectmanager	en	Project availibility
 project deleted	projectmanager	en	Project deleted
 project id	projectmanager	en	Project ID
 project members and roles	projectmanager	en	Project members and roles
+project modified by %1 at %2	projectmanager	en	Project modified by %1 at %2
 project overview	projectmanager	en	project overview
 project saved	projectmanager	en	Project saved
 project specific title, prices, ...	projectmanager	en	Project specific title, prices, ...
@@ -219,6 +221,13 @@ show the project selection as	projectmanager	en	Show the project selection as
 site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
 start working on %1	projectmanager	en	Start working on %1
+start working on keskiviikko	projectmanager	en	Start working on Keskiviikko
+start working on lauantai	projectmanager	en	Start working on Lauantai
+start working on maanantai	projectmanager	en	Start working on Maanantai
+start working on perjantai	projectmanager	en	Start working on Perjantai
+start working on sunnuntai	projectmanager	en	Start working on Sunnuntai
+start working on tiistai	projectmanager	en	Start working on Tiistai
+start working on torstai	projectmanager	en	Start working on Torstai
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
@@ -253,6 +262,13 @@ view this price	projectmanager	en	View this price
 view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project-element
 working duration on %1	projectmanager	en	Working duration on %1
+working duration on keskiviikko	projectmanager	en	Working duration on Keskiviikko
+working duration on lauantai	projectmanager	en	Working duration on Lauantai
+working duration on maanantai	projectmanager	en	Working duration on Maanantai
+working duration on perjantai	projectmanager	en	Working duration on Perjantai
+working duration on sunnuntai	projectmanager	en	Working duration on Sunnuntai
+working duration on tiistai	projectmanager	en	Working duration on Tiistai
+working duration on torstai	projectmanager	en	Working duration on Torstai
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	en	You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.
 you can leave the date of the first price empty	projectmanager	en	you can leave the date of the first price empty
 you need to select a project first	projectmanager	en	You need to select a project first
