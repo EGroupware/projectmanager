@@ -154,7 +154,7 @@ class projectmanager_hooks
 					$selbox_action = 'projectmanager.projectmanager_elements_ui.index';
 					break;
 			}
-			$select_link = egw::link('/index.php',array('menuaction' => $selbox_action)).'&pm_id=';
+			$select_link = egw::link('/index.php',array('menuaction' => $selbox_action),false).'&pm_id=';
 
 			// show the project-selection as tree or -selectbox
 			// $_POST['user']['show_projectselection'] is used to give the user immediate feedback, if he changes the prefs
@@ -265,7 +265,7 @@ class projectmanager_hooks
 		// do it all the time, as we want distinct behavior here
 		$tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; max-width:400px; width:100%; max-height:450px;"',$tree);
 		return array(
-			'text' => "<script>function load_project(_nodeId) { location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".$tree,
+			'text' => "<script>function load_project(_nodeId) { egw_appWindow('projectmanager').location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".$tree,
 			'no_lang' => True,
 			'link' => False,
 			'icon' => False,
@@ -302,7 +302,7 @@ class projectmanager_hooks
 		}
 		return array(
 			'text' => html::select('pm_id',$pm_id,$projects,true,' style="width: 100%;"'.
-				' onchange="location.href=\''.$select_link.'\'+this.value;" title="'.html::htmlspecialchars(
+				' onchange="egw_appWindow(\'projectmanager\').location.href=\''.$select_link.'\'+this.value;" title="'.html::htmlspecialchars(
 				$pm_id && isset($projects[$pm_id]) ? $projects[$pm_id] : lang('Select a project')).'"'),
 			'no_lang' => True,
 			'link' => False
