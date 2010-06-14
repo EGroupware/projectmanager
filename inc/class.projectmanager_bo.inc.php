@@ -599,19 +599,14 @@ class projectmanager_bo extends projectmanager_so
 	 */
 	function link_query( $pattern, Array &$options = array() )
 	{
-		$criteria = array();
 		$limit = false;
 		$need_count = false;
-		foreach(array('pm_number','pm_title','pm_description') as $col)
-		{
-			$criteria[$col] = $pattern;
-		}
 		if($options['start'] || $options['num_rows']) {
 			$limit = array($options['start'], $options['num_rows']);
 			$need_count = true;
 		}
 		$result = array();
-		foreach((array) $this->search($criteria,false,'pm_number','','%',false,'OR',$limit,array('pm_status'=>'active'), true, $need_count) as $prj )
+		foreach((array) $this->search($pattern,false,'pm_number','','%',false,'OR',$limit,array('pm_status'=>'active'), true, $need_count) as $prj )
 		{
 			if ($prj['pm_id']) $result[$prj['pm_id']] = $this->link_title($prj);
 		}
