@@ -39,7 +39,7 @@ class projectmanager_admin
 		if (!$GLOBALS['egw_info']['user']['apps']['admin'])
 		{
 			$GLOBALS['egw']->common->redirect_link('/index.php',array(
-				'menuaction' => 'projectmanager.uiprojectmanger.index',
+				'menuaction' => 'projectmanager.projectmanger_ui.index',
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
@@ -72,7 +72,8 @@ class projectmanager_admin
 		{
 			$content['GANTT_FONT_FILE'] = $this->get_font_file($content['GANTT_FONT'],$content['GANTT_STYLE']);
 			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
-				'GANTT_FONT','LANGUAGE_CHARSET','GANTT_STYLE','GANTT_CHAR_ENCODE','GANTT_FONT_FILE') as $name)
+				'GANTT_FONT','LANGUAGE_CHARSET','GANTT_STYLE','GANTT_CHAR_ENCODE','GANTT_FONT_FILE',
+				'ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB') as $name)
 			{
 				$this->config->config_data[$name] = $content[$name];
 			}
@@ -82,7 +83,7 @@ class projectmanager_admin
 		if ($content['cancel'] || $content['save'])
 		{
 			$tpl->location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg' => $msg,
 			));
 		}
@@ -109,6 +110,8 @@ class projectmanager_admin
 			$content['font_msg'] = lang("Fontfile '%1' not found!!!",$content['GANTT_FONT_FILE']);
 			$content['font_msg_class'] = 'redItalic';
 		}
+		if(!$content['ID_GENERATION_FORMAT']) $content['ID_GENERATION_FORMAT'] = 'P-%Y-%04ix';
+		if(!$content['ID_GENERATION_FORMAT_SUB']) $content['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
 		$content['msg'] = $msg;
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Site configuration');
