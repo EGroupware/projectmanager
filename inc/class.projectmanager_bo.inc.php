@@ -434,27 +434,115 @@ class projectmanager_bo extends projectmanager_so
 	}
 
 	/**
-	 * generate a project-ID / pm_number in the form P-YYYY-nnnn (YYYY=year, nnnn=incrementing number)
+	 * generate a project-ID / generted by config format
 	 *
 	 * @param boolean $set_data=true set generated number in $this->data, default true
-	 * @param string $parent='' pm_number of parent, if given a /nnnn is added
+	 * @param string $parent='' pm_number of parent
 	 * @return string the new pm_number
 	 */
 	function generate_pm_number($set_data=true,$parent='')
 	{
-		$n = 1;
-		do
+		if(!$this->config['ID_GENERATION_FORMAT']) $this->config['ID_GENERATION_FORMAT'] = 'P-%Y-%04ix'; //this used to be the default
+		if(!$this->config['ID_GENERATION_FORMAT_SUB']) $this->config['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
+		$format = $parent === '' ? $this->config['ID_GENERATION_FORMAT'] : $this->config['ID_GENERATION_FORMAT_SUB'];
+		//echo "format: $format<br>";
+		$pm_format = '';
+		$index = false;
+		for($i = 0;$i < strlen($format);$i++)
 		{
-			if ($parent)
+			//echo "i:$i char=".$format[$i].'<br>';
+			if($format[$i] == '%')
 			{
-				$pm_number = sprintf('%s/%04d',$parent,$n++);
+				$filler = $format[++$i];
+				$count = $format[++$i];
+				if(is_numeric($count) && is_numeric($filler))
+				{
+					// all right ...
+				}
+				elseif(is_numeric($count) && is_string($filler))
+				{
+					// if filler is nonnummerical, that should work too as padding char
+					// note thar char padding requires a preceding '
+					$filler="'".$filler;
+				}
+				elseif(is_numeric($filler))
+				{
+					$count = $filler;	// only one part given (e.g. %4n), fill with '0'
+					$filler = '0';
+					$i--;
+				}
+				else
+				{
+					$filler = $count = '';	// no specialism
+					$i -= 2;
+				}
+
+				$name = substr($format, $i + 1, 2);
+				if($name == 'px' && $parent !== '')	// parent id
+				{
+					$pm_format .= $parent;
+					$i += 2;
+				}
+				elseif($name == 'ix')	// index
+				{
+					if(!$index)	// insert only one index
+					{
+						$pm_format .= ($filler && $count ? "%{$filler}{$count}s" :
+							($count ? "%0{$count}s" : "%s"));
+						$index = true;
+					}
+					$i += 2;
+				}
+				else	// date
+				{
+					$date = '';
+					//while(in_array($char = $format[++$i], array('d','D','j','l','N','S','w','z','W','F','m','M','n','t','L','o',
+					//	'Y','y','a','A','B','g','G','h','H','i','s','u','e','I','O','P','T','Z','c','r','U')))
+					//{
+					//	$date .= $char;
+					//}
+					//echo " Char at Pos: ".++$i.":".$format[$x]."<br>";
+					// loop through thevrest until we find the next % to indicate the next replacement
+					for($x = ++$i;$x < strlen($format);$x++)
+					{
+						//echo "x: $x ($i) char here:".$format[$x]."<br>";
+						if ($format[$x] == "%") 
+						{
+							break;
+						}
+						$date .= $format[$x];
+						$i++;
+					}
+					//echo "Date format:".$date."Filler:$filler, Count:$count<br>";
+					$pm_format .= sprintf($filler && $count ? "%{$filler}{$count}s" :
+							($count ? "%0{$count}s" : "%s"), date($date));
+					//echo "PM-Date format:".$pm_format."<br>";
+					$i--;
+				}
 			}
-			else
+			else	// normal character
 			{
-				$pm_number = sprintf('P-%04d-%04d',date('Y'),$n++);
+				$pm_format .= $format[$i];
 			}
 		}
-		while ($this->not_unique(array('pm_number' => $pm_number)));
+		if(!$index && $this->not_unique(array('pm_number' => $pm_format)))	// no index given and not unique
+		{
+			// have to use default
+			$pm_format = $parent === '' ? sprintf('P-%04Y-%04d', date('Y')) : $parent.'/%04d';
+		}
+		elseif(!$index)
+		{
+			$pm_number = $pm_format;
+		}
+		if(!isset($pm_number))
+		{
+			$n = 1;
+			do
+			{
+				$pm_number = sprintf($pm_format, $n++);
+			}
+			while ($this->not_unique(array('pm_number' => $pm_number)));
+		}
 
 		if ($set_data) $this->data['pm_number'] = $pm_number;
 
