@@ -153,6 +153,7 @@ modified by	projectmanager	es-es	Modificado por
 necessary for project-elements doing that not automatic	projectmanager	es-es	necesario para elementos de proyecto que no hacen eso automáticamente
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	es-es	¡¡Las extensiones de PHP necesarias %1 no están cargadas y no se pueden cargar!!
 new	projectmanager	es-es	nuevo
+new project submitted by %1 at %2	projectmanager	es-es	Se ha creado un nuevo proyecto, por %1 a las %2
 no accounting, only status	projectmanager	es-es	Sin cuentas, sólo estado
 no accounting, only times and status	projectmanager	es-es	Sin cuentas, sólo tiempos y estado
 no details	projectmanager	es-es	Sin detalles
@@ -179,6 +180,7 @@ project availibility	projectmanager	es-es	Disponibilidad del proyecto
 project deleted	projectmanager	es-es	Se ha borrado el proyecto
 project id	projectmanager	es-es	ID del proyecto
 project members and roles	projectmanager	es-es	Miembros y roles del proyecto
+project modified by %1 at %2	projectmanager	es-es	El proyecto ha sido modificado por %1 a las %2
 project overview	projectmanager	es-es	Descripción del proyecto
 project saved	projectmanager	es-es	Proyecto guardado
 project specific title, prices, ...	projectmanager	es-es	Precios, título, etc específicos del proyecto

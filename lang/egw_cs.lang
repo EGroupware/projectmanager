@@ -153,6 +153,7 @@ modified by	projectmanager	cs	Změnil(a)
 necessary for project-elements doing that not automatic	projectmanager	cs	nezbytné pro součásti projektu, aby se to nedělalo automaticky
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	cs	Potřebné rozšíření PHP %1 není nahráno a nelze nahrát !!!
 new	projectmanager	cs	Nové
+new project submitted by %1 at %2	projectmanager	cs	Nový projekt podal(a) %1 v %2
 no accounting, only status	projectmanager	cs	Bez účtování, jen stav
 no accounting, only times and status	projectmanager	cs	Bez účtování, jen časy a stav
 no details	projectmanager	cs	bez detailů
@@ -179,6 +180,7 @@ project availibility	projectmanager	cs	Dostupnost pro projekt
 project deleted	projectmanager	cs	Projekt smazán
 project id	projectmanager	cs	ID projektu
 project members and roles	projectmanager	cs	Členové a role projektu
+project modified by %1 at %2	projectmanager	cs	Projekt změnil(a) %1 v %2
 project overview	projectmanager	cs	přehled projektu
 project saved	projectmanager	cs	Projekt uložen
 project specific title, prices, ...	projectmanager	cs	Projektově specifický název, ceny, ...
@@ -219,13 +221,13 @@ show the project selection as	projectmanager	cs	Zobrazovat výběr projektů jak
 site configuration saved	projectmanager	cs	Konfigurace webu uložena
 start after	projectmanager	cs	Začít po
 start working on %1	projectmanager	cs	Začít práci v %1
-start working on dienstag	projectmanager	cs	Začít práci v úterý
-start working on donnerstag	projectmanager	cs	Začít práci ve čtvrtek
-start working on freitag	projectmanager	cs	Začít práci v pátek
-start working on mittwoch	projectmanager	cs	Začít práci ve středu
-start working on montag	projectmanager	cs	Začít práci v pondělí
-start working on samstag	projectmanager	cs	Začít práci v sobotu
-start working on sonntag	projectmanager	cs	Začít práci v neděli
+start working on keskiviikko	projectmanager	cs	Začít práci ve středu
+start working on lauantai	projectmanager	cs	Začít práci v sobotu
+start working on maanantai	projectmanager	cs	Začít práci v pondělí
+start working on perjantai	projectmanager	cs	Začít práci v pátek
+start working on sunnuntai	projectmanager	cs	Začít práci v neděli
+start working on tiistai	projectmanager	cs	Začít práci v úterý
+start working on torstai	projectmanager	cs	Začít práci ve čtvrtek
 start, end, category, ...	projectmanager	cs	Začátek, Konec, kategorie, ...
 start- & enddate	projectmanager	cs	Počáteční a koncové datum
 startdate	projectmanager	cs	Počáteční datum
@@ -260,13 +262,13 @@ view this price	projectmanager	cs	Zobrazit tuto cenu
 view this project	projectmanager	cs	Zobrazit tento projekt
 view this project-element	projectmanager	cs	Zobrazit tuto součást projektu
 working duration on %1	projectmanager	cs	Délka práce v %1
-working duration on dienstag	projectmanager	cs	Délka práce v úterý
-working duration on donnerstag	projectmanager	cs	Délka práce ve čtvrtek
-working duration on freitag	projectmanager	cs	Délka práce v pátek
-working duration on mittwoch	projectmanager	cs	Délka práce ve středu
-working duration on montag	projectmanager	cs	Délka práce v pondělí
-working duration on samstag	projectmanager	cs	Délka práce v sobotu
-working duration on sonntag	projectmanager	cs	Délka práce v neděli
+working duration on keskiviikko	projectmanager	cs	Délka práce ve středu
+working duration on lauantai	projectmanager	cs	Délka práce v sobotu
+working duration on maanantai	projectmanager	cs	Délka práce v pondělí
+working duration on perjantai	projectmanager	cs	Délka práce v pátek
+working duration on sunnuntai	projectmanager	cs	Délka práce v neděli
+working duration on tiistai	projectmanager	cs	Délka práce v úterý
+working duration on torstai	projectmanager	cs	Délka práce ve čtvrtek
 you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	cs	Používáte starou verzi JPGraph dodávanou s eGroupWarem. Má jen omezenou funkcionalitu.
 you can leave the date of the first price empty	projectmanager	cs	Datum první ceny můžete ponechat prázdné
 you need to select a project first	projectmanager	cs	Musíte nejprve vybrat projekt
