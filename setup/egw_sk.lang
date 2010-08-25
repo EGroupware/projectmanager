@@ -5,6 +5,7 @@
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	sk	%1 záznamov bolo prečítaných (ešte neboli naimportované; ak ich chcete naimportovať, vraťte sa %2späť%3 a odznačte Test importu)
 %1 times permission denied, %2 projects deleted	projectmanager	sk	%1 -krát odopretý prístup, %2 projektov bolo odstránených
 - planned	projectmanager	sk	- plánované
+- re-planned	projectmanager	sk	- pre-plánované
 0ngoing (0 < % < 100)	projectmanager	sk	Vybavuje sa (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	sk	Opisný názov projektu, nesmie byť prázdny
 accounting	projectmanager	sk	Účtovanie
@@ -118,6 +119,7 @@ ganttchart parameter	projectmanager	sk	Parameter postupového diagramu
 general	projectmanager	sk	Všeobecné
 general availibility	projectmanager	sk	Všeobecná dostupnosť
 general pricelist	projectmanager	sk	Všeobecný cenník
+global categories	projectmanager	sk	Globálne kategórie
 h	projectmanager	sk	h
 health	projectmanager	sk	Zdravie
 hours	projectmanager	sk	hodín
@@ -187,6 +189,7 @@ projectmanager - import csv-file	projectmanager	sk	Projektovník - Importovať C
 projectmanager-fieldname	projectmanager	sk	Projektovník -názov poľa
 projectmember	projectmanager	sk	Člen projektu
 quantity	projectmanager	sk	Množstvo
+re-planned	projectmanager	sk	pre-plánované
 read access, incl. budget and adding elements	projectmanager	sk	prístup na čítanie, vrátane rozpočtu a pridávania prvkov
 read access, no budget	projectmanager	sk	prístup na čítanie, bez rozpočtu
 real end	projectmanager	sk	Skutočný koniec
@@ -212,7 +215,6 @@ show constraints and milestones	projectmanager	sk	Zobraziť obmedzenia a medzní
 show planned times instead of the real times	projectmanager	sk	Zobraziť plánované časy namiesto skutočných
 show status icons of the datasources	projectmanager	sk	Zobraziť ikonu stavu zdrojov údajov
 show the project selection as	projectmanager	sk	Zobraziť výber projektov ako
-site configuration	projectmanager	sk	Konfigurácia stránky
 site configuration saved	projectmanager	sk	Nastavenia stránky boli uložené
 start after	projectmanager	sk	Začať po
 start working on %1	projectmanager	sk	Začať prácu na %1
