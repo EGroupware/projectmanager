@@ -1,0 +1,176 @@
+%1 element(s) updated	projectmanager	id	%1 elemen dikinikan
+%1 new project-elements imported	projectmanager	id	%1 elemen-proyek baru diimpor
+%1 projects deleted	projectmanager	id	%1 proyek dihapus
+%1 records imported	projectmanager	id	%1 rekaman diimpor
+- planned	projectmanager	id	- direncanakan
+- re-planned	projectmanager	id	- direncanakan-ulang
+0ngoing (0 < % < 100)	projectmanager	id	Sedang berlangsung (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	id	uraian mengenai proyek, tidak boleh dikosongkan
+accounting	projectmanager	id	Akuntansi
+accounting options	projectmanager	id	Opsi Akuntansi
+accounting type	projectmanager	id	Tipe Akuntansi
+actions	projectmanager	id	Tindakan
+activity	projectmanager	id	Aktifitas
+add a new milestone	projectmanager	id	Tambah milestone baru
+add a new project	projectmanager	id	Tambah proyek baru
+add element	projectmanager	id	Tambah elemen
+add existing	projectmanager	id	Tambah dari yang ada
+add milestone	projectmanager	id	Tambah milestone
+add price	projectmanager	id	Tambah harga
+add project	projectmanager	id	Tambah proyek
+add project-elements	projectmanager	id	Tambah elemen-proyek
+allowed units	projectmanager	id	Satuan yang dibolehkan
+anonymous public	projectmanager	id	Anonymous public
+app.	projectmanager	id	Aplikasi
+apply the changes	projectmanager	id	Terapkan perubahan
+archive	projectmanager	id	Arsip
+assistant	projectmanager	id	Asisten
+availible	projectmanager	id	Tersedia
+billable	projectmanager	id	dapat ditagih
+bookable	projectmanager	id	dapat dipesan
+budget	projectmanager	id	Anggaran
+budget (no pricelist)	projectmanager	id	Anggaran (tanpa daftar harga)
+budget and pricelist	projectmanager	id	Anggaran dan daftar harga
+by	projectmanager	id	oleh
+check all	projectmanager	id	Contreng semua
+constraints	projectmanager	id	Constraints
+coordinator	projectmanager	id	Koordinator
+cost per time	projectmanager	id	Biaya per Waktu
+create a new empty project or use a template	projectmanager	id	Bikin proyek kosong atau gunakan templat
+create new links	projectmanager	id	Bikin tautan baru
+created	projectmanager	id	dibuat
+created a ganttchart from the checked projects	projectmanager	id	Bikin ganttchart dari proyek terpilih
+csv-fieldname	projectmanager	id	Nama field-CSV
+csv-filename	projectmanager	id	Nama berkas CSV
+csv-import	common	id	Impor CSV
+custom fields	projectmanager	id	Custom fields
+customer title	projectmanager	id	Customer title
+datasource	projectmanager	id	Sumberdata
+datasources too	projectmanager	id	berikut sumberdata
+dates	projectmanager	id	Tanggal
+delete all checked projects	projectmanager	id	Hapus semua proyek terpilih
+delete this milestone	projectmanager	id	Hapus milestone ini
+delete this price	projectmanager	id	Hapus harga ini
+delete this project	projectmanager	id	Hapus proyek ini
+done (100%)	projectmanager	id	Tuntas (100%)
+edit budget	projectmanager	id	Edit anggaran
+edit milestone	projectmanager	id	Edit milestone
+edit price	projectmanager	id	Edit harga
+edit project	projectmanager	id	Edit proyek
+edit project-elements	projectmanager	id	Edit elemen-proyek
+edit this milestone	projectmanager	id	Edit milestone ini
+edit this price	projectmanager	id	Edit harga ini
+edit this project	projectmanager	id	Edit proyek ini
+edit this project-element	projectmanager	id	Edit elemen-proyek ini
+elementlist	projectmanager	id	Daftar elemen
+elements of elements	projectmanager	id	Elemen dari elemen
+empty	projectmanager	id	Kosong
+empty for all	projectmanager	id	kosongkan untuk semua
+encode non-ascii	projectmanager	id	Encode non-ascii
+end before	projectmanager	id	Berakhir sebelum
+enddate	projectmanager	id	Tanggal berakhir
+everything recursive	projectmanager	id	Everything recursive
+existing links	projectmanager	id	Tautan yang ada
+fieldseparator	projectmanager	id	Pemisah field
+font	projectmanager	id	Font
+font charset	projectmanager	id	Font charset
+font style	projectmanager	id	Font style
+from %1 to %2	projectmanager	id	dari %1 ke %2
+full access	projectmanager	id	akses penuh
+ganttchart	projectmanager	id	Ganttchart
+ganttchart parameter	projectmanager	id	Ganttchart parameter
+general	projectmanager	id	Umum
+general availibility	projectmanager	id	General availability
+general pricelist	projectmanager	id	General pricelist
+global categories	projectmanager	id	Kategori Global
+h	projectmanager	id	h
+health	projectmanager	id	Kesehatan
+hours	projectmanager	id	jam
+hours per workday	projectmanager	id	Jam per hari-kerja
+ignore that entry	projectmanager	id	abaikan entri tersebut
+ignored	projectmanager	id	diabaikan
+import	projectmanager	id	Impor
+last modified	projectmanager	id	pengubahan terakhir
+linked elements	projectmanager	id	Elemen terkait
+links	projectmanager	id	Tautan
+mainproject only	projectmanager	id	Hanya Proyek Utama
+mainprojects	projectmanager	id	Proyek Utama
+members	projectmanager	id	Anggota
+milestone deleted	projectmanager	id	Milestone dihapus
+milestone saved	projectmanager	id	Milestone disimpan
+milestones	projectmanager	id	Milestones
+modified	projectmanager	id	Diubah
+modified by	projectmanager	id	diubah oleh
+new	projectmanager	id	baru
+no accounting, only status	projectmanager	id	Tanpa akuntansi, hanya status
+no accounting, only times and status	projectmanager	id	Tanpa akuntansi, hanya status dan waktu
+no details	projectmanager	id	tiada kejelasan
+no save necessary	projectmanager	id	tiada perlu disimpan
+nonactive	projectmanager	id	Tidak aktif
+not started (0%)	projectmanager	id	Belum mulai (0%)
+not working	projectmanager	id	tidak jalan
+only this project	projectmanager	id	Hanya proyek ini
+permission denied !!!	projectmanager	id	Ijin ditolak !!!
+planned	projectmanager	id	direncanakan
+planned times	projectmanager	id	Waktu yang direncanakan
+price	projectmanager	id	Harga
+price / unit	projectmanager	id	Harga/Satuan
+price deleted	projectmanager	id	Harga dihapus
+price saved	projectmanager	id	Harga disimpan
+pricelist	projectmanager	id	Daftar harga
+project availibility	projectmanager	id	Project availibility
+project deleted	projectmanager	id	Proyek dihapus
+project id	projectmanager	id	ID Proyek
+project members and roles	projectmanager	id	Anggota proyek dan peranan
+project overview	projectmanager	id	sekilas proyek
+project saved	projectmanager	id	Proyek disimpan
+project-element deleted	projectmanager	id	Elemen-Proyek dihapus
+project-element saved	projectmanager	id	Elemen-Proyek disimpan
+project-elements	projectmanager	id	Elemen-Proyek
+projectlist	projectmanager	id	Daftar Proyek
+projectmanager	common	id	Manajer Proyek
+projectmanager-fieldname	projectmanager	id	Nama field-Manajer Proyek
+projectmember	projectmanager	id	Anggota proyek
+quantity	projectmanager	id	Quantity
+re-planned	projectmanager	id	direncanakan ulang
+real end	projectmanager	id	Akhir sesungguhnya
+real start	projectmanager	id	Real start
+resources	projectmanager	id	Sumberdaya
+role	projectmanager	id	Role
+role deleted	projectmanager	id	Role dihapus
+role saved	projectmanager	id	Role disimpan
+roles	projectmanager	id	Roles
+save the changes made	projectmanager	id	Simpan pengubahan
+save this project element	projectmanager	id	Simpan elemen proyek ini
+select a project	projectmanager	id	pilih proyek
+share	projectmanager	id	Share
+start after	projectmanager	id	Memulai setelah
+start working on %1	projectmanager	id	Mulai bekerja pada %1
+start, end, category, ...	projectmanager	id	Memulai, Berakhir, Kategori, ...
+start- & enddate	projectmanager	id	Tanggal Memulai & Berakhir
+startdate	projectmanager	id	Tanggal memulai
+startrecord	projectmanager	id	Awal Rekaman
+status filter	projectmanager	id	Saringan status
+subelements	projectmanager	id	Sub-elemen
+subprojects	projectmanager	id	Sub-proyek
+synchronise all	projectmanager	id	Sinkronkan semuanya
+template	projectmanager	id	Templat
+time	projectmanager	id	Waktu
+times	projectmanager	id	Waktu
+title must not be empty	projectmanager	id	Judul tidak boleh kosong
+translation	projectmanager	id	Terjemahan
+unit	projectmanager	id	Satuan
+unitprice	projectmanager	id	Satuan harga
+used	projectmanager	id	terpakai
+valid since	projectmanager	id	Valid sejak
+view ganttchart of this project	projectmanager	id	Lihat ganttchart dari proyek ini
+view milestone	projectmanager	id	Lihat milestone
+view price	projectmanager	id	Lihat harga
+view project	projectmanager	id	Lihat proyek
+view project-elements	projectmanager	id	Lihat elemen-proyek
+view this element in %1	projectmanager	id	Lihat elemen ini pada %1
+view this milestone	projectmanager	id	Lihat milestone ini
+view this price	projectmanager	id	Lihat harga ini
+view this project	projectmanager	id	Lihat proyek ini
+view this project-element	projectmanager	id	Lihat elemen-proyek ini
+working duration on %1	projectmanager	id	Durasi pekerjaan pada %1
