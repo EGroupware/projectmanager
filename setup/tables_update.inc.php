@@ -1,12 +1,12 @@
 <?php
 /**
- * ProjectManager - table update scripts
+ * EGroupware ProjectManager - table update scripts
  *
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
  * @subpackage setup
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -358,4 +358,10 @@ function projectmanager_upgrade1_4()
 function projectmanager_upgrade1_5_001()
 {
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.6';
+}
+
+
+function projectmanager_upgrade1_6()
+{
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.8';
 }
