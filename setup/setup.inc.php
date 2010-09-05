@@ -1,18 +1,18 @@
 <?php
 /**
- * ProjectManager - setup definitions
+ * EGroupware ProjectManager - setup definitions
  *
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
  * @subpackage setup
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
 
 $setup_info['projectmanager']['name']      = 'projectmanager';
-$setup_info['projectmanager']['version']   = '1.6';
+$setup_info['projectmanager']['version']   = '1.8';
 $setup_info['projectmanager']['app_order'] = 5;
 $setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones','egw_pm_roles','egw_pm_members','egw_pm_pricelist','egw_pm_prices');
 $setup_info['projectmanager']['enable']    = 1;
@@ -48,11 +48,11 @@ $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager_hooks::s
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'phpgwapi',
-	 'versions' => Array('1.5','1.6','1.7')
+	 'versions' => Array('1.7','1.8','1.9')
 );
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'etemplate',
-	 'versions' => Array('1.5','1.6','1.7')
+	 'versions' => Array('1.7','1.8','1.9')
 );
 // installation checks for email
 $setup_info['projectmanager']['check_install'] = array(
