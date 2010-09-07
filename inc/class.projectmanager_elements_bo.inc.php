@@ -575,7 +575,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start,pe_title');
 		if (!$elements) return array();
 
-		$copied = array();
+		$copied = $apps_copied = $callbacks = $params = array();
 		foreach($elements as $element)
 		{
 			$ds =& $this->datasource($element['pe_app']);
@@ -583,7 +583,13 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			if (method_exists($ds,'copy'))
 			{
 				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("copying $element[pe_app]:$element[pe_app_id] $element[pe_title]");
-				list($app_id,$link_id) = $ds->copy($element,$this->pm_id,$this->project->data);
+				$callback = $param = null;
+				list($app_id,$link_id,$callback,$param) = $ds->copy($element,$this->pm_id,$this->project->data);
+				if (!is_null($callback))
+				{
+					$callbacks[] = $callback;
+					$params[]    = $param;
+				}
 			}
 			else	// no copy method, we just link again with that entry
 			{
@@ -623,6 +629,12 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			if ($need_save) $this->save(null,true,false);
 
 			$copied[$element['pe_id']] = $link_id;
+			$apps_copied[$element['pe_app']][$element['pe_app_id']] = $app_id;
+		}
+		// if datasources specifed a callback, call it after all copying with array translating old to new id's
+		foreach($callbacks as $n => $callback)
+		{
+			call_user_func($callback,$params[$n],$apps_copied,$copied);
 		}
 		// now we do one update of our project
 		if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling project->update() this->pm_id=$this->pm_id");
