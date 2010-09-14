@@ -38,8 +38,8 @@ class projectmanager_elements_so extends so_sql
 	 */
 	var $links_extracols = array(
 		// postgres 8.3 requires cast as link_idx is varchar and pm_id an integer, the cast should be no problem for other DB's
-		"CASE WHEN link_app1='projectmanager' AND link_id1=CAST(pm_id AS CHAR) THEN link_app2 ELSE link_app1 END AS pe_app",
-		"CASE WHEN link_app1='projectmanager' AND link_id1=CAST(pm_id AS CHAR) THEN link_id2 ELSE link_id1 END AS pe_app_id",
+		"CASE WHEN link_app1='projectmanager' AND link_id1=pm_id THEN link_app2 ELSE link_app1 END AS pe_app",
+		"CASE WHEN link_app1='projectmanager' AND link_id1=pm_id THEN link_id2 ELSE link_id1 END AS pe_app_id",
 		'link_remark AS pe_remark',
 	);
 	/**
@@ -76,6 +76,10 @@ class projectmanager_elements_so extends so_sql
 			{
 				if ($this->read($pe_id)) $this->pm_id = $this->data['pm_id'];
 			}
+		}
+		if ($this->db->Type == 'pgsql')	// PostgreSQL needs cast to varchar (MySQL does NOT allow varchar)
+		{
+			$this->links_extracols = str_replace('pm_id','CAST(pm_id AS VARCHAR)',$this->links_extracols);
 		}
 	}
 
