@@ -153,6 +153,7 @@ modified by	projectmanager	de	Geändert durch
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht gelanden und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
+new project submitted by %1 at %2	projectmanager	de	Neues Projekt übertragen von %1 am %2
 no accounting, only status	projectmanager	de	Keine Abrechnung, nur Status
 no accounting, only times and status	projectmanager	de	Keine Abrechnung, nur Zeiten und Status
 no details	projectmanager	de	Keine Details
@@ -179,6 +180,7 @@ project availibility	projectmanager	de	Projekt- Verfügbarkeit
 project deleted	projectmanager	de	Projekt gelöscht
 project id	projectmanager	de	Projekt-ID
 project members and roles	projectmanager	de	Projekt Mitarbeiter und Rollen
+project modified by %1 at %2	projectmanager	de	Projekt geändert von %1 am %2
 project overview	projectmanager	de	Projektübersicht
 project saved	projectmanager	de	Projekt gespeichert
 project specific title, prices, ...	projectmanager	de	Projectspezifischer Titel, Preis, ...
@@ -253,7 +255,7 @@ view this price	projectmanager	de	Diesen Preis anzeigen
 view this project	projectmanager	de	Dieses Projekt anzeigen
 view this project-element	projectmanager	de	Dieses Projektelement anzeigen
 working duration on %1	projectmanager	de	Arbeitsdauer am %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	de	Sie benützen die alte Version von JPGraph, die mit eGroupWare ausgeliefert wird. Sie hat nur eine beschränkte Funktionalität.
 you can leave the date of the first price empty	projectmanager	de	Sie benötigen kein Datum für den ersten Preis
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	de	Sie haben keine JPGraph Version %1 oder höher installiert! Diese wird vom Projektmanager für Ganttcharts benötigt.
 you need to select a project first	projectmanager	de	Sie müssen zuerst ein Projekt auswählen
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	de	Ihre Datenbank ist NICHT aktuell (%1 vs. %2), bitte rufen Sie %3setup%4 auf um Ihre Datenbank zu aktualisieren.

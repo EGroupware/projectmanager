@@ -67,16 +67,6 @@ if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php');
 	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph_gantt.php');
 }
-else
-{
-	include(EGW_SERVER_ROOT . '/projectmanager/inc/jpgraph-1.5.2/src/jpgraph.php');
-	include(EGW_SERVER_ROOT . '/projectmanager/inc/jpgraph-1.5.2/src/jpgraph_gantt.php');
-	define('TTF_DIR',EGW_SERVER_ROOT.'/projectmanager/inc/ttf-bitstream-vera-1.10/');
-	define('GANTT_FONT',FF_VERA);
-	define('GANTT_STYLE',FS_BOLD);
-	define('LANGUAGE_CHARSET','iso-8859-1');
-	define('GANTT_CHAR_ENCODE',true);
-}
 
 /**
  * ProjectManager: Ganttchart creation
@@ -740,11 +730,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 */
 	function msg_install_new_jpgraph()
 	{
-		return version_compare('1.13',JPG_VERSION) < 0 ? false :
-			lang('You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.').
-			"<br />\n".lang('Please download a recent version from %1 and install it in %2.',
-			'<a href="http://www.aditus.nu/jpgraph/jpdownload.php" target="_blank">www.aditus.nu/jpgraph</a>',
-			realpath(EGW_SERVER_ROOT.'/..').SEP.'jpgraph');
+		return version_compare($min_version='1.13',JPG_VERSION) < 0 ? false :
+			lang('You dont have JPGraph version %1 or higher installed! It is needed from ProjectManager for Ganttcharts.',$min_version)."<br />\n".
+			lang('Please download a recent version from %1 and install it in %2.',
+				'<a href="http://jpgraph.net/download/" target="_blank">jpgraph.net/download/</a>',
+				realpath(EGW_SERVER_ROOT.'/..').SEP.'jpgraph');
 	}
 
 	/**
@@ -764,9 +754,13 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		// run $_GET[msg] through htmlspecialchars, as we output it raw, to allow the link in the jpgraph message.
 		if (!$msg) $msg = html::htmlspecialchars($_GET['msg']);
 
-		if (!$GLOBALS['egw']->session->appsession('ganttchart','projectmanager') && !$this->modernJPGraph)
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Ganttchart').': '.$this->project->data['pm_title'];;
+		
+		if (!$this->modernJPGraph)
 		{
 			$msg .= $this->msg_install_new_jpgraph();
+			$GLOBALS['egw']->framework->render('<h3 class="redItalic">'.$msg.'</h3>',null,true);
+			common::egw_exit();
 		}
 		unset($content['update']);
 		$content = $this->url2params($content);
@@ -805,7 +799,6 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 				'done'    => lang('Done (100%)'),
 			),
 		);
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Ganttchart').': '.$this->project->data['pm_title'];;
 		$this->tmpl->read('projectmanager.ganttchart');
 		return $this->tmpl->exec('projectmanager.projectmanager_ganttchart.show',$content,$sel_options,'',array('pm_id'=>$content['pm_id']));
 	}

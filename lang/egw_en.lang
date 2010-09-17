@@ -221,13 +221,6 @@ show the project selection as	projectmanager	en	Show the project selection as
 site configuration saved	projectmanager	en	Site configuration saved
 start after	projectmanager	en	Start after
 start working on %1	projectmanager	en	Start working on %1
-start working on keskiviikko	projectmanager	en	Start working on Keskiviikko
-start working on lauantai	projectmanager	en	Start working on Lauantai
-start working on maanantai	projectmanager	en	Start working on Maanantai
-start working on perjantai	projectmanager	en	Start working on Perjantai
-start working on sunnuntai	projectmanager	en	Start working on Sunnuntai
-start working on tiistai	projectmanager	en	Start working on Tiistai
-start working on torstai	projectmanager	en	Start working on Torstai
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
@@ -262,14 +255,7 @@ view this price	projectmanager	en	View this price
 view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project-element
 working duration on %1	projectmanager	en	Working duration on %1
-working duration on keskiviikko	projectmanager	en	Working duration on Keskiviikko
-working duration on lauantai	projectmanager	en	Working duration on Lauantai
-working duration on maanantai	projectmanager	en	Working duration on Maanantai
-working duration on perjantai	projectmanager	en	Working duration on Perjantai
-working duration on sunnuntai	projectmanager	en	Working duration on Sunnuntai
-working duration on tiistai	projectmanager	en	Working duration on Tiistai
-working duration on torstai	projectmanager	en	Working duration on Torstai
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	en	You are using the old version of JPGraph, bundled with eGroupWare. It has only limited functionality.
 you can leave the date of the first price empty	projectmanager	en	you can leave the date of the first price empty
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	en	You dont have JPGraph version %1 or higher installed! It is needed from ProjectManager for Ganttcharts.
 you need to select a project first	projectmanager	en	You need to select a project first
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	en	Your database is NOT up to date (%1 vs. %2), please run %3setup%4 to update your database.

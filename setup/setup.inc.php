@@ -59,4 +59,8 @@ $setup_info['projectmanager']['check_install'] = array(
 	'gd' => array(
 		'func' => 'gd_check',
 	),
+	'jpgraph' => array(
+		'func' => 'jpgraph_check',
+		'min_version' => '1.13',
+	),
 );
