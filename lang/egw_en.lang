@@ -1,0 +1,259 @@
+%1 element(s) updated	projectmanager	en	%1 element(s) updated
+%1 new project-elements imported	projectmanager	en	%1 new project-elements imported
+%1 projects deleted	projectmanager	en	%1 projects deleted
+%1 records imported	projectmanager	en	%1 records imported
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	en	%1 records read (not yet imported, you may go %2back%3 and uncheck Test Import)
+%1 times permission denied, %2 projects deleted	projectmanager	en	%1 times permission denied, %2 projects deleted
+- planned	projectmanager	en	- planned
+- re-planned	projectmanager	en	- re-planned
+0ngoing (0 < % < 100)	projectmanager	en	0ngoing (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	en	a describtive title for the project, must not be empty
+accounting	projectmanager	en	Accounting
+accounting options	projectmanager	en	Accounting options
+accounting type	projectmanager	en	Accounting type
+actions	projectmanager	en	Actions
+activity	projectmanager	en	Activity
+add a new milestone	projectmanager	en	Add a new milestone
+add a new project	projectmanager	en	Add a new project
+add element	projectmanager	en	Add element
+add existing	projectmanager	en	Add existing
+add milestone	projectmanager	en	Add milestone
+add or edit roles and their acl	projectmanager	en	Add or edit roles and their ACL
+add price	projectmanager	en	Add price
+add project	projectmanager	en	Add project
+add project-elements	projectmanager	en	Add project-elements
+add this role	projectmanager	en	Add this role
+allow users to change their working times	projectmanager	en	Allow users to change their working times
+allowed accounting types	projectmanager	en	Allowed accounting types
+allowed units	projectmanager	en	Allowed units
+anonymous public	projectmanager	en	Anonymous public
+app.	projectmanager	en	App.
+apply the changes	projectmanager	en	Apply the changes
+archive	projectmanager	en	Archive
+assistant	projectmanager	en	Assistant
+at which time do you start working on the given day.	projectmanager	en	At which time do you start working on the given day.
+availible	projectmanager	en	Availible
+billable	projectmanager	en	billable
+bookable	projectmanager	en	bookable
+budget	projectmanager	en	Budget
+budget (no pricelist)	projectmanager	en	Budget (no pricelist)
+budget and pricelist	projectmanager	en	Budget and pricelist
+by	projectmanager	en	by
+calculate budget by quantity (eg. time) and price	projectmanager	en	Calculate budget by quantity (eg. time) and price
+charset of file	projectmanager	en	Charset of file
+charset of the above selected font	projectmanager	en	Charset of the above selected font
+check all	projectmanager	en	Check all
+close the window, discard the changes made	projectmanager	en	Close the window, discard the changes made
+constraints	projectmanager	en	Constraints
+conversation between days and hours, default 8	projectmanager	en	conversation between days and hours, default 8
+coordinator	projectmanager	en	Coordinator
+cost per time	projectmanager	en	Cost per Time
+create a new empty project or use a template	projectmanager	en	Create a new empty project or use a template
+create new links	projectmanager	en	Create new links
+created	projectmanager	en	created
+created a ganttchart from the checked projects	projectmanager	en	Created a ganttchart from the checked projects
+csv-fieldname	projectmanager	en	CSV-Fieldname
+csv-filename	projectmanager	en	CSV-Filename
+csv-import	common	en	CSV-Import
+cumulated elements too	projectmanager	en	Cumulated elements too
+custom fields	projectmanager	en	Custom fields
+customer title	projectmanager	en	Customer title
+datasource	projectmanager	en	Datasource
+datasources too	projectmanager	en	datasources too
+dates	projectmanager	en	Dates
+default all and a selectbox to choose	projectmanager	en	default all and a selectbox to choose
+delete all checked projects	projectmanager	en	Delete all checked projects
+delete this milestone	projectmanager	en	Delete this milestone
+delete this price	projectmanager	en	Delete this price
+delete this project	projectmanager	en	Delete this project
+delete this project-element, does not remove the linked entry	projectmanager	en	Delete this project-element, does NOT remove the linked entry
+delete this role	projectmanager	en	Delete this role
+depth of display	projectmanager	en	Depth of display
+details of cumulated	projectmanager	en	Details of cumulated
+details of subelements	projectmanager	en	Details of subelements
+do not use that entry as project-element	projectmanager	en	do not use that entry as project-element
+done (100%)	projectmanager	en	Done (100%)
+edit access, incl. editing budget and elements	projectmanager	en	edit access, incl. editing budget and elements
+edit budget	projectmanager	en	Edit budget
+edit milestone	projectmanager	en	Edit milestone
+edit price	projectmanager	en	Edit price
+edit project	projectmanager	en	Edit project
+edit project-elements	projectmanager	en	Edit project-elements
+edit this milestone	projectmanager	en	Edit this milestone
+edit this price	projectmanager	en	Edit this price
+edit this project	projectmanager	en	Edit this project
+edit this project-element	projectmanager	en	Edit this project-element
+edit this role	projectmanager	en	Edit this role
+elementlist	projectmanager	en	Elementlist
+elements of elements	projectmanager	en	Elements of elements
+elements that can't start before this one is finished	projectmanager	en	Elements that can't start before this one is finished
+elements which have to be finished before this can start	projectmanager	en	Elements which have to be finished before this can start
+empty	projectmanager	en	Empty
+empty for all	projectmanager	en	empty for all
+encode non-ascii	projectmanager	en	Encode non-ascii
+end before	projectmanager	en	End before
+enddate	projectmanager	en	Enddate
+error: deleting price !!!	projectmanager	en	Error: deleting price !!!
+error: deleting project !!!	projectmanager	en	Error: deleting project !!!
+error: deleting project-element !!!	projectmanager	en	Error: deleting project-element !!!
+error: deleting role !!!	projectmanager	en	Error: deleting role !!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	en	Error: project-ID already exist, choose an other one or have one generated by leaving it emtpy !!!
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	en	ERROR: Rekursion found: Id %1 more than once in Projectpath, while building Projecttree:
+error: saving milestone	projectmanager	en	Error: saving milestone
+error: saving role !!!	projectmanager	en	Error: saving role !!!
+error: saving the price (%1) !!!	projectmanager	en	Error: saving the price (%1) !!!
+error: saving the project (%1) !!!	projectmanager	en	Error: saving the project (%1) !!!
+error: saving the project-element (%1) !!!	projectmanager	en	Error: saving the project-element (%1) !!!
+everything recursive	projectmanager	en	Everything recursive
+existing data will be overwrited if checked	projectmanager	en	Existing Data will be overwrited if checked
+existing links	projectmanager	en	Existing links
+exit without saving	projectmanager	en	Exit without saving
+fieldseparator	projectmanager	en	Fieldseparator
+font	projectmanager	en	Font
+font charset	projectmanager	en	Font charset
+font style	projectmanager	en	Font style
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	en	Font to use in the Ganttchart, only the Vera fonts are included in the ProjectManager.
+fontfile '%1' not found!!!	projectmanager	en	Fontfile '%1' not found!!!
+free descriptiv text	projectmanager	en	free descriptiv text
+from %1 to %2	projectmanager	en	from %1 to %2
+full access	projectmanager	en	full access
+ganttchart	projectmanager	en	Ganttchart
+ganttchart parameter	projectmanager	en	Ganttchart parameter
+general	projectmanager	en	General
+general availibility	projectmanager	en	General availibility
+general pricelist	projectmanager	en	General pricelist
+global categories	projectmanager	en	Global Categories
+h	projectmanager	en	h
+health	projectmanager	en	Health
+hours	projectmanager	en	hours
+hours per workday	projectmanager	en	Hours per workday
+how long do you work on the given day.	projectmanager	en	How long do you work on the given day.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	en	If checked the datasources of the elements (eg. InfoLog entries) are deleted too.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	en	If checked the datasources of the elements (eg. InfoLog entries) will change their status too.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	en	If you see entities (eg. {) in the Ganttchart, switch this off.
+ignore that entry	projectmanager	en	ignore that entry
+ignored	projectmanager	en	ignored
+import	projectmanager	en	Import
+last modified	projectmanager	en	last modified
+leave it empty if you dont need a different customer title	projectmanager	en	leave it empty if you dont need a different customer title
+leave it empty to have one generated	projectmanager	en	leave it empty to have one generated
+leave it empty, if identitcal to the time	projectmanager	en	leave it empty, if identitcal to the time
+linked elements	projectmanager	en	Linked elements
+links	projectmanager	en	Links
+mainproject only	projectmanager	en	Mainproject only
+mainprojects	projectmanager	en	Mainprojects
+members	projectmanager	en	Members
+milestone deleted	projectmanager	en	Milestone deleted
+milestone saved	projectmanager	en	Milestone saved
+milestones	projectmanager	en	Milestones
+milestones before this element has to be finished	projectmanager	en	Milestones before this element has to be finished
+modified	projectmanager	en	Modified
+modified by	projectmanager	en	modified by
+necessary for project-elements doing that not automatic	projectmanager	en	necessary for project-elements doing that not automatic
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	en	Necessary PHP extentions %1 not loaded and can't be loaded !!!
+new	projectmanager	en	new
+no accounting, only status	projectmanager	en	No accounting, only status
+no accounting, only times and status	projectmanager	en	No accounting, only times and status
+no details	projectmanager	en	no details
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	en	No READ access to the datasource: removing overwritten values will just empty them !!!
+no save necessary	projectmanager	en	no save necessary
+nonactive	projectmanager	en	Nonactive
+not started (0%)	projectmanager	en	Not started (0%)
+not working	projectmanager	en	not working
+number of records to read (%1)	projectmanager	en	Number of records to read (%1)
+only this project	projectmanager	en	Only this project
+overwrite the datasource	projectmanager	en	Overwrite the datasource
+percentage the member is availible for projects	projectmanager	en	Percentage the member is availible for projects
+percentage the member is availible for this project	projectmanager	en	Percentage the member is availible for this project
+permission denied !!!	projectmanager	en	Permission denied !!!
+planned	projectmanager	en	planned
+planned times	projectmanager	en	Planned times
+please download a recent version from %1 and install it in %2.	projectmanager	en	Please download a recent version from %1 and install it in %2.
+price	projectmanager	en	Price
+price / unit	projectmanager	en	Price / Unit
+price deleted	projectmanager	en	Price deleted
+price saved	projectmanager	en	Price saved
+pricelist	projectmanager	en	Pricelist
+project availibility	projectmanager	en	Project availibility
+project deleted	projectmanager	en	Project deleted
+project id	projectmanager	en	Project ID
+project members and roles	projectmanager	en	Project members and roles
+project overview	projectmanager	en	project overview
+project saved	projectmanager	en	Project saved
+project specific title, prices, ...	projectmanager	en	Project specific title, prices, ...
+project-element deleted	projectmanager	en	Project-Element deleted
+project-element saved	projectmanager	en	Project-Element saved
+project-elements	projectmanager	en	Project-Elements
+projectlist	projectmanager	en	Projectlist
+projectmanager	common	en	ProjectManager
+projectmanager-fieldname	projectmanager	en	Projectmanager-Fieldname
+projectmember	projectmanager	en	Projectmember
+quantity	projectmanager	en	Quantity
+re-planned	projectmanager	en	re-planned
+read access, incl. budget and adding elements	projectmanager	en	read access, incl. budget and adding elements
+read access, no budget	projectmanager	en	read access, no budget
+real end	projectmanager	en	Real end
+real start	projectmanager	en	Real start
+resources	projectmanager	en	Resources
+role	projectmanager	en	Role
+role deleted	projectmanager	en	Role deleted
+role saved	projectmanager	en	Role saved
+roles	projectmanager	en	Roles
+save the changes made	projectmanager	en	Save the changes made
+save this project element	projectmanager	en	Save this project element
+select a project	projectmanager	en	select a project
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	en	select an activity if you want to calculate costs by quantity (time) and price
+select multiple projects for a further action	projectmanager	en	Select multiple projects for a further action
+select the accounting types visible for users of projectmanager	projectmanager	en	select the accounting types visible for users of projectmanager
+select this project and show it's elements	projectmanager	en	Select this project and show it's elements
+selectbox with %1	projectmanager	en	Selectbox with %1
+share	projectmanager	en	Share
+share on the whole project	projectmanager	en	Share on the whole project
+share on the whole project in hours or percent, defaults to planned time	projectmanager	en	Share on the whole project in hours or percent, defaults to planned time
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	en	Should ProjectManager display the status icons of the datasource (eg. InfoLog) or just a progressbar with the numerical status (faster).
+show constraints and milestones	projectmanager	en	Show constraints and milestones
+show planned times instead of the real times	projectmanager	en	Show planned times instead of the real times
+show status icons of the datasources	projectmanager	en	Show status icons of the datasources
+show the project selection as	projectmanager	en	Show the project selection as
+site configuration saved	projectmanager	en	Site configuration saved
+start after	projectmanager	en	Start after
+start working on %1	projectmanager	en	Start working on %1
+start, end, category, ...	projectmanager	en	Start, End, Category, ...
+start- & enddate	projectmanager	en	Start- & Enddate
+startdate	projectmanager	en	Startdate
+startrecord	projectmanager	en	Startrecord
+status filter	projectmanager	en	Status filter
+style used for everything but elements. some fonts have only normal style.	projectmanager	en	Style used for everything but elements. Some fonts have only normal style.
+subelements	projectmanager	en	Subelements
+subprojects	projectmanager	en	Subprojects
+synchronise all	projectmanager	en	Synchronise all
+template	projectmanager	en	Template
+template including elment-tree saved as new project	projectmanager	en	Template including elment-tree saved as new project
+test import (show importable records <u>only</u> in browser)	projectmanager	en	Test Import (show importable records <u>only</u> in browser)
+the charset depends on the font you want to use.	projectmanager	en	The charset depends on the font you want to use.
+time	projectmanager	en	Time
+times	projectmanager	en	Times
+title must not be empty	projectmanager	en	Title must not be empty
+to many might exceed your execution-time-limit	projectmanager	en	to many might exceed your execution-time-limit
+translation	projectmanager	en	Translation
+tree with %1	projectmanager	en	Tree with %1
+unit	projectmanager	en	Unit
+unitprice	projectmanager	en	Unitprice
+used	projectmanager	en	used
+valid since	projectmanager	en	Valid since
+view ganttchart of this project	projectmanager	en	View ganttchart of this project
+view milestone	projectmanager	en	View milestone
+view price	projectmanager	en	View price
+view project	projectmanager	en	View project
+view project-elements	projectmanager	en	View project-elements
+view this element in %1	projectmanager	en	View this element in %1
+view this milestone	projectmanager	en	View this milestone
+view this price	projectmanager	en	View this price
+view this project	projectmanager	en	View this project
+view this project-element	projectmanager	en	View this project-element
+working duration on %1	projectmanager	en	Working duration on %1
+you can leave the date of the first price empty	projectmanager	en	you can leave the date of the first price empty
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	en	You dont have JPGraph version %1 or higher installed! It is needed from ProjectManager for Ganttcharts.
+you need to select a project first	projectmanager	en	You need to select a project first
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	en	Your database is NOT up to date (%1 vs. %2), please run %3setup%4 to update your database.

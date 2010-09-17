@@ -1,0 +1,261 @@
+%1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert
+%1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
+%1 projects deleted	projectmanager	de	%1 Projekte gelöscht
+%1 records imported	projectmanager	de	%1 Datensätze importiert
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	de	%1 Datensätze gelesen (noch nicht importiert, Sie können %2zurück%3 gehen und Testimport ausschalten)
+%1 times permission denied, %2 projects deleted	projectmanager	de	%1 mal Zugriff verweigert, %2 Projekte gelöscht
+- planned	projectmanager	de	- geplant
+- re-planned	projectmanager	de	- umgeplant
+0ngoing (0 < % < 100)	projectmanager	de	in Arbeit (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	de	Ein beschreibender Titel für das Projekt, Feld darf nicht leer bleiben!
+accounting	projectmanager	de	Abrechnung
+accounting options	projectmanager	de	Abrechnungsoptionen
+accounting type	projectmanager	de	Abrechnungsart
+actions	projectmanager	de	Befehle
+activity	projectmanager	de	Tätigkeit
+add a new milestone	projectmanager	de	Neuen Meilenstein hinzufügen
+add a new project	projectmanager	de	Ein neues Projekt hinzufügen
+add element	projectmanager	de	Element zufügen
+add existing	projectmanager	de	Exist. hinzufügen
+add milestone	projectmanager	de	Meilenstein hinzufügen
+add or edit roles and their acl	projectmanager	de	Rollen und ihre ACL anlegen oder bearbeiten
+add price	projectmanager	de	Preis hinzufügen
+add project	projectmanager	de	Projekt hinzufügen
+add project-elements	projectmanager	de	Projektelemente hinzufügen
+add this role	projectmanager	de	Diese Rolle hinzufügen
+allow users to change their working times	projectmanager	de	Erlaube Benutzern ihre Arbeitszeiten zu ändern
+allowed accounting types	projectmanager	de	Erlaubte Abrechnungsarten
+allowed units	projectmanager	de	Erlaubte Einheiten
+anonymous public	projectmanager	de	Anonym öffentlich
+app.	projectmanager	de	Anw.
+apply the changes	projectmanager	de	Änderungen übernehmen
+archive	projectmanager	de	Archiviert
+assistant	projectmanager	de	Assistent
+at which time do you start working on the given day.	projectmanager	de	Um welche Uhrzeit beginnen Sie an dem angegebenen Tag zu arbeiten.
+availible	projectmanager	de	Verfügbar
+billable	projectmanager	de	abrechenbar
+bookable	projectmanager	de	buchbar
+budget	projectmanager	de	Budget
+budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
+budget and pricelist	projectmanager	de	Budget und Preisliste
+by	projectmanager	de	von
+calculate budget by quantity (eg. time) and price	projectmanager	de	Budget nach Menge (Zeit) und Preis berechnen
+charset of file	projectmanager	de	Zeichensatz der Datei
+charset of the above selected font	projectmanager	de	Zeichensatz des oben ausgewählten Font
+check all	projectmanager	de	Alle auswählen
+close the window, discard the changes made	projectmanager	de	Fenster schließen und die gemachten Veränderungen verwerfen
+constraints	projectmanager	de	Bedingungen
+conversation between days and hours, default 8	projectmanager	de	Umrechnung zwischen Tagen und Stunden, Vorgabe 8
+coordinator	projectmanager	de	Koordinator
+cost per time	projectmanager	de	Kosten pro Zeiteinheit
+create a new empty project or use a template	projectmanager	de	Erstellt ein neues leeres Projekt oder benützt eine Vorlage
+create new links	projectmanager	de	Neue Verknüpfung erstellen
+created	projectmanager	de	Erstellt
+created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Ganttchart von den gewählten Projekten
+csv-fieldname	projectmanager	de	CSV-Feldname
+csv-filename	projectmanager	de	CSV-Dateiname
+csv-import	common	de	CSV-Import
+cumulated elements too	projectmanager	de	Auch zusammengefaßte Elemente
+custom fields	projectmanager	de	Extra
+customer title	projectmanager	de	Kundentitel
+datasource	projectmanager	de	Datenquelle
+datasources too	projectmanager	de	auch Datenquellen
+dates	projectmanager	de	Datum
+default all and a selectbox to choose	projectmanager	de	Vorgabe alle und eine Auswahlbox
+delete all checked projects	projectmanager	de	Ausgewählten Projekte löschen
+delete this milestone	projectmanager	de	Diesen Meilenstein löschen
+delete this price	projectmanager	de	Diesen Preis löschen
+delete this project	projectmanager	de	Dieses Projekt löschen
+delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
+delete this role	projectmanager	de	Diese Rolle löschen
+depth of display	projectmanager	de	Tiefe der Anzeige
+details of cumulated	projectmanager	de	Details der zusammengefaßten
+details of subelements	projectmanager	de	Details der Unterelemente
+do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
+done (100%)	projectmanager	de	erledigt (100%)
+edit access, incl. editing budget and elements	projectmanager	de	Zugriff zum Bearbeiten, einschl. Budget und Element bearbeiten
+edit budget	projectmanager	de	Budget bearbeiten
+edit milestone	projectmanager	de	Meilenstein bearbeiten
+edit price	projectmanager	de	Preis bearbeiten
+edit project	projectmanager	de	Projekt bearbeiten
+edit project-elements	projectmanager	de	Projektelemente bearbeiten
+edit this milestone	projectmanager	de	Diesen Meilenstein bearbeiten
+edit this price	projectmanager	de	Diesen Preis bearbeiten
+edit this project	projectmanager	de	Dieses Projekt bearbeiten
+edit this project-element	projectmanager	de	Dieses Projektelement bearbeiten
+edit this role	projectmanager	de	Diese Rolle bearbeiten
+elementlist	projectmanager	de	Elementliste
+elements of elements	projectmanager	de	Element der Elemente
+elements that can't start before this one is finished	projectmanager	de	Elemente die nicht starten können bevor dieses beendet ist
+elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
+empty	projectmanager	de	Leer
+empty for all	projectmanager	de	leer für alle
+encode non-ascii	projectmanager	de	Nicht ASCII kodieren
+end before	projectmanager	de	Endet vor
+enddate	projectmanager	de	Enddatum
+error: deleting price !!!	projectmanager	de	Fehler: Preis löschen !!!
+error: deleting project !!!	projectmanager	de	Fehler: Projekt löschen !!!
+error: deleting project-element !!!	projectmanager	de	Fehler: Projektelement löschen !!!
+error: deleting role !!!	projectmanager	de	Fehler: Rolle löschen !!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	de	Fehler: Projekt-ID existiert bereits, eine andere wählen oder durch leerlassen des Felds generieren lassen!!!
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	de	Fehler: Rekursion gefunden: Id %1 mehr als einmal im Projektpfad, beim Aufbau den Projektbaums:
+error: saving milestone	projectmanager	de	Fehler: Meilenstein speichern !!!
+error: saving role !!!	projectmanager	de	Fehler: Rolle speichern !!!
+error: saving the price (%1) !!!	projectmanager	de	Fehler: Preis speichern (%1) !!!
+error: saving the project (%1) !!!	projectmanager	de	Fehler: Projekt speichern (%1) !!!
+error: saving the project-element (%1) !!!	projectmanager	de	Fehler: Projektelement speichern (%1) !!!
+everything recursive	projectmanager	de	Alles rekursiv
+existing data will be overwrited if checked	projectmanager	de	Bestehende Daten werden überschrieben, wenn eingeschaltet
+existing links	projectmanager	de	Bestehende Verknüpfungen
+exit without saving	projectmanager	de	Abbrechen ohne zu Speichern
+fieldseparator	projectmanager	de	Feldtrenner
+font	projectmanager	de	Font
+font charset	projectmanager	de	Font Zeichensatz
+font style	projectmanager	de	Font Stil
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	de	Font für das Ganttchart. Nur der Vera Font ist beim Projektmanager dabei.
+fontfile '%1' not found!!!	projectmanager	de	Fontdatei '%1' nicht gefunden!!!
+free descriptiv text	projectmanager	de	Freier Text
+from %1 to %2	projectmanager	de	von %1 bis %2
+full access	projectmanager	de	unbeschränkter Zugriff
+ganttchart	projectmanager	de	Ganttchart
+ganttchart parameter	projectmanager	de	Ganttchart Parameter
+general	projectmanager	de	Allgemein
+general availibility	projectmanager	de	Allgemeine Verfügbarkeit
+general pricelist	projectmanager	de	Allgemeine Preisliste
+global categories	projectmanager	de	Globale Kategorien
+h	projectmanager	de	h
+health	projectmanager	de	Gesundheit
+hours	projectmanager	de	Stunden
+hours per workday	projectmanager	de	Stunden pro Arbeitstag
+how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreutzt werden die Datenquellen der Element (zB. InfoLog Einträge) mit gelöscht.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreutzt werden der Status der Datenquellen der Element (zB. InfoLog Einträge) mit geändert.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
+ignore that entry	projectmanager	de	Eintrag ignorieren
+ignored	projectmanager	de	Ignoriert
+import	projectmanager	de	Import
+last modified	projectmanager	de	Zuletzt geändert
+leave it empty if you dont need a different customer title	projectmanager	de	Feld leer lassen, wenn kein kundenspezifischer Titel benötigt wird
+leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine zu generieren
+leave it empty, if identitcal to the time	projectmanager	de	Feld leer lassen, wenn identisch mit der Zeit
+linked elements	projectmanager	de	Verknüpfte Elemente
+links	projectmanager	de	Verknüpfungen
+mainproject only	projectmanager	de	nur das Hauptprojekt
+mainprojects	projectmanager	de	Hauptprojekte
+members	projectmanager	de	Mitarbeiter
+milestone deleted	projectmanager	de	Meilenstein gelöscht
+milestone saved	projectmanager	de	Meilenstein gespeichert
+milestones	projectmanager	de	Meilensteine
+milestones before this element has to be finished	projectmanager	de	Meilensteine vor denen dieses Element beendet sein muß
+modified	projectmanager	de	Geändert
+modified by	projectmanager	de	Geändert durch
+necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht gelanden und kann nicht geladen werden !!!
+new	projectmanager	de	Neu
+new project submitted by %1 at %2	projectmanager	de	Neues Projekt übertragen von %1 am %2
+no accounting, only status	projectmanager	de	Keine Abrechnung, nur Status
+no accounting, only times and status	projectmanager	de	Keine Abrechnung, nur Zeiten und Status
+no details	projectmanager	de	Keine Details
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	de	Kein LESE-Recht an der Datenquelle: entfernen von überschriebenen Werten hinterläßt diese leer !!!
+no save necessary	projectmanager	de	Kein Abspeichern notwendig
+nonactive	projectmanager	de	Nicht aktiv
+not started (0%)	projectmanager	de	nicht gestartet (0%)
+not working	projectmanager	de	nicht arbeiten
+number of records to read (%1)	projectmanager	de	Anzahl der einzulesenden Datensätze (%1)
+only this project	projectmanager	de	Nur dieses Projekt
+overwrite the datasource	projectmanager	de	Anzeige in der Elementliste überschreiben
+percentage the member is availible for projects	projectmanager	de	Prozentsatz den der Mitarbeiter für Projekte verfügbar ist
+percentage the member is availible for this project	projectmanager	de	Prozentsatz den der Mitarbeiter für dieses Projekt verfügbar ist
+permission denied !!!	projectmanager	de	Zugriff verweigert !!!
+planned	projectmanager	de	geplant
+planned times	projectmanager	de	Geplante Zeiten
+please download a recent version from %1 and install it in %2.	projectmanager	de	Bitte laden Sie die aktuelle Version von %1 und installieren Sie sie in %2.
+price	projectmanager	de	Preis
+price / unit	projectmanager	de	Preis / Einheit
+price deleted	projectmanager	de	Preis gelöscht
+price saved	projectmanager	de	Preis gespeichert
+pricelist	projectmanager	de	Preisliste
+project availibility	projectmanager	de	Projekt- Verfügbarkeit
+project deleted	projectmanager	de	Projekt gelöscht
+project id	projectmanager	de	Projekt-ID
+project members and roles	projectmanager	de	Projekt Mitarbeiter und Rollen
+project modified by %1 at %2	projectmanager	de	Projekt geändert von %1 am %2
+project overview	projectmanager	de	Projektübersicht
+project saved	projectmanager	de	Projekt gespeichert
+project specific title, prices, ...	projectmanager	de	Projectspezifischer Titel, Preis, ...
+project-element deleted	projectmanager	de	Projektelement gelöscht
+project-element saved	projectmanager	de	Projektelement gespeichert
+project-elements	projectmanager	de	Projektelemente
+projectlist	projectmanager	de	Projektliste
+projectmanager	common	de	Projektmanager
+projectmanager-fieldname	projectmanager	de	Projectmanager-feldname
+projectmember	projectmanager	de	Projektmitarbeiter
+quantity	projectmanager	de	Menge
+re-planned	projectmanager	de	umgeplant
+read access, incl. budget and adding elements	projectmanager	de	lesender Zugriff, einschl. Budget und zufügen von Elementen
+read access, no budget	projectmanager	de	lesender Zugriff, kein Budget
+real end	projectmanager	de	Reales Ende
+real start	projectmanager	de	Realer Start
+resources	projectmanager	de	Ressourcen
+role	projectmanager	de	Rolle
+role deleted	projectmanager	de	Rolle gelöscht
+role saved	projectmanager	de	Rolle gespeichert
+roles	projectmanager	de	Rollen
+save the changes made	projectmanager	de	Änderungen speichern
+save this project element	projectmanager	de	Dieses Projektelement speichern
+select a project	projectmanager	de	Ein Projekt auswählen
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Menge (Zeit) und Preis berechnen wollen
+select multiple projects for a further action	projectmanager	de	Wählt mehrere Projekte für einen weiteren Befehl aus
+select the accounting types visible for users of projectmanager	projectmanager	de	wählen sie die Abrechnungsarten die für Benutzer des Projektmanagers sichtbar sind
+select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
+selectbox with %1	projectmanager	de	Auswahlbox mit %1
+share	projectmanager	de	Anteil
+share on the whole project	projectmanager	de	Anteil am Gesamtprojekt
+share on the whole project in hours or percent, defaults to planned time	projectmanager	de	Anteil am Gesamtprojekt in Stunden oder prozentual, Vorgabe ist geplante Zeit
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status Icons der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller).
+show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
+show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
+show status icons of the datasources	projectmanager	de	Status Icons der Datenquellen anzeigen
+show the project selection as	projectmanager	de	Zeige die Projektauswahl als
+site configuration saved	projectmanager	de	Konfiguration gespeichert
+start after	projectmanager	de	Startet nach
+start working on %1	projectmanager	de	Arbeitsbeginn am %1
+start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
+start- & enddate	projectmanager	de	Start- & Enddatum
+startdate	projectmanager	de	Startdatum
+startrecord	projectmanager	de	Startdatensatz
+status filter	projectmanager	de	Status Filter
+style used for everything but elements. some fonts have only normal style.	projectmanager	de	Stil der für alles außer Elementen verwendet wird. Einige Fonts haben nur den Stil Normal.
+subelements	projectmanager	de	Unterelemente
+subprojects	projectmanager	de	Unterprojekte
+synchronise all	projectmanager	de	Alle synchronisieren
+template	projectmanager	de	Vorlage
+template including elment-tree saved as new project	projectmanager	de	Vorlage einschl. Elementbaum als neues Projekt gespeichert
+test import (show importable records <u>only</u> in browser)	projectmanager	de	Test Import (zeigt importierte Datensätze <u>nur</b> im Browser an)
+the charset depends on the font you want to use.	projectmanager	de	Der Zeichensatz hängt vom Font ab den Sie verwenden wollen.
+time	projectmanager	de	Zeit
+times	projectmanager	de	Zeiten
+title must not be empty	projectmanager	de	Titel darf nicht leer sein
+to many might exceed your execution-time-limit	projectmanager	de	zu viel können Ihre Laufzeitbeschränkung überschreiten
+translation	projectmanager	de	Übersetzung
+tree with %1	projectmanager	de	Baum mit %1
+unit	projectmanager	de	Einheit
+unitprice	projectmanager	de	Preis pro Einheit
+used	projectmanager	de	benutzt
+valid since	projectmanager	de	Gültig seit
+view ganttchart of this project	projectmanager	de	Ganttchart dieses Projekts anzeigen
+view milestone	projectmanager	de	Meilenstein anzeigen
+view price	projectmanager	de	Preis anzeigen
+view project	projectmanager	de	Projekt anzeigen
+view project-elements	projectmanager	de	Projektelement anzeigen
+view this element in %1	projectmanager	de	Diese Element im %1 anzeigen
+view this milestone	projectmanager	de	Diesen Meilenstein anzeigen
+view this price	projectmanager	de	Diesen Preis anzeigen
+view this project	projectmanager	de	Dieses Projekt anzeigen
+view this project-element	projectmanager	de	Dieses Projektelement anzeigen
+working duration on %1	projectmanager	de	Arbeitsdauer am %1
+you can leave the date of the first price empty	projectmanager	de	Sie benötigen kein Datum für den ersten Preis
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	de	Sie haben keine JPGraph Version %1 oder höher installiert! Diese wird vom Projektmanager für Ganttcharts benötigt.
+you need to select a project first	projectmanager	de	Sie müssen zuerst ein Projekt auswählen
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	de	Ihre Datenbank ist NICHT aktuell (%1 vs. %2), bitte rufen Sie %3setup%4 auf um Ihre Datenbank zu aktualisieren.
