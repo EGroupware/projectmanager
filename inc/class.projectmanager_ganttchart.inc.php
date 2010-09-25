@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -13,8 +13,24 @@
 // JPGraph does not work, if that got somehow set, so unset it
 if (isset($GLOBALS['php_errormsg'])) unset ($GLOBALS['php_errormsg']);
 
+// check if EGW_JPGRAPH_PATH is already set, eg. in header.inc.php
+if (defined('EGW_JPGRAPH_PATH'))
+{
+	if (!file_exists(EGW_JPGRAPH_PATH . '/jpgraph.php'))
+	{
+		die('EGW_JPGRAPH_PATH="'.EGW_JPGRAPH_PATH.'" defined but not valid!');
+	}
+}
+elseif(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
+{
+	define('EGW_JPGRAPH_PATH',realpath(EGW_SERVER_ROOT . '/../jpgraph/src'));
+}
+elseif (file_exists(EGW_SERVER_ROOT . '/../jpgraph/jpgraph.php'))
+{
+	define('EGW_JPGRAPH_PATH',realpath(EGW_SERVER_ROOT . '/../jpgraph'));
+}
 // check if the admin installed a recent JPGraph parallel to eGroupWare
-if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
+if (defined('EGW_JPGRAPH_PATH'))
 {
 	$GLOBALS['egw_info']['apps']['projectmanager']['config'] = config::read('projectmanager');
 
@@ -64,8 +80,8 @@ if(file_exists(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php'))
 	//_debug_array($GLOBALS['egw_info']['apps']['projectmanager']['config']);
 	if (!defined('MBTTF_DIR')) define('MBTTF_DIR',TTF_DIR);
 
-	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph.php');
-	include(EGW_SERVER_ROOT . '/../jpgraph/src/jpgraph_gantt.php');
+	include(EGW_JPGRAPH_PATH . '/jpgraph.php');
+	include(EGW_JPGRAPH_PATH . '/jpgraph_gantt.php');
 }
 
 /**
@@ -87,7 +103,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 */
 	var $modernJPGraph;
 	/**
-	 * Charset used internaly by eGW, $GLOBALS['egw']->translation->charset()
+	 * Charset used internaly by eGW, translation::charset()
 	 *
 	 * @var string
 	 */
@@ -155,12 +171,12 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
-			$GLOBALS['egw']->redirect_link('/index.php',array(
+			egw::redirect_link('/index.php',array(
 				'menuaction' => 'projectmanager.uiprojectmanager.index',
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
-		$this->charset = $GLOBALS['egw']->translation->charset();
+		$this->charset = translation::charset();
 		$this->prefs =& $GLOBALS['egw_info']['user']['preferences'];
 
 		// check if a arial font is availible and set FF_VERA (or bundled font) if not
@@ -183,7 +199,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	function text_encode($text)
 	{
 		// convert to the charset used for the gantchart
-		$text = $GLOBALS['egw']->translation->convert($text,$this->charset,$this->gantt_charset);
+		$text = translation::convert($text,$this->charset,$this->gantt_charset);
 
 		// convert everything above ascii to nummeric html entities
 		// not sure if this is necessary for non iso-8859-1 charsets, try to comment it out if you have problems
@@ -734,7 +750,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			lang('You dont have JPGraph version %1 or higher installed! It is needed from ProjectManager for Ganttcharts.',$min_version)."<br />\n".
 			lang('Please download a recent version from %1 and install it in %2.',
 				'<a href="http://jpgraph.net/download/" target="_blank">jpgraph.net/download/</a>',
-				realpath(EGW_SERVER_ROOT.'/..').SEP.'jpgraph');
+				dirname(EGW_SERVER_ROOT).SEP.'jpgraph');
 	}
 
 	/**
