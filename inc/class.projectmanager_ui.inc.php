@@ -487,7 +487,7 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			$pm_ids[] = $row['pm_id'];
 
-			if (!($row['role_acl'] & EGW_ACL_BUDGET))
+			if (!$this->check_acl(EGW_ACL_BUDGET,$row))
 			{
 				unset($row['pm_used_budget']);
 				unset($row['pm_planned_budget']);
