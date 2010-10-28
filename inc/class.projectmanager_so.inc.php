@@ -271,9 +271,8 @@ class projectmanager_so extends so_sql_cf
 				$filter[] = 'link_id2 IS NULL';
 				$join .= ' LEFT';
 			}
-			$pm_id = "$this->table_name.pm_id";
-			// postgres 8.3 requires cast as link_idx is varchar and pm_id an integer, the cast should be no problem for other DB's
-			if ($this->db->Type == 'pgsql') $pm_id = "CAST($pm_id AS VARCHAR)";
+			// PostgreSQL requires cast as link_idx is varchar and pm_id an integer
+			$pm_id = $this->db->to_varchar($this->table_name.'.pm_id');
 			$join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=$pm_id";
 
 			if (is_array($filter['subs_or_mains']))	// sub-projects of given parent-projects

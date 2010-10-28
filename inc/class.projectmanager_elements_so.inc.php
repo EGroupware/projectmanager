@@ -77,10 +77,8 @@ class projectmanager_elements_so extends so_sql
 				if ($this->read($pe_id)) $this->pm_id = $this->data['pm_id'];
 			}
 		}
-		if ($this->db->Type == 'pgsql')	// PostgreSQL needs cast to varchar (MySQL does NOT allow varchar)
-		{
-			$this->links_extracols = str_replace('pm_id','CAST(pm_id AS VARCHAR)',$this->links_extracols);
-		}
+		// PostgreSQL needs cast to varchar (MySQL does NOT allow varchar)
+		$this->links_extracols = str_replace('pm_id',$this->db->to_varchar('pm_id'),$this->links_extracols);
 	}
 
 	/**
