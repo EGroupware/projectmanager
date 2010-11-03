@@ -41,7 +41,7 @@ class projectmanager_egw_record_element implements importexport_iface_egw_record
 	 * @param string $_attribute_name
 	 */
 	public function __get($_attribute_name) {
-
+		return $this->record[$_attribute_name];
 	}
 
 	/**
@@ -51,7 +51,7 @@ class projectmanager_egw_record_element implements importexport_iface_egw_record
 	 * @param data $data
 	 */
 	public function __set($_attribute_name, $data) {
-
+		$this->record[$_attribute_name] = $data;
 	}
 
 	/**
