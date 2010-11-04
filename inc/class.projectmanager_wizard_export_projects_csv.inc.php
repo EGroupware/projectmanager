@@ -26,6 +26,22 @@ class projectmanager_wizard_export_projects_csv extends importexport_wizard_basi
 		// Add in roles
 		$this->export_fields['roles'] = lang('Roles');
 
+		// Add in element summary
+		$this->export_fields += array(
+			'pe_sum_completion_shares'	=> lang('Total completion shares'),
+			'pe_total_shares'		=> lang('Total shares'),
+			'pe_used_time'			=> $this->export_fields['pm_used_time'],
+			'pe_planned_time'		=> $this->export_fields['pm_planned_time'],
+			'pe_replanned_time'		=> $this->export_fields['pm_replanned_time'],
+			'pe_used_budget'		=> $this->export_fields['pm_used_budget'],
+			'pe_planned_budget'		=> $this->export_fields['pm_planned_budget'],
+			'pe_real_start'			=> $this->export_fields['pm_real_start'],
+			'pe_planned_start'		=> $this->export_fields['pm_planned_start'],
+			'pe_real_end'			=> $this->export_fields['pm_real_end'],
+			'pe_planned_end'		=> $this->export_fields['pm_planned_end'],
+			'pe_completion'			=> lang('Completion')
+		);
+
 		// Custom fields
 		unset($this->export_fields['customfields']); // Heading, not a real field
 		$custom = config::get_customfields('projectmanager', true);

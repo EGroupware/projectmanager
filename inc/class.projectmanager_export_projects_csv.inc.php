@@ -20,7 +20,9 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	static $types = array(
 		'select-account' => array('pm_creator','pm_modifier'),
 		'date-time' => array('pm_modified','pm_created'),
-		'date' => array('pm_planned_start','pm_planned_end', 'pm_real_start', 'pm_real_end'),
+		'date' => array('pm_planned_start','pm_planned_end', 'pm_real_start', 'pm_real_end',
+			// Dates from element summary
+			'pe_planned_start','pe_planned_end', 'pe_real_start', 'pe_real_end'),
 		'select-cat' => array('cat_id'),
 	);
 
@@ -69,6 +71,11 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 					$role_name = $this->roles[$person['role_id']];
 					$record[$role_name][] = $person['member_uid'];
 				}
+			}
+
+			// Add in element summary
+			if(true || $options['mapping']['element_summary']) {
+				$record += ExecMethod('projectmanager.projectmanager_elements_bo.summary',$record['pm_id']);
 			}
 
 			$project = new projectmanager_egw_record_project();
@@ -165,18 +172,20 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		foreach(self::$types['date'] as $name) {
 			if ($record->$name) $record->$name = date('Y-m-d',$record->$name); // Standard date format
 		}
-
-		foreach(array('pm_used_time', 'pm_planned_time', 'pm_replanned_time') as $duration) {
-			switch($options[$duration]) {
-				case 'd':
-					$record->$duration = round($record->$duration / 480, 2);
-					break;
-				case 'h':
-					$record->$duration = round($record->$duration / 60, 2);
-					break;
-			}
-			if($options['include_duration_unit']) {
-				$record->$duration .= $options[$duration];
+		foreach(array('pm_', 'pe_') as $prefix) {
+			foreach(array('used_time', 'planned_time', 'replanned_time') as $_duration) {
+				$duration = $prefix . $_duration;
+				switch($options['pm_'.$_duration]) {
+					case 'd':
+						$record->$duration = round($record->$duration / 480, 2);
+						break;
+					case 'h':
+						$record->$duration = round($record->$duration / 60, 2);
+						break;
+				}
+				if($options['include_duration_unit']) {
+					$record->$duration .= $options[$_duration];
+				}
 			}
 		}
 
