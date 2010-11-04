@@ -39,7 +39,6 @@ class projectmanager_wizard_export_elements_csv extends importexport_wizard_basi
 			'pe_unitprice'	=> lang('Unitprice'),
 			'cat_id'	=> lang('Category'),
 			'pe_share'		=> lang('Share'),
-			'pe_health'	=> lang('Health'),
 			'pe_resources'	=> lang('Resources'),
 			'pe_details'	=> lang('Details'),
 			'pe_planned_quantity'=> lang('Planned quantity'),
