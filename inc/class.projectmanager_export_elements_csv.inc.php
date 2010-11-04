@@ -32,15 +32,27 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 	public function export( $_stream, importexport_definition $_definition) {
 		$options = $_definition->plugin_options;
 
+		if($options['pm_id']) {
+			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', $options['pm_id']);
+		} elseif(!$GLOBALS['egw']->session->appsession('pm_id','projectmanager')) {
+			// Fake a pm_id so elements_ui works
+			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', 1);
+		}
 		$ui = new projectmanager_elements_ui();
 		$selection = array();
 		if ($options['selection'] == 'selected') {
 			// ui selection with checkbox 'use_all'
 			$query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			$query['num_rows'] = -1;	// all
+
+			// Clear the PM ID or results will be restricted
+			$ui->pm_id = null;
 			$ui->get_rows($query,$selection,$readonlys);
 		}
 		elseif ( $options['selection'] == 'all' ) {
+			// Clear the PM ID or results will be restricted
+			$ui->pm_id = null;
+
 			$query = array('num_rows' => -1);	// all
 			$ui->get_rows($query,$selection,$readonlys);
 		} else {
