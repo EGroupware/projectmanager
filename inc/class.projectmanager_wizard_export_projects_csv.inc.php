@@ -21,6 +21,7 @@ class projectmanager_wizard_export_projects_csv extends importexport_wizard_basi
 		// Field mapping
 		$bo = new projectmanager_bo();
 		$this->export_fields = $bo->field2label;
+		unset($this->export_fields['pm_overwrite']);
 
 		// Add in roles
 		$this->export_fields['roles'] = lang('Roles');
