@@ -32,7 +32,6 @@ class projectmanager_wizard_export_elements_csv extends importexport_wizard_basi
 			'pe_real_start'	=> lang('Startdate'),
 			'pe_planned_end'	=> lang('Planned end'),
 			'pe_real_end'	=> lang('Enddate'),
-			'pe_overwrite'	=> lang('overwrite'),
 			'pe_synced'	=> lang('synced'),
 			'pe_modified'	=> lang('Last modified'),
 			'pe_modifier'	=> lang('Modified by'),
