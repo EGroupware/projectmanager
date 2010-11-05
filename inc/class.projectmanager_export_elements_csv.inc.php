@@ -48,19 +48,27 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			// Clear the PM ID or results will be restricted
 			$ui->pm_id = null;
 			$ui->get_rows($query,$selection,$readonlys);
+
+			// Reset nm params
+			unset($query['num_rows']);
+			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $query);
 		}
 		elseif ( $options['selection'] == 'all' ) {
+			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			// Clear the PM ID or results will be restricted
 			$ui->pm_id = null;
 
 			$query = array('num_rows' => -1);	// all
 			$ui->get_rows($query,$selection,$readonlys);
+			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
 		} else {
+			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			$query = array(
 				'num_rows' => -1,
 				'pm_id'	=> $options['pm_id']
 			);
 			$ui->get_rows($query,$selection,$readonlys);
+			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
 		}
 
 		$export_object = new importexport_export_csv($_stream, (array)$options);
