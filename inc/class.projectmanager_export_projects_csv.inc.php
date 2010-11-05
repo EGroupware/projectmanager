@@ -41,10 +41,18 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
 			$query['num_rows'] = -1;	// all
 			$ui->get_rows($query,$selection,$readonlys);
+			
+			// Reset nm params
+			unset($query['num_rows']);
+			$GLOBALS['egw']->session->appsession('project_list','projectmanager', $query);
 		}
 		elseif ( $options['selection'] == 'all' ) {
+			$_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
 			$query = array('num_rows' => -1);	// all
 			$ui->get_rows($query,$selection,$readonlys);
+
+			// Reset nm params
+			$GLOBALS['egw']->session->appsession('project_list','projectmanager', $_query);
 		} else {
 			$selection = explode(',',$options['selection']);
 		}
