@@ -19,6 +19,8 @@ class projectmanager_wizard_export_elements_csv extends importexport_wizard_basi
 
 		// Field mapping
 		$this->export_fields = array(
+			'pm_title'	=> lang('Title'),
+			'pm_id'		=> lang('Projectid'),
 			'pe_id'		=> lang('Element ID'),
 			'pe_app'		=> lang('Application'),
 			'pe_title'		=> lang('Title'),

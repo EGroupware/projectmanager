@@ -87,6 +87,12 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			}
 			$element = new projectmanager_egw_record_element();
 			$element->set_record($record);
+			if($options['mapping']['pm_title']) {
+				$project = ExecMethod('projectmanager.projectmanager_bo.read', $element->pm_id);
+				$element->pm_title = $project['pm_title'];
+			}
+			
+			importexport_export_csv::convert($element, self::$types);
 			$this->convert($element, $options);
 			$export_object->export_record($element);
 			unset($element);
@@ -149,29 +155,6 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 	 * @param projectmanager_egw_record_project $record Record to be converted
 	 */
 	protected static function convert(projectmanager_egw_record_element &$record, array $options = array()) {
-		foreach(self::$types['select-account'] as $name) {
-			if ($record->$name) {
-				if(is_array($record->$name)) {
-					$names = array();
-					foreach($record->$name as $_name) {
-						$names[] = $GLOBALS['egw']->common->grab_owner_name($_name);
-					}
-					$record->$name = implode(', ', $names);
-				} else {
-					$record->$name = $GLOBALS['egw']->common->grab_owner_name($record->$name);
-				}
-			}
-		}
-		foreach(self::$types['date-time'] as $name) {
-			//if ($record->$name) $record->$name = date('Y-m-d H:i:s',$record->$name); // Standard date format
-			if ($record->$name) $record->$name = date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'] . ' '.
-				($GLOBALS['egw_info']['user']['preferences']['common']['timeformat'] == '24' ? 'H' : 'h').':m:s',$record->$name); // User date format
-		}
-		foreach(self::$types['date'] as $name) {
-			//if ($record->$name) $record->$name = date('Y-m-d',$record->$name); // Standard date format
-			if ($record->$name) $record->$name = date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'], $record->$name); // User date format
-		}
-
 		foreach(array('pe_used_time', 'pe_planned_time', 'pe_replanned_time') as $duration) {
 			switch($options[$duration]) {
 				case 'd':
@@ -185,12 +168,5 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				$record->$duration .= $options[$duration];
 			}
 		}
-
-		$cats = array();
-		foreach(explode(',',$record->cat_id) as $n => $cat_id) {
-			if ($cat_id) $cats[] = $GLOBALS['egw']->categories->id2name($cat_id);
-		}
-
-		$record->cat_id = implode(', ',$cats);
 	}
 }
