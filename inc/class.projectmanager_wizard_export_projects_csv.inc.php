@@ -28,18 +28,18 @@ class projectmanager_wizard_export_projects_csv extends importexport_wizard_basi
 
 		// Add in element summary
 		$this->export_fields += array(
-			'pe_sum_completion_shares'	=> lang('Total completion shares'),
-			'pe_total_shares'		=> lang('Total shares'),
-			'pe_used_time'			=> $this->export_fields['pm_used_time'],
-			'pe_planned_time'		=> $this->export_fields['pm_planned_time'],
-			'pe_replanned_time'		=> $this->export_fields['pm_replanned_time'],
-			'pe_used_budget'		=> $this->export_fields['pm_used_budget'],
-			'pe_planned_budget'		=> $this->export_fields['pm_planned_budget'],
-			'pe_real_start'			=> $this->export_fields['pm_real_start'],
-			'pe_planned_start'		=> $this->export_fields['pm_planned_start'],
-			'pe_real_end'			=> $this->export_fields['pm_real_end'],
-			'pe_planned_end'		=> $this->export_fields['pm_planned_end'],
-			'pe_completion'			=> lang('Completion')
+			'pe_sum_completion_shares'	=> lang('Element list') . ' ' . lang('Total completion shares'),
+			'pe_total_shares'		=> lang('Element list') . ' ' . lang('Total shares'),
+			'pe_used_time'			=> lang('Element list') . ' ' . $this->export_fields['pm_used_time'],
+			'pe_planned_time'		=> lang('Element list') . ' ' . $this->export_fields['pm_planned_time'],
+			'pe_replanned_time'		=> lang('Element list') . ' ' . $this->export_fields['pm_replanned_time'],
+			'pe_used_budget'		=> lang('Element list') . ' ' . $this->export_fields['pm_used_budget'],
+			'pe_planned_budget'		=> lang('Element list') . ' ' . $this->export_fields['pm_planned_budget'],
+			'pe_real_start'			=> lang('Element list') . ' ' . $this->export_fields['pm_real_start'],
+			'pe_planned_start'		=> lang('Element list') . ' ' . $this->export_fields['pm_planned_start'],
+			'pe_real_end'			=> lang('Element list') . ' ' . $this->export_fields['pm_real_end'],
+			'pe_planned_end'		=> lang('Element list') . ' ' . $this->export_fields['pm_planned_end'],
+			'pe_completion'			=> lang('Element list') . ' ' . lang('Completion')
 		);
 
 		// Custom fields
