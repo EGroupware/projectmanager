@@ -160,6 +160,7 @@ no details	projectmanager	de	Keine Details
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	de	Kein LESE-Recht an der Datenquelle: entfernen von überschriebenen Werten hinterläßt diese leer !!!
 no save necessary	projectmanager	de	Kein Abspeichern notwendig
 nonactive	projectmanager	de	Nicht aktiv
+not available	projectmanager	de	Nicht verfügbar
 not started (0%)	projectmanager	de	nicht gestartet (0%)
 not working	projectmanager	de	nicht arbeiten
 number of records to read (%1)	projectmanager	de	Anzahl der einzulesenden Datensätze (%1)

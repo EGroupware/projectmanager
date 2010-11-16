@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -54,7 +54,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 	function edit($content=null,$view=false,$msg='')
 	{
 		$tpl = new etemplate('projectmanager.pricelist.edit');
-		$tabs = 'price|project|description';
 
 		if (!is_array($content))
 		{
@@ -63,7 +62,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				'pm_id' => $this->pm_id ? array($this->pm_id,0) : 0,
 			)))
 			{
-
 				// perms are checked later, see view_...prices
 			}
 			else	// add new price
@@ -81,17 +79,17 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				!($this->pm_id && $this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT,$this->pm_id)))
 			{
 				$js = "alert('".lang('Permission denied !!!')."'); window.close();";
-				$GLOBALS['egw']->common->egw_header();
+				common::egw_header();
 				echo "<script>\n$js\n</script>\n";
-				$GLOBALS['egw']->common->egw_exit();
+				common::egw_exit();
 			}
-			if (count($this->data['project_prices'])) $content[$tabs] = 'project';	// open project tab
+			if (count($this->data['project_prices'])) $content['tabs'] = 'project';	// open project tab
 			$pm_id = count($this->data['project_prices']) ? $this->data['project_prices'][0]['pm_id'] : $this->pm_id;
 		}
 		else
 		{
 			$this->data = $content;
-			foreach(array('view','button','delete_price','delete_project_price',$tabs) as $key)
+			foreach(array('view','button','delete_price','delete_project_price','tabs') as $key)
 			{
 				unset($this->data[$key]);
 			}
@@ -137,7 +135,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				case 'cancel':
 					$js .= 'window.close();';
 					echo '<html><body onload="'.$js.'"></body></html>';
-					$GLOBALS['egw']->common->egw_exit();
+					common::egw_exit();
 					break;
 
 				case 'edit':
@@ -155,7 +153,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			'view' => $view,
 			'view_prices' => $view_prices,
 			'view_project_prices' => $view_project_prices,
-			$tabs => $content[$tabs],
+			'tabs' => $content['tabs'],
 		);
 		// adjust index and add empty price-lines for adding new prices
 		$content['prices'] = array_merge(array(1),$view_prices ? array() : array(array('pl_price'=>'')),$this->data['prices']);
@@ -212,12 +210,12 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 
 		if (!$this->pm_id)	// no project tab for the general pricelist
 		{
-			$readonlys[$tabs]['project'] = true;
+			$readonlys['tabs']['project'] = true;
 		}
 		// no general price tab, if there are none and no rights to edit the general pricelist
 		if (!count($this->data['prices']) && !$this->check_acl(EGW_ACL_EDIT))
 		{
-			$readonlys[$tabs]['price'] = true;
+			$readonlys['tabs']['price'] = true;
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.
 			($view ? lang('View price') :  ($pl_id ? lang('Edit price') : lang('Add price'))) .
@@ -227,6 +225,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		//_debug_array($readonlys);
 		return $tpl->exec('projectmanager.projectmanager_pricelist_ui.edit',$content,array(
 			'pl_billable' => $this->billable_lables,
+			'gen_pl_billable' => $this->billable_lables,
 		),$readonlys,$preserv,2);
 	}
 
@@ -253,7 +252,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		}
 		elseif ($query['col_filter']['pm_id'] != $this->pm_id)
 		{
-			$this->projectmanager_pricelist_ui($query['col_filter']['pm_id']);
+			$this->__construct($query['col_filter']['pm_id']);
 		}
 		if ($query['col_filter']['pl_billable'] === '') unset($query['col_filter']['pl_billable']);
 
@@ -273,8 +272,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				$readonlys["delete[$row[pm_id]:$row[pl_id]]"] = true;
 			}
 		}
-		$rows['standard_only'] = !$this->pm_id;
-
 		return $total;
 	}
 

@@ -76,38 +76,44 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<textbox multiline="true" data="" rows="12" cols="64" id="pl_description"/>
+					<textbox multiline="true" rows="12" cols="64" id="pl_description"/>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.pricelist.edit" template="" lang="" group="0" version="0.5.001">
+	<template id="projectmanager.pricelist.edit" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="100"/>
+				<column/>
 				<column/>
 			</columns>
 			<rows>
 				<row disabled="!@msg">
 					<description span="all" class="redItalic" no_lang="1" id="msg" align="center"/>
 					<description/>
+					<description/>
 				</row>
 				<row class="th" height="28">
 					<description options=",,,pl_title" value="Title"/>
-					<textbox size="60" maxlength="255" id="pl_title" needed="1"/>
+					<textbox size="60" maxlength="255" id="pl_title" needed="1" span="all" class="inputFullWidth"/>
+					<description/>
 				</row>
 				<row class="row">
 					<description options=",,,pl_unit" value="Unit"/>
-					<textbox size="20" maxlength="20" id="pl_unit" blur="h" span="all"/>
+					<textbox size="20" maxlength="20" id="pl_unit" blur="h"/>
+					<menulist>
+						<menupopup label="General pricelist" id="gen_pl_billable" options="Not available"/>
+					</menulist>
 				</row>
 				<row class="row">
 					<description options=",,,cat_id" value="Category"/>
-					<menulist>
+					<menulist span="all">
 						<menupopup type="select-cat" options="None" id="cat_id"/>
 					</menulist>
 				</row>
 				<row>
-					<tabbox span="all">
+					<tabbox span="all" id="tabs">
 						<tabs>
 							<tab label="Price" statustext="General pricelist"/>
 							<tab label="Project" statustext="Project specific title, prices, ..."/>

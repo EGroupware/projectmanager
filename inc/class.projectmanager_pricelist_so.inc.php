@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -18,19 +18,27 @@
 class projectmanager_pricelist_so extends so_sql
 {
 	/**
-	 * @var string $prices_table table name of the prices table
+	 * Table name of the prices table
+	 *
+	 * @var string
 	 */
 	var $prices_table = 'egw_pm_prices';
 	/**
-	 * @var string $prices_join default join with the prices table
+	 * Default join with the prices table
+	 *
+	 * @var string
 	 */
 	var $prices_join = 'JOIN egw_pm_prices p ON egw_pm_pricelist.pl_id=p.pl_id';
 	/**
-	 * @var array $links_extracols extracolumns from the links table
+	 * Extracolumns from $this->prices_table
+	 *
+	 * @var array
 	 */
 	var $prices_extracols = array('pm_id','pl_validsince','pl_price','pl_customertitle','pl_modifier','pl_modified','pl_billable');
 	/**
-	 * @var int $pm_id project we work on or 0 for standard pricelist only
+	 * Project we work on or 0 for standard pricelist only
+	 *
+	 * @var int
 	 */
 	var $pm_id;
 
@@ -47,7 +55,7 @@ class projectmanager_pricelist_so extends so_sql
 	}
 
 	/**
-	 * reads one pricelist-itme specified by $keys, reimplemented to use $this->pm_id, if no pm_id given
+	 * reads one pricelist-item specified by $keys, reimplemented to use $this->pm_id, if no pm_id given
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
 	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
@@ -94,6 +102,10 @@ class projectmanager_pricelist_so extends so_sql
 				}
 				else
 				{
+					if (array_key_exists('gen_pl_billable',$this->data) === false)
+					{
+						$this->data['gen_pl_billable'] = $price['pl_billable'];
+					}
 					$this->data['prices'][] = $price;
 				}
 			}
@@ -197,7 +209,7 @@ class projectmanager_pricelist_so extends so_sql
 					$filter[] = $this->sql_priority($pm_id,'p.pm_id').' = (select MAX('.$this->sql_priority($pm_id,'m.pm_id').
 						") FROM $this->prices_table m WHERE m.pl_id=p.pl_id)";
 
-					if ($no_general) $filter[] = 'pm_id != 0 AND pl_billable IN (0,1)';
+					if ($no_general) $filter[] = 'pl_billable IN (0,1)';
 				}
 				else
 				{
