@@ -160,6 +160,7 @@ no details	projectmanager	en	no details
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	en	No READ access to the datasource: removing overwritten values will just empty them !!!
 no save necessary	projectmanager	en	no save necessary
 nonactive	projectmanager	en	Nonactive
+not available	projectmanager	en	Not available
 not started (0%)	projectmanager	en	Not started (0%)
 not working	projectmanager	en	not working
 number of records to read (%1)	projectmanager	en	Number of records to read (%1)

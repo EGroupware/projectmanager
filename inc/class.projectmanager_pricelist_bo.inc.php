@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -102,17 +102,16 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 			}
 		}
 		$prices = array();
-		foreach($this->data['prices'] as $key => $nul)
+		foreach($this->data['prices'] as $key => &$price)
 		{
-			$price =& $this->data['prices'][$key];
 			$price['pm_id'] = 0;
-			$price['pl_billable'] = $price['pl_customertitle'] = null;
+			$price['pl_billable'] = $this->data['gen_pl_billable'] === '' ? null : $this->data['gen_pl_billable'];
+			$price['pl_customertitle'] = null;
 			if (count($this->data['prices']) == 1) $price['pl_validsince'] = 0;	// no date for first price
 			$prices[] =& $price;
 		}
-		foreach($this->data['project_prices'] as $key => $nul)
+		foreach($this->data['project_prices'] as $key => &$price)
 		{
-			$price =& $this->data['project_prices'][$key];
 			foreach(array('pm_id','pl_billable','pl_customertitle') as $key)
 			{
 				if (!isset($price[$key])) $price[$key] = $this->data[$key];
@@ -130,9 +129,8 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 				$old_prices[(int)$old_price['pm_id']][date('Y-m-d',(int)$old_price['pl_validsince'])] = $old_price;
 			}
 		}
-		foreach($prices as $key => $nul)
+		foreach($prices as $key => &$price)
 		{
-			$price =& $prices[$key];
 			if (!isset($price['pl_id'])) $price['pl_id'] = $this->data['pl_id'];
 			$old_price = $old_prices[(int)$price['pm_id']][date('Y-m-d',(int)$price['pl_validsince'])];
 			if (!$this->prices_equal($price,$old_price))
@@ -155,7 +153,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 		// check if there are old prices not longer set ==> delete them
 		foreach($old_prices as $pm_id => $prices)
 		{
-			foreach($prices as $price)
+			foreach($prices as &$price)
 			{
 				if (!$this->check_acl(EGW_ACL_DELETE,$price['pm_id']))
 				{
@@ -306,12 +304,11 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	{
 		if (!is_array($price) || !is_array($price2)) return false;
 
-		$to_compare = array('pl_id','pm_id','pl_price','pl_validsince','pl_modified','pl_modifier');
+		$to_compare = array('pl_id','pm_id','pl_price','pl_validsince','pl_modified','pl_modifier','pl_billable');
 
 		if ($price['pm_id'])
 		{
 			$to_compare[] = 'pl_customertitle';
-			$to_compare[] = 'pl_billable';
 		}
 		$equal = true;
 		foreach($to_compare as $key)
@@ -333,49 +330,5 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 		if ((int)$this->debug >= 3) echo "<p>projectmanager_pricelist_bo::prices_equal(".print_r($price,true).','.print_r($price2,true).') = '.($equal ? 'true' : "differ in $key: {$price[$key]} != {$price2[$key]}")."</p>\n";
 
 		return $equal;
-	}
-
-	/**
-	 * changes the data from the db-format to your work-format
-	 *
-	 * reimplemented to adjust the timezone of the timestamps (adding $this->tz_offset_s to get user-time)
-	 * Please note, we do NOT call the method of the parent or so_sql !!!
-	 *
-	 * @param array $data if given works on that array and returns result, else works on internal data-array
-	 * @return array with changed data
-	 */
-	function db2data($data=null)
-	{
-		if (!is_array($data))
-		{
-			$data = &$this->data;
-		}
-		foreach($this->timestamps as $name)
-		{
-			if (isset($data[$name]) && $data[$name]) $data[$name] += $this->tz_offset_s;
-		}
-		return $data;
-	}
-
-	/**
-	 * changes the data from your work-format to the db-format
-	 *
-	 * reimplemented to adjust the timezone of the timestamps (subtraction $this->tz_offset_s to get server-time)
-	 * Please note, we do NOT call the method of the parent or so_sql !!!
-	 *
-	 * @param array $data if given works on that array and returns result, else works on internal data-array
-	 * @return array with changed data
-	 */
-	function data2db($data=null)
-	{
-		if ($intern = !is_array($data))
-		{
-			$data = &$this->data;
-		}
-		foreach($this->timestamps as $name)
-		{
-			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_offset_s;
-		}
-		return $data;
 	}
 }
