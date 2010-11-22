@@ -89,7 +89,9 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$project = new projectmanager_egw_record_project();
 			$project->set_record($record);
 
-			$this->convert($project, $options);
+			if($options['convert']) {
+				$this->convert($project, $options);
+			}
 			$export_object->export_record($project);
 			unset($project);
 		}
