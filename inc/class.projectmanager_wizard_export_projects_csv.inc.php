@@ -79,6 +79,8 @@ class projectmanager_wizard_export_projects_csv extends importexport_wizard_basi
 			foreach($fields as $field) {
 				$content[$field] = $content[$field] ? $content[$field] : $content['plugin_options'][$field];
 			}
+			$field = 'include_duration_unit';
+			$content[$field] = $content[$field] ? $content[$field] : $content['plugin_options'][$field];
 		}
 		return $this->step_templates[$content['step']];
 	}
