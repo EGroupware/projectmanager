@@ -92,8 +92,10 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				$element->pm_title = $project['pm_title'];
 			}
 			
-			importexport_export_csv::convert($element, self::$types);
-			$this->convert($element, $options);
+			if($options['convert']) {
+				importexport_export_csv::convert($element, self::$types);
+			}
+			$this->convert($element, $options); 
 			$export_object->export_record($element);
 			unset($element);
 		}
