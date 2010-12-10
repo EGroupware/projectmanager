@@ -88,9 +88,14 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 
 			$project = new projectmanager_egw_record_project();
 			$project->set_record($record);
-
 			if($options['convert']) {
+				importexport_export_csv::convert($project, self::$types, 'projectmanager');
 				$this->convert($project, $options);
+			} else {
+				// Implode arrays, so they don't say 'Array'
+				foreach($project->get_record_array() as $key => $value) {
+					if(is_array($value)) $project->$key = implode(',', $value);
+				}
 			}
 			$export_object->export_record($project);
 			unset($project);
@@ -154,37 +159,6 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	 */
 	protected static function convert(projectmanager_egw_record_project &$record, array $options = array()) {
 		$record->pm_description = strip_tags($record->pm_description);
-		$custom = config::get_customfields('projectmanager');
-		foreach($custom as $name => $c_field) {
-			$name = '#' . $name;
-			if($c_field['type'] == 'date') {
-				self::$types['date-time'][] = $name;
-			} elseif ($c_field['type'] == 'select-account') {
-				self::$types['select-account'][] = $name;
-			}
-		}
-		foreach(self::$types['select-account'] as $name) {
-			if ($record->$name) {
-				if(is_array($record->$name)) {
-					$names = array();
-					foreach($record->$name as $_name) {
-						$names[] = $GLOBALS['egw']->common->grab_owner_name($_name);
-					}
-					$record->$name = implode(', ', $names);
-				} else {
-					$record->$name = $GLOBALS['egw']->common->grab_owner_name($record->$name);
-				}
-			}
-		}
-		foreach(self::$types['date-time'] as $name) {
-			//if ($record->$name) $record->$name = date('Y-m-d H:i:s',$record->$name); // Standard date format
-			if ($record->$name) $record->$name = date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'] . ' '.
-				($GLOBALS['egw_info']['user']['preferences']['common']['timeformat'] == '24' ? 'H' : 'h').':m:s',$record->$name); // User date format
-		}
-		foreach(self::$types['date'] as $name) {
-			//if ($record->$name) $record->$name = date('Y-m-d',$record->$name); // Standard date format
-			if ($record->$name) $record->$name = date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'], $record->$name); // User date format
-		}
 		foreach(array('pm_', 'pe_') as $prefix) {
 			foreach(array('used_time', 'planned_time', 'replanned_time') as $_duration) {
 				$duration = $prefix . $_duration;
@@ -201,12 +175,5 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 				}
 			}
 		}
-
-		$cats = array();
-		foreach(explode(',',$record->cat_id) as $n => $cat_id) {
-			if ($cat_id) $cats[] = $GLOBALS['egw']->categories->id2name($cat_id);
-		}
-
-		$record->cat_id = implode(', ',$cats);
 	}
 }
