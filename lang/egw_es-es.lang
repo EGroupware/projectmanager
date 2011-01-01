@@ -1,0 +1,259 @@
+%1 element(s) updated	projectmanager	es-es	Se han actualizado %1 elementos
+%1 new project-elements imported	projectmanager	es-es	Se han importado %1 elementos nuevos al proyecto
+%1 projects deleted	projectmanager	es-es	Se han borrado %1 proyectos
+%1 records imported	projectmanager	es-es	Se han importado %1 registros
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	es-es	Se han leído %1 registros (todavía no se han importado, así que puede %2volver%2 y desmarcar "Prueba de importar")
+%1 times permission denied, %2 projects deleted	projectmanager	es-es	Se ha denegado el acceso %1 veces, se han borrado %2 proyectos
+- planned	projectmanager	es-es	- planificado
+- re-planned	projectmanager	es-es	- replanificado
+0ngoing (0 < % < 100)	projectmanager	es-es	Saliente (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	es-es	un título descriptivo para el proyecto, y no debe estar vacío
+accounting	projectmanager	es-es	Cuentas
+accounting options	projectmanager	es-es	Opciones de cuentas
+accounting type	projectmanager	es-es	Tipo de cuentas
+actions	projectmanager	es-es	Acciones
+activity	projectmanager	es-es	Actividad
+add a new milestone	projectmanager	es-es	Añadir un nuevo hito
+add a new project	projectmanager	es-es	Añadir un proyecto nuevo
+add element	projectmanager	es-es	Añadir elemento
+add existing	projectmanager	es-es	Añadir existente
+add milestone	projectmanager	es-es	Añadir hito
+add or edit roles and their acl	projectmanager	es-es	Añadir o editar roles y sus ACL
+add price	projectmanager	es-es	Añadir precio
+add project	projectmanager	es-es	Añadir proyecto
+add project-elements	projectmanager	es-es	Añadir elementos de proyecto
+add this role	projectmanager	es-es	Añadir este rol
+allow users to change their working times	projectmanager	es-es	Permitir a los usuarios cambiar sus horas de trabajo
+allowed accounting types	projectmanager	es-es	Añadir tipos de cuenta
+allowed units	projectmanager	es-es	Unidades permitidas
+anonymous public	projectmanager	es-es	Anónimo público
+app.	projectmanager	es-es	Aplicación
+apply the changes	projectmanager	es-es	Aplicar los cambios
+archive	projectmanager	es-es	Archivar
+assistant	projectmanager	es-es	Asistente
+at which time do you start working on the given day.	projectmanager	es-es	La hora a la que se empieza a trabajar en el día indicado.
+availible	projectmanager	es-es	Disponible
+billable	projectmanager	es-es	Facturable
+bookable	projectmanager	es-es	Reservable
+budget	projectmanager	es-es	Presupuesto
+budget (no pricelist)	projectmanager	es-es	Presupuesto (sin lista de precios)
+budget and pricelist	projectmanager	es-es	Presupuesto y lista de precios
+by	projectmanager	es-es	por
+calculate budget by quantity (eg. time) and price	projectmanager	es-es	Calcular presupuesto por cantidad (p. ej. tiempo) y precio
+charset of file	projectmanager	es-es	Juego de caracteres del fichero
+charset of the above selected font	projectmanager	es-es	Juego de caracteres del tipo de letra seleccionado arriba
+check all	projectmanager	es-es	Comprobar todo
+close the window, discard the changes made	projectmanager	es-es	Cerrar la ventana, descartar los cambios
+constraints	projectmanager	es-es	Restricciones
+conversation between days and hours, default 8	projectmanager	es-es	conversación entre días y horas. Predeterminado: 8
+coordinator	projectmanager	es-es	Coordinador
+cost per time	projectmanager	es-es	Coste por tiempo
+create a new empty project or use a template	projectmanager	es-es	Crear un nuevo proyecto vacío o usar una plantilla
+create new links	projectmanager	es-es	Crear enlaces nuevos
+created	projectmanager	es-es	creado
+created a ganttchart from the checked projects	projectmanager	es-es	Se ha creado un gráfico Gantt a partir de los proyectos seleccionados
+csv-fieldname	projectmanager	es-es	Nombre de campo CSV
+csv-filename	projectmanager	es-es	Nombre de fichero CSV
+csv-import	common	es-es	Importar fichero CSV
+cumulated elements too	projectmanager	es-es	También los elementos acumulados
+custom fields	projectmanager	es-es	Campos personalizados
+customer title	projectmanager	es-es	Cargo del cliente
+datasource	projectmanager	es-es	Fuente de datos
+datasources too	projectmanager	es-es	también las fuentes de datos
+dates	projectmanager	es-es	Fechas
+default all and a selectbox to choose	projectmanager	es-es	predeterminar todo y una lista desplegable para elegir
+delete all checked projects	projectmanager	es-es	Borrar todos los proyectos seleccionados
+delete this milestone	projectmanager	es-es	Borrar este hito
+delete this price	projectmanager	es-es	Borrar este precio
+delete this project	projectmanager	es-es	Borrar este proyecto
+delete this project-element, does not remove the linked entry	projectmanager	es-es	Borrar este elemento de proyecto NO borra la entrada vinculada
+delete this role	projectmanager	es-es	Borrar este rol
+depth of display	projectmanager	es-es	Profundidad de visualización
+details of cumulated	projectmanager	es-es	Detalles de los acumulados
+details of subelements	projectmanager	es-es	Detalles de los subelementos
+do not use that entry as project-element	projectmanager	es-es	no usar esa entrada como elemento de proyecto
+done (100%)	projectmanager	es-es	Finalizado (100%)
+edit access, incl. editing budget and elements	projectmanager	es-es	editar acceso, incluyendo edición de presupuesto y elementos
+edit budget	projectmanager	es-es	Editar presupuesto
+edit milestone	projectmanager	es-es	Editar hito
+edit price	projectmanager	es-es	Editar precio
+edit project	projectmanager	es-es	Editar proyecto
+edit project-elements	projectmanager	es-es	Editar elementos del proyecto
+edit this milestone	projectmanager	es-es	Editar este hito
+edit this price	projectmanager	es-es	Editar este precio
+edit this project	projectmanager	es-es	Editar este proyecto
+edit this project-element	projectmanager	es-es	Editar este elemento de proyecto
+edit this role	projectmanager	es-es	Editar este rol
+elementlist	projectmanager	es-es	Lista de elementos
+elements of elements	projectmanager	es-es	Elementos de elementos
+elements that can't start before this one is finished	projectmanager	es-es	Elementos que no pueden comenzar antes de que éste esté terminado
+elements which have to be finished before this can start	projectmanager	es-es	Elementos que tienen que estar terminados antes de que éste pueda comenzar
+empty	projectmanager	es-es	Vacío
+empty for all	projectmanager	es-es	vacío para todo
+encode non-ascii	projectmanager	es-es	No codificar en ascii
+end before	projectmanager	es-es	Finalizar antes
+enddate	projectmanager	es-es	Fecha de finalización
+error: deleting price !!!	projectmanager	es-es	¡¡Error al borrar el precio!!
+error: deleting project !!!	projectmanager	es-es	¡¡Error: borrando proyecto!!
+error: deleting project-element !!!	projectmanager	es-es	¡¡Error: borrando elemento de proyecto!!
+error: deleting role !!!	projectmanager	es-es	¡¡Error: borrando rol!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	es-es	¡¡Error: el ID de proyecto ya existe!! Elija otro o deje que se genere uno dejando el campo vacío
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	es-es	ERROR: Se ha encontrado una recursión: El id %1 más de una vez en la ruta del proyecto, al construir el árbol del proyecto:
+error: saving milestone	projectmanager	es-es	Error: guardando hito
+error: saving role !!!	projectmanager	es-es	¡¡Error: guardando rol!!
+error: saving the price (%1) !!!	projectmanager	es-es	¡¡Error al guardar el precio (%1)!!
+error: saving the project (%1) !!!	projectmanager	es-es	¡¡Error: guardando el proyecto (%1)!!
+error: saving the project-element (%1) !!!	projectmanager	es-es	¡¡Error: guardando el elemento del proyecto!!
+everything recursive	projectmanager	es-es	Todo recursivo
+existing data will be overwrited if checked	projectmanager	es-es	Si se selecciona, los datos existentes se sobreescribirán
+existing links	projectmanager	es-es	Enlaces existentes
+exit without saving	projectmanager	es-es	Salir sin guardar
+fieldseparator	projectmanager	es-es	Separador de campos
+font	projectmanager	es-es	Tipo de letra
+font charset	projectmanager	es-es	Juego de caracteres del tipo de letra
+font style	projectmanager	es-es	Estilo del tipo de letra
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	es-es	Tipo de letra a usar en el diagrama de Gantt. Sólo los tipos de la familia Vera están incluidos en el Administrador de proyectos.
+fontfile '%1' not found!!!	projectmanager	es-es	No se encontró el fichero de tipo de letra '%1'
+free descriptiv text	projectmanager	es-es	Texto descriptivo libre
+from %1 to %2	projectmanager	es-es	desde %1 hasta %2
+full access	projectmanager	es-es	acceso total
+ganttchart	projectmanager	es-es	Diagrama Gantt
+ganttchart parameter	projectmanager	es-es	Parámetro de diagrama Gantt
+general	projectmanager	es-es	General
+general availibility	projectmanager	es-es	Disponibilidad general
+general pricelist	projectmanager	es-es	Lista de precios general
+global categories	projectmanager	es-es	Categorías globales
+h	projectmanager	es-es	h
+health	projectmanager	es-es	Salud
+hours	projectmanager	es-es	horas
+hours per workday	projectmanager	es-es	Horas por día de trabajo
+how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	es-es	Si se selecciona, también se borran los elementos de origen (p. ej, entradas InfoLog).
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	es-es	Si se selecciona, también se cambiará el estado de los elementos de origen (p. ej, entradas InfoLog).
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	es-es	Si ve entidades (p. ej. {) en el diagrama de Gantt, desactive esta opción.
+ignore that entry	projectmanager	es-es	ignorar esa entrada
+ignored	projectmanager	es-es	ignorado
+import	projectmanager	es-es	Importar
+last modified	projectmanager	es-es	última modificación
+leave it empty if you dont need a different customer title	projectmanager	es-es	dejar en blanco si no es necesario un cargo de cliente distinto
+leave it empty to have one generated	projectmanager	es-es	dejar en blanco para generar uno
+leave it empty, if identitcal to the time	projectmanager	es-es	dejar en blanco si es idéntico a la hora
+linked elements	projectmanager	es-es	Elementos vinculados
+links	projectmanager	es-es	Enlaces
+mainproject only	projectmanager	es-es	Sólo proyecto principal
+mainprojects	projectmanager	es-es	Proyectos principales
+members	projectmanager	es-es	Miembros
+milestone deleted	projectmanager	es-es	Se ha borrado el hito
+milestone saved	projectmanager	es-es	Se ha guardado el hito
+milestones	projectmanager	es-es	Hitos
+milestones before this element has to be finished	projectmanager	es-es	Hitos antes de que este elemento tenga que estar terminado
+modified	projectmanager	es-es	Modificado
+modified by	projectmanager	es-es	Modificado por
+necessary for project-elements doing that not automatic	projectmanager	es-es	necesario para elementos de proyecto que no hacen eso automáticamente
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	es-es	¡¡Las extensiones de PHP necesarias %1 no están cargadas y no se pueden cargar!!
+new	projectmanager	es-es	nuevo
+no accounting, only status	projectmanager	es-es	Sin cuentas, sólo estado
+no accounting, only times and status	projectmanager	es-es	Sin cuentas, sólo tiempos y estado
+no details	projectmanager	es-es	Sin detalles
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	es-es	¡¡Sin acceso de LECTURA a la fuente de datos: eliminar los valores sobreescritos sólo los vaciará!!
+no save necessary	projectmanager	es-es	No es necesario guardar
+nonactive	projectmanager	es-es	No activo
+not started (0%)	projectmanager	es-es	Sin iniciar (0%)
+not working	projectmanager	es-es	no está trabajando
+number of records to read (%1)	projectmanager	es-es	Número de registros a leer (%1)
+only this project	projectmanager	es-es	Sólo este proyecto
+overwrite the datasource	projectmanager	es-es	Sobreescribir la fuente de datos
+percentage the member is availible for projects	projectmanager	es-es	Porcentaje de disponibilidad del miembro para los proyectos
+percentage the member is availible for this project	projectmanager	es-es	Porcentaje de disponibilidad del miembro para este proyecto
+permission denied !!!	projectmanager	es-es	¡¡Permiso denegado!!
+planned	projectmanager	es-es	Planificado
+planned times	projectmanager	es-es	Tiempos planificados
+please download a recent version from %1 and install it in %2.	projectmanager	es-es	Por favor, descargue una versión reciente desde %1 e instálela en %2.
+price	projectmanager	es-es	Precio
+price / unit	projectmanager	es-es	Precio / unidad
+price deleted	projectmanager	es-es	Precio borrado
+price saved	projectmanager	es-es	Precio guardado
+pricelist	projectmanager	es-es	Lista de precios
+project availibility	projectmanager	es-es	Disponibilidad del proyecto
+project deleted	projectmanager	es-es	Se ha borrado el proyecto
+project id	projectmanager	es-es	ID del proyecto
+project members and roles	projectmanager	es-es	Miembros y roles del proyecto
+project overview	projectmanager	es-es	Descripción del proyecto
+project saved	projectmanager	es-es	Proyecto guardado
+project specific title, prices, ...	projectmanager	es-es	Precios, título, etc específicos del proyecto
+project-element deleted	projectmanager	es-es	Se ha borrado el elmento del proyecto
+project-element saved	projectmanager	es-es	Se ha guardado el elemento del proyecto
+project-elements	projectmanager	es-es	Elementos del proyecto
+projectlist	projectmanager	es-es	Lista de proyectos
+projectmanager	common	es-es	Administrador de proyectos
+projectmanager-fieldname	projectmanager	es-es	Administrador de proyectos - Nombre del campo
+projectmember	projectmanager	es-es	Miembro del proyecto
+quantity	projectmanager	es-es	Cantidad
+re-planned	projectmanager	es-es	re-planificado
+read access, incl. budget and adding elements	projectmanager	es-es	accesso de lectura, incluyendo el presupuesto y añadir elementos
+read access, no budget	projectmanager	es-es	acceso de lectura, sin presupuesto
+real end	projectmanager	es-es	Fin real
+real start	projectmanager	es-es	Comienzo real
+resources	projectmanager	es-es	Recursos
+role	projectmanager	es-es	Rol
+role deleted	projectmanager	es-es	Se ha borrado el rol
+role saved	projectmanager	es-es	Se ha guardado el rol
+roles	projectmanager	es-es	Roles
+save the changes made	projectmanager	es-es	Guardar los cambios hechos
+save this project element	projectmanager	es-es	Guardar este elemento del proyecto
+select a project	projectmanager	es-es	Seleccionar un proyecto
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	es-es	seleccionar una actividad si desea calcular el coste por cantidad (tiempo) y precio
+select multiple projects for a further action	projectmanager	es-es	Seleccionar múltiples proyectos para una acción posterior
+select the accounting types visible for users of projectmanager	projectmanager	es-es	seleccionar los tipos de cuentas visibles para los usuarios del administrador de proyectos
+select this project and show it's elements	projectmanager	es-es	Seleccionar este proyecto y mostrar sus elementos
+selectbox with %1	projectmanager	es-es	Lista con %1
+share	projectmanager	es-es	Compartir
+share on the whole project	projectmanager	es-es	Compartir en todo el proyecto
+share on the whole project in hours or percent, defaults to planned time	projectmanager	es-es	Compartir en todo el proyecto en horas o porcentaje. Por defecto, el tiempo planificado
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	es-es	Debe mostrar el administrador de proyectos los iconos de estado de la fuente de datos (p. ej. el registro de notas y tareas) o sólo una barra de progreso con el estado númerico (más rápido)
+show constraints and milestones	projectmanager	es-es	Mostrar restricciones e hitos
+show planned times instead of the real times	projectmanager	es-es	Mostrar tiempos planificados en vez de los reales
+show status icons of the datasources	projectmanager	es-es	Mostrar iconos de estado de las fuentes de datos
+show the project selection as	projectmanager	es-es	Mostrar la selección del proyecto como
+site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
+start after	projectmanager	es-es	Comenzar después de
+start working on %1	projectmanager	es-es	Comenzar a trabajar en %1
+start, end, category, ...	projectmanager	es-es	Inicio, fin, categoría...
+start- & enddate	projectmanager	es-es	Fecha de inicio y fin
+startdate	projectmanager	es-es	Fecha de inicio
+startrecord	projectmanager	es-es	Registro de inicio
+status filter	projectmanager	es-es	Filtro de estados
+style used for everything but elements. some fonts have only normal style.	projectmanager	es-es	Estilo utilizado para todo excepto los elementos. Algunos tipos de letra sólo tienen estilo normal.
+subelements	projectmanager	es-es	Subelementos
+subprojects	projectmanager	es-es	Subproyectos
+synchronise all	projectmanager	es-es	Sincronizar todo
+template	projectmanager	es-es	Plantilla
+template including elment-tree saved as new project	projectmanager	es-es	Se ha guardado la plantilla que incluye el árbol de elementos como un proyecto nuevo
+test import (show importable records <u>only</u> in browser)	projectmanager	es-es	Prueba de importar (mostrar registros importables <u>sólo</u> en el navegador)
+the charset depends on the font you want to use.	projectmanager	es-es	El juego de caracteres depende del tipo de letra que quiera usar.
+time	projectmanager	es-es	Tiempo
+times	projectmanager	es-es	Tiempos
+title must not be empty	projectmanager	es-es	El título no debe estar vacío
+to many might exceed your execution-time-limit	projectmanager	es-es	a cuánto puede exceder el tiempo límite de ejecución
+translation	projectmanager	es-es	Traducción
+tree with %1	projectmanager	es-es	Arbol con %1
+unit	projectmanager	es-es	Unidad
+unitprice	projectmanager	es-es	Precio por unidad
+used	projectmanager	es-es	usado
+valid since	projectmanager	es-es	Válido desde
+view ganttchart of this project	projectmanager	es-es	Ver diagrama de Gantt de este proyecto
+view milestone	projectmanager	es-es	Ver hito
+view price	projectmanager	es-es	Ver precio
+view project	projectmanager	es-es	Ver proyecto
+view project-elements	projectmanager	es-es	Ver elementos del proyecto
+view this element in %1	projectmanager	es-es	Ver este elemento en %1
+view this milestone	projectmanager	es-es	Ver este hito
+view this price	projectmanager	es-es	Ver este precio
+view this project	projectmanager	es-es	Ver este proyecto
+view this project-element	projectmanager	es-es	Ver este elemento del proyecto
+working duration on %1	projectmanager	es-es	Duración del trabajo en %1
+you can leave the date of the first price empty	projectmanager	es-es	puede dejar la fecha del primer precio en blanco
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	es-es	No tiene la versión %1 o superior de de JPGraph instalada. Se necesita para que el administrador de proyectos use gráficas Gantt.
+you need to select a project first	projectmanager	es-es	Necesita seleccionar un proyecto antes
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	es-es	La base de datos NO está actualizada (%1 en vez de %2). Por favor, ejecute %3setup%4 para actualizar la base de datos.
