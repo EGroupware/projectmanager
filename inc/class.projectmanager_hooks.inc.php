@@ -31,7 +31,7 @@ class projectmanager_hooks
 	 * Init our static properties
 	 *
 	 */
-	public function init_static()
+	public static function init_static()
 	{
 		self::$config = config::read('projectmanager');
 	}
@@ -394,3 +394,5 @@ class projectmanager_hooks
 		return $settings;
 	}
 }
+
+projectmanager_hooks::init_static();
