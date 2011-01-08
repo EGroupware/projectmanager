@@ -365,3 +365,26 @@ function projectmanager_upgrade1_6()
 {
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.8';
 }
+
+function projectmanager_upgrade1_8()
+{
+	$GLOBALS['phpgw_setup']->oProc->CreateTable('egw_pm_eroles',array(
+		'fd' => array(
+			'role_id' => array('type' => 'auto','nullable' => False),
+			'pm_id' => array('type' => 'int','precision' => '4','default' => '0'),
+			'role_title' => array('type' => 'varchar','precision' => '80','nullable' => False),
+			'role_description' => array('type' => 'varchar','precision' => '255'),
+		),
+		'pk' => array('role_id'),
+		'fk' => array(),
+		'ix' => array(),
+		'uc' => array()
+	));
+	$GLOBALS['egw_setup']->oProc->AddColumn('egw_pm_elements','pe_eroles',array(
+		'type' => 'varchar',
+		'precision' => '255'
+	));
+
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9';
+}
+

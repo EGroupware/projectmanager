@@ -130,6 +130,12 @@ class projectmanager_bo extends projectmanager_so
 	 * @var array
 	 */
 	var $tracking;
+	/**
+	 * User preferences
+	 *
+	 * @var array
+	 */
+	var $prefs;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -144,6 +150,8 @@ class projectmanager_bo extends projectmanager_so
 
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
+		
+		$this->prefs =& $GLOBALS['egw_info']['user']['preferences']['projectmanager'];
 
 		parent::__construct($pm_id);
 
@@ -905,7 +913,7 @@ class projectmanager_bo extends projectmanager_so
 	 */
 	function date_add($start,$time,$uid)
 	{
-		// we cache the user-prefs with the working times globaly, as they are expensive to read
+		// we cache the user-prefs with the working times globally, as they are expensive to read
 		$user_prefs =& $GLOBALS['egw_info']['projectmanager']['user_prefs'][$uid];
 		if (!is_array($user_prefs))
 		{

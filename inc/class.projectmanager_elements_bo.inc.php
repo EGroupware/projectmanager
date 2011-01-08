@@ -46,6 +46,18 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 */
 	var $milestones;
 	/**
+	 * Instance of the soeroles-class
+	 *
+	 * @var soeroles
+	 */
+	var $eroles;
+	/**
+	 * List of applications currently supported by eroles
+	 *
+	 * @var erole_apps
+	 */
+	var $erole_apps = array('addressbook');
+	/**
 	 * Instances of the different datasources
 	 *
 	 * @var array
@@ -60,7 +72,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		'pe_synced','pe_modified','pe_planned_start','pe_real_start','pe_planned_end','pe_real_end',
 	);
 	/**
-	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time
+	 * Offset in seconds between user and server-time,	it need to be add to a server-time to get the user-time
 	 * or substracted from a user-time to get the server-time
 	 *
 	 * @var int
@@ -82,7 +94,13 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		'used'    => array('new','regular'),
 		'new'     => 'new',
 		'ignored' => 'ignore',
-	);
+	);	
+	/**
+	 * User preferences
+	 *
+	 * @var array
+	 */
+	var $prefs;
 	/**
 	 * Or'ed id's of the values set by the last call to the updated method
 	 *
@@ -105,10 +123,12 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 		$this->project = new projectmanager_bo($pm_id);
 		$this->config =& $this->project->config;
+		$this->prefs = & $this->project->prefs;
 
 		$this->project->instanciate('constraints,milestones');
 		$this->constraints =& $this->project->constraints;
 		$this->milestones  =& $this->project->milestones;
+		$this->eroles	   = new projectmanager_eroles_so($pm_id);
 
 		$this->project_summary = $this->summary();
 

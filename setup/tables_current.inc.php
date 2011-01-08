@@ -83,7 +83,8 @@ $phpgw_baseline = array(
 			'pe_resources' => array('type' => 'varchar','precision' => '255'),
 			'pe_details' => array('type' => 'text'),
 			'pe_planned_quantity' => array('type' => 'float','precision' => '8'),
-			'pe_used_quantity' => array('type' => 'float','precision' => '8')
+			'pe_used_quantity' => array('type' => 'float','precision' => '8'),
+			'pe_eroles' => array('type' => 'varchar','precision' => '255')
 		),
 		'pk' => array('pm_id','pe_id'),
 		'fk' => array(),
@@ -165,6 +166,18 @@ $phpgw_baseline = array(
 			'pl_billable' => array('type' => 'int','precision' => '2','default' => '1')
 		),
 		'pk' => array('pm_id','pl_id','pl_validsince'),
+		'fk' => array(),
+		'ix' => array(),
+		'uc' => array()
+	),
+	'egw_pm_eroles' => array(
+		'fd' => array(
+			'role_id' => array('type' => 'auto','nullable' => False),
+			'pm_id' => array('type' => 'int','precision' => '4','default' => '0'),
+			'role_title' => array('type' => 'varchar','precision' => '80','nullable' => False),
+			'role_description' => array('type' => 'varchar','precision' => '255')
+		),
+		'pk' => array('role_id'),
 		'fk' => array(),
 		'ix' => array(),
 		'uc' => array()

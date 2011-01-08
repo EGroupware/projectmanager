@@ -183,7 +183,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$this->project_summary['pe_total_shares'] += round((string) $content['pe_share'] !== '' ? $content['pe_share'] : $default_share);
 				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, default_share=$default_share, content[pe_share]={$content['pe_share']}</p>\n";
 
-				foreach(array('pe_status','cat_id','pe_remark','pe_constraints','pe_share') as $name)
+				foreach(array('pe_status','cat_id','pe_remark','pe_constraints','pe_share','pe_eroles') as $name)
 				{
 					if ($name == 'pe_constraints')
 					{
@@ -200,7 +200,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 					if ($content[$name] != $this->data[$name] ||
-						$name == 'pe_share' && $content[$name] !== $this->data[$name])	// for pe_share we differ between 0 and empty!
+						($name == 'pe_share' && $content[$name] !== $this->data[$name]) ||
+						($name == 'pe_eroles' && $content[$name] !== $this->data[$name]))	// for pe_share and pe_eroles we differ between 0 and empty!
 					{
 						//echo "need to update $name as content[$name] changed to '".print_r($content[$name],true)."' != '".print_r($this->data[$name],true)."'<br>\n";
 						$this->data[$name] = $content[$name];
@@ -334,7 +335,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			form['exec[pe_planned_budget]'].value = form['exec[pe_planned_quantity]'].value.replace(/,/,'.') * form['exec[pe_unitprice]'].value.replace(/,/,'.');
 			if (form['exec[pe_planned_budget]'].value == '0') form['exec[pe_planned_budget]'].value = '';
 		}";
-		$tabs = 'dates|times|budget|constraints|resources|details';
+		$tabs = 'dates|times|budget|constraints|resources|details|eroles';
 		if ($this->data['pe_replanned_time'])
 		{
 			$planned_quantity_blur = $this->data['pe_replanned_time'] / 60;
@@ -391,7 +392,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$readonlys = array(
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
+			'eroles_edit' => $view,
 		);
+		// display eroles tab only for supported erole applications
+		$readonlys[$tabs]['eroles'] = !(in_array($this->data['pe_app'],$this->erole_apps));
 		// disable the times tab, if accounting-type status
 		$readonlys[$tabs]['times'] = $this->project->data['pm_accounting_type'] == 'status';
 		// check if user has the necessary rights to view or edit the budget
@@ -581,6 +585,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function index($content=null,$msg='')
 	{
+		egw_framework::validate_file('.','projectmanagerElements','projectmanager');
+
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_elements_ui::index(".print_r($content,true).",$msg)");
 
 		// store the current project (only for index, as popups may be called by other parent-projects)
@@ -619,6 +625,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					lang('Error: deleting project-element !!!');
 			}
 		}
+		elseif (strlen($content['action']) > 0)
+		{
+			$this->action($content['action'],$msg);			
+		}
 		$content = array(
 			'nm' => $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager'),
 			'msg'      => $msg,
@@ -639,7 +649,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					4 => 'Cumulated elements too',
 					5 => 'Details of cumulated',
 				),
-				'col_filter' => array('pe_resources' => 0),	// default value, to suppress loop
+				'col_filter' => array('pe_resources' => null),	// default value, to suppress loop
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time',
@@ -669,12 +679,162 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'to_app'   => 'projectmanager',
 			'add_app'  => 'infolog',
 		);
+		
+		$sel_options=array();
+		if ($this->prefs['document_dir'])
+		{
+			$sel_options['action'][lang('Insert in document').':'] = $this->get_document_actions();
+			$sel_options['action'][lang('Create serial letter').':'] = $this->get_document_actions('serial_letter');
+		}
+		
 		// set id for automatic linking via quick add
 		$GLOBALS['egw_info']['flags']['currentid'] = $this->pm_id;
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
-		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index',$content,'',$readonlys);
+		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index',$content,$sel_options,$readonlys);
 	}
+	
+	/**
+	 * Returning document actions / files from the document_dir
+	 *
+	 * @param string $prefix='document' or 'serial_letter' the action prefix, defaults to 'document'
+	 * @return array
+	 */
+	function get_document_actions($prefix='document')
+	{
+		if (!$this->prefs[$prefix.'_dir']) return array();
+		
+		if (!is_array($actions = egw_session::appsession($prefix.'_actions','projectmanager')))
+		{
+			$actions = array();
+			if (($files = egw_vfs::find($this->prefs[$prefix.'_dir'],array('need_mime'=>true),true)))
+			{
+				foreach($files as $file)
+				{
+					// return only the mime-types we support
+					if (!projectmanager_merge::is_implemented($file['mime'],substr($file['name'],-4))) continue;
+
+					$actions[$prefix.'-'.$file['name']] = $file['name'];
+				}
+			}
+			egw_session::appsession($prefix.'_actions','projectmanager',$actions);
+		}
+		return $actions;
+	}
+	
+	/**
+	 * apply an action in element list
+	 *
+	 * @param string/int $action 'document' or 'serial_letter' only at the moment
+	 * @param string $msg to give back for the view or index
+	 * @return boolean true on success, false otherwise
+	 */
+	function action($action,&$msg)
+	{
+		if (substr($action,0,9) == 'document-')
+		{
+			$document = substr($action,9);
+			$action = 'document';
+		} else if (substr($action,0,14) == 'serial_letter-')
+		{
+			$document = substr($action,14);
+			$action = 'serial_letter';
+		}
+
+		switch($action)
+		{
+			case 'document':
+				$eroles = array();
+				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
+				{
+					if(!empty($element['pe_eroles']))
+					{
+						// one element could have multiple eroles
+						foreach(explode(',',$element['pe_eroles']) as $erole_id)
+						{
+							$eroles[] = array(
+								'app' 		=> $element['pe_app'],
+								'app_id' 	=> $element['pe_app_id'],
+								'erole_id'	=> $erole_id,
+							);
+						}
+					}
+				}
+				if(empty($eroles))
+				{
+					$msg = lang('Not enough element roles defined to create a document');
+					return false;
+				}
+				$msg = $this->download_document(array(0),$document,$eroles);
+				return true;
+			case 'serial_letter':
+				$contacts = array();
+				$eroles = array();
+				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
+				{
+					if(!empty($element['pe_eroles']))
+					{
+						if($element['pe_app'] == 'addressbook')
+						{
+							// add contact
+							$contacts[] = $element['pe_app_id'];
+						}
+						// one element could have multiple eroles
+						foreach(explode(',',$element['pe_eroles']) as $erole_id)
+						{
+							$eroles[] = array(
+								'app' 		=> $element['pe_app'],
+								'app_id' 	=> $element['pe_app_id'],
+								'erole_id'	=> $erole_id,
+							);
+						}
+					}
+				}
+				if(empty($eroles))
+				{
+					$msg = lang('Not enough element roles defined to create a serial letter');
+					return false;
+				}
+				if(empty($contacts))
+				{
+					$msg = lang('Could not extract enough contacts to create a serial letter');
+					return false;
+				}
+				$msg = $this->download_document(array_unique($contacts),$document,$eroles,$action);
+				return true;
+
+			default:
+				return false;
+		}
+		return false;
+	}
+	
+		
+	/**
+	 * Download a document with inserted contact(s)
+	 *
+	 * @param array $ids contact-ids
+	 * @param string $document vfs-path of document
+	 * @param array $eroles=null array with contact id => erole id pair - used to assign eroles to contacts
+	 * @param string $prefix='document' or 'serial_letter' prefix for the document dir, defaults to 'document'
+	 * @return string error-message or error, otherwise the function does NOT return!
+	 */
+	function download_document($ids,$document='',$eroles=null,$prefix='document')
+	{
+		
+		$document = $this->prefs[$prefix.'_dir'].'/'.$document;
+		
+		if (!@egw_vfs::stat($document))
+		{
+			return lang("Document '%1' does not exist or is not readable for you!",$document);
+		}
+		
+		require_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_merge.inc.php');
+		$document_merge = new projectmanager_merge();
+
+		return $document_merge->download($document,$ids,$eroles);
+	}
+
 }
