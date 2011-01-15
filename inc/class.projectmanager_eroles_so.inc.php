@@ -34,6 +34,10 @@ class projectmanager_eroles_so extends so_sql
 		{
 			$this->pm_id = (int) $pm_id;
 		}
+		elseif($GLOBALS['egw']->session->appsession('pm_id','projectmanager') !== false)
+		{
+			$this->pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+		}
 		elseif(isset($_REQUEST['pm_id']))
 		{
 			$this->pm_id = (int) $_REQUEST['pm_id'];
@@ -42,6 +46,10 @@ class projectmanager_eroles_so extends so_sql
 		if ((int) $pe_id)
 		{
 			$this->pe_id = (int) $pe_id;
+		}
+		elseif($GLOBALS['egw']->session->appsession('pe_id','projectmanager') !== false)
+		{
+			$this->pe_id = (int) $GLOBALS['egw']->session->appsession('pe_id','projectmanager');
 		}
 		elseif(isset($_REQUEST['pe_id']))
 		{
