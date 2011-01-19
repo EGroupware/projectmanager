@@ -417,8 +417,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$readonlys['save'] = $readonlys['apply'] = true;
 			$readonlys['pe_constraints[start]'] = $readonlys['pe_constraints[end]'] = $readonlys['pe_constraints[milestone]'] = true;
 		}
-		// store the element id in appsession
-		$GLOBALS['egw']->session->appsession('pe_id','projectmanager',$this->data['pe_id']);
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project-elements') : lang('Edit project-elements')) : lang('Add project-elements'));
 		$this->tpl->read('projectmanager.elements.edit');

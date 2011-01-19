@@ -30,32 +30,40 @@ class projectmanager_eroles_so extends so_sql
 	{
 		parent::__construct('projectmanager','egw_pm_eroles');
 
+		// try to get pm_id from various sources
 		if ((int) $pm_id)
 		{
 			$this->pm_id = (int) $pm_id;
-		}
-		elseif($GLOBALS['egw']->session->appsession('pm_id','projectmanager') !== false)
-		{
-			$this->pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
 		}
 		elseif(isset($_REQUEST['pm_id']))
 		{
 			$this->pm_id = (int) $_REQUEST['pm_id'];
 		}
+		elseif(isset($_REQUEST['etemplate_exec_id']))
+		{
+			if($etemplate_request = etemplate_request::read($_REQUEST['etemplate_exec_id']))
+			{
+				$this->pm_id = $etemplate_request->content['pm_id'];
+			}
+		}
 		
+		// try to get pe_id from various sources
 		if ((int) $pe_id)
 		{
 			$this->pe_id = (int) $pe_id;
-		}
-		elseif($GLOBALS['egw']->session->appsession('pe_id','projectmanager') !== false)
-		{
-			$this->pe_id = (int) $GLOBALS['egw']->session->appsession('pe_id','projectmanager');
 		}
 		elseif(isset($_REQUEST['pe_id']))
 		{
 			$this->pe_id = (int) $_REQUEST['pe_id'];
 		}
-
+		elseif(isset($_REQUEST['etemplate_exec_id']))
+		{
+			if(is_object($etemplate_request) || 
+				($etemplate_request = etemplate_request::read($_REQUEST['etemplate_exec_id'])))
+			{
+				$this->pe_id = $etemplate_request->content['pe_id'];
+			}
+		}
 	}
 
 	/**
@@ -79,6 +87,8 @@ class projectmanager_eroles_so extends so_sql
 	public function get_free_eroles()
 	{
 		$free_eroles = array();
+		if(!isset($this->pm_id)) return $free_eroles;
+		
 		if($project_eroles = parent::search(array('pm_id' => $this->pm_id),false,'role_title'))
 		{
 			$free_eroles = array_merge($free_eroles, $project_eroles);
@@ -126,5 +136,17 @@ class projectmanager_eroles_so extends so_sql
 	{
 		$erole = parent::read($role_id);
 		return $erole['role_title'];
+	}
+	
+	/**
+	 * checks if a role is global
+	 * 
+	 * @param int $role_id
+	 * @return bool true or false
+	 */
+	public function is_global($role_id)
+	{
+		$erole = parent::read($role_id);
+		return $erole['pm_id'] > 0 ? false : true;
 	}
 }
