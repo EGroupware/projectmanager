@@ -22,13 +22,15 @@ class projectmanager_widget
 	 */
 	var $public_functions = array(
 		'pre_process' => True,
+		'post_process' => True,
 	);
 	/**
 	 * @var array $human_name availible extensions and there names for the editor
 	 */
 	var $human_name = array(
-		'projectmanager-select'    => 'Select Project',
-		'projectmanager-pricelist' => 'Select Price',
+		'projectmanager-select'			=> 'Select Project',
+		'projectmanager-pricelist'		=> 'Select Price',
+		'projectmanager-select-erole'  	=> 'Select Element role',
 	);
 
 	/**
@@ -64,8 +66,10 @@ class projectmanager_widget
 			$value = '';
 			return false;
 		}
+
 		$extension_data['type'] = $cell['type'];
 
+		$readonly = $cell['readonly'] || $readonlys;
 		switch ($cell['type'])
 		{
 			case 'projectmanager-select':
@@ -122,6 +126,44 @@ class projectmanager_widget
 
 				if (!$cell['help']) $cell['help'] = /*lang(*/ 'Select a price' /*)*/;
 				break;
+				
+			case 'projectmanager-select-erole': // $type2: extraStyleMultiselect
+				list($rows,$type,$type2) = explode(',',$cell['size']);
+				$eroles = new projectmanager_eroles_so();
+				if ($readonly)
+				{
+					$cell['no_lang'] = True;
+					if ($value)
+					{
+						if (!is_array($value)) $value = explode(',',$value);
+						foreach($value as $key => $id)
+						{
+							if ($id && ($name = $eroles->id2title($id)))
+							{
+								$cell['sel_options'][$id] = $name.($eroles->is_global($id) ? ' ('.lang('Global').')' : '');
+							}
+							else
+							{
+								unset($value[$key]);	// remove not (longer) existing or inaccessible eroles
+							}
+						}
+					}
+					break;
+				}
+				
+				foreach($eroles->get_free_eroles() as $id => $data)
+				{
+					$cell['sel_options'][$data['role_id']] = array(
+						'label' => $data['role_title'].($eroles->is_global($data['role_id']) ? ' ('.lang('Global').')' : ''),
+						'title' => $data['role_description'],
+					);
+				}
+				
+				$cell['size'] = $rows.($type2 ? ','.$type2 : '');
+				$cell['no_lang'] = True;
+				unset($rows,$type,$type2);
+				break;
+				
 		}
 		$cell['no_lang'] = True;
 		$cell['type'] = 'select';
@@ -131,4 +173,37 @@ class projectmanager_widget
 		}
 		return True;	// extra Label Ok
 	}
+	
+	/**
+	 * postprocessing method, called after the submission of the form
+	 *
+	 * It has to copy the allowed/valid data from $value_in to $value, otherwise the widget
+	 * will return no data (if it has a preprocessing method). The framework insures that
+	 * the post-processing of all contained widget has been done before.
+	 *
+	 * @param string $name form-name of the widget
+	 * @param mixed &$value the extension returns here it's input, if there's any
+	 * @param mixed &$extension_data persistent storage between calls or pre- and post-process
+	 * @param boolean &$loop can be set to true to request a re-submision of the form/dialog
+	 * @param object &$tmpl the eTemplate the widget belongs too
+	 * @param mixed &value_in the posted values (already striped of magic-quotes)
+	 * @return boolean true if $value has valid content, on false no content will be returned!
+	 */
+	function post_process($name,&$value,&$extension_data,&$loop,&$tmpl,$value_in)
+	{
+		switch ($extension_data['type'])
+		{
+			case 'projectmanager-select-erole':
+				$value = null;
+				if(is_array($value_in)) $value = implode(',',$value_in);
+				break;
+			// fall through
+			default:
+				$value = $value_in;
+				break;
+		}
+		//echo "<p>select_widget::post_process('$name',,'$extension_data',,,'$value_in'): value='$value', is_null(value)=".(int)is_null($value)."</p>\n";
+		return true;
+	}
+
 }
