@@ -11,6 +11,8 @@
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: class.projectmanager_eroles_ui.inc.php 27222 2009-06-08 16:21:14Z jaytraxx $
  */
+ 
+define('EGW_ACL_PROJECT_EROLES',EGW_ACL_EDIT);
 
 /**
  * ProjectManager UI: eRoles
@@ -57,6 +59,17 @@ class projectmanager_eroles_ui extends projectmanager_bo
 		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
 
 		$only = !!$pm_id;
+		if (!($project_rights = $this->check_acl(EGW_ACL_PROJECT_EROLES,$pm_id)) || !$this->is_admin)
+		{
+			$only = $project_rights ? 1 : 0;
+			$readonlys['1[pm_id]'] = true;
+
+			if (!$project_rights && !$this->is_admin)
+			{
+				$readonlys['edit'] = $readonlys['apply'] = true;
+			}
+		}
+
 		$erole_to_edit = array('pm_id' => $only);
 		$js = 'window.focus();';
 
@@ -73,7 +86,7 @@ class projectmanager_eroles_ui extends projectmanager_bo
 					'role_id'          => (int) $content[1]['role_id'],
 					'role_title'       => $content[1]['role_title'],
 					'role_description' => $content[1]['role_description'],
-					'pm_id'            => $content[1]['pm_id'] == false ? 0 : $pm_id,
+					'pm_id'            => $content[1]['pm_id'] || !$this->is_admin ? $pm_id : 0,
 				);
 				if ($this->eroles->save($erole) == 0)
 				{
