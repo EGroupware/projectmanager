@@ -817,13 +817,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 *
 	 * @param array $ids contact-ids
 	 * @param string $document vfs-path of document
-	 * @param array $eroles=null array with contact id => erole id pair - used to assign eroles to contacts
+	 * @param array $eroles=null element roles with keys app, app_id and erole_id
 	 * @param string $prefix='document' or 'serial_letter' prefix for the document dir, defaults to 'document'
 	 * @return string error-message or error, otherwise the function does NOT return!
 	 */
 	function download_document($ids,$document='',$eroles=null,$prefix='document')
 	{
-		
 		$document = $this->prefs[$prefix.'_dir'].'/'.$document;
 		
 		if (!@egw_vfs::stat($document))
@@ -833,8 +832,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		
 		require_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_merge.inc.php');
 		$document_merge = new projectmanager_merge();
+		$document_merge->set_eroles($eroles);
 
-		return $document_merge->download($document,$ids,$eroles);
+		return $document_merge->download($document,$ids);
 	}
 
 }

@@ -22,6 +22,13 @@ class projectmanager_merge extends bo_merge
 	 * @var array
 	 */
 	var $public_functions = array('show_replacements' => true);
+	
+	/**
+	 * Element roles - array with keys app, app_id and erole_id
+	 *
+	 * @var array
+	 */
+	var $eroles = null;
 
 	/**
 	 * Constructor
@@ -38,10 +45,9 @@ class projectmanager_merge extends bo_merge
 	 *
 	 * @param int $id id of entry
 	 * @param string &$content=null content to create some replacements only if they are in use
-	 * @param array $eroles=null element roles with keys app, app_id and erole_id
 	 * @return array|boolean
 	 */
-	protected function get_replacements($id,&$content=null,$eroles=null)
+	protected function get_replacements($id,&$content=null)
 	{
 		$replacements = array();
 		
@@ -57,14 +63,15 @@ class projectmanager_merge extends bo_merge
 		//}
 		
 		// further replacements are made by eroles (if given)
-		if(is_array($eroles))
+		if(!empty($this->eroles) && is_array($this->eroles))
 		{			
 			$projectmanager_eroles_so = new projectmanager_eroles_so();
-			foreach($eroles as $erole)
+			foreach($this->eroles as $erole)
 			{
 				switch($erole['app']) {
 					case 'addressbook':
-						if($replacement = $this->contact_replacements($erole['app_id'],'erole/'.$projectmanager_eroles_so->id2title($erole['erole_id'])))						{
+						if($replacement = $this->contact_replacements($erole['app_id'],'erole/'.$projectmanager_eroles_so->id2title($erole['erole_id'])))
+						{
 							$replacements += $replacement;
 						}
 						break;
@@ -77,6 +84,20 @@ class projectmanager_merge extends bo_merge
 		}
 		
 		return empty($replacements) ? false : $replacements;
+	}
+	
+	/**
+	 * Set element roles for merging
+	 *
+	 * @param array $eroles element roles with keys app, app_id and erole_id
+	 * @return boolean true on success
+	 */
+	public function set_eroles($eroles)
+	{
+		if(empty($eroles)) return false;
+		
+		$this->eroles = $eroles;
+		return true;
 	}
 
 	/**
