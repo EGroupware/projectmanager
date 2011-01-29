@@ -388,3 +388,15 @@ function projectmanager_upgrade1_8()
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9';
 }
 
+
+function projectmanager_upgrade1_9()
+{
+	$GLOBALS['egw_setup']->oProc->AddColumn('egw_pm_eroles','role_multi',array(
+		'type' => 'bool',
+		'nullable' => False,
+		'default' => False
+	));
+
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.001';
+}
+

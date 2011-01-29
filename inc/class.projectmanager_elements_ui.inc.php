@@ -831,7 +831,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		
 		require_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_merge.inc.php');
-		$document_merge = new projectmanager_merge();
+		$document_merge = new projectmanager_merge($this->pm_id);
 		$document_merge->set_eroles($eroles);
 
 		return $document_merge->download($document,$ids);

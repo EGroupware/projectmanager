@@ -83,10 +83,11 @@ class projectmanager_eroles_ui extends projectmanager_bo
 			else
 			{
 				$erole = array(
-					'role_id'          => (int) $content[1]['role_id'],
-					'role_title'       => $content[1]['role_title'],
-					'role_description' => $content[1]['role_description'],
-					'pm_id'            => $content[1]['pm_id'] || !$this->is_admin ? $pm_id : 0,
+					'role_id'			=> (int) $content[1]['role_id'],
+					'pm_id'				=> $content[1]['pm_id'] || !$this->is_admin ? $pm_id : 0,
+					'role_title'		=> $content[1]['role_title'],
+					'role_description'	=> $content[1]['role_description'],
+					'role_multi'		=> $content[1]['role_multi'],
 				);
 				if ($this->eroles->save($erole) == 0)
 				{

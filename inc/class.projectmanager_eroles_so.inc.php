@@ -117,6 +117,7 @@ class projectmanager_eroles_so extends so_sql
 		// remove used eroles from array 
 		foreach($free_eroles as $id => $erole)
 		{
+			if($erole['role_multi'] == true) continue; // ignore multi assignable eroles
 			if(in_array($erole['role_id'],$used_eroles))
 			{
 				unset($free_eroles[$id]);
@@ -139,14 +140,27 @@ class projectmanager_eroles_so extends so_sql
 	}
 	
 	/**
-	 * checks if a role is global
+	 * creates a user readable string of the
+	 * eroles global and multi assignable flags
 	 * 
 	 * @param int $role_id
-	 * @return bool true or false
+	 * @return string
 	 */
-	public function is_global($role_id)
+	public function get_info($role_id)
 	{
 		$erole = parent::read($role_id);
-		return $erole['pm_id'] > 0 ? false : true;
+		$flags = array();
+		
+		if($erole['pm_id'] == 0)
+		{
+			$flags[] = lang('global');
+		}
+		if($erole['role_multi'] == true)
+		{
+			$flags[] = lang('multi assignments');
+		}
+		
+		return !empty($flags) ? ' ('.ucfirst(implode(', ', $flags)).')' : '';
 	}
+	
 }

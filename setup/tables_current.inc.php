@@ -175,7 +175,8 @@ $phpgw_baseline = array(
 			'role_id' => array('type' => 'auto','nullable' => False),
 			'pm_id' => array('type' => 'int','precision' => '4','default' => '0'),
 			'role_title' => array('type' => 'varchar','precision' => '80','nullable' => False),
-			'role_description' => array('type' => 'varchar','precision' => '255')
+			'role_description' => array('type' => 'varchar','precision' => '255'),
+			'role_multi' => array('type' => 'bool','nullable' => False,'default' => False)
 		),
 		'pk' => array('role_id'),
 		'fk' => array(),

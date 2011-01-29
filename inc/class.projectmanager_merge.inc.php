@@ -7,6 +7,7 @@
  * @author Christian Binder <christian-AT-jaytraxx.de>
  * @package projectmanager
  * @copyright (c) 2007-9 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2011 by Christian Binder <christian-AT-jaytraxx.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: class.projectmanager_merge.inc.php 30377 2010-09-27 19:35:10Z jaytraxx $
  */
@@ -24,6 +25,27 @@ class projectmanager_merge extends bo_merge
 	var $public_functions = array('show_replacements' => true);
 	
 	/**
+	 * Id of current project
+	 *
+	 * @var int
+	 */
+	var $pm_id = null;
+	
+	/**
+	 * Instance of the projectmanager_bo class
+	 *
+	 * @var projectmanager_bo
+	 */
+	var $projectmanager_bo;
+	
+	/**
+	 * List of projectmanager fields which can be used for merging
+	 *
+	 * @var array
+	 */
+	var $projectmanager_fields = array();
+	
+	/**
 	 * Element roles - array with keys app, app_id and erole_id
 	 *
 	 * @var array
@@ -33,11 +55,44 @@ class projectmanager_merge extends bo_merge
 	/**
 	 * Constructor
 	 *
+	 * @param int $pm_id=null id of current project
 	 * @return projectmanager_merge
 	 */
-	function __construct()
+	function __construct($pm_id=null)
 	{
 		parent::__construct();
+		if(isset($pm_id) && $pm_id > 0)
+		{
+			$this->pm_id = $pm_id;
+			$this->projectmanager_bo = new projectmanager_bo($pm_id);
+		}
+		
+		$this->projectmanager_fields = array(
+			'pm_id'					=> lang('Project ID'),
+			'pm_number'				=> lang('Project number'),
+			'pm_title'				=> lang('Title'),
+			'pm_description'		=> lang('Description'),
+			'pm_creator'			=> lang('Project creator'),
+			'pm_created'			=> lang('Creation date and time'),
+			'pm_modifier'			=> lang('Project modifier'),
+			'pm_modified'			=> lang('Modified date and time'),
+			'pm_planned_start'		=> lang('Planned start date and time'),
+			'pm_planned_end'		=> lang('Planned end date and time'),
+			'pm_real_start'			=> lang('Real start date and time'),
+			'pm_real_end'			=> lang('Real end date and time'),
+			'cat_id'				=> lang('Project category'),
+			'pm_access'				=> lang('Project access (e.g. public)'),
+			'pm_priority'			=> lang('Project priority'),
+			'pm_status'				=> lang('Project status'),
+			'pm_completion'			=> lang('Project completion (e.g. 100%)'),
+			'pm_used_time'			=> lang('Used time'),
+			'pm_planned_time'		=> lang('Planned time'),
+			'pm_replanned_time'		=> lang('Re-planned time'),
+			'pm_used_budget'		=> lang('Used budget'),
+			'pm_planned_budget'		=> lang('Planned budget'),
+			'pm_accounting_type'	=> lang('Accounting type'),
+			'user_timezone_read'	=> lang('Timezone'),
+		);
 	}
 
 	/**
@@ -56,11 +111,11 @@ class projectmanager_merge extends bo_merge
 			$replacements += $this->contact_replacements($id);
 		}
 		
-		// TODO: replace projectmanager content
-		//if (!(strpos($content,'$$projectmanager/') === false))
-		//{
-			//$replacements += $this->projectmanager_replacements();
-		//}
+		// replace projectmanager content
+		if (isset($this->pm_id) && $this->pm_id > 0)
+		{
+			$replacements += $this->projectmanager_replacements($this->pm_id);
+		}
 		
 		// further replacements are made by eroles (if given)
 		if(!empty($this->eroles) && is_array($this->eroles))
@@ -75,6 +130,16 @@ class projectmanager_merge extends bo_merge
 							$replacements += $replacement;
 						}
 						break;
+					case 'infolog':
+						if(!is_object($infolog_merge))
+						{
+							$infolog_merge = new infolog_merge();
+						}
+						if($replacement = $infolog_merge->infolog_replacements($erole['app_id'],'erole/'.$projectmanager_eroles_so->id2title($erole['erole_id'])))
+						{
+							$replacements += $replacement;
+						}
+						break;
 					default:
 						// app not supported
 						break;
@@ -84,6 +149,59 @@ class projectmanager_merge extends bo_merge
 		}
 		
 		return empty($replacements) ? false : $replacements;
+	}
+	
+	/**
+	 * Return replacements for a project
+	 *
+	 * @param int|array $project project-array or id
+	 * @param string $prefix='' prefix like eg. 'user'
+	 * @return array
+	 */
+	public function projectmanager_replacements($project,$prefix='')
+	{
+		if (!is_array($project))
+		{
+			$project = $this->projectmanager_bo->read($project);
+		}
+		if (!is_array($project)) return array();
+
+		$replacements = array();
+		foreach(array_keys($project) as $name)
+		{
+			if(!isset($this->projectmanager_fields[$name])) continue; // not a supported field
+			
+			$value = $project[$name];
+			switch($name)
+			{
+				case 'pm_created': case 'pm_modified':
+				case 'pm_planned_start': case 'pm_planned_end':
+				case 'pm_real_start': case 'pm_real_end':
+					$value = $this->format_datetime($value);
+					break;
+				case 'pm_creator': case 'pm_modifier':
+					$value = common::grab_owner_name($value);
+					break;
+				case 'cat_id':
+					if ($value)
+					{
+						// if cat-tree is displayed, we return a full category path not just the name of the cat
+						$use = $GLOBALS['egw_info']['server']['cat_tab'] == 'Tree' ? 'path' : 'name';
+						$cats = array();
+						foreach(is_array($value) ? $value : explode(',',$value) as $cat_id)
+						{
+							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id,$use);
+						}
+						$value = implode(', ',$cats);
+					}
+					break;
+			}
+			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
+		}
+		// TODO: set custom fields
+		// ...
+		
+		return $replacements;
 	}
 	
 	/**
@@ -111,11 +229,22 @@ class projectmanager_merge extends bo_merge
 		common::egw_header();
 
 		echo "<table width='90%' align='center'>\n";
+		
+		$n = 0;
+		echo '<tr><td colspan="4"><h3>'.lang('Projectmanager fields:')."</h3></td></tr>";
+		foreach($this->projectmanager_fields as $name => $label)
+		{
+			if (!($n&1)) echo '<tr>';
+			echo '<td>$$'.$name.'$$</td><td>'.$label.'</td>';
+			if ($n&1) echo "</tr>\n";
+			$n++;
+		}
+		
+		
 		if($_GET['serial_letter'] == 'true')
 		{
-			echo '<tr><td colspan="4"><h3>'.lang('Contact fields for serial letters:')."</h3></td></tr>";
-
 			$n = 0;
+			echo '<tr><td colspan="4"><h3>'.lang('Contact fields for serial letters:')."</h3></td></tr>";
 			foreach($this->contacts->contact_fields as $name => $label)
 			{
 				if (in_array($name,array('tid','label','geo'))) continue;	// dont show them, as they are not used in the UI atm.

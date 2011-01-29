@@ -140,7 +140,7 @@ class projectmanager_widget
 						{
 							if ($id && ($name = $eroles->id2title($id)))
 							{
-								$cell['sel_options'][$id] = $name.($eroles->is_global($id) ? ' ('.lang('Global').')' : '');
+								$cell['sel_options'][$id] = $name.$eroles->get_info($id);
 							}
 							else
 							{
@@ -154,7 +154,7 @@ class projectmanager_widget
 				foreach($eroles->get_free_eroles() as $id => $data)
 				{
 					$cell['sel_options'][$data['role_id']] = array(
-						'label' => $data['role_title'].($eroles->is_global($data['role_id']) ? ' ('.lang('Global').')' : ''),
+						'label' => $data['role_title'].$eroles->get_info($data['role_id']),
 						'title' => $data['role_description'],
 					);
 				}
