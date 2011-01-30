@@ -153,6 +153,7 @@ modified by	projectmanager	sk	Zmeny vykonal
 necessary for project-elements doing that not automatic	projectmanager	sk	nevyhnutné pre prvky projektu, ktoré to nerobia automaticky
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	sk	Nevyhnutné PHP rozšírenia %1 neboli načítané a nedajú sa načítať!!!
 new	projectmanager	sk	Nové
+new project submitted by %1 at %2	projectmanager	sk	Nový projekt odovzdal %1 ku %2
 no accounting, only status	projectmanager	sk	Bez účtovania, iba stav
 no accounting, only times and status	projectmanager	sk	Bez účtovania, iba časy a stav
 no details	projectmanager	sk	bez podrobností
@@ -179,6 +180,7 @@ project availibility	projectmanager	sk	Dostupnosť pre projekt
 project deleted	projectmanager	sk	Projekt bol odstránený
 project id	projectmanager	sk	ID projektu
 project members and roles	projectmanager	sk	Členovia projektu a ich úlohy
+project modified by %1 at %2	projectmanager	sk	Projekt zmenil %1 ku %2
 project overview	projectmanager	sk	Prehľad projektu
 project saved	projectmanager	sk	Projekt uložený
 project specific title, prices, ...	projectmanager	sk	Projektovo špecifický názov, ceny, ...
@@ -219,18 +221,10 @@ show the project selection as	projectmanager	sk	Zobraziť výber projektov ako
 site configuration saved	projectmanager	sk	Nastavenia stránky boli uložené
 start after	projectmanager	sk	Začať po
 start working on %1	projectmanager	sk	Začať prácu na %1
-start working on dienstag	projectmanager	sk	Začať prácu v utorok
-start working on donnerstag	projectmanager	sk	Začať prácu vo štvrtok
-start working on freitag	projectmanager	sk	Začať prácu v piatok
-start working on mittwoch	projectmanager	sk	Začať prácu v stredu
-start working on montag	projectmanager	sk	Začať prácu v pondelok
-start working on samstag	projectmanager	sk	Začať prácu v sobotu
-start working on sonntag	projectmanager	sk	Začať prácu v nedeľu
 start, end, category, ...	projectmanager	sk	Začiatok, koniec, kategória, ...
 start- & enddate	projectmanager	sk	Dátumy začiatku a konca
 startdate	projectmanager	sk	Dátum začatia
 startrecord	projectmanager	sk	Prvý záznam
-state	projectmanager	sk	Stav
 status filter	projectmanager	sk	Filter stavov
 style used for everything but elements. some fonts have only normal style.	projectmanager	sk	Štýl použitý pre čokoľvek okrem prvkov. Niektoré písma majú len normálny štýl.
 subelements	projectmanager	sk	Podprvky
@@ -261,14 +255,7 @@ view this price	projectmanager	sk	Zobraziť túto cenu
 view this project	projectmanager	sk	Zobraziť tento projekt
 view this project-element	projectmanager	sk	Zobraziť tento prvok projektu
 working duration on %1	projectmanager	sk	Dĺžka práce v %1
-working duration on dienstag	projectmanager	sk	Dĺžka práce v utorok
-working duration on donnerstag	projectmanager	sk	Dĺžka práce vo štvrtok
-working duration on freitag	projectmanager	sk	Dĺžka práce v piatok
-working duration on mittwoch	projectmanager	sk	Dĺžka práce v stredu
-working duration on montag	projectmanager	sk	Dĺžka práce v pondelok
-working duration on samstag	projectmanager	sk	Dĺžka práce v stredu
-working duration on sonntag	projectmanager	sk	Dĺžka práce v sobotu
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	sk	Používate starú verziu JPGraph-u, dodávanú s eGroupWare. Jej funkčnosť je obmedzená.
 you can leave the date of the first price empty	projectmanager	sk	Dátum prvej ceny môžete ponechať prázdny
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	sk	Nemáte nainštalovaný JPGraph verzie %1 alebo vyššej! Je potrebný pre postupové diagramy v Projektovníku.
 you need to select a project first	projectmanager	sk	Musíte najprv vybrať projekt
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sk	Vaša databáza NIE JE aktuálna (%1 oproti %2), prosím spustite %3Setup%4 a zaktualizujte ju.
