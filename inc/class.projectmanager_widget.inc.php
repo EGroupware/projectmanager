@@ -129,7 +129,7 @@ class projectmanager_widget
 				
 			case 'projectmanager-select-erole': // $type2: extraStyleMultiselect
 				list($rows,$type,$type2) = explode(',',$cell['size']);
-				$eroles = new projectmanager_eroles_so();
+				$eroles = new projectmanager_eroles_bo();
 				if ($readonly)
 				{
 					$cell['no_lang'] = True;

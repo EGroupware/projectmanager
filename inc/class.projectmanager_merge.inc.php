@@ -39,6 +39,13 @@ class projectmanager_merge extends bo_merge
 	var $projectmanager_bo;
 	
 	/**
+	 * Instance of the projectmanager_eroles_bo class
+	 *
+	 * @var projectmanager_eroles_bo
+	 */
+	var $projectmanager_eroles_bo;
+	
+	/**
 	 * List of projectmanager fields which can be used for merging
 	 *
 	 * @var array
@@ -61,11 +68,14 @@ class projectmanager_merge extends bo_merge
 	function __construct($pm_id=null)
 	{
 		parent::__construct();
+		
 		if(isset($pm_id) && $pm_id > 0)
 		{
 			$this->pm_id = $pm_id;
-			$this->projectmanager_bo = new projectmanager_bo($pm_id);
+			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo($pm_id);
 		}
+		$this->projectmanager_bo = new projectmanager_bo($pm_id);		
+		$this->table_plugins['eroles'] = 'table_eroles';
 		
 		$this->projectmanager_fields = array(
 			'pm_id'					=> lang('Project ID'),
@@ -120,12 +130,11 @@ class projectmanager_merge extends bo_merge
 		// further replacements are made by eroles (if given)
 		if(!empty($this->eroles) && is_array($this->eroles))
 		{			
-			$projectmanager_eroles_so = new projectmanager_eroles_so();
 			foreach($this->eroles as $erole)
 			{
 				switch($erole['app']) {
 					case 'addressbook':
-						if($replacement = $this->contact_replacements($erole['app_id'],'erole/'.$projectmanager_eroles_so->id2title($erole['erole_id'])))
+						if($replacement = $this->contact_replacements($erole['app_id'],'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id'])))
 						{
 							$replacements += $replacement;
 						}
@@ -135,7 +144,7 @@ class projectmanager_merge extends bo_merge
 						{
 							$infolog_merge = new infolog_merge();
 						}
-						if($replacement = $infolog_merge->infolog_replacements($erole['app_id'],'erole/'.$projectmanager_eroles_so->id2title($erole['erole_id'])))
+						if($replacement = $infolog_merge->infolog_replacements($erole['app_id'],'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id'])))
 						{
 							$replacements += $replacement;
 						}
@@ -289,5 +298,71 @@ class projectmanager_merge extends bo_merge
 
 		echo "</table>\n";
 		common::egw_footer();
+	}
+	
+	/**
+	 * Table plugin for eroles
+	 *
+	 * @param string $plugin
+	 * @param int $erole_id
+	 * @param int $n
+	 * @param string $repeat the line to repeat
+	 * @return array
+	 */
+	public function table_eroles($plugin,$id,$n,$repeat)
+	{	
+		static $erole_id;
+		static $erole_title;
+		static $elements;
+		
+		if (!$n)	// first row inits environment
+		{
+			// get erole_id from repeated line
+			preg_match_all('/\\$\\$erole\\/([A-Za-z0-9_]+)\\//s',$repeat,$matches);
+			if(!is_array($matches[1]))
+			{
+				return false; // no erole found
+			}
+			if(count(($erole_titles = array_unique($matches[1]))) !== 1)
+			{
+				return false; // multiple eroles in one row not supported
+			}
+			$erole_title = array_shift($erole_titles);
+			if(!($erole_id = $this->projectmanager_eroles_bo->title2id($erole_title)))
+			{
+				return false; // erole_id cannot be determined
+			}
+			
+			// get elements assigned to erole
+			$elements = $this->projectmanager_eroles_bo->get_elements($erole_id);
+		}
+		
+		$element =& $elements[$n];
+		if (isset($element))
+		{
+			switch($element['pe_app']) {
+					case 'addressbook':
+						if($replacement = $this->contact_replacements($element['pe_app_id'],'erole/'.$erole_title))
+						{
+							return $replacement;
+						}
+						break;
+					case 'infolog':
+						if(!is_object($infolog_merge))
+						{
+							$infolog_merge = new infolog_merge();
+						}
+						if($replacement = $infolog_merge->infolog_replacements($element['pe_app_id'],'erole/'.$erole_title))
+						{
+							return $replacement;
+						}
+						break;
+					default:
+						// app not supported
+						break;
+				}
+		}
+		
+		return false;
 	}
 }

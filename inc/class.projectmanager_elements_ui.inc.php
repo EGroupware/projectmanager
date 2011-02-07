@@ -830,7 +830,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			return lang("Document '%1' does not exist or is not readable for you!",$document);
 		}
 		
-		require_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_merge.inc.php');
 		$document_merge = new projectmanager_merge($this->pm_id);
 		$document_merge->set_eroles($eroles);
 

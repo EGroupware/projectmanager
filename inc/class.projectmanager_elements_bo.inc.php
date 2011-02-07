@@ -128,7 +128,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		$this->project->instanciate('constraints,milestones');
 		$this->constraints =& $this->project->constraints;
 		$this->milestones  =& $this->project->milestones;
-		$this->eroles	   = new projectmanager_eroles_so($pm_id);
+		$this->eroles	   = new projectmanager_eroles_bo($pm_id);
 
 		$this->project_summary = $this->summary();
 
