@@ -56,7 +56,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 *
 	 * @var erole_apps
 	 */
-	var $erole_apps = array('addressbook','infolog');
+	var $erole_apps = array('addressbook','calendar','infolog');
 	/**
 	 * Instances of the different datasources
 	 *

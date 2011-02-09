@@ -139,6 +139,16 @@ class projectmanager_merge extends bo_merge
 							$replacements += $replacement;
 						}
 						break;
+					case 'calendar':
+						if(!is_object($calendar_merge))
+						{
+							$calendar_merge = new calendar_merge();
+						}
+						if($replacement = $calendar_merge->calendar_replacements($erole['app_id'],'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id'])))
+						{
+							$replacements += $replacement;
+						}
+						break;
 					case 'infolog':
 						if(!is_object($infolog_merge))
 						{
@@ -343,6 +353,16 @@ class projectmanager_merge extends bo_merge
 			switch($element['pe_app']) {
 					case 'addressbook':
 						if($replacement = $this->contact_replacements($element['pe_app_id'],'erole/'.$erole_title))
+						{
+							return $replacement;
+						}
+						break;
+					case 'calendar':
+						if(!is_object($calendar_merge))
+						{
+							$calendar_merge = new calendar_merge();
+						}
+						if($replacement = $calendar_merge->calendar_replacements($element['pe_app_id'],'erole/'.$erole_title))
 						{
 							return $replacement;
 						}
