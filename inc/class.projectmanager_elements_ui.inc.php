@@ -627,7 +627,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		elseif (strlen($content['action']) > 0)
 		{
-			$this->action($content['action'],$msg);			
+			$this->action($content['action'],$content['nm']['rows']['checked'],$msg);			
 		}
 		$content = array(
 			'nm' => $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager'),
@@ -728,10 +728,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 * apply an action in element list
 	 *
 	 * @param string/int $action 'document' or 'serial_letter' only at the moment
+	 * @param array $checked checked element id's
 	 * @param string $msg to give back for the view or index
 	 * @return boolean true on success, false otherwise
 	 */
-	function action($action,&$msg)
+	function action($action,$checked,&$msg)
 	{
 		if (substr($action,0,9) == 'document-')
 		{
@@ -777,7 +778,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				{
 					if(!empty($element['pe_eroles']))
 					{
-						if($element['pe_app'] == 'addressbook')
+						if($element['pe_app'] == 'addressbook' && in_array($element['pe_id'],$checked))
 						{
 							// add contact
 							$contacts[] = $element['pe_app_id'];
@@ -786,6 +787,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						foreach(explode(',',$element['pe_eroles']) as $erole_id)
 						{
 							$eroles[] = array(
+								'pe_id'		=> $element['pe_id'],
 								'app' 		=> $element['pe_app'],
 								'app_id' 	=> $element['pe_app_id'],
 								'erole_id'	=> $erole_id,
@@ -800,7 +802,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				if(empty($contacts))
 				{
-					$msg = lang('Could not extract enough contacts to create a serial letter');
+					$msg = lang('Not enough contacts selected to create a serial letter');
 					return false;
 				}
 				$msg = $this->download_document(array_unique($contacts),$document,$eroles,$action);
