@@ -755,6 +755,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						foreach(explode(',',$element['pe_eroles']) as $erole_id)
 						{
 							$eroles[] = array(
+								'pe_id'		=> $element['pe_id'],
 								'app' 		=> $element['pe_app'],
 								'app_id' 	=> $element['pe_app_id'],
 								'erole_id'	=> $erole_id,
@@ -817,7 +818,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 *
 	 * @param array $ids contact-ids
 	 * @param string $document vfs-path of document
-	 * @param array $eroles=null element roles with keys app, app_id and erole_id
+	 * @param array $eroles=null element roles with keys pe_id, app, app_id and erole_id
 	 * @param string $prefix='document' or 'serial_letter' prefix for the document dir, defaults to 'document'
 	 * @return string error-message or error, otherwise the function does NOT return!
 	 */

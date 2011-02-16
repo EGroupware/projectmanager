@@ -39,6 +39,13 @@ class projectmanager_merge extends bo_merge
 	var $projectmanager_bo;
 	
 	/**
+	 * Instance of the projectmanager_elements_bo class
+	 *
+	 * @var projectmanager_elements_bo
+	 */
+	var $projectmanager_elements_bo;
+	
+	/**
 	 * Instance of the projectmanager_eroles_bo class
 	 *
 	 * @var projectmanager_eroles_bo
@@ -53,7 +60,29 @@ class projectmanager_merge extends bo_merge
 	var $projectmanager_fields = array();
 	
 	/**
-	 * Element roles - array with keys app, app_id and erole_id
+	 * Translate list for merged projectmanager fields
+	 *
+	 * @var array
+	 */
+	var $pm_fields_translate = array();
+
+	
+	/**
+	 * List of projectmanager element fields which can be used for merging
+	 *
+	 * @var array
+	 */
+	var $projectmanager_element_fields = array();
+	
+	/**
+	 * Translate list for merged element fields
+	 *
+	 * @var array
+	 */
+	var $pe_fields_translate = array();
+	
+	/**
+	 * Element roles - array with keys pe_id, app, app_id and erole_id
 	 *
 	 * @var array
 	 */
@@ -73,8 +102,10 @@ class projectmanager_merge extends bo_merge
 		{
 			$this->pm_id = $pm_id;
 			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo($pm_id);
+			$this->projectmanager_elements_bo = new projectmanager_elements_bo($pm_id);	
 		}
-		$this->projectmanager_bo = new projectmanager_bo($pm_id);		
+		$this->projectmanager_bo = new projectmanager_bo($pm_id);
+		$this->table_plugins['elements'] = 'table_elements';
 		$this->table_plugins['eroles'] = 'table_eroles';
 		
 		$this->projectmanager_fields = array(
@@ -103,6 +134,41 @@ class projectmanager_merge extends bo_merge
 			'pm_accounting_type'	=> lang('Accounting type'),
 			'user_timezone_read'	=> lang('Timezone'),
 		);
+		$this->pm_fields_translate = array(
+			'cat_id'				=> 'pm_cat_id',
+			'user_timezone_read'	=> 'pm_user_timezone',
+		);
+		
+		$this->projectmanager_element_fields = array(
+			'pe_id'					=> lang('Element ID'),
+			'pe_title'				=> lang('Element title'),
+			'pe_details'			=> lang('Element details'),
+			'pe_completion'			=> lang('Completion'),
+			'pe_used_time'			=> lang('Used time in minutes'),
+			'pe_planned_time'		=> lang('Planned time in minutes'),
+			'pe_replanned_time'		=> lang('Replanned time in minutes'),
+			'pe_share'				=> lang('Shared time in minutes'),
+			'pe_planned_quantity'	=> lang('Planned quantitiy'),
+			'pe_used_quantity'		=> lang('Used quantity'),
+			'pe_unitprice'			=> lang('Price per unit'),
+			'pe_planned_budget'		=> lang('Planned budget'),
+			'pe_used_budget'		=> lang('Used budget'),
+			'pe_planned_start'		=> lang('Planned start date and time'),
+			'pe_real_start'			=> lang('Real start date and time'),
+			'pe_planned_end'		=> lang('Planned end date and time'),
+			'pe_real_end'			=> lang('Real end date and time'),
+			'pe_synced'				=> lang('Last sync date and time'),
+			'pe_modified'			=> lang('Modified date and time'),
+			'pe_modifier'			=> lang('Element modifier'),
+			'pe_status'				=> lang('Element status'),
+			'cat_id'				=> lang('Element category'),
+			'pe_remark'				=> lang('Remark'),
+			'user_timezone_read'	=> lang('Timezone'),
+		);
+		$this->pe_fields_translate = array(
+			'cat_id'				=> 'pe_cat_id',
+			'user_timezone_read'	=> 'pe_user_timezone',
+		);
 	}
 
 	/**
@@ -121,7 +187,7 @@ class projectmanager_merge extends bo_merge
 			$replacements += $this->contact_replacements($id);
 		}
 		
-		// replace projectmanager content
+		// replace project content
 		if (isset($this->pm_id) && $this->pm_id > 0)
 		{
 			$replacements += $this->projectmanager_replacements($this->pm_id);
@@ -132,49 +198,83 @@ class projectmanager_merge extends bo_merge
 		{			
 			foreach($this->eroles as $erole)
 			{
-				switch($erole['app']) {
-					case 'addressbook':
-						if($replacement = $this->contact_replacements($erole['app_id'],'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id'])))
-						{
-							$replacements += $replacement;
-						}
-						break;
-					case 'calendar':
-						if(!is_object($calendar_merge))
-						{
-							$calendar_merge = new calendar_merge();
-						}
-						if($replacement = $calendar_merge->calendar_replacements($erole['app_id'],'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id'])))
-						{
-							$replacements += $replacement;
-						}
-						break;
-					case 'infolog':
-						if(!is_object($infolog_merge))
-						{
-							$infolog_merge = new infolog_merge();
-						}
-						if($replacement = $infolog_merge->infolog_replacements($erole['app_id'],'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id'])))
-						{
-							$replacements += $replacement;
-						}
-						break;
-					default:
-						// app not supported
-						break;
+				if($replacement = $this->get_element_replacements(
+									$erole['pe_id'],
+									'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id']),
+									$erole['app'],
+									$erole['app_id']))
+				{
+					$replacements += $replacement;
 				}
 			}
 			
 		}
-		
+
 		return empty($replacements) ? false : $replacements;
 	}
+	
+	/**
+	 * Get element replacements
+	 *
+	 * @param int $pe_id element id
+	 * @param string $prefix='' prefix like eg. 'erole'
+	 * @param string $app=null element app name (no app detail will be resolved if omitted)
+	 * @param string $app_id=null element app_id (no app detail will be resolved if omitted)
+	 * @return array|boolean
+	 */
+	protected function get_element_replacements($pe_id,$prefix='',$app=null,$app_id=null)
+	{
+		$replacements = array();
+		// resolve project element fields
+		if($replacement = $this->projectmanager_element_replacements($pe_id,$prefix))
+		{
+			$replacements += $replacement;
+		}
+		// resolve app fields of project element
+		if($app && $app_id)
+		{
+			switch($app) {
+				case 'addressbook':
+					if($replacement = $this->contact_replacements($app_id,$prefix))
+					{
+						$replacements += $replacement;
+					}
+					break;
+				case 'calendar':
+					if(!is_object($calendar_merge))
+					{
+						$calendar_merge = new calendar_merge();
+					}
+					if($replacement = $calendar_merge->calendar_replacements($app_id,$prefix))
+					{
+						$replacements += $replacement;
+					}
+					break;
+				case 'infolog':
+					if(!is_object($infolog_merge))
+					{
+						$infolog_merge = new infolog_merge();
+					}
+					if($replacement = $infolog_merge->infolog_replacements($app_id,$prefix))
+					{
+						$replacements += $replacement;
+					}
+					break;
+				default:
+					// app not supported
+					break;
+			}
+		}
+
+		return empty($replacements) ? false : $replacements;
+	}
+
 	
 	/**
 	 * Return replacements for a project
 	 *
 	 * @param int|array $project project-array or id
-	 * @param string $prefix='' prefix like eg. 'user'
+	 * @param string $prefix='' prefix like eg. 'erole'
 	 * @return array
 	 */
 	public function projectmanager_replacements($project,$prefix='')
@@ -215,6 +315,10 @@ class projectmanager_merge extends bo_merge
 					}
 					break;
 			}
+			if(isset($this->pm_fields_translate[$name]))
+			{
+				$name = $this->pm_fields_translate[$name];
+			}
 			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
 		}
 		// TODO: set custom fields
@@ -224,9 +328,62 @@ class projectmanager_merge extends bo_merge
 	}
 	
 	/**
+	 * Return replacements for a given project element
+	 *
+	 * @param int $pe_id project element id
+	 * @param string $prefix='' prefix like eg. 'erole'
+	 * @return array
+	 */
+	public function projectmanager_element_replacements($pe_id,$prefix='')
+	{	
+		$replacements = array();
+		if(!is_object($this->projectmanager_elements_bo)) return $replacements;
+		
+		$element = $this->projectmanager_elements_bo->read(array('pe_id' => $pe_id));
+		foreach(array_keys($element) as $name)
+		{
+			if(!isset($this->projectmanager_element_fields[$name])) continue; // not a supported field
+			
+			$value = $element[$name];
+			switch($name)
+			{
+				case 'pe_planned_start': case 'pe_planned_end':
+				case 'pe_real_start': case 'pe_real_end':
+				case 'pe_synced': case 'pe_modified':
+					$value = $this->format_datetime($value);
+					break;
+				case 'pe_modifier':
+					$value = common::grab_owner_name($value);
+					break;
+				case 'cat_id':
+					if ($value)
+					{
+						// if cat-tree is displayed, we return a full category path not just the name of the cat
+						$use = $GLOBALS['egw_info']['server']['cat_tab'] == 'Tree' ? 'path' : 'name';
+						$cats = array();
+						foreach(is_array($value) ? $value : explode(',',$value) as $cat_id)
+						{
+							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id,$use);
+						}
+						$value = implode(', ',$cats);
+					}
+					break;
+			}
+			if(isset($this->pe_fields_translate[$name]))
+			{
+				$name = $this->pe_fields_translate[$name];
+			}
+			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
+		}
+		
+		return $replacements;
+	}
+
+	
+	/**
 	 * Set element roles for merging
 	 *
-	 * @param array $eroles element roles with keys app, app_id and erole_id
+	 * @param array $eroles element roles with keys pe_id, app, app_id and erole_id
 	 * @return boolean true on success
 	 */
 	public function set_eroles($eroles)
@@ -243,51 +400,135 @@ class projectmanager_merge extends bo_merge
 	 */
 	public function show_replacements()
 	{
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager').' - '.lang('Replacements for inserting project elements into documents');
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager').' - '.lang('Replacements for inserting project data into documents');
 		$GLOBALS['egw_info']['flags']['nonavbar'] = false;
 		common::egw_header();
 
 		echo "<table width='90%' align='center'>\n";
 		
+		// Projectmanager
 		$n = 0;
-		echo '<tr><td colspan="4"><h3>'.lang('Projectmanager fields:')."</h3></td></tr>";
+		echo '<tr><td colspan="4"><h3><a name="pm_fields">'.lang('Projectmanager fields:')."</a></h3></td></tr>";
 		foreach($this->projectmanager_fields as $name => $label)
 		{
+			if(isset($this->pm_fields_translate[$name]))
+			{
+				$name = $this->pm_fields_translate[$name];
+			}
+			if (!($n&1)) echo '<tr>';
+			echo '<td>$$'.$name.'$$</td><td>'.$label.'</td>';
+			if ($n&1) echo "</tr>\n";
+			$n++;
+		}
+		// Elements
+		$n = 0;
+		echo '<tr><td colspan="4">'
+				.'<h3><a name="pe_fields">'.lang('Projectmanager element fields:').'</a></h3>'
+				.'<p>'.lang('can be used with element roles, "eroles" table plugin and "elements" table plugin').'</p>'
+				.'</td></tr>';
+		foreach($this->projectmanager_element_fields as $name => $label)
+		{
+			if(isset($this->pe_fields_translate[$name]))
+			{
+				$name = $this->pe_fields_translate[$name];
+			}
 			if (!($n&1)) echo '<tr>';
 			echo '<td>$$'.$name.'$$</td><td>'.$label.'</td>';
 			if ($n&1) echo "</tr>\n";
 			$n++;
 		}
 		
+		// Element roles
+		echo '<tr><td colspan="4">'
+				.'<h3>'.lang('Element roles:').'</h3>'
+				.'<p>'.lang('Elements given by {rolename} will be replaced with the element fields;'
+				.' additionally all fields of the elements application are available if the application is supported.').'</p>'
+				.'</td></tr>';
+		echo '<tr><td colspan="4">'.lang('Usage').': $$erole/{rolename}/{fieldname}$$</td></tr>';
+		echo '<tr>';
+		echo '<td colspan="2">'
+				.'<h4>'.lang('Fields for element roles:').'</h4>'
+				.'<ul>'
+				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>';
+				foreach(array(
+					'Addressbook fields' 	=> egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
+					'Calendar fields'		=> egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
+					'Infolog fields'		=> egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
+				) as $placeholder => $link)
+				{
+					echo '<li><a href="'.$link.'" target="_blank">'.lang($placeholder).'</a></li>';
+				}
+				echo '</ul>';
+				echo '</td>';
+		echo '<td colspan="2">'
+				.'<h4>'.lang('Examples:').'</h4>'
+				.'$$erole/myrole/pe_title$$<br />$$erole/myrole/n_fn$$<br />$$erole/myrole/info_subject$$'
+				.'</td>';
+		echo "</tr>\n";
 		
+		// Table plugins
+		echo '<tr><td colspan="4">'
+				.'<h3>'.lang('Table plugins:').'</h3>'
+				.'</td></tr>'."\n";
+		echo '<tr><td colspan="4">'
+				.'<h4>'.lang('Elements').'</h4>'
+				.lang('Lists all project elements in a table.')
+				.'</td></tr>'."\n";
+		echo '<tr><td colspan="4">'.lang('Usage').': $$table/elements$$ ... $$endtable$$</td></tr>';
+		echo '<tr>'
+				.'<td colspan="2">'
+				.lang('Available fields for this plugin:')
+				.'<ul>'
+				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>'
+				.'</ul>'
+				.'</td>'
+				.'<td colspan="2">'
+				.'<h4>'.lang('Example:').'</h4>'
+				.'<table border="1"><tr><td>Title</td><td>Details $$table/elements$$</td></tr>'
+				.'<tr><td>$$element/pe_title$$</td><td>$$element/pe_details$$ $$endtable$$</td></tr></table>'
+				.'</td>'
+				.'</tr>'."\n";
+		echo '<tr><td colspan="4">'
+				.'<h4>'.lang('Element roles').'</h4>'
+				.lang('Lists all elements assigned to an element role in a table.').' '
+				.lang('Element roles defined as "mutliple" can be used here.')
+				.'</td></tr>'."\n";
+		echo '<tr><td colspan="4">'.lang('Usage').': $$table/eroles$$ ... $$endtable$$</td></tr>';
+		echo '<tr>'
+				.'<td colspan="2">'
+				.lang('Available fields for this plugin:')
+				.'<ul>'
+				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>';
+				foreach(array(
+					'Addressbook fields' 	=> egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
+					'Calendar fields'		=> egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
+					'Infolog fields'		=> egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
+				) as $placeholder => $link)
+				{
+					echo '<li><a href="'.$link.'" target="_blank">'.lang($placeholder).'</a></li>';
+				}
+		echo '</ul></td>'."\n";
+		echo '<td colspan="2">'
+				.'<h4>'.lang('Example:').'</h4>'
+				.'<table border="1"><tr><td>Title</td><td>Infolog subject $$table/eroles$$</td></tr>'
+				.'<tr><td>$$erole/myrole/pe_title$$</td><td>$$erole/myrole/info_subject$$ $$endtable$$</td></tr></table>'
+				.'</td>'
+				.'</tr>'."\n";
+		
+		// Serial letter
 		if($_GET['serial_letter'] == 'true')
 		{
-			$n = 0;
-			echo '<tr><td colspan="4"><h3>'.lang('Contact fields for serial letters:')."</h3></td></tr>";
-			foreach($this->contacts->contact_fields as $name => $label)
-			{
-				if (in_array($name,array('tid','label','geo'))) continue;	// dont show them, as they are not used in the UI atm.
-
-				if (in_array($name,array('email','org_name','tel_work','url')) && $n&1)		// main values, which should be in the first column
-				{
-					echo "</tr>\n";
-					$n++;
-				}
-				if (!($n&1)) echo '<tr>';
-				echo '<td>$$'.$name.'$$</td><td>'.$label.'</td>';
-				if ($n&1) echo "</tr>\n";
-				$n++;
-			}
-		}
-		
-		echo '<tr><td colspan="4"><h3>'.lang('Element role fields:')."</h3></td></tr>";
-		foreach(array(
-			'erole/{rolename}/{fieldname}' => lang('Element given by {rolename} will be replaced with supported fields of the element - e.g. if element is a contact, {fieldname}s like n_fn, n_family or n_given are available'),
-			) as $name => $label)
-		{
-			echo '<tr><td>$$'.$name.'$$</td><td colspan="3">'.$label."</td></tr>\n";
+			$link = egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements');
+			echo '<tr><td colspan="4">'
+					.'<h3>'.lang('Contact fields for serial letters').'</h3>'
+					.lang('Addressbook elements of a project can be used to define individual serial letter recipients. Available fields are').':'
+					.'<ul>'
+					.'<li><a href="'.$link.'" target="_blank">'.lang('Addressbook fields').'</a></li>'
+					.'</ul>'
+					.'</td></tr>';
 		}
 
+		// General
 		echo '<tr><td colspan="4"><h3>'.lang('General fields:')."</h3></td></tr>";
 		foreach(array(
 			'date' => lang('Date'),
@@ -311,10 +552,43 @@ class projectmanager_merge extends bo_merge
 	}
 	
 	/**
+	 * Table plugin for project elements
+	 *
+	 * @param string $plugin
+	 * @param int $id (contact id - not used for this plugin)
+	 * @param int $n
+	 * @param string $repeat the line to repeat
+	 * @return array
+	 */
+	public function table_elements($plugin,$id,$n,$repeat)
+	{	
+		if(!isset($this->pm_id)) return false;
+		
+		static $elements;
+		if (!$n)	// first row inits environment
+		{
+			// get project elements
+			if(!($elements = $this->projectmanager_elements_bo->search(array('pm_id' => $this->pm_id),false)))
+			{
+				return false;
+			}
+		}
+		
+		$element =& $elements[$n];
+		$replacement = false;
+		if(isset($element))
+		{
+			$replacement = $this->get_element_replacements($element['pe_id'],'element');
+		}
+
+		return $replacement;
+	}
+
+	/**
 	 * Table plugin for eroles
 	 *
 	 * @param string $plugin
-	 * @param int $erole_id
+	 * @param int $id (contact id - not used for this plugin)
 	 * @param int $n
 	 * @param string $repeat the line to repeat
 	 * @return array
@@ -329,6 +603,7 @@ class projectmanager_merge extends bo_merge
 		{
 			// get erole_id from repeated line
 			preg_match_all('/\\$\\$erole\\/([A-Za-z0-9_]+)\\//s',$repeat,$matches);
+			
 			if(!is_array($matches[1]))
 			{
 				return false; // no erole found
@@ -348,41 +623,16 @@ class projectmanager_merge extends bo_merge
 		}
 		
 		$element =& $elements[$n];
-		if (isset($element))
+		$replacement = false;
+		if(isset($element))
 		{
-			switch($element['pe_app']) {
-					case 'addressbook':
-						if($replacement = $this->contact_replacements($element['pe_app_id'],'erole/'.$erole_title))
-						{
-							return $replacement;
-						}
-						break;
-					case 'calendar':
-						if(!is_object($calendar_merge))
-						{
-							$calendar_merge = new calendar_merge();
-						}
-						if($replacement = $calendar_merge->calendar_replacements($element['pe_app_id'],'erole/'.$erole_title))
-						{
-							return $replacement;
-						}
-						break;
-					case 'infolog':
-						if(!is_object($infolog_merge))
-						{
-							$infolog_merge = new infolog_merge();
-						}
-						if($replacement = $infolog_merge->infolog_replacements($element['pe_app_id'],'erole/'.$erole_title))
-						{
-							return $replacement;
-						}
-						break;
-					default:
-						// app not supported
-						break;
-				}
+			$replacement = $this->get_element_replacements(
+								$element['pe_id'],
+								'erole/'.$erole_title,
+								$element['pe_app'],
+								$element['pe_app_id']);
 		}
-		
-		return false;
-	}
+
+		return $replacement;
+	}	
 }
