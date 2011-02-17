@@ -764,11 +764,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 				}
-				if(empty($eroles))
-				{
-					$msg = lang('Not enough element roles defined to create a document');
-					return false;
-				}
 				$msg = $this->download_document(array(0),$document,$eroles);
 				return true;
 			case 'serial_letter':
@@ -776,13 +771,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$eroles = array();
 				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
 				{
+					// add contact
+					if($element['pe_app'] == 'addressbook' && in_array($element['pe_id'],$checked))
+					{
+						$contacts[] = $element['pe_app_id'];
+					}
+					// add erole(s)
 					if(!empty($element['pe_eroles']))
 					{
-						if($element['pe_app'] == 'addressbook' && in_array($element['pe_id'],$checked))
-						{
-							// add contact
-							$contacts[] = $element['pe_app_id'];
-						}
 						// one element could have multiple eroles
 						foreach(explode(',',$element['pe_eroles']) as $erole_id)
 						{
@@ -794,11 +790,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 							);
 						}
 					}
-				}
-				if(empty($eroles))
-				{
-					$msg = lang('Not enough element roles defined to create a serial letter');
-					return false;
 				}
 				if(empty($contacts))
 				{
@@ -834,7 +825,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		
 		$document_merge = new projectmanager_merge($this->pm_id);
-		$document_merge->set_eroles($eroles);
+		if(!(empty($eroles)))
+		{
+			$document_merge->set_eroles($eroles);
+		}
 
 		return $document_merge->download($document,$ids);
 	}
