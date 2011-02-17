@@ -439,8 +439,13 @@ class projectmanager_merge extends bo_merge
 		}
 		
 		// Element roles
+		if(!($this->projectmanager_bo->config['enable_eroles']))
+		{
+			$eroles_enable_hint = '<p style="font-weight: bold;">('.lang('Element roles feature is currently not enabled in your global projectmanager configuration').')</p>';
+		}
 		echo '<tr><td colspan="4">'
 				.'<h3>'.lang('Element roles:').'</h3>'
+				.$eroles_enable_hint
 				.'<p>'.lang('Elements given by {rolename} will be replaced with the element fields;'
 				.' additionally all fields of the elements application are available if the application is supported.').'</p>'
 				.'</td></tr>';
@@ -490,6 +495,7 @@ class projectmanager_merge extends bo_merge
 				.'</tr>'."\n";
 		echo '<tr><td colspan="4">'
 				.'<h4>'.lang('Element roles').'</h4>'
+				.$eroles_enable_hint
 				.lang('Lists all elements assigned to an element role in a table.').' '
 				.lang('Element roles defined as "mutliple" can be used here.')
 				.'</td></tr>'."\n";
@@ -595,6 +601,8 @@ class projectmanager_merge extends bo_merge
 	 */
 	public function table_eroles($plugin,$id,$n,$repeat)
 	{	
+		if(!($this->projectmanager_bo->config['enable_eroles'])) return false; // eroles are disabled
+		
 		static $erole_id;
 		static $erole_title;
 		static $elements;

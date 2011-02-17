@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.config" template="" lang="" group="0" version="1.3.001">
+	<template id="projectmanager.config" template="" lang="" group="0" version="1.9.001">
 		<grid width="80%">
 			<columns>
 				<column width="40%"/>
@@ -42,6 +42,18 @@
 					<listbox rows="4" id="accounting_types" statustext="select the accounting types visible for users of projectmanager" no_lang="1" needed="1"/>
 				</row>
 				<row class="th">
+					<description span="all" value="Document merge"/>
+				</row>
+				<row class="row">
+					<description value="Enable element roles"/>
+					<menulist>
+						<menupopup id="enable_eroles"/>
+					</menulist>
+				</row>
+				<row>
+					<description span="all" value="Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go. "/>
+				</row>
+				<row class="th">
 					<description span="all" value="Ganttchart"/>
 				</row>
 				<row disabled="!@jpg_msg">
@@ -72,6 +84,29 @@
 					<menulist>
 						<menupopup id="GANTT_CHAR_ENCODE" statustext="If you see entities (eg. &amp;#123;) in the Ganttchart, switch this off."/>
 					</menulist>
+				</row>
+				<row>
+					<description/>
+					<description/>
+				</row>
+				<row class="th">
+					<description value="ID generation"/>
+					<description/>
+				</row>
+				<row>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="How should IDs for new projects be generated?"/>
+					<textbox id="ID_GENERATION_FORMAT"/>
+				</row>
+				<row>
+					<description value="How should IDs for new subprojects be generated?"/>
+					<textbox id="ID_GENERATION_FORMAT_SUB"/>
+				</row>
+				<row>
+					<description span="all" value="You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'."/>
 				</row>
 				<row>
 					<hbox span="all">

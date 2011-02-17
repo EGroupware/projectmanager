@@ -73,7 +73,7 @@ class projectmanager_admin
 			$content['GANTT_FONT_FILE'] = $this->get_font_file($content['GANTT_FONT'],$content['GANTT_STYLE']);
 			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
 				'GANTT_FONT','LANGUAGE_CHARSET','GANTT_STYLE','GANTT_CHAR_ENCODE','GANTT_FONT_FILE',
-				'ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB') as $name)
+				'enable_eroles','ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB') as $name)
 			{
 				$this->config->config_data[$name] = $content[$name];
 			}
@@ -118,6 +118,7 @@ class projectmanager_admin
 		$tpl->exec('projectmanager.projectmanager_admin.config',$content,array(
 			'duration_units'   => $this->duration_units,
 			'accounting_types' => $this->accounting_types,
+			'enable_eroles' => array('no','yes'),
 			'allow_change_workingtimes' => array('no','yes'),
 			'GANTT_FONT' => $this->get_fonts(),
 			'GANTT_STYLE' => array(

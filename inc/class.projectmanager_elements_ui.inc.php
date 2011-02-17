@@ -394,8 +394,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 			'eroles_edit' => $view,
 		);
-		// display eroles tab only for supported erole applications
-		$readonlys[$tabs]['eroles'] = !(in_array($this->data['pe_app'],$this->erole_apps));
+		// display eroles tab only if it's enabled in config and for supported erole applications
+		$readonlys[$tabs]['eroles'] = (!$this->config['enable_eroles']) || !(in_array($this->data['pe_app'],$this->erole_apps));
 		// disable the times tab, if accounting-type status
 		$readonlys[$tabs]['times'] = $this->project->data['pm_accounting_type'] == 'status';
 		// check if user has the necessary rights to view or edit the budget
@@ -748,19 +748,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			case 'document':
 				$eroles = array();
-				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
+				if($this->config['enable_eroles'])
 				{
-					if(!empty($element['pe_eroles']))
+					foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
 					{
-						// one element could have multiple eroles
-						foreach(explode(',',$element['pe_eroles']) as $erole_id)
+						if(!empty($element['pe_eroles']))
 						{
-							$eroles[] = array(
-								'pe_id'		=> $element['pe_id'],
-								'app' 		=> $element['pe_app'],
-								'app_id' 	=> $element['pe_app_id'],
-								'erole_id'	=> $erole_id,
-							);
+							// one element could have multiple eroles
+							foreach(explode(',',$element['pe_eroles']) as $erole_id)
+							{
+								$eroles[] = array(
+									'pe_id'		=> $element['pe_id'],
+									'app' 		=> $element['pe_app'],
+									'app_id' 	=> $element['pe_app_id'],
+									'erole_id'	=> $erole_id,
+								);
+							}
 						}
 					}
 				}
@@ -777,7 +780,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						$contacts[] = $element['pe_app_id'];
 					}
 					// add erole(s)
-					if(!empty($element['pe_eroles']))
+					if($this->config['enable_eroles'] && !empty($element['pe_eroles']))
 					{
 						// one element could have multiple eroles
 						foreach(explode(',',$element['pe_eroles']) as $erole_id)
@@ -825,7 +828,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		
 		$document_merge = new projectmanager_merge($this->pm_id);
-		if(!(empty($eroles)))
+		if($this->config['enable_eroles'] && !(empty($eroles)))
 		{
 			$document_merge->set_eroles($eroles);
 		}
