@@ -80,6 +80,11 @@ class projectmanager_eroles_ui extends projectmanager_bo
 				$erole_to_edit = $content[1];
 				$msg = lang('Title must not be empty');
 			}
+			elseif(!(preg_match('/^[A-Za-z0-9_-]+$/',$content[1]['role_title'])))
+			{
+				$erole_to_edit = $content[1];
+				$msg = lang('Title contains invalid characters (use A-z, numbers, dash and underscore)');
+			}
 			else
 			{
 				$erole = array(
