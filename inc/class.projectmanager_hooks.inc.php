@@ -401,7 +401,7 @@ class projectmanager_hooks
 				'label'  => 'Directory with documents to insert project elements',
 				'name'   => 'document_dir',
 				'help'   => lang('If you specify a directory (full vfs path) here, projectmanager displays an action for each document. That action allows to download the specified document with the project and elements data inserted.').' '.
-					lang('The document can contain placeholders like $$erole/name/n_fn$$ to be replaced with the contact data (%1full list of placeholder names%2).','<a href="'.$link.'" target="_blank">','</a>').' '.
+					lang('The document can contain placeholders like {{erole/name/n_fn}} to be replaced with the contact data (%1full list of placeholder names%2).','<a href="'.$link.'" target="_blank">','</a>').' '.
 					lang('At the moment the following document-types are supported:').'*.rtf, *.txt',
 				'run_lang' => false,
 				'xmlrpc' => True,
@@ -415,7 +415,7 @@ class projectmanager_hooks
 				'name'   => 'serial_letter_dir',
 				'help'   => lang('If you specify a directory (full vfs path) here, projectmanager displays an action for each serial letter document. That action allows to download the specified document with the project and elements data inserted.').' '.
 					lang('Every addressbook element which is assigned to an element role will be inserted as an individual recipient of the serial letter.').' '.
-					lang('The document can contain placeholders like $$n_fn$$ (for recipients) or $$erole/name/n_fn$$ to be replaced with the contact data (%1full list of placeholder names%2).','<a href="'.$link.'" target="_blank">','</a>').' '.
+					lang('The document can contain placeholders like {{n_fn}} (for recipients) or {{erole/name/n_fn}} to be replaced with the contact data (%1full list of placeholder names%2).','<a href="'.$link.'" target="_blank">','</a>').' '.
 					lang('At the moment the following document-types are supported:').'*.rtf, *.txt',
 				'run_lang' => false,
 				'xmlrpc' => True,

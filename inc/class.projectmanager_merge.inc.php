@@ -416,7 +416,7 @@ class projectmanager_merge extends bo_merge
 				$name = $this->pm_fields_translate[$name];
 			}
 			if (!($n&1)) echo '<tr>';
-			echo '<td>$$'.$name.'$$</td><td>'.$label.'</td>';
+			echo '<td>{{'.$name.'}}</td><td>'.$label.'</td>';
 			if ($n&1) echo "</tr>\n";
 			$n++;
 		}
@@ -433,7 +433,7 @@ class projectmanager_merge extends bo_merge
 				$name = $this->pe_fields_translate[$name];
 			}
 			if (!($n&1)) echo '<tr>';
-			echo '<td>$$'.$name.'$$</td><td>'.$label.'</td>';
+			echo '<td>{{'.$name.'}}</td><td>'.$label.'</td>';
 			if ($n&1) echo "</tr>\n";
 			$n++;
 		}
@@ -449,7 +449,7 @@ class projectmanager_merge extends bo_merge
 				.'<p>'.lang('Elements given by {rolename} will be replaced with the element fields;'
 				.' additionally all fields of the elements application are available if the application is supported.').'</p>'
 				.'</td></tr>';
-		echo '<tr><td colspan="4">'.lang('Usage').': $$erole/{rolename}/{fieldname}$$</td></tr>';
+		echo '<tr><td colspan="4">'.lang('Usage').': {{erole/{rolename}/{fieldname}}}</td></tr>';
 		echo '<tr>';
 		echo '<td colspan="2">'
 				.'<h4>'.lang('Fields for element roles:').'</h4>'
@@ -467,7 +467,7 @@ class projectmanager_merge extends bo_merge
 				echo '</td>';
 		echo '<td colspan="2">'
 				.'<h4>'.lang('Examples:').'</h4>'
-				.'$$erole/myrole/pe_title$$<br />$$erole/myrole/n_fn$$<br />$$erole/myrole/info_subject$$'
+				.'{{erole/myrole/pe_title}}<br />{{erole/myrole/n_fn}}<br />{{erole/myrole/info_subject}}'
 				.'</td>';
 		echo "</tr>\n";
 		
@@ -479,7 +479,7 @@ class projectmanager_merge extends bo_merge
 				.'<h4>'.lang('Elements').'</h4>'
 				.lang('Lists all project elements in a table.')
 				.'</td></tr>'."\n";
-		echo '<tr><td colspan="4">'.lang('Usage').': $$table/elements$$ ... $$endtable$$</td></tr>';
+		echo '<tr><td colspan="4">'.lang('Usage').': {{table/elements}} ... {{endtable}}</td></tr>';
 		echo '<tr>'
 				.'<td colspan="2">'
 				.lang('Available fields for this plugin:')
@@ -489,8 +489,8 @@ class projectmanager_merge extends bo_merge
 				.'</td>'
 				.'<td colspan="2">'
 				.'<h4>'.lang('Example:').'</h4>'
-				.'<table border="1"><tr><td>Title</td><td>Details $$table/elements$$</td></tr>'
-				.'<tr><td>$$element/pe_title$$</td><td>$$element/pe_details$$ $$endtable$$</td></tr></table>'
+				.'<table border="1"><tr><td>Title</td><td>Details {{table/elements}}</td></tr>'
+				.'<tr><td>{{element/pe_title}}</td><td>{{element/pe_details}} {{endtable}}</td></tr></table>'
 				.'</td>'
 				.'</tr>'."\n";
 		echo '<tr><td colspan="4">'
@@ -499,7 +499,7 @@ class projectmanager_merge extends bo_merge
 				.lang('Lists all elements assigned to an element role in a table.').' '
 				.lang('Element roles defined as "mutliple" can be used here.')
 				.'</td></tr>'."\n";
-		echo '<tr><td colspan="4">'.lang('Usage').': $$table/eroles$$ ... $$endtable$$</td></tr>';
+		echo '<tr><td colspan="4">'.lang('Usage').': {{table/eroles}} ... {{endtable}}</td></tr>';
 		echo '<tr>'
 				.'<td colspan="2">'
 				.lang('Available fields for this plugin:')
@@ -516,8 +516,8 @@ class projectmanager_merge extends bo_merge
 		echo '</ul></td>'."\n";
 		echo '<td colspan="2">'
 				.'<h4>'.lang('Example:').'</h4>'
-				.'<table border="1"><tr><td>Title</td><td>Infolog subject $$table/eroles$$</td></tr>'
-				.'<tr><td>$$erole/myrole/pe_title$$</td><td>$$erole/myrole/info_subject$$ $$endtable$$</td></tr></table>'
+				.'<table border="1"><tr><td>Title</td><td>Infolog subject {{table/eroles}}</td></tr>'
+				.'<tr><td>{{erole/myrole/pe_title}}</td><td>{{erole/myrole/info_subject}} {{endtable}}</td></tr></table>'
 				.'</td>'
 				.'</tr>'."\n";
 		
@@ -543,14 +543,14 @@ class projectmanager_merge extends bo_merge
 			'pagerepeat' => lang('For serial letter use this tag. Put the content, you want to repeat between two Tags.'),
 			'label' => lang('Use this tag for addresslabels. Put the content, you want to repeat, between two tags.'),
 			'labelplacement' => lang('Tag to mark positions for address labels'),
-			'IF fieldname' => lang('Example $$IF n_prefix~Mr~Hello Mr.~Hello Ms.$$ - search the field "n_prefix", for "Mr", if found, write Hello Mr., else write Hello Ms.'),
-			'NELF' => lang('Example $$NELF role$$ - if field role is not empty, you will get a new line with the value of field role'),
-			'NENVLF' => lang('Example $$NELFNV role$$ - if field role is not empty, set a LF without any value of the field'),
-			'LETTERPREFIX' => lang('Example $$LETTERPREFIX$$ - Gives a letter prefix without double spaces, if the title is emty for  example'),
-			'LETTERPREFIXCUSTOM' => lang('Example $$LETTERPREFIXCUSTOM n_prefix title n_family$$ - Example: Mr Dr. James Miller'),
+			'IF fieldname' => lang('Example {{IF n_prefix~Mr~Hello Mr.~Hello Ms.}} - search the field "n_prefix", for "Mr", if found, write Hello Mr., else write Hello Ms.'),
+			'NELF' => lang('Example {{NELF role}} - if field role is not empty, you will get a new line with the value of field role'),
+			'NENVLF' => lang('Example {{NELFNV role}} - if field role is not empty, set a LF without any value of the field'),
+			'LETTERPREFIX' => lang('Example {{LETTERPREFIX}} - Gives a letter prefix without double spaces, if the title is emty for  example'),
+			'LETTERPREFIXCUSTOM' => lang('Example {{LETTERPREFIXCUSTOM n_prefix title n_family}} - Example: Mr Dr. James Miller'),
 			) as $name => $label)
 		{
-			echo '<tr><td>$$'.$name.'$$</td><td colspan="3">'.$label."</td></tr>\n";
+			echo '<tr><td>{{'.$name.'}}</td><td colspan="3">'.$label."</td></tr>\n";
 		}
 
 		echo "</table>\n";
