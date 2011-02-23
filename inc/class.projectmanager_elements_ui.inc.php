@@ -684,7 +684,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if ($this->prefs['document_dir'])
 		{
 			$sel_options['action'][lang('Insert in document').':'] = $this->get_document_actions();
-			$sel_options['action'][lang('Create serial letter').':'] = $this->get_document_actions('serial_letter');
 		}
 		
 		// set id for automatic linking via quick add
@@ -699,27 +698,26 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	/**
 	 * Returning document actions / files from the document_dir
 	 *
-	 * @param string $prefix='document' or 'serial_letter' the action prefix, defaults to 'document'
 	 * @return array
 	 */
-	function get_document_actions($prefix='document')
+	function get_document_actions()
 	{
-		if (!$this->prefs[$prefix.'_dir']) return array();
+		if (!$this->prefs['document_dir']) return array();
 		
-		if (!is_array($actions = egw_session::appsession($prefix.'_actions','projectmanager')))
+		if (!is_array($actions = egw_session::appsession('document_actions','projectmanager')))
 		{
 			$actions = array();
-			if (($files = egw_vfs::find($this->prefs[$prefix.'_dir'],array('need_mime'=>true),true)))
+			if (($files = egw_vfs::find($this->prefs['document_dir'],array('need_mime'=>true),true)))
 			{
 				foreach($files as $file)
 				{
 					// return only the mime-types we support
 					if (!projectmanager_merge::is_implemented($file['mime'],substr($file['name'],-4))) continue;
 
-					$actions[$prefix.'-'.$file['name']] = $file['name'];
+					$actions['document-'.$file['name']] = $file['name'];
 				}
 			}
-			egw_session::appsession($prefix.'_actions','projectmanager',$actions);
+			egw_session::appsession('document_actions','projectmanager',$actions);
 		}
 		return $actions;
 	}
@@ -727,7 +725,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	/**
 	 * apply an action in element list
 	 *
-	 * @param string/int $action 'document' or 'serial_letter' only at the moment
+	 * @param string/int $action 'document' only at the moment
 	 * @param array $checked checked element id's
 	 * @param string $msg to give back for the view or index
 	 * @return boolean true on success, false otherwise
@@ -738,38 +736,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$document = substr($action,9);
 			$action = 'document';
-		} else if (substr($action,0,14) == 'serial_letter-')
-		{
-			$document = substr($action,14);
-			$action = 'serial_letter';
 		}
 
 		switch($action)
 		{
 			case 'document':
-				$eroles = array();
-				if($this->config['enable_eroles'])
-				{
-					foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
-					{
-						if(!empty($element['pe_eroles']))
-						{
-							// one element could have multiple eroles
-							foreach(explode(',',$element['pe_eroles']) as $erole_id)
-							{
-								$eroles[] = array(
-									'pe_id'		=> $element['pe_id'],
-									'app' 		=> $element['pe_app'],
-									'app_id' 	=> $element['pe_app_id'],
-									'erole_id'	=> $erole_id,
-								);
-							}
-						}
-					}
-				}
-				$msg = $this->download_document(array(0),$document,$eroles);
-				return true;
-			case 'serial_letter':
 				$contacts = array();
 				$eroles = array();
 				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
@@ -794,12 +765,15 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 				}
-				if(empty($contacts))
+				if(!empty($contacts))
 				{
-					$msg = lang('Not enough contacts selected to create a serial letter');
-					return false;
+					$contacts = array_unique($contacts);
 				}
-				$msg = $this->download_document(array_unique($contacts),$document,$eroles,$action);
+				else
+				{
+					$contacts = array(0); // pseudo fill for merge class
+				}
+				$msg = $this->download_document($contacts,$document,$eroles);
 				return true;
 
 			default:
@@ -815,12 +789,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 * @param array $ids contact-ids
 	 * @param string $document vfs-path of document
 	 * @param array $eroles=null element roles with keys pe_id, app, app_id and erole_id
-	 * @param string $prefix='document' or 'serial_letter' prefix for the document dir, defaults to 'document'
 	 * @return string error-message or error, otherwise the function does NOT return!
 	 */
-	function download_document($ids,$document='',$eroles=null,$prefix='document')
+	function download_document($ids,$document='',$eroles=null)
 	{
-		$document = $this->prefs[$prefix.'_dir'].'/'.$document;
+		$document = $this->prefs['document_dir'].'/'.$document;
 		
 		if (!@egw_vfs::stat($document))
 		{

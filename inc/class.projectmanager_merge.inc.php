@@ -198,16 +198,16 @@ class projectmanager_merge extends bo_merge
 		{			
 			foreach($this->eroles as $erole)
 			{
-				if($replacement = $this->get_element_replacements(
+				$erole_title = $this->projectmanager_eroles_bo->id2title($erole['erole_id']);
+				if(!empty($erole_title) && ($replacement = $this->get_element_replacements(
 									$erole['pe_id'],
-									'erole/'.$this->projectmanager_eroles_bo->id2title($erole['erole_id']),
+									'erole/'.$erole_title,
 									$erole['app'],
-									$erole['app_id']))
+									$erole['app_id'])))
 				{
 					$replacements += $replacement;
 				}
 			}
-			
 		}
 
 		return empty($replacements) ? false : $replacements;
@@ -522,17 +522,14 @@ class projectmanager_merge extends bo_merge
 				.'</tr>'."\n";
 		
 		// Serial letter
-		if($_GET['serial_letter'] == 'true')
-		{
-			$link = egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements');
-			echo '<tr><td colspan="4">'
-					.'<h3>'.lang('Contact fields for serial letters').'</h3>'
-					.lang('Addressbook elements of a project can be used to define individual serial letter recipients. Available fields are').':'
-					.'<ul>'
-					.'<li><a href="'.$link.'" target="_blank">'.lang('Addressbook fields').'</a></li>'
-					.'</ul>'
-					.'</td></tr>';
-		}
+		$link = egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements');
+		echo '<tr><td colspan="4">'
+				.'<h3>'.lang('Contact fields for serial letters').'</h3>'
+				.lang('Addressbook elements of a project can be used to define individual serial letter recipients. Available fields are').':'
+				.'<ul>'
+				.'<li><a href="'.$link.'" target="_blank">'.lang('Addressbook fields').'</a></li>'
+				.'</ul>'
+				.'</td></tr>';
 
 		// General
 		echo '<tr><td colspan="4"><h3>'.lang('General fields:')."</h3></td></tr>";
