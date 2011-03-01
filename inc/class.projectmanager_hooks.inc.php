@@ -410,6 +410,47 @@ class projectmanager_hooks
 				'admin'  => False,
 			);
 		}
+		// Import / Export for nextmatch
+		if ($GLOBALS['egw_info']['user']['apps']['importexport'])
+		{
+			$definitions = new importexport_definitions_bo(array(
+				'type' => 'export',
+				'application' => 'projectmanager'
+			));
+			$options = array();
+			foreach ((array)$definitions->get_definitions() as $identifier) {
+				try {
+					$definition = new importexport_definition($identifier);
+				} catch (Exception $e) {
+					// permission error
+					continue;
+				}
+				if ($title = $definition->get_title()) {
+					$options[$title] = $title;
+				}
+				unset($definition);
+			}
+			$settings['nextmatch-export-definition-project'] = array(
+				'type'   => 'select',
+				'values' => $options,
+				'label'  => 'Export definitition to use for nextmatch export' . ' (' . lang('Projects') . ')',
+				'name'   => 'nextmatch-export-definition-project',
+				'help'   => lang('If you specify an export definition, it will be used when you export'),
+				'run_lang' => false,
+				'xmlrpc' => True,
+				'admin'  => False,
+			);
+			$settings['nextmatch-export-definition-element'] = array(
+				'type'   => 'select',
+				'values' => $options,
+				'label'  => 'Export definitition to use for nextmatch export' . ' (' . lang('Elements') . ')',
+				'name'   => 'nextmatch-export-definition-element',
+				'help'   => lang('If you specify an export definition, it will be used when you export'),
+				'run_lang' => false,
+				'xmlrpc' => True,
+				'admin'  => False,
+			);
+		}
 		
 		return $settings;
 	}
