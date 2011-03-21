@@ -122,6 +122,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 				foreach($datasource->name2id as $name => $id)
 				{
+					if ($id == PM_TITLE || $id == PM_DETAILS) continue;	// title and details can NOT be edited
+
 					//echo "checking $name=$id (overwrite={$this->data['pe_overwrite']}&$id == ".($this->data['pe_overwrite']&$id?'true':'false')."), content='{$content[$name]}'<br>\n";
 					// check if update is necessary, because a field has be set or changed
 					if ($content[$name] && ($content[$name] != $this->data[$name] || !($this->data['pe_overwrite'] & $id)))
@@ -627,7 +629,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		elseif (strlen($content['action']) > 0)
 		{
-			$this->action($content['action'],$content['nm']['rows']['checked'],$msg);			
+			$this->action($content['action'],$content['nm']['rows']['checked'],$msg);
 		}
 		$content = array(
 			'nm' => $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager'),
@@ -680,13 +682,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'to_app'   => 'projectmanager',
 			'add_app'  => 'infolog',
 		);
-		
+
 		$sel_options=array();
 		if ($this->prefs['document_dir'])
 		{
 			$sel_options['action'][lang('Insert in document').':'] = $this->get_document_actions();
 		}
-		
+
 		// set id for automatic linking via quick add
 		$GLOBALS['egw_info']['flags']['currentid'] = $this->pm_id;
 
@@ -695,7 +697,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$this->tpl->read('projectmanager.elements.list');
 		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index',$content,$sel_options,$readonlys);
 	}
-	
+
 	/**
 	 * Returning document actions / files from the document_dir
 	 *
@@ -704,7 +706,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	function get_document_actions()
 	{
 		if (!$this->prefs['document_dir']) return array();
-		
+
 		if (!is_array($actions = egw_session::appsession('document_actions','projectmanager')))
 		{
 			$actions = array();
@@ -722,7 +724,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		return $actions;
 	}
-	
+
 	/**
 	 * apply an action in element list
 	 *
@@ -782,8 +784,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		return false;
 	}
-	
-		
+
+
 	/**
 	 * Download a document with inserted contact(s)
 	 *
@@ -795,12 +797,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	function download_document($ids,$document='',$eroles=null)
 	{
 		$document = $this->prefs['document_dir'].'/'.$document;
-		
+
 		if (!@egw_vfs::stat($document))
 		{
 			return lang("Document '%1' does not exist or is not readable for you!",$document);
 		}
-		
+
 		$document_merge = new projectmanager_merge($this->pm_id);
 		if($this->config['enable_eroles'] && !(empty($eroles)))
 		{
