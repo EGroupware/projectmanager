@@ -152,15 +152,18 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 
 			if ( $_definition->plugin_options['conditions'] ) {
 				foreach ( $_definition->plugin_options['conditions'] as $condition ) {
+					$results = array();
 					switch ( $condition['type'] ) {
 						// exists
 						case 'exists' :
-							$results = $this->bo->search(
-								array( $condition['string'] => $record[$condition['string']]),
-								False
-							);
+							if($record[$condition['string']]) {
+								$results = $this->bo->search(
+									array( $condition['string'] => $record[$condition['string']]),
+									False
+								);
+							}
 
-							if ( is_array( $results ) && count( array_keys( $results ) >= 1 ) ) {
+							if ( is_array( $results ) && count( array_keys( $results )) >= 1 ) {
 								// apply action to all contacts matching this exists condition
 								$action = $condition['true'];
 								foreach ( (array)$results as $project ) {
