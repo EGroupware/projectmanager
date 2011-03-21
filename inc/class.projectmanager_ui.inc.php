@@ -120,7 +120,7 @@ class projectmanager_ui extends projectmanager_bo
 
 				// set the data of the pe_summary, if the project-value is unset
 				$pe_summary = $this->pe_summary();
-				$datasource =& CreateObject('projectmanager.datasource');
+				$datasource = CreateObject('projectmanager.datasource');
 				foreach($datasource->name2id as $pe_name => $id)
 				{
 					$pm_name = str_replace('pe_','pm_',$pe_name);
@@ -132,7 +132,7 @@ class projectmanager_ui extends projectmanager_bo
 						$this->data['pm_overwrite'] |= $id;
 					}
 					// or check if a field is no longer set, or the datasource changed => set it from the datasource
-					elseif ((!$content[$pm_name] || $pm_name == 'pm_completion' && $content[$pm_name] === '') &&
+					elseif (!$content[$pm_name] && ($pm_name != 'pm_completion' || $content[$pm_name] === '') &&
 						    ($this->data['pm_overwrite'] & $id) ||
 						    !($this->data['pm_overwrite'] & $id) && $this->data[$pm_name] != $pe_summary[$pe_name])
 					{
@@ -146,6 +146,7 @@ class projectmanager_ui extends projectmanager_bo
 						$this->data['pm_overwrite'] &= ~$id;
 					}
 				}
+				//echo "after foreach(datasource->name2id...) data="; _debug_array($this->data);
 				// process new and changed project-members
 				foreach((array)$content['member'] as $n => $uid)
 				{
