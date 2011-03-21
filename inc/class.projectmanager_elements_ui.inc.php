@@ -65,7 +65,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if (!$pm_id)
 		{
 			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('You need to select a project first'),
 			));
 		}
@@ -75,7 +75,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
 			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
@@ -599,7 +599,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if ($content['nm']['rows']['edit'])
 		{
 			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.edit',
+				'menuaction' => 'projectmanager.projectmanager_ui.edit',
 				'pm_id'      => $this->pm_id,
 			));
 		}
