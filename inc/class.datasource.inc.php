@@ -223,7 +223,7 @@ class datasource
 				if ($ds['pe_planned_start'] && is_object($this->project))
 				{
 					$ds['pe_planned_end'] = $this->project->date_add($ds['pe_planned_start'],$ds['pe_planned_time'],$ds['pe_resources'][0]);
-					//echo "<p>$ds[pe_title] set planned end to ".date('D Y-m-d H:i',$ds['pe_planned_end'])."</p>\n";
+					//echo "<p>$ds[pe_title] set planned end to ".date('D Y-m-d H:i',$ds['pe_planned_end']).' '.__LINE__."</p>\n";
 					unset($ds['ignore_planned_end']);
 				}
 			}
@@ -232,41 +232,47 @@ class datasource
 				if ($ds['pe_planned_start'] && is_object($this->project))
 				{
 					$ds['pe_planned_end'] = $this->project->date_add($ds['pe_planned_start'],$ds['pe_planned_time'],$ds['pe_resources'][0]);
+					//echo "<p>$ds[pe_title] set planned end to ".date('D Y-m-d H:i',$ds['pe_planned_end']).' '.__LINE__."</p>\n";
 					unset($ds['ignore_planned_end']);
 				}
 			}
+			// setting real or planned start-date, from each other if not set
+			if ((!isset($ds['pe_real_start']) || $ds['ignore_real_start']) && isset($ds['pe_planned_start']))
+			{
+				$ds['pe_real_start'] = $ds['pe_planned_start'];
+			}
+			elseif (!isset($ds['pe_planned_start']) && isset($ds['pe_real_start']))
+			{
+				$ds['pe_planned_start'] = $ds['pe_real_start'];
+			}
+
 			// calculating the real end-date from the real or planned/replanned time
 			if ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] &&
 				($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_replanned_time']) && is_object($this->project))
 			{
 				$ds['pe_real_end'] = $this->project->date_add($ds['pe_real_start'],
 					($t = $ds['pe_used_time'] && !$ds['ignore_used_time'] ? $ds['pe_used_time'] : $ds['pe_replanned_time']),$ds['pe_resources'][0]);
-				//echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end'])."</p>\n";
+				//echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end']).' '.__LINE__."</p>\n";
 				unset($ds['ignore_real_end']);
 			}
-                        elseif ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] &&
-                                ($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_planned_time']) && is_object($this->project))
-                        {
-                                $ds['pe_real_end'] = $this->project->date_add($ds['pe_real_start'],
-                                        ($t = $ds['pe_used_time'] && !$ds['ignore_used_time'] ? $ds['pe_used_time'] : $ds['pe_planned_time']),$ds['pe_resources'][0]);
-                                //echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end'])."</p>\n";
-                                unset($ds['ignore_real_end']);
-                        }
-
-			// setting real or planned start- or end-date, from each other if not set
-			foreach(array('start','end') as $name)
+			elseif ((!$ds['pe_real_end'] || $ds['ignore_real_end']) && $ds['pe_real_start'] &&
+				($ds['pe_used_time'] && !$ds['ignore_used_time'] || $ds['pe_planned_time']) && is_object($this->project))
 			{
-				if ((!isset($ds['pe_real_'.$name]) || $ds['ignore_real_'.$name]) && isset($ds['pe_planned_'.$name]) /*&&
-				// setting the real dates only if the completion is more then 0% (if supported by the datasource)
-					(!isset($ds['pe_completion']) || $ds['pe_completion'] > 0)*/)
-				{
-					$ds['pe_real_'.$name] = $ds['pe_planned_'.$name];
-				}
-				elseif (!isset($ds['pe_planned_'.$name]) && isset($ds['pe_real_'.$name]))
-				{
-					$ds['pe_planned_'.$name] = $ds['pe_real_'.$name];
-				}
+				$ds['pe_real_end'] = $this->project->date_add($ds['pe_real_start'],
+					($t = $ds['pe_used_time'] && !$ds['ignore_used_time'] ? $ds['pe_used_time'] : $ds['pe_planned_time']),$ds['pe_resources'][0]);
+				//echo "<p>$ds[pe_title] set real end to ".date('D Y-m-d H:i',$ds['pe_real_end']).' '.__LINE__."</p>\n";
+				unset($ds['ignore_real_end']);
 			}
+			// setting real or planned end-date, from each other if not set
+			if ((!isset($ds['pe_real_end']) || $ds['ignore_real_end']) && isset($ds['pe_planned_end']))
+			{
+				$ds['pe_real_end'] = $ds['pe_planned_end'];
+			}
+			elseif (!isset($ds['pe_planned_end']) && isset($ds['pe_real_end']))
+			{
+				$ds['pe_planned_end'] = $ds['pe_real_end'];
+			}
+
 			// try calculating a (second) completion from the times
 			if (!empty($ds['pe_used_time']) && (int) $ds['pe_planned_time'] > 0)
 			{
@@ -338,6 +344,7 @@ class datasource
 				}
 			}
 		}
+		//_debug_array($ds);
 		return $ds;
 	}
 
