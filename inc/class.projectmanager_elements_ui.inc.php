@@ -122,6 +122,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 				foreach($datasource->name2id as $name => $id)
 				{
+					if ($id == PM_TITLE || $id == PM_DETAILS) continue;	// title and details can NOT be edited
+
 					//echo "checking $name=$id (overwrite={$this->data['pe_overwrite']}&$id == ".($this->data['pe_overwrite']&$id?'true':'false')."), content='{$content[$name]}'<br>\n";
 					// check if update is necessary, because a field has be set or changed
 					if ($content[$name] && ($content[$name] != $this->data[$name] || !($this->data['pe_overwrite'] & $id)))

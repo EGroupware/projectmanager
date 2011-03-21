@@ -212,6 +212,10 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				$this->data['pe_status']= 'ignore';
 			}
 		}
+		// mask out not overwritable parts like title and details
+		// in case they somehow get set (mayby by a previous bug)
+		$this->data['pe_overwrite'] &= ~(PM_TITLE|PM_DETAILS);
+
 		$datasource =& $this->datasource($app);
 		$this->updated = 0;
 
