@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -130,6 +130,10 @@ class projectmanager_elements_so extends so_sql
 			if ($data['pe_total_shares'])
 			{
 				$data['pe_completion'] = round($data['pe_sum_completion_shares'] / $data['pe_total_shares'],1);
+			}
+			else	// no total share (eg. no times set so far) --> show completition of 0, NOT no completition
+			{
+				$data['pe_completion'] = 0;
 			}
 			return $this->db2data($data);
 		}
