@@ -418,18 +418,24 @@ class projectmanager_hooks
 				'application' => 'projectmanager'
 			));
 			$options = array();
-			foreach ((array)$definitions->get_definitions() as $identifier) {
-				try {
+			foreach ((array)$definitions->get_definitions() as $identifier)
+			{
+				try
+				{
 					$definition = new importexport_definition($identifier);
-				} catch (Exception $e) {
+				}
+				catch (Exception $e)
+				{
 					// permission error
 					continue;
 				}
-				if ($title = $definition->get_title()) {
+				if ($title = $definition->get_title())
+				{
 					$options[$title] = $title;
 				}
 				unset($definition);
 			}
+			$default_def = 'export-projectmanager';
 			$settings['nextmatch-export-definition-project'] = array(
 				'type'   => 'select',
 				'values' => $options,
@@ -439,7 +445,9 @@ class projectmanager_hooks
 				'run_lang' => false,
 				'xmlrpc' => True,
 				'admin'  => False,
+				'default'=> isset($options[$default_def]) ? $default_def : false,
 			);
+			$default_def = 'export-projectmanager-elements';
 			$settings['nextmatch-export-definition-element'] = array(
 				'type'   => 'select',
 				'values' => $options,
@@ -449,6 +457,7 @@ class projectmanager_hooks
 				'run_lang' => false,
 				'xmlrpc' => True,
 				'admin'  => False,
+				'default'=> isset($options[$default_def]) ? $default_def : false,
 			);
 		}
 		
