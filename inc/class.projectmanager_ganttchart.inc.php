@@ -142,7 +142,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if (!check_load_extension($php_extension='gd') || !function_exists('imagecopyresampled'))
 		{
 			$this->tmpl->Location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang("Necessary PHP extentions %1 not loaded and can't be loaded !!!",$php_extension),
 			));
 		}
@@ -162,7 +162,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if (!$pm_id)
 		{
 			$this->tmpl->Location(array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('You need to select a project first'),
 			));
 		}
@@ -172,7 +172,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
 			egw::redirect_link('/index.php',array(
-				'menuaction' => 'projectmanager.uiprojectmanager.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('Permission denied !!!'),
 			));
 		}
@@ -320,10 +320,9 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 * @param array $pm project or project-element data array
 	 * @param int $level hierarchy level, 0=main project
 	 * @param int $line line-number of the gantchart, starting with 0
-	 * @param boolean $planned_times=false show planned or real start- and end-dates
 	 * @return object GanttBar
 	 */
-	function &project2bar($pm,$level,$line,$planned_times=false)
+	function &project2bar($pm,$level,$line)
 	{
 		if ($pm['pe_id'])
 		{
@@ -340,7 +339,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 				if ($key != 'pm_id') $pe[str_replace('pm_','pe_',$key)] =& $pm[$key];
 			}
 		}
-		$bar =& $this->element2bar($pe,$level,$line,$planned_times);
+		$bar =& $this->element2bar($pe,$level,$line);
 
 		// set project-specific attributes: bold, solid bar, ...
 		$bar->title->SetFont($this->gantt_font,GANTT_STYLE,!$level ? 9 : 8);
@@ -349,7 +348,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if ($this->modernJPGraph && !$pe['pe_id'])	// main-project
 		{
 			$link = $GLOBALS['egw']->link('/index.php',array(
-				'menuaction' => 'projectmanager.uiprojectmanager.view',
+				'menuaction' => 'projectmanager.projectmanager_ui.view',
 				'pm_id'      => $pe['pm_id'],
 			));
 			$title = lang('View this project');
@@ -366,10 +365,9 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 * @param array $pe projectelement-data array
 	 * @param int $level hierarchy level, 0=main project
 	 * @param int $line line-number of the gantchart, starting with 0
-	 * @param boolean $planned_times=false show planned or real start- and end-dates
 	 * @return object GanttBar
 	 */
-	function &element2bar($pe,$level,$line,$planned_times=false)
+	function &element2bar($pe,$level,$line)
 	{
 		// create a shorter title (removes dates from calendar-titles and project-numbers from sub-projects
 		if ($pe['pe_app'] == 'calendar' || $pe['pe_app'] == 'projectmanager')
@@ -403,7 +401,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if ($this->modernJPGraph && $pe['pe_id'])
 		{
 			$bar->SetCSIMTarget('@600x450'.$GLOBALS['egw']->link('/index.php',array(	// @ = popup
-				'menuaction' => 'projectmanager.uiprojectelements.view',
+				'menuaction' => 'projectmanager.projectmanager_elements_ui.view',
 				'pm_id'      => $pe['pm_id'],
 				'pe_id'      => $pe['pe_id'],
 			)),$pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element'));
@@ -537,11 +535,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 
 			if ($pe['pe_app'] == 'projectmanager')
 			{
-				$bars[$pe_id] =& $this->project2bar($pe,$level,$line++,$params['planned_times']);
+				$bars[$pe_id] =& $this->project2bar($pe,$level,$line++);
 			}
 			else
 			{
-				$bars[$pe_id] =& $this->element2bar($pe,$level,$line++,$params['planned_times']);
+				$bars[$pe_id] =& $this->element2bar($pe,$level,$line++);
 			}
 			// if we should display further levels, we call ourself recursive
 			if ($pe['pe_app'] == 'projectmanager' && $level < $params['depth'])
@@ -623,7 +621,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 				// set used start- and end-times of the project
 				self::_set_start_end($this->project->data,$params['planned_times']);
 			}
-			$graph->Add($this->project2bar($this->project->data,0,$line++,$params['planned_times']));
+			$graph->Add($this->project2bar($this->project->data,0,$line++));
 
 			if ($params['depth'] > 0)
 			{
@@ -727,7 +725,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	{
 		foreach(array('start','end') as $var)
 		{
-			if ($planned_times && $data['pe_planned_'.$var] || !$data['pe_real_'.$var])
+			if ($planned_times && $data['pm_planned_'.$var] || !$data['pm_real_'.$var])
 			{
 				$data['pm_'.$var] = $data['pm_planned_'.$var];
 			}
@@ -771,7 +769,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if (!$msg) $msg = html::htmlspecialchars($_GET['msg']);
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Ganttchart').': '.$this->project->data['pm_title'];;
-		
+
 		if (!$this->modernJPGraph)
 		{
 			$msg .= $this->msg_install_new_jpgraph();
