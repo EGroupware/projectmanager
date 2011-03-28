@@ -146,7 +146,8 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 	 */
 	public function get_selectors_etpl() {
 		return array(
-			'name'	=> 'projectmanager.export_elements_csv_selectors'
+			'name'	=> 'projectmanager.export_elements_csv_selectors',
+			'content'	=> 'selected'
 		);
 	}
 
