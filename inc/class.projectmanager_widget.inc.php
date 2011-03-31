@@ -138,9 +138,12 @@ class projectmanager_widget
 						if (!is_array($value)) $value = explode(',',$value);
 						foreach($value as $key => $id)
 						{
-							if ($id && ($name = $eroles->id2title($id)))
+							if ($id && ($description = $eroles->id2description($id)))
 							{
-								$cell['sel_options'][$id] = $name.$eroles->get_info($id);
+								$cell['sel_options'][$id] = array(
+									'label' => $description,
+									'title' => lang('Element role title').': '.$eroles->id2title($id).$eroles->get_info($id),
+								);
 							}
 							else
 							{
@@ -154,8 +157,8 @@ class projectmanager_widget
 				foreach($eroles->get_free_eroles() as $id => $data)
 				{
 					$cell['sel_options'][$data['role_id']] = array(
-						'label' => $data['role_title'].$eroles->get_info($data['role_id']),
-						'title' => $data['role_description'],
+						'label' => $eroles->id2description($data['role_id']).$eroles->get_info($data['role_id']),
+						'title' => lang('Element role title').': '.$data['role_title'],
 					);
 				}
 				

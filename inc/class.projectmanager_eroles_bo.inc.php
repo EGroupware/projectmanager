@@ -176,6 +176,26 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 	}
 	
 	/**
+	 * returns an element role description by a given id
+	 * if description is empty the title will be used instead
+	 * 
+	 * @param int $role_id
+	 * @return string
+	 */
+	public function id2description($role_id)
+	{
+		$erole = parent::read($role_id);
+		if(is_string($erole['role_description']) && strlen($erole['role_description']) > 0)
+		{
+			return $erole['role_description'];
+		}
+		else
+		{
+			return $erole['role_title'];
+		}
+	}
+	
+	/**
 	 * returns a unique element role id by a given title
 	 * project eroles have precedence before global eroles
 	 * 
