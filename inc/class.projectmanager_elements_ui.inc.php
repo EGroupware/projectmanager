@@ -663,6 +663,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$content['nm']['header_right'] = 'projectmanager.elements.list.add';
 			$content['nm']['header_left']  = 'projectmanager.elements.list.add-new';
+			if(!$this->config['enable_eroles'])
+			{
+				// disable moreOptions button to select eRoles
+				$readonlys['nm']['extra_icons'] = true;
+			}
+			unset($content['nm']['eroles_add']); // remove selected value(s) from link_add widget
 		}
 		else
 		{
@@ -808,8 +814,18 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$document_merge->set_eroles($eroles);
 		}
+		
+		if(isset($this->prefs['document_download_name']))
+		{
+			$ext = '.'.pathinfo($document,PATHINFO_EXTENSION);
+			$name = preg_replace(
+				array('/%document%/','/%pm_title%/'),
+				array(basename($document,$ext),$this->project->data['pm_title']),
+				$this->prefs['document_download_name']
+			);
+		}
 
-		return $document_merge->download($document,$ids);
+		return $document_merge->download($document,$ids,(isset($name) ? $name : null));
 	}
 
 }

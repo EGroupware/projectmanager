@@ -409,6 +409,21 @@ class projectmanager_hooks
 				'xmlrpc' => True,
 				'admin'  => False,
 			);
+			$settings['document_download_name'] = array(
+			'type'   => 'select',
+			'label'  => 'Document download filename',
+			'name'   => 'document_download_name',
+			'values' => array(
+				'%document%'      			=> lang('Template name'),
+				'%pm_title%'      			=> lang('Project title'),
+				'%pm_title% - %document%'	=> lang('Project title - template name'),
+				'%document% - %pm_title%'	=> lang('Template name - project title'),
+			),
+			'help'   => 'Choose the default filename for downloaded documents.',
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> '%document%',
+		);
 		}
 		// Import / Export for nextmatch
 		if ($GLOBALS['egw_info']['user']['apps']['importexport'])

@@ -59,6 +59,10 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		{
 			$this->pm_id = (int) $_REQUEST['pm_id'];
 		}
+		elseif((int)$GLOBALS['egw']->session->appsession('pm_id','projectmanager') > 0)
+		{
+			$this->pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+		}
 		elseif(isset($_REQUEST['etemplate_exec_id']))
 		{
 			if($etemplate_request = etemplate_request::read($_REQUEST['etemplate_exec_id']))

@@ -178,7 +178,16 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 						if ((int) $this->debug >= 3 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify: ancestors($data[id])=".print_r($ancestors,true));
 					}
 				}
-				$this->update($data['target_app'],$data['target_id'],$data['link_id'],$data['id']);
+				// add pre-selected eroles to update request if app is supported
+				if($this->config['enable_eroles']
+					&& in_array($data['target_app'],$this->erole_apps)
+					&& isset($_POST['exec']['nm']['eroles_add'])
+				)
+				{
+					$extra_keys = array('pe_eroles' => implode(',',$_POST['exec']['nm']['eroles_add']));
+				}
+				$this->update($data['target_app'],$data['target_id'],$data['link_id'],
+					$data['id'],true,(isset($extra_keys) ? $extra_keys : null));
 				break;
 
 			case 'unlink':
@@ -200,9 +209,10 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * @param int $pe_id=0 element- / link-id or 0 to only read and return the entry, but not save it!
 	 * @param int $pm_id=null project-id, default $this->pm_id
 	 * @param boolean $update_project=true update the data in the project if necessary
+	 * @param array $extra_keys=null key=>value pairs with element extra data to merge on update
 	 * @return array/boolean the updated project-element or false on error (eg. no read access)
 	 */
-	function &update($app,$id,$pe_id=0,$pm_id=null,$update_project=true)
+	function &update($app,$id,$pe_id=0,$pm_id=null,$update_project=true,$extra_keys=null)
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
 
@@ -231,6 +241,10 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			{
 				$this->data['pe_status']= 'ignore';
 			}
+		}
+		if(!empty($extra_keys) && is_array($extra_keys))
+		{
+			$this->data_merge($extra_keys);
 		}
 		// mask out not overwritable parts like title and details
 		// in case they somehow get set (mayby by a previous bug)

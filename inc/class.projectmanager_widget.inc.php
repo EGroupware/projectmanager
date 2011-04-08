@@ -127,8 +127,8 @@ class projectmanager_widget
 				if (!$cell['help']) $cell['help'] = /*lang(*/ 'Select a price' /*)*/;
 				break;
 				
-			case 'projectmanager-select-erole': // $type2: extraStyleMultiselect
-				list($rows,$type,$type2) = explode(',',$cell['size']);
+			case 'projectmanager-select-erole': // rows, short_label (true or false),type2: extraStyleMultiselect
+				list($rows,$short_label,$type2) = explode(',',$cell['size']);
 				$eroles = new projectmanager_eroles_bo();
 				if ($readonly)
 				{
@@ -157,14 +157,14 @@ class projectmanager_widget
 				foreach($eroles->get_free_eroles() as $id => $data)
 				{
 					$cell['sel_options'][$data['role_id']] = array(
-						'label' => $eroles->id2description($data['role_id']).$eroles->get_info($data['role_id']),
+						'label' => $eroles->id2description($data['role_id']).($short_label != 'true' ? $eroles->get_info($data['role_id']) : ''),
 						'title' => lang('Element role title').': '.$data['role_title'],
 					);
 				}
 				
 				$cell['size'] = $rows.($type2 ? ','.$type2 : '');
 				$cell['no_lang'] = True;
-				unset($rows,$type,$type2);
+				unset($rows,$short_label,$type2);
 				break;
 				
 		}
@@ -200,7 +200,6 @@ class projectmanager_widget
 				$value = null;
 				if(is_array($value_in)) $value = implode(',',$value_in);
 				break;
-			// fall through
 			default:
 				$value = $value_in;
 				break;
