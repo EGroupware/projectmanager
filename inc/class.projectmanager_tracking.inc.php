@@ -52,12 +52,12 @@ class projectmanager_tracking extends bo_tracking
 	 */
 	var $prefer_user_as_sender = false;
 	/**
-	 * Instance of the timesheet_bo class calling us
+	 * Reference to projectmanager_bo class calling us
 	 *
 	 * @access private
-	 * @var timesheet_bo
+	 * @var procjectmanager_bo
 	 */
-	var $projectmanager;
+	var $bo;
 
 	/**
 	 * Constructor
@@ -65,14 +65,17 @@ class projectmanager_tracking extends bo_tracking
 	 * @param projectmanager_bo $bo
 	 * @return projectmanager_tracking
 	 */
-	function __construct($bo)
+	function __construct(projectmanager_bo $bo)
 	{
-		parent::__construct();	// calling the constructor of the extended class
-
 		$this->bo = $bo;
 
-		$this->field2history = $this->bo->field2history;
+		//set fields for tracking
+		$this->field2history = array_keys($this->bo->db_cols);
+		$this->field2history = array_diff(array_combine($this->field2history,$this->field2history),array(
+			'pm_modified',
+		));
 
+		parent::__construct('projectmanager');	// adding custom fields for projectmanager
 	}
 
 	/**

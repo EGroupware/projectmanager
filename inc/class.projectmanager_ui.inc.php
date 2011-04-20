@@ -415,10 +415,8 @@ class projectmanager_ui extends projectmanager_bo
 					'pm_real_end' => 'date-time',
 				),
 		);
-		foreach($this->field2history as $field => $status)
-		{
-			$sel_options['status'][$status] = $this->field2label[$field];
-		}
+		$sel_options['status'] = $this->field2label;
+
 		if ($this->config['accounting_types'])	// only allow the configured types
 		{
 			$allowed = explode(',',$this->config['accounting_types']);

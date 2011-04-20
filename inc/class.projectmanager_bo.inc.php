@@ -116,14 +116,8 @@ class projectmanager_bo extends projectmanager_so
 	    'pm_accounting_type' => 'Accounting type',
 		// pseudo fields used in edit
 		//'link_to'        => 'Attachments & Links',
-		'customfields'   => 'Custom fields',
+		'#c'   => 'Custom fields',	// only used to display old history, new cf history is stored field by field
 	);
-	/**
-	 * setting field-name from DB to history status
-	 *
-	 * @var array
-	 */
-	var $field2history = array();
 	/**
 	 * Names of all config vars
 	 *
@@ -150,7 +144,7 @@ class projectmanager_bo extends projectmanager_so
 
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now_su = time() + $this->tz_offset_s;
-		
+
 		$this->prefs =& $GLOBALS['egw_info']['user']['preferences']['projectmanager'];
 
 		parent::__construct($pm_id);
@@ -166,11 +160,6 @@ class projectmanager_bo extends projectmanager_so
 		if ($instanciate) $this->instanciate($instanciate);
 
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("projectmanager_bo::projectmanager_bo($pm_id) finished");
-		//set fields for tracking
-		$this->field2history = array_keys($this->db_cols);
-		$this->field2history = array_diff(array_combine($this->field2history,$this->field2history),
-		array('pm_modified'));
-		$this->field2history = $this->field2history +array('customfields'   => '#c');  //add custom fields for history
 	}
 
 	/**
@@ -329,17 +318,6 @@ class projectmanager_bo extends projectmanager_so
 		{
 			$this->tracking = new projectmanager_tracking($this);
 			$this->tracking->html_content_allow = true;
-		}
-		if ($this->customfields)
-		{
-			$data_custom = $old_custom = array();
-			foreach($this->customfields as $name => $custom)
-			{
-				if (isset($this->data['#'.$name]) && (string)$this->data['#'.$name]!=='') $data_custom[] = $custom['label'].': '.$this->data['#'.$name];
-				if (isset($old['#'.$name]) && (string)$old['#'.$name]!=='') $old_custom[] = $custom['label'].': '.$old['#'.$name];
-			}
-			$this->data['customfields'] = implode("\n",$data_custom);
-			$old['customfields'] = implode("\n",$old_custom);
 		}
 		if (!$this->tracking->track($this->data,$old,$this->user))
 		{
@@ -514,7 +492,7 @@ class projectmanager_bo extends projectmanager_so
 					for($x = ++$i;$x < strlen($format);$x++)
 					{
 						//echo "x: $x ($i) char here:".$format[$x]."<br>";
-						if ($format[$x] == "%") 
+						if ($format[$x] == "%")
 						{
 							break;
 						}
