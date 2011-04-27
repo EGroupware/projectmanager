@@ -124,7 +124,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.list" template="" lang="" group="0" version="1.5.002">
+	<template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -147,6 +147,9 @@
 						<hbox align="right">
 							<button id="gantt_checked" image="ganttchart" label="Ganttchart" statustext="Created a ganttchart from the checked projects"/>
 							<button id="delete_checked" image="delete" label="Delete" statustext="Delete all checked projects" onclick="return confirm('Delete all checked projects');"/>
+							<menulist>
+								<menupopup id="action" onchange="this.form.submit(); this.value = null;" options="Select an action..."/>
+							</menulist>
 							<checkbox id="delete_sources" label="datasources too" statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too."/>
 							<button image="arrow_ltr" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('nm[rows][checked][]')); return false;" needed="1" class="check_all_arrow"/>
 						</hbox>

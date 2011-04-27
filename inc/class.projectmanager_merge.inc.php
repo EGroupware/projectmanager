@@ -100,9 +100,7 @@ class projectmanager_merge extends bo_merge
 		
 		if(isset($pm_id) && $pm_id > 0)
 		{
-			$this->pm_id = $pm_id;
-			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo($pm_id);
-			$this->projectmanager_elements_bo = new projectmanager_elements_bo($pm_id);	
+			$this->change_project($pm_id);
 		}
 		$this->projectmanager_bo = new projectmanager_bo($pm_id);
 		$this->table_plugins['elements'] = 'table_elements';
@@ -172,6 +170,20 @@ class projectmanager_merge extends bo_merge
 	}
 
 	/**
+	 * Change the currently merging project
+	 *
+	 * @param int $id of the project
+	 */
+	protected function change_project($id) {
+		$this->pm_id = $id;
+		if($id) {
+			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo($id);
+			$this->projectmanager_elements_bo = new projectmanager_elements_bo($id);	
+		}
+		$this->projectmanager_bo = new projectmanager_bo($id);
+	}
+
+	/**
 	 * Get projectmanager replacements
 	 *
 	 * @param int $id id of entry
@@ -191,6 +203,9 @@ class projectmanager_merge extends bo_merge
 		if (isset($this->pm_id) && $this->pm_id > 0)
 		{
 			$replacements += $this->projectmanager_replacements($this->pm_id);
+		} else {
+			$this->change_project($id);
+			$replacements += $this->projectmanager_replacements($this->pm_id);
 		}
 		
 		// further replacements are made by eroles (if given)
@@ -209,7 +224,6 @@ class projectmanager_merge extends bo_merge
 				}
 			}
 		}
-
 		return empty($replacements) ? false : $replacements;
 	}
 	
@@ -558,16 +572,20 @@ class projectmanager_merge extends bo_merge
 	 * Table plugin for project elements
 	 *
 	 * @param string $plugin
-	 * @param int $id (contact id - not used for this plugin)
+	 * @param int $id Project ID
 	 * @param int $n
 	 * @param string $repeat the line to repeat
 	 * @return array
 	 */
 	public function table_elements($plugin,$id,$n,$repeat)
-	{	
-		if(!isset($this->pm_id)) return false;
+	{
+		if(!isset($this->pm_id) && !$id) return false;
 		
 		static $elements;
+		if($id && $id != $this->pm_id) { 
+			$this->change_project($id);
+			$elements = array();
+		}
 		if (!$n)	// first row inits environment
 		{
 			// get project elements
@@ -583,7 +601,6 @@ class projectmanager_merge extends bo_merge
 		{
 			$replacement = $this->get_element_replacements($element['pe_id'],'element');
 		}
-
 		return $replacement;
 	}
 

@@ -561,37 +561,46 @@ class projectmanager_ui extends projectmanager_bo
 				'template'   => $content['template'],
 			));
 		}
-		if ($content['delete_checked'] || $content['gantt_checked'])
+		if (is_array($content) && isset($content['nm']['rows']['document']))  // handle insert in default document button like an action
 		{
-			$checked = $content['nm']['rows']['checked'];
-			if (!is_array($checked) || !count($checked))
+			list($id) = @each($content['nm']['rows']['document']);
+			$content['action'] = 'document';
+			$content['nm']['rows']['checked'] = array($id);
+		}
+		// Handle buttons as actions
+		if(is_array($content))
+		{
+			if(isset($content['delete_checked']))
 			{
-				$msg = lang('You need to select a project first');
+				$content['action'] = 'delete';
+			}
+			elseif ($content['gantt_checked'])
+			{
+				$content['action'] = 'gantt';
+			}
+		}
+		if($content['action'] && $content['action'] == 'delete')
+		{
+			// Pass delete sources along
+			$content['action'] .= '_' . $content['delete_sources'];
+		}
+		if ($content['action'])
+		{
+			if (!count($content['nm']['rows']['checked']) && !$content['nm']['select_all'])
+			{
+				$msg = lang('You need to select some entries first!');
 			}
 			else
 			{
-				if ($content['gantt_checked'])
+				if ($this->action($content['action'],$content['nm']['rows']['checked'],$content['nm']['select_all'],
+					$success,$failed,$action_msg,'index',$msg))
 				{
-					$tpl->location(array(
-						'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
-						'pm_id'      => implode(',',$checked),
-					));
+					$msg .= lang('%1 project(s) %2',$success,$action_msg);
 				}
-				// delete all checked
-				$deleted = $no_perms = 0;
-				foreach($checked as $pm_id)
+				elseif(is_null($msg))
 				{
-					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_DELETE))
-					{
-						$no_perms++;
-					}
-					elseif ($this->delete($pm_id,$content['delete_sources']))
-					{
-						$deleted++;
-					}
+					$msg .= lang('%1 project(s) %2, %3 failed because of insufficent rights !!!',$success,$action_msg,$failed);
 				}
-				$msg = $no_perms ? lang('%1 times permission denied, %2 projects deleted',$no_perms,$deleted) :
-					lang('%1 projects deleted',$deleted);
 			}
 		}
 		$delete_sources = $content['delete_sources'];
@@ -672,9 +681,110 @@ class projectmanager_ui extends projectmanager_bo
 				'title' => $template['pm_title'],
 			);
 		}
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
-		$tpl->exec('projectmanager.projectmanager_ui.index',$content,array(
+		$sel_options = array(
 			'template' => $templates,
-		));
+			'action' => array('delete' => lang('Delete'), 'gantt' => lang('Gantt chart')),
+		);
+		// Merge print
+		if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'])
+		{
+			$documents = tracker_merge::get_documents($GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir']);
+			if($documents)
+			{
+				$sel_options['action'][lang('Insert in document').':'] = $documents;
+			}
+		}
+
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
+		$tpl->exec('projectmanager.projectmanager_ui.index',$content,$sel_options);
+	}
+
+	/**
+	 * apply an action to multiple projects
+	 *
+	 * @param string/int $action Action to take
+	 * @param array $checked project id's to use if !$use_all
+	 * @param boolean $use_all if true use all entries of the current selection (in the session)
+	 * @param int &$success number of succeded actions
+	 * @param int &$failed number of failed actions (not enought permissions)
+	 * @param string &$action_msg translated verb for the actions, to be used in a message like %1 entries 'deleted'
+	 * @param string/array $session_name 'index' or 'email', or array with session-data depending if we are in the main list or the popup
+	 * @return boolean true if all actions succeded, false otherwise
+	 */
+	function action($action,$checked,$use_all,&$success,&$failed,&$action_msg,$session_name,&$msg)
+	{
+		//echo "<p>projects_ui::action('$action',".print_r($checked,true).','.(int)$use_all.",...)</p>\n";
+		$success = $failed = 0;
+		if ($use_all)
+		{
+			// get the whole selection
+			$query = is_array($session_name) ? $session_name : $GLOBALS['egw']->session->appsession($session_name,'index');
+
+			if ($use_all)
+			{
+				@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
+				$query['num_rows'] = -1;	// all
+				$this->get_rows($query,$checked,$readonlys,true);	// true = only return the id's
+			}
+		}
+
+		// Dialogs to get options
+		list($action, $settings) = explode('_', $action, 2);
+
+		switch($action)
+		{
+			case 'gantt':
+				egw::redirect_link('/index.php', array(
+					'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
+					'pm_id'      => implode(',',$checked),
+				));
+				break;
+			case 'delete':
+				$action_msg = lang('deleted');
+				foreach($checked as $pm_id)
+				{
+					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_DELETE))
+					{
+						$failed++;
+					}
+					elseif ($this->delete($pm_id,$settings))
+					{
+						$success++;
+					}
+				}
+				break;
+			case 'document':
+				$msg = $this->download_document($checked,$settings);
+				$failed = count($checked);
+                                return false;
+		}
+
+		return !$failed;
+	}
+
+	/**
+	 * Download a document with inserted entries
+	 *
+	 * @param array $ids tracker-ids
+	 * @param string $document vfs-path of document
+	 * @return string error-message or error, otherwise the function does NOT return!
+	 */
+	function download_document($ids,$document='')
+	{
+		if (!$document)
+		{
+			$document = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['default_document'];
+		}
+		else
+		{
+			$document = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'].'/'.$document;
+		}
+		if (!@egw_vfs::stat($document))
+		{
+			return lang("Document '%1' does not exist or is not readable for you!",$document);
+		}
+		require_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_merge.inc.php');
+		$document_merge = new projectmanager_merge();
+		return $document_merge->download($document,$ids);
 	}
 }
