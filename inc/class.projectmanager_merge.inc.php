@@ -358,7 +358,7 @@ class projectmanager_merge extends bo_merge
 		{
 			if(!isset($this->projectmanager_element_fields[$name])) continue; // not a supported field
 			
-			$value = $element[$name];
+			$value = strip_tags($element[$name]);
 			switch($name)
 			{
 				case 'pe_planned_start': case 'pe_planned_end':
