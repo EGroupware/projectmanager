@@ -775,7 +775,7 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$document = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['default_document'];
 		}
-		else
+		elseif ($document[0] != '/')
 		{
 			$document = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'].'/'.$document;
 		}
