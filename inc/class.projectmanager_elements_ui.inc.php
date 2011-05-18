@@ -819,8 +819,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$ext = '.'.pathinfo($document,PATHINFO_EXTENSION);
 			$name = preg_replace(
-				array('/%document%/','/%pm_id%/','/%pm_title%/'),
-				array(basename($document,$ext),$this->project->data['pm_id'],$this->project->data['pm_title']),
+				array('/%document%/','/%pm_number%/','/%pm_title%/'),
+				array(basename($document,$ext),$this->project->data['pm_number'],$this->project->data['pm_title']),
 				$this->prefs['document_download_name']
 			);
 		}

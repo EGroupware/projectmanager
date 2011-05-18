@@ -414,12 +414,12 @@ class projectmanager_hooks
 			'label'  => 'Document download filename',
 			'name'   => 'document_download_name',
 			'values' => array(
-				'%document%'      					=> lang('Template name'),
-				'%pm_title%'      					=> lang('Project title'),
-				'%pm_title% - %document%'			=> lang('Project title - template name'),
-				'%document% - %pm_title%'			=> lang('Template name - project title'),
-				'%pm_id% - %document%'				=> lang('Project id - template name'),
-				'(%pm_id%) %pm_title% - %document%'	=> lang('(Project id) project title - template name'),
+				'%document%'      						=> lang('Template name'),
+				'%pm_title%'      						=> lang('Project title'),
+				'%pm_title% - %document%'				=> lang('Project title - template name'),
+				'%document% - %pm_title%'				=> lang('Template name - project title'),
+				'%pm_number% - %document%'				=> lang('Project ID - template name'),
+				'(%pm_number%) %pm_title% - %document%'	=> lang('(Project ID) project title - template name'),
 				
 			),
 			'help'   => 'Choose the default filename for downloaded documents.',
