@@ -131,12 +131,13 @@ class projectmanager_merge extends bo_merge
 			'pm_planned_budget'		=> lang('Planned budget'),
 			'pm_accounting_type'	=> lang('Accounting type'),
 			'user_timezone_read'	=> lang('Timezone'),
+			
 			'all_roles'		=> lang('All roles'),
 		);
 		$role_so = new projectmanager_roles_so();
 		$roles = $role_so->query_list();
-
 		$this->projectmanager_fields += array_combine($roles, $roles);
+
 
 		$this->pm_fields_translate = array(
 			'cat_id'				=> 'pm_cat_id',
@@ -173,6 +174,14 @@ class projectmanager_merge extends bo_merge
 			'cat_id'				=> 'pe_cat_id',
 			'user_timezone_read'	=> 'pe_user_timezone',
 		);
+
+		// Add in element summary
+		$this->projectmanager_elements_bo = new projectmanager_elements_bo($pm_id);
+		$summary = $this->projectmanager_elements_bo->summary();
+		foreach($summary as $key => $value) {
+			$this->projectmanager_fields[$key.'_total'] = $this->projectmanager_element_fields[$key] ? $this->projectmanager_element_fields[$key] : $key . ' ' . lang('Total');
+		}
+
 	}
 
 	/**
@@ -314,6 +323,11 @@ class projectmanager_merge extends bo_merge
 		}
 		$project['all_roles'] = implode("\n",$project['all_roles']);
 
+		$summary = $this->projectmanager_elements_bo->summary();
+		foreach($summary as $key => $value) {
+			$project[$key.'_total'] = $value;
+		}
+
 		$replacements = array();
 		foreach(array_keys($project) as $name)
 		{
@@ -325,6 +339,8 @@ class projectmanager_merge extends bo_merge
 				case 'pm_created': case 'pm_modified':
 				case 'pm_planned_start': case 'pm_planned_end':
 				case 'pm_real_start': case 'pm_real_end':
+				case 'pe_planned_start_total': case 'pe_planned_end_total':
+				case 'pe_real_start_total': case 'pe_real_end_total':
 					$value = $this->format_datetime($value);
 					break;
 				case 'pm_creator': case 'pm_modifier':
@@ -343,6 +359,10 @@ class projectmanager_merge extends bo_merge
 						$value = implode(', ',$cats);
 					}
 					break;
+				case 'pe_used_time_total':
+				case 'pe_planned_time_total':
+				case 'pe_replanned_time_total':
+					$value = round($value / 60, 2);
 			}
 			if(isset($this->pm_fields_translate[$name]))
 			{
