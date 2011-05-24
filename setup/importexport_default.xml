@@ -2,7 +2,7 @@
 <entry type="array" name="importExportDefinitions">
   <entry type="array" name="metainfo">
     <entry type="string" name="type">importexport definitions</entry>
-    <entry type="string" name="charset">utf-8</entry>
+    <entry type="string" name="charset">user</entry>
     <entry type="integer" name="entries">3</entry>
   </entry>
   <entry type="array" name="definitions">
@@ -55,7 +55,7 @@
           <entry type="string" name="all_custom_fields">projectmanager</entry>
         </entry>
         <entry type="string" name="delimiter">;</entry>
-        <entry type="string" name="charset">utf-8</entry>
+        <entry type="string" name="charset">user</entry>
         <entry type="string" name="begin_with_fieldnames">label</entry>
         <entry type="string" name="convert">1</entry>
         <entry type="string" name="pm_used_time">h</entry>
@@ -63,7 +63,7 @@
         <entry type="string" name="pm_replanned_time">h</entry>
         <entry type="string" name="include_duration_unit">1</entry>
       </entry>
-      <entry type="string" name="modified">2011-03-29 08:43:13</entry>
+      <entry type="string" name="modified">2011-05-24 10:00:00</entry>
     </entry>
     <entry type="array" name="import-projectmanager">
       <entry type="string" name="name">import-projectmanager</entry>
@@ -75,7 +75,7 @@
       </entry>
       <entry type="array" name="plugin_options">
         <entry type="string" name="fieldsep">;</entry>
-        <entry type="string" name="charset">utf-8</entry>
+        <entry type="string" name="charset">user</entry>
         <entry type="string" name="num_header_lines">1</entry>
         <entry type="string" name="update_cats">add</entry>
         <entry type="array" name="csv_fields">
@@ -171,7 +171,7 @@
           </entry>
         </entry>
       </entry>
-      <entry type="string" name="modified">2011-03-15 16:36:24</entry>
+      <entry type="string" name="modified">2011-05-24 10:00:00</entry>
     </entry>
     <entry type="array" name="export-projectmanager-elements">
       <entry type="string" name="name">export-projectmanager-elements</entry>
@@ -212,7 +212,7 @@
           <entry type="string" name="all_custom_fields">projectmanager</entry>
         </entry>
         <entry type="string" name="delimiter">;</entry>
-        <entry type="string" name="charset">utf-8</entry>
+        <entry type="string" name="charset">user</entry>
         <entry type="string" name="begin_with_fieldnames">label</entry>
         <entry type="string" name="convert">1</entry>
         <entry type="string" name="pe_used_time">h</entry>
@@ -220,7 +220,7 @@
         <entry type="string" name="pe_replanned_time">h</entry>
         <entry type="string" name="include_duration_unit">1</entry>
       </entry>
-      <entry type="string" name="modified">2011-03-29 08:43:32</entry>
+      <entry type="string" name="modified">2011-05-24 10:00:00</entry>
     </entry>
   </entry>
 </entry>
