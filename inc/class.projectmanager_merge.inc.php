@@ -169,6 +169,8 @@ class projectmanager_merge extends bo_merge
 			'cat_id'				=> lang('Element category'),
 			'pe_remark'				=> lang('Remark'),
 			'user_timezone_read'	=> lang('Timezone'),
+			'pe_app'		=> lang('Application'),
+			'pe_resources'		=> lang('Resources')
 		);
 		$this->pe_fields_translate = array(
 			'cat_id'				=> 'pe_cat_id',
@@ -393,7 +395,7 @@ class projectmanager_merge extends bo_merge
 		{
 			if(!isset($this->projectmanager_element_fields[$name])) continue; // not a supported field
 			
-			$value = strip_tags($element[$name]);
+			$value = !is_array($element[$name]) ? strip_tags($element[$name]) : $element[$name];
 			switch($name)
 			{
 				case 'pe_planned_start': case 'pe_planned_end':
@@ -416,6 +418,13 @@ class projectmanager_merge extends bo_merge
 						}
 						$value = implode(', ',$cats);
 					}
+					break;
+				case 'pe_resources':
+					foreach($value as $id => $user_id)
+					{
+						$names[] = common::grab_owner_name($user_id);
+					}
+					$value = implode(', ', $names);
 					break;
 			}
 			if(isset($this->pe_fields_translate[$name]))
