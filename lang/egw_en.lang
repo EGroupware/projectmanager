@@ -23,6 +23,7 @@ add price	projectmanager	en	Add price
 add project	projectmanager	en	Add project
 add project-elements	projectmanager	en	Add project-elements
 add this role	projectmanager	en	Add this role
+all_roles	projectmanager	en	All roles
 allow users to change their working times	projectmanager	en	Allow users to change their working times
 allowed accounting types	projectmanager	en	Allowed accounting types
 allowed units	projectmanager	en	Allowed units
