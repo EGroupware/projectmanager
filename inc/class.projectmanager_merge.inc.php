@@ -131,7 +131,13 @@ class projectmanager_merge extends bo_merge
 			'pm_planned_budget'		=> lang('Planned budget'),
 			'pm_accounting_type'	=> lang('Accounting type'),
 			'user_timezone_read'	=> lang('Timezone'),
+			'all_roles'		=> lang('All roles'),
 		);
+		$role_so = new projectmanager_roles_so();
+		$roles = $role_so->query_list();
+
+		$this->projectmanager_fields += array_combine($roles, $roles);
+
 		$this->pm_fields_translate = array(
 			'cat_id'				=> 'pm_cat_id',
 			'user_timezone_read'	=> 'pm_user_timezone',
@@ -298,6 +304,15 @@ class projectmanager_merge extends bo_merge
 			$project = $this->projectmanager_bo->read($project);
 		}
 		if (!is_array($project)) return array();
+
+		foreach($project['pm_members'] as $account_id => $info) {
+			$all_roles[$info['role_title']][] = common::grab_owner_name($info['member_uid']);
+		} 
+		foreach($all_roles as $name => $users) {
+			$project[$name] = implode(', ', $users);
+			$project['all_roles'][] = $name . ': ' . $project[$name];
+		}
+		$project['all_roles'] = implode("\n",$project['all_roles']);
 
 		$replacements = array();
 		foreach(array_keys($project) as $name)
