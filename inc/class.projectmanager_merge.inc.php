@@ -217,7 +217,7 @@ class projectmanager_merge extends bo_merge
 		}
 		
 		// replace project content
-		if (isset($this->pm_id) && $this->pm_id > 0)
+		if (isset($this->pm_id) && $this->pm_id > 0 && $this->pm_id == $id)
 		{
 			$replacements += $this->projectmanager_replacements($this->pm_id);
 		} else {
@@ -316,15 +316,28 @@ class projectmanager_merge extends bo_merge
 		}
 		if (!is_array($project)) return array();
 
+		// Add in roles
+		$role_so = new projectmanager_roles_so();
+		$roles = $role_so->query_list();
+
+		// Sort with Coordinator first, others alphabetical
+		sort($roles);
+		$all_roles['Coordinator'] = array();
+		$all_roles += array_fill_keys($roles, array());
 		foreach($project['pm_members'] as $account_id => $info) {
 			$all_roles[$info['role_title']][] = common::grab_owner_name($info['member_uid']);
 		} 
 		foreach($all_roles as $name => $users) {
 			$project[$name] = implode(', ', $users);
+			if(count($users) == 0) {
+				unset($all_roles[$name]);
+				continue;
+			}
 			$project['all_roles'][] = $name . ': ' . $project[$name];
 		}
 		$project['all_roles'] = implode("\n",$project['all_roles']);
 
+		// Add in element summary
 		$summary = $this->projectmanager_elements_bo->summary();
 		foreach($summary as $key => $value) {
 			$project[$key.'_total'] = $value;
