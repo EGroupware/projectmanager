@@ -217,13 +217,11 @@ class projectmanager_merge extends bo_merge
 		}
 		
 		// replace project content
-		if (isset($this->pm_id) && $this->pm_id > 0 && $this->pm_id == $id)
+		if ($id > 0 && $this->pm_id != $id)
 		{
-			$replacements += $this->projectmanager_replacements($this->pm_id);
-		} else {
 			$this->change_project($id);
-			$replacements += $this->projectmanager_replacements($this->pm_id);
 		}
+		$replacements += $this->projectmanager_replacements($this->pm_id);
 		
 		// further replacements are made by eroles (if given)
 		if(!empty($this->eroles) && is_array($this->eroles))
