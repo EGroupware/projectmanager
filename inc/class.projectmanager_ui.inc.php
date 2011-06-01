@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -96,12 +96,6 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$old_status = $content['old_status'];
 
-			if ($content['cancel'])
-			{
-				$tpl->location(array(
-					'menuaction' => $content['referer'],
-				));
-			}
 			if ($content['pm_id'])
 			{
 				$this->read($content['pm_id']);
@@ -224,29 +218,21 @@ class projectmanager_ui extends projectmanager_bo
 					}
 				}
 			}
-			if ($content['save'])
-			{
-				$tpl->location(array(
-					'menuaction' => $content['referer'],
-					'msg'        => $msg,
-				));
-			}
 			if ($content['delete'] && $this->check_acl(EGW_ACL_DELETE))
 			{
-				// all delete are done by index
-				return $this->index(array(
-					'nm'=>array('rows'=>array('delete' => array($this->data['pm_id']=>true))),
-					'delete_sources' => $content['delete_sources'],
-				));
+				$msg = $this->delete($pm_id,$delete_sources) ? lang('Project deleted') : lang('Error: deleting project !!!');
 			}
-			$referer = $content['referer'];
+			if ($content['save'] || $content['delete'])	// refresh opener and output message
+			{
+				echo "<html><body><script>var referer = opener.location;opener.location.href = referer+(referer.search?'&':'?')+'msg=".
+					addslashes(urlencode($msg))."'; window.close();</script></body></html>\n";
+				common::egw_exit();
+			}
 			$template = $content['template'];
 		}
 		else
 		{
 			if ($_GET['msg']) $msg = strip_tags($_GET['msg']);
-
-			$referer = preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ? $matches[1] : 'projectmanager.projectmanager_ui.index';
 
 			if ((int) $_GET['pm_id'])
 			{
@@ -257,42 +243,33 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				if (!$this->check_acl(EGW_ACL_READ))	// no read-rights for the parent, eg. someone edited the url
 				{
-					$tpl->location(array(
-						'menuaction' => $referer,
-						'msg' => lang('Permission denied !!!'),
-					));
+					$GLOBALS['egw']->framework->render(lang('Permission denied !!!'));
+					common::egw_exit();
 				}
-				else
+				$this->generate_pm_number(true,$parent_number=$this->data['pm_number']);
+				foreach(array('pm_id','pm_title','pm_description','pm_creator','pm_created','pm_modified','pm_modifier','pm_real_start','pm_real_end','pm_completion','pm_status','pm_used_time','pm_planned_time','pm_replanned_time','pm_used_budget','pm_planned_budget') as $key)
 				{
-					$this->generate_pm_number(true,$this->data['pm_number']);
-					foreach(array('pm_id','pm_title','pm_description','pm_creator','pm_created','pm_modified','pm_modifier','pm_real_start','pm_real_end','pm_completion','pm_status','pm_used_time','pm_planned_time','pm_replanned_time','pm_used_budget','pm_planned_budget') as $key)
-					{
-						unset($this->data[$key]);
-					}
-					include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
-					$this->data['pm_overwrite'] &= PM_PLANNED_START | PM_PLANNED_END;
+					unset($this->data[$key]);
 				}
+				include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
+				$this->data['pm_overwrite'] &= PM_PLANNED_START | PM_PLANNED_END;
 			}
-			elseif((int)$_GET['template'] && $this->read((int) $_GET['template']))
+			if((int)$_GET['template'] && $this->read((int) $_GET['template']))
 			{
 				if (!$this->check_acl(EGW_ACL_READ))	// no read-rights for the template, eg. someone edited the url
 				{
-					$tpl->location(array(
-						'menuaction' => $referer,
-						'msg' => lang('Permission denied !!!'),
-					));
+					$GLOBALS['egw']->framework->render(lang('Permission denied !!!'));
+					common::egw_exit();
 				}
 				// we do only stage 1 of the copy, so if the user hits cancel everythings Ok
-				$this->copy($template = (int) $_GET['template'],1);
+				$this->copy($template = (int) $_GET['template'],1,$parent_number);
 			}
 			if ($this->data['pm_id'])
 			{
 				if (!$this->check_acl(EGW_ACL_READ))
 				{
-					$tpl->location(array(
-						'menuaction' => $referer,
-						'msg' => lang('Permission denied !!!'),
-					));
+					$GLOBALS['egw']->framework->render(lang('Permission denied !!!'));
+					common::egw_exit();
 				}
 				if (!$this->check_acl(EGW_ACL_EDIT)) $view = true;
 			}
@@ -380,7 +357,6 @@ class projectmanager_ui extends projectmanager_bo
 			'view'     => $view,
 			'add_link' => $add_link,
 			'member'   => $content['member'],
-			'referer'  => $referer,
 			'template' => $template,
 			'old_status' => $old_status,
 		);
@@ -444,7 +420,7 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project') : lang('Edit project')) : lang('Add project'));
-		$tpl->exec('projectmanager.projectmanager_ui.edit',$content,$sel_options,$readonlys,$preserv);
+		$tpl->exec('projectmanager.projectmanager_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
 	}
 
 	/**
@@ -473,16 +449,16 @@ class projectmanager_ui extends projectmanager_bo
 		$this->instanciate('roles');
 
 		$readonlys = array();
-		foreach($rows as $n => $val)
+		foreach($rows as &$row)
 		{
-			$row =& $rows[$n];
 			if (!$this->check_acl(EGW_ACL_EDIT,$row))
 			{
-				$readonlys["edit[$row[pm_id]]"] = true;
+				$row['class'] .= ' rowNoEdit';
 			}
 			if (!$this->check_acl(EGW_ACL_DELETE,$row))
 			{
 				$readonlys["delete[$row[pm_id]]"] = true;
+				$row['class'] .= ' rowNoDelete';
 			}
 			$pm_ids[] = $row['pm_id'];
 
@@ -554,46 +530,16 @@ class projectmanager_ui extends projectmanager_bo
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 
-		if ($content['add'])
+		if ($content['nm']['action'])
 		{
-			$tpl->location(array(
-				'menuaction' => 'projectmanager.projectmanager_ui.edit',
-				'template'   => $content['template'],
-			));
-		}
-		if (is_array($content) && isset($content['nm']['rows']['document']))  // handle insert in default document button like an action
-		{
-			list($id) = @each($content['nm']['rows']['document']);
-			$content['action'] = 'document';
-			$content['nm']['rows']['checked'] = array($id);
-		}
-		// Handle buttons as actions
-		if(is_array($content))
-		{
-			if(isset($content['delete_checked']))
-			{
-				$content['action'] = 'delete';
-			}
-			elseif ($content['gantt_checked'])
-			{
-				$content['action'] = 'gantt';
-			}
-		}
-		if($content['action'] && $content['action'] == 'delete')
-		{
-			// Pass delete sources along
-			$content['action'] .= '_' . $content['delete_sources'];
-		}
-		if ($content['action'])
-		{
-			if (!count($content['nm']['rows']['checked']) && !$content['nm']['select_all'])
+			if (!count($content['nm']['selected']) && !$content['nm']['select_all'])
 			{
 				$msg = lang('You need to select some entries first!');
 			}
 			else
 			{
-				if ($this->action($content['action'],$content['nm']['rows']['checked'],$content['nm']['select_all'],
-					$success,$failed,$action_msg,'index',$msg))
+				if ($this->action($content['nm']['action'],$content['nm']['selected'],$content['nm']['select_all'],
+					$success,$failed,$action_msg,'index',$msg,$content['nm']['checkboxes']['sources_too']))
 				{
 					$msg .= lang('%1 project(s) %2',$success,$action_msg);
 				}
@@ -606,9 +552,9 @@ class projectmanager_ui extends projectmanager_bo
 		$delete_sources = $content['delete_sources'];
 		$content = $content['nm']['rows'];
 
-		if ($content['view'] || $content['edit'] || $content['delete'] || $content['ganttchart'])
+		if ($content['delete'] || $content['ganttchart'])
 		{
-			foreach(array('view','edit','delete','ganttchart') as $action)
+			foreach(array('delete','ganttchart') as $action)
 			{
 				if ($content[$action])
 				{
@@ -622,13 +568,6 @@ class projectmanager_ui extends projectmanager_bo
 				case 'ganttchart':
 					$tpl->location(array(
 						'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
-						'pm_id'      => $pm_id,
-					));
-					break;
-				case 'view':
-				case 'edit':
-					$tpl->location(array(
-						'menuaction' => 'projectmanager.projectmanager_ui.'.$action,
 						'pm_id'      => $pm_id,
 					));
 					break;
@@ -661,42 +600,188 @@ class projectmanager_ui extends projectmanager_bo
 				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
 				'options-filter' => $this->filter_labels,
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
-//				'bottom_too'     => True,// I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
 				'order'          =>	'pm_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!role0,role1,role2,role3,role4,pm_used_time_pm_planned_time_pm_replanned_time',
 				'csv_fields'     => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-export-definition-project'],
+				'header_right'   => 'projectmanager.list.right',
+				'row_id'         => 'pm_id',
+				'actions'        => $this->get_actions(),
 			);
 		}
-		if($_GET['search']) {
+		if($_GET['search'])
+		{
 			$content['nm']['search'] = $_GET['search'];
 		}
-		$templates = array();
-		foreach((array)$this->search(array(
-			'pm_status' => 'template',
-		),$this->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_number','','',False,'OR') as $template)
-		{
-			$templates[$template['pm_id']] = array(
-				'label' => $template['pm_number'],
-				'title' => $template['pm_title'],
-			);
-		}
 		$sel_options = array(
-			'template' => $templates,
-			'action' => array('delete' => lang('Delete'), 'gantt' => lang('Gantt chart')),
+			'template' => $this->get_templates(),
 		);
-		// Merge print
-		if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'])
-		{
-			$documents = tracker_merge::get_documents($GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir']);
-			if($documents)
-			{
-				$sel_options['action'][lang('Insert in document').':'] = $documents;
-			}
-		}
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
 		$tpl->exec('projectmanager.projectmanager_ui.index',$content,$sel_options);
+	}
+
+	/**
+	 * Get list of templates
+	 *
+	 * @param string $label='label' key for label
+	 * @param string $title='title' key for title
+	 * @return array of array with keys $label and $title
+	 */
+	private function get_templates($label='label', $title='title')
+	{
+		static $templates;	// cache result within request
+		if (!isset($templates))
+		{
+			$templates = array();
+			list(,,$show) = explode('_',$this->prefs['show_projectselection']);
+			foreach((array)$this->search(array(
+				'pm_status' => 'template',
+			),$this->table_name.'.pm_id AS pm_id,pm_number,pm_title','pm_number','','',False,'OR') as $template)
+			{
+				$templates[$template['pm_id']] = array(
+					$label => $show == 'number' ? $template['pm_number'] : $template['pm_title'],
+					$title => $show == 'number' ? $template['pm_title'] : $template['pm_number'],
+				);
+			}
+		}
+		return $templates;
+	}
+
+	/**
+	 * Get actions / context menu for index
+	 *
+	 * Changes here, require to log out, as $content['nm'] get stored in session!
+	 *
+	 * @return array see nextmatch_widget::egw_actions()
+	 */
+	private function get_actions()
+	{
+		$actions = array(
+			'view' => array(
+				'caption' => 'Elementlist',
+				'default' => true,
+				'allowOnMultiple' => false,
+				'url' => 'menuaction=projectmanager.projectmanager_elements_ui.index&pm_id=$id',
+				'group' => $group=1,
+				'default' => true,
+			),
+			'open' => array(	// does edit if allowed, otherwise view
+				'caption' => 'Open',
+				'allowOnMultiple' => false,
+				'url' => 'menuaction=projectmanager.projectmanager_ui.edit&pm_id=$id',
+				'popup' => egw_link::get_registry('projectmanager', 'edit_popup'),
+				'group' => $group,
+			),
+			'add' => array(
+				'caption' => 'Add',
+				'group' => $group,
+				'children' => array(
+					'new' => array(
+						'caption' => 'Empty',
+						'url' => 'menuaction=projectmanager.projectmanager_ui.edit',
+						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+					),
+					'copy' => array(
+						'caption' => 'Copy',
+						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&template=$id',
+						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+					),
+					'template' => array(
+						'caption' => 'Template',
+						'icon' => 'move',
+						'children' => $this->get_templates('caption','hint'),
+						// get inherited by children
+						'prefix' => 'template_',
+						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&template=$action',
+						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+					),
+					'sub' => array(
+						'caption' => 'Subproject',
+						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&link_app=projectmanager&link_id=$id',
+						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+						'icon' => 'navbar',
+					),
+					'templatesub' => array(
+						'caption' => 'Template as subproject',
+						'icon' => 'move',
+						'children' => $this->get_templates('caption','hint'),
+						// get inherited by children
+						'prefix' => 'templatesub_',
+						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&template=$action&link_app=projectmanager&link_id=$id',
+						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+					),
+				),
+			),
+			'ganttchart' => array(
+				'icon' => 'projectmanager/navbar',
+				'caption' => 'Ganttchart',
+				'url' => 'menuaction=projectmanager.projectmanager_ganttchart.show&pm_id=$ids',
+				'group' => ++$group,
+			),
+			'pricelist' => array(
+				'icon' => 'pricelist',
+				'caption' => 'Pricelist',
+				'url' => 'menuaction=projectmanager.projectmanager_pricelist_ui.index&pm_id=$id',
+				'allowOnMultiple' => false,
+				'group' => $group,
+			),
+			'filemanager' => array(
+				'icon' => 'filemanager/navbar',
+				'caption' => 'Filemanager',
+				'url' => 'menuaction=filemanager.filemanager_ui.index&path=/apps/projectmanager/$id',
+				'allowOnMultiple' => false,
+				'group' => $group,
+			),
+			'select_all' => array(
+				'caption' => 'Whole query',
+				'checkbox' => true,
+				'hint' => 'Apply the action on the whole query, NOT only the shown entries',
+				'group' => ++$group,
+			),
+			'documents' => timesheet_merge::document_action(
+				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
+				$group, 'Insert in document', 'document_'
+			),
+			'cat' => nextmatch_widget::category_action(
+				'procjetmanger',$group,'Change category','cat_'
+			)+array(
+				'disableClass' => 'rowNoEdit',
+			),
+			'sources_too' => array(
+				'caption' => 'Datasources too',
+				'checkbox' => true,
+				'hint' => 'If checked the datasources of the elements (eg. InfoLog entries) will change their status too.',
+				'group' => ++$group,
+			),
+			'status' => array(
+				'icon' => 'apply',
+				'caption' => 'Modify status',
+				'group' => $group,
+				'children' => $this->status_labels,
+				'prefix' => 'status_',
+				'disableClass' => 'rowNoEdit',
+			),
+			'delete' => array(
+				'caption' => 'Delete',
+				'confirm' => 'Delete this project',
+				'confirm_multiple' => 'Delete these entries',
+				'group' => $group,
+				'disableClass' => 'rowNoDelete',
+			),
+		);
+
+		if (!$GLOBALS['egw_info']['user']['apps']['filemanager'])
+		{
+			unset($actions['filemanager']);
+		}
+		// show pricelist only if we use pricelists
+		if ($this->config['accounting_types'] && !in_array('pricelist',explode(',',$this->config['accounting_types'])))
+		{
+			unset($actions['pricelist']);
+		}
+		//_debug_array($actions);
+		return $actions;
 	}
 
 	/**
@@ -709,9 +794,11 @@ class projectmanager_ui extends projectmanager_bo
 	 * @param int &$failed number of failed actions (not enought permissions)
 	 * @param string &$action_msg translated verb for the actions, to be used in a message like %1 entries 'deleted'
 	 * @param string/array $session_name 'index' or 'email', or array with session-data depending if we are in the main list or the popup
+	 * @param string &$msg
+	 * @param booelan $sources_too=false should delete or status be changed in resources too
 	 * @return boolean true if all actions succeded, false otherwise
 	 */
-	function action($action,$checked,$use_all,&$success,&$failed,&$action_msg,$session_name,&$msg)
+	function action($action,$checked,$use_all,&$success,&$failed,&$action_msg,$session_name,&$msg,$sources_too=false)
 	{
 		//echo "<p>projects_ui::action('$action',".print_r($checked,true).','.(int)$use_all.",...)</p>\n";
 		$success = $failed = 0;
@@ -747,16 +834,41 @@ class projectmanager_ui extends projectmanager_bo
 					{
 						$failed++;
 					}
-					elseif ($this->delete($pm_id,$settings))
+					elseif ($this->delete($pm_id,$settings||$sources_too))
 					{
 						$success++;
+					}
+				}
+				break;
+			case 'cat':
+			case 'status':
+				$action_msg = $action == 'cat' ? lang('category set') : lang('status set');
+				foreach($checked as $pm_id)
+				{
+					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_EDIT))
+					{
+						$failed++;
+					}
+					else
+					{
+						$old_status = $this->data['pm_status'];
+						$this->data[$action == 'cat' ? 'cat_id' : 'pm_status'] = $settings;
+						if (!$this->save())
+						{
+							if ($action == 'status' && $sources_too && $old_status == $this->data['pm_status'])
+							{
+								ExecMethod2('projectmanager.projectmanager_elements_bo.run_on_sources','change_status',
+									array('pm_id'=>$this->data['pm_id']),$this->data['pm_status']);
+							}
+							$success++;
+						}
 					}
 				}
 				break;
 			case 'document':
 				$msg = $this->download_document($checked,$settings);
 				$failed = count($checked);
-                                return false;
+				return false;
 		}
 
 		return !$failed;

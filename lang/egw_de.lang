@@ -1,5 +1,7 @@
 %1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert
 %1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
+%1 project(s) %2	projectmanager	de	%1 Projekt(e) %2
+%1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	de	%1 Projekt(e) %2, %3 fehlgeschlagen wegen fehlender Rechte !!!
 %1 projects deleted	projectmanager	de	%1 Projekte gelöscht
 %1 records imported	projectmanager	de	%1 Datensätze importiert
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	de	%1 Datensätze gelesen (noch nicht importiert, Sie können %2zurück%3 gehen und Testimport ausschalten)
@@ -23,6 +25,7 @@ add price	projectmanager	de	Preis hinzufügen
 add project	projectmanager	de	Projekt hinzufügen
 add project-elements	projectmanager	de	Projektelemente hinzufügen
 add this role	projectmanager	de	Diese Rolle hinzufügen
+all_roles	projectmanager	de	Alle Rollen
 allow users to change their working times	projectmanager	de	Erlaube Benutzern ihre Arbeitszeiten zu ändern
 allowed accounting types	projectmanager	de	Erlaubte Abrechnungsarten
 allowed units	projectmanager	de	Erlaubte Einheiten
@@ -40,6 +43,8 @@ budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
 budget and pricelist	projectmanager	de	Budget und Preisliste
 by	projectmanager	de	von
 calculate budget by quantity (eg. time) and price	projectmanager	de	Budget nach Menge (Zeit) und Preis berechnen
+category set	projectmanager	de	Kategorie geändert
+change category	projectmanager	de	Kategorie ändern
 charset of file	projectmanager	de	Zeichensatz der Datei
 charset of the above selected font	projectmanager	de	Zeichensatz des oben ausgewählten Font
 check all	projectmanager	de	Alle auswählen
@@ -150,6 +155,7 @@ milestones	projectmanager	de	Meilensteine
 milestones before this element has to be finished	projectmanager	de	Meilensteine vor denen dieses Element beendet sein muß
 modified	projectmanager	de	Geändert
 modified by	projectmanager	de	Geändert durch
+modify status	projectmanager	de	Status ändern
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht gelanden und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
@@ -227,11 +233,14 @@ start- & enddate	projectmanager	de	Start- & Enddatum
 startdate	projectmanager	de	Startdatum
 startrecord	projectmanager	de	Startdatensatz
 status filter	projectmanager	de	Status Filter
+status set	projectmanager	de	Status geändert
 style used for everything but elements. some fonts have only normal style.	projectmanager	de	Stil der für alles außer Elementen verwendet wird. Einige Fonts haben nur den Stil Normal.
 subelements	projectmanager	de	Unterelemente
+subproject	projectmanager	de	Unterprojekt
 subprojects	projectmanager	de	Unterprojekte
 synchronise all	projectmanager	de	Alle synchronisieren
 template	projectmanager	de	Vorlage
+template as subproject	projectmanager	de	Vorlage als Unterprojekt
 template including elment-tree saved as new project	projectmanager	de	Vorlage einschl. Elementbaum als neues Projekt gespeichert
 test import (show importable records <u>only</u> in browser)	projectmanager	de	Test Import (zeigt importierte Datensätze <u>nur</b> im Browser an)
 the charset depends on the font you want to use.	projectmanager	de	Der Zeichensatz hängt vom Font ab den Sie verwenden wollen.

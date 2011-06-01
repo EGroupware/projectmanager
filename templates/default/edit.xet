@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.7.001">
-		<grid width="100%" height="260">
+	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%" height="310">
 			<columns>
 				<column width="95"/>
 				<column width="40%"/>
@@ -11,9 +11,9 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<description options=",,,cat_id" value="Category"/>
+					<description value="Category" options=",,,cat_id"/>
 					<menulist>
-						<menupopup type="select-cat" options="None" id="cat_id"/>
+						<menupopup type="select-cat" id="cat_id" options="None"/>
 					</menulist>
 					<description value="Access" options=",,,pm_access"/>
 					<menulist>
@@ -21,16 +21,16 @@
 					</menulist>
 				</row>
 				<row class="row">
-					<description options=",,,pm_priority" value="Priority"/>
+					<description value="Priority" options=",,,pm_priority"/>
 					<menulist>
-						<menupopup type="select-number" options=",1,10" id="pm_priority"/>
+						<menupopup type="select-number" id="pm_priority" options=",1,10"/>
 					</menulist>
 					<description value="Status" options=",,,pm_status"/>
 					<hbox options="0,0">
 						<menulist>
 							<menupopup id="pm_status" no_lang="1"/>
 						</menulist>
-						<checkbox id="status_sources" label="datasources too" statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." class="leftPad5"/>
+						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" class="leftPad5"/>
 					</hbox>
 				</row>
 				<row class="th">
@@ -39,7 +39,7 @@
 					<description value="Elementlist" span="all"/>
 				</row>
 				<row class="row">
-					<description options=",,,pm_real_start" value="Startdate"/>
+					<description value="Startdate" options=",,,pm_real_start"/>
 					<date-time id="pm_real_start"/>
 					<date-time id="ds[pe_real_start]" readonly="true" span="all"/>
 				</row>
@@ -49,7 +49,7 @@
 					<date-time id="ds[pe_planned_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
-					<description options=",,,pm_real_end" value="Enddate"/>
+					<description value="Enddate" options=",,,pm_real_end"/>
 					<date-time id="pm_real_end"/>
 					<date-time id="ds[pe_real_end]" readonly="true" span="all"/>
 				</row>
@@ -59,44 +59,44 @@
 					<date-time id="ds[pe_planned_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description options=",,,pm_used_time" value="Times"/>
+					<description value="Times" options=",,,pm_used_time"/>
 					<date-duration id="pm_used_time" options="@duration_format"/>
-					<date-duration id="ds[pe_used_time]" readonly="true" span="all" options="@duration_format"/>
+					<date-duration id="ds[pe_used_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description options=",,,pm_planned_time" value="- planned"/>
+					<description value="- planned" options=",,,pm_planned_time"/>
 					<date-duration id="pm_planned_time" options="@duration_format"/>
-					<date-duration id="ds[pe_planned_time]" readonly="true" span="all" options="@duration_format"/>
+					<date-duration id="ds[pe_planned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description options=",,,pm_replanned_time" value="- re-planned"/>
+					<description value="- re-planned" options=",,,pm_replanned_time"/>
 					<date-duration id="pm_replanned_time" options="@duration_format"/>
-					<date-duration id="ds[pe_replanned_time]" readonly="true" span="all" options="@duration_format"/>
+					<date-duration id="ds[pe_replanned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row">
-					<description options=",,,pm_completion" value="Status"/>
+					<description value="Status" options=",,,pm_completion"/>
 					<menulist>
-						<menupopup type="select-percent" options="None" id="pm_completion"/>
+						<menupopup type="select-percent" id="pm_completion" options="None"/>
 					</menulist>
-					<description no_lang="1" id="ds[pe_completion]" readonly="true" span="all"/>
+					<description id="ds[pe_completion]" no_lang="1" readonly="true" span="all"/>
 				</row>
 			</rows>
 		</grid>
 	</template>
 	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="260">
+		<grid width="100%" height="310">
 			<columns>
 				<column/>
 			</columns>
 			<rows>
 				<row valign="top">
-					<htmlarea id="pm_description" mode="extended" height="250px" width="100%" toolbar="true"/>
+					<htmlarea id="pm_description" mode="extended" height="240px" width="100%" toolbar="true"/>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.members" template="" lang="" group="0" version="1.5.001">
-		<grid width="100%" height="260" overflow="auto">
+	<template id="projectmanager.edit.members" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%" height="310" overflow="auto">
 			<columns>
 				<column/>
 				<column/>
@@ -110,15 +110,15 @@
 					<description value="Project availibility"/>
 					<hbox>
 						<description value="Role"/>
-						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_roles_ui.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;" statustext="Add or edit roles and their ACL" id="edit_roles"/>
+						<button statustext="Add or edit roles and their ACL" label="Edit" id="edit_roles" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_roles_ui.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;"/>
 					</hbox>
 				</row>
 				<row class="row" height="12" disabled="@view">
 					<menulist>
 						<menupopup type="select-account" id="member[1]" options="select one"/>
 					</menulist>
-					<textbox type="float" id="general_avail[1]" statustext="Percentage the member is availible for projects"/>
-					<textbox type="float" id="availibility[1]" statustext="Percentage the member is availible for this project"/>
+					<textbox type="float" statustext="Percentage the member is availible for projects" id="general_avail[1]"/>
+					<textbox type="float" statustext="Percentage the member is availible for this project" id="availibility[1]"/>
 					<hbox options="0,0">
 						<menulist>
 							<menupopup id="role[1]"/>
@@ -128,10 +128,10 @@
 				</row>
 				<row class="row" valign="top" disabled="!@member">
 					<menulist>
-						<menupopup type="select-account" readonly="true" id="member[$row]"/>
+						<menupopup type="select-account" id="member[$row]" readonly="true"/>
 					</menulist>
-					<textbox type="float" id="general_avail[$row]" statustext="Percentage the member is availible for projects"/>
-					<textbox type="float" id="availibility[$row]" statustext="Percentage the member is availible for this project"/>
+					<textbox type="float" statustext="Percentage the member is availible for projects" id="general_avail[$row]"/>
+					<textbox type="float" statustext="Percentage the member is availible for this project" id="availibility[$row]"/>
 					<menulist>
 						<menupopup id="role[$row]" options="None"/>
 					</menulist>
@@ -139,8 +139,8 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="260">
+	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%" height="310">
 			<columns>
 				<column width="95"/>
 				<column width="40%"/>
@@ -148,7 +148,7 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top" height="12">
-					<description options=",,,pm_accounting_type" value="Accounting type"/>
+					<description value="Accounting type" options=",,,pm_accounting_type"/>
 					<menulist span="all">
 						<menupopup id="pm_accounting_type" onchange="1"/>
 					</menulist>
@@ -159,14 +159,14 @@
 					<description value="Elementlist"/>
 				</row>
 				<row class="row" height="12" disabled="@no_budget">
-					<description options=",,,pm_used_budget" value="Budget"/>
+					<description value="Budget" options=",,,pm_used_budget"/>
 					<textbox type="float" id="pm_used_budget"/>
-					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
+					<textbox type="float" id="ds[pe_used_budget]" readonly="true" min="2"/>
 				</row>
 				<row class="row" valign="top" height="12" disabled="@no_budget">
-					<description options=",,,pm_planned_budget" value="- planned"/>
+					<description value="- planned" options=",,,pm_planned_budget"/>
 					<textbox type="float" id="pm_planned_budget"/>
-					<textbox type="float" min="2" id="ds[pe_planned_budget]" readonly="true"/>
+					<textbox type="float" id="ds[pe_planned_budget]" readonly="true" min="2"/>
 				</row>
 				<row valign="top">
 					<description/>
@@ -176,8 +176,8 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="260" overflow="auto">
+	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%" height="310" overflow="auto">
 			<columns>
 				<column/>
 			</columns>
@@ -188,30 +188,30 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.links" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="260" overflow="auto">
+	<template id="projectmanager.edit.links" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%" height="310" overflow="auto">
 			<columns>
 				<column width="95"/>
 				<column/>
 			</columns>
 			<rows>
 				<row class="th" disabled="@view">
-					<description span="all" value="Create new links"/>
+					<description value="Create new links" span="all"/>
 				</row>
 				<row class="row" disabled="@view">
-					<link-to span="all" id="link_to"/>
+					<link-to id="link_to" span="all"/>
 				</row>
 				<row class="th">
-					<description span="all" value="Existing links"/>
+					<description value="Existing links" span="all"/>
 				</row>
 				<row class="row_off" valign="top" height="164">
-					<link-list span="all" id="link_to"/>
+					<link-list id="link_to" span="all"/>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.history" template="" lang="" group="0" version="1.7.002">
-		<grid width="100%" height="250" overflow="auto">
+	<template id="projectmanager.edit.history" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%" height="310" overflow="auto">
 			<columns>
 				<column/>
 			</columns>
@@ -222,7 +222,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit" template="" lang="" group="0" version="1.7.002">
+	<template id="projectmanager.edit" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="100"/>
@@ -232,19 +232,19 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description span="all" class="redItalic" no_lang="1" align="center" id="msg"/>
+					<description align="center" id="msg" no_lang="1" span="all" class="redItalic"/>
 					<description/>
 					<description/>
 					<description/>
 				</row>
 				<row class="th">
-					<description options=",,,pm_number" value="Project ID"/>
-					<textbox size="20" maxlength="64" no_lang="1" id="pm_number" statustext="leave it empty to have one generated"/>
-					<description options=",,,pm_title" value="Title"/>
-					<textbox size="64" maxlength="255" needed="1" id="pm_title" statustext="a describtive title for the project, must not be empty"/>
+					<description value="Project ID" options=",,,pm_number"/>
+					<textbox statustext="leave it empty to have one generated" id="pm_number" no_lang="1" size="20" maxlength="64"/>
+					<description value="Title" options=",,,pm_title"/>
+					<textbox statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" size="64" maxlength="255"/>
 				</row>
 				<row>
-					<tabbox span="all" id="tabs">
+					<tabbox id="tabs" span="all">
 						<tabs>
 							<tab label="General" statustext="Start, End, Category, ..."/>
 							<tab label="Description" statustext="free descriptiv text"/>
@@ -265,31 +265,31 @@
 						</tabpanels>
 					</tabbox>
 				</row>
-				<row class="row" disabled="!@pm_id">
+				<row disabled="!@pm_id">
 					<description value="Modified"/>
-					<hbox span="2" options="2,0">
-						<date-time readonly="true" id="pm_modified"/>
+					<hbox options="2,0" span="2">
+						<date-time id="pm_modified" readonly="true"/>
 						<menulist>
-							<menupopup type="select-account" label="by" readonly="true" id="pm_modifier"/>
+							<menupopup type="select-account" label="by" id="pm_modifier" readonly="true"/>
 						</menulist>
 					</hbox>
-					<hbox span="2" options="2,0" align="right">
-						<date-time readonly="true" label="created" no_lang="1" id="pm_created"/>
+					<hbox align="right" options="2,0" span="2">
+						<date-time label="created" id="pm_created" no_lang="1" readonly="true"/>
 						<menulist>
-							<menupopup type="select-account" label="by" readonly="true" id="pm_creator"/>
+							<menupopup type="select-account" label="by" id="pm_creator" readonly="true"/>
 						</menulist>
 					</hbox>
 				</row>
 				<row>
 					<hbox span="3">
-						<button label="Edit" id="edit" statustext="Edit this project"/>
-						<button label="Save" id="save" statustext="Save the changes made"/>
-						<button label="Apply" id="apply" statustext="Apply the changes"/>
-						<button label="Cancel" id="cancel" statustext="Exit without saving"/>
+						<button statustext="Edit this project" label="Edit" id="edit"/>
+						<button statustext="Save the changes made" label="Save" id="save"/>
+						<button statustext="Apply the changes" label="Apply" id="apply"/>
+						<buttononly statustext="Exit without saving" label="Cancel" id="cancel" onclick="window.close();"/>
 					</hbox>
 					<hbox align="right">
-						<checkbox id="delete_sources" label="datasources too" statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too."/>
-						<button label="Delete" onclick="return confirm('Delete this project');" id="delete" statustext="Delete this project"/>
+						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"/>
+						<button statustext="Delete this project" label="Delete" id="delete" onclick="return confirm('Delete this project');"/>
 					</hbox>
 				</row>
 			</rows>

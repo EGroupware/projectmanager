@@ -1,7 +1,15 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.7.002">
+	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.001">
+		<hbox>
+			<menulist>
+				<menupopup statustext="Create a new empty project or use a template" id="template" no_lang="1" options="Empty"/>
+			</menulist>
+			<buttononly statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
+		</hbox>
+	</template>
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -27,7 +35,7 @@
 				<row class="th">
 					<nextmatch-sortheader label="Project ID" id="pm_number"/>
 					<nextmatch-sortheader label="Title" id="pm_title"/>
-					<nextmatch-sortheader label="Priority" align="center" id="pm_priority"/>
+					<nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
 					<nextmatch-sortheader label="Owner" id="pm_creator"/>
 					<nextmatch-header label="@roles[0]" id="role0"/>
 					<nextmatch-header label="@roles[1]" id="role1"/>
@@ -44,29 +52,29 @@
 					</vbox>
 					<vbox options="0,0">
 						<nextmatch-sortheader label="Budget" id="pm_used_budget"/>
-						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_budget"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_budget" class="planned"/>
 					</vbox>
 					<vbox options="0,0">
 						<nextmatch-sortheader label="Times" id="pm_used_time"/>
-						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_time"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
 					</vbox>
 					<vbox options="0,0">
 						<nextmatch-sortheader label="Times" id="pm_used_time"/>
-						<nextmatch-sortheader class="planned" label="planned" id="pm_planned_time"/>
-						<nextmatch-sortheader class="replanned" label="re-planned" id="pm_replanned_time"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
+						<nextmatch-sortheader label="re-planned" id="pm_replanned_time" class="replanned"/>
 					</vbox>
-					<nextmatch-sortheader label="Status" id="pm_completion" align="center"/>
+					<nextmatch-sortheader align="center" label="Status" id="pm_completion"/>
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
 					<nextmatch-customfields id="customfields"/>
 					<hbox align="center" class="noPrint">
-						<description value="Actions" align="center"/>
-						<button image="check" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('checked[]')); return false;" needed="1"/>
+						<nextmatch-header align="center" label="Actions" id="legacy_actions"/>
+						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_objectManager.toggleAllSelected(); return false;" image="check"/>
 					</hbox>
 				</row>
-				<row class="row">
+				<row class="$row_cont[cat_id] $row_cont[class]">
 					<description id="${row}[pm_number]" no_lang="1"/>
-					<description id="${row}[pm_title]" no_lang="1" options=",projectmanager.projectmanager_elements_ui.index&amp;pm_id=$row_cont[pm_id]" statustext="Select this project and show it's elements"/>
-					<description no_lang="1" id="${row}[pm_priority]" align="center"/>
+					<description statustext="Select this project and show it's elements" id="${row}[pm_title]" no_lang="1" options=",projectmanager.projectmanager_elements_ui.index&amp;pm_id=$row_cont[pm_id]"/>
+					<description align="center" id="${row}[pm_priority]" no_lang="1"/>
 					<menulist>
 						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>
 					</menulist>
@@ -84,28 +92,28 @@
 						<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<textbox type="float" readonly="true" id="${row}[pm_used_budget]" max="2"/>
-						<textbox type="float" readonly="true" no_lang="1" id="${row}[pm_planned_budget]" max="2" class="planned"/>
+						<textbox type="float" id="${row}[pm_used_budget]" readonly="true" max="2"/>
+						<textbox type="float" id="${row}[pm_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
 					</vbox>
 					<vbox options="0,0">
 						<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
-						<date-duration id="${row}[pm_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+						<date-duration id="${row}[pm_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 					</vbox>
-					<vbox readonly="true">
-						<hbox options="1,0" id="pml_used_time">
+					<vbox readonly="true" options="0,0">
+						<hbox id="pml_used_time" options="1,0">
 							<image label="Times" src="timesheet"/>
 							<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
 						</hbox>
-						<hbox options="1,0" id="planified">
+						<hbox id="planified" options="1,0">
 							<image label="planned time" src="k_alarm"/>
-							<date-duration id="${row}[pm_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+							<date-duration id="${row}[pm_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 						</hbox>
-						<hbox options="1,0" id="replanified">
+						<hbox id="replanified" options="1,0">
 							<image label="Re-planned time" src="agt_reload"/>
-							<date-duration id="${row}[pm_replanned_time]" span="all" class="replanned" readonly="true" options="@duration_format"/>
+							<date-duration id="${row}[pm_replanned_time]" readonly="true" options="@duration_format" span="all" class="replanned"/>
 						</hbox>
 					</vbox>
-					<image src="${row}[pm_completion]" label="$row_cont[pm_completion]" no_lang="1" align="center"/>
+					<image align="center" label="$row_cont[pm_completion]" src="${row}[pm_completion]" no_lang="1"/>
 					<vbox readonly="true" options="0,0">
 						<date-time id="${row}[pm_modified]" readonly="true"/>
 						<menulist>
@@ -114,11 +122,10 @@
 					</vbox>
 					<customfields-list id="$row"/>
 					<hbox align="center" class="noPrint">
-						<button image="ganttchart" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" statustext="View ganttchart of this project"/>
-						<button image="view" label="View" id="view[$row_cont[pm_id]]" statustext="View this project"/>
-						<button id="edit[$row_cont[pm_id]]" image="edit" label="Edit" statustext="Edit this project"/>
-						<button id="delete[$row_cont[pm_id]]" image="delete" label="Delete" statustext="Delete this project" onclick="return confirm('Delete this project');"/>
-						<checkbox id="checked[]" options="$row_cont[pm_id]" statustext="Select multiple projects for a further action"/>
+						<button statustext="View ganttchart of this project" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" image="ganttchart"/>
+						<button statustext="Edit this project" label="Edit" id="edit[$row_cont[pm_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]'),'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes'); return false;" image="edit"/>
+						<button statustext="Delete this project" label="Delete" id="delete[$row_cont[pm_id]]" onclick="return confirm('Delete this project');" image="delete"/>
+						<checkbox statustext="Select multiple projects for a further action" id="checked[]" options="$row_cont[pm_id]"/>
 					</hbox>
 				</row>
 			</rows>
@@ -131,27 +138,25 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description class="redItalic" id="msg" align="center" no_lang="1"/>
+					<description align="center" id="msg" no_lang="1" class="redItalic"/>
+				</row>
+				<row disabled="1">
+					<template align="right" id="projectmanager.list.right" span="all"/>
 				</row>
 				<row>
-					<nextmatch options="projectmanager.list.rows" id="nm"/>
+					<nextmatch id="nm" options="projectmanager.list.rows"/>
 				</row>
-				<row class="noPrint">
+				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
 					<hbox>
 						<hbox>
 							<menulist>
-								<menupopup id="template" no_lang="1" statustext="Create a new empty project or use a template" options="Empty"/>
+								<menupopup statustext="Create a new empty project or use a template" id="template" no_lang="1" options="Empty"/>
 							</menulist>
-							<button label="Add" id="add" statustext="Add a new project"/>
+							<buttononly statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
 						</hbox>
 						<hbox align="right">
-							<button id="gantt_checked" image="ganttchart" label="Ganttchart" statustext="Created a ganttchart from the checked projects"/>
-							<button id="delete_checked" image="delete" label="Delete" statustext="Delete all checked projects" onclick="return confirm('Delete all checked projects');"/>
-							<menulist>
-								<menupopup id="action" onchange="this.form.submit(); this.value = null;" options="Select an action..."/>
-							</menulist>
-							<checkbox id="delete_sources" label="datasources too" statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too."/>
-							<button image="arrow_ltr" label="Check all" id="check_all" statustext="Check all" onclick="toggle_all(this.form,form::name('nm[rows][checked][]')); return false;" needed="1" class="check_all_arrow"/>
+							<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_objectManager.executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
+							<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_objectManager.toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
 						</hbox>
 					</hbox>
 				</row>

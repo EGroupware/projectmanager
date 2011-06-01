@@ -1,5 +1,7 @@
 %1 element(s) updated	projectmanager	en	%1 element(s) updated
 %1 new project-elements imported	projectmanager	en	%1 new project-elements imported
+%1 project(s) %2	projectmanager	en	%1 project(s) %2
+%1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	en	%1 project(s) %2, %3 failed because of insufficent rights !!!
 %1 projects deleted	projectmanager	en	%1 projects deleted
 %1 records imported	projectmanager	en	%1 records imported
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	en	%1 records read (not yet imported, you may go %2back%3 and uncheck Test Import)
@@ -41,6 +43,8 @@ budget (no pricelist)	projectmanager	en	Budget (no pricelist)
 budget and pricelist	projectmanager	en	Budget and pricelist
 by	projectmanager	en	by
 calculate budget by quantity (eg. time) and price	projectmanager	en	Calculate budget by quantity (eg. time) and price
+category set	projectmanager	en	category set
+change category	projectmanager	en	Change category
 charset of file	projectmanager	en	Charset of file
 charset of the above selected font	projectmanager	en	Charset of the above selected font
 check all	projectmanager	en	Check all
@@ -151,6 +155,7 @@ milestones	projectmanager	en	Milestones
 milestones before this element has to be finished	projectmanager	en	Milestones before this element has to be finished
 modified	projectmanager	en	Modified
 modified by	projectmanager	en	modified by
+modify status	projectmanager	en	Modify status
 necessary for project-elements doing that not automatic	projectmanager	en	necessary for project-elements doing that not automatic
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	en	Necessary PHP extentions %1 not loaded and can't be loaded !!!
 new	projectmanager	en	new
@@ -228,11 +233,14 @@ start- & enddate	projectmanager	en	Start- & Enddate
 startdate	projectmanager	en	Startdate
 startrecord	projectmanager	en	Startrecord
 status filter	projectmanager	en	Status filter
+status set	projectmanager	en	status set
 style used for everything but elements. some fonts have only normal style.	projectmanager	en	Style used for everything but elements. Some fonts have only normal style.
 subelements	projectmanager	en	Subelements
+subproject	projectmanager	en	Subproject
 subprojects	projectmanager	en	Subprojects
 synchronise all	projectmanager	en	Synchronise all
 template	projectmanager	en	Template
+template as subproject	projectmanager	en	Template as subproject
 template including elment-tree saved as new project	projectmanager	en	Template including elment-tree saved as new project
 test import (show importable records <u>only</u> in browser)	projectmanager	en	Test Import (show importable records <u>only</u> in browser)
 the charset depends on the font you want to use.	projectmanager	en	The charset depends on the font you want to use.

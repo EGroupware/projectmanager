@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-9 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -45,20 +45,26 @@ class projectmanager_hooks
 	static function search_link($location)
 	{
 		return array(
-			'query' => 'projectmanager.projectmanager_bo.link_query',
-			'title' => 'projectmanager.projectmanager_bo.link_title',
-			'titles' => 'projectmanager.projectmanager_bo.link_titles',
-			'view'  => array(
+			'query'      => 'projectmanager.projectmanager_bo.link_query',
+			'title'      => 'projectmanager.projectmanager_bo.link_title',
+			'titles'     => 'projectmanager.projectmanager_bo.link_titles',
+			'view'       => array(
 				'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
 			),
-			'view_id' => 'pm_id',
-			'view_list' => 'projectmanager.projectmanager_ui.index',
-			'notify' => 'projectmanager.projectmanager_elements_bo.notify',
-			'add' => array(
+			'view_id'    => 'pm_id',
+			'view_list'  => 'projectmanager.projectmanager_ui.index',
+			'notify'     => 'projectmanager.projectmanager_elements_bo.notify',
+			'add'        => array(
 				'menuaction' => 'projectmanager.projectmanager_ui.edit',
 			),
 			'add_app'    => 'link_app',
 			'add_id'     => 'link_id',
+			'add_popup'  => '900x450',
+			'edit'       => array(
+				'menuaction' => 'projectmanager.projectmanager_ui.edit',
+			),
+			'edit_id'    => 'pm_id',
+			'edit_popup' => '900x480',
 			'file_access' => 'projectmanager.projectmanager_bo.file_access',
 		);
 	}
@@ -101,6 +107,8 @@ class projectmanager_hooks
 				),
 				array(
 					'text' => 'Ganttchart',
+					'icon' => 'navbar',
+					'app'  => 'projectmanager',
 					'link' => $pm_id ? egw::link('/index.php',array(
 						'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
 					)) : False,
@@ -112,10 +120,15 @@ class projectmanager_hooks
 				// menuitem links to project-spezific priclist only if user has rights and it is used
 				// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(EGW_ACL_READ),
 				// specialy the always existing READ right for the general pricelist!!!
-				$file['Pricelist'] = egw::link('/index.php',array(
-					'menuaction' => 'projectmanager.projectmanager_pricelist_ui.index',
-					'pm_id' => $pm_id && $GLOBALS['projectmanager_bo']->check_acl(EGW_ACL_BUDGET,$pm_id) &&
-						 $GLOBALS['projectmanager_bo']->data['pm_accounting_type'] == 'pricelist' ? $pm_id : 0,
+				$file[] = array(
+					'text' => 'Pricelist',
+					'icon' => 'pricelist',
+					'app'  => 'projectmanager',
+					'link' => egw::link('/index.php',array(
+						'menuaction' => 'projectmanager.projectmanager_pricelist_ui.index',
+						'pm_id' => $pm_id && $GLOBALS['projectmanager_bo']->check_acl(EGW_ACL_BUDGET,$pm_id) &&
+							 $GLOBALS['projectmanager_bo']->data['pm_accounting_type'] == 'pricelist' ? $pm_id : 0,
+					)
 				));
 			}
 			if (isset($GLOBALS['egw_info']['user']['apps']['filemanager']))
@@ -391,7 +404,7 @@ class projectmanager_hooks
 			'admin'  => False,
 			'default'=> 'tree_with_title',
 		);
-		
+
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			$link = egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
@@ -420,7 +433,7 @@ class projectmanager_hooks
 				'%document% - %pm_title%'				=> lang('Template name - project title'),
 				'%pm_number% - %document%'				=> lang('Project ID - template name'),
 				'(%pm_number%) %pm_title% - %document%'	=> lang('(Project ID) project title - template name'),
-				
+
 			),
 			'help'   => 'Choose the default filename for downloaded documents.',
 			'xmlrpc' => True,
@@ -478,7 +491,7 @@ class projectmanager_hooks
 				'default'=> isset($options[$default_def]) ? $default_def : false,
 			);
 		}
-		
+
 		return $settings;
 	}
 }
