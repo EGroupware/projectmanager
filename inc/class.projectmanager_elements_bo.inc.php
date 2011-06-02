@@ -277,6 +277,29 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	}
 
 	/**
+	 * Update category in one or more project-elements
+	 *
+	 * @param int|array $pe_ids
+	 * @param int $cat_id
+	 * @return boolean|int false on error (no pm_id set or no rights) or number of changed elements
+	 */
+	function update_cat($pe_ids, $cat_id)
+	{
+		if (!$this->check_acl(EGW_ACL_EDIT, array(
+			'pm_id' => $this->pm_id,
+			'pe_id' => $pe_ids,
+		)))
+		{
+			$ret = false;
+		}
+		else
+		{
+			$ret = parent::update_cat($pe_ids, $cat_id);
+		}
+		//error_log(__METHOD__."(".array2string($pe_ids).", $cat_id) pm_id=$this->pm_id returning ".array2string($ret));
+		return $ret;
+	}
+	/**
 	 * sync all project-elements
 	 *
 	 * The sync of the elements is done by calling the update-method for each (not ignored) element

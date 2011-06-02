@@ -82,6 +82,27 @@ class projectmanager_elements_so extends so_sql
 	}
 
 	/**
+	 * Update category in one or more project-elements
+	 *
+	 * @param int|array $pe_ids
+	 * @param int $cat_id
+	 * @return boolean|int false on error (no pm_id set) or number of changed elements
+	 */
+	function update_cat($pe_ids, $cat_id)
+	{
+		if (!$this->pm_id) return false;
+
+		$this->db->update($this->table_name, array(
+				'cat_id' => $cat_id,
+			), array(
+				'pm_id' => $this->pm_id,
+				'pe_id' => $pe_ids,
+			), __LINE__, __FILE__, 'projectmanager');
+
+		return (int)$this->db->affected_rows();
+	}
+
+	/**
 	 * Summarize the information of all elements of a project: min(start-time), sum(time), avg(completion), ...
 	 *
 	 * @param int/array $pm_id=null int project-id, array of project-id's or null to use $this->pm_id

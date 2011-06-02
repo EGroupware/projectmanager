@@ -68,7 +68,7 @@
 					<nextmatch-customfields id="customfields"/>
 					<hbox align="center" class="noPrint">
 						<nextmatch-header align="center" label="Actions" id="legacy_actions"/>
-						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_objectManager.toggleAllSelected(); return false;" image="check"/>
+						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.list.rows').toggleAllSelected(); return false;" image="check"/>
 					</hbox>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
@@ -123,7 +123,7 @@
 					<customfields-list id="$row"/>
 					<hbox align="center" class="noPrint">
 						<button statustext="View ganttchart of this project" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" image="ganttchart"/>
-						<button statustext="Edit this project" label="Edit" id="edit[$row_cont[pm_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]'),'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes'); return false;" image="edit"/>
+						<button statustext="Edit this project" label="Edit" id="edit[$row_cont[pm_id]]" onclick="egw_open($row_cont[pm_id],'projectmanager'); return false;" image="edit"/>
 						<button statustext="Delete this project" label="Delete" id="delete[$row_cont[pm_id]]" onclick="return confirm('Delete this project');" image="delete"/>
 						<checkbox statustext="Select multiple projects for a further action" id="checked[]" options="$row_cont[pm_id]"/>
 					</hbox>
@@ -155,8 +155,8 @@
 							<buttononly statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
 						</hbox>
 						<hbox align="right">
-							<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_objectManager.executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
-							<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_objectManager.toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
+							<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
+							<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
 						</hbox>
 					</hbox>
 				</row>

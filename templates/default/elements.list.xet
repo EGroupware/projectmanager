@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.7.001">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column/>
 				<column width="25%"/>
+				<column/>
 				<column/>
 				<column/>
 				<column/>
@@ -19,12 +20,13 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<nextmatch-sortheader align="center" id="pe_app" label="App." options=",Application"/>
+					<nextmatch-sortheader align="center" label="App." id="pe_app" options=",Application"/>
 					<vbox>
 						<nextmatch-sortheader label="Title" id="pe_title"/>
 						<nextmatch-sortheader label="Comment" id="pe_remark"/>
 					</vbox>
 					<nextmatch-header label="Category" id="cat_id"/>
+					<nextmatch-sortheader label="Element role" id="pe_eroles"/>
 					<nextmatch-accountfilter id="pe_resources" options="Resources"/>
 					<vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
@@ -59,136 +61,147 @@
 						<description id="pe_planned_budget" no_lang="1"/>
 					</vbox>
 					<vbox align="center">
-						<nextmatch-sortheader id="pe_health" label="Health" align="center" disabled="true"/>
-						<nextmatch-sortheader label="Status" align="center" id="pe_completion"/>
+						<nextmatch-sortheader align="center" disabled="true" label="Health" id="pe_health"/>
+						<nextmatch-sortheader align="center" label="Status" id="pe_completion"/>
 						<description id="pe_completion" no_lang="1"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="last modified" id="pe_modified"/>
 						<nextmatch-sortheader label="modified by" id="pe_modifier"/>
 					</vbox>
-					<description align="center" value="Actions" class="noPrint"/>
+					<hbox class="noPrint" options="0,0">
+						<nextmatch-header align="center" label="Actions" id="legacy_actions" class="noPrint"/>
+						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="check"/>
+					</hbox>
 				</row>
-				<row class="th">
-					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
+				<row class="th rowNoDelete">
+					<image align="center" label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
 					<vbox>
-						<description no_lang="1" id="${row}[pe_title]" options=",@${row}[view_link]"/>
+						<description id="${row}[pe_title]" no_lang="1" options=",@${row}[view_link]"/>
 						<html id="${row}[pe_details]" no_lang="1"/>
-						<description no_lang="1" id="${row}[pe_remark]"/>
+						<description id="${row}[pe_remark]" no_lang="1"/>
 					</vbox>
 					<menulist>
-						<menupopup type="select-cat" readonly="true" id="${row}[cat_id]"/>
+						<menupopup type="select-cat" id="${row}[cat_id]" readonly="true"/>
 					</menulist>
+					<description readonly="true"/>
 					<listbox type="select-account" id="${row}[pe_resources]" readonly="true" rows="2"/>
 					<vbox>
-						<date readonly="true" id="${row}[pe_real_start]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planned_start]" class="planned"/>
+						<date id="${row}[pe_real_start]" readonly="true"/>
+						<date id="${row}[pe_planned_start]" no_lang="1" readonly="true" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date readonly="true" id="${row}[pe_real_end]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planned"/>
+						<date id="${row}[pe_real_end]" readonly="true"/>
+						<date id="${row}[pe_planned_end]" no_lang="1" readonly="true" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
-						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
+						<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
+						<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date-duration readonly="true" id="${row}[pe_used_time]" options="@duration_format"/>
-						<date-duration readonly="true" id="${row}[pe_planned_time]" class="planned" options="@duration_format"/>
-						<date-duration readonly="true" id="${row}[pe_replanned_time]" class="replanned" options="@duration_format"/>
+						<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
+						<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" class="planned"/>
+						<date-duration id="${row}[pe_replanned_time]" readonly="true" options="@duration_format" class="replanned"/>
 					</vbox>
 					<vbox readonly="true">
-						<textbox type="float" readonly="true" id="${row}[pe_used_budget]" max="2"/>
-						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planned_budget]" max="2" class="planned"/>
+						<textbox type="float" id="${row}[pe_used_budget]" readonly="true" max="2"/>
+						<textbox type="float" id="${row}[pe_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
 					</vbox>
-					<image label="$row_cont[pe_completion]" no_lang="1" align="center" src="${row}[pe_completion]"/>
+					<image align="center" label="$row_cont[pe_completion]" src="${row}[pe_completion]" no_lang="1"/>
 					<vbox readonly="true">
-						<date-time readonly="true" id="${row}[pe_modified]"/>
+						<date-time id="${row}[pe_modified]" readonly="true"/>
 						<menulist>
-							<menupopup type="select-account" readonly="true" id="${row}[pe_modifier]"/>
+							<menupopup type="select-account" id="${row}[pe_modifier]" readonly="true"/>
 						</menulist>
 					</vbox>
 					<hbox align="center" class="noPrint">
-						<image label="Ganttchart" src="ganttchart" options="projectmanager.projectmanager_ganttchart.show&amp;pm_id=$row_cont[pm_id]" statustext="View Ganttchart of this project"/>
-						<image label="View" src="view" options="projectmanager.projectmanager_ui.view&amp;pm_id=$row_cont[pm_id]" statustext="View this project"/>
-						<image label="Edit" src="edit" options="projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]" statustext="Edit this project"/>
+						<image statustext="View Ganttchart of this project" label="Ganttchart" src="ganttchart" options="projectmanager.projectmanager_ganttchart.show&amp;pm_id=$row_cont[pm_id]"/>
+						<image statustext="Edit this project" label="Edit" src="edit" options="projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]"/>
 					</hbox>
 				</row>
-				<row class="row">
-					<image label="$row_cont[pe_app]" align="center" src="${row}[pe_icon]"/>
+				<row class="$row_cont[cat_id] $row_cont[class]">
+					<image align="center" label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
 					<vbox>
 						<link id="${row}[pm_link]" no_lang="1"/>
-						<link no_lang="1" id="${row}[link]"/>
+						<link id="${row}[link]" no_lang="1"/>
 						<html id="${row}[pe_details]" no_lang="1"/>
-						<description no_lang="1" id="${row}[pe_remark]"/>
+						<description id="${row}[pe_remark]" no_lang="1"/>
 					</vbox>
 					<menulist>
-						<menupopup type="select-cat" readonly="true" id="${row}[cat_id]"/>
+						<menupopup type="select-cat" id="${row}[cat_id]" readonly="true"/>
 					</menulist>
+					<projectmanager-select-erole id="${row}[pe_eroles]" readonly="true"/>
 					<listbox type="select-account" id="${row}[pe_resources]" readonly="true" rows="2"/>
 					<vbox>
-						<date readonly="true" id="${row}[pe_real_start]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planned_start]" class="planned"/>
+						<date id="${row}[pe_real_start]" readonly="true"/>
+						<date id="${row}[pe_planned_start]" no_lang="1" readonly="true" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
-						<date readonly="true" id="${row}[pe_real_end]"/>
-						<date readonly="true" no_lang="1" id="${row}[pe_planned_end]" class="planned"/>
+						<date id="${row}[pe_real_end]" readonly="true"/>
+						<date id="${row}[pe_planned_end]" no_lang="1" readonly="true" class="planned"/>
 					</vbox>
 					<vbox>
 						<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
-						<date-duration id="${row}[pe_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+						<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 					</vbox>
-					<vbox>
-						<hbox options="1,0" id="pe_used_time">
+					<vbox options="0,0">
+						<hbox id="pe_used_time" options="1,0">
 							<image label="Times" src="timesheet"/>
 							<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
 						</hbox>
-						<hbox options="1,0" id="planified">
+						<hbox id="planified" options="1,0">
 							<image label="planned time" src="k_alarm.png"/>
-							<date-duration id="${row}[pe_planned_time]" span="all" class="planned" readonly="true" options="@duration_format"/>
+							<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 						</hbox>
-						<hbox options="1,0" id="replanified">
+						<hbox id="replanified" options="1,0">
 							<image label="Re-planned time" src="agt_reload.png"/>
-							<date-duration id="${row}[pe_replanned_time]" span="all" class="replanned" readonly="true" options="@duration_format"/>
+							<date-duration id="${row}[pe_replanned_time]" readonly="true" options="@duration_format" span="all" class="replanned"/>
 						</hbox>
 					</vbox>
 					<vbox readonly="true">
-						<textbox type="float" readonly="true" id="${row}[pe_used_budget]" max="2"/>
-						<textbox type="float" readonly="true" no_lang="1" id="${row}[pe_planned_budget]" max="2" class="planned"/>
+						<textbox type="float" id="${row}[pe_used_budget]" readonly="true" max="2"/>
+						<textbox type="float" id="${row}[pe_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
 					</vbox>
 					<vbox align="center">
-						<image src="${row}[pe_healt_icon]" align="center"/>
-						<image label="$row_cont[pe_completion]" no_lang="1" align="center" src="${row}[pe_completion_icon]"/>
+						<image align="center" src="${row}[pe_healt_icon]"/>
+						<image align="center" label="$row_cont[pe_completion]" src="${row}[pe_completion_icon]" no_lang="1"/>
 					</vbox>
 					<vbox readonly="true">
-						<date-time readonly="true" id="${row}[pe_modified]"/>
+						<date-time id="${row}[pe_modified]" readonly="true"/>
 						<menulist>
-							<menupopup type="select-account" readonly="true" id="${row}[pe_modifier]"/>
+							<menupopup type="select-account" id="${row}[pe_modifier]" readonly="true"/>
 						</menulist>
 					</vbox>
 					<hbox align="center" class="noPrint">
-						<button label="View" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_elements_ui.view&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'view-elements','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="view[$row_cont[pe_id]]" image="view" statustext="View this project-element"/>
-						<button label="Edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_elements_ui.edit&amp;pm_id=$row_cont[pm_id]&amp;pe_id=$row_cont[pe_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" id="edit[$row_cont[pe_id]]" image="edit" statustext="Edit this project-element"/>
-						<button label="Delete" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');" id="delete[$row_cont[pe_id]]" image="delete" statustext="Delete this project-element, does NOT remove the linked entry"/>
+						<button statustext="Edit this project-element" label="Edit" id="edit[$row_cont[pe_id]]" onclick="egw_open($row_cont[pe_id],'projectelement'); return false;" image="edit"/>
+						<button statustext="Delete this project-element, does NOT remove the linked entry" label="Delete" id="delete[$row_cont[pe_id]]" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');" image="delete"/>
+						<checkbox statustext="Select mutliple elements for a further action" id="checked[]" options="$row_cont[pe_app]:$row_cont[pe_app_id]:$row_cont[pe_id]"/>
 					</hbox>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.list" template="" lang="" group="0" version="0.3.001">
+	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.004">
 		<grid width="100%">
 			<columns>
+				<column/>
 				<column/>
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description align="center" no_lang="1" id="msg" class="redItalic"/>
+					<description align="center" id="msg" no_lang="1" class="redItalic"/>
+					<description/>
 				</row>
 				<row>
 					<nextmatch id="nm" options="projectmanager.elements.list.rows"/>
+					<description/>
 				</row>
-				<row class="noPrint">
-					<button label="Synchronise all" id="sync_all" statustext="necessary for project-elements doing that not automatic"/>
+				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
+					<hbox align="right">
+						<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
+						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
+					</hbox>
+					<description/>
 				</row>
 			</rows>
 		</grid>

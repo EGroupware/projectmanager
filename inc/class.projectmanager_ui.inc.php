@@ -662,15 +662,14 @@ class projectmanager_ui extends projectmanager_bo
 				'caption' => 'Elementlist',
 				'default' => true,
 				'allowOnMultiple' => false,
-				'url' => 'menuaction=projectmanager.projectmanager_elements_ui.index&pm_id=$id',
+				'egw_open' => 'view-projectmanager',
 				'group' => $group=1,
 				'default' => true,
 			),
 			'open' => array(	// does edit if allowed, otherwise view
 				'caption' => 'Open',
 				'allowOnMultiple' => false,
-				'url' => 'menuaction=projectmanager.projectmanager_ui.edit&pm_id=$id',
-				'popup' => egw_link::get_registry('projectmanager', 'edit_popup'),
+				'egw_open' => 'edit-projectmanager',
 				'group' => $group,
 			),
 			'add' => array(
@@ -679,8 +678,7 @@ class projectmanager_ui extends projectmanager_bo
 				'children' => array(
 					'new' => array(
 						'caption' => 'Empty',
-						'url' => 'menuaction=projectmanager.projectmanager_ui.edit',
-						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+						'egw_open' => 'add-projectmanager',
 					),
 					'copy' => array(
 						'caption' => 'Copy',
@@ -739,7 +737,7 @@ class projectmanager_ui extends projectmanager_bo
 				'hint' => 'Apply the action on the whole query, NOT only the shown entries',
 				'group' => ++$group,
 			),
-			'documents' => timesheet_merge::document_action(
+			'documents' => projectmanager_merge::document_action(
 				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
 				$group, 'Insert in document', 'document_'
 			),

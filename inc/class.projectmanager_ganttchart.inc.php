@@ -348,7 +348,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if ($this->modernJPGraph && !$pe['pe_id'])	// main-project
 		{
 			$link = $GLOBALS['egw']->link('/index.php',array(
-				'menuaction' => 'projectmanager.projectmanager_ui.view',
+				'menuaction' => 'projectmanager.projectmanager_ui.edit',
 				'pm_id'      => $pe['pm_id'],
 			));
 			$title = lang('View this project');
@@ -401,13 +401,13 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if ($this->modernJPGraph && $pe['pe_id'])
 		{
 			$bar->SetCSIMTarget('@600x450'.$GLOBALS['egw']->link('/index.php',array(	// @ = popup
-				'menuaction' => 'projectmanager.projectmanager_elements_ui.view',
+				'menuaction' => 'projectmanager.projectmanager_elements_ui.edit',
 				'pm_id'      => $pe['pm_id'],
 				'pe_id'      => $pe['pe_id'],
 			)),$pe['pe_remark'] ? $pe['pe_remark'] : lang('View this project-element'));
 
-			if (($popup = egw_link::is_popup($pe['pe_app']))) $popup = '@'.$popup;
-			$bar->title->SetCSIMTarget($popup.$GLOBALS['egw']->link('/index.php',egw_link::view($pe['pe_app'],$pe['pe_app_id'])),
+			if (($popup = egw_link::is_popup($pe['pe_app'],'edit'))) $popup = '@'.$popup;
+			$bar->title->SetCSIMTarget($popup.$GLOBALS['egw']->link('/index.php',egw_link::edit($pe['pe_app'],$pe['pe_app_id'])),
 				lang('View this element in %1',lang($pe['pe_app'])));
 		}
 		$bar->title->SetFont($this->gantt_font,FS_NORMAL,!$level ? 9 : 8);

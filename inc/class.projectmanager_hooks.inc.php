@@ -52,7 +52,9 @@ class projectmanager_hooks
 				'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
 			),
 			'view_id'    => 'pm_id',
-			'view_list'  => 'projectmanager.projectmanager_ui.index',
+			'list'       => array(
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
+			),
 			'notify'     => 'projectmanager.projectmanager_elements_bo.notify',
 			'add'        => array(
 				'menuaction' => 'projectmanager.projectmanager_ui.edit',
@@ -66,6 +68,15 @@ class projectmanager_hooks
 			'edit_id'    => 'pm_id',
 			'edit_popup' => '900x480',
 			'file_access' => 'projectmanager.projectmanager_bo.file_access',
+			'additional' => array(
+				'projectelement' => array(
+					'edit' => array(
+						'menuaction' => 'projectmanager.projectmanager_elements_ui.edit',
+					),
+					'edit_id' => 'pe_id',
+					'edit_popup' => '600x450',
+				)
+			)
 		);
 	}
 

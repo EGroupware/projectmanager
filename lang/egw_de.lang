@@ -2,6 +2,7 @@
 %1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
 %1 project(s) %2	projectmanager	de	%1 Projekt(e) %2
 %1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	de	%1 Projekt(e) %2, %3 fehlgeschlagen wegen fehlender Rechte !!!
+%1 project-element(s) deleted.	projectmanager	de	%1 Projektelement(e) gelöscht.
 %1 projects deleted	projectmanager	de	%1 Projekte gelöscht
 %1 records imported	projectmanager	de	%1 Datensätze importiert
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	de	%1 Datensätze gelesen (noch nicht importiert, Sie können %2zurück%3 gehen und Testimport ausschalten)
@@ -43,6 +44,7 @@ budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
 budget and pricelist	projectmanager	de	Budget und Preisliste
 by	projectmanager	de	von
 calculate budget by quantity (eg. time) and price	projectmanager	de	Budget nach Menge (Zeit) und Preis berechnen
+category in %1 project-element(s) updated.	projectmanager	de	Kategorie in %1 Projektelement(en) geändert.
 category set	projectmanager	de	Kategorie geändert
 change category	projectmanager	de	Kategorie ändern
 charset of file	projectmanager	de	Zeichensatz der Datei
@@ -191,6 +193,7 @@ project modified by %1 at %2	projectmanager	de	Projekt geändert von %1 am %2
 project overview	projectmanager	de	Projektübersicht
 project saved	projectmanager	de	Projekt gespeichert
 project specific title, prices, ...	projectmanager	de	Projectspezifischer Titel, Preis, ...
+project-element	projectmanager	de	Projectelement
 project-element deleted	projectmanager	de	Projektelement gelöscht
 project-element saved	projectmanager	de	Projektelement gespeichert
 project-elements	projectmanager	de	Projektelemente

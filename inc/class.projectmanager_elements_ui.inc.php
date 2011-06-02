@@ -482,16 +482,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$rows = array_merge(array($self),$rows);
 
 		$readonlys = array();
-		foreach($rows as $n => $val)
+		foreach($rows as $n => &$row)
 		{
-			$row =& $rows[$n];
 			if ($n && !$this->check_acl(EGW_ACL_EDIT,$row))
 			{
 				$readonlys["edit[$row[pe_id]]"] = true;
+				$row['class'] .= ' rowNoEdit';
 			}
 			if ($n && !$this->check_acl(EGW_ACL_DELETE,$row))
 			{
 				$readonlys["delete[$row[pe_id]]"] = true;
+				$row['class'] .= ' rowNoDelete';
 			}
 			if (!$n)
 			{
@@ -527,6 +528,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : $row['pe_completion'];
 
 			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
+
+			$row['elem_id'] = $row['pe_app'].':'.$row['pe_app_id'].':'.$row['pe_id'];
 		}
 		array_unshift($rows,false);	// manually make the array start with index 1!
 
@@ -580,6 +583,93 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	}
 
 	/**
+	 * Get actions / context menu for index
+	 *
+	 * Changes here, require to log out, as $content['nm'] get stored in session!
+	 *
+	 * @return array see nextmatch_widget::egw_actions()
+	 */
+	private function get_actions()
+	{
+		$actions = array(
+			'open' => array(	// Open for project itself and elements other then (sub-)projects
+				'caption' => 'Open',
+				'group' => $group=1,
+				'egw_open' => 'edit-',	// no app to use one the in id
+				'enableId' => '^(?!projectmanager:[^:]+:[1-9])',
+				'hideOnDisabled' => true,
+				'allowOnMultiple' => false,
+				'default' => true,
+			),
+			'view' => array(	// Open for sub-projects view elements
+				'caption' => 'Elementlist',
+				'icon' => 'navbar',
+				'group' => $group,
+				'egw_open' => 'view-',	// no app to use one the in id
+				'enableId' => '^projectmanager:[^:]+:(?!0$)',
+				'hideOnDisabled' => true,
+				'allowOnMultiple' => false,
+				'default' => true,
+			),
+			'project' => array(	// Edit sub-project
+				'caption' => 'Project',
+				'icon' => 'edit',
+				'group' => $group,
+				'egw_open' => 'edit-',
+				'enableId' => '^projectmanager:[^:]+:[1-9]',
+				'hideOnDisabled' => true,
+				'allowOnMultiple' => false,
+			),
+			'edit' => array(	// Edit project element for all elements
+				'caption' => 'Project-element',
+				'allowOnMultiple' => false,
+				'group' => $group,
+				'egw_open' => 'edit-projectelement-2',
+				'enableId' => ':[^:]+:[1-9]',
+				'hideOnDisabled' => true,
+				'allowOnMultiple' => false,
+			),
+			'ganttchart' => array(
+				'icon' => 'projectmanager/navbar',
+				'caption' => 'Ganttchart',
+				'group' => $group,
+				'enableId' => '^projectmanager:',
+			),
+			'sync_all' => array(
+				'caption' => 'Synchronise all',
+				'icon' => 'agt_reload',
+				'hint' => 'necessary for project-elements doing that not automatic',
+				'group' => ++$group,
+			),
+			/* not (yet) implemented
+			'select_all' => array(
+				'caption' => 'Whole query',
+				'checkbox' => true,
+				'hint' => 'Apply the action on the whole query, NOT only the shown entries',
+				'group' => ++$group,
+			),*/
+			'documents' => projectmanager_merge::document_action(
+				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
+				$group, 'Insert in document', 'document_'
+			),
+			'cat' => nextmatch_widget::category_action(
+				'procjetmanger',$group,'Change category','cat_'
+			)+array(
+				'disableClass' => 'rowNoEdit',
+			),
+			'delete' => array(
+				'caption' => 'Delete',
+				'confirm' => 'Delete this project-element, does NOT remove the linked entry',
+				'group' => ++$group,
+				'disableClass' => 'rowNoDelete',
+			),
+		);
+
+		//_debug_array($actions);
+		return $actions;
+	}
+
+	/**
 	 * List existing projects-elements
 	 *
 	 * @param array $content=null
@@ -596,40 +686,20 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 
-		if ($content['nm']['rows']['edit'])
+		if ($content['nm']['rows']['delete'])
 		{
-			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.projectmanager_ui.edit',
-				'pm_id'      => $this->pm_id,
-			));
+			list($pe_id) = each($content['nm']['rows']['delete']);
+			$content['nm']['selected'] = array($pe_id);
+			$content['nm']['action'] = 'delete';
 		}
-		elseif ($content['sync_all'] && $this->project->check_acl(EGW_ACL_ADD))
+		if ((int)$_GET['delete'])
 		{
-			$msg = lang('%1 element(s) updated',$this->sync_all());
+			$content['nm']['selected'] = array((int)$_GET['delete']);
+			$content['nm']['action'] = 'delete';
 		}
-		elseif((int) $_GET['delete'] || $content['nm']['rows']['delete'])
+		if ($content['nm']['action'])
 		{
-			if ($content['nm']['rows']['delete'])
-			{
-				list($pe_id) = each($content['nm']['rows']['delete']);
-			}
-			else
-			{
-				$pe_id = (int) $_GET['delete'];
-			}
-			if ($this->read($pe_id) && !$this->check_acl(EGW_ACL_DELETE))
-			{
-				$msg = lang('Permission denied !!!');
-			}
-			else
-			{
-				$msg = $this->delete($pe_id) ? lang('Project-Element deleted') :
-					lang('Error: deleting project-element !!!');
-			}
-		}
-		elseif (strlen($content['action']) > 0)
-		{
-			$this->action($content['action'],$content['nm']['rows']['checked'],$msg);
+			$this->action($content['nm']['action'], $content['nm']['selected'], $msg);
 		}
 		$content = array(
 			'nm' => $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager'),
@@ -656,8 +726,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time',
 				'csv_fields'     => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-export-definition-element'],
+				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
+				'actions' => $this->get_actions(),
 			);
 		}
+
 		// add "buttons" only with add-rights
 		if ($this->project->check_acl(EGW_ACL_ADD))
 		{
@@ -669,12 +742,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$readonlys['nm']['extra_icons'] = true;
 			}
 			unset($content['nm']['eroles_add']); // remove selected value(s) from link_add widget
+			$content['nm']['actions']['sync_all']['enabled'] = true;
 		}
 		else
 		{
 			unset($content['nm']['header_right']);
 			unset($content['nm']['header_left']);
-			$readonlys['sync_all'] = true;
+			$content['nm']['actions']['sync_all']['enabled'] = false;
 		}
 		$content['nm']['link_to'] = array(
 			'to_id'    => $this->pm_id,
@@ -688,12 +762,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'to_app'   => 'projectmanager',
 			'add_app'  => 'infolog',
 		);
-
-		$sel_options=array();
-		if ($this->prefs['document_dir'])
-		{
-			$sel_options['action'][lang('Insert in document').':'] = $this->get_document_actions();
-		}
 
 		// set id for automatic linking via quick add
 		$GLOBALS['egw_info']['flags']['currentid'] = $this->pm_id;
@@ -741,14 +809,80 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function action($action,$checked,&$msg)
 	{
+		// action id's are pe_app:pe_app_id:pe_id --> pe_id
+		if (!is_numeric($checked[0]))
+		{
+			foreach($checked as $key => &$id)
+			{
+				list($app,$app_id,$id) = explode(':', $id);
+				if ($action == 'ganttchart')
+				{
+					if ($app == 'projectmanager')
+					{
+						$id = $app_id;
+					}
+					else
+					{
+						unset($checked[$key]);
+					}
+				}
+			}
+			unset($id);
+		}
 		if (substr($action,0,9) == 'document-')
 		{
 			$document = substr($action,9);
 			$action = 'document';
 		}
+		if (substr($action,0,4) == 'cat_') list($action,$cat_id) = explode('_',$action);
 
 		switch($action)
 		{
+			case 'cat':
+				if (!$this->project->check_acl(EGW_ACL_ADD) ||
+					($num = $this->update_cat($checked, $cat_id)) === false)
+				{
+					$msg = lang('Permission denied !!!');
+				}
+				else
+				{
+					$msg = lang('Category in %1 project-element(s) updated.',$num);
+					return true;
+				}
+				break;
+
+			case 'delete':
+				if (!$this->project->check_acl(EGW_ACL_ADD))
+				{
+					$msg = lang('Permission denied !!!');
+				}
+				else
+				{
+					$msg = ($num=$this->delete(array('pe_id' => $checked))) ?
+						($num == 1 ? lang('Project-element deleted') : lang('%1 project-element(s) deleted.',$num)) :
+						lang('Error: deleting project-element !!!');
+				}
+				break;
+
+			case 'sync_all':	// does NOT use id's
+				if ($this->project->check_acl(EGW_ACL_ADD))
+				{
+					$msg = lang('%1 element(s) updated',$this->sync_all());
+					return true;
+				}
+				else
+				{
+					$msg = lang('Permission denied !!!');
+				}
+				break;
+
+			case 'ganttchart':
+				egw::redirect_link('/index.php', array(
+					'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
+					'pm_id'      => implode(',',$checked),
+				));
+				break;
+
 			case 'document':
 				$contacts = array();
 				$eroles = array();
@@ -784,9 +918,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				$msg = $this->download_document($contacts,$document,$eroles);
 				return true;
-
-			default:
-				return false;
 		}
 		return false;
 	}
@@ -814,7 +945,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$document_merge->set_eroles($eroles);
 		}
-		
+
 		if(isset($this->prefs['document_download_name']))
 		{
 			$ext = '.'.pathinfo($document,PATHINFO_EXTENSION);
