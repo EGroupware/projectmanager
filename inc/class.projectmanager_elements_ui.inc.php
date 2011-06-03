@@ -933,7 +933,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function download_document($ids,$document='',$eroles=null)
 	{
-		$document = $this->prefs['document_dir'].'/'.$document;
+		if($document[0] != '/') {
+			$document = $this->prefs['document_dir'].'/'.$document;
+		}
 
 		if (!@egw_vfs::stat($document))
 		{
