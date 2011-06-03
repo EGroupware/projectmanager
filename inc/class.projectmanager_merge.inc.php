@@ -428,6 +428,8 @@ class projectmanager_merge extends bo_merge
 							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id,$use);
 						}
 						$value = implode(', ',$cats);
+					} else {
+						$value = '';
 					}
 					break;
 				case 'pe_resources':
