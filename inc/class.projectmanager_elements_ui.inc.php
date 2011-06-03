@@ -829,7 +829,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 			unset($id);
 		}
-		if (substr($action,0,9) == 'document-')
+		if (substr($action,0,9) == 'document_')
 		{
 			$document = substr($action,9);
 			$action = 'document';
