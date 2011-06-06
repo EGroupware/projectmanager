@@ -708,6 +708,26 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if ($_GET['pm_id'] && !is_numeric($_GET['pm_id']))
 		{
 			$params['pm_id'] = $_GET['pm_id'];
+			if(strpos($_GET['pm_id'],',') !== false)
+			{
+				$params['pm_id'] = explode(',',$params['pm_id']);
+			}
+			if(is_array($params['pm_id']))
+			{
+				// Get start / end from earliest / latest
+				$start = PHP_INT_MAX;
+				$end = 0;
+				foreach($params['pm_id'] as $id)
+				{
+					$this->project->read($id);
+					self::_set_start_end($this->project->data,$params['planned_times']);
+					if($this->project->data['pm_start'] < $start) $start = $this->project->data['pm_start'];
+					if($this->project->data['pm_end'] > $end) $end = $this->project->data['pm_end'];
+				}
+				$params['start'] = $start;
+				$params['end'] = $end;
+				$params['pm_id'] = implode(',',$params['pm_id']);
+			}
 		}
 		$GLOBALS['egw']->session->appsession('ganttchart','projectmanager',$params);
 		if ((int) $this->debug >= 1) _debug_array($params);

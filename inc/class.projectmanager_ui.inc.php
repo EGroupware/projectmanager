@@ -714,7 +714,7 @@ class projectmanager_ui extends projectmanager_bo
 			'ganttchart' => array(
 				'icon' => 'projectmanager/navbar',
 				'caption' => 'Ganttchart',
-				'url' => 'menuaction=projectmanager.projectmanager_ganttchart.show&pm_id=$ids',
+				'url' => 'menuaction=projectmanager.projectmanager_ganttchart.show&pm_id=$id',
 				'group' => ++$group,
 			),
 			'pricelist' => array(
