@@ -803,14 +803,15 @@ class projectmanager_ui extends projectmanager_bo
 		if ($use_all)
 		{
 			// get the whole selection
+			$old_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
 			$query = is_array($session_name) ? $session_name : $GLOBALS['egw']->session->appsession($session_name,'index');
 
-			if ($use_all)
-			{
-				@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
-				$query['num_rows'] = -1;	// all
-				$this->get_rows($query,$checked,$readonlys,true);	// true = only return the id's
-			}
+			@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
+			$query['num_rows'] = -1;	// all
+			$this->get_rows($query,$checked,$readonlys,true);	// true = only return the id's
+
+			// Reset query
+			$GLOBALS['egw']->session->appsession('project_list','projectmanager',$old_query);
 		}
 
 		// Dialogs to get options
