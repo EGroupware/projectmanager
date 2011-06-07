@@ -724,7 +724,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'col_filter' => array('pe_resources' => null),	// default value, to suppress loop
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
-				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time',
+				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time,legacy_actions',
 				'csv_fields'     => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-export-definition-element'],
 				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
 				'actions' => $this->get_actions(),

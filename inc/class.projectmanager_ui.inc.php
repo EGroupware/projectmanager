@@ -602,7 +602,7 @@ class projectmanager_ui extends projectmanager_bo
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
 				'order'          =>	'pm_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
-				'default_cols'   => '!role0,role1,role2,role3,role4,pm_used_time_pm_planned_time_pm_replanned_time',
+				'default_cols'   => '!role0,role1,role2,role3,role4,pm_used_time_pm_planned_time_pm_replanned_time,legacy_actions',
 				'csv_fields'     => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-export-definition-project'],
 				'header_right'   => 'projectmanager.list.right',
 				'row_id'         => 'pm_id',
