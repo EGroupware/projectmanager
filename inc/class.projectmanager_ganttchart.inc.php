@@ -351,10 +351,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 				'menuaction' => 'projectmanager.projectmanager_ui.edit',
 				'pm_id'      => $pe['pm_id'],
 			));
+			if (($popup = egw_link::is_popup('projectmanager','edit'))) $popup = '@'.$popup;
 			$title = lang('View this project');
 
-			$bar->SetCSIMTarget($link,$title);
-			$bar->title->SetCSIMTarget($link,$title);
+			$bar->SetCSIMTarget($popup.$link,$title);
+			$bar->title->SetCSIMTarget($popup.$link,$title);
 		}
 		return $bar;
 	}
@@ -444,7 +445,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if ($this->modernJPGraph)
 		{
 			$link = $GLOBALS['egw']->link('/index.php',array(
-				'menuaction' => 'projectmanager.uimilestones.view',
+				'menuaction' => 'projectmanager.projectmanager_milestones_ui.view',
 				'pm_id'      => $milestone['pm_id'],
 				'ms_id'      => $milestone['ms_id'],
 			));
@@ -721,11 +722,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 				{
 					$this->project->read($id);
 					self::_set_start_end($this->project->data,$params['planned_times']);
-					if($this->project->data['pm_start'] < $start) $start = $this->project->data['pm_start'];
-					if($this->project->data['pm_end'] > $end) $end = $this->project->data['pm_end'];
+					if($this->project->data['pm_start'] && $this->project->data['pm_start'] < $start) $start = $this->project->data['pm_start'];
+					if($this->project->data['pm_end'] && $this->project->data['pm_end'] > $end) $end = $this->project->data['pm_end'];
 				}
-				$params['start'] = $start;
-				$params['end'] = $end;
+				if ($start != PHP_INT_MAX) $params['start'] = $start;
+				if ($end > 0) $params['end'] = $end;
 				$params['pm_id'] = implode(',',$params['pm_id']);
 			}
 		}
