@@ -432,6 +432,7 @@ class projectmanager_hooks
 				'run_lang' => false,
 				'xmlrpc' => True,
 				'admin'  => False,
+				'default' => '/templates/projectmanager',
 			);
 			$settings['document_download_name'] = array(
 			'type'   => 'select',
