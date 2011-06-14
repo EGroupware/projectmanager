@@ -270,6 +270,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			if ($row['pm_id'] != $this->pm_id || !$this->check_acl(EGW_ACL_EDIT,$this->pm_id))
 			{
 				$readonlys["delete[$row[pm_id]:$row[pl_id]]"] = true;
+				$rows[$n]['class'] .= 'rowNoDelete ';
 			}
 		}
 		return $total;
@@ -297,18 +298,30 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		{
 			$content = array();
 		}
-		elseif($content['nm']['rows']['delete'])
+		elseif($content['nm']['action'] == 'delete' || $content['nm']['rows']['delete'])
 		{
-			list($id) = @each($content['nm']['rows']['delete']);
-			list($pm_id,$pl_id) = explode(':',$id);
-
-			if ($pl_id && $this->delete(array('pm_id' => $pm_id,'pl_id' => $pl_id)))
+			// Need project_id
+			if($content['nm']['rows']['delete'])
 			{
-				$msg = lang('Price deleted');
+				list($id) = @each($content['nm']['rows']['delete']);
+				list($pm_id,$pl_id) = explode(':',$id);
+				$content['nm']['selected'] = array($pl_id);
 			}
 			else
 			{
-				$msg = lang('Permission denied !!!');
+				$nm = $GLOBALS['egw']->session->appsession('pricelist','projectmanager');
+				$pm_id = $nm['col_filter']['pm_id'];
+			}
+			foreach($content['nm']['selected'] as $pl_id) {
+				if ($pl_id && $this->delete(array('pm_id' => $pm_id,'pl_id' => $pl_id)))
+				{
+					$msg = lang('Price deleted');
+				}
+				else
+				{
+					$msg = lang('Permission denied !!!');
+					break;
+				}
 			}
 		}
 		$content['msg'] = $msg ? $msg : $_GET['msg'];
@@ -321,9 +334,12 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				'no_filter2'     => true,
 				'order'          =>	'pl_title',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
+				'default_cols'   => '!legacy_actions',
+				'row_id'         => 'pl_id',
 			);
 		}
 		$content['nm']['col_filter']['pm_id'] = $this->pm_id;
+		$content['nm']['actions'] = $this->get_actions();
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($this->pm_id ?
 			lang('Pricelist') .': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] :
@@ -347,5 +363,31 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			'pl_billable' => $this->billable_lables,
 			'pm_id' => $projects,
 		),$readonlys);
+	}
+
+        /**
+         * Get actions / context menu for index
+         *
+         * @return array see nextmatch_widget::egw_actions()
+         */
+	protected function get_actions() {
+		$actions = array(
+			'open' => array(        // does edit if allowed, otherwise view
+				'caption' => 'Open',
+				'allowOnMultiple' => false,
+				'popup' => '600x450',
+				'url' => 'menuaction=projectmanager.projectmanager_pricelist_ui.edit&pl_id=$id',
+				'group' => $group=1,
+				'default' => true,
+			),
+			'delete' => array(
+				'caption' => 'Delete',
+				'confirm' => 'Delete this price',
+				'confirm_multiple' => 'Delete these entries',
+				'group' => $group,
+				'disableClass' => 'rowNoDelete',
+			),
+		);
+		return $actions;
 	}
 }

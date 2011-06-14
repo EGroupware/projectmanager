@@ -15,21 +15,21 @@
 				<row class="th">
 					<nextmatch-sortheader label="Title" id="pl_title"/>
 					<vbox>
-						<nextmatch-filterheader id="pm_id" options="Project" no_lang="1"/>
-						<nextmatch-sortheader id="pl_customertitle" label="Customer title"/>
+						<nextmatch-filterheader id="pm_id" no_lang="1" options="Project"/>
+						<nextmatch-sortheader label="Customer title" id="pl_customertitle"/>
 					</vbox>
-					<nextmatch-filterheader options="Availible" id="pl_billable"/>
+					<nextmatch-filterheader id="pl_billable" options="Availible"/>
 					<vbox>
 						<nextmatch-sortheader label="Price / Unit" id="pl_price"/>
-						<nextmatch-sortheader id="pl_validsince" label="Valid since"/>
+						<nextmatch-sortheader label="Valid since" id="pl_validsince"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Last modified" id="pl_modified"/>
-						<nextmatch-sortheader id="pl_modifier" label="Modified by"/>
+						<nextmatch-sortheader label="Modified by" id="pl_modifier"/>
 					</vbox>
 					<description value="Actions" class="noPrint"/>
 				</row>
-				<row class="row">
+				<row class="row $row_cont[class]">
 					<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
 					<vbox>
 						<menulist>
@@ -41,7 +41,7 @@
 						<menupopup id="${row}[pl_billable]" readonly="true" options="No"/>
 					</menulist>
 					<vbox>
-						<textbox type="float" max="2" id="${row}[pl_price]" readonly="true" label="%s / $row_cont[pl_unit]" no_lang="1"/>
+						<textbox type="float" label="%s / $row_cont[pl_unit]" id="${row}[pl_price]" no_lang="1" readonly="true" max="2"/>
 						<date id="${row}[pl_validsince]" readonly="true"/>
 					</vbox>
 					<vbox>
@@ -51,25 +51,25 @@
 						</menulist>
 					</vbox>
 					<hbox class="noPrint">
-						<button image="view" label="View" id="view[$row_cont[pl_id]]" statustext="View this price" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.view&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
-						<button image="edit" label="Edit" id="edit[$row_cont[pl_id]]" statustext="Edit this price" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
-						<button id="delete[$row_cont[pm_id]:$row_cont[pl_id]]" image="delete" label="Delete" statustext="Delete this price" onclick="return confirm('Delete this price');"/>
+						<button statustext="View this price" label="View" id="view[$row_cont[pl_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.view&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" image="view"/>
+						<button statustext="Edit this price" label="Edit" id="edit[$row_cont[pl_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" image="edit"/>
+						<button statustext="Delete this price" label="Delete" id="delete[$row_cont[pm_id]:$row_cont[pl_id]]" onclick="return confirm('Delete this price');" image="delete"/>
 					</hbox>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.5.001">
+	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description span="all" class="redItalic" align="center" id="msg" no_lang="1"/>
+					<description align="center" id="msg" no_lang="1" span="all" class="redItalic"/>
 				</row>
 				<row>
-					<nextmatch options="projectmanager.pricelist.list.rows" id="nm"/>
+					<nextmatch id="nm" options="projectmanager.pricelist.list.rows"/>
 				</row>
 				<row class="noPrint">
 					<button label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
