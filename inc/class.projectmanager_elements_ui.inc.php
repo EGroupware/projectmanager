@@ -916,7 +916,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				{
 					$contacts = array(0); // pseudo fill for merge class
 				}
-				$msg = $this->download_document($contacts,$document,$eroles);
+				$msg = $this->download_document($contacts, $document, $eroles);
 				return true;
 		}
 		return false;
@@ -933,17 +933,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function download_document($ids,$document='',$eroles=null)
 	{
-		if($document[0] != '/') {
-			$document = $this->prefs['document_dir'].'/'.$document;
-		}
-
-		if (!@egw_vfs::stat($document))
-		{
-			return lang("Document '%1' does not exist or is not readable for you!",$document);
-		}
-
 		$document_merge = new projectmanager_merge($this->pm_id);
-		if($this->config['enable_eroles'] && !(empty($eroles)))
+		if($this->config['enable_eroles'] && !empty($eroles))
 		{
 			$document_merge->set_eroles($eroles);
 		}
@@ -958,7 +949,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			);
 		}
 
-		return $document_merge->download($document,$ids,(isset($name) ? $name : null));
+		return $document_merge->download($document, $ids, isset($name) ? $name : null, $this->prefs['document_dir']);
 	}
-
 }
