@@ -646,9 +646,17 @@ class projectmanager_merge extends bo_merge
 		if (!$n)	// first row inits environment
 		{
 			// get project elements
-			if(!($elements = $this->projectmanager_elements_bo->search(array('pm_id' => $this->pm_id),false)))
+			if($this->export_limit) {
+				$limit = array(0,(int)$this->export_limit);
+				// Need to do this to give an error
+				$count = count($this->projectmanager_elements_bo->search(array('pm_id' => $this->pm_id)));
+			}
+			if(!($elements = $this->projectmanager_elements_bo->search(array('pm_id' => $this->pm_id),false,'','','',False,'AND',$limit)))
 			{
 				return false;
+			}
+			if($count && count($elements) < $count) {
+				throw new egw_exception(lang('No rights to export more then %1 entries!',(int)$this->export_limit));
 			}
 		}
 		
