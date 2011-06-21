@@ -215,7 +215,7 @@ class projectmanager_hooks
 			$file = array(
 				'Preferences'     => egw::link('/index.php','menuaction=preferences.uisettings.index&appname='.$appname),
 				'Grant Access'    => egw::link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
-				'Edit Categories' => egw::link('/index.php','menuaction=preferences.uicategories.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
+				'Edit Categories' => egw::link('/index.php','menuaction=preferences.preferences_categories_ui.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
 			);
 			if ($location == 'preferences')
 			{
@@ -233,7 +233,7 @@ class projectmanager_hooks
 				'Site configuration' => egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
 				'Custom fields' => egw::link('/index.php','menuaction=admin.customfields.edit&appname=projectmanager'),
 				'Global Categories'  => egw::link('/index.php',array(
-					'menuaction' => 'admin.uicategories.index',
+					'menuaction' => 'admin.admin_categories.index',
 					'appname'    => $appname,
 					'global_cats'=> True)),
 					'CSV-Import'         => egw::link('/projectmanager/csv_import.php')
