@@ -916,6 +916,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				{
 					$contacts = array(0); // pseudo fill for merge class
 				}
+
+				// Actually send the elements the user selected
+				$contacts['elements'] = $checked;
 				$msg = $this->download_document($contacts, $document, $eroles);
 				return true;
 		}
@@ -947,6 +950,16 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				array(basename($document,$ext),$this->project->data['pm_number'],$this->project->data['pm_title']),
 				$this->prefs['document_download_name']
 			);
+		}
+		if($ids['elements'])
+		{
+			if($document_merge->export_limit && 
+				!$GLOBALS['egw_info']['user']['apps']['admin'] && count($ids['elements']) > (int)$document_merge->export_limit)
+			{
+				return lang('No rights to export more then %1 entries!',(int)$document_merge->export_limit);
+			}
+			$document_merge->elements = $ids['elements'];
+			unset($ids['elements']);
 		}
 
 		return $document_merge->download($document, $ids, isset($name) ? $name : null, $this->prefs['document_dir']);

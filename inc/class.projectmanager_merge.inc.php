@@ -210,7 +210,7 @@ class projectmanager_merge extends bo_merge
 	protected function get_replacements($id,&$content=null)
 	{
 		$replacements = array();
-		
+	
 		// first replacement is always the contact defined by $id (if valid)
 		if($id > 0) {
 			$replacements += $this->contact_replacements($id);
@@ -401,6 +401,9 @@ class projectmanager_merge extends bo_merge
 		$replacements = array();
 		if(!is_object($this->projectmanager_elements_bo)) return $replacements;
 		
+		// Filter selected elements
+		if($this->elements && !in_array($pe_id, $this->elements)) return $replacements;
+
 		$element = $this->projectmanager_elements_bo->read(array('pe_id' => $pe_id));
 		foreach(array_keys($element) as $name)
 		{
@@ -646,12 +649,15 @@ class projectmanager_merge extends bo_merge
 		if (!$n)	// first row inits environment
 		{
 			// get project elements
+			$query = array('pm_id' => $this->pm_id);
+			if($this->elements) $query['pe_id'] = $this->elements;
+
 			if($this->export_limit) {
 				$limit = array(0,(int)$this->export_limit);
 				// Need to do this to give an error
-				$count = count($this->projectmanager_elements_bo->search(array('pm_id' => $this->pm_id)));
+				$count = count($this->projectmanager_elements_bo->search($query));
 			}
-			if(!($elements = $this->projectmanager_elements_bo->search(array('pm_id' => $this->pm_id),false,'','','',False,'AND',$limit)))
+			if(!($elements = $this->projectmanager_elements_bo->search($query,false,'','','',False,'AND',$limit)))
 			{
 				return false;
 			}
