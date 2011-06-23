@@ -27,13 +27,21 @@ class projectmanager_gantt extends projectmanager_elements_bo {
                                 'msg'        => lang('You need to select a project first'),
                         ));
 		}
-		
-		egw_framework::validate_file('dojo/dojo','dojo');
-		egw_framework::validate_file('.','gantt','projectmanager');
+		// Use Google CDN, it has to be loaded first
+		$GLOBALS['egw_info']['flags']['java_script_thirst'] .= '<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js" type="text/javascript"></script>';
+		$GLOBALS['egw_info']['flags']['css'] .= '@import url("http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/resources/dojo.css");';
+		$GLOBALS['egw_info']['flags']['css'] .= '@import url("http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/gantt/resources/gantt.css");';
+
+		// Local source
+		//egw_framework::validate_file('dojo/dojo','dojo');
+/*
 		egw_framework::includeCSS('/phpgwapi/js/dojo/dojo/resources/dojo.css');
 		egw_framework::includeCSS('/phpgwapi/js/dojo/dijit/themes/claro/claro.css');
 		egw_framework::includeCSS('/phpgwapi/js/dojo/dojox/gantt/resources/gantt.css');
-		$content = '<script type="text/javascript">var gantt_project_ids = ' . json_encode($pm_id) . ';</script>';
+*/
+
+		egw_framework::validate_file('.','gantt','projectmanager');
+		$content .= '<script type="text/javascript">var gantt_project_ids = ' . json_encode($pm_id) . ';</script>';
 		$content .= '<div class="ganttContent"><div id="gantt"></div></div>';
 		$GLOBALS['egw']->framework->render($content, 'Test', true);
 	}
