@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -24,15 +24,15 @@ class projectmanager_bo extends projectmanager_so
 	/**
 	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
 	 *
-	 * @var int/string
+	 * @var int|string
 	 */
 	var $debug=false;
 	/**
-	 * File to log debug-messages, ''=echo them
+	 * File to log debug-messages, ''=echo them, 'error_log' to use error_log()
 	 *
 	 * @var string
 	 */
-	var $logfile='/tmp/pm_log';
+	var $logfile='error_log';	// '/tmp/pm.log';
 	/**
 	 * Timestaps that need to be adjusted to user-time on reading or saving
 	 *
@@ -185,8 +185,8 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * This is implemented in the projectelements class, we call it via ExecMethod
 	 *
-	 * @param int/array $pm_id=null int project-id, array of project-id's or null to use $this->pm_id
-	 * @return array/boolean with summary information (keys as for a single project-element), false on error
+	 * @param int|array $pm_id=null int project-id, array of project-id's or null to use $this->pm_id
+	 * @return array|boolean with summary information (keys as for a single project-element), false on error
 	 */
 	function pe_summary($pm_id=null)
 	{
@@ -536,25 +536,37 @@ class projectmanager_bo extends projectmanager_so
 	}
 
 	/**
-	 * checks if the user has enough rights for a certain operation
+	 * checks if the given user has enough rights for a certain operation
 	 *
 	 * Rights are given via owner grants or role based acl
 	 *
 	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE, EGW_ACL_BUDGET, EGW_ACL_EDIT_BUDGET
-	 * @param array/int $data=null project or project-id to use, default the project in $this->data
+	 * @param array|int $data=null project or project-id to use, default the project in $this->data
 	 * @param boolean $no_cache=false should a cached value be used, if availible, or not
+	 * @param int $user=null for which user to check, default current user
 	 * @return boolean true if the rights are ok, false if not or null if entry not found
 	 */
-	function check_acl($required,$data=0,$no_cache=false)
+	function check_acl($required,$data=0,$no_cache=false,$user=null)
 	{
-		static $rights = array();
+		static $cache = array();
+
+		if (!$user) $user = $this->user;
+		if ($user == $this->user)
+		{
+			$grants = $this->grants;
+			$rights =& $cache[$pm_id];
+		}
+		else	// user other then current one, do NO caching at all
+		{
+			$grants = $GLOBALS['egw']->acl->get_grants('projectmanager',true,$user);
+		}
 		$pm_id = (!$data ? $this->data['pm_id'] : (is_array($data) ? $data['pm_id'] : $data));
 
 		if (!$pm_id)	// new entry, everything allowed, but delete
 		{
 			return $required != EGW_ACL_DELETE;
 		}
-		if (!isset($rights[$pm_id]) || $no_cache)	// check if we have a cache entry for $pm_id
+		if (!isset($rights) || $no_cache)	// check if we have a cache entry for $pm_id
 		{
 			if ($data)
 			{
@@ -572,23 +584,32 @@ class projectmanager_bo extends projectmanager_so
 				$data =& $this->data;
 			}
 			// rights come from owner grants or role based acl
-			$rights[$pm_id] = (int) $this->grants[$data['pm_creator']] | (int) $data['role_acl'];
+			$rights = (int) $grants[$data['pm_creator']] | (int) $data['pm_members'][$user]['role_acl'];
 
 			// for status or times accounting-type (no accounting) remove the budget-rights from everyone
 			if ($data['pm_accounting_type'] == 'status' || $data['pm_accounting_type'] == 'times')
 			{
-				$rights[$pm_id] &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
+				$rights &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
 			}
 		}
-		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message("projectmanager_bo::check_acl($required,pm_id=$pm_id) rights[$pm_id]=".$rights[$pm_id]);
-
-		if ($required == EGW_ACL_READ)	// read-rights are implied by all other rights
+		// private project need either a private grant or a role ACL
+		if ($data['pm_access'] === 'private' && !($rights & EGW_ACL_PRIVATE) && !$data['pm_members'][$user]['role_acl'])
 		{
-			return (boolean) $rights[$pm_id];
+			$access = false;
 		}
-		if ($required == EGW_ACL_BUDGET) $required |= EGW_ACL_EDIT_BUDGET;	// EDIT_BUDGET implies BUDGET
+		elseif ($required == EGW_ACL_READ)	// read-rights are implied by all other rights, or for everyone, if access=anonym
+		{
+			$access = $rights || $data['pm_access'] === 'anonym';
+		}
+		else
+		{
+			if ($required == EGW_ACL_BUDGET) $required |= EGW_ACL_EDIT_BUDGET;	// EDIT_BUDGET implies BUDGET
 
-		return (boolean) ($rights[$pm_id] & $required);
+			$access = (boolean) ($rights & $required);
+		}
+		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message(__METHOD__."($required,pm_id=$pm_id,$no_cache,$user) rights=$rights returning ".array2string($access));
+
+		return $access;
 	}
 
 	/**
@@ -597,7 +618,7 @@ class projectmanager_bo extends projectmanager_so
 	 * reimplemented to add an acl check
 	 *
 	 * @param array $keys
-	 * @return array/boolean array with project, null if project not found or false if no perms to view it
+	 * @return array|boolean array with project, null if project not found or false if no perms to view it
 	 */
 	function read($keys)
 	{
@@ -617,7 +638,7 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * Is called as hook to participate in the linking
 	 *
-	 * @param int/array $entry int pm_id or array with project entry
+	 * @param int|array $entry int pm_id or array with project entry
 	 * @return string/boolean string with title, null if project not found or false if no perms to view it
 	 */
 	function link_title( $entry )
@@ -638,7 +659,7 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * Is called as hook to participate in the linking
 	 *
-	 * @param int/array $entry int pm_id or array with project entry
+	 * @param int|array $entry int pm_id or array with project entry
 	 * @return array or titles, see link_title
 	 */
 	function link_titles( array $ids )
@@ -698,11 +719,12 @@ class projectmanager_bo extends projectmanager_so
 	 * @ToDo Implement own acl rights for file access
 	 * @param int $id pm_id of project
 	 * @param int $check EGW_ACL_READ for read and EGW_ACL_EDIT for write or delete access
+	 * @param int $user=null for which user to check, default current user
 	 * @return boolean true if access is granted or false otherwise
 	 */
-	function file_access($id,$check,$rel_path)
+	function file_access($id,$check,$rel_path,$user=null)
 	{
-		return $this->check_acl($check,$id);
+		return $this->check_acl($check,$id,false,$user);
 	}
 
 	/**
@@ -867,11 +889,15 @@ class projectmanager_bo extends projectmanager_so
 	 */
 	function debug_message($msg)
 	{
-		$msg = 'Backtrace: '.function_backtrace(2)."\n".$msg;
+		//$msg = 'Backtrace: '.function_backtrace(2)."\n".$msg;
 
 		if (!$this->logfile)
 		{
 			echo '<pre>'.$msg."</pre>\n";
+		}
+		elseif($this->logfile == 'error_log')
+		{
+			error_log($msg);
 		}
 		else
 		{
@@ -887,7 +913,7 @@ class projectmanager_bo extends projectmanager_so
 	 * @param int $start start timestamp (usertime)
 	 * @param int $time working time in minutes to add, 0 advances to the next working time
 	 * @param int $uid user-id
-	 * @return int/boolean end-time or false if it cant be calculated because user has no availibility or worktime
+	 * @return int|boolean end-time or false if it cant be calculated because user has no availibility or worktime
 	 */
 	function date_add($start,$time,$uid)
 	{
@@ -1006,7 +1032,7 @@ class projectmanager_bo extends projectmanager_so
 	 * @param int $source id of project to copy
 	 * @param int $only_stage=0 0=both stages plus saving the project, 1=copy of the project, 2=copying the element tree
 	 * @param string $parent_number='' number of the parent project, to create a sub-project-number
-	 * @return int/boolean successful copy new pm_id or true if $only_stage==1, false otherwise (eg. permission denied)
+	 * @return int|boolean successful copy new pm_id or true if $only_stage==1, false otherwise (eg. permission denied)
 	 */
 	function copy($source,$only_stage=0,$parent_number='')
 	{

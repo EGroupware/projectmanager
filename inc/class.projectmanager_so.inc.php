@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -64,6 +64,12 @@ class projectmanager_so extends so_sql_cf
 	 */
 	var $grants;
 	var $read_grants,$private_grants;
+	/**
+	 * Current user ($GLOBALS['egw_info']['user']['account_id'])
+	 *
+	 * @var int
+	 */
+	var $user;
 
 	var $columns_to_search = array('pm_number', 'pm_title', 'pm_description', 'pm_priority', 'pm_status', 'pm_used_budget', 'pm_planned_budget');
 

@@ -68,6 +68,7 @@ class projectmanager_hooks
 			'edit_id'    => 'pm_id',
 			'edit_popup' => '900x480',
 			'file_access' => 'projectmanager.projectmanager_bo.file_access',
+			'file_access_user' => true,	// file_access supports 4th parameter $user
 			'additional' => array(
 				'projectelement' => array(
 					'edit' => array(
