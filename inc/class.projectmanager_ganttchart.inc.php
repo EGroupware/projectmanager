@@ -808,7 +808,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$img = tempnam($tmp,'ganttchart');
 		$img_name = basename($img);
 
-		$map = $this->create($content,$img,'ganttchart');
+		// Catch and silence any exceptions here, they'll show up in an error image later
+		try {
+			$map = $this->create($content,$img,'ganttchart');
+		} catch (Exception $e){}
+
 		// replace the regular links with popups
 		$map = preg_replace('/href="@(\d+)x(\d+)([^"]+)"/i','href="#" onclick="egw_openWindowCentered2(\'\\3\',\'_blank\',\'dependent=yes,width=\\1,height=\\2,scrollbars=yes,status=yes\'); return false;"'
 		,$map);
