@@ -1,0 +1,17 @@
+.ganttContent {
+	margin: 0px;
+}
+
+/* Fixes */
+.ganttToolbarZoomIn {
+    background-image: url("http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/gantt/resources/images/zoomin.png");
+}
+.ganttToolbarZoomOut {
+    background-image: url("http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/gantt/resources/images/zoomout.png");
+}
+.ganttToolbarMicro {
+    background-image: url("http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/gantt/resources/images/zoomintime.png");
+}
+.ganttToolbarTele {
+    background-image: url("http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/gantt/resources/images/zoomouttime.png");
+}

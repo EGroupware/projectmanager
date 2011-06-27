@@ -5,13 +5,20 @@
 dojo.require('dojox.gantt.GanttChart');
 dojo.ready(function(){
 var ganttChart = new dojox.gantt.GanttChart({
-  readOnly: true,                    //optional: determine if gantt chart is editable
-  dataFilePath: "gantt_default.json", //optional: json data file path for load and save, default is "gantt_default.json"
-  height: $('#divSubContainer').height(),                        //optional: chart height in pixel, default is 400px
-  width: $('#divAppbox').width()-150,                        //optional: chart width in pixel, default is 600px
-  withResource: true                  //optional: display the resource chart or not
-}, "gantt");                          //"gantt" is the node container id of gantt chart widget
+	readOnly: true,				//optional: determine if gantt chart is editable
+	dataFilePath: "gantt_default.json",	//optional: json data file path for load and save, default is "gantt_default.json"
+	height: $('#divSubContainer').height(),	//optional: chart height in pixel, default is 400px
+	width: $('#divAppbox').width()-50,	//optional: chart width in pixel, default is 600px
+	withResource: true,			//optional: display the resource chart or not
+	autoCorrectError: true,			// ?
+}, "gantt");				//"gantt" is the node container id of gantt chart widget
 
+// Set slightly larger names
+ganttChart.maxWidthPanelNames = 200;	// pixels
+ganttChart.maxWidthTaskNames = 200;	// pixels
+
+// Set according to user preferences
+ganttChart.hsPerDay = gantt_hours_per_day;
 
 // Fetch data
 var req = new egw_json_request('projectmanager.projectmanager_gantt.ajax_gantt_project', [gantt_project_ids]);
@@ -40,7 +47,7 @@ function ganttAddProject(graph, data) {
 		} else {
 			var task = ganttAddElement(data,data.elements[j]);
 			// Gantt fails if dates don't work out
-			if(task.startTime < project.startDate) project.startDate = task.startTime;
+		//	if(task.startTime < project.startDate) project.startDate = task.startTime;
 			project.addTask(task);
 		}
 	}
@@ -62,13 +69,11 @@ function ganttAddElement(project_data, data) {
 			for(var j = 0; j < project_data.elements.length; j++) {
 				if(project_data.elements[j].pe_id == data.pe_constraint[i]) {
 					previous = project_data.elements[j];
-					if(previous.pe_start < data.pe_start) {
-						task_data.previousTaskId = data.pe_constraint[i];
-						break;
-					} else {
+					if(previous.pe_start > data.pe_start) {
 						console.warn('Constraint does not match times. ' + data.pe_title + ' after ' + previous.pe_title);
-						break;
 					}
+					task_data.previousTaskId = data.pe_constraint[i];
+					break;
 				}
 			}
 		}

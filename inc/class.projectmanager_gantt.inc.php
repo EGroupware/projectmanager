@@ -41,7 +41,10 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 */
 
 		egw_framework::validate_file('.','gantt','projectmanager');
-		$content .= '<script type="text/javascript">var gantt_project_ids = ' . json_encode($pm_id) . ';</script>';
+		egw_framework::includeCSS('projectmanager','gantt');
+		$content .= '<script type="text/javascript">var gantt_project_ids = ' . json_encode($pm_id) . ';
+var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['calendar']['workdayends'] - $GLOBALS['egw_info']['user']['preferences']['calendar']['workdaystarts']) . ';
+		</script>';
 		$content .= '<div class="ganttContent"><div id="gantt"></div></div>';
 		$GLOBALS['egw']->framework->render($content, 'Test', true);
 	}
