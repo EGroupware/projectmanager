@@ -7,8 +7,8 @@ dojo.ready(function(){
 var ganttChart = new dojox.gantt.GanttChart({
 	readOnly: false,			//optional: determine if gantt chart is editable
 	dataFilePath: "gantt_default.json",	//optional: json data file path for load and save, default is "gantt_default.json"
-	height: $('#divSubContainer').height(),	//optional: chart height in pixel, default is 400px
-	width: $('#divAppbox').width()-50,	//optional: chart width in pixel, default is 600px
+	height: $j('#divSubContainer').height(),	//optional: chart height in pixel, default is 400px
+	width: $j('#divAppbox').width()-50,	//optional: chart width in pixel, default is 600px
 	withResource: true,			//optional: display the resource chart or not
 	autoCorrectError: true,			// ?
 }, "gantt");				//"gantt" is the node container id of gantt chart widget

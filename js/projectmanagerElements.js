@@ -20,23 +20,23 @@ function do_action(selbox)
 
 function toggleMoreOptions(button)
 {
-	element = $(button).closest('div').parent('div').find('table.egwLinkMoreOptions');
-	if($(element).css('display') == 'none')
+	element = $j(button).closest('div').parent('div').find('table.egwLinkMoreOptions');
+	if($j(element).css('display') == 'none')
 	{
-		$(element).fadeIn('medium');
+		$j(element).fadeIn('medium');
 	}
 	else
 	{
-		$(element).fadeOut('medium');
+		$j(element).fadeOut('medium');
 	}
 }
 
-$(document).ready(function()
+$j(document).ready(function()
 {
-	$('table.egwLinkMoreOptions').parent('div').parent('div').css('position', 'relative');
-	$('table.egwLinkMoreOptions').parent('div').parent('div').css('z-index', '999');
-	$('table.egwLinkMoreOptions').parent('div').css('position', 'absolute');
-	$('table.egwLinkMoreOptions').parent('div').css('right', '0');
-	$('table.egwLinkMoreOptions').parent('div').css('width', '240px');
-	$('table.egwLinkMoreOptions').parent('div').css('opacity', '.9');
+	$j('table.egwLinkMoreOptions').parent('div').parent('div').css('position', 'relative');
+	$j('table.egwLinkMoreOptions').parent('div').parent('div').css('z-index', '999');
+	$j('table.egwLinkMoreOptions').parent('div').css('position', 'absolute');
+	$j('table.egwLinkMoreOptions').parent('div').css('right', '0');
+	$j('table.egwLinkMoreOptions').parent('div').css('width', '240px');
+	$j('table.egwLinkMoreOptions').parent('div').css('opacity', '.9');
 });
