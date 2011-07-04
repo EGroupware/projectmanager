@@ -425,11 +425,10 @@ class projectmanager_hooks
 				'size'   => 60,
 				'label'  => 'Directory with documents to insert project data',
 				'name'   => 'document_dir',
-				'help'   => lang('If you specify a directory (full vfs path) here, projectmanager displays an action for each document.').' '.
-					lang('That action allows to download the specified document with the project and elements data inserted.').' '.
-					lang('The document can contain placeholders like %1 to be replaced with the project data (%2full list of placeholder names%3).','&#123;&#123;pm_title&#125;&#125;','<a href="'.$link.'" target="_blank">','</a>').' '.
+				'help'   => lang('If you specify a directory (full vfs path) here, %1 displays an action for each document. That action allows to download the specified document with the data inserted.',lang('projectmanager')).' '.
+					lang('the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).','<a href="'.$link.'" target="_blank">','</a>','pm_title').' '.
 					lang('Furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.').' '.
-					lang('At the moment the following document-types are supported:'). implode(',',bo_merge::get_file_extensions()),
+					lang('The following document-types are supported:'). implode(',',bo_merge::get_file_extensions()),
 				'run_lang' => false,
 				'xmlrpc' => True,
 				'admin'  => False,
