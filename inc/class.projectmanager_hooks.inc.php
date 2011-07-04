@@ -482,7 +482,7 @@ class projectmanager_hooks
 			$settings['nextmatch-export-definition-project'] = array(
 				'type'   => 'select',
 				'values' => $options,
-				'label'  => 'Export definitition to use for nextmatch export' . ' (' . lang('Projects') . ')',
+				'label'  => 'Export definition to use for nextmatch export' . ' (' . lang('Projects') . ')',
 				'name'   => 'nextmatch-export-definition-project',
 				'help'   => lang('If you specify an export definition, it will be used when you export'),
 				'run_lang' => false,
@@ -494,7 +494,7 @@ class projectmanager_hooks
 			$settings['nextmatch-export-definition-element'] = array(
 				'type'   => 'select',
 				'values' => $options,
-				'label'  => 'Export definitition to use for nextmatch export' . ' (' . lang('Elements') . ')',
+				'label'  => 'Export definition to use for nextmatch export' . ' (' . lang('Elements') . ')',
 				'name'   => 'nextmatch-export-definition-element',
 				'help'   => lang('If you specify an export definition, it will be used when you export'),
 				'run_lang' => false,
