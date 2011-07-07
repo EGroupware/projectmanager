@@ -111,19 +111,19 @@ class projectmanager_merge extends bo_merge
 			'pm_number'				=> lang('Project number'),
 			'pm_title'				=> lang('Title'),
 			'pm_description'		=> lang('Description'),
-			'pm_creator'			=> lang('Project creator'),
+			'pm_creator'			=> lang('Creator'),
 			'pm_created'			=> lang('Creation date and time'),
-			'pm_modifier'			=> lang('Project modifier'),
+			'pm_modifier'			=> lang('Modifier'),
 			'pm_modified'			=> lang('Modified date and time'),
 			'pm_planned_start'		=> lang('Planned start date and time'),
 			'pm_planned_end'		=> lang('Planned end date and time'),
 			'pm_real_start'			=> lang('Real start date and time'),
 			'pm_real_end'			=> lang('Real end date and time'),
-			'cat_id'				=> lang('Project category'),
-			'pm_access'				=> lang('Project access (e.g. public)'),
-			'pm_priority'			=> lang('Project priority'),
-			'pm_status'				=> lang('Project status'),
-			'pm_completion'			=> lang('Project completion (e.g. 100%)'),
+			'cat_id'				=> lang('Category'),
+			'pm_access'				=> lang('Access'),
+			'pm_priority'			=> lang('Priority'),
+			'pm_status'				=> lang('Status'),
+			'pm_completion'			=> lang('Completion'),
 			'pm_used_time'			=> lang('Used time'),
 			'pm_planned_time'		=> lang('Planned time'),
 			'pm_replanned_time'		=> lang('Re-planned time'),
@@ -136,6 +136,11 @@ class projectmanager_merge extends bo_merge
 		);
 		$role_so = new projectmanager_roles_so();
 		$roles = $role_so->query_list();
+		$roles = array_combine($roles, $roles);
+		foreach($roles as $role => &$label)
+		{
+			$label = lang($label);
+		}
 		$this->projectmanager_fields += array_combine($roles, $roles);
 
 
@@ -146,8 +151,8 @@ class projectmanager_merge extends bo_merge
 		
 		$this->projectmanager_element_fields = array(
 			'pe_id'					=> lang('Element ID'),
-			'pe_title'				=> lang('Element title'),
-			'pe_details'			=> lang('Element details'),
+			'pe_title'				=> lang('Title'),
+			'pe_details'			=> lang('Description'),
 			'pe_completion'			=> lang('Completion'),
 			'pe_used_time'			=> lang('Used time in minutes'),
 			'pe_planned_time'		=> lang('Planned time in minutes'),
@@ -164,9 +169,9 @@ class projectmanager_merge extends bo_merge
 			'pe_real_end'			=> lang('Real end date and time'),
 			'pe_synced'				=> lang('Last sync date and time'),
 			'pe_modified'			=> lang('Modified date and time'),
-			'pe_modifier'			=> lang('Element modifier'),
-			'pe_status'				=> lang('Element status'),
-			'cat_id'				=> lang('Element category'),
+			'pe_modifier'			=> lang('Modifier'),
+			'pe_status'				=> lang('Status'),
+			'cat_id'				=> lang('Category'),
 			'pe_remark'				=> lang('Remark'),
 			'user_timezone_read'	=> lang('Timezone'),
 			'pe_app'		=> lang('Application'),
