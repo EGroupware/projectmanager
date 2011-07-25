@@ -653,7 +653,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$group, 'Insert in document', 'document_'
 			),
 			'cat' => nextmatch_widget::category_action(
-				'procjetmanger',$group,'Change category','cat_'
+				'projectmanager',$group,'Change category','cat_'
 			)+array(
 				'disableClass' => 'rowNoEdit',
 			),
