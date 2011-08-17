@@ -953,8 +953,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if($ids['elements'])
 		{
+			$limit_exception = count(array_intersect(array($GLOBALS['egw_info']['user']['account_id']) + $GLOBALS['egw']->accounts->memberships($GLOBALS['egw_info']['user']['account_id'],true), unserialize($GLOBALS['egw_info']['server']['export_limit_excepted']))) > 0;
 			if($document_merge->export_limit && 
-				!$GLOBALS['egw_info']['user']['apps']['admin'] && count($ids['elements']) > (int)$document_merge->export_limit)
+				!($GLOBALS['egw_info']['user']['apps']['admin'] || $limit_exception) && count($ids['elements']) > (int)$document_merge->export_limit)
 			{
 				return lang('No rights to export more then %1 entries!',(int)$document_merge->export_limit);
 			}
