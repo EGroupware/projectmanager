@@ -657,7 +657,7 @@ class projectmanager_merge extends bo_merge
 			$query = array('pm_id' => $this->pm_id);
 			if($this->elements) $query['pe_id'] = $this->elements;
 
-			$limit_exception = count(array_intersect(array($GLOBALS['egw_info']['user']['account_id']) + $GLOBALS['egw']->accounts->memberships($GLOBALS['egw_info']['user']['account_id'],true), unserialize($GLOBALS['egw_info']['server']['export_limit_excepted']))) > 0;
+			$limit_exception = bo_merge::is_export_limit_excepted();
 			if($this->export_limit && !($GLOBALS['egw_info']['user']['apps']['admin'] || $limit_exception)) {
 				$limit = array(0,(int)$this->export_limit);
 				// Need to do this to give an error
