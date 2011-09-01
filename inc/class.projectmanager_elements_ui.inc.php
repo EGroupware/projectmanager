@@ -953,8 +953,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if($ids['elements'])
 		{
-			if($document_merge->export_limit && 
-				!$GLOBALS['egw_info']['user']['apps']['admin'] && count($ids['elements']) > (int)$document_merge->export_limit)
+			if($document_merge->export_limit && !bo_merge::is_export_limit_excepted() && count($ids['elements']) > (int)$document_merge->export_limit)
 			{
 				return lang('No rights to export more then %1 entries!',(int)$document_merge->export_limit);
 			}
