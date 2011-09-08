@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.001">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.002">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -77,7 +77,7 @@
 				<row class="th rowNoDelete">
 					<image align="center" label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
 					<vbox>
-						<description id="${row}[pe_title]" no_lang="1" options=",@${row}[view_link]"/>
+						<description id="${row}[pe_title]" no_lang="1" href="@${row}[view_link]"/>
 						<html id="${row}[pe_details]" no_lang="1"/>
 						<description id="${row}[pe_remark]" no_lang="1"/>
 					</vbox>
@@ -107,7 +107,7 @@
 						<textbox type="float" id="${row}[pe_used_budget]" readonly="true" max="2"/>
 						<textbox type="float" id="${row}[pe_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
 					</vbox>
-					<image align="center" label="$row_cont[pe_completion]" src="${row}[pe_completion]" no_lang="1"/>
+					<progress align="center" label="$row_cont[pe_completion]" id="${row}[pe_completion]" no_lang="1"/>
 					<vbox readonly="true">
 						<date-time id="${row}[pe_modified]" readonly="true"/>
 						<menulist>
@@ -164,7 +164,7 @@
 					</vbox>
 					<vbox align="center">
 						<image align="center" src="${row}[pe_healt_icon]"/>
-						<image align="center" label="$row_cont[pe_completion]" src="${row}[pe_completion_icon]" no_lang="1"/>
+						<progress align="center" label="$row_cont[pe_completion]" id="${row}[pe_completion_icon]" no_lang="1"/>
 					</vbox>
 					<vbox readonly="true">
 						<date-time id="${row}[pe_modified]" readonly="true"/>
