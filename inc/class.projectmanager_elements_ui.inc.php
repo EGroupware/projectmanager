@@ -635,6 +635,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'group' => $group,
 				'enableId' => '^projectmanager:',
 			),
+			'timesheet' => array(
+				'icon' => 'timesheet/navbar',
+				'caption' => 'Timesheet',
+				'egw_open' => 'add-timesheet',
+				'allowOnMultiple' => false,
+				'group' => $group,
+			),
 			'sync_all' => array(
 				'caption' => 'Synchronise all',
 				'icon' => 'agt_reload',
