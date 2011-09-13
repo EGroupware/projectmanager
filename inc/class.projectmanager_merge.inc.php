@@ -216,9 +216,15 @@ class projectmanager_merge extends bo_merge
 	{
 		$replacements = array();
 	
-		// first replacement is always the contact defined by $id (if valid)
-		if($id > 0) {
-			$replacements += $this->contact_replacements($id);
+		// first replacement is always the contacts (if valid)
+		// If this special case is no longer needed, it can be removed & contacts handled as
+		// any other element
+		if(!empty($this->contact_ids) && is_array($this->contact_ids))
+		{
+			foreach($this->contact_ids as $contact_id)
+			{
+				$replacements += $this->contact_replacements($contact_id);
+			}
 		}
 		
 		// replace project content

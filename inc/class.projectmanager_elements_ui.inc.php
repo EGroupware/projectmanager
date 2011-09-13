@@ -915,18 +915,15 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 				}
+				$ids = array(0); // pseudo fill for merge class - it expects PM ids, not element ids
 				if(!empty($contacts))
 				{
-					$contacts = array_unique($contacts);
-				}
-				else
-				{
-					$contacts = array(0); // pseudo fill for merge class
+					$ids['contacts'] = array_unique($contacts);
 				}
 
 				// Actually send the elements the user selected
-				$contacts['elements'] = $checked;
-				$msg = $this->download_document($contacts, $document, $eroles);
+				$ids['elements'] = $checked;
+				$msg = $this->download_document($ids, $document, $eroles);
 				return true;
 		}
 		return false;
@@ -947,6 +944,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if($this->config['enable_eroles'] && !empty($eroles))
 		{
 			$document_merge->set_eroles($eroles);
+		}
+
+		if($ids['contacts']) {
+			$document_merge->contact_ids = $ids['contacts'];
 		}
 
 		if(isset($this->prefs['document_download_name']))
