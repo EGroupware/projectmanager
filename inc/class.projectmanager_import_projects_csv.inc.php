@@ -177,7 +177,7 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 								}
 							} else {
 								$action = $condition['false'];
-								$success = ($this->action(  $action['action'], $record, $import_csv->get_current_position() ));
+								$success = ($this->action(  $action['action'] ? $action['action'] : 'none', $record, $import_csv->get_current_position() ));
 							}
 							break;
 
