@@ -325,6 +325,14 @@ class projectmanager_merge extends bo_merge
 		}
 		if (!is_array($project)) return array();
 
+		// Set any missing custom fields, or the marker will stay
+		$custom = config::get_customfields('projectmanager');
+                foreach($custom as $name => $field)
+                {
+			$this->projectmanager_fields['#'.$name] = $field['label'];
+                        if(!$project['#'.$name]) $project['#'.$name] = '';
+                }
+		
 		// Add in roles
 		$role_so = new projectmanager_roles_so();
 		$roles = $role_so->query_list();
@@ -394,9 +402,6 @@ class projectmanager_merge extends bo_merge
 			}
 			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
 		}
-		// TODO: set custom fields
-		// ...
-		
 		return $replacements;
 	}
 	
@@ -505,6 +510,15 @@ class projectmanager_merge extends bo_merge
 			if ($n&1) echo "</tr>\n";
 			$n++;
 		}
+
+		// Custom fields
+		echo '<tr><td colspan="4"><h3>'.lang('Custom fields').":</h3></td></tr>";
+		$custom = config::get_customfields('projectmanager');
+		foreach($custom as $name => $field)
+		{
+			echo '<tr><td>{{#'.$name.'}}</td><td colspan="3">'.$field['label']."</td></tr>\n";
+		}
+
 		// Elements
 		$n = 0;
 		echo '<tr><td colspan="4">'
