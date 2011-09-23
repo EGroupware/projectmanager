@@ -948,6 +948,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		if($ids['contacts']) {
 			$document_merge->contact_ids = $ids['contacts'];
+			unset($ids['contacts']);
 		}
 
 		if(isset($this->prefs['document_download_name']))
