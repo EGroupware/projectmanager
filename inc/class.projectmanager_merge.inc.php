@@ -305,7 +305,6 @@ class projectmanager_merge extends bo_merge
 					break;
 			}
 		}
-
 		return empty($replacements) ? false : $replacements;
 	}
 
@@ -402,6 +401,12 @@ class projectmanager_merge extends bo_merge
 			}
 			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
 		}
+
+		// Project links
+		$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links('projectmanager', $project['pm_id'], '!'.egw_link::VFS_APPNAME);
+ 		$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links('projectmanager', $project['pm_id'], egw_link::VFS_APPNAME);
+		$replacements['$$'.($prefix ? $prefix.'/':'').'links_attachments$$'] = $this->get_links('projectmanager', $project['pm_id']);
+
 		return $replacements;
 	}
 	
@@ -466,6 +471,11 @@ class projectmanager_merge extends bo_merge
 			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
 		}
 		
+		// Element links
+		$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], '!'.egw_link::VFS_APPNAME);
+		$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], egw_link::VFS_APPNAME);
+		$replacements['$$'.($prefix ? $prefix.'/':'').'links_attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id']);
+
 		return $replacements;
 	}
 
@@ -633,6 +643,9 @@ class projectmanager_merge extends bo_merge
 		// General
 		echo '<tr><td colspan="4"><h3>'.lang('General fields:')."</h3></td></tr>";
 		foreach(array(
+			'links' => lang('Titles of any entries linked to the current record, excluding attached files'),
+ 			'attachments' => lang('List of files linked to the current record'),
+			'links_attachments' => lang('Links and attached files'),
 			'date' => lang('Date'),
 			'user/n_fn' => lang('Name of current user, all other contact fields are valid too'),
 			'user/account_lid' => lang('Username'),
@@ -690,7 +703,7 @@ class projectmanager_merge extends bo_merge
 				throw new egw_exception(lang('No rights to export more then %1 entries!',(int)$this->export_limit));
 			}
 		}
-		
+	
 		$element =& $elements[$n];
 		$replacement = false;
 		if(isset($element))
