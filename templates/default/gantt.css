@@ -1,5 +1,17 @@
+#exec[gantt] {
+	position: relative;
+	height:	400px;
+}
+
 .ganttContent {
 	margin: 0px;
+	height:	400px;
+}
+
+.loading {
+	background-image: url("../../../phpgwapi/templates/default/images/egw_action/ajax-loader.gif");
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 
 /* Fixes */
@@ -14,4 +26,12 @@
 }
 .ganttToolbarTele {
     background-image: url("http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/gantt/resources/images/zoomouttime.png");
+}
+
+/* Fit in with eGroupWare */
+.ganttPanelNames {
+	background-image: url("../../../phpgwapi/templates/default/images/gradient22.png");
+}
+.ganttTaskPanel {
+	background-image: url("../images/gradient22.png");
 }

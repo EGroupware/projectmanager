@@ -2,106 +2,140 @@
  * JS for active gantt chart
  */
 
-dojo.require('dojox.gantt.GanttChart');
-dojo.ready(function(){
-var ganttChart = new dojox.gantt.GanttChart({
-	readOnly: false,			//optional: determine if gantt chart is editable
-	dataFilePath: "gantt_default.json",	//optional: json data file path for load and save, default is "gantt_default.json"
-	height: $j('#divSubContainer').height(),	//optional: chart height in pixel, default is 400px
-	width: $j('#divAppbox').width()-50,	//optional: chart width in pixel, default is 600px
-	withResource: true,			//optional: display the resource chart or not
-	autoCorrectError: true,			// ?
-}, "gantt");				//"gantt" is the node container id of gantt chart widget
+var gantt_id = 'exec[gantt]';
+var ganttChart = null;
+var changes = {};
 
-// Set slightly larger names
-ganttChart.maxWidthPanelNames = 200;	// pixels
-ganttChart.maxWidthTaskNames = 200;	// pixels
+jQuery(document).ready(function(){
+	ganttChart = new GanttChart();
+	ganttChart.setImagePath(egw.webserverUrl+"/phpgwapi/js/dhtmlxGantt/codebase/imgs/");
+	ganttChart.correctError = true;
+	ganttChart.showNewProject(false);
 
-// Set according to user preferences
-ganttChart.hsPerDay = gantt_hours_per_day;
+	// Set according to user preferences
+	ganttChart.hoursInDay = gantt_hours_per_day;
+	ganttChart.hourInPixelsWork = ganttChart.dayInPixels / ganttChart.hoursInDay;
 
-// Fetch data
-var req = new egw_json_request('projectmanager.projectmanager_gantt.ajax_gantt_project', [gantt_project_ids]);
-req.sendRequest(true, ganttLoadProject, ganttChart);
+	// Events
+	// Prevent editing tasks with no edit rights
+	ganttChart.attachEvent("onTaskStartDrag", function(task) {
+		return task.TaskInfo.egw_data.edit;
+	});
+	ganttChart.attachEvent("onTaskStartResize", function(task) {
+		return task.TaskInfo.egw_data.edit;
+	});
 
+	// Change of start or duration
+	ganttChart.attachEvent("onTaskEndDrag", function(task) {
+		jQuery('.save > input').removeAttr('disabled');
+		var egw_data = task.TaskInfo.egw_data;
+		var id = egw_data.pe_id;
+		if(task.TaskInfo.EST != egw_data.startDate) {
+			if(!changes[id]) changes[id] = {}
+			changes[id].start = task.TaskInfo.EST.valueOf() / 1000;
+		}
+	});
+	ganttChart.attachEvent("onTaskEndResize", function(task) {
+		jQuery('.save > input').removeAttr('disabled');
+		var egw_data = task.TaskInfo.egw_data;
+		var id = egw_data.pe_id;
+		if(task.TaskInfo.Duration != egw_data.duration) {
+			if(!changes[id]) changes[id] = {}
+			changes[id].duration = task.TaskInfo.Duration;
+		}
+	});
+
+	// Form filters
+	jQuery(':input', document.forms[0]).not('.save').change(getGanttData);
+
+	// Save
+	jQuery('.save > input').click(function() {
+		console.info(changes);
+		jQuery(this).removeAttr('disabled');
+		var req = new egw_json_request(
+			'projectmanager.projectmanager_gantt.ajax_update', 
+			[changes, egw_json_getFormValues(document.forms[0])]
+		);
+		req.sendRequest(true, ganttLoadProject, ganttChart);
+		changes = {};
+	}).attr('disabled', 'true');
+	
+	// Fetch data
+	getGanttData();
 });
+
+function getGanttData() {
+	if(jQuery.isEmptyObject(changes) || confirm(egw.lang('Discard changes?')))
+	{
+		var req = new egw_json_request(
+			'projectmanager.projectmanager_gantt.ajax_gantt_project', 
+			[gantt_project_ids, egw_json_getFormValues(document.forms[0])]
+		);
+		req.sendRequest(true, ganttLoadProject, ganttChart);
+		changes = {};
+	}
+}
 
 /**
  * Load data from eGW style format into gantt chart, then set up 
  * eGW's UI actions.
  */
 function ganttLoadProject(data) {
-console.log(data);
+	if(this.arrProjects.length > 0)
+	{
+		for(var i = 0; i < this.arrProjects.length; i++) {
+			var project = this.arrProjects[i];
+			if(project.Project) this.deleteProject(project.Project.Id);
+		}
+		this.clearAll();
+		jQuery('.ganttContent').empty();
+	}
+
+	var editable = false;
+
 	// Load data
 	for(var i = 0; i < data.length; i++) {
 		var project = ganttAddProject(this, data[i]);
-		
+		editable = editable || data[i].edit;
 		this.addProject(project);
 	}
-	this.init();
+
+	this.setEditable(editable);
+
+	this.create(gantt_id);
 
 	// Change events
-	var done = new Object;
-	for(var i = 0; i < this._events.length; i++) {
-		// Events array has [divName, event, function, ?]
-		if(dojo.hasClass(this._events[i][0], 'ganttProjectNameItem')) {
-			var name = ''+dojo.attr(this._events[i][0],'title');
-			if(done[name] != true) {
-				this._events.push(
-					dojo.connect(this._events[i][0],'onclick',this,function(e) {
-						var item = null;
-						for(var i = 0; i < this.project.length; i++) {
-							if(this.project[i].name == name) {
-								item = this.project[i];
-								break;
-							}
-						}
-						if(item) {
-							egw_open(item.id, 'projectmanager');
-						}
-					},true)
-				);
-				dojo.disconnect(this._events[i]);
-				done[id] = true;
-			}
-			this._events.splice(i,1);
-		} else if (dojo.hasClass(this._events[i][0],'ganttTaskTaskNameItem')) {
-			var id = ''+dojo.attr(this._events[i][0],'id');
-			if(done[id] != true) {
-				this._events.push(
-					dojo.connect(this._events[i][0],'onclick',this, function(e) {
-						var id = dojo.attr(e.target, 'id');
-						var item = null;
-						for(var i = 0; i < this.project.length; i++) {
-							item = dojo.filter(this.project[i].parentTasks, function(task) {
-								return task.id == id;
-							});
-							if(item != null) break;
-						}
-						if(item[0]) {
-							item = item[0];
-							egw_open(item.egw_data.pe_app_id, item.egw_data.pe_app);
-						}
-					}, true)
-				);
-				done[id] = true;
-			}
-			if(this._events[i][1] == 'onmouseover' || this._events[i][1] == 'onmouseout') {
-				dojo.disconnect(this._events[i]);
-				this._events.splice(i,1);
+	for(var i = 0; i < this.arrProjects.length; i++) {
+		var project = this.arrProjects[i];
+
+		if(project.projectNameItem) {
+			jQuery(project.projectNameItem).click(project,function(e) {
+				if(e.data.Project) {
+					egw_open(e.data.Project.Id, 'projectmanager');
+				}
+			});
+			// Tasks
+			for(var j = 0; j < project.arrTasks.length; j++)
+			{
+				var task = project.arrTasks[j];
+				jQuery(task.cTaskNameItem[0]).click(task.TaskInfo, function(e) {
+					egw_open(e.data.egw_data.pe_app_id, e.data.egw_data.pe_app);
+				});
 			}
 		}
 	}
 }
 
 function ganttAddProject(graph, data) {
-	var project = new dojox.gantt.GanttProjectItem({
-		id: data.pm_id,
-		name: data.name,
-		startDate: new Date(data.pm_real_start*1000 || data.pm_planned_start*1000 || new Date().getTime())
-	});
+	var project = new GanttProjectInfo(
+		data.pm_id,
+		data.name,
+		new Date(data.start*1000 || new Date().getTime())
+	);
+	if(!data.elements) return project;
 	for(var j = 0; j < data.elements.length; j++) {
 		if(data.elements[j].pe_id == undefined) {
+			// List sub-projects as separate projects
 			graph.addProject(ganttAddProject(graph,data.elements[j]));
 		} else {
 			var task = ganttAddElement(data,data.elements[j]);
@@ -126,9 +160,6 @@ function ganttAddElement(project_data, data) {
 			for(var j = 0; j < project_data.elements.length; j++) {
 				if(project_data.elements[j].pe_id == data.pe_constraint[i]) {
 					previous = project_data.elements[j];
-					if(previous.pe_start > data.pe_start) {
-						console.warn('Constraint does not match times. ' + data.pe_title + ' after ' + previous.pe_title);
-					}
 					task_data.previousTaskId = data.pe_constraint[i];
 					break;
 				}
@@ -144,7 +175,15 @@ function ganttAddElement(project_data, data) {
 			}
 		}
 	}
-	var task = new dojox.gantt.GanttTaskItem(task_data);
+	var task = new GanttTaskInfo(
+		task_data.id,
+		task_data.name,
+		task_data.startTime,
+		task_data.duration,
+		task_data.percentage,
+		task_data.previousTaskId
+	);
+	data.startTime = task_data.startTime;
 	task.egw_data = data;
 	return task;
 }

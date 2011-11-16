@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="1.9.001">
+	<template id="projectmanager.gantt" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column/>
