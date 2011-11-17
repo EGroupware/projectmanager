@@ -36,12 +36,18 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 
 		$ui = new projectmanager_ui();
 		$selection = array();
+
+		// do we need to query the cf's
+                foreach($options['mapping'] as $field => $map) {
+                        if($field[0] == '#') $query['custom_fields'][] = $field;
+                }
+
 		if ($options['selection'] == 'selected') {
 			// ui selection with checkbox 'use_all'
-			$query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
+			$query = array_merge($GLOBALS['egw']->session->appsession('project_list','projectmanager'), $query);
 			$query['num_rows'] = -1;	// all
 			$ui->get_rows($query,$selection,$readonlys);
-			
+
 			// Reset nm params
 			unset($query['num_rows']);
 			$GLOBALS['egw']->session->appsession('project_list','projectmanager', $query);
