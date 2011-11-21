@@ -125,6 +125,14 @@ class projectmanager_hooks
 						'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
 					)) : False,
 				),
+				array(
+					'text' => 'New Ganttchart',
+					'icon' => 'navbar',
+					'app'  => 'projectmanager',
+					'link' => $pm_id ? egw::link('/index.php',array(
+						'menuaction' => 'projectmanager.projectmanager_gantt.chart',
+					)) : False,
+				),
 			);
 			// show pricelist menuitem only if we use pricelists
 			if (!self::$config['accounting_types'] || in_array('pricelist',explode(',',self::$config['accounting_types'])))
