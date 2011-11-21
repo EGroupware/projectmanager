@@ -460,7 +460,9 @@ class projectmanager_hooks
 				'type' => 'export',
 				'application' => 'projectmanager'
 			));
-			$options = array();
+			$options = array(
+				'~nextmatch~'	=>	lang('Old fixed definition')
+			);
 			foreach ((array)$definitions->get_definitions() as $identifier)
 			{
 				try
