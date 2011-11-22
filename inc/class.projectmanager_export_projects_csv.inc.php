@@ -81,7 +81,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			// Add in roles
 			if($options['mapping']['roles']) {
 				$roles = $ui->read_members($record['pm_id']);
-				foreach($roles as $person) {
+				foreach((array)$roles as $person) {
 					$role_name = $this->roles[$person['role_id']];
 					$record[$role_name][] = $person['member_uid'];
 				}

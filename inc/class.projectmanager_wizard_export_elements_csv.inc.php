@@ -48,6 +48,21 @@ class projectmanager_wizard_export_elements_csv extends importexport_wizard_basi
 		);
 	}
 
+	/** 
+	 * Override to remove 'All custom fields' field that parent adds automatically.
+	 * Project elements don't have custom fields - they come from element's app, not PM
+	 */
+	public function wizard_step30(&$content, &$sel_options, &$readonlys, &$preserv) {
+		$result = parent::wizard_step30($content, $sel_options, $readonlys, $preserv);
+		unset($this->export_fields['all_custom_fields']);
+		unset($sel_options['field']);
+		foreach($content['fields'] as $row => $field)
+		{
+			if($field['field'] == 'all_custom_fields') unset($content['fields'][$row]);
+		}
+		return $result;
+	}
+
 	public function wizard_step50(&$content, &$sel_options, &$readonlys, &$preserv) {
 		if($this->debug) error_log(get_class($this) . '::wizard_step50->$content '.print_r($content,true));
 		// return 
