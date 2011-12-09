@@ -11,7 +11,7 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		parent::__construct();
 	}
 
-	public function chart($data) {
+	public function chart($data = array()) {
 		if (isset($_REQUEST['pm_id']))
                 {
                         $pm_id = $_REQUEST['pm_id'];
@@ -56,7 +56,6 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 				0  => '0: '.lang('Mainproject only'),
 				1  => '1: '.lang('Project-elements'),
 				2  => '2: '.lang('Elements of elements'),
-				3  => '3: '.lang('Elements of elements'),
 				99 => lang('Everything recursive'),
 			),
 			'filter' => array(
@@ -256,7 +255,8 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 			$keys = array();
 			if(array_key_exists('duration', $values))
 			{
-				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'];
+				// Duration comes in hours
+				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'] * 60;
 			}
 			if(array_key_exists('start', $values)) 
 			{

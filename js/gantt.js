@@ -51,7 +51,7 @@ jQuery(document).ready(function(){
 	// Save
 	jQuery('.save > input').click(function() {
 		console.info(changes);
-		jQuery(this).removeAttr('disabled');
+		jQuery(this).attr('disabled',true);
 		var req = new egw_json_request(
 			'projectmanager.projectmanager_gantt.ajax_update', 
 			[changes, egw_json_getFormValues(document.forms[0])]
