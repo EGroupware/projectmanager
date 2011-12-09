@@ -209,7 +209,6 @@
           <entry type="string" name="pe_details">Details</entry>
           <entry type="string" name="pe_planned_quantity">Planned quantity</entry>
           <entry type="string" name="pe_used_quantity">Used quantity</entry>
-          <entry type="string" name="all_custom_fields">projectmanager</entry>
         </entry>
         <entry type="string" name="delimiter">;</entry>
         <entry type="string" name="charset">user</entry>
@@ -220,7 +219,7 @@
         <entry type="string" name="pe_replanned_time">h</entry>
         <entry type="string" name="include_duration_unit">1</entry>
       </entry>
-      <entry type="string" name="modified">2011-05-24 10:00:00</entry>
+      <entry type="string" name="modified">2011-11-22 10:00:00</entry>
     </entry>
   </entry>
 </entry>
