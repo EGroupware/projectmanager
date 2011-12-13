@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%">
+	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="1.5.002">
+		<grid>
 			<columns>
 				<column/>
 			</columns>
@@ -26,34 +26,34 @@
 							<rows>
 								<row>
 									<description value="Startdate" for="start"/>
-									<date id="start"/>
+									<date id="start" onchange="1"/>
 									<description value="Depth of display" for="depth"/>
 									<menulist>
-										<menupopup id="depth" no_lang="1"/>
+										<menupopup id="depth" no_lang="1" onchange="1"/>
 									</menulist>
-									<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times"/>
+									<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"/>
 									<description/>
-									<button label="Save" id="save"/>
+									<button label="Update" id="update"/>
 								</row>
 								<row>
 									<description value="Enddate" for="end"/>
-									<date id="end"/>
+									<date id="end" onchange="1"/>
 									<description value="Status filter" for="filter"/>
 									<menulist>
-										<menupopup id="filter" no_lang="1"/>
+										<menupopup id="filter" no_lang="1" onchange="1"/>
 									</menulist>
-									<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints"/>
+									<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints" onchange="1"/>
 									<description/>
 									<button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"/>
 								</row>
 								<row>
 									<description value="Resources"/>
 									<menulist>
-										<menupopup type="select-account" id="pe_resources" options="All"/>
+										<menupopup type="select-account" id="pe_resources" onchange="1" options="All"/>
 									</menulist>
 									<description value="Category"/>
 									<menulist span="3">
-										<menupopup type="select-cat" id="cat_id" options="All"/>
+										<menupopup type="select-cat" id="cat_id" onchange="1" options="All"/>
 									</menulist>
 									<description/>
 								</row>
@@ -62,9 +62,10 @@
 					</groupbox>
 				</row>
 				<row>
-					<box id="gantt" class="ganttContent">
-						<description/>
-					</box>
+					<html id="map"/>
+				</row>
+				<row>
+					<image src="ganttchart" imagemap="ganttchart"/>
 				</row>
 				<row>
 					<button statustext="Add a new milestone" label="Add milestone" id="milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"/>

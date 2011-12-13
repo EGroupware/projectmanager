@@ -33,7 +33,7 @@
 									</menulist>
 									<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times"/>
 									<description/>
-									<button label="Save" id="save"/>
+									<buttononly label="Save" id="save" class="save"/>
 								</row>
 								<row>
 									<description value="Enddate" for="end"/>

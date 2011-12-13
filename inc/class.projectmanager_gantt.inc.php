@@ -51,6 +51,20 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['calendar']['workdayends'] - $GLOBALS['egw_info']['user']['preferences']['calendar']['workdaystarts']) . ';
 		</script>';
 
+		// Default to project elements
+		if(!array_key_exists('depth',$data)) $data['depth'] = 1;
+
+		
+		if ($pm_id != $this->project->data['pm_id'])
+		{
+			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
+			{
+				return;
+			}
+			if(!$data['start']) $data['start'] = $this->project->data['pm_real_start'];
+			if(!$data['end']) $data['end'] = $this->project->data['pm_real_end'];
+		}
+
 		$sel_options = array(
 			'depth' => array(
 				0  => '0: '.lang('Mainproject only'),
@@ -118,7 +132,8 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		$project = $this->project->data + array(
 			'name'	=>	egw_link::title('projectmanager', $this->project->data['pm_id']),
 			'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
-			'start'	=>	$params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start']
+			'start'	=>	$params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],
+			'end'	=>	$params['planned_times'] ? $this->project->data['pm_planned_end'] : $this->project->data['pm_real_end']
 		);
 
 		// Not sure how it happens, but it causes problems
@@ -196,6 +211,8 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		$hours_per_day = $GLOBALS['egw_info']['user']['preferences']['calendar']['workdayends'] - $GLOBALS['egw_info']['user']['preferences']['calendar']['workdaystarts'];
 
 		$element_index = array();
+error_log(print_r($extra_cols,true));
+error_log(print_r($filter,true));
 		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
                         '',false,'AND',false,$filter) as $pe)
                 {
