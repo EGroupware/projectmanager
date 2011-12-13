@@ -134,7 +134,7 @@ function ganttAddProject(graph, data) {
 	);
 	if(!data.elements) return project;
 	for(var j = 0; j < data.elements.length; j++) {
-		if(data.elements[j].pe_id == undefined) {
+		if(data.elements[j].pe_id == undefined || data.elements[j].pe_app == 'projectmanager') {
 			// List sub-projects as separate projects
 			graph.addProject(ganttAddProject(graph,data.elements[j]));
 		} else {

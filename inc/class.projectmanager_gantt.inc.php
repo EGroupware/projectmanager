@@ -146,7 +146,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		}
 		if($params['depth'])
 		{
-			$project['elements'] = $this->add_elements($pm_id, $params);
+			$project['elements'] = $this->add_elements($pm_id, $params, $params['level'] ? $params['level'] : 1);
 		}
 		
 		return $project;
@@ -154,6 +154,8 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 
 	protected function add_elements($pm_id, $params, $level = 1) {
 		$elements = array();
+
+		if($level > $params['depth']) return $elements;
 
 		// defining start- and end-times depending on $params['planned_times'] and the availible data
 		foreach(array('start','end') as $var)
@@ -211,17 +213,15 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		$hours_per_day = $GLOBALS['egw_info']['user']['preferences']['calendar']['workdayends'] - $GLOBALS['egw_info']['user']['preferences']['calendar']['workdaystarts'];
 
 		$element_index = array();
-error_log(print_r($extra_cols,true));
-error_log(print_r($filter,true));
 		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
                         '',false,'AND',false,$filter) as $pe)
                 {
                         //echo "$line: ".print_r($pe,true)."<br>\n";
                         if (!$pe) continue;
 
-			if($pe['pe_app'] == 'projectmanager' && $level < $params['depth']) {
-				$project = $this->add_project($pe['pe_app_id']);
-				if($project) $elements[] = $project;
+			if($pe['pe_app'] == 'projectmanager') {// && $level < $params['depth']) {
+				$project = true;
+				$elements[] = $pe;
 			} else {
 				$pe['pe_start'] = (int)$pe['pe_start'];
 				$pe['duration'] = ($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']) / 60;
@@ -239,6 +239,17 @@ error_log(print_r($filter,true));
 			}
 			$element_index[$pe['pe_id']] = $pe;
 		}
+
+		// Get project children
+		if($project)
+		{
+			foreach($elements as &$pe)
+			{
+				$params['level'] = $level + 1;
+				if($pe['pe_app'] == 'projectmanager') $pe = $this->add_project($pe['pe_app_id'], $params);
+			}
+		}
+
 		// adding the constraints
 		if($params['constraints']) {
 			foreach($elements as &$pe)
