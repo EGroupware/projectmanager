@@ -408,7 +408,7 @@ class projectmanager_merge extends bo_merge
 		$replacements['$$'.($prefix ? $prefix.'/':'').'links_attachments$$'] = $this->get_links('projectmanager', $project['pm_id']);
 		foreach(array_keys($GLOBALS['egw_info']['user']['apps']) as $app)
 		{
-			$array["$$".($prefix?$prefix.'/':'')."links/{$app}$$"] = $this->get_links('projectmanager',$id, $app);
+			$replacements["$$".($prefix?$prefix.'/':'')."links/{$app}$$"] = $this->get_links('projectmanager',$id, $app);
 		}
 
 		return $replacements;
