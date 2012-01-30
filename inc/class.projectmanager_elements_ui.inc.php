@@ -891,6 +891,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				break;
 
 			case 'document':
+				$ids = array();
 				$contacts = array();
 				$eroles = array();
 				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
@@ -915,7 +916,18 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 				}
-				$ids = array(0); // pseudo fill for merge class - it expects PM ids, not element ids
+
+				// Check to see if the user selected an element from another (child) project, 
+				// and add that project to the list of IDs so merge won't skip it
+				$current_pm_id = $this->pm_id;
+				foreach($checked as $key => $id) {
+					// Need to clear pm_id or read won't actually read
+					unset($this->pm_id);
+					$element = $this->read(array('pe_id' => $id));
+					if($element['pm_id'] != $current_pm_id) $ids[] = $element['pm_id'];
+				}
+				$this->pm_id = $current_pm_id;
+
 				if(!empty($contacts))
 				{
 					$ids['contacts'] = array_unique($contacts);
