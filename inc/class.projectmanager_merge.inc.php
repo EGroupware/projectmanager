@@ -338,9 +338,9 @@ class projectmanager_merge extends bo_merge
 
 		// Sort with Coordinator first, others alphabetical
 		sort($roles);
-		$all_roles['Coordinator'] = array();
+		$all_roles = array('Coordinator' => array());
 		$all_roles += array_fill_keys($roles, array());
-		foreach($project['pm_members'] as $account_id => $info) {
+		foreach((Array)$project['pm_members'] as $account_id => $info) {
 			$all_roles[$info['role_title']][] = common::grab_owner_name($info['member_uid']);
 		} 
 		foreach($all_roles as $name => $users) {
@@ -351,7 +351,7 @@ class projectmanager_merge extends bo_merge
 			}
 			$project['all_roles'][] = $name . ': ' . $project[$name];
 		}
-		$project['all_roles'] = implode("\n",$project['all_roles']);
+		$project['all_roles'] = implode("\n",(Array)$project['all_roles']);
 
 		// Add in element summary
 		$summary = $this->projectmanager_elements_bo->summary();
@@ -695,6 +695,7 @@ class projectmanager_merge extends bo_merge
 			$query = array('pm_id' => $this->pm_id);
 			if($this->elements) $query['pe_id'] = $this->elements;
 
+			$limit = array(0,-1);
 			if($this->export_limit && !bo_merge::is_export_limit_excepted()) {
 				$limit = array(0,(int)$this->export_limit);
 				// Need to do this to give an error
