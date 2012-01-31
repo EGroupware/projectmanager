@@ -41,12 +41,10 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		$ui = new projectmanager_elements_ui();
 		$selection = array();
 		if ($options['selection'] == 'selected') {
-			// ui selection with checkbox 'use_all'
+			// ui selection with 'Use search results'
 			$query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			$query['num_rows'] = -1;	// all
 
-			// Clear the PM ID or results will be restricted
-			$ui->pm_id = null;
 			$ui->get_rows($query,$selection,$readonlys);
 
 			// Reset nm params
