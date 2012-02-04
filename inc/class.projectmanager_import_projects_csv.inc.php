@@ -159,6 +159,27 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 			// Automatically handle text categories without explicit translation
 			$record['cat_id'] = importexport_helper_functions::cat_name2id($record['cat_id']);
 
+			// Need to set overwrite bits to match the fields provided in the import file
+			// Otherwise, they'll be cleared when project is edited.
+			if (!$this->bo->pe_name2id)
+			{
+				// we need the PM_ id's
+				include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
+
+				$ds = new datasource();
+				$this->bo->pe_name2id = $ds->name2id;
+				unset($ds);
+			}
+
+			foreach($this->bo->pe_name2id as $name => $id)
+			{
+				$pm_name = str_replace('pe_','pm_',$name);
+				if ($record[$pm_name])
+				{
+					$record['pm_overwrite'] |= $id;
+				}
+			}
+
 			if ( $_definition->plugin_options['conditions'] ) {
 				foreach ( $_definition->plugin_options['conditions'] as $condition ) {
 					$results = array();
