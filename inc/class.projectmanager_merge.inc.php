@@ -232,7 +232,6 @@ class projectmanager_merge extends bo_merge
 		{
 			$this->change_project($id);
 		}
-		// Check to see if we need to look up links
 		
 		$replacements += $this->projectmanager_replacements($this->pm_id, '', $content);
 		
@@ -246,7 +245,8 @@ class projectmanager_merge extends bo_merge
 									$erole['pe_id'],
 									'erole/'.$erole_title,
 									$erole['app'],
-									$erole['app_id'])))
+									$erole['app_id'],
+									$content)))
 				{
 					$replacements += $replacement;
 				}
@@ -264,11 +264,11 @@ class projectmanager_merge extends bo_merge
 	 * @param string $app_id=null element app_id (no app detail will be resolved if omitted)
 	 * @return array|boolean
 	 */
-	protected function get_element_replacements($pe_id,$prefix='',$app=null,$app_id=null)
+	protected function get_element_replacements($pe_id,$prefix='',$app=null,$app_id=null, $content='')
 	{
 		$replacements = array();
 		// resolve project element fields
-		if($replacement = $this->projectmanager_element_replacements($pe_id,$prefix))
+		if($replacement = $this->projectmanager_element_replacements($pe_id,$prefix, $content))
 		{
 			$replacements += $replacement;
 		}
@@ -435,7 +435,7 @@ class projectmanager_merge extends bo_merge
 	 * @param string $prefix='' prefix like eg. 'erole'
 	 * @return array
 	 */
-	public function projectmanager_element_replacements($pe_id,$prefix='')
+	public function projectmanager_element_replacements($pe_id,$prefix='', $content = '')
 	{	
 		$replacements = array();
 		if(!is_object($this->projectmanager_elements_bo)) return $replacements;
@@ -490,9 +490,18 @@ class projectmanager_merge extends bo_merge
 		}
 		
 		// Element links
-		$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], '!'.egw_link::VFS_APPNAME);
-		$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], egw_link::VFS_APPNAME);
-		$replacements['$$'.($prefix ? $prefix.'/':'').'links_attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id']);
+		if(strpos($content, ($prefix ? $prefix.'/':'').'links') !== false)
+		{
+			$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], '!'.egw_link::VFS_APPNAME);
+		}
+		if(strpos($content, ($prefix ? $prefix.'/':'').'attachments') !== false)
+		{
+			$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], egw_link::VFS_APPNAME);
+		}
+		if(strpos($content, ($prefix ? $prefix.'/':'').'links_attachments') !== false)
+		{
+			$replacements['$$'.($prefix ? $prefix.'/':'').'links_attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id']);
+		}
 
 		return $replacements;
 	}
@@ -728,7 +737,7 @@ class projectmanager_merge extends bo_merge
 		$replacement = false;
 		if(isset($element))
 		{
-			$replacement = $this->get_element_replacements($element['pe_id'],'element');
+			$replacement = $this->get_element_replacements($element['pe_id'],'element', null,null,$repeat);
 		}
 		return $replacement;
 	}
@@ -781,7 +790,8 @@ class projectmanager_merge extends bo_merge
 								$element['pe_id'],
 								'erole/'.$erole_title,
 								$element['pe_app'],
-								$element['pe_app_id']);
+								$element['pe_app_id'],
+								$repeat);
 		}
 
 		return $replacement;
