@@ -26,7 +26,7 @@ class projectmanager_wizard_import_projects_csv extends importexport_wizard_basi
 
 		// Field mapping
 		$bo = new projectmanager_bo();
-		$this->mapping_fields = $bo->field2label;
+		$this->mapping_fields = $bo->field2label + projectmanager_import_projects_csv::$special_fields;
 		$custom = config::get_customfields('projectmanager', true);
 		foreach($custom as $name => $data) {
 			$this->mapping_fields['#'.$name] = $data['label'];
