@@ -41,6 +41,10 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 
 	);
 
+	public static $special_fields = array(
+		'parent'  => 'Parent project, use Project-ID or Title',
+	);
+
 	/**
 	 * actions wich could be done to data entries
 	 */
@@ -171,6 +175,21 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 				unset($ds);
 			}
 
+			// Project is a sub-project of something
+			if($record['parent'] && !is_numeric($record['parent']))
+			{
+				$parent_id = self::project_id($record['parent']);
+				if(!$parent_id)
+				{
+					$this->warnings[$import_csv->get_current_position()] .= "\n" . lang('Unable to find parent project %1',$record['parent']);
+				}
+				else
+				{
+					// Process after record is added / updated
+					$record['parent'] = $parent_id;
+				}
+			}
+
 			foreach($this->bo->pe_name2id as $name => $id)
 			{
 				$pm_name = str_replace('pe_','pm_',$name);
@@ -267,6 +286,12 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 						return false;
 					} else {
 						$this->results[$_action]++;
+
+						// Process parent, if present
+						if($_data['parent'])
+						{
+							egw_link::link('projectmanager', $_data['parent'], 'projectmanager',$this->bo->data['pm_id'],'Linked by import');
+						}
 						return true;
 					}
 				}
@@ -363,5 +388,23 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
         public function get_results() {
                 return $this->results;
         }
+
+	public static function project_id($num_or_title)
+	{
+		static $boprojects;
+
+		if (!$num_or_title) return false;
+
+		if (!is_object($boprojects))
+		{
+			$boprojects =& CreateObject('projectmanager.projectmanager_bo');
+		}
+		if (($projects = $boprojects->search(array('pm_number' => $num_or_title), array('pm_id'))) ||
+			($projects = $boprojects->search(array('pm_title'  => $num_or_title), array('pm_id'))))
+		{
+			return $projects[0]['pm_id'];
+		}
+		return false;
+	}
 } // end of iface_export_plugin
 ?>
