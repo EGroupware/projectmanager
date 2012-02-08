@@ -158,7 +158,7 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 			// don't import empty records
 			if( count( array_unique( $record ) ) < 2 ) continue;
 
-			importexport_import_csv::convert($record, projectmanager_export_projects_csv::$types, 'projectmanager', $_lookups);
+			importexport_import_csv::convert($record, projectmanager_export_projects_csv::$types, 'projectmanager', $_lookups, $_definition->plugin_options['convert']);
 
 			// Automatically handle text categories without explicit translation
 			$record['cat_id'] = importexport_helper_functions::cat_name2id($record['cat_id']);
