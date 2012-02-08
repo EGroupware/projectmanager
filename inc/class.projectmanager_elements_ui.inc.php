@@ -894,6 +894,21 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$ids = array();
 				$contacts = array();
 				$eroles = array();
+				if(count($checked) == 0)
+				{
+					// Use all, from merge selectbox in side menu
+					$query = $old_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
+					$query['num_rows'] = -1;        // all
+					$this->get_rows($query,$selection,$readonlys);
+					foreach($selection as $element)
+					{
+						if($element['pe_id'] && is_numeric($element['pe_id'])) $checked[] = $element['pe_id'];
+					}
+
+					// Reset nm params
+					$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $old_query);
+
+				}
 				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
 				{
 					// add contact
@@ -920,6 +935,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				// Check to see if the user selected an element from another (child) project, 
 				// and add that project to the list of IDs so merge won't skip it
 				$current_pm_id = $this->pm_id;
+				$ids[] = $current_pm_id;
 				foreach($checked as $key => $id) {
 					// Need to clear pm_id or read won't actually read
 					unset($this->pm_id);
