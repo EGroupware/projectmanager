@@ -816,6 +816,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function action($action,$checked,&$msg)
 	{
+		$document_projects = array();
+
 		// action id's are pe_app:pe_app_id:pe_id --> pe_id
 		if (!is_numeric($checked[0]))
 		{
@@ -832,6 +834,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						unset($checked[$key]);
 					}
+				}
+				elseif (strpos($action,'document') !== false && $app == 'projectmanager' && $id == 0)
+				{
+					// Special handling for top-level projects - they show in the element list and 
+					// can be selected, but can't be retrieved by pe_id
+					$document_projects[] = $app_id;
+					unset($checked[$key]);
 				}
 			}
 			unset($id);
@@ -891,9 +900,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				break;
 
 			case 'document':
-				$ids = array();
+				$document_projects = array();
 				$contacts = array();
 				$eroles = array();
+				if(count($checked) == 0)
+				{
+					// Use all, from merge selectbox in side menu
+					$query = $old_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
+					$query['num_rows'] = -1;        // all
+					$this->get_rows($query,$selection,$readonlys);
+					foreach($selection as $element)
+					{
+						if($element['pe_id'] && is_numeric($element['pe_id'])) $checked[] = $element['pe_id'];
+					}
+
+					// Reset nm params
+					$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $old_query);
+
+				}
 				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
 				{
 					// add contact
@@ -920,22 +944,23 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				// Check to see if the user selected an element from another (child) project, 
 				// and add that project to the list of IDs so merge won't skip it
 				$current_pm_id = $this->pm_id;
+				$document_projects[] = $current_pm_id;
 				foreach($checked as $key => $id) {
 					// Need to clear pm_id or read won't actually read
 					unset($this->pm_id);
 					$element = $this->read(array('pe_id' => $id));
-					if($element['pm_id'] != $current_pm_id) $ids[] = $element['pm_id'];
+					if($element['pm_id'] && $element['pm_id'] != $current_pm_id) $document_projects[] = $element['pm_id'];
 				}
 				$this->pm_id = $current_pm_id;
 
 				if(!empty($contacts))
 				{
-					$ids['contacts'] = array_unique($contacts);
+					$document_projects['contacts'] = array_unique($contacts);
 				}
 
 				// Actually send the elements the user selected
-				$ids['elements'] = $checked;
-				$msg = $this->download_document($ids, $document, $eroles);
+				$document_projects['elements'] = $checked;
+				$msg = $this->download_document($document_projects, $document, $eroles);
 				return true;
 		}
 		return false;

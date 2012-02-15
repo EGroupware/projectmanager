@@ -539,7 +539,7 @@ class projectmanager_ui extends projectmanager_bo
 			else
 			{
 				if ($this->action($content['nm']['action'],$content['nm']['selected'],$content['nm']['select_all'],
-					$success,$failed,$action_msg,'index',$msg,$content['nm']['checkboxes']['sources_too']))
+					$success,$failed,$action_msg,'project_list',$msg,$content['nm']['checkboxes']['sources_too']))
 				{
 					$msg .= lang('%1 project(s) %2',$success,$action_msg);
 				}
@@ -804,12 +804,16 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			// get the whole selection
 			$old_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
-			$query = is_array($session_name) ? $session_name : $GLOBALS['egw']->session->appsession($session_name,'index');
+			$query = is_array($session_name) ? $session_name : $GLOBALS['egw']->session->appsession($session_name,'projectmanager');
 
 			@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
 			$query['num_rows'] = -1;	// all
-			$this->get_rows($query,$checked,$readonlys,true);	// true = only return the id's
-
+			$this->get_rows($query,$projects,$readonlys);	
+			// only use the ids
+			foreach($projects as $project)
+			{
+				if($project['pm_id'] && is_numeric($project['pm_id'])) $checked[] = $project['pm_id'];
+			}
 			// Reset query
 			$GLOBALS['egw']->session->appsession('project_list','projectmanager',$old_query);
 		}
