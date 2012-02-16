@@ -31,9 +31,11 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 	 */
 	public function export( $_stream, importexport_definition $_definition) {
 		$options = $_definition->plugin_options;
+		$no_project = true;
 
 		if($options['pm_id']) {
 			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', $options['pm_id']);
+			$no_project = false;
 		} elseif(!$GLOBALS['egw']->session->appsession('pm_id','projectmanager')) {
 			// Fake a pm_id so elements_ui works
 			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', 1);
@@ -42,14 +44,43 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		$selection = array();
 		if ($options['selection'] == 'selected') {
 			// ui selection with 'Use search results'
-			$query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
+			$query = $old_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			$query['num_rows'] = -1;	// all
 
-			$ui->get_rows($query,$selection,$readonlys);
+			// Getting elements from the project list, use those search results
+			if($no_project)
+			{
+				$p_query = $old_p_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
+				$pm_ui = new projectmanager_ui();
+				$p_query['num_rows'] = -1;        // all
+				$count = $pm_ui->get_rows($p_query,$selection,$readonlys);
+
+				// Reset nm params
+				$GLOBALS['egw']->session->appsession('project_list','projectmanager', $old_p_query);
+				$query['col_filter']['pm_id'] = array();
+				if($count)
+				{
+					foreach($selection as $project)
+					{
+						if($project['pm_id'] && is_numeric($project['pm_id'])) $query['col_filter']['pm_id'][] = $project['pm_id'];
+					}
+				}
+				else
+				{
+					// Project list is empty, use empty list (otherwise all projects would be OK)
+					$query['num_rows'] = 0;
+				}
+				$selection = array();
+			}
+
+			// Clear the PM ID or results will be restricted to that project
+			$ui->pm_id = null;
+
+			if($query['num_rows']) $ui->get_rows($query,$selection,$readonlys);
 
 			// Reset nm params
 			unset($query['num_rows']);
-			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $query);
+			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $old_query);
 		}
 		elseif ( $options['selection'] == 'all' ) {
 			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
@@ -67,6 +98,11 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			);
 			$ui->get_rows($query,$selection,$readonlys);
 			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
+		}
+		if($no_project)
+		{
+			// Reset faked project ID
+			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', null);
 		}
 
 		$export_object = new importexport_export_csv($_stream, (array)$options);

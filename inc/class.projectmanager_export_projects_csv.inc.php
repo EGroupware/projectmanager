@@ -42,29 +42,57 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
                         if($field[0] == '#') $query['custom_fields'][] = $field;
                 }
 
+		// Determine the appropriate list (project or element) to use for query
+		$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+		if($pm_id)
+		{
+			// Looking at a certain project
+			$list = 'projectelements_list';
+			$ui = new projectmanager_elements_ui();
+		}
+		else
+		{
+			$list = 'project_list';
+		}
+
 		if ($options['selection'] == 'selected') {
-			// ui selection with checkbox 'use_all'
-			$query = array_merge($GLOBALS['egw']->session->appsession('project_list','projectmanager'), $query);
+			// Use search results
+			$old_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
+			$query = array_merge($old_query, $query);
 			$query['num_rows'] = -1;	// all
 			$ui->get_rows($query,$selection,$readonlys);
 
 			// Reset nm params
 			unset($query['num_rows']);
-			$GLOBALS['egw']->session->appsession('project_list','projectmanager', $query);
+			$GLOBALS['egw']->session->appsession($list,'projectmanager', $old_query);
 		}
 		elseif ( $options['selection'] == 'all' ) {
-			$_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
+			$_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
 			$query = array('num_rows' => -1);	// all
 			$ui->get_rows($query,$selection,$readonlys);
 
 			// Reset nm params
-			$GLOBALS['egw']->session->appsession('project_list','projectmanager', $_query);
+			$GLOBALS['egw']->session->appsession($list,'projectmanager', $_query);
 		} else {
 			$selection = explode(',',$options['selection']);
 		}
+		if(get_class($ui) != 'projectmanager_ui')
+		{
+			// Reset UI to project
+			$ui = new projectmanager_ui();
+
+			// Got projects as elements, need to do them as projects
+			$projects = array();
+			foreach($selection as $element)
+			{
+				if($element['pe_app'] == 'projectmanager') $projects[] = $element['pe_app_id'];
+			}
+			$selection = $ui->search(array('pm_id'=>$projects), false);
+		}
 
 		if($options['mapping']['roles']) {
-			$this->roles = projectmanager_roles_so::query_list();
+			$roles = new projectmanager_roles_so();
+			$this->roles = $roles->query_list();
 			foreach($this->roles as $id => $name) {
 				$options['mapping'][$name] = $name;
 				self::$types['select-account'][] = $name;
