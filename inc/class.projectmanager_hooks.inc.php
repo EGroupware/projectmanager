@@ -274,10 +274,18 @@ class projectmanager_hooks
 		$projects = array();
 		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter) as $project)
 		{
-			$projects[$project['path']] = array(
-				'label' => $project[$label],
-				'title' => $project[$title],
-			);
+			if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection']=='tree_with_number_title') 
+				{
+					$projects[$project['path']] = array(
+						'label' => $project[$title].': '.$project[$label],
+						'title' => $project[$title].': '.$project[$label],
+					);
+				} else {
+					$projects[$project['path']] = array(
+						'label' => $project[$label],
+						'title' => $project[$title],
+					);
+				}
 			if (!$selected_project && $pm_id == $project['pm_id']) $selected_project = $project['path'];
 		}
 		if ($_GET['menuaction'] == 'projectmanager.projectmanager_pricelist_ui.index')
@@ -416,6 +424,7 @@ class projectmanager_hooks
 			'values' => array(
 				'tree_with_number'      => lang('Tree with %1',lang('Project ID')),
 				'tree_with_title'       => lang('Tree with %1',lang('Title')),
+				'tree_with_number_title'=> lang('Tree with %1',lang('Project ID').': '.lang('Title')),
 				'selectbox_with_number' => lang('Selectbox with %1',lang('Project ID').': '.lang('Title')),
 				'selectbox_with_title'  => lang('Selectbox with %1',lang('Title').' ('.lang('Project ID').')'),
 			),
