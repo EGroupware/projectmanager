@@ -530,6 +530,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
 
 			$row['elem_id'] = $row['pe_app'].':'.$row['pe_app_id'].':'.$row['pe_id'];
+			// add pe links
+			if ($query['filter2']&3)
+			{
+				if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_links'] &&
+					(isset($row['pe_all_links']) || ($row['pe_all_links'] = egw_link::get_links($row['link']['app'],$row['link']['id'],'',true))))
+				{
+					foreach ($row['pe_all_links'] as $link)
+					{
+						if ($show_links != 'none' &&
+							!($row['pm_link']['id'] == $link['id'] && $link['app'] == 'projectmanager') &&
+							!($row['pm_id'] == $link['id'] && $link['app'] == 'projectmanager') &&
+							($show_links == 'all' || ($show_links == 'links') === ($link['app'] != egw_link::VFS_APPNAME)))
+						{
+							$row['pe_links'][] = $link;
+						}
+					}
+				}
+ 			}
 		}
 		array_unshift($rows,false);	// manually make the array start with index 1!
 

@@ -417,6 +417,15 @@ class projectmanager_hooks
 			'admin'  => False,
 			'default'=> true,
 		);
+		$settings['show_links'] = array(
+				'type'   => 'check',
+				'label'  => 'Show links in the Project Elements list',
+				'name'   => 'show_links',
+				'help'   => 'Should Project Elements show the links to other applications and/or the file-attachments in the Project Elements list (only when showing details).',
+				'xmlrpc' => True,
+				'admin'  => False,
+				'default'=> false,
+		);
 		$settings['show_projectselection'] = array(
 			'type'   => 'select',
 			'label'  => 'Show the project selection as',
