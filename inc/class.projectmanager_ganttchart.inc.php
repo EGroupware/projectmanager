@@ -853,7 +853,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	function reduce_title ($title, $max_length=false,$suffix_title = '[...]')
 	{
 		$reduced_title = $title;
-		if(!$max_length) $max_length = $this->prefs['projectmanager']['gantt_element_title_lenght'];
+		if(!$max_length) $max_length = $this->prefs['projectmanager']['gantt_element_title_length'];
 		if (($max_length > 0) && (strlen($title) > $max_length))
 		{
 			$reduced_title = substr ($title, 0, $max_length - strlen ($suffix_title)).$suffix_title;

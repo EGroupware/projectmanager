@@ -433,11 +433,11 @@ class projectmanager_hooks
 			'admin'  => False,
 			'default'=> 'tree_with_title',
 		);
-		$settings['gantt_element_title_lenght'] = array(
+		$settings['gantt_element_title_length'] = array(
 			'type'   => 'input',
 			'size'   => 5,
 			'label'  => 'Limit number of characters in ganttchart element title (default 40, 0 for no limit)',
-			'name'   => 'gantt_element_title_lenght',
+			'name'   => 'gantt_element_title_length',
 			'help'   => 'Number of characters to which title of ganttchart elements should be shortened to.',
 			'run_lang' => false,
 			'xmlrpc' => True,
