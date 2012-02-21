@@ -438,6 +438,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	{
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
 
+		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
+		// save the state of the index in the user prefs
+		$state = serialize(array(
+			'filter'     => $query['filter'],
+			'filter2'    => $query['filter2'],
+			'cat_id'     => $query['cat_id'],
+			'order'      => $query['order'],
+			'sort'       => $query['sort'],
+			));
+		if ($state != $this->prefs['pe_index_state'])
+		{
+			$GLOBALS['egw']->preferences->add('projectmanager','pe_index_state',$state);
+			// save prefs, but do NOT invalid the cache (unnecessary)
+			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
+		}
+
 		if ($this->status_filter[$query['filter']])
 		{
 			$query['col_filter']['pe_status'] = $this->status_filter[$query['filter']];
@@ -754,6 +770,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
 				'actions' => $this->get_actions(),
 			);
+			// use the state of the last session stored in the user prefs
+			if ($state = @unserialize($this->prefs['pe_index_state']))
+			{
+				$content['nm'] = array_merge($content['nm'],$state);
+			}
 		}
 
 		// add "buttons" only with add-rights
