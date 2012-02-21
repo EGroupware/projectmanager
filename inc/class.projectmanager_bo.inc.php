@@ -584,7 +584,14 @@ class projectmanager_bo extends projectmanager_so
 				$data =& $this->data;
 			}
 			// rights come from owner grants or role based acl
-			$rights = (int) $grants[$data['pm_creator']] | (int) $data['pm_members'][$user]['role_acl'];
+			$memberships =  $GLOBALS['egw']->accounts->memberships($user);
+			$member_from_groups = array_intersect_key((array)$data['pm_members'], $memberships);
+			$grants_from_groups = 0;
+			foreach ($member_from_groups as $member_from_group => $member_acl) {
+			$grants_from_groups = $grants_from_groups | (int) $data['pm_members'][$member_from_group]['role_acl'];
+			}
+			
+			$rights = (int) $grants[$data['pm_creator']] | (int) $data['pm_members'][$user]['role_acl'] | $grants_from_groups;
 
 			// for status or times accounting-type (no accounting) remove the budget-rights from everyone
 			if ($data['pm_accounting_type'] == 'status' || $data['pm_accounting_type'] == 'times')
