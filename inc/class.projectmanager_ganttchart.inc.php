@@ -535,11 +535,19 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$filter['pm_id'] = $pm_id;	// this is NOT static
 
 		$pe_id2line = array();
+		$gantt_show_element_by_type = $this->prefs['projectmanager']['gantt_show_elements_by_type'];
+		$pe_from_app_show = explode(',', $gantt_show_element_by_type);
+		$gantt_show_all_elements = empty($gantt_show_element_by_type);
+
 		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
 			'',false,'AND',false,$filter) as $pe)
 		{
 			//echo "$line: ".print_r($pe,true)."<br>\n";
 			if (!$pe) continue;
+
+			if (!$gantt_show_all_elements && !in_array ($pe['pe_app'], $pe_from_app_show)) {
+			continue;
+			} 
 
 			$pe_id = $pe['pe_id'];
 			$pe_id2line[$pe_id] = $line;	// need to remember the line to draw the constraints
