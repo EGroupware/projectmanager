@@ -338,6 +338,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			{
 				if ($key != 'pm_id') $pe[str_replace('pm_','pe_',$key)] =& $pm[$key];
 			}
+			if ($this->prefs['projectmanager']['show_projectselection'] == 'tree_with_number_title')
+				{
+				$pe['pe_title'] = $pe['pe_number'].': '.$pe['pe_title'];
+				}
+
 		}
 		$bar =& $this->element2bar($pe,$level,$line);
 
@@ -371,7 +376,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	function &element2bar($pe,$level,$line)
 	{
 		// create a shorter title (removes dates from calendar-titles and project-numbers from sub-projects
-		if ($pe['pe_app'] == 'calendar' || $pe['pe_app'] == 'projectmanager')
+		if ($pe['pe_app'] == 'calendar')
+		{
+			list(,$title) = explode(': ',$pe['pe_title'],2);
+		}
+		if ($pe['pe_app'] == 'projectmanager' && !($this->prefs['projectmanager']['show_projectselection'] == 'tree_with_number_title'))
 		{
 			list(,$title) = explode(': ',$pe['pe_title'],2);
 		}
