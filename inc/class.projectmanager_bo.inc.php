@@ -584,8 +584,7 @@ class projectmanager_bo extends projectmanager_so
 				$data =& $this->data;
 			}
 			// rights come from owner grants or role based acl
-			$memberships =  $GLOBALS['egw']->accounts->memberships($user);
-			$member_from_groups = array_intersect_key((array)$data['pm_members'], $memberships);
+			$member_from_groups = array_intersect_key((array)$data['pm_members'], $this->memberships);
 			$grants_from_groups = 0;
 			foreach ($member_from_groups as $member_from_group => $member_acl) {
 			$grants_from_groups = $grants_from_groups | (int) $data['pm_members'][$member_from_group]['role_acl'];
