@@ -475,6 +475,8 @@ class projectmanager_merge extends bo_merge
 					}
 					break;
 				case 'pe_resources':
+					if(!is_array($value)) $value = explode(',',$value);
+					$names = array();
 					foreach($value as $id => $user_id)
 					{
 						$names[] = common::grab_owner_name($user_id);
