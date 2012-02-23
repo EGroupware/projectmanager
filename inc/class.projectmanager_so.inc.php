@@ -71,13 +71,6 @@ class projectmanager_so extends so_sql_cf
 	 */
 	var $user;
 
-	/**
-	 * Current user memberships ($GLOBALS['egw']->accounts->memberships($this->user,true))
-	 *
-	 * @var array
-	 */
-	var $memberships;
-
 	var $columns_to_search = array('pm_number', 'pm_title', 'pm_description', 'pm_priority', 'pm_status', 'pm_used_budget', 'pm_planned_budget');
 
 	/**
@@ -102,8 +95,8 @@ class projectmanager_so extends so_sql_cf
 
 			if ($rights & EGW_ACL_PRIVATE) $this->private_grants[] = $owner;
 		}
-		$memberships = $this->memberships = $GLOBALS['egw']->accounts->memberships($this->user);
-		$member_groups_uid = ','.implode(',', array_keys($memberships));
+		$memberships = $GLOBALS['egw']->accounts->memberships($this->user, true);
+		$member_groups_uid = ','.implode(',', $memberships);
 		$this->acl_join = "LEFT JOIN $this->members_table ON ($this->table_name.pm_id=$this->members_table.pm_id AND member_uid IN ($this->user $member_groups_uid)) ".
 			" LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id";
 
