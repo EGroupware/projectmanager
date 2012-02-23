@@ -306,6 +306,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$graph->scale->year->SetFont($this->gantt_font,GANTT_STYLE,10);
 
 		// Title & subtitle
+		$title = $this->reduce_title ($title,85);
 		$graph->title->Set($this->text_encode($title));
 		$graph->title->SetFont($this->gantt_font,GANTT_STYLE,12);
 		$graph->subtitle->Set($this->text_encode($subtitle));
@@ -385,6 +386,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			list(,$title) = explode(': ',$pe['pe_title'],2);
 		}
 		if (!$title) $title = $pe['pe_title'];
+		$title = $this->reduce_title ($title);
 
 		if ((int) $this->debug >= 1)
 		{
@@ -533,11 +535,19 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$filter['pm_id'] = $pm_id;	// this is NOT static
 
 		$pe_id2line = array();
+		$gantt_show_element_by_type = $this->prefs['projectmanager']['gantt_show_elements_by_type'];
+		$pe_from_app_show = explode(',', $gantt_show_element_by_type);
+		$gantt_show_all_elements = empty($gantt_show_element_by_type);
+
 		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
 			'',false,'AND',false,$filter) as $pe)
 		{
 			//echo "$line: ".print_r($pe,true)."<br>\n";
 			if (!$pe) continue;
+
+			if (!$gantt_show_all_elements && !in_array ($pe['pe_app'], $pe_from_app_show)) {
+			continue;
+			} 
 
 			$pe_id = $pe['pe_id'];
 			$pe_id2line[$pe_id] = $line;	// need to remember the line to draw the constraints
@@ -849,5 +859,22 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		);
 		$this->tmpl->read('projectmanager.ganttchart');
 		return $this->tmpl->exec('projectmanager.projectmanager_ganttchart.show',$content,$sel_options,'',array('pm_id'=>$content['pm_id']));
+	}
+
+	/**
+	 * Reduces bar title.
+	 * @param string $title the bar title
+	 * @param string $suffix_title the suffic to concaten after title
+	 * @return string the reduced title
+	 */
+	function reduce_title ($title, $max_length=false,$suffix_title = '[...]')
+	{
+		$reduced_title = $title;
+		if(!$max_length) $max_length = $this->prefs['projectmanager']['gantt_element_title_lenght'];
+		if (($max_length > 0) && (strlen($title) > $max_length))
+		{
+			$reduced_title = substr ($title, 0, $max_length - strlen ($suffix_title)).$suffix_title;
+		}
+		return $reduced_title;
 	}
 }

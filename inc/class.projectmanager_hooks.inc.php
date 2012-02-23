@@ -349,6 +349,13 @@ class projectmanager_hooks
 	 */
 	static function settings()
 	{
+		$apps = egw_link::app_list('add_app');
+		foreach (array('addressbook', 'bookmarks', 'tracker') as $unset_app) // these apps never show as pe since they don't have end date
+		{
+		unset($apps[$unset_app]);
+		}
+		asort($apps);
+
 		$start = array();
 		for($i = 0; $i < 24*60; $i += 30)
 		{
@@ -434,6 +441,27 @@ class projectmanager_hooks
 			'admin'  => False,
 			'default'=> 'tree_with_title',
 		);
+		$settings['gantt_element_title_lenght'] = array(
+			'type'   => 'input',
+			'size'   => 5,
+			'label'  => 'Limit number of characters in ganttchart element title (0 for no limit)',
+			'name'   => 'gantt_element_title_lenght',
+			'help'   => 'Number of characters to which title of ganttchart elements should be shortened to.',
+			'run_lang' => false,
+			'xmlrpc' => True,
+			'admin'  => False,
+			'forced' => '0',
+		);
+		$settings['gantt_show_elements_by_type'] = array (
+			'type'		=> 'multiselect',
+			'label'		=> 'Show elements from applications',
+			'help'		=> 'Show elements depending on applications they come from (none = all)',
+			'name'		=> 'gantt_show_elements_by_type',
+			'values' 	=> $apps,
+			'xmlrpc' 	=> True,
+			'admin'  	=> False	
+		);		
+
 
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
