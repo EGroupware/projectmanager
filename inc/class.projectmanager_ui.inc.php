@@ -321,7 +321,8 @@ class projectmanager_ui extends projectmanager_bo
 			}
 		}
 		// check if user should inherit coordinator role from being part of a group set as coordinator member
-		$member_from_groups = array_intersect_key((array)$this->data['pm_members'], $this->memberships);
+		$memberships = $GLOBALS['egw']->accounts->memberships($this->user);
+		$member_from_groups = array_intersect_key((array)$this->data['pm_members'], $memberships);
 		$coord_from_groups_roles = false;
 		foreach ($member_from_groups as $member_from_group => $member_acl) {
 		if ($this->data['pm_members'][$member_from_group]['role_id'] == 1)
