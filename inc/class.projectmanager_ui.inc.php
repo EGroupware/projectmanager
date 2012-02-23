@@ -436,6 +436,22 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query=$query_in);
 
+		//echo "<p>projectmanager_ui::get_rows(".print_r($query,true).")</p>\n";
+		// save the state of the index in the user prefs
+		$state = serialize(array(
+			'filter'     => $query['filter'],
+			'filter2'    => $query['filter2'],
+			'cat_id'     => $query['cat_id'],
+			'order'      => $query['order'],
+			'sort'       => $query['sort'],
+			));
+		if ($state != $this->prefs['pm_index_state'])
+		{
+			$GLOBALS['egw']->preferences->add('projectmanager','pm_index_state',$state);
+			// save prefs, but do NOT invalid the cache (unnecessary)
+			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
+		}
+
 		// handle nextmatch filters like col_filters
 		foreach(array('cat_id' => 'cat_id','filter2' => 'pm_status') as $nm_name => $pm_name)
 		{
@@ -608,6 +624,11 @@ class projectmanager_ui extends projectmanager_bo
 				'row_id'         => 'pm_id',
 				'actions'        => $this->get_actions(),
 			);
+			// use the state of the last session stored in the user prefs
+			if ($state = @unserialize($this->prefs['pm_index_state']))
+			{
+				$content['nm'] = array_merge($content['nm'],$state);
+			}
 		}
 		if($_GET['search'])
 		{
