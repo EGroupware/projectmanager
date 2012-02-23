@@ -674,8 +674,20 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'caption' => 'Timesheet',
 				'egw_open' => 'add-timesheet',
 				'allowOnMultiple' => false,
-				'group' => $group,
+				'group' => ++$group,
 			),
+		);
+		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
+		{
+			$actions['filemanager'] = array(
+				// Has to be a submit, IDs are more than just a number
+				'icon' => 'filemanager/navbar',
+				'caption' => 'Filemanager',
+				'allowOnMultiple' => false,
+				'group' => $group,
+			);
+		}
+		$actions += array(
 			'sync_all' => array(
 				'caption' => 'Synchronise all',
 				'icon' => 'agt_reload',
@@ -873,6 +885,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						unset($checked[$key]);
 					}
+				}
+				else if ($action == 'filemanager')
+				{
+					$link = array(
+						'menuaction' => 'filemanager.filemanager_ui.index',
+						'path' => "/apps/$app/$app_id"
+					);
+					egw::redirect_link('/index.php',$link);
 				}
 				elseif (strpos($action,'document') !== false && $app == 'projectmanager' && $id == 0)
 				{
