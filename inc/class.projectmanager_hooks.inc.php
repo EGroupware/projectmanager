@@ -350,7 +350,7 @@ class projectmanager_hooks
 	static function settings()
 	{
 		$apps = egw_link::app_list('add_app');
-		foreach (array('addressbook', 'bookmarks', 'tracker') as $unset_app) // these apps never show as pe since they don't have end date
+		foreach (array('addressbook', 'bookmarks', 'tracker', 'resources') as $unset_app) // these apps never show as pe since they don't have end date
 		{
 		unset($apps[$unset_app]);
 		}
@@ -445,7 +445,7 @@ class projectmanager_hooks
 			'type'   => 'input',
 			'size'   => 5,
 			'label'  => 'Limit number of characters in ganttchart element title (0 for no limit)',
-			'name'   => 'gantt_element_title_lenght',
+			'name'   => 'gantt_element_title_length',
 			'help'   => 'Number of characters to which title of ganttchart elements should be shortened to.',
 			'run_lang' => false,
 			'xmlrpc' => True,
@@ -454,8 +454,8 @@ class projectmanager_hooks
 		);
 		$settings['gantt_show_elements_by_type'] = array (
 			'type'		=> 'multiselect',
-			'label'		=> 'Show elements from applications',
-			'help'		=> 'Show elements depending on applications they come from (none = all)',
+			'label'		=> 'Show elements in GanttChart by applications',
+			'help'		=> 'Show elements in GanttChart depending on applications they come from (none = all)',
 			'name'		=> 'gantt_show_elements_by_type',
 			'values' 	=> $apps,
 			'xmlrpc' 	=> True,
