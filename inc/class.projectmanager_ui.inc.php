@@ -320,13 +320,24 @@ class projectmanager_ui extends projectmanager_bo
 				$content[$pm_name] = $preserv[$pm_name] = '';
 			}
 		}
+		// check if user should inherit coordinator role from being part of a group set as coordinator member
+		$member_from_groups = array_intersect_key((array)$this->data['pm_members'], $this->memberships);
+		$coord_from_groups_roles = false;
+		foreach ($member_from_groups as $member_from_group => $member_acl) {
+		if ($this->data['pm_members'][$member_from_group]['role_id'] == 1)
+			{
+			$coord_from_groups_roles = true;
+			break;
+			}
+		}
 		$readonlys = array(
 			'delete' => !$this->data['pm_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 			'tabs' => array(
 				'accounting' => !$this->check_acl(EGW_ACL_BUDGET) &&	// disable the tab, if no budget rights and no owner or coordinator
 					($this->config['accounting_types'] && count(explode(',',$this->config['accounting_types'])) == 1 ||
-					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1)) ||
+					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1 ||
+					$coord_from_groups_roles )) ||
 					$this->config['accounting_types'] == 'status' || $this->config['accounting_types'] == 'times',
 				'custom' => !count($this->customfields),	// only show customfields tab, if there are some
 				'history' => !$this->data['pm_id'],        //suppress history for the first loading without ID
