@@ -531,6 +531,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			{
 				unset($filter['cat_id']);
 			}
+			$pe_order=$this->prefs['projectmanager']['gantt_pm_elementbars_order'];
 		}
 		$filter['pm_id'] = $pm_id;	// this is NOT static
 
@@ -539,7 +540,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$pe_from_app_show = explode(',', $gantt_show_element_by_type);
 		$gantt_show_all_elements = empty($gantt_show_element_by_type);
 
-		$pe_order=$this->prefs['projectmanager']['gantt_elementbars_order'];
+		if (!isset($pe_order)) $pe_order='pe_start,pe_end';
 		foreach((array) $this->search(array(),false,$pe_order,$extra_cols,
 			'',false,'AND',false,$filter) as $pe)
 		{

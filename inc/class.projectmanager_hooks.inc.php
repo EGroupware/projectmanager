@@ -469,15 +469,15 @@ class projectmanager_hooks
 			'admin'  => False,
 			'forced' => '0',
 		);
-		$settings['gantt_elementbars_order'] = array(
+		$settings['gantt_pm_elementbars_order'] = array(
 			'type'   => 'select',
-			'label'  => 'Order of element bars in ganttcharts',
-			'name'   => 'gantt_elementbars_order',
+			'label'  => 'Order of sub-project bars in ganttcharts',
+			'name'   => 'gantt_pm_elementbars_order',
 			'values' => array(
 				'pe_start,pe_end'    => lang('Start Date, End Date'),
 				'pe_title'           => lang('Title'),
 			),
-			'help'   => 'Set order to show element bars in ganttcharts.',
+			'help'   => 'Set order to show sub-project bars in ganttcharts.',
 			'run_lang' => false,
 			'xmlrpc' => True,
 			'admin'  => False,
