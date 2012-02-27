@@ -469,6 +469,20 @@ class projectmanager_hooks
 			'admin'  => False,
 			'forced' => '0',
 		);
+		$settings['gantt_elementbars_order'] = array(
+			'type'   => 'select',
+			'label'  => 'Order of element bars in ganttcharts',
+			'name'   => 'gantt_elementbars_order',
+			'values' => array(
+				'pe_start,pe_end'    => lang('Start Date, End Date'),
+				'pe_title'           => lang('Title'),
+			),
+			'help'   => 'Set order to show element bars in ganttcharts.',
+			'run_lang' => false,
+			'xmlrpc' => True,
+			'admin'  => False,
+			'forced' => 'pe_start,pe_end',
+		);
 		$settings['gantt_show_elements_by_type'] = array (
 			'type'		=> 'multiselect',
 			'label'		=> 'Show elements in GanttChart by applications',

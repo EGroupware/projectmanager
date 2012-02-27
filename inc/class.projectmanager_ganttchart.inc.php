@@ -539,7 +539,8 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$pe_from_app_show = explode(',', $gantt_show_element_by_type);
 		$gantt_show_all_elements = empty($gantt_show_element_by_type);
 
-		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
+		$pe_order=$this->prefs['projectmanager']['gantt_elementbars_order'];
+		foreach((array) $this->search(array(),false,$pe_order,$extra_cols,
 			'',false,'AND',false,$filter) as $pe)
 		{
 			//echo "$line: ".print_r($pe,true)."<br>\n";
