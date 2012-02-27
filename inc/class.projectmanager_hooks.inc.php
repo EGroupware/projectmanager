@@ -433,6 +433,15 @@ class projectmanager_hooks
 				'admin'  => False,
 				'default'=> false,
 		);
+		$settings['show_infolog_type_icon'] = array(
+				'type'   => 'check',
+				'label'  => 'Show infolog type icon in the Project Elements list',
+				'name'   => 'show_infolog_type_icon',
+				'help'   => 'Should Project Elements list show the dedicated icons of the infolog types. Icons for infolog custom types can be added at the VFS-Path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with \'_element\', that bigger icon will be loaded in the element list.',
+				'xmlrpc' => True,
+				'admin'  => False,
+				'forced'=> False,
+		);
 		$settings['show_projectselection'] = array(
 			'type'   => 'select',
 			'label'  => 'Show the project selection as',

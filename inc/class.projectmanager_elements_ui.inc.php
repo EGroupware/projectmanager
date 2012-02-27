@@ -498,6 +498,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$rows = array_merge(array($self),$rows);
 
 		$readonlys = array();
+		// Call infolog to show infolog type icon
+		if ($this->prefs['show_infolog_type_icon']){
+		$infolog = new infolog_bo;
+		}
 		foreach($rows as $n => &$row)
 		{
 			if ($n && !$this->check_acl(EGW_ACL_EDIT,$row))
@@ -549,7 +553,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// add pe links
 			if ($query['filter2']&3)
 			{
-				if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_links'] &&
+				if ($this->prefs['show_links'] &&
 					(isset($row['pe_all_links']) || ($row['pe_all_links'] = egw_link::get_links($row['link']['app'],$row['link']['id'],'',true))))
 				{
 					foreach ($row['pe_all_links'] as $link)
@@ -564,6 +568,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					}
 				}
  			}
+			// get infolog type to show proper icon
+			if ($this->prefs['show_infolog_type_icon'] && $row['pe_app'] == 'infolog') 
+			{
+				$info = $infolog->read($row['link']['id']);		
+				$icon = $info['info_type'].'_element';
+				if (!$GLOBALS['egw']->common->image('infolog', $icon))
+					{
+					$icon = $info['info_type'];
+					if (!$GLOBALS['egw']->common->image('infolog', $icon))
+						{
+						$icon = 'navbar';
+						}
+					}
+				$row['pe_icon'] = 'infolog/'.$icon;
+				$row['pe_app'] = 'Infolog - ' . lang($info['info_type']);
+			}
 		}
 		array_unshift($rows,false);	// manually make the array start with index 1!
 
