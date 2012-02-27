@@ -376,8 +376,8 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 */
 	function &element2bar($pe,$level,$line)
 	{
-		// create a shorter title (removes dates from calendar-titles and project-numbers from sub-projects
-		if ($pe['pe_app'] == 'calendar')
+		// create a shorter title (removes dates from calendar-titles, timesheet-titles and project-numbers from sub-projects
+		if ($pe['pe_app'] == 'calendar' || $pe['pe_app'] == 'timesheet')
 		{
 			list(,$title) = explode(': ',$pe['pe_title'],2);
 		}
