@@ -191,7 +191,13 @@ class projectmanager_elements_so extends so_sql
 				$extra_cols = array_merge($this->links_extracols,
 					is_array($extra_cols) ? $extra_cols : explode(',',$extra_cols));
 			}
-			$order_by = "(link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
+			if (isset($filter['pe_app']) && $filter['pe_app'])
+			{
+				$having_pe_app = 'HAVING pe_app='.$this->db->quote($filter['pe_app']).' ';
+				unset($filter['pe_app']);
+			}
+			
+			$order_by = $having_pe_app. "ORDER BY (link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
 		}
 		// fix some special filters: resources, cats
 		$filter = $this->_fix_filter($filter);

@@ -476,6 +476,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			unset($query['col_filter']['pe_resources']);
 		}
+		if (!$query['col_filter']['pe_app'])
+		{
+			unset($query['col_filter']['pe_app']);
+		}
 		if ($query['filter2'] & 2)	// show sub-elements (elements of sub-projects)
 		{
 			$query['col_filter']['pm_id'] = $this->project->children($this->pm_id,array($this->pm_id));
@@ -625,6 +629,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
 		if ($query['cat_id']) $rows['no_cat_id'] = true;
 		// calculate the filter-specific summary if we have a filter, beside the default pe_status=used=array(new,regular)
+		unset($query['col_filter']['pe_app']); //pe_app should not change summary
 		if (array_diff(array_keys($query['col_filter']),array(0,'pe_status','pm_id')) || !is_array($query['col_filter']['pe_status']))
 		{
 			$rows += $this->summary(null,$query['col_filter']);
@@ -847,6 +852,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 		$this->tpl->read('projectmanager.elements.list');
+
+		// fill the sel_options Applications
+		$sel_options ['pe_app'] = egw_link::app_list('add_app');
 		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index',$content,$sel_options,$readonlys);
 	}
 
