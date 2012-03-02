@@ -38,7 +38,7 @@ class projectmanager_widget
 	 *
 	 * @param string $ui '' for html
 	 */
-	function __construct($ui)
+	function __construct($ui = '')
 	{
 		$this->ui = $ui;
 	}
