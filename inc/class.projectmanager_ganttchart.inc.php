@@ -376,8 +376,8 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 */
 	function &element2bar($pe,$level,$line)
 	{
-		// create a shorter title (removes dates from calendar-titles and project-numbers from sub-projects
-		if ($pe['pe_app'] == 'calendar')
+		// create a shorter title (removes dates from calendar-titles, timesheet-titles and project-numbers from sub-projects
+		if ($pe['pe_app'] == 'calendar' || $pe['pe_app'] == 'timesheet')
 		{
 			list(,$title) = explode(': ',$pe['pe_title'],2);
 		}
@@ -531,6 +531,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			{
 				unset($filter['cat_id']);
 			}
+			$pe_order=$this->prefs['projectmanager']['gantt_pm_elementbars_order'];
 		}
 		$filter['pm_id'] = $pm_id;	// this is NOT static
 
@@ -539,7 +540,8 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		$pe_from_app_show = explode(',', $gantt_show_element_by_type);
 		$gantt_show_all_elements = empty($gantt_show_element_by_type);
 
-		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
+		if (!isset($pe_order)) $pe_order='pe_start,pe_end';
+		foreach((array) $this->search(array(),false,$pe_order,$extra_cols,
 			'',false,'AND',false,$filter) as $pe)
 		{
 			//echo "$line: ".print_r($pe,true)."<br>\n";
