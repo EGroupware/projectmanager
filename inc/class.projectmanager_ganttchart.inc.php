@@ -52,7 +52,9 @@ if (defined('EGW_JPGRAPH_PATH'))
 			if (!($font_file = $GLOBALS['egw_info']['apps']['projectmanager']['config']['GANTT_FONT_FILE'])) $font_file = 'arial.ttf';
 			// using the OS font dir if we can find it, otherwise fall back to our bundled Vera font
 			foreach(array(
-				'/usr/X11R6/lib/X11/fonts/truetype/',	// linux / *nix default
+				'/usr/share/fonts/truetype/msttcorefonts/',	// Debian/Ubuntu msttcorefonts package
+				'/usr/share/fonts/truetype/',			// OpenSUSE fetchmsttfonts package
+				'/usr/X11R6/lib/X11/fonts/truetype/',	// old linux / *nix default
 				'/usr/share/fonts/ja/TrueType/',		// japanese fonts
 				'/usr/share/fonts/msttcorefonts/', 		// to install this fonts see http://www.aditus.nu/jpgraph/jpdownload.php
 				'C:/windows/fonts/',					// windows default
