@@ -61,6 +61,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$old_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
 			$query = array_merge($old_query, $query);
 			$query['num_rows'] = -1;	// all
+			$query['csv_export'] = true;	// so get_rows method _can_ produce different content or not store state in the session
 			$ui->get_rows($query,$selection,$readonlys);
 
 			// Reset nm params
@@ -69,7 +70,10 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		}
 		elseif ( $options['selection'] == 'all' ) {
 			$_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
-			$query = array('num_rows' => -1);	// all
+			$query = array(
+				'num_rows' => -1,		// all
+				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
+			);
 			$ui->get_rows($query,$selection,$readonlys);
 
 			// Reset nm params
