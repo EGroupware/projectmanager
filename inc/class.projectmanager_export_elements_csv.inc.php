@@ -46,6 +46,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			// ui selection with 'Use search results'
 			$query = $old_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			$query['num_rows'] = -1;	// all
+			$query['csv_export'] = true;	// so get_rows method _can_ produce different content or not store state in the session
 
 			// Getting elements from the project list, use those search results
 			if($no_project)
@@ -53,6 +54,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				$p_query = $old_p_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
 				$pm_ui = new projectmanager_ui();
 				$p_query['num_rows'] = -1;        // all
+				$p_query['csv_export'] = true;	// so get_rows method _can_ produce different content or not store state in the session
 				$count = $pm_ui->get_rows($p_query,$selection,$readonlys);
 
 				// Reset nm params
@@ -87,14 +89,18 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			// Clear the PM ID or results will be restricted
 			$ui->pm_id = null;
 
-			$query = array('num_rows' => -1);	// all
+			$query = array(
+				'num_rows' => -1,		// all
+				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
+			);
 			$ui->get_rows($query,$selection,$readonlys);
 			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
 		} else {
 			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			$query = array(
 				'num_rows' => -1,
-				'pm_id'	=> $options['pm_id']
+				'pm_id'	=> $options['pm_id'],
+				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
 			);
 			$ui->get_rows($query,$selection,$readonlys);
 			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
@@ -125,11 +131,11 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				$project = ExecMethod('projectmanager.projectmanager_bo.read', $element->pm_id);
 				$element->pm_title = $project['pm_title'];
 			}
-			
+
 			if($options['convert']) {
 				importexport_export_csv::convert($element, self::$types);
 			}
-			$this->convert($element, $options); 
+			$this->convert($element, $options);
 			$export_object->export_record($element);
 			unset($element);
 		}
