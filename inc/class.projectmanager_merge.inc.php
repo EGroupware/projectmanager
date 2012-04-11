@@ -326,6 +326,13 @@ class projectmanager_merge extends bo_merge
 			$project = $this->projectmanager_bo->read($project);
 		}
 		if (!is_array($project)) return array();
+		$replacements = array();
+
+		// Expand custom fields
+		if($content && strpos($content, '#') !== 0)
+                {
+                        $this->cf_link_to_expand($project, $content, $replacements);
+                }
 
 		// Set any missing custom fields, or the marker will stay
 		$custom = config::get_customfields('projectmanager');
@@ -344,7 +351,7 @@ class projectmanager_merge extends bo_merge
 		$all_roles += array_fill_keys($roles, array());
 		foreach((Array)$project['pm_members'] as $account_id => $info) {
 			$all_roles[$info['role_title']][] = common::grab_owner_name($info['member_uid']);
-		} 
+		}
 		foreach($all_roles as $name => $users) {
 			$project[$name] = implode(', ', $users);
 			if(count($users) == 0) {
@@ -361,7 +368,6 @@ class projectmanager_merge extends bo_merge
 			$project[$key.'_total'] = $value;
 		}
 
-		$replacements = array();
 		foreach(array_keys($project) as $name)
 		{
 			if(!isset($this->projectmanager_fields[$name])) continue; // not a supported field
@@ -710,7 +716,7 @@ class projectmanager_merge extends bo_merge
 		if(!isset($this->pm_id) && !$id) return false;
 		
 		static $elements;
-		if($id && $id != $this->pm_id) { 
+		if($id && $id != $this->pm_id) {
 			$this->change_project($id);
 			$elements = array();
 		}
