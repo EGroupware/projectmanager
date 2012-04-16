@@ -23,6 +23,13 @@ class projectmanager_egw_record_project implements importexport_iface_egw_record
 	private $record = array();
 	private $bo;
 
+	// Used in conversions
+	static $types = array(
+		'select-account' => array('pm_creator','pm_modifier'),
+		'date-time' => array('pm_created', 'pm_modified','pm_planned_start', 'pm_planned_end', 'pm_real_start', 'pm_real_end'),
+		'select-cat' => array('cat_id'),
+	);
+
 	/**
 	 * constructor
 	 * reads record from backend if identifier is given.

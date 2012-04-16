@@ -143,7 +143,10 @@ class projectmanager_merge extends bo_merge
 		}
 		$this->projectmanager_fields += array_combine($roles, $roles);
 
+		// Handle dates as dates in spreadsheets
+		$this->date_fields = projectmanager_egw_record_project::$types['date-time'];
 
+		
 		$this->pm_fields_translate = array(
 			'cat_id'				=> 'pm_cat_id',
 			'user_timezone_read'	=> 'pm_user_timezone',
@@ -272,6 +275,13 @@ class projectmanager_merge extends bo_merge
 		{
 			$replacements += $replacement;
 		}
+
+		// For handling date/times as such in a spreadsheet
+		foreach(projectmanager_egw_record_element::$types['date-time'] as $field)
+		{
+			$this->date_fields[] = ($prefix ? $prefix . '/' : '') . $field;
+		}
+
 		// resolve app fields of project element
 		if($app && $app_id)
 		{
