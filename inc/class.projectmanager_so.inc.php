@@ -233,7 +233,7 @@ class projectmanager_so extends so_sql_cf
 			));
 			if ($only_keys === true) $only_keys='';	// otherwise we use ambigues pm_id
 
-			if (isset($criteria['pm_id']))
+			if (is_array($criteria) && isset($criteria['pm_id']))
 			{
 				$criteria[$this->table_name.'.pm_id'] = $criteria['pm_id'];
 				unset($criteria['pm_id']);
