@@ -336,6 +336,13 @@ class projectmanager_merge extends bo_merge
 			$project = $this->projectmanager_bo->read($project);
 		}
 		if (!is_array($project)) return array();
+		$replacements = array();
+
+		// Expand custom fields
+		if($content && strpos($content, '#') !== 0)
+                {
+                        $this->cf_link_to_expand($project, $content, $replacements);
+                }
 
 		// Set any missing custom fields, or the marker will stay
 		$custom = config::get_customfields('projectmanager');
@@ -371,7 +378,6 @@ class projectmanager_merge extends bo_merge
 			$project[$key.'_total'] = $value;
 		}
 
-		$replacements = array();
 		foreach(array_keys($project) as $name)
 		{
 			if(!isset($this->projectmanager_fields[$name])) continue; // not a supported field
