@@ -143,7 +143,10 @@ class projectmanager_merge extends bo_merge
 		}
 		$this->projectmanager_fields += array_combine($roles, $roles);
 
+		// Handle dates as dates in spreadsheets
+		$this->date_fields = projectmanager_egw_record_project::$types['date-time'];
 
+		
 		$this->pm_fields_translate = array(
 			'cat_id'				=> 'pm_cat_id',
 			'user_timezone_read'	=> 'pm_user_timezone',
@@ -272,6 +275,13 @@ class projectmanager_merge extends bo_merge
 		{
 			$replacements += $replacement;
 		}
+
+		// For handling date/times as such in a spreadsheet
+		foreach(projectmanager_egw_record_element::$types['date-time'] as $field)
+		{
+			$this->date_fields[] = ($prefix ? $prefix . '/' : '') . $field;
+		}
+
 		// resolve app fields of project element
 		if($app && $app_id)
 		{
@@ -344,7 +354,7 @@ class projectmanager_merge extends bo_merge
 		$all_roles += array_fill_keys($roles, array());
 		foreach((Array)$project['pm_members'] as $account_id => $info) {
 			$all_roles[$info['role_title']][] = common::grab_owner_name($info['member_uid']);
-		} 
+		}
 		foreach($all_roles as $name => $users) {
 			$project[$name] = implode(', ', $users);
 			if(count($users) == 0) {
@@ -708,7 +718,7 @@ class projectmanager_merge extends bo_merge
 		if(!isset($this->pm_id) && !$id) return false;
 		
 		static $elements;
-		if($id && $id != $this->pm_id) { 
+		if($id && $id != $this->pm_id) {
 			$this->change_project($id);
 			$elements = array();
 		}
