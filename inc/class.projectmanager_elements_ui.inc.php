@@ -573,9 +573,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
  			}
 			// get infolog type to show proper icon
-			if ($this->prefs['show_infolog_type_icon'] && $row['pe_app'] == 'infolog') 
+			if ($this->prefs['show_infolog_type_icon'] && $row['pe_app'] == 'infolog')
 			{
-				$info = $infolog->read($row['link']['id']);		
+				$info = $infolog->read($row['link']['id']);
 				$icon = $info['info_type'].'_element';
 				if (!$GLOBALS['egw']->common->image('infolog', $icon))
 					{
@@ -586,7 +586,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 				$row['pe_icon'] = 'infolog/'.$icon;
-				$row['pe_app'] = 'Infolog - ' . lang($info['info_type']);
 			}
 		}
 		array_unshift($rows,false);	// manually make the array start with index 1!
@@ -924,7 +923,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				elseif (strpos($action,'document') !== false && $app == 'projectmanager' && $id == 0)
 				{
-					// Special handling for top-level projects - they show in the element list and 
+					// Special handling for top-level projects - they show in the element list and
 					// can be selected, but can't be retrieved by pe_id
 					$document_projects[] = $app_id;
 					unset($checked[$key]);
@@ -1028,7 +1027,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					}
 				}
 
-				// Check to see if the user selected an element from another (child) project, 
+				// Check to see if the user selected an element from another (child) project,
 				// and add that project to the list of IDs so merge won't skip it
 				$current_pm_id = $this->pm_id;
 				$document_projects[] = $current_pm_id;
