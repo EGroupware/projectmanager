@@ -390,7 +390,7 @@ class projectmanager_merge extends bo_merge
 				case 'pm_real_start': case 'pm_real_end':
 				case 'pe_planned_start_total': case 'pe_planned_end_total':
 				case 'pe_real_start_total': case 'pe_real_end_total':
-					$value = $this->format_datetime($value);
+					if($value) $value = egw_time::to($value);
 					break;
 				case 'pm_creator': case 'pm_modifier':
 					$value = common::grab_owner_name($value);
@@ -470,7 +470,7 @@ class projectmanager_merge extends bo_merge
 				case 'pe_planned_start': case 'pe_planned_end':
 				case 'pe_real_start': case 'pe_real_end':
 				case 'pe_synced': case 'pe_modified':
-					$value = $this->format_datetime($value);
+					if($value) $value = egw_time::to($value);
 					break;
 				case 'pe_modifier':
 					$value = common::grab_owner_name($value);
