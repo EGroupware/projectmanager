@@ -138,6 +138,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$export_object->export_record($project);
 			unset($project);
 		}
+		return $export_object;
 	}
 
 	/**
