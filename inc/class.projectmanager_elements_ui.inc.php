@@ -665,6 +665,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'group' => $group,
 				'egw_open' => 'view-',	// no app to use one the in id
 				'enableId' => '^projectmanager:[^:]+:(?!0$)',
+				'target' => '_self',
 				'hideOnDisabled' => true,
 				'allowOnMultiple' => false,
 				'default' => true,

@@ -696,6 +696,7 @@ class projectmanager_ui extends projectmanager_bo
 				'default' => true,
 				'allowOnMultiple' => false,
 				'egw_open' => 'view-projectmanager',
+				'target' => '_self',
 				'group' => $group=1,
 				'default' => true,
 			),
