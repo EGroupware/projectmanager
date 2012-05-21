@@ -113,7 +113,7 @@ class projectmanager_so extends so_sql_cf
 		//echo "<p>soprojectmanager::read(".print_r($keys,true).")</p>\n";
 
 		if ($keys && is_numeric($keys) && $this->data['pm_id'] == $keys ||
-			$keys['pm_id'] &&  $this->data['pm_id'] == $keys['pm_id'])
+			is_array($keys) && $keys['pm_id'] && $this->data['pm_id'] == $keys['pm_id'])
 		{
 			return $this->data;
 		}
