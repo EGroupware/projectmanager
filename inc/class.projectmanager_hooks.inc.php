@@ -274,7 +274,7 @@ class projectmanager_hooks
 		$projects = array();
 		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter) as $project)
 		{
-			if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection']=='tree_with_number_title') 
+			if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection']=='tree_with_number_title')
 				{
 					$projects[$project['path']] = array(
 						'label' => $project[$title].': '.$project[$label],
@@ -490,15 +490,15 @@ class projectmanager_hooks
 			'name'		=> 'gantt_show_elements_by_type',
 			'values' 	=> $apps,
 			'xmlrpc' 	=> True,
-			'admin'  	=> False	
-		);		
+			'admin'  	=> False
+		);
 
 
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			$link = egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
 			$settings['document_dir'] = array(
-				'type'   => 'input',
+				'type'   => 'vfs_dirs',
 				'size'   => 60,
 				'label'  => 'Directory with documents to insert project data',
 				'name'   => 'document_dir',
