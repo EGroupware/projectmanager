@@ -502,10 +502,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$rows = array_merge(array($self),$rows);
 
 		$readonlys = array();
-		// Call infolog to show infolog type icon
-		if ($this->prefs['show_infolog_type_icon']){
-		$infolog = new infolog_bo;
-		}
 		foreach($rows as $n => &$row)
 		{
 			if ($n && !$this->check_acl(EGW_ACL_EDIT,$row))
@@ -572,34 +568,38 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					}
 				}
  			}
-			// get infolog type to show proper icon
-			if ($this->prefs['show_infolog_type_icon'] && $row['pe_app'] == 'infolog')
-			{
-				$info = $infolog->read($row['link']['id']);
-				$icon = $info['info_type'].'_element';
-				if (!$GLOBALS['egw']->common->image('infolog', $icon))
-					{
-					$icon = $info['info_type'];
-					if (!$GLOBALS['egw']->common->image('infolog', $icon))
-						{
-						$icon = 'navbar';
-						}
-					}
-				$row['pe_icon'] = 'infolog/'.$icon;
-			}
 		}
 		array_unshift($rows,false);	// manually make the array start with index 1!
 
-		if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_custom_app_icons'])
+		if ($this->prefs['show_custom_app_icons'] || $this->prefs['show_infolog_type_icon'])
 		{
 			$custom_app_icons['location'] = 'pm_custom_app_icons';
 			$custom_app_icons = $GLOBALS['egw']->hooks->process($custom_app_icons);
-			unset($row);	// it's used as reference before !!!
-			foreach($rows as $n => $row)
+			foreach($rows as $n => &$row)
 			{
-				if (isset($custom_app_icons[$row['pe_app']][$row['pe_app_id']]))
+				$app_info = $custom_app_icons[$row['pe_app']][$row['pe_app_id']];
+				if (isset($app_info))
 				{
-					$rows[$n]['pe_completion_icon'] = $custom_app_icons[$row['pe_app']][$row['pe_app_id']];
+					// old hook returns only custom completition / status icon
+					if (!is_array($app_info))
+					{
+						$row['pe_completion_icon'] = $app_info;
+					}
+					else	// new hook returning all three informations
+					{
+						if ($this->prefs['show_custom_app_icons'] && isset($app_info['status']))
+						{
+							$row['pe_completion_icon'] = $app_info['status'];
+						}
+						if ($this->prefs['show_infolog_type_icon'] && isset($app_info['icon']))
+						{
+							$row['pe_icon'] = $app_info['icon'];
+						}
+						if (isset($app_info['class']))
+						{
+							$row['class'] .= ' '.$app_info['class'];
+						}
+					}
 				}
 			}
 		}
