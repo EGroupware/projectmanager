@@ -10,30 +10,30 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<description options=",,,pe_real_start" value="Startdate"/>
+					<description value="Startdate" for="pe_real_start"/>
 					<date-time id="pe_real_start"/>
 					<date-time id="ds[pe_real_start]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description value="- planned" options=",,,pe_planned_end"/>
+					<description value="- planned" for="pe_planned_end"/>
 					<date-time id="pe_planned_start"/>
 					<date-time id="ds[pe_planned_start]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_real_end" value="Enddate"/>
+					<description value="Enddate" for="pe_real_end"/>
 					<date-time id="pe_real_end"/>
 					<date-time id="ds[pe_real_end]" readonly="true"/>
 				</row>
 				<row class="row" valign="top" height="50%">
-					<description value="- planned" options=",,,pe_planned_end"/>
+					<description value="- planned" for="pe_planned_end"/>
 					<date-time id="pe_planned_end"/>
 					<date-time id="ds[pe_planned_end]" readonly="true"/>
 				</row>
 				<row class="row" disabled="!@no_times">
-					<description options=",,,pe_share" value="Share"/>
+					<description value="Share" for="pe_share"/>
 					<hbox options="1,1" span="all">
-						<textbox id="pe_share" statustext="Share on the whole project" size="10" validator="/^[0-9.]*\.?[0-9%]*$/"/>
-						<textbox type="float" id="default_percentage" label="default" readonly="true"/>
+						<textbox statustext="Share on the whole project" id="pe_share" size="10" validator="/^[0-9.]*\.?[0-9%]*$/"/>
+						<textbox type="float" label="default" id="default_percentage" readonly="true"/>
 					</hbox>
 				</row>
 			</rows>
@@ -48,21 +48,26 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<description options=",,,pe_used_time" value="Times"/>
+					<description value="Times" for="pe_used_time"/>
 					<date-duration id="pe_used_time" options=",$cont[duration_format]"/>
 					<date-duration id="ds[pe_used_time]" readonly="true" options="@duration_format"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_planned_time" value="- planned"/>
+					<description value="- planned" for="pe_planned_time"/>
 					<date-duration id="pe_planned_time" options=",$cont[duration_format]"/>
 					<date-duration id="ds[pe_planned_time]" readonly="true" options="@duration_format"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_share" value="Share"/>
+					<description value="- re-planned" for="pe_replanned_time"/>
+					<date-duration id="pe_replanned_time" options=",$cont[duration_format]"/>
+					<description/>
+				</row>
+				<row class="row">
+					<description value="Share" for="pe_share"/>
 					<hbox options="0,0">
-						<date-duration id="pe_share" statustext="Share on the whole project in hours or percent, defaults to planned time" options=",%$cont[duration_format],1"/>
-						<date-duration id="share_total" label="/" readonly="true" options=",$cont[duration_format],1"/>
-						<description id="share_percentage" value="=" no_lang="1"/>
+						<date-duration statustext="Share on the whole project in hours or percent, defaults to planned time" id="pe_share" options=",%$cont[duration_format],1"/>
+						<date-duration label="/" id="share_total" readonly="true" options=",$cont[duration_format],1"/>
+						<description value="=" id="share_percentage" no_lang="1"/>
 					</hbox>
 					<description/>
 				</row>
@@ -70,8 +75,8 @@
 					<description value="Default"/>
 					<hbox>
 						<date-duration id="default_share" readonly="true" options=",$cont[duration_format]"/>
-						<date-duration id="default_total" label="/" readonly="true" options=",$cont[duration_format]"/>
-						<description id="default_percentage" value="=" no_lang="1"/>
+						<date-duration label="/" id="default_total" readonly="true" options=",$cont[duration_format]"/>
+						<description value="=" id="default_percentage" no_lang="1"/>
 					</hbox>
 					<description/>
 				</row>
@@ -87,37 +92,37 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<description span="all" value="Calculate budget by quantity (eg. time) and price"/>
+					<description value="Calculate budget by quantity (eg. time) and price" span="all"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_used_quantity" value="Quantity"/>
-					<textbox type="float" id="pe_used_quantity" statustext="leave it empty, if identitcal to the time" blur="@used_quantity_blur" onchange="calc_budget(this.form);"/>
+					<description value="Quantity" for="pe_used_quantity"/>
+					<textbox type="float" blur="@used_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_used_quantity" onchange="calc_budget(this.form);"/>
 					<textbox type="float" id="ds[pe_used_quantity]" readonly="true"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_planned_quantity" value="- planned"/>
-					<textbox type="float" id="pe_planned_quantity" statustext="leave it empty, if identitcal to the time" blur="@planned_quantity_blur" onchange="calc_budget(this.form);"/>
+					<description value="- planned" for="pe_planned_quantity"/>
+					<textbox type="float" blur="@planned_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_planned_quantity" onchange="calc_budget(this.form);"/>
 					<textbox type="float" id="ds[pe_planned_quantity]" readonly="true"/>
 				</row>
 				<row class="row" disabled="@no_pricelist">
 					<description value="Activity"/>
-					<projectmanager-pricelist id="pl_id" statustext="select an activity if you want to calculate costs by quantity (time) and price" options="None" onchange="this.form['exec[pe_unitprice]'].value=this.options[this.selectedIndex].text.lastIndexOf('(') &lt; 0 ? '' : this.options[this.selectedIndex].text.slice(this.options[this.selectedIndex].text.lastIndexOf('(')+1,-1); calc_budget(this.form);"/>
-					<projectmanager-pricelist span="all" id="ds[pl_id]" readonly="true"/>
+					<projectmanager-pricelist statustext="select an activity if you want to calculate costs by quantity (time) and price" id="pl_id" onchange="this.form['exec[pe_unitprice]'].value=this.options[this.selectedIndex].text.lastIndexOf('(') &lt; 0 ? '' : this.options[this.selectedIndex].text.slice(this.options[this.selectedIndex].text.lastIndexOf('(')+1,-1); calc_budget(this.form);" options="None"/>
+					<projectmanager-pricelist id="ds[pl_id]" readonly="true" span="all"/>
 				</row>
 				<row class="row" valign="top">
-					<description options=",,,pe_cost_per_time" value="Unitprice"/>
-					<textbox type="float" id="pe_unitprice" blur="@ds[pe_unitprice]" onchange="calc_budget(this.form);"/>
-					<textbox type="float" min="2" id="ds[pe_unitprice]" readonly="true"/>
+					<description value="Unitprice" for="pe_cost_per_time"/>
+					<textbox type="float" blur="@ds[pe_unitprice]" id="pe_unitprice" onchange="calc_budget(this.form);"/>
+					<textbox type="float" id="ds[pe_unitprice]" readonly="true" min="2"/>
 				</row>
 				<row class="th">
-					<description options=",,,pe_real_budget" value="Budget"/>
-					<textbox type="float" id="pe_used_budget" blur="@ds[pe_used_budget]"/>
-					<textbox type="float" min="2" id="ds[pe_used_budget]" readonly="true"/>
+					<description value="Budget" for="pe_real_budget"/>
+					<textbox type="float" blur="@ds[pe_used_budget]" id="pe_used_budget"/>
+					<textbox type="float" id="ds[pe_used_budget]" readonly="true" min="2"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_planned_budget" value="- planned"/>
-					<textbox type="float" id="pe_planned_budget" blur="@ds[pe_planned_budget]"/>
-					<textbox type="float" min="2" id="ds[pe_planned_budget]" readonly="true"/>
+					<description value="- planned" for="pe_planned_budget"/>
+					<textbox type="float" blur="@ds[pe_planned_budget]" id="pe_planned_budget"/>
+					<textbox type="float" id="ds[pe_planned_budget]" readonly="true" min="2"/>
 				</row>
 			</rows>
 		</grid>
@@ -130,16 +135,16 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description options=",,,end_constraints" value="Start after"/>
-					<listbox rows="3" id="pe_constraints[start]" statustext="Elements which have to be finished before this can start" no_lang="1"/>
+					<description value="Start after" for="end_constraints"/>
+					<listbox statustext="Elements which have to be finished before this can start" id="pe_constraints[start]" no_lang="1" rows="3"/>
 				</row>
 				<row class="row" valign="top">
-					<description options=",,,end_constraints" value="End before"/>
-					<listbox rows="3" id="pe_constraints[end]" statustext="Elements that can't start before this one is finished" no_lang="1"/>
+					<description value="End before" for="end_constraints"/>
+					<listbox statustext="Elements that can't start before this one is finished" id="pe_constraints[end]" no_lang="1" rows="3"/>
 				</row>
 				<row class="row" valign="top">
-					<description options=",,,milestone_constraints" value="Milestones"/>
-					<listbox id="pe_constraints[milestone]" statustext="Milestones before this element has to be finished" rows="3" no_lang="1"/>
+					<description value="Milestones" for="milestone_constraints"/>
+					<listbox statustext="Milestones before this element has to be finished" id="pe_constraints[milestone]" no_lang="1" rows="3"/>
 				</row>
 			</rows>
 		</grid>
@@ -153,9 +158,9 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description rows="1" cols="1" value="Resources"/>
-					<listbox type="select-account" rows="12" id="pe_resources"/>
-					<listbox type="select-account" rows="8" id="ds[pe_resources]" readonly="true"/>
+					<description cols="1" value="Resources" rows="1"/>
+					<listbox type="select-account" id="pe_resources" rows="12"/>
+					<listbox type="select-account" id="ds[pe_resources]" readonly="true" rows="8"/>
 				</row>
 			</rows>
 		</grid>
@@ -174,7 +179,22 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="0.4.001">
+	<template id="projectmanager.elements.edit.eroles" template="" lang="" group="0" version="1.9.004">
+		<grid>
+			<columns>
+				<column width="380px"/>
+			</columns>
+			<rows>
+				<row>
+					<button statustext="Edit element roles" label="Edit element roles" id="eroles_edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_eroles_ui.eroles&amp;pm_id=$cont[pm_id]&amp;pe_id=$cont[pe_id]'),'eroles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;"/>
+				</row>
+				<row>
+					<projectmanager-select-erole id="pe_eroles" no_lang="1" options="7,,width:99%"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%" height="170">
 			<columns>
 				<column width="100"/>
@@ -183,24 +203,18 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description span="all" class="redItalic" align="center" id="msg" no_lang="1"/>
+					<description align="center" id="msg" no_lang="1" span="all" class="redItalic"/>
 					<description/>
 					<description/>
 				</row>
 				<row class="th">
-					<image src="pe_icon" align="center"/>
-					<description no_lang="1" id="pe_title" span="2"/>
+					<image align="center" src="pe_icon"/>
+					<description id="pe_title" no_lang="1" span="2"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_cat_id" value="Category"/>
-					<menulist>
-						<menupopup type="select-cat" options="None" id="cat_id"/>
-					</menulist>
-					<checkbox options="ignore,regular" id="pe_status" statustext="do not use that entry as project-element" label="ignore that entry" span="2"/>
-				</row>
-				<row class="row">
-					<description options=",,,pe_remark" value="Comment"/>
-					<textbox size="50" maxlength="50" id="pe_remark" span="2"/>
+					<description value="Comment" for="pe_remark"/>
+					<textbox id="pe_remark" size="48" maxlength="50"/>
+					<checkbox statustext="do not use that entry as project-element" label="ignore that entry" id="pe_status" options="ignore,regular" span="2"/>
 				</row>
 				<row class="th">
 					<description value="Value"/>
@@ -208,24 +222,34 @@
 					<description value="Datasource"/>
 				</row>
 				<row class="row">
-					<description options=",,,pe_completion" value="Status"/>
+					<description value="Category" for="pe_cat_id"/>
+					<menulist>
+						<menupopup type="select-cat" id="cat_id" options="None"/>
+					</menulist>
+					<menulist>
+						<menupopup type="select-cat" id="ds[cat_id]" readonly="true"/>
+					</menulist>
+				</row>
+				<row class="row">
+					<description value="Status" for="pe_completion"/>
 					<hbox options="0" orient="0">
 						<menulist>
-							<menupopup type="select-percent" options="None" id="pe_completion"/>
+							<menupopup type="select-percent" id="pe_completion" options="None"/>
 						</menulist>
 						<description/>
 					</hbox>
 					<description id="ds[pe_completion]" no_lang="1"/>
 				</row>
 				<row>
-					<tabbox span="all">
+					<tabbox id="dates|times|budget|constraints|resources|details|eroles" span="all">
 						<tabs>
-							<tab label="Dates" statustext="Start- &amp; Enddate"/>
-							<tab label="Times" statustext="Times"/>
-							<tab label="Budget" statustext="Budget"/>
-							<tab label="Constraints" statustext="Constraints"/>
-							<tab label="Resources" statustext="Resources"/>
-							<tab label="Details" statustext="Details"/>
+							<tab id="dates" label="Dates" statustext="Start- &amp; Enddate"/>
+							<tab id="times" label="Times" statustext="Times"/>
+							<tab id="budget" label="Budget" statustext="Budget"/>
+							<tab id="constraints" label="Constraints" statustext="Constraints"/>
+							<tab id="resources" label="Resources" statustext="Resources"/>
+							<tab id="details" label="Details" statustext="Details"/>
+							<tab id="eroles" label="Element roles" statustext="Element roles"/>
 						</tabs>
 						<tabpanels>
 							<template id="projectmanager.elements.edit.dates"/>
@@ -234,6 +258,7 @@
 							<template id="projectmanager.elements.edit.constraints"/>
 							<template id="projectmanager.elements.edit.resources"/>
 							<template id="projectmanager.elements.edit.details"/>
+							<template id="projectmanager.elements.edit.eroles"/>
 						</tabpanels>
 					</tabbox>
 				</row>
@@ -242,20 +267,20 @@
 					<hbox>
 						<date-time id="pe_modified" readonly="true"/>
 						<menulist>
-							<menupopup type="select-account" id="pe_modifier" label="by" readonly="true"/>
+							<menupopup type="select-account" label="by" id="pe_modifier" readonly="true"/>
 						</menulist>
 					</hbox>
 					<date-time id="pe_synced" readonly="true"/>
 				</row>
 				<row>
 					<hbox span="2">
-						<button label="Edit" id="edit" statustext="Edit this project-element"/>
-						<button id="save" label="Save" statustext="Save this project element"/>
-						<button id="apply" label="Apply" statustext="Apply the changes"/>
-						<button id="cancel" label="Cancel" statustext="Close the window, discard the changes made" onclick="window.close();"/>
+						<button statustext="Edit this project-element" label="Edit" id="edit"/>
+						<button statustext="Save this project element" label="Save" id="save"/>
+						<button statustext="Apply the changes" label="Apply" id="apply"/>
+						<button statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"/>
 						<html id="js"/>
 					</hbox>
-					<button label="Delete" align="right" id="delete" statustext="Delete this project-element, does NOT remove the linked entry" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');"/>
+					<button align="right" statustext="Delete this project-element, does NOT remove the linked entry" label="Delete" id="delete" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');"/>
 				</row>
 			</rows>
 		</grid>

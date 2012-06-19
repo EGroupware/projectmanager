@@ -49,8 +49,10 @@ define('PM_PLANNED_QUANTITY',16384);
 define('PM_USED_QUANTITY',32768);
 /** int seconds replanned time */
 define('PM_REPLANNED_TIME',65536);
+/** int seconds replanned time */
+define('PM_CAT_ID',131072);
 /** all data-types or'ed together, need to be changed if new data-types get added */
-define('PM_ALL_DATA',131071);
+define('PM_ALL_DATA',262143);
 
 /**
  * DataSource baseclass of the ProjectManager
@@ -102,6 +104,7 @@ class datasource
 		'pe_unitprice'      => PM_UNITPRICE,
 		'pe_planned_quantity' => PM_PLANNED_QUANTITY,
 		'pe_used_quantity'  => PM_USED_QUANTITY,
+		'cat_id'            => PM_CAT_ID,
 	);
 	/**
 	 * @var projectmanager_elements_bo-object $bo_pe pe object to read other pe's (eg. for constraints)
@@ -116,6 +119,21 @@ class datasource
 	function __construct($type=null)
 	{
 		$this->type = $type;
+
+		// silently run 1.9.001 --> .002 update, as not running it would overwrite existing element categories, when datasources update
+		if ($GLOBALS['egw_info']['apps']['projectmanager']['version'] === '1.9.001')
+		{
+			$GLOBALS['egw']->db->update('egw_pm_elements', 'pe_overwrite=pe_overwrite+131072', 'cat_id>0 AND pe_overwrite<131072', __LINE__, __FILE__, 'projectmanager');
+
+			// increment app-version, to not run update again via setup
+			$GLOBALS['egw']->db->update('egw_applications', array(
+				'app_version' => $GLOBALS['egw_info']['apps']['projectmanager']['version'] = '1.9.002',
+			), array(
+				'app_name' => 'projectmanager',
+			), __LINE__, __FILE__);
+
+			$GLOBALS['egw']->invalidate_session_cache();	// so store new pm version in session
+		}
 	}
 
 	/**

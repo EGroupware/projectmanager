@@ -400,3 +400,12 @@ function projectmanager_upgrade1_9()
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.001';
 }
 
+/**
+ * Update existing elements with a category set, to include it in pe_overwrite
+ */
+function projectmanager_upgrade1_9_001()
+{
+	$GLOBALS['egw_setup']->db->update('egw_pm_elements', 'pe_overwrite=pe_overwrite+131072', 'cat_id>0', __LINE__, __FILE__, 'projectmanager');
+
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.002';
+}
