@@ -154,6 +154,8 @@ class projectmanager_datasource extends datasource
 		{
 			$ds['pe_completion'] .= '%';
 		}
+		$ds['cat_id'] = $data['cat_id'];
+
 		if ((int) $this->debug > 1 || $this->debug == 'get') $this->projectmanager_bo->debug_message("projectmanager_datasource::get($data_id) =".print_r($ds,true));
 
 		return $ds;
