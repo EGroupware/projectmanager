@@ -246,12 +246,12 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		{
 			$this->data_merge($extra_keys);
 		}
+		$datasource =& $this->datasource($app);
+		$this->updated = 0;
+
 		// mask out not overwritable parts like title and details
 		// in case they somehow get set (mayby by a previous bug)
 		$this->data['pe_overwrite'] &= ~(PM_TITLE|PM_DETAILS);
-
-		$datasource =& $this->datasource($app);
-		$this->updated = 0;
 
 		if (!($data = $datasource->read($id,$this->data)))
 		{
@@ -262,7 +262,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			if (isset($datasource->name2id[$name]) && !($this->data['pe_overwrite'] & $datasource->name2id[$name]) &&
 				$this->data[$name] != $value)
 			{
-				//if ((int) $pe_id) echo "<p>projectmanager_elements_bo::update($app,$id,$pe_id,$pm_id) $name updated: '{$this->data[$name]}' != '$value'</p>\n";
+				//if ((int) $pe_id) echo "<p>projectmanager_elements_bo::update($app,$id,$pe_id,$pm_id) $name ({$datasource->name2id[$name]}) updated, pe_overwrite={$this->data['pe_overwrite']}: '{$this->data[$name]}' != '$value'</p>\n";
 				$this->data[$name] = $value;
 				$this->updated |= $datasource->name2id[$name];
 			}
