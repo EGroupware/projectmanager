@@ -315,7 +315,7 @@ class projectmanager_ui extends projectmanager_bo
 		foreach($datasource->name2id as $pe_name => $id)
 		{
 			$pm_name = str_replace('pe_','pm_',$pe_name);
-			if (!($this->data['pm_overwrite'] & $id) && $pm_name != 'pm_title')
+			if (!($this->data['pm_overwrite'] & $id) && !in_array($pm_name, array('cat_id', 'pm_title')))
 			{
 				$content[$pm_name] = $preserv[$pm_name] = '';
 			}
@@ -842,7 +842,7 @@ class projectmanager_ui extends projectmanager_bo
 
 			@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
 			$query['num_rows'] = -1;	// all
-			$this->get_rows($query,$projects,$readonlys);	
+			$this->get_rows($query,$projects,$readonlys);
 			// only use the ids
 			foreach($projects as $project)
 			{
