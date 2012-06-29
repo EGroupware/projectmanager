@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.002">
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -20,7 +20,7 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<nextmatch-sortheader align="center" label="App." id="pe_app" options=",Application"/>
+					<nextmatch-filterheader align="center" id="pe_app" options="Application"/>
 					<vbox>
 						<nextmatch-sortheader label="Title" id="pe_title"/>
 						<nextmatch-sortheader label="Comment" id="pe_remark"/>
@@ -80,6 +80,7 @@
 						<description id="${row}[pe_title]" no_lang="1" href="@${row}[view_link]"/>
 						<html id="${row}[pe_details]" no_lang="1"/>
 						<description id="${row}[pe_remark]" no_lang="1"/>
+						<link-string id="${row}[pe_links]"/>
 					</vbox>
 					<menulist>
 						<menupopup type="select-cat" id="${row}[cat_id]" readonly="true"/>
@@ -115,8 +116,8 @@
 						</menulist>
 					</vbox>
 					<hbox align="center" class="noPrint">
-						<image statustext="View Ganttchart of this project" label="Ganttchart" src="ganttchart" options="projectmanager.projectmanager_ganttchart.show&amp;pm_id=$row_cont[pm_id]"/>
-						<image statustext="Edit this project" label="Edit" src="edit" options="projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]"/>
+						<image statustext="View Ganttchart of this project" label="Ganttchart" src="ganttchart" href="projectmanager.projectmanager_ganttchart.show&amp;pm_id=$row_cont[pm_id]"/>
+						<button statustext="Edit this project" label="Edit" id="edit[$row_cont[pm_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]'),'_blank','dependent=yes,width=900,height=480,scrollbars=yes,status=yes'); return false;" image="edit"/>
 					</hbox>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
@@ -126,6 +127,7 @@
 						<link id="${row}[link]" no_lang="1"/>
 						<html id="${row}[pe_details]" no_lang="1"/>
 						<description id="${row}[pe_remark]" no_lang="1"/>
+						<link-string id="${row}[pe_links]"/>
 					</vbox>
 					<menulist>
 						<menupopup type="select-cat" id="${row}[cat_id]" readonly="true"/>
