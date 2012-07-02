@@ -519,13 +519,13 @@ class projectmanager_bo extends projectmanager_so
 			}
 		}
 		// private project need either a private grant or a role ACL
-		if ($data['pm_access'] === 'private' && !($rights & EGW_ACL_PRIVATE) && !$data['pm_members'][$user]['role_acl'])
+		if (is_array($data) && $data['pm_access'] === 'private' && !($rights & EGW_ACL_PRIVATE) && !$data['pm_members'][$user]['role_acl'])
 		{
 			$access = false;
 		}
 		elseif ($required == EGW_ACL_READ)	// read-rights are implied by all other rights, or for everyone, if access=anonym
 		{
-			$access = $rights || $data['pm_access'] === 'anonym';
+			$access = $rights || is_array($data) && $data['pm_access'] === 'anonym';
 		}
 		else
 		{
