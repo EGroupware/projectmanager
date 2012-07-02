@@ -590,7 +590,7 @@ class projectmanager_bo extends projectmanager_so
 			foreach ($member_from_groups as $member_from_group => $member_acl) {
 			$grants_from_groups = $grants_from_groups | (int) $data['pm_members'][$member_from_group]['role_acl'];
 			}
-			
+
 			$rights = (int) $grants[$data['pm_creator']] | (int) $data['pm_members'][$user]['role_acl'] | $grants_from_groups;
 
 			// for status or times accounting-type (no accounting) remove the budget-rights from everyone
@@ -600,13 +600,13 @@ class projectmanager_bo extends projectmanager_so
 			}
 		}
 		// private project need either a private grant or a role ACL
-		if ($data['pm_access'] === 'private' && !($rights & EGW_ACL_PRIVATE) && !$data['pm_members'][$user]['role_acl'])
+		if (is_array($data) && $data['pm_access'] === 'private' && !($rights & EGW_ACL_PRIVATE) && !$data['pm_members'][$user]['role_acl'])
 		{
 			$access = false;
 		}
 		elseif ($required == EGW_ACL_READ)	// read-rights are implied by all other rights, or for everyone, if access=anonym
 		{
-			$access = $rights || $data['pm_access'] === 'anonym';
+			$access = $rights || is_array($data) && $data['pm_access'] === 'anonym';
 		}
 		else
 		{
