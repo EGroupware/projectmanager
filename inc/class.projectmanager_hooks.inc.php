@@ -77,7 +77,8 @@ class projectmanager_hooks
 					'edit_id' => 'pe_id',
 					'edit_popup' => '600x450',
 				)
-			)
+			),
+			'merge' => true,
 		);
 	}
 
