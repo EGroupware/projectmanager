@@ -588,7 +588,7 @@ class projectmanager_bo extends projectmanager_so
 			$member_from_groups = array_intersect_key((array)$data['pm_members'], $memberships);
 			$grants_from_groups = 0;
 			foreach ($member_from_groups as $member_from_group => $member_acl) {
-			$grants_from_groups = $grants_from_groups | (int) $data['pm_members'][$member_from_group]['role_acl'];
+				$grants_from_groups = $grants_from_groups | (int) $data['pm_members'][$member_from_group]['role_acl'];
 			}
 
 			$rights = (int) $grants[$data['pm_creator']] | (int) $data['pm_members'][$user]['role_acl'] | $grants_from_groups;
