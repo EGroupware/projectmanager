@@ -9,9 +9,10 @@
 			<buttononly statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
 		</hbox>
 	</template>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.002">
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
 			<columns>
+				<column/>
 				<column/>
 				<column/>
 				<column/>
@@ -36,6 +37,7 @@
 					<nextmatch-sortheader label="Project ID" id="pm_number"/>
 					<nextmatch-sortheader label="Title" id="pm_title"/>
 					<nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
+					<nextmatch-sortheader label="categories" id="cat_id"/>
 					<nextmatch-sortheader label="Owner" id="pm_creator"/>
 					<nextmatch-header label="@roles[0]" id="role0"/>
 					<nextmatch-header label="@roles[1]" id="role1"/>
@@ -73,8 +75,11 @@
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
 					<description id="${row}[pm_number]" no_lang="1"/>
-					<description statustext="Select this project and show it's elements" id="${row}[pm_title]" no_lang="1" href="projectmanager.projectmanager_elements_ui.index&amp;pm_id=$row_cont[pm_id]"/>
+					<description statustext="Select this project and show it's elements" id="${row}[pm_title]" no_lang="1" options=",projectmanager.projectmanager_elements_ui.index&amp;pm_id=$row_cont[pm_id]"/>
 					<description align="center" id="${row}[pm_priority]" no_lang="1"/>
+					<menulist>
+						<menupopup type="select-cat" id="${row}[cat_id]" no_lang="1" readonly="true"/>
+					</menulist>
 					<menulist>
 						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>
 					</menulist>
