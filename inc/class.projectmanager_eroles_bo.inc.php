@@ -24,22 +24,22 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 	 * @var int
 	 */
 	var $pm_id = null;
-	
+
 	/**
 	 * Id of current project element
 	 *
 	 * @var int
 	 */
 	var $pe_id = null;
-	
+
 	/**
 	 * Instance of the projectmanager_elements_so class
 	 *
 	 * @var projectmanager_elements_so
 	 */
 	var $projectmanager_elements_so;
-	
-	
+
+
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
@@ -49,7 +49,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 	function __construct($pm_id=null,$pe_id=null)
 	{
 		parent::__construct();
-		
+
 		// try to get pm_id from various sources
 		if ((int) $pm_id)
 		{
@@ -70,7 +70,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 				$this->pm_id = $etemplate_request->content['pm_id'];
 			}
 		}
-		
+
 		// try to get pe_id from various sources
 		if ((int) $pe_id)
 		{
@@ -82,7 +82,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		}
 		elseif(isset($_REQUEST['etemplate_exec_id']))
 		{
-			if(is_object($etemplate_request) || 
+			if(is_object($etemplate_request) ||
 				($etemplate_request = etemplate_request::read($_REQUEST['etemplate_exec_id'])))
 			{
 				$this->pe_id = $etemplate_request->content['pe_id'];
@@ -91,7 +91,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 
 		$this->projectmanager_elements_so = new projectmanager_elements_so($this->pm_id);
 	}
-	
+
 	/**
 	 * return an array of free element roles for the current project and element
 	 * @return array
@@ -100,7 +100,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 	{
 		$free_eroles = array();
 		if(!isset($this->pm_id)) return $free_eroles;
-		
+
 		if($project_eroles = parent::search(array('pm_id' => $this->pm_id),false,'role_title'))
 		{
 			$free_eroles = array_merge($free_eroles, $project_eroles);
@@ -109,7 +109,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		{
 			$free_eroles = array_merge($free_eroles, $global_eroles);
 		}
-		
+
 		// get all eroles used in other project elements
 		$elements = $this->projectmanager_elements_so->search(array('pm_id' => $this->pm_id),false,'','','',false,'AND',false,null,false);
 		$used_eroles = array();
@@ -124,8 +124,8 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 				}
 			}
 		}
-		
-		// remove used eroles from array 
+
+		// remove used eroles from array
 		foreach($free_eroles as $id => $erole)
 		{
 			if($erole['role_multi'] == true) continue; // ignore multi assignable eroles
@@ -134,10 +134,10 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 				unset($free_eroles[$id]);
 			}
 		}
-		
+
 		return $free_eroles;
 	}
-	
+
 	/**
 	 * return an array of all items which are assigned to one specific erole
 	 * @param int $erole_id of erole to search for
@@ -147,15 +147,15 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 	{
 		$elements = array();
 		if(!isset($this->pm_id)) return $elements;
-		
+
 		// get all elements of current project
 		$project_elements = $this->projectmanager_elements_so->search(array('pm_id' => $this->pm_id),false,'','','',false,'AND',false,null,true);
-		
+
 		if(is_array($project_elements) && count($project_elements) > 0)
 		{
 			foreach($project_elements as $id => $element)
 			{
-				if(	strlen($element['pe_eroles']) > 0 
+				if(	strlen($element['pe_eroles']) > 0
 					&& ($element_eroles = explode(',',$element['pe_eroles']))
 					&& in_array($erole_id, $element_eroles))
 				{
@@ -163,13 +163,13 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 				}
 			}
 		}
-		
+
 		return $elements;
 	}
-	
+
 	/**
 	 * returns an element role title by a given id
-	 * 
+	 *
 	 * @param int $role_id
 	 * @return string
 	 */
@@ -178,11 +178,11 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		$erole = parent::read($role_id);
 		return $erole['role_title'];
 	}
-	
+
 	/**
 	 * returns an element role description by a given id
 	 * if description is empty the title will be used instead
-	 * 
+	 *
 	 * @param int $role_id
 	 * @return string
 	 */
@@ -198,13 +198,13 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 			return $erole['role_title'];
 		}
 	}
-	
+
 	/**
 	 * returns a unique element role id by a given title
 	 * project eroles have precedence before global eroles
-	 * 
-	 * @param int $role_title
-	 * @return string
+	 *
+	 * @param string $role_title
+	 * @return int
 	 */
 	public function title2id($role_title)
 	{
@@ -214,21 +214,21 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 					'pm_id' => $this->pm_id)
 		);
 		if(isset($erole['role_id'])) return $erole['role_id'];
-		
+
 		// search for global erole
 		$erole = parent::read(array(
 					'role_title' => $role_title,
-					'pm_id' => 0)
+					'pm_id' => '0')		// need to be '0' NOT 0, as so_sql only uses it, if != '', but 0 == ''!
 		);
 		if(isset($erole['role_id'])) return $erole['role_id'];
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * creates a user readable string of the
 	 * eroles global and multi assignable flags
-	 * 
+	 *
 	 * @param int $role_id
 	 * @return string
 	 */
@@ -236,7 +236,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 	{
 		$erole = parent::read($role_id);
 		$flags = array();
-		
+
 		if($erole['pm_id'] == 0)
 		{
 			$flags[] = lang('global');
@@ -245,8 +245,8 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		{
 			$flags[] = lang('multi assignments');
 		}
-		
+
 		return !empty($flags) ? ' ('.ucfirst(implode(', ', $flags)).')' : '';
 	}
-	
+
 }
