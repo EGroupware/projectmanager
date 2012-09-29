@@ -22,7 +22,10 @@ class projectmanager_merge extends bo_merge
 	 *
 	 * @var array
 	 */
-	var $public_functions = array('show_replacements' => true);
+	var $public_functions = array(
+		'download_by_request'	=> true,
+		'show_replacements'		=> true,
+	);
 	
 	/**
 	 * Id of current project
