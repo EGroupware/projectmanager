@@ -235,7 +235,7 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 							die('condition / action not supported!!!');
 							break;
 					}
-					if ($action['last']) break;
+					if ($action['stop']) break;
 				}
 			} else {
 				// unconditional insert
