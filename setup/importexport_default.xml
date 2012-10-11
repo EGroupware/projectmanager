@@ -6,119 +6,6 @@
     <entry type="integer" name="entries">3</entry>
   </entry>
   <entry type="array" name="definitions">
-    <entry type="array" name="import-projectmanager">
-      <entry type="string" name="name">import-projectmanager</entry>
-      <entry type="string" name="application">projectmanager</entry>
-      <entry type="string" name="plugin">projectmanager_import_projects_csv</entry>
-      <entry type="string" name="type">import</entry>
-      <entry type="array" name="allowed_users">
-        <entry type="string" name="0">Admins</entry>
-      </entry>
-      <entry type="array" name="plugin_options">
-        <entry type="string" name="fieldsep">;</entry>
-        <entry type="string" name="charset">user</entry>
-        <entry type="string" name="num_header_lines">1</entry>
-        <entry type="string" name="update_cats">add</entry>
-        <entry type="array" name="csv_fields">
-          <entry type="string" name="0">pm_title</entry>
-          <entry type="string" name="1">pm_number</entry>
-          <entry type="string" name="2">pm_description</entry>
-          <entry type="string" name="3">pm_creator</entry>
-          <entry type="string" name="4">pm_created</entry>
-          <entry type="string" name="5">pm_modifier</entry>
-          <entry type="string" name="6">pm_modified</entry>
-          <entry type="string" name="7">pm_planned_start</entry>
-          <entry type="string" name="8">pm_planned_end</entry>
-          <entry type="string" name="9">pm_real_start</entry>
-          <entry type="string" name="10">pm_real_end</entry>
-          <entry type="string" name="11">cat_id</entry>
-          <entry type="string" name="12">pm_access</entry>
-          <entry type="string" name="13">pm_priority</entry>
-          <entry type="string" name="14">pm_status</entry>
-          <entry type="string" name="15">pm_completion</entry>
-          <entry type="string" name="16">pm_used_time</entry>
-          <entry type="string" name="17">pm_planned_time</entry>
-          <entry type="string" name="18">pm_replanned_time</entry>
-          <entry type="string" name="19">pm_used_budget</entry>
-          <entry type="string" name="20">pm_planned_budget</entry>
-          <entry type="string" name="21">pm_accounting_type</entry>
-          <entry type="string" name="22">roles</entry>
-          <entry type="string" name="23">pe_sum_completion_shares</entry>
-          <entry type="string" name="24">pe_total_shares</entry>
-          <entry type="string" name="25">pe_used_time</entry>
-          <entry type="string" name="26">pe_planned_time</entry>
-          <entry type="string" name="27">pe_replanned_time</entry>
-          <entry type="string" name="28">pe_used_budget</entry>
-          <entry type="string" name="29">pe_planned_budget</entry>
-          <entry type="string" name="30">pe_real_start</entry>
-          <entry type="string" name="31">pe_planned_start</entry>
-          <entry type="string" name="32">pe_real_end</entry>
-          <entry type="string" name="33">pe_planned_end</entry>
-          <entry type="string" name="34">pe_completion</entry>
-          <entry type="string" name="35">Coordinator</entry>
-          <entry type="string" name="36">Accounting</entry>
-          <entry type="string" name="37">Assistant</entry>
-          <entry type="string" name="38">Projectmember</entry>
-          <entry type="string" name="39">no_csv_1</entry>
-          <entry type="string" name="40">no_csv_2</entry>
-          <entry type="string" name="41">no_csv_3</entry>
-        </entry>
-        <entry type="array" name="field_mapping">
-          <entry type="string" name="0">pm_id</entry>
-          <entry type="string" name="1">pm_title</entry>
-          <entry type="string" name="2">pm_number</entry>
-          <entry type="string" name="3">pm_description</entry>
-          <entry type="string" name="4">pm_creator</entry>
-          <entry type="string" name="5">pm_created</entry>
-          <entry type="string" name="6">pm_modifier</entry>
-          <entry type="string" name="7">pm_modified</entry>
-          <entry type="string" name="8">pm_planned_start</entry>
-          <entry type="string" name="9">pm_planned_end</entry>
-          <entry type="string" name="10">pm_real_start</entry>
-          <entry type="string" name="11">pm_real_end</entry>
-          <entry type="string" name="12">cat_id</entry>
-          <entry type="string" name="13">pm_access</entry>
-          <entry type="string" name="14">pm_priority</entry>
-          <entry type="string" name="15">pm_status</entry>
-          <entry type="string" name="16">pm_completion</entry>
-          <entry type="string" name="17">pm_used_time</entry>
-          <entry type="string" name="18">pm_planned_time</entry>
-          <entry type="string" name="19">pm_replanned_time</entry>
-          <entry type="string" name="20">pm_used_budget</entry>
-          <entry type="string" name="21">pm_planned_budget</entry>
-          <entry type="string" name="22">pm_accounting_type</entry>
-        </entry>
-        <entry type="string" name="field_conversion"/>
-        <entry type="array" name="conditions">
-          <entry type="array" name="0">
-            <entry type="string" name="string">pm_id</entry>
-            <entry type="string" name="type">exists</entry>
-            <entry type="array" name="true">
-              <entry type="string" name="action">update</entry>
-              <entry type="string" name="stop">1</entry>
-            </entry>
-            <entry type="array" name="false">
-              <entry type="string" name="action">insert</entry>
-              <entry type="string" name="stop">1</entry>
-            </entry>
-          </entry>
-          <entry type="array" name="1">
-            <entry type="string" name="string">pm_title</entry>
-            <entry type="string" name="type">exists</entry>
-            <entry type="array" name="true">
-              <entry type="string" name="action">update</entry>
-              <entry type="string" name="stop">1</entry>
-            </entry>
-            <entry type="array" name="false">
-              <entry type="string" name="action">insert</entry>
-              <entry type="string" name="stop">1</entry>
-            </entry>
-          </entry>
-        </entry>
-        <entry type="string" name="convert">1</entry>
-      </entry>
-      <entry type="string" name="modified">2012-10-09 11:00:00</entry>
-    </entry>
     <entry type="array" name="export-projectmanager">
       <entry type="string" name="name">export-projectmanager</entry>
       <entry type="string" name="application">projectmanager</entry>
@@ -176,7 +63,7 @@
         <entry type="string" name="pm_replanned_time">h</entry>
         <entry type="string" name="include_duration_unit">1</entry>
       </entry>
-      <entry type="string" name="modified">2012-05-15 17:17:57</entry>
+      <entry type="string" name="modified">2012-10-11 13:38:05</entry>
     </entry>
     <entry type="array" name="export-projectmanager-elements">
       <entry type="string" name="name">export-projectmanager-elements</entry>
@@ -188,11 +75,11 @@
       </entry>
       <entry type="array" name="plugin_options">
         <entry type="array" name="mapping">
-          <entry type="string" name="pm_title">Title</entry>
-          <entry type="string" name="pm_id">Projectid</entry>
+          <entry type="string" name="pm_title">Project title</entry>
+          <entry type="string" name="pm_id">Project ID</entry>
           <entry type="string" name="pe_id">Element ID</entry>
           <entry type="string" name="pe_app">Application</entry>
-          <entry type="string" name="pe_title">Title</entry>
+          <entry type="string" name="pe_title">Element title</entry>
           <entry type="string" name="pe_completion">Completion</entry>
           <entry type="string" name="pe_planned_time">Planned time</entry>
           <entry type="string" name="pe_replanned_time">Re-planned time</entry>
@@ -200,14 +87,14 @@
           <entry type="string" name="pe_planned_budget">Planned budget</entry>
           <entry type="string" name="pe_used_budget">Used budget</entry>
           <entry type="string" name="pe_planned_start">Planned start</entry>
-          <entry type="string" name="pe_real_start">Startdate</entry>
+          <entry type="string" name="pe_real_start">Start date</entry>
           <entry type="string" name="pe_planned_end">Planned end</entry>
-          <entry type="string" name="pe_real_end">Enddate</entry>
-          <entry type="string" name="pe_synced">synced</entry>
-          <entry type="string" name="pe_modified">last modified</entry>
-          <entry type="string" name="pe_modifier">modified by</entry>
+          <entry type="string" name="pe_real_end">End date</entry>
+          <entry type="string" name="pe_synced">Synced</entry>
+          <entry type="string" name="pe_modified">Last modified</entry>
+          <entry type="string" name="pe_modifier">Modified by</entry>
           <entry type="string" name="pe_status">Status</entry>
-          <entry type="string" name="pe_unitprice">Unitprice</entry>
+          <entry type="string" name="pe_unitprice">Unit price</entry>
           <entry type="string" name="cat_id">Category</entry>
           <entry type="string" name="pe_share">Share</entry>
           <entry type="string" name="pe_resources">Resources</entry>
@@ -224,7 +111,119 @@
         <entry type="string" name="pe_replanned_time">h</entry>
         <entry type="string" name="include_duration_unit">1</entry>
       </entry>
-      <entry type="string" name="modified">2011-12-01 11:19:37</entry>
+      <entry type="string" name="modified">2012-10-11 13:38:41</entry>
+    </entry>
+    <entry type="array" name="import-projectmanager">
+      <entry type="string" name="name">import-projectmanager</entry>
+      <entry type="string" name="application">projectmanager</entry>
+      <entry type="string" name="plugin">projectmanager_import_projects_csv</entry>
+      <entry type="string" name="type">import</entry>
+      <entry type="array" name="allowed_users">
+        <entry type="string" name="0">Admins</entry>
+      </entry>
+      <entry type="array" name="plugin_options">
+        <entry type="string" name="fieldsep">;</entry>
+        <entry type="string" name="charset">user</entry>
+        <entry type="string" name="num_header_lines">1</entry>
+        <entry type="string" name="update_cats">add</entry>
+        <entry type="array" name="csv_fields">
+          <entry type="string" name="0">Projectid</entry>
+          <entry type="string" name="1">Title</entry>
+          <entry type="string" name="2">Projectnumber</entry>
+          <entry type="string" name="3">Description</entry>
+          <entry type="string" name="4">Owner</entry>
+          <entry type="string" name="5">Created</entry>
+          <entry type="string" name="6">Modifier</entry>
+          <entry type="string" name="7">Modified</entry>
+          <entry type="string" name="8">Planned start</entry>
+          <entry type="string" name="9">Planned end</entry>
+          <entry type="string" name="10">Real start</entry>
+          <entry type="string" name="11">Real end</entry>
+          <entry type="string" name="12">Category</entry>
+          <entry type="string" name="13">Access</entry>
+          <entry type="string" name="14">Priority</entry>
+          <entry type="string" name="15">Status</entry>
+          <entry type="string" name="16">Completion</entry>
+          <entry type="string" name="17">Used time</entry>
+          <entry type="string" name="18">Planned time</entry>
+          <entry type="string" name="19">Replanned time</entry>
+          <entry type="string" name="20">Used budget</entry>
+          <entry type="string" name="21">Planned budget</entry>
+          <entry type="string" name="22">Accounting type</entry>
+          <entry type="string" name="23">Roles</entry>
+          <entry type="string" name="24">Element list Total completion shares</entry>
+          <entry type="string" name="25">Element list Total shares</entry>
+          <entry type="string" name="26">Element list Used time</entry>
+          <entry type="string" name="27">Element list Planned time</entry>
+          <entry type="string" name="28">Element list Replanned time</entry>
+          <entry type="string" name="29">Element list Used budget</entry>
+          <entry type="string" name="30">Element list Planned budget</entry>
+          <entry type="string" name="31">Element list Real start</entry>
+          <entry type="string" name="32">Element list Planned start</entry>
+          <entry type="string" name="33">Element list Real end</entry>
+          <entry type="string" name="34">Element list Planned end</entry>
+          <entry type="string" name="35">Element list Completion</entry>
+          <entry type="string" name="36">Custom</entry>
+          <entry type="string" name="37">Coordinator</entry>
+          <entry type="string" name="38">Accounting</entry>
+          <entry type="string" name="39">Assistant</entry>
+          <entry type="string" name="40">Projectmember</entry>
+        </entry>
+        <entry type="array" name="field_mapping">
+          <entry type="string" name="0">pm_id</entry>
+          <entry type="string" name="1">pm_title</entry>
+          <entry type="string" name="2">pm_number</entry>
+          <entry type="string" name="3">pm_description</entry>
+          <entry type="string" name="4">pm_creator</entry>
+          <entry type="string" name="5">pm_created</entry>
+          <entry type="string" name="6">pm_modifier</entry>
+          <entry type="string" name="7">pm_modified</entry>
+          <entry type="string" name="8">pm_planned_start</entry>
+          <entry type="string" name="9">pm_planned_end</entry>
+          <entry type="string" name="10">pm_real_start</entry>
+          <entry type="string" name="11">pm_real_end</entry>
+          <entry type="string" name="12">cat_id</entry>
+          <entry type="string" name="13">pm_access</entry>
+          <entry type="string" name="14">pm_priority</entry>
+          <entry type="string" name="15">pm_status</entry>
+          <entry type="string" name="16">pm_completion</entry>
+          <entry type="string" name="17">pm_used_time</entry>
+          <entry type="string" name="18">pm_planned_time</entry>
+          <entry type="string" name="19">pm_replanned_time</entry>
+          <entry type="string" name="20">pm_used_budget</entry>
+          <entry type="string" name="21">pm_planned_budget</entry>
+          <entry type="string" name="22">pm_accounting_type</entry>
+        </entry>
+        <entry type="string" name="field_conversion"/>
+        <entry type="array" name="conditions">
+          <entry type="array" name="0">
+            <entry type="string" name="string">pm_id</entry>
+            <entry type="string" name="type">exists</entry>
+            <entry type="array" name="true">
+              <entry type="string" name="action">update</entry>
+              <entry type="string" name="stop">1</entry>
+            </entry>
+            <entry type="array" name="false">
+              <entry type="string" name="action">none</entry>
+              <entry type="string" name="stop"></entry>
+            </entry>
+          </entry>
+          <entry type="array" name="1">
+            <entry type="string" name="string">pm_title</entry>
+            <entry type="string" name="type">exists</entry>
+            <entry type="array" name="true">
+              <entry type="string" name="action">update</entry>
+              <entry type="string" name="stop">1</entry>
+            </entry>
+            <entry type="array" name="false">
+              <entry type="string" name="action">insert</entry>
+              <entry type="string" name="stop">1</entry>
+            </entry>
+          </entry>
+        </entry>
+        <entry type="string" name="convert">1</entry>
+      </entry>
+      <entry type="string" name="modified">2012-10-11 14:04:31</entry>
     </entry>
   </entry>
 </entry>

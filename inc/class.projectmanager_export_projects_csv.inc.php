@@ -128,7 +128,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$project = new projectmanager_egw_record_project();
 			$project->set_record($record);
 			if($options['convert']) {
-				importexport_export_csv::convert($project, self::$types, 'projectmanager');
+				importexport_export_csv::convert($project, self::$types, 'projectmanager', $options['convert']);
 				$this->convert($project, $options);
 			} else {
 				// Implode arrays, so they don't say 'Array'
@@ -212,7 +212,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 						break;
 				}
 				if($options['include_duration_unit']) {
-					$record->$duration .= $options[$_duration];
+					$record->$duration = $record->$duration.($options[$duration] ? $options[$duration] : $options['pm_'.$_duration]);
 				}
 			}
 		}
