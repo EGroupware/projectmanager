@@ -97,20 +97,12 @@
               <entry type="string" name="action">update</entry>
               <entry type="string" name="stop">1</entry>
             </entry>
-          </entry>
-          <entry type="array" name="1">
-            <entry type="string" name="string">pm_id</entry>
-            <entry type="string" name="type">exists</entry>
-            <entry type="array" name="true">
-              <entry type="string" name="action">update</entry>
-              <entry type="string" name="stop">1</entry>
-            </entry>
             <entry type="array" name="false">
               <entry type="string" name="action">insert</entry>
               <entry type="string" name="stop">1</entry>
             </entry>
           </entry>
-          <entry type="array" name="2">
+          <entry type="array" name="1">
             <entry type="string" name="string">pm_title</entry>
             <entry type="string" name="type">exists</entry>
             <entry type="array" name="true">
@@ -125,7 +117,7 @@
         </entry>
         <entry type="string" name="convert">1</entry>
       </entry>
-      <entry type="string" name="modified">2012-05-15 17:28:49</entry>
+      <entry type="string" name="modified">2012-10-09 11:00:00</entry>
     </entry>
     <entry type="array" name="export-projectmanager">
       <entry type="string" name="name">export-projectmanager</entry>
