@@ -103,8 +103,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 				self::$types['select-account'][] = $name;
 			}
 		}
-		$export_object = new importexport_export_csv($_stream, (array)$options);
-		$export_object->set_mapping($options['mapping']);
+		$this->export_object = new importexport_export_csv($_stream, (array)$options);
+		$this->export_object->set_mapping($options['mapping']);
 
 		// $options['selection'] is array of identifiers as this plugin doesn't
 		// support other selectors atm.
@@ -136,10 +136,10 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 					if(is_array($value)) $project->$key = implode(',', $value);
 				}
 			}
-			$export_object->export_record($project);
+			$this->export_object->export_record($project);
 			unset($project);
 		}
-		return $export_object;
+		return $this->export_object;
 	}
 
 	/**
@@ -171,6 +171,19 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 
 	public static function get_mimetype() {
 		return 'text/csv';
+	}
+
+	/**
+	 * Suggest a file name for the downloaded file
+	 * No suffix
+	 */
+	public function get_filename()
+	{
+		if(is_object($this->export_object) && $this->export_object->get_num_of_records() == 1)
+		{
+			return $this->export_object->record->get_title();
+		}
+		return 'egw_export_'.lang('Projects') . '-' . date('Y-m-d');
 	}
 
 	/**

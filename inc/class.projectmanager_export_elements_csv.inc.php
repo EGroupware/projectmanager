@@ -25,6 +25,11 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 	);
 
 	/**
+	 * If exporting all elements from a single project, name the file for the project
+	 */
+	protected $project_name = '';
+
+	/**
 	 * Exports records as defined in $_definition
 	 *
 	 * @param egw_record $_definition
@@ -104,6 +109,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			);
 			$ui->get_rows($query,$selection,$readonlys);
 			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
+			$this->project_name = egw_link::title('projectmanager', $options['pm_id']);
 		}
 		if($no_project)
 		{
@@ -111,8 +117,8 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', null);
 		}
 
-		$export_object = new importexport_export_csv($_stream, (array)$options);
-		$export_object->set_mapping($options['mapping']);
+		$this->export_object = new importexport_export_csv($_stream, (array)$options);
+		$this->export_object->set_mapping($options['mapping']);
 
 		// $options['selection'] is array of identifiers as this plugin doesn't
 		// support other selectors atm.
@@ -136,7 +142,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				importexport_export_csv::convert($element, self::$types);
 			}
 			$this->convert($element, $options);
-			$export_object->export_record($element);
+			$this->export_object->export_record($element);
 			unset($element);
 		}
 	}
@@ -170,6 +176,21 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 
 	public static function get_mimetype() {
 		return 'text/csv';
+	}
+
+	/**
+	 * Suggest a file name for the downloaded file
+	 * No suffix
+	 */
+	public function get_filename()
+	{
+		if($this->project_name) return $this->project_name . ' ' . lang('Elements');
+
+		if(is_object($this->export_object) && $this->export_object->get_num_of_records() == 1)
+		{
+			return $this->export_object->record->get_title();
+		}
+		return 'egw_export_'.lang('elements') . '-' . date('Y-m-d');
 	}
 
 	/**

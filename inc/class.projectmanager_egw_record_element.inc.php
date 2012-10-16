@@ -82,7 +82,7 @@ class projectmanager_egw_record_element implements importexport_iface_egw_record
 		if (empty($this->record)) {
 			$this->get_record();
 		}
-		return $this->record['title'];
+		return $this->record['pe_title'];
 	}
 
 	/**
