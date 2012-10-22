@@ -402,7 +402,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			if ($pe['pe_start'] < $this->scale_start) $pe['pe_start'] = $this->scale_start;
 			if ($pe['pe_end'] > $this->scale_end) $pe['pe_end'] = $this->scale_end-1;
 		}
-		$bar = new GanttBar($line,($level ? str_repeat(' ',$level) : '').
+		$bar = new GanttBar($line,($level ? str_repeat('   ',$level) : '').
 			$this->text_encode($title).
 			($level ? '  ' : ''),	// fix for wrong length calculation in JPGraph
 			date('Y-m-d'.($this->modernJPGraph ? ' H:i' : ''),$pe['pe_start']),
