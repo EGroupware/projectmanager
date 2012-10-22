@@ -470,6 +470,17 @@ class projectmanager_hooks
 			'admin'  => False,
 			'forced' => '0',
 		);
+		$settings['gantt_element_indent'] = array(
+			'type'   => 'input',
+			'size'   => 5,
+			'label'  => 'Gantt: Indent children',
+			'name'   => 'gantt_element_indent',
+			'help'   => 'How much to indent children.',
+			'run_lang' => false,
+			'xmlrpc' => True,
+			'admin'  => False,
+			'forced' => '2',
+		);
 		$settings['gantt_pm_elementbars_order'] = array(
 			'type'   => 'select',
 			'label'  => 'Order of sub-project bars in ganttcharts',
