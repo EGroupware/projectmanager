@@ -110,6 +110,7 @@ class projectmanager_admin
 			$content['font_msg'] = lang("Fontfile '%1' not found!!!",$content['GANTT_FONT_FILE']);
 			$content['font_msg_class'] = 'redItalic';
 		}
+		if(!$content['gantt_element_indent']) $content['gantt_element_indent'] = 2;
 		if(!$content['ID_GENERATION_FORMAT']) $content['ID_GENERATION_FORMAT'] = 'P-%Y-%04ix';
 		if(!$content['ID_GENERATION_FORMAT_SUB']) $content['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
 		$content['msg'] = $msg;
