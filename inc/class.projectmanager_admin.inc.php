@@ -72,7 +72,7 @@ class projectmanager_admin
 		{
 			$content['GANTT_FONT_FILE'] = $this->get_font_file($content['GANTT_FONT'],$content['GANTT_STYLE']);
 			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
-				'GANTT_FONT','LANGUAGE_CHARSET','GANTT_STYLE','GANTT_CHAR_ENCODE','GANTT_FONT_FILE',
+				'GANTT_FONT','LANGUAGE_CHARSET','GANTT_STYLE','GANTT_CHAR_ENCODE','GANTT_FONT_FILE','gantt_element_indent',
 				'enable_eroles','ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB') as $name)
 			{
 				$this->config->config_data[$name] = $content[$name];
@@ -110,6 +110,7 @@ class projectmanager_admin
 			$content['font_msg'] = lang("Fontfile '%1' not found!!!",$content['GANTT_FONT_FILE']);
 			$content['font_msg_class'] = 'redItalic';
 		}
+		if(!$content['gantt_element_indent']) $content['gantt_element_indent'] = 2;
 		if(!$content['ID_GENERATION_FORMAT']) $content['ID_GENERATION_FORMAT'] = 'P-%Y-%04ix';
 		if(!$content['ID_GENERATION_FORMAT_SUB']) $content['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
 		$content['msg'] = $msg;

@@ -9,20 +9,20 @@
 			</columns>
 			<rows>
 				<row>
-					<description span="all" class="redItalic" no_lang="1" align="center" id="msg"/>
+					<description align="center" id="msg" no_lang="1" span="all" class="redItalic"/>
 					<description/>
 				</row>
 				<row class="th">
-					<description span="all" value="Times"/>
+					<description value="Times" span="all"/>
 				</row>
 				<row class="row" valign="top">
-					<description options=",,,duration_units" value="Allowed units"/>
-					<listbox rows="2" id="duration_units" statustext="default all and a selectbox to choose" needed="1"/>
+					<description value="Allowed units" for="duration_units"/>
+					<listbox statustext="default all and a selectbox to choose" id="duration_units" needed="1" rows="2"/>
 				</row>
 				<row class="row">
-					<description options=",,,hours_per_workday" value="Hours per workday"/>
+					<description value="Hours per workday" for="hours_per_workday"/>
 					<menulist>
-						<menupopup type="select-number" options=",1,24" id="hours_per_workday" statustext="conversation between days and hours, default 8"/>
+						<menupopup type="select-number" statustext="conversation between days and hours, default 8" id="hours_per_workday" options=",1,24"/>
 					</menulist>
 				</row>
 				<row class="row">
@@ -35,14 +35,14 @@
 					<description span="all"/>
 				</row>
 				<row class="th">
-					<description span="all" value="Accounting"/>
+					<description value="Accounting" span="all"/>
 				</row>
 				<row class="row" valign="top">
-					<description options=",,,accounting_types" value="Allowed accounting types"/>
-					<listbox rows="4" id="accounting_types" statustext="select the accounting types visible for users of projectmanager" no_lang="1" needed="1"/>
+					<description value="Allowed accounting types" for="accounting_types"/>
+					<listbox statustext="select the accounting types visible for users of projectmanager" id="accounting_types" needed="1" no_lang="1" rows="4"/>
 				</row>
 				<row class="th">
-					<description span="all" value="Document merge"/>
+					<description value="Document merge" span="all"/>
 				</row>
 				<row class="row">
 					<description value="Enable element roles"/>
@@ -51,38 +51,44 @@
 					</menulist>
 				</row>
 				<row>
-					<description span="all" value="Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go. "/>
+					<description value="Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go. " span="all"/>
 				</row>
 				<row class="th">
-					<description span="all" value="Ganttchart"/>
+					<description value="Ganttchart" span="all"/>
 				</row>
 				<row disabled="!@jpg_msg">
-					<html id="jpg_msg" span="all" class="redItalic" no_lang="1"/>
+					<html id="jpg_msg" no_lang="1" span="all" class="redItalic"/>
 					<description/>
 				</row>
 				<row class="row" disabled="@jpg_msg">
 					<description value="Font"/>
 					<hbox options="0,0">
 						<menulist>
-							<menupopup id="GANTT_FONT" statustext="Font to use in the Ganttchart, only the Vera fonts are included in the ProjectManager." no_lang="1"/>
+							<menupopup statustext="Font to use in the Ganttchart, only the Vera fonts are included in the ProjectManager." id="GANTT_FONT" no_lang="1"/>
 						</menulist>
-						<description id="font_msg" class="leftPad5 $cont[font_msg_class]" no_lang="1" value=" "/>
+						<description value=" " id="font_msg" no_lang="1" class="leftPad5 $cont[font_msg_class]"/>
 					</hbox>
 				</row>
 				<row class="row" disabled="@jpg_msg">
-					<description options=",,,LANGUAGE_CHARSET" value="Font charset" statustext="Charset of the above selected font"/>
-					<textbox id="LANGUAGE_CHARSET" statustext="The charset depends on the font you want to use."/>
+					<description statustext="Charset of the above selected font" value="Font charset" for="LANGUAGE_CHARSET"/>
+					<textbox statustext="The charset depends on the font you want to use." id="LANGUAGE_CHARSET"/>
 				</row>
 				<row class="row" disabled="@jpg_msg">
-					<description options=",,,GANTT_STYLE" value="Font style"/>
+					<description value="Font style" for="GANTT_STYLE"/>
 					<menulist>
-						<menupopup id="GANTT_STYLE" statustext="Style used for everything but elements. Some fonts have only normal style." no_lang="1"/>
+						<menupopup statustext="Style used for everything but elements. Some fonts have only normal style." id="GANTT_STYLE" no_lang="1"/>
+					</menulist>
+				</row>
+				<row>
+					<description value="Child indenting"/>
+					<menulist>
+						<menupopup type="select-number" id="gantt_element_indent" options=",0,10"/>
 					</menulist>
 				</row>
 				<row disabled="@jpg_msg">
-					<description options=",,,GANTT_CHAR_ENCODE" value="Encode non-ascii"/>
+					<description value="Encode non-ascii" for="GANTT_CHAR_ENCODE"/>
 					<menulist>
-						<menupopup id="GANTT_CHAR_ENCODE" statustext="If you see entities (eg. &amp;#123;) in the Ganttchart, switch this off."/>
+						<menupopup statustext="If you see entities (eg. &amp;#123;) in the Ganttchart, switch this off." id="GANTT_CHAR_ENCODE"/>
 					</menulist>
 				</row>
 				<row>
@@ -106,13 +112,13 @@
 					<textbox id="ID_GENERATION_FORMAT_SUB"/>
 				</row>
 				<row>
-					<description span="all" value="You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'."/>
+					<description value="You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'." span="all"/>
 				</row>
 				<row>
 					<hbox span="all">
-						<button label="Save" id="save" statustext="Save the changes made"/>
-						<button id="apply" label="Apply" statustext="apply the changes"/>
-						<button id="cancel" label="Cancel" statustext="Exit without saving"/>
+						<button statustext="Save the changes made" label="Save" id="save"/>
+						<button statustext="apply the changes" label="Apply" id="apply"/>
+						<button statustext="Exit without saving" label="Cancel" id="cancel"/>
 					</hbox>
 				</row>
 			</rows>
