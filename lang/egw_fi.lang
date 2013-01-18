@@ -38,8 +38,9 @@ bookable	projectmanager	fi	Varattavissa
 budget	projectmanager	fi	Budjetti
 budget (no pricelist)	projectmanager	fi	Budjetti (ei hinnastoa)
 budget and pricelist	projectmanager	fi	Budjetti ja hinnasto
+by	projectmanager	fi	Henkilö:
 calculate budget by quantity (eg. time) and price	projectmanager	fi	Laske budjetti määrän (esim. tuntien) ja hinnan mukaan
-charset of file	projectmanager	fi	Merkistökoodaus tiedostoon
+change category	projectmanager	fi	Muuta kategoriaa
 charset of the above selected font	projectmanager	fi	Merkistökoodaus yllä valitulla fontilla
 check all	projectmanager	fi	Tarkista kaikki
 close the window, discard the changes made	projectmanager	fi	Sulje ikkuna ja hylkää tehdyt muutokset
@@ -60,6 +61,7 @@ customer title	projectmanager	fi	Asiakasnimike
 datasource	projectmanager	fi	Tietolähde
 datasources too	projectmanager	fi	Myös tietolähteet (Datasource)
 dates	projectmanager	fi	Päivät
+days	projectmanager	fi	päivää
 default all and a selectbox to choose	projectmanager	fi	Oletuksena kaikki ja pudotusvalikko
 delete all checked projects	projectmanager	fi	Poista kaikki valitut projektit
 delete this milestone	projectmanager	fi	Poista tämä tavoite
@@ -67,10 +69,12 @@ delete this price	projectmanager	fi	Poista tämä hinta
 delete this project	projectmanager	fi	Poista tämä projekti
 delete this project-element, does not remove the linked entry	projectmanager	fi	Poista tämä projekti-elementti, EI poista linkitettyä sisältöä
 delete this role	projectmanager	fi	Poista tämä rooli
+deleted	projectmanager	fi	Poistettu
 depth of display	projectmanager	fi	Näytön syvyys
 details of cumulated	projectmanager	fi	Kumulatiiviset yksityiskohdat
 details of subelements	projectmanager	fi	Alielementtien lisätiedot
 do not use that entry as project-element	projectmanager	fi	Älä käytä tätä merkintää projektin elementtinä
+document '%1' does not exist or is not readable for you!	projectmanager	fi	Tiedostoa '%1' ei ole olemassa tai sinulla ei ole lukuoikeutta!
 done (100%)	projectmanager	fi	Valmis (100%)
 edit access, incl. editing budget and elements	projectmanager	fi	Muokkausoikeus, sisältää budjetin ja elementtien muokkauksen
 edit budget	projectmanager	fi	Muokkaa budjettia
@@ -104,8 +108,13 @@ error: saving the price (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa hintaa
 error: saving the project (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa projektia (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa projektin elementtiä (%1) !!!
 everything recursive	projectmanager	fi	Kaikki rekursiivisesti
+example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	fi	Esimerkki {{IF n_prefix~Mr~Hello Mr.~Hello Ms.}} --> etsii "n_prefix" kentästä  'Mr', jos olemassa kirjoita Hello Mr., muutoin kirjoita Hello Ms.
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	fi	Esimerkki {{LETTERPREFIXCUSTOM n_prefix title n_family}} ---> Mr Dr. James Miller
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	fi	Esimerkki {{NELF role}} ---> jos kenttä 'role' = 'rooli/asema' ei ole tyhjä, se kirjoitetaan seuraavalle riville
+example {{nelfnv role}} - if field role is not empty, set a lf without any value of the field	projectmanager	fi	Esimerkki {{NELFNV role}} ---> jos kenttä 'role' = 'rooli/asema' ei ole tyhjä, aseta LF ilman arvoa
 existing data will be overwrited if checked	projectmanager	fi	Olemassa olevan tiedon päälle kirjoitetaan, jos valittuna
 existing links	projectmanager	fi	Olemassa olevat linkit
+exists	projectmanager	fi	Olemassaoleva
 exit without saving	projectmanager	fi	Poistu ilman tallentamista
 fieldseparator	projectmanager	fi	Kenttäerotin
 font	projectmanager	fi	Fontti
@@ -113,12 +122,12 @@ font charset	projectmanager	fi	Fontin merkistökoodaus
 font style	projectmanager	fi	Fontin tyyli
 font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	fi	GanttChartissa käytettävät fontit, vain Vera fontti sisältyy Projektinhallintaan.
 fontfile '%1' not found!!!	projectmanager	fi	Fonttitiedostoa '%1' ei löydy!!!
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	fi	Käytä tätä Tagia sarjakirjeille (serial letter). Lisää toistettava sisältö kahden Tagin väliin
 free descriptiv text	projectmanager	fi	Vapaa kuvauskenttä
 from %1 to %2	projectmanager	fi	%1:lta %2:n
 full access	projectmanager	fi	Täydet oikeudet
 ganttchart	projectmanager	fi	GanttChart
 ganttchart parameter	projectmanager	fi	GanttChart parametri
-general	projectmanager	fi	Yleinen
 general availibility	projectmanager	fi	Yleinen käytettävissä olo
 general pricelist	projectmanager	fi	Yleinen hinnasto
 global categories	projectmanager	fi	Yleiset kategoriat
@@ -133,7 +142,7 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	fi	Jos merkkejä kuten {) näkyy GanttChartissa, sulje tämä.
 ignore that entry	projectmanager	fi	Jätä merkintä huomiotta
 ignored	projectmanager	fi	Hylätty
-import	projectmanager	fi	Tuonti
+insert	projectmanager	fi	Syötä
 last modified	projectmanager	fi	Viimeksi muokattu
 leave it empty if you dont need a different customer title	projectmanager	fi	Jätä tyhjäksi, jos tarvitset erilaisia asiakasnimikkeitä
 leave it empty to have one generated	projectmanager	fi	Jätä tyhjäksi luodaksesi uuden
@@ -149,6 +158,8 @@ milestones	projectmanager	fi	Tavoitteet
 milestones before this element has to be finished	projectmanager	fi	Tavoitteet pitää valmistua ennen tätä elementtiä
 modified	projectmanager	fi	Muokattu
 modified by	projectmanager	fi	Muokannut
+modify status	projectmanager	fi	Muokkaa tilaa
+name of current user, all other contact fields are valid too	projectmanager	fi	Nykyisen käyttäjän nimi, myös muut yhteystietokentät ovat voimassa.
 necessary for project-elements doing that not automatic	projectmanager	fi	Välttämätön, jotta projektin elementtejä ei tehdä automaattisesti
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fi	Välttämätöntä PHP laajennusta %1 ei ole ladattu ja sitä ei voitu ladata !!!
 new	projectmanager	fi	Uusi
@@ -168,6 +179,7 @@ percentage the member is availible for projects	projectmanager	fi	Prosenttia jä
 percentage the member is availible for this project	projectmanager	fi	Prosenttia jäsenistä on käytettävissä tähän projektiin
 permission denied !!!	projectmanager	fi	Pääsy estetty !!!
 planned	projectmanager	fi	Suunniteltu
+planned time	projectmanager	fi	Suunniteltu aikataulu
 planned times	projectmanager	fi	Suunnittelu aika
 please download a recent version from %1 and install it in %2.	projectmanager	fi	Lataa viimeisin versio %1 ja asenna se %2
 price	projectmanager	fi	Hinta
@@ -190,12 +202,15 @@ projectlist	projectmanager	fi	Projektilista
 projectmanager	common	fi	Projektinhallinta
 projectmanager-fieldname	projectmanager	fi	Projektinhallinnan kenttänimi
 projectmember	projectmanager	fi	Projektin jäsen
+projects	projectmanager	fi	Projektit
 quantity	projectmanager	fi	Määrä
 re-planned	projectmanager	fi	Uudelleen suunniteltu
+re-planned time	projectmanager	fi	Uudelleen suunniteltu aikataulu
 read access, incl. budget and adding elements	projectmanager	fi	Lukuoikeus, sisältää budjetin ja elementtien lisäykset
 read access, no budget	projectmanager	fi	Lukuoikeus, ei budjettia
 real end	projectmanager	fi	Oikeasti päättynyt
 real start	projectmanager	fi	Oikeasti alkanut
+remark	projectmanager	fi	Merkitse uudelleen
 resources	projectmanager	fi	Resurssit
 role	projectmanager	fi	Rooli
 role deleted	projectmanager	fi	Rooli poistettu
@@ -220,13 +235,6 @@ show the project selection as	projectmanager	fi	Näytä projektin valinta
 site configuration saved	projectmanager	fi	Palvelun asetukset tallennettu
 start after	projectmanager	fi	Aloita jälkeen
 start working on %1	projectmanager	fi	Aloita työskentely %1na
-start working on keskiviikko	projectmanager	fi	Aloita työskentely keskiviikkona
-start working on lauantai	projectmanager	fi	Aloita työskentely lauantaina
-start working on maanantai	projectmanager	fi	Aloita työskentely maanantaina
-start working on perjantai	projectmanager	fi	Aloita työskentely perjantaina
-start working on sunnuntai	projectmanager	fi	Aloita työskentely sunnuntaina
-start working on tiistai	projectmanager	fi	Aloita työskentely tiistaina
-start working on torstai	projectmanager	fi	Aloita työskentely torstaina
 start, end, category, ...	projectmanager	fi	Aloitus, lopetus, kategoria ...
 start- & enddate	projectmanager	fi	Aloitus- ja päätöspäivä
 startdate	projectmanager	fi	Aloituspäivä
@@ -236,19 +244,23 @@ style used for everything but elements. some fonts have only normal style.	proje
 subelements	projectmanager	fi	Alielementit
 subprojects	projectmanager	fi	Aliprojektit
 synchronise all	projectmanager	fi	Synkronisoi kaikki
+tag to mark positions for address labels	projectmanager	fi	Tägi osoitetarrojen sijainnille
 template	projectmanager	fi	Mallipohja
 template including elment-tree saved as new project	projectmanager	fi	Mallipohja sisältää elementtirungon tallennuksen uutena projektina
 test import (show importable records <u>only</u> in browser)	projectmanager	fi	TestiTuonti (näyttää tuotavat tietueet <u>vain</u> selaimessa)
 the charset depends on the font you want to use.	projectmanager	fi	Merkistökoodaus riippuu käyttämästäsi fontista.
 time	projectmanager	fi	Aika
 times	projectmanager	fi	Ajat
+timezone	projectmanager	fi	Aikavyöhyke
 title must not be empty	projectmanager	fi	Otsake ei saa olla tyhjä
 to many might exceed your execution-time-limit	projectmanager	fi	Liian moni saattaa ylittää suoritusajan ylärajan.
-translation	projectmanager	fi	Käännös
 tree with %1	projectmanager	fi	Runko %1
 unit	projectmanager	fi	Yksikkö
 unitprice	projectmanager	fi	Yksikköhinta
+usage	projectmanager	fi	Käyttö
+use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	fi	Käytä tägiä esim. osoitetarroihin. Lisää haluamasi kentät kahden tägin väliin.
 used	projectmanager	fi	Käytetty
+used time	projectmanager	fi	Käytetty aika
 valid since	projectmanager	fi	Voimassa tähän asti
 view ganttchart of this project	projectmanager	fi	Näytä projektin GanttChart
 view milestone	projectmanager	fi	Näytä tavoite
@@ -261,14 +273,6 @@ view this price	projectmanager	fi	Näytä tämä hinta
 view this project	projectmanager	fi	Näytä tämä projekti
 view this project-element	projectmanager	fi	Näytä tämä projekti-elementti
 working duration on %1	projectmanager	fi	Työaika %1
-working duration on keskiviikko	projectmanager	fi	Työajan pituus keskiviikkona
-working duration on lauantai	projectmanager	fi	Työajan pituus lauantaina
-working duration on maanantai	projectmanager	fi	Työajan pituus maanantaina
-working duration on perjantai	projectmanager	fi	Työajan pituus perjantaina
-working duration on sunnuntai	projectmanager	fi	Työajan pituus sunnuntaina
-working duration on tiistai	projectmanager	fi	Työajan pituus tiistaina
-working duration on torstai	projectmanager	fi	Työajan pituus torstaina
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	fi	Käytät vanhaa versiota JPGrah:sta, joka tulee EGroupwaren mukana. Siinä on rajoitetusti toimintoja.
 you can leave the date of the first price empty	projectmanager	fi	Voit jättää ensimmäisen hinnan tiedon tyhjäksi
 you need to select a project first	projectmanager	fi	Valitse projekti ensin
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	fi	Tietokantasi EI ole ajantasalla (%1 vs. %2), suorita %3asennus%4 päivittääksesi tietokantasi.

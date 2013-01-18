@@ -40,7 +40,6 @@ budget (no pricelist)	projectmanager	nl	Budget (geen prijslijst)
 budget and pricelist	projectmanager	nl	Budget en prijslijst
 by	projectmanager	nl	door
 calculate budget by quantity (eg. time) and price	projectmanager	nl	Bereken budget per hoeveelheid (bijvoorbeeld tijd) en tarief
-charset of file	projectmanager	nl	Karakterset van bestand
 charset of the above selected font	projectmanager	nl	Karakterset van het hierboven gekozen lettertype
 check all	projectmanager	nl	Alles markeren
 close the window, discard the changes made	projectmanager	nl	Sluit het venster, negeer de gemaakte wijzigingen
@@ -54,12 +53,14 @@ created	projectmanager	nl	aangemaakt
 created a ganttchart from the checked projects	projectmanager	nl	Maak een ganttchart van de gemarkeerde projecten
 csv-fieldname	projectmanager	nl	CSV-Veldnaam
 csv-filename	projectmanager	nl	CSV-Bestandsnaam
+csv-import	common	nl	CSV-Import
 cumulated elements too	projectmanager	nl	Ook gecumuleerde elementen
 custom fields	projectmanager	nl	Aangepaste velden
 customer title	projectmanager	nl	Klant titel
 datasource	projectmanager	nl	Gegevensbron
 datasources too	projectmanager	nl	gegevensbronnen ook
 dates	projectmanager	nl	Data
+days	projectmanager	nl	dagen
 default all and a selectbox to choose	projectmanager	nl	standaard alles en een keuzeveld om te kiezen
 delete all checked projects	projectmanager	nl	Alle gemarkeerde projecten verwijderen
 delete this milestone	projectmanager	nl	Deze mijlpaal verwijderen
@@ -67,10 +68,12 @@ delete this price	projectmanager	nl	Dit tarief verwijderen
 delete this project	projectmanager	nl	Dit project verwijderen
 delete this project-element, does not remove the linked entry	projectmanager	nl	Dit projectelement verwijderen, verwijdert NIET de gelinkte entry
 delete this role	projectmanager	nl	Deze rol verwijderen
+deleted	projectmanager	nl	verwijderd
 depth of display	projectmanager	nl	Weergavediepte
 details of cumulated	projectmanager	nl	Details van gecumuleerd
 details of subelements	projectmanager	nl	Details van subelementen
 do not use that entry as project-element	projectmanager	nl	gebruik die entry niet als een projectelement
+document '%1' does not exist or is not readable for you!	projectmanager	nl	Document '%1' bestaat niet of is niet toegankelijk voor jou!
 done (100%)	projectmanager	nl	Voltooid (100%)
 edit access, incl. editing budget and elements	projectmanager	nl	bewerk toegang, incl. budget en elementen bewerken
 edit budget	projectmanager	nl	Budget bewerken
@@ -111,14 +114,15 @@ font charset	projectmanager	nl	Lettertype karaketerset
 font style	projectmanager	nl	Lettertype stijl
 font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	nl	Lettertype dat in de Ganttchart gebruikt wordt, alleen de Vera lettertypen zijn aanwezig in de ProjectManager.
 fontfile '%1' not found!!!	projectmanager	nl	Lettertypebestand '%1' niet gevonden!!!
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	nl	Gebruik deze tag voor serie brieven. Plaats de inhoud die herhaald moet worden tussen de twee tags.
 free descriptiv text	projectmanager	nl	vrije beschrijvende tekst
 from %1 to %2	projectmanager	nl	van %1 naar %2
 full access	projectmanager	nl	volledige toegang
 ganttchart	projectmanager	nl	Ganttchart
 ganttchart parameter	projectmanager	nl	Ganttchart parameter
-general	projectmanager	nl	Algemeen
 general availibility	projectmanager	nl	Algemene beschikbaarheid
 general pricelist	projectmanager	nl	Algemene prijslijst
+global categories	projectmanager	nl	Algemene categoriën
 h	projectmanager	nl	h
 health	projectmanager	nl	Gezondheid
 hours	projectmanager	nl	uren
@@ -127,11 +131,9 @@ how long do you work on the given day.	projectmanager	nl	Hoe lang werkt u op de 
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	nl	Hoe moet de project keuze in het menu worden weergegeven: een boomstructuur geeft een beter overzicht, een keuzelijst werkt sneller.
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	nl	Indien aangevinkt worden de gegevensbronnen van de elementen (bijv. InfoLog records) ook verwijderd.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	nl	Indien aangevinkt worden de gegevensbronnen van de elementen (bijv. InfoLog records) ook van status veranderden.
-if checked, existing data will be overwrited)	projectmanager	nl	Indien aangevinkt, worden bestaande gegevens overschreven
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	nl	Indien u tekens (bijv. {) in de Ganttchart ziet, dit uitschakelen.
 ignore that entry	projectmanager	nl	negeer die entry
 ignored	projectmanager	nl	genegeerd
-import	projectmanager	nl	Importeren
 last modified	projectmanager	nl	laatst gewijzigd
 leave it empty if you dont need a different customer title	projectmanager	nl	laat dit leeg indien je geen afwijkende klant titel nodig hebt
 leave it empty to have one generated	projectmanager	nl	leeglaten om er een aangemaakt te laten worden
@@ -147,6 +149,7 @@ milestones	projectmanager	nl	Mijlpalen
 milestones before this element has to be finished	projectmanager	nl	Mijlpalen voor dit element moeten voltooid zijn
 modified	projectmanager	nl	Gewijzigd
 modified by	projectmanager	nl	gewijzigd door
+name of current user, all other contact fields are valid too	projectmanager	nl	Naam van de huidige gebruiker, alle andere contactvelden zijn ook geldig
 necessary for project-elements doing that not automatic	projectmanager	nl	noodzakelijk voor projectelementen dat niet automatisch te doen
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	nl	Noodzakelijke PHP extensies %1 zijn niet geladen en kunnen niet geladen worden !!!
 new	projectmanager	nl	nieuw
@@ -165,6 +168,7 @@ percentage the member is availible for projects	projectmanager	nl	Het percentage
 percentage the member is availible for this project	projectmanager	nl	Het percentage dat de deelnemer beschikbaar is voor dit project
 permission denied !!!	projectmanager	nl	Toestemming geweigerd !!!
 planned	projectmanager	nl	gepland
+planned time	projectmanager	nl	geplande tijd
 planned times	projectmanager	nl	Geplande tijden
 please download a recent version from %1 and install it in %2.	projectmanager	nl	Download a.u.b. een recente versie van %1 en installeer het in %2.
 price	projectmanager	nl	Tarief
@@ -184,15 +188,17 @@ project-element saved	projectmanager	nl	Projectelement opgeslagen
 project-elements	projectmanager	nl	Projectelementen
 projectlist	projectmanager	nl	Projectlijst
 projectmanager	common	nl	Projectmanager
-projectmanager - import csv-file	projectmanager	nl	Projectmanager - Importeer CSV-bestand
 projectmanager-fieldname	projectmanager	nl	Projectmanager - Veldnaam
 projectmember	projectmanager	nl	Projectdeelnemer
+projects	projectmanager	nl	Projecten
 quantity	projectmanager	nl	Hoeveelheid
 re-planned	projectmanager	nl	hergepland
+re-planned time	projectmanager	nl	Hergeplande tijd
 read access, incl. budget and adding elements	projectmanager	nl	lees rechten, incl. budget en elementen toevoegen
 read access, no budget	projectmanager	nl	lees rechten, geen budget
 real end	projectmanager	nl	Werkelijke einde
 real start	projectmanager	nl	Werkelijke begin
+remark	projectmanager	nl	aandachtspunt
 resources	projectmanager	nl	Bronnen
 role	projectmanager	nl	Rol
 role deleted	projectmanager	nl	Rol verwijderd
@@ -221,7 +227,6 @@ start, end, category, ...	projectmanager	nl	Start, Eind, Categorie, ...
 start- & enddate	projectmanager	nl	Start- & Einddatum
 startdate	projectmanager	nl	Startdatum
 startrecord	projectmanager	nl	Startrecord
-state	projectmanager	nl	Staat
 status filter	projectmanager	nl	Status filter
 style used for everything but elements. some fonts have only normal style.	projectmanager	nl	Stijl die gebruikt wordt voor alles behalve elementen. Sommige lettertypen hebben uitsluitend de stijl normaal
 subelements	projectmanager	nl	Subelementen
@@ -233,13 +238,14 @@ test import (show importable records <u>only</u> in browser)	projectmanager	nl	T
 the charset depends on the font you want to use.	projectmanager	nl	De karakterset hangt af van het lettertype dat u wilt gebruiken.
 time	projectmanager	nl	Tijd
 times	projectmanager	nl	Tijden
+timezone	projectmanager	nl	Tijdszone
 title must not be empty	projectmanager	nl	Titel mag niet leeg zijn
 to many might exceed your execution-time-limit	projectmanager	nl	te veel kan leiden tot overschrijding van de executie-tijd-limiet
-translation	projectmanager	nl	Vertaling
 tree with %1	projectmanager	nl	Boom met %1
 unit	projectmanager	nl	Eenheid
 unitprice	projectmanager	nl	Eenheidstarief
 used	projectmanager	nl	gebruikt
+used time	projectmanager	nl	gebruikte tijd
 valid since	projectmanager	nl	Geldig sinds
 view ganttchart of this project	projectmanager	nl	Ganttchart van dit project weergeven
 view milestone	projectmanager	nl	Mijpaal weergeven
@@ -252,7 +258,6 @@ view this price	projectmanager	nl	Dit tarief weergeven
 view this project	projectmanager	nl	Dit project weergeven
 view this project-element	projectmanager	nl	Dit projectelement weergeven
 working duration on %1	projectmanager	nl	Werktijd aan %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	nl	U gebruikt de oude versie van JPGraph die gebundeld is met eGroupWare. Het heeft slechts gelimiteerde functionaliteit.
 you can leave the date of the first price empty	projectmanager	nl	u kunt de datum van het eerste tarief leeg laten
 you need to select a project first	projectmanager	nl	U moet eerst een project selecteren
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	nl	Uw database is NIET actueel (%1 vs. %2). Voer a.u.b. %3setup%4 uit om uw database te actualiseren.

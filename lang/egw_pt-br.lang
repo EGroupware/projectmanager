@@ -39,7 +39,6 @@ budget (no pricelist)	projectmanager	pt-br	Orçamento (sem lista de preços)
 budget and pricelist	projectmanager	pt-br	Orçamento e lista de preços
 by	projectmanager	pt-br	por
 calculate budget by quantity (eg. time) and price	projectmanager	pt-br	Calcular orçamento por quantidade (ex. tempo) e preço
-charset of file	projectmanager	pt-br	Codificação do arquivo
 charset of the above selected font	projectmanager	pt-br	Codificação de caracteres para a fonte acima selecionada
 check all	projectmanager	pt-br	Marcar todos
 close the window, discard the changes made	projectmanager	pt-br	Feche a janela, descarte as modificações feitas
@@ -53,12 +52,14 @@ created	projectmanager	pt-br	criado
 created a ganttchart from the checked projects	projectmanager	pt-br	Criado um gráfico de Gantt a partir dos projetos marcados
 csv-fieldname	projectmanager	pt-br	CSV-Nome do Campo
 csv-filename	projectmanager	pt-br	CSV-Nome do Arquivo
+csv-import	common	pt-br	CSV-Importar
 cumulated elements too	projectmanager	pt-br	Elementos acumulados também
 custom fields	projectmanager	pt-br	Campos customizados
 customer title	projectmanager	pt-br	Tratamento do Cliente
 datasource	projectmanager	pt-br	Origem de dados
 datasources too	projectmanager	pt-br	Origens de dados também
 dates	projectmanager	pt-br	Datas
+days	projectmanager	pt-br	dias
 default all and a selectbox to choose	projectmanager	pt-br	padrão todos e uma caixa de seleção para escolher
 delete all checked projects	projectmanager	pt-br	Remover todos os projetos marcados
 delete this milestone	projectmanager	pt-br	Remover este marco
@@ -66,10 +67,12 @@ delete this price	projectmanager	pt-br	Remover este preço
 delete this project	projectmanager	pt-br	Remover este projeto
 delete this project-element, does not remove the linked entry	projectmanager	pt-br	Remover este elemento de projeto, NÃO remova a entrada relacionada
 delete this role	projectmanager	pt-br	Remover este perfil
+deleted	projectmanager	pt-br	removido
 depth of display	projectmanager	pt-br	Profundidade da visualização
 details of cumulated	projectmanager	pt-br	Detalhes dos acumulados
 details of subelements	projectmanager	pt-br	Detalhes dos subelementos
 do not use that entry as project-element	projectmanager	pt-br	não use esta entrada como elemento de projeto
+document '%1' does not exist or is not readable for you!	projectmanager	pt-br	Documento '%1' não existe ou você não pode ser lido por você!
 done (100%)	projectmanager	pt-br	Feito (100%)
 edit access, incl. editing budget and elements	projectmanager	pt-br	editar acesso, incl. edição de orçamento e elementos
 edit budget	projectmanager	pt-br	Editar orçamento
@@ -110,14 +113,15 @@ font charset	projectmanager	pt-br	Codificação de caracteres da fonte
 font style	projectmanager	pt-br	Estilo da fonte
 font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	pt-br	Fonte a ser usada no gráfico de Gantt. Somente fontes Vera são incluídas no Gerenciador de Projetos.
 fontfile '%1' not found!!!	projectmanager	pt-br	Arquivo de fonte '%1' não encontrado !!!
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	pt-br	Para cartas em série use esta tag. Coloque o conteúdo, que você quer que repita, entre duas Tags.
 free descriptiv text	projectmanager	pt-br	texto descritivo livre
 from %1 to %2	projectmanager	pt-br	de %1 a %2
 full access	projectmanager	pt-br	acesso completo
 ganttchart	projectmanager	pt-br	Gráfico de Gantt
 ganttchart parameter	projectmanager	pt-br	parâmetro do gráfico de Gantt
-general	projectmanager	pt-br	Geral
 general availibility	projectmanager	pt-br	Disponibilidade geral
 general pricelist	projectmanager	pt-br	Lista de preços geral
+global categories	projectmanager	pt-br	Categorias Globais
 h	projectmanager	pt-br	h
 health	projectmanager	pt-br	Saúde
 hours	projectmanager	pt-br	horas
@@ -126,11 +130,9 @@ how long do you work on the given day.	projectmanager	pt-br	Quanto tempo você t
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a seleção de projeto deverá ser exibida no menu: Uma árvore dá uma melhor visão; uma caixa de seleção pode ter uma melhor performance.
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) são removidas também.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) terão seus status alterados também.
-if checked, existing data will be overwrited)	projectmanager	pt-br	(Se marcado, dados existentes serão substituídos)
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se você ver entidades (exemplo: {) no gráfico de Gantt, desabilite-o.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
-import	projectmanager	pt-br	Importar
 last modified	projectmanager	pt-br	última modificação
 leave it empty if you dont need a different customer title	projectmanager	pt-br	deixe em branco se você não precisar de um tratamento diferente para o cliente
 leave it empty to have one generated	projectmanager	pt-br	deixe em branco para gerar automaticamente
@@ -146,6 +148,7 @@ milestones	projectmanager	pt-br	Marcos
 milestones before this element has to be finished	projectmanager	pt-br	Marcos antes deste elemento devem ser finalizados
 modified	projectmanager	pt-br	Modificado
 modified by	projectmanager	pt-br	modificado por
+name of current user, all other contact fields are valid too	projectmanager	pt-br	Nome do usuário atual, todos outros campos são válidos também
 necessary for project-elements doing that not automatic	projectmanager	pt-br	necessário para elementos de projeto que não o fazem automaticamente
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pt-br	Necessária a extensão PHP %1: não carregada e não pode ser carregada !!!
 new	projectmanager	pt-br	novo
@@ -164,6 +167,7 @@ percentage the member is availible for projects	projectmanager	pt-br	Percentual 
 percentage the member is availible for this project	projectmanager	pt-br	Percentual de disponibilidade do membro para este projeto
 permission denied !!!	projectmanager	pt-br	Permissão negada !!!
 planned	projectmanager	pt-br	planejado
+planned time	projectmanager	pt-br	Horas planejadas
 planned times	projectmanager	pt-br	Horas planejadas
 please download a recent version from %1 and install it in %2.	projectmanager	pt-br	Por favor, faça o download de uma versão recente de %1 e instale-a em %2.
 price	projectmanager	pt-br	Preço
@@ -183,14 +187,15 @@ project-element saved	projectmanager	pt-br	Elemento de projeto salvo
 project-elements	projectmanager	pt-br	Elementos de projeto
 projectlist	projectmanager	pt-br	Lista de projeto
 projectmanager	common	pt-br	Gerenciador de Projetos
-projectmanager - import csv-file	projectmanager	pt-br	Gerenciador de Projetos - Importar arquivo CSV
 projectmanager-fieldname	projectmanager	pt-br	Gerenciador de Projetos - Nome do campo
 projectmember	projectmanager	pt-br	Membro do Projeto
+projects	projectmanager	pt-br	Projetos
 quantity	projectmanager	pt-br	Quantidade
 read access, incl. budget and adding elements	projectmanager	pt-br	acesso de leitura, incl. orçamento e adição de elementos
 read access, no budget	projectmanager	pt-br	acesso de leitura, sem orçamento
 real end	projectmanager	pt-br	Fim real
 real start	projectmanager	pt-br	Início real
+remark	projectmanager	pt-br	Destaque
 resources	projectmanager	pt-br	Recursos
 role	projectmanager	pt-br	Perfil
 role deleted	projectmanager	pt-br	Perfil removido
@@ -219,7 +224,6 @@ start, end, category, ...	projectmanager	pt-br	Início, Fim, Categoria, ...
 start- & enddate	projectmanager	pt-br	Data Inicial- & Final
 startdate	projectmanager	pt-br	Data inicial
 startrecord	projectmanager	pt-br	Registro inicial
-state	projectmanager	pt-br	Estado
 status filter	projectmanager	pt-br	Filtro de estado
 style used for everything but elements. some fonts have only normal style.	projectmanager	pt-br	Estilo usado por tudo, exceto elementos. Algumas fontes têm somente estilo normal.
 subelements	projectmanager	pt-br	Subelementos
@@ -231,13 +235,14 @@ test import (show importable records <u>only</u> in browser)	projectmanager	pt-b
 the charset depends on the font you want to use.	projectmanager	pt-br	A codificação de caracteres depende da fonte que você irá usar.
 time	projectmanager	pt-br	Hora
 times	projectmanager	pt-br	Horas
+timezone	projectmanager	pt-br	Zona de horário
 title must not be empty	projectmanager	pt-br	Tratamento não pode ser vazio
 to many might exceed your execution-time-limit	projectmanager	pt-br	muitos poderão exceder seu tempo limite de execução
-translation	projectmanager	pt-br	Tradução
 tree with %1	projectmanager	pt-br	Árvore com %1
 unit	projectmanager	pt-br	Unidade
 unitprice	projectmanager	pt-br	Preço da unidade
 used	projectmanager	pt-br	usado
+used time	projectmanager	pt-br	Horas utilizadas
 valid since	projectmanager	pt-br	Válido desde
 view ganttchart of this project	projectmanager	pt-br	Visualizar o gráfico de Gantt deste projeto
 view milestone	projectmanager	pt-br	Visualizar marco
@@ -250,7 +255,6 @@ view this price	projectmanager	pt-br	Visualizar este preço
 view this project	projectmanager	pt-br	Visualizar este projeto
 view this project-element	projectmanager	pt-br	Visualizar este elemento de projeto
 working duration on %1	projectmanager	pt-br	Duração do trabalho em %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	pt-br	Você está usando a versão antiga do JPGraph, que veio com o eGroupWare. Ela possui funcionalidades limitadas.
 you can leave the date of the first price empty	projectmanager	pt-br	você pode deixar a data do primeiro preço vazia
 you need to select a project first	projectmanager	pt-br	Você deve selecionar um projeto primeiro
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	pt-br	O seu banco de dados NÃO está atualizado (%1 vs. %2), por favor execute o %3setup%4 para atualizá-lo.

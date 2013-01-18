@@ -47,7 +47,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	de	Budget nach 
 category in %1 project-element(s) updated.	projectmanager	de	Kategorie in %1 Projektelement(en) geändert.
 category set	projectmanager	de	Kategorie geändert
 change category	projectmanager	de	Kategorie ändern
-charset of file	projectmanager	de	Zeichensatz der Datei
 charset of the above selected font	projectmanager	de	Zeichensatz des oben ausgewählten Font
 check all	projectmanager	de	Alle auswählen
 close the window, discard the changes made	projectmanager	de	Fenster schließen und die gemachten Veränderungen verwerfen
@@ -68,6 +67,7 @@ customer title	projectmanager	de	Kundentitel
 datasource	projectmanager	de	Datenquelle
 datasources too	projectmanager	de	auch Datenquellen
 dates	projectmanager	de	Datum
+days	projectmanager	de	Tage
 default all and a selectbox to choose	projectmanager	de	Vorgabe alle und eine Auswahlbox
 delete all checked projects	projectmanager	de	Ausgewählten Projekte löschen
 delete this milestone	projectmanager	de	Diesen Meilenstein löschen
@@ -75,10 +75,12 @@ delete this price	projectmanager	de	Diesen Preis löschen
 delete this project	projectmanager	de	Dieses Projekt löschen
 delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
 delete this role	projectmanager	de	Diese Rolle löschen
+deleted	projectmanager	de	gelöscht
 depth of display	projectmanager	de	Tiefe der Anzeige
 details of cumulated	projectmanager	de	Details der zusammengefaßten
 details of subelements	projectmanager	de	Details der Unterelemente
 do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
+document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung, oder ist für Sie nicht lesbar!
 done (100%)	projectmanager	de	erledigt (100%)
 edit access, incl. editing budget and elements	projectmanager	de	Zugriff zum Bearbeiten, einschl. Budget und Element bearbeiten
 edit budget	projectmanager	de	Budget bearbeiten
@@ -112,8 +114,13 @@ error: saving the price (%1) !!!	projectmanager	de	Fehler: Preis speichern (%1) 
 error: saving the project (%1) !!!	projectmanager	de	Fehler: Projekt speichern (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	de	Fehler: Projektelement speichern (%1) !!!
 everything recursive	projectmanager	de	Alles rekursiv
+example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	de	Beispiel: "{{IF n_prefix~Herr~Sehr geehrter~Sehr geehrte}}" - suche in dem Feld "n_prefix" nach "Herr", wenn gefunden, schreibe "Sehr geehrter", wenn nicht gefunden schreibe "Sehr geehrte". Es ist auch möglich anstatt fixer Werte, den Wert eines andren Feldes zu übernehmen. Beispiel (Land wird nur dann angezeigt, denn es nicht DEUTSCHLAND ist: }
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	de	Beispiel für {{LETTERPREFIXCUSTOM n_prefix title n_family}} - Beispiel: Herr Dr. James Miller
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	de	Beispiel {{NELF role}} - Erzeugt einen Zeilenumbruch, wenn das Feld role nicht leer ist. Der Wert des Feldes role (Funktion) wird nach dem Zeilenumbruch ausgegeben.
+example {{nelfnv role}} - if field role is not empty, set a lf without any value of the field	projectmanager	de	Beispiel {{NELFNV role}} -Erzeugt einen Zeilenumbruch, wenn das Feld role (Funktion) einen Wert besitzt. Der Wert role (Funktion) wird auch bei Vorhandensein des Feldes role nicht ausgegeben.
 existing data will be overwrited if checked	projectmanager	de	Bestehende Daten werden überschrieben, wenn eingeschaltet
 existing links	projectmanager	de	Bestehende Verknüpfungen
+exists	projectmanager	de	besteht bereits
 exit without saving	projectmanager	de	Abbrechen ohne zu Speichern
 fieldseparator	projectmanager	de	Feldtrenner
 font	projectmanager	de	Font
@@ -121,12 +128,12 @@ font charset	projectmanager	de	Font Zeichensatz
 font style	projectmanager	de	Font Stil
 font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	de	Font für das Ganttchart. Nur der Vera Font ist beim Projektmanager dabei.
 fontfile '%1' not found!!!	projectmanager	de	Fontdatei '%1' nicht gefunden!!!
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	de	Wenn Sie Serienbriefe erzeugen möchten, dann benutzen Sie dieses 'Markierungszeichen'. Setzen Sie den Inhalt, der wiederholt werden soll (Anschriftstags und Briefinhalt) zwischen zwei 'Seiten-Wiederholungs-Zeichen'.
 free descriptiv text	projectmanager	de	Freier Text
 from %1 to %2	projectmanager	de	von %1 bis %2
 full access	projectmanager	de	unbeschränkter Zugriff
 ganttchart	projectmanager	de	Ganttchart
 ganttchart parameter	projectmanager	de	Ganttchart Parameter
-general	projectmanager	de	Allgemein
 general availibility	projectmanager	de	Allgemeine Verfügbarkeit
 general pricelist	projectmanager	de	Allgemeine Preisliste
 global categories	projectmanager	de	Globale Kategorien
@@ -141,7 +148,7 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
-import	projectmanager	de	Import
+insert	projectmanager	de	einfügen
 last modified	projectmanager	de	Zuletzt geändert
 leave it empty if you dont need a different customer title	projectmanager	de	Feld leer lassen, wenn kein kundenspezifischer Titel benötigt wird
 leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine zu generieren
@@ -158,6 +165,7 @@ milestones before this element has to be finished	projectmanager	de	Meilensteine
 modified	projectmanager	de	Geändert
 modified by	projectmanager	de	Geändert durch
 modify status	projectmanager	de	Status ändern
+name of current user, all other contact fields are valid too	projectmanager	de	Name des aktuellen Benutzers, auch alle anderen Kontaktfelder sind erlaubt
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht gelanden und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
@@ -178,6 +186,7 @@ percentage the member is availible for projects	projectmanager	de	Prozentsatz de
 percentage the member is availible for this project	projectmanager	de	Prozentsatz den der Mitarbeiter für dieses Projekt verfügbar ist
 permission denied !!!	projectmanager	de	Zugriff verweigert !!!
 planned	projectmanager	de	geplant
+planned time	projectmanager	de	geplante Zeit
 planned times	projectmanager	de	Geplante Zeiten
 please download a recent version from %1 and install it in %2.	projectmanager	de	Bitte laden Sie die aktuelle Version von %1 und installieren Sie sie in %2.
 price	projectmanager	de	Preis
@@ -201,12 +210,15 @@ projectlist	projectmanager	de	Projektliste
 projectmanager	common	de	Projektmanager
 projectmanager-fieldname	projectmanager	de	Projectmanager-feldname
 projectmember	projectmanager	de	Projektmitarbeiter
+projects	projectmanager	de	Projekte
 quantity	projectmanager	de	Menge
 re-planned	projectmanager	de	umgeplant
+re-planned time	projectmanager	de	Umgeplante Zeit
 read access, incl. budget and adding elements	projectmanager	de	lesender Zugriff, einschl. Budget und zufügen von Elementen
 read access, no budget	projectmanager	de	lesender Zugriff, kein Budget
 real end	projectmanager	de	Reales Ende
 real start	projectmanager	de	Realer Start
+remark	projectmanager	de	Bemerkung
 resources	projectmanager	de	Ressourcen
 role	projectmanager	de	Rolle
 role deleted	projectmanager	de	Rolle gelöscht
@@ -242,6 +254,7 @@ subelements	projectmanager	de	Unterelemente
 subproject	projectmanager	de	Unterprojekt
 subprojects	projectmanager	de	Unterprojekte
 synchronise all	projectmanager	de	Alle synchronisieren
+tag to mark positions for address labels	projectmanager	de	Markierungszeichen, um die Positionen von Adressetiktetten zu markieren
 template	projectmanager	de	Vorlage
 template as subproject	projectmanager	de	Vorlage als Unterprojekt
 template including elment-tree saved as new project	projectmanager	de	Vorlage einschl. Elementbaum als neues Projekt gespeichert
@@ -249,13 +262,16 @@ test import (show importable records <u>only</u> in browser)	projectmanager	de	T
 the charset depends on the font you want to use.	projectmanager	de	Der Zeichensatz hängt vom Font ab den Sie verwenden wollen.
 time	projectmanager	de	Zeit
 times	projectmanager	de	Zeiten
+timezone	projectmanager	de	Zeitzone
 title must not be empty	projectmanager	de	Titel darf nicht leer sein
 to many might exceed your execution-time-limit	projectmanager	de	zu viel können Ihre Laufzeitbeschränkung überschreiten
-translation	projectmanager	de	Übersetzung
 tree with %1	projectmanager	de	Baum mit %1
 unit	projectmanager	de	Einheit
 unitprice	projectmanager	de	Preis pro Einheit
+usage	projectmanager	de	Einsatz
+use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	de	Benutzen Sie diesen Markierungszeichen für Adressetiketten. Plazieren Sie den Inhalt, der wiederholt werden soll, zwischen zwei Markierungszeichen.
 used	projectmanager	de	benutzt
+used time	projectmanager	de	benötigte Zeit
 valid since	projectmanager	de	Gültig seit
 view ganttchart of this project	projectmanager	de	Ganttchart dieses Projekts anzeigen
 view milestone	projectmanager	de	Meilenstein anzeigen

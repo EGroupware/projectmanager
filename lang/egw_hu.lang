@@ -40,7 +40,6 @@ budget (no pricelist)	projectmanager	hu	Költségvetés (árlista nélkül)
 budget and pricelist	projectmanager	hu	Költségvetés és árlista
 by	projectmanager	hu	by
 calculate budget by quantity (eg. time) and price	projectmanager	hu	Költségvetés kiszámítása mennyiség (pl. idő) és ár alapján
-charset of file	projectmanager	hu	File karakterkódolása
 charset of the above selected font	projectmanager	hu	A korábban kiválasztott font karakterkódolása
 check all	projectmanager	hu	Összes kijelölese
 close the window, discard the changes made	projectmanager	hu	Ablak bezárása, változások elvetése
@@ -61,6 +60,7 @@ customer title	projectmanager	hu	Vevő címe
 datasource	projectmanager	hu	Adatforrás
 datasources too	projectmanager	hu	Adatforrásokat is
 dates	projectmanager	hu	Dátumok
+days	projectmanager	hu	napok
 default all and a selectbox to choose	projectmanager	hu	Alapbeállításként az összes és selectbox a választáshoz
 delete all checked projects	projectmanager	hu	Összes kijelölt projekt törlése
 delete this milestone	projectmanager	hu	Mérföldkő törlése
@@ -68,10 +68,12 @@ delete this price	projectmanager	hu	Ár törlése
 delete this project	projectmanager	hu	Projekt törlése
 delete this project-element, does not remove the linked entry	projectmanager	hu	Projekt elem törlése, hivatkozott elemek nem kerülnek törlésre.
 delete this role	projectmanager	hu	Szerepkör törlése
+deleted	projectmanager	hu	törölve
 depth of display	projectmanager	hu	Megjelenítés mélysége
 details of cumulated	projectmanager	hu	Halmozás részletei
 details of subelements	projectmanager	hu	Al-elemek részletei
 do not use that entry as project-element	projectmanager	hu	Ne használja a bejegyzést projekt-elemként
+document '%1' does not exist or is not readable for you!	projectmanager	hu	A(z) '%1' dokumentum nem létezik, vagy nincs hozzá olvasási joga!
 done (100%)	projectmanager	hu	Kész (100%)
 edit access, incl. editing budget and elements	projectmanager	hu	hozzáférés szerkesztése, beleértve a költségkeret és elem szerkesztést
 edit budget	projectmanager	hu	Költségkeret szerkeszése
@@ -119,7 +121,6 @@ from %1 to %2	projectmanager	hu	%1-től %2-ig
 full access	projectmanager	hu	teljes hozzáférés
 ganttchart	projectmanager	hu	Gantt diagramm
 ganttchart parameter	projectmanager	hu	Gantt diagramm paraméterek
-general	projectmanager	hu	Általános
 general availibility	projectmanager	hu	Rendelkezésre állás
 general pricelist	projectmanager	hu	Általános árlista
 global categories	projectmanager	hu	Globális kategóriák
@@ -134,7 +135,6 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	hu	Ha furcsaságokat lát (pl. {) a Ganttchart-ban, akkor ezt kapcsolja ki.
 ignore that entry	projectmanager	hu	bejegyzés figyelmen kívül hagyása
 ignored	projectmanager	hu	figyelmen kívül hagyva
-import	projectmanager	hu	Import
 last modified	projectmanager	hu	utolsó módosítás
 leave it empty if you dont need a different customer title	projectmanager	hu	hagyja üresen, ha nincs szükség más ügyfél megnevezésre
 leave it empty to have one generated	projectmanager	hu	hagyja üresen  és generálódik ez értéke
@@ -168,6 +168,7 @@ percentage the member is availible for projects	projectmanager	hu	Projekttag ren
 percentage the member is availible for this project	projectmanager	hu	Projekttag rendelkezésre állása a projektben.
 permission denied !!!	projectmanager	hu	Hozzáférés megtagadva!
 planned	projectmanager	hu	tervezett
+planned time	projectmanager	hu	tervezett idő
 planned times	projectmanager	hu	Tervezett időráfordítás
 please download a recent version from %1 and install it in %2.	projectmanager	hu	Kérem töltse le a legújabb verziót %1 helyről és telepítse %2 helyre.
 price	projectmanager	hu	Ár
@@ -191,10 +192,12 @@ projectmanager-fieldname	projectmanager	hu	Projektmanager mezőnév
 projectmember	projectmanager	hu	Projekt tag
 quantity	projectmanager	hu	Mennyiség
 re-planned	projectmanager	hu	újratervezett
+re-planned time	projectmanager	hu	újratervezés ideje
 read access, incl. budget and adding elements	projectmanager	hu	olvasási (beleértve a költségvetést), elem-hozzáadási jogosultság
 read access, no budget	projectmanager	hu	olvasási (költségvetés nélkül) jogosultság
 real end	projectmanager	hu	Tényleges befejezés
 real start	projectmanager	hu	Tényleges indulás
+remark	projectmanager	hu	Megjegyzés
 resources	projectmanager	hu	Erőforrások
 role	projectmanager	hu	Szerep
 role deleted	projectmanager	hu	A szerepkör törölve
@@ -219,13 +222,6 @@ show the project selection as	projectmanager	hu	Mutasd a projekt választást mi
 site configuration saved	projectmanager	hu	Webhely konfiguráció elmentve
 start after	projectmanager	hu	Indulás ezután
 start working on %1	projectmanager	hu	Munkaidő kezdete %1
-start working on dienstag	projectmanager	hu	Munkakkezdés kedden
-start working on donnerstag	projectmanager	hu	Munkakkezdés csütörtökön
-start working on freitag	projectmanager	hu	Munkakkezdés pénteken
-start working on mittwoch	projectmanager	hu	Munkakkezdés szerdán
-start working on montag	projectmanager	hu	Munkakkezdés hétfőn
-start working on samstag	projectmanager	hu	Munkakkezdés szombaton
-start working on sonntag	projectmanager	hu	Munkakkezdés vasárnap
 start, end, category, ...	projectmanager	hu	Indulás, befejezés, kategória ...
 start- & enddate	projectmanager	hu	Indulási- és befejezési dátum
 startdate	projectmanager	hu	Indulási dátum
@@ -241,13 +237,14 @@ test import (show importable records <u>only</u> in browser)	projectmanager	hu	T
 the charset depends on the font you want to use.	projectmanager	hu	A karakterkódolás függ attól a fonttól, amit használni kíván.
 time	projectmanager	hu	Idő
 times	projectmanager	hu	Időtartam
+timezone	projectmanager	hu	Időzóna
 title must not be empty	projectmanager	hu	Cím nem lehet üres
 to many might exceed your execution-time-limit	projectmanager	hu	túl sok megnövelheti a végrehajtási időt
-translation	projectmanager	hu	Fordítás
 tree with %1	projectmanager	hu	Fa a következővel %1
 unit	projectmanager	hu	Egység
 unitprice	projectmanager	hu	Egységár
 used	projectmanager	hu	használt
+used time	projectmanager	hu	felhasznált idő
 valid since	projectmanager	hu	Érvényesség kezdete
 view ganttchart of this project	projectmanager	hu	Projekt gantt diagrammjának megtekintése
 view milestone	projectmanager	hu	Mérföldkő megtekintése
@@ -260,14 +257,6 @@ view this price	projectmanager	hu	Ár megtekintése
 view this project	projectmanager	hu	Projekt megtekintése
 view this project-element	projectmanager	hu	Projekt-elem megtekintése
 working duration on %1	projectmanager	hu	Munkaidő %1
-working duration on dienstag	projectmanager	hu	Munkaidő kedden
-working duration on donnerstag	projectmanager	hu	Munkaidő csütörtökön
-working duration on freitag	projectmanager	hu	Munkaidő pénteken
-working duration on mittwoch	projectmanager	hu	Munkaidő szerdán
-working duration on montag	projectmanager	hu	Munkaidő hétfőn
-working duration on samstag	projectmanager	hu	Munkaidő szombaton
-working duration on sonntag	projectmanager	hu	Munkaidő vasárnap
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	hu	Régi JPGraph verziót használ, ami korlátozott képességekkel rendelkezik. Frissítés javasolt.
 you can leave the date of the first price empty	projectmanager	hu	az első ár bejegyzés dátum mezőjét üresen lehet hagyni
 you need to select a project first	projectmanager	hu	Előbb projekt kiválasztása szükséges
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	hu	Az adatbázis nem friss (%1 <-> %2), kérem %3frissítse%4 az adatbázist.

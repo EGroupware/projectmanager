@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	sv	%1 element uppdaterad(e)
 %1 new project-elements imported	projectmanager	sv	%1 new projektelements importerad(e)
 %1 projects deleted	projectmanager	sv	%1 projekt raderad(e)
+%1 records imported	projectmanager	sv	%1 poster importerade
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	sv	%1 poster lästa (inte importerade ännu, du kan gå %2tillbaka%3 och kryssa ur "Testa Import")
 %1 times permission denied, %2 projects deleted	projectmanager	sv	%1 gånger åtkomst nekad, %2 projekt raderade
 - planned	projectmanager	sv	- planerad
 0ngoing (0 < % < 100)	projectmanager	sv	Pågående (0 < % < 100)
@@ -47,11 +49,15 @@ create a new empty project or use a template	projectmanager	sv	Skapa nytt tomt p
 create new links	projectmanager	sv	Lägg till länk
 created	projectmanager	sv	Skapad
 created a ganttchart from the checked projects	projectmanager	sv	Skapa ganttdiagram från markerade projekt
+csv-fieldname	projectmanager	sv	CSV-Fältnamn
+csv-filename	projectmanager	sv	CSV-Filnamn
+csv-import	common	sv	CSV import
 cumulated elements too	projectmanager	sv	Även sammanslagna element
 custom fields	projectmanager	sv	Anpassade fält
 customer title	projectmanager	sv	Kund rubrik
 datasource	projectmanager	sv	Datakälla
 dates	projectmanager	sv	Datum
+days	projectmanager	sv	Dagar
 default all and a selectbox to choose	projectmanager	sv	Standard alla och en valruta att välja
 delete all checked projects	projectmanager	sv	Radera alla markerade projekt
 delete this milestone	projectmanager	sv	Radera milstolpe
@@ -59,6 +65,7 @@ delete this price	projectmanager	sv	Radera priset
 delete this project	projectmanager	sv	Radera projektet
 delete this project-element, does not remove the linked entry	projectmanager	sv	Radera projektelementet. Raderar inte den länkade posten
 delete this role	projectmanager	sv	Radera rollen
+deleted	projectmanager	sv	Raderad
 depth of display	projectmanager	sv	Vy djup
 details of cumulated	projectmanager	sv	Detaljer över sammanslagna
 details of subelements	projectmanager	sv	Underelement detaljer
@@ -80,6 +87,7 @@ elements of elements	projectmanager	sv	Elementens element
 elements that can't start before this one is finished	projectmanager	sv	Elementen som inte kan påbörjas innan denna avslutats
 elements which have to be finished before this can start	projectmanager	sv	Elementen som måste avslutats innan denna kan påbörjas
 empty	projectmanager	sv	Tom
+empty for all	projectmanager	sv	Töm för alla
 end before	projectmanager	sv	Avslut före
 enddate	projectmanager	sv	Slutdatum
 error: deleting price !!!	projectmanager	sv	Fel: kunde inte radera priset
@@ -95,14 +103,15 @@ error: saving the project-element (%1) !!!	projectmanager	sv	Fel: kunde inte spa
 everything recursive	projectmanager	sv	Allting rekursivt
 existing links	projectmanager	sv	Befintliga länkar
 exit without saving	projectmanager	sv	Avsluta utan att spara
+fieldseparator	projectmanager	sv	Fältavskiljare
 free descriptiv text	projectmanager	sv	Valfri beskrivande text
 from %1 to %2	projectmanager	sv	från %1 till %2
 full access	projectmanager	sv	Full åtkomst
 ganttchart	projectmanager	sv	Ganttdiagram
 ganttchart parameter	projectmanager	sv	Ganttdiagram alternativ
-general	projectmanager	sv	Allmänt
 general availibility	projectmanager	sv	Allmän åtkomst
 general pricelist	projectmanager	sv	Allmän prislista
+global categories	projectmanager	sv	Globala kategorier
 h	projectmanager	sv	t
 health	projectmanager	sv	Status
 hours	projectmanager	sv	Timmar
@@ -137,12 +146,14 @@ no save necessary	projectmanager	sv	Spara är inte nödvändigt
 nonactive	projectmanager	sv	Inaktiv
 not started (0%)	projectmanager	sv	Inte påbörjad (0%)
 not working	projectmanager	sv	Arbetar inte
+number of records to read (%1)	projectmanager	sv	Antal poster att läsa (%1)
 only this project	projectmanager	sv	Bara detta projekt
 overwrite the datasource	projectmanager	sv	Skriv över datakällan
 percentage the member is availible for projects	projectmanager	sv	Procent resursen är tillgänglig för projekt
 percentage the member is availible for this project	projectmanager	sv	Procent resursen är tillgänglig för projektet
 permission denied !!!	projectmanager	sv	Åtkomst nekad!
 planned	projectmanager	sv	Planerad
+planned time	projectmanager	sv	Planerad tid
 planned times	projectmanager	sv	Planerat antal
 please download a recent version from %1 and install it in %2.	projectmanager	sv	Var god och hämta ner seanste versionen från %1 och installera i %2
 price	projectmanager	sv	Pris
@@ -168,6 +179,7 @@ read access, incl. budget and adding elements	projectmanager	sv	läsrättighet, 
 read access, no budget	projectmanager	sv	läsrättighet, för utom budget
 real end	projectmanager	sv	Faktiskt avslut
 real start	projectmanager	sv	Faktiskt påbörjad
+remark	projectmanager	sv	Anmärkning
 resources	projectmanager	sv	Resurser
 role	projectmanager	sv	Roll
 role deleted	projectmanager	sv	Rollen raderad
@@ -195,20 +207,24 @@ start working on %1	projectmanager	sv	Påbörja arbetet den %1
 start, end, category, ...	projectmanager	sv	Påbörjan, avslut, kategori, ...
 start- & enddate	projectmanager	sv	Start- / Slutdatum
 startdate	projectmanager	sv	Startdatum
-state	projectmanager	sv	Status
+startrecord	projectmanager	sv	Startpost
 status filter	projectmanager	sv	Status filter
 subelements	projectmanager	sv	Underelement
 subprojects	projectmanager	sv	Underprojekt
 synchronise all	projectmanager	sv	Synkronisera alla
 template	projectmanager	sv	Mall
 template including elment-tree saved as new project	projectmanager	sv	Mall inklusive elmentträd sparades som nytt projekt
+test import (show importable records <u>only</u> in browser)	projectmanager	sv	Testa import (visa importerade poster <u>enbart</u> i webbläsaren)
 time	projectmanager	sv	Tid
 times	projectmanager	sv	Antal
+timezone	projectmanager	sv	Tidzon
 title must not be empty	projectmanager	sv	Rubriken får inte vara tom
+to many might exceed your execution-time-limit	projectmanager	sv	För många kan överstiga maxtiden
 tree with %1	projectmanager	sv	Träd med %1
 unit	projectmanager	sv	Enhet
 unitprice	projectmanager	sv	Enhetspris
 used	projectmanager	sv	Använd
+used time	projectmanager	sv	Förbrukad tid
 valid since	projectmanager	sv	Giltig efter
 view ganttchart of this project	projectmanager	sv	Visa projektets ganttdiagram
 view milestone	projectmanager	sv	Visa milstolpe
@@ -221,7 +237,6 @@ view this price	projectmanager	sv	Visa priset
 view this project	projectmanager	sv	Visa projektet
 view this project-element	projectmanager	sv	Visa projektelementet
 working duration on %1	projectmanager	sv	Arbetets varaktighet på %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	sv	Du använder en äldre version av JPGraph, som inkluderas med eGroupWare. Den har begränsad funktionalitet.
 you can leave the date of the first price empty	projectmanager	sv	Du kan lämna första prisets datum tomt
 you need to select a project first	projectmanager	sv	Du mäste välja ett projekt först
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sv	Din databas är inte senaste versionen (%1 vs. %2). Var god och kör %3installationen%4 för att uppdatera den.

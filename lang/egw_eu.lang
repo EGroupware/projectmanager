@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	eu	%1 elementu eguneratu dira
 %1 new project-elements imported	projectmanager	eu	%1 elementu berri inportatu dira proiektura
 %1 projects deleted	projectmanager	eu	%1 proiektut ezabatuta
+%1 records imported	projectmanager	eu	%1 erregistro inportatuak
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	eu	%1 erregistro irakurriak (oraindik inportatu gabe, atzera itzuli eta "Inportazio Testa" kontrol laukia hautatu gabe utzi)
 - planned	projectmanager	eu	-planifikatuta
 accounting	projectmanager	eu	Kontuak
 accounting options	projectmanager	eu	Kontuko aukerak
@@ -30,6 +32,7 @@ bookable	projectmanager	eu	Erresebagarria
 budget	projectmanager	eu	Aurrekontua
 budget (no pricelist)	projectmanager	eu	Aurrekontua (prezioen zerrendarik gabe)
 budget and pricelist	projectmanager	eu	Aurrekontua eta prezioen zerrenda
+by	projectmanager	eu	nork
 check all	projectmanager	eu	Egiaztatu guztia
 close the window, discard the changes made	projectmanager	eu	Itxi leihioa, aldaketak deskargatu
 constraints	projectmanager	eu	Murrizketak
@@ -37,14 +40,19 @@ coordinator	projectmanager	eu	Koordinatzailea
 cost per time	projectmanager	eu	Denborako gastua
 create new links	projectmanager	eu	Lotura berriak sortu
 created	projectmanager	eu	sortua
+csv-fieldname	projectmanager	eu	CVS - Eremu izena
+csv-filename	projectmanager	eu	CVS - Fitxategi izena
+csv-import	common	eu	CSV-inportatu
 custom fields	projectmanager	eu	Eremu pertsonalizatuak
 customer title	projectmanager	eu	Bezeroaren kargua
 datasource	projectmanager	eu	Datuen iturria
 dates	projectmanager	eu	Datak
+days	projectmanager	eu	egunak
 delete all checked projects	projectmanager	eu	Aukeratutako proiektu guztiak ezabatu
 delete this price	projectmanager	eu	Prezio hau ezabatu
 delete this project	projectmanager	eu	Proiektu hau ezabatu
 delete this role	projectmanager	eu	Rol hau ezabatu
+deleted	projectmanager	eu	ezabatua
 depth of display	projectmanager	eu	Bistaratze sakonera
 done (100%)	projectmanager	eu	Eginda (%100)
 edit budget	projectmanager	eu	Aurrekontua editatu
@@ -58,6 +66,7 @@ edit this role	projectmanager	eu	Rol hau editatu
 elementlist	projectmanager	eu	Elementuen zerrenda
 elements of elements	projectmanager	eu	Elementuen elementuak
 empty	projectmanager	eu	Hutsa
+empty for all	projectmanager	eu	hutsik guztientzat
 end before	projectmanager	eu	Lehenago bukatu
 enddate	projectmanager	eu	Amaiera data
 error: deleting price !!!	projectmanager	eu	Errorea: prezioa ezabatzerakoan!
@@ -71,14 +80,15 @@ error: saving the project-element (%1) !!!	projectmanager	eu	Errorea: (%1) proek
 everything recursive	projectmanager	eu	Guztia errekurtsiboa
 existing links	projectmanager	eu	Existitzen direnlokurak
 exit without saving	projectmanager	eu	Gorde gabe irten
+fieldseparator	projectmanager	eu	Eremu bereizlea
 free descriptiv text	projectmanager	eu	Deskribapen testu librea
 from %1 to %2	projectmanager	eu	%1etik %2ra
 full access	projectmanager	eu	guztizko sarrera
 ganttchart	projectmanager	eu	Gantt diagrama
 ganttchart parameter	projectmanager	eu	Gantt diagramaren parametroa
-general	projectmanager	eu	Orokorra
 general availibility	projectmanager	eu	Erabilgarritasun orokorra
 general pricelist	projectmanager	eu	Prezioen zerrenda orokorra
+global categories	projectmanager	eu	Kategoria orokorrak
 h	projectmanager	eu	h
 health	projectmanager	eu	Osasuna
 hours	projectmanager	eu	orduak
@@ -104,10 +114,12 @@ no save necessary	projectmanager	eu	ez da beharrezkoa gordetzea
 nonactive	projectmanager	eu	Ez aktiboa
 not started (0%)	projectmanager	eu	Hasi gabe (%0)
 not working	projectmanager	eu	ez dago lanean
+number of records to read (%1)	projectmanager	eu	Irakurri beharreko errenkaden kopurua (%1)
 only this project	projectmanager	eu	Proiektu hau bakarrik
 overwrite the datasource	projectmanager	eu	Datu iturria beridatzi
 permission denied !!!	projectmanager	eu	Baimena ukatua!
 planned	projectmanager	eu	planifikatua
+planned time	projectmanager	eu	planifikatutako ordua
 planned times	projectmanager	eu	Planifikatutako orduak
 price	projectmanager	eu	Prezioa
 price / unit	projectmanager	eu	Prezioa / Unitate
@@ -130,6 +142,7 @@ quantity	projectmanager	eu	Kantitatea
 read access, no budget	projectmanager	eu	irakurtzeko sarrera, aurrekontu gabe
 real end	projectmanager	eu	Amaiera erreala
 real start	projectmanager	eu	Hasiera erreala
+remark	projectmanager	eu	Komentario
 resources	projectmanager	eu	Baliabideak
 role	projectmanager	eu	Rola
 role deleted	projectmanager	eu	Rola ezabatu da
@@ -147,17 +160,20 @@ start working on %1	projectmanager	eu	Lanean hasi %1
 start, end, category, ...	projectmanager	eu	Hasiera, Amaiera, kategoria...
 start- & enddate	projectmanager	eu	Hasiera eta amaierada data
 startdate	projectmanager	eu	Hasiera data
-state	projectmanager	eu	Egoera
+startrecord	projectmanager	eu	Erregistro hasera
 status filter	projectmanager	eu	Egoeren iragazkia
 subprojects	projectmanager	eu	Azpiproiektuak
 synchronise all	projectmanager	eu	Guztia sinkronizatu
 template	projectmanager	eu	Plantilla
+test import (show importable records <u>only</u> in browser)	projectmanager	eu	Inportazio proba (erakutsi inportatu daitezkeen errenkadak <u>bakarrik</u> nabigatzailean)
 time	projectmanager	eu	Denbora
 times	projectmanager	eu	Denborak
 title must not be empty	projectmanager	eu	Izenburua ez da hutsik egon behar
+to many might exceed your execution-time-limit	projectmanager	eu	gehiegi, exekuzio denbora gainditu lezake.
 unit	projectmanager	eu	Unitatea
 unitprice	projectmanager	eu	Unitateko prezioa
 used	projectmanager	eu	erabilia
+used time	projectmanager	eu	erabilitako denbora
 valid since	projectmanager	eu	Baliagarria noiztik
 view ganttchart of this project	projectmanager	eu	Proiektu honen Gantt diagrama ikusi
 view price	projectmanager	eu	Prezioa ikusi

@@ -2,6 +2,7 @@
 %1 new project-elements imported	projectmanager	id	%1 elemen-proyek baru diimpor
 %1 projects deleted	projectmanager	id	%1 proyek dihapus
 %1 records imported	projectmanager	id	%1 rekaman diimpor
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	id	%1 rekaman dibaca (belum diimpor, anda dapat %2kembali%3 dan kosongkan Tes impor)
 - planned	projectmanager	id	- direncanakan
 - re-planned	projectmanager	id	- direncanakan-ulang
 0ngoing (0 < % < 100)	projectmanager	id	Sedang berlangsung (0 < % < 100)
@@ -48,10 +49,13 @@ customer title	projectmanager	id	Customer title
 datasource	projectmanager	id	Sumberdata
 datasources too	projectmanager	id	berikut sumberdata
 dates	projectmanager	id	Tanggal
+days	projectmanager	id	hari
 delete all checked projects	projectmanager	id	Hapus semua proyek terpilih
 delete this milestone	projectmanager	id	Hapus milestone ini
 delete this price	projectmanager	id	Hapus harga ini
 delete this project	projectmanager	id	Hapus proyek ini
+deleted	projectmanager	id	terhapus
+document '%1' does not exist or is not readable for you!	projectmanager	id	Dokumen '%1' tidak ada atau tidak terbaca oleh anda!
 done (100%)	projectmanager	id	Tuntas (100%)
 edit budget	projectmanager	id	Edit anggaran
 edit milestone	projectmanager	id	Edit milestone
@@ -79,7 +83,6 @@ from %1 to %2	projectmanager	id	dari %1 ke %2
 full access	projectmanager	id	akses penuh
 ganttchart	projectmanager	id	Ganttchart
 ganttchart parameter	projectmanager	id	Ganttchart parameter
-general	projectmanager	id	Umum
 general availibility	projectmanager	id	General availability
 general pricelist	projectmanager	id	General pricelist
 global categories	projectmanager	id	Kategori Global
@@ -89,7 +92,6 @@ hours	projectmanager	id	jam
 hours per workday	projectmanager	id	Jam per hari-kerja
 ignore that entry	projectmanager	id	abaikan entri tersebut
 ignored	projectmanager	id	diabaikan
-import	projectmanager	id	Impor
 last modified	projectmanager	id	pengubahan terakhir
 linked elements	projectmanager	id	Elemen terkait
 links	projectmanager	id	Tautan
@@ -109,9 +111,11 @@ no save necessary	projectmanager	id	tiada perlu disimpan
 nonactive	projectmanager	id	Tidak aktif
 not started (0%)	projectmanager	id	Belum mulai (0%)
 not working	projectmanager	id	tidak jalan
+number of records to read (%1)	projectmanager	id	Jumlah rekord yang dibaca (%1)
 only this project	projectmanager	id	Hanya proyek ini
 permission denied !!!	projectmanager	id	Ijin ditolak !!!
 planned	projectmanager	id	direncanakan
+planned time	projectmanager	id	waktu yang direncanakan
 planned times	projectmanager	id	Waktu yang direncanakan
 price	projectmanager	id	Harga
 price / unit	projectmanager	id	Harga/Satuan
@@ -131,10 +135,13 @@ projectlist	projectmanager	id	Daftar Proyek
 projectmanager	common	id	Manajer Proyek
 projectmanager-fieldname	projectmanager	id	Nama field-Manajer Proyek
 projectmember	projectmanager	id	Anggota proyek
+projects	projectmanager	id	Projects
 quantity	projectmanager	id	Quantity
 re-planned	projectmanager	id	direncanakan ulang
+re-planned time	projectmanager	id	Waktu Perencanaan ulang
 real end	projectmanager	id	Akhir sesungguhnya
 real start	projectmanager	id	Real start
+remark	projectmanager	id	Remark
 resources	projectmanager	id	Sumberdaya
 role	projectmanager	id	Role
 role deleted	projectmanager	id	Role dihapus
@@ -155,13 +162,15 @@ subelements	projectmanager	id	Sub-elemen
 subprojects	projectmanager	id	Sub-proyek
 synchronise all	projectmanager	id	Sinkronkan semuanya
 template	projectmanager	id	Templat
+test import (show importable records <u>only</u> in browser)	projectmanager	id	Tes Impor (tampilkan rekaman yang dapat diimpor <em>hanya</em> dalam browser)
 time	projectmanager	id	Waktu
 times	projectmanager	id	Waktu
+timezone	projectmanager	id	Zonawaktu
 title must not be empty	projectmanager	id	Judul tidak boleh kosong
-translation	projectmanager	id	Terjemahan
 unit	projectmanager	id	Satuan
 unitprice	projectmanager	id	Satuan harga
 used	projectmanager	id	terpakai
+used time	projectmanager	id	waktu yang dihabiskan
 valid since	projectmanager	id	Valid sejak
 view ganttchart of this project	projectmanager	id	Lihat ganttchart dari proyek ini
 view milestone	projectmanager	id	Lihat milestone

@@ -1,0 +1,38 @@
+%1 records imported	projectmanager	da	%1 posteringer importeret
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	da	%1 posteringer læst (ikke implamenteret endnu, du skalgå %2tilbage%3 og fravælge Test import
+actions	projectmanager	da	Handling
+apply the changes	projectmanager	da	Acceptér ændringerne
+by	projectmanager	da	af
+create new links	projectmanager	da	Lav nyt link
+created	projectmanager	da	Oprettet
+csv-fieldname	projectmanager	da	CSV-Feltnavn
+csv-filename	projectmanager	da	CVS-Filnavn
+csv-import	common	da	CSV-Import
+custom fields	projectmanager	da	Valgfri Felter
+days	projectmanager	da	dage
+deleted	projectmanager	da	slettet
+empty for all	projectmanager	da	tøm for alt
+enddate	projectmanager	da	Slutdato
+existing links	projectmanager	da	eksisterende links
+fieldseparator	projectmanager	da	Feltseperator
+global categories	projectmanager	da	Globale Kategorier
+h	projectmanager	da	h
+hours	projectmanager	da	timer
+last modified	projectmanager	da	Sidst opdateret
+links	projectmanager	da	Links
+modified	projectmanager	da	Modificeret
+modified by	projectmanager	da	Ændret af
+new	projectmanager	da	Ny
+no details	projectmanager	da	Ingen detaljer
+number of records to read (%1)	projectmanager	da	Antal posteringer at læse (%1)
+planned	projectmanager	da	Planlagt
+planned time	projectmanager	da	Planlagt tid
+remark	projectmanager	da	Bemærkning
+resources	projectmanager	da	Ressourcer
+startdate	projectmanager	da	Start dato
+startrecord	projectmanager	da	Start postering
+test import (show importable records <u>only</u> in browser)	projectmanager	da	Test Import (viser <u>kun</u> importeret posteringer i browser vinduet)
+times	projectmanager	da	Gange
+to many might exceed your execution-time-limit	projectmanager	da	for mange kan overskride din tildelte tid
+used time	projectmanager	da	brugt tid
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	da	Din database er ikke up to date (%1 vs. %2) Kør %3setup%4 for at opdatere database.

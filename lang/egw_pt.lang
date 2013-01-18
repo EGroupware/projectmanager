@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	pt	%1 elemento(s) actualizado(s)
 %1 new project-elements imported	projectmanager	pt	%1 novos elementos de projecto importados
 %1 projects deleted	projectmanager	pt	%1 projectos eliminados
+%1 records imported	projectmanager	pt	%1 registos importados
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	pt	%1 registos lidos (ainda por importar: pode %2voltar%3 atrás e desmarcar a opção Importação de Teste)
 %1 times permission denied, %2 projects deleted	projectmanager	pt	%1 vezes em que a permissão foi negada, % projectos eliminados
 - planned	projectmanager	pt	planeado/a
 0ngoing (0 < % < 100)	projectmanager	pt	Em processamento (0<%<100)
@@ -47,10 +49,14 @@ create a new empty project or use a template	projectmanager	pt	Criar um novo pro
 create new links	projectmanager	pt	Criar novas ligações
 created	projectmanager	pt	Criado/a
 created a ganttchart from the checked projects	projectmanager	pt	Criou uma tabela de Gantt a partir dos projectos marcados
+csv-fieldname	projectmanager	pt	CSV - Nome do campo
+csv-filename	projectmanager	pt	CSV - Nome do ficheiro
+csv-import	common	pt	CSV - Importar
 custom fields	projectmanager	pt	Campos personalizados
 customer title	projectmanager	pt	Título do cliente
 datasource	projectmanager	pt	Fonte de informação
 dates	projectmanager	pt	Datas
+days	projectmanager	pt	Dias
 default all and a selectbox to choose	projectmanager	pt	Todas por omissão e uma caixa de selecção para escolher
 delete all checked projects	projectmanager	pt	Eliminar todos os projectos seleccionados
 delete this milestone	projectmanager	pt	Elimiar este objectivo
@@ -58,6 +64,7 @@ delete this price	projectmanager	pt	Eliminar este preço
 delete this project	projectmanager	pt	Eliminar este projecto
 delete this project-element, does not remove the linked entry	projectmanager	pt	Eliminar este elemento do projecto, NÃO remove o registo ligado
 delete this role	projectmanager	pt	Eliminar este papel
+deleted	projectmanager	pt	eliminado/a
 depth of display	projectmanager	pt	Profundidade da exibição
 do not use that entry as project-element	projectmanager	pt	não utilizar esse registo como elemento do projecto
 done (100%)	projectmanager	pt	Concluído (100%)
@@ -77,6 +84,7 @@ elements of elements	projectmanager	pt	Elementos de elementos
 elements that can't start before this one is finished	projectmanager	pt	Os elementos não podem começar antes deste estar concluído
 elements which have to be finished before this can start	projectmanager	pt	Elementos a concluir antes deste poder começar
 empty	projectmanager	pt	Vazio
+empty for all	projectmanager	pt	vazio para todos
 end before	projectmanager	pt	Terminar antes de
 enddate	projectmanager	pt	Data de fim
 error: deleting price !!!	projectmanager	pt	Erro ao eliminar preço !!!
@@ -92,14 +100,15 @@ error: saving the project-element (%1) !!!	projectmanager	pt	Erro ao guardar o e
 everything recursive	projectmanager	pt	Tudo recursivo
 existing links	projectmanager	pt	Ligações existentes
 exit without saving	projectmanager	pt	Sair sem gravar
+fieldseparator	projectmanager	pt	Separador de campos
 free descriptiv text	projectmanager	pt	Texto descritivo
 from %1 to %2	projectmanager	pt	De %1 para %2
 full access	projectmanager	pt	Acesso total
 ganttchart	projectmanager	pt	Tabela de Gantt
 ganttchart parameter	projectmanager	pt	Parâmetros da tabela de Gantt
-general	projectmanager	pt	Geral
 general availibility	projectmanager	pt	Disponibilidade geral
 general pricelist	projectmanager	pt	Lista geral de preços
+global categories	projectmanager	pt	Categorias gerais
 h	projectmanager	pt	h
 health	projectmanager	pt	Saúde
 hours	projectmanager	pt	Horas
@@ -133,12 +142,14 @@ no save necessary	projectmanager	pt	Não é necessário guardar
 nonactive	projectmanager	pt	Não activo
 not started (0%)	projectmanager	pt	Por iniciar (0%)
 not working	projectmanager	pt	Folga
+number of records to read (%1)	projectmanager	pt	Número de registos por ler (%1)
 only this project	projectmanager	pt	Apenas este projecto
 overwrite the datasource	projectmanager	pt	Sobrepor a fonte de informação
 percentage the member is availible for projects	projectmanager	pt	Percentagem de membros disponíveis para projectos
 percentage the member is availible for this project	projectmanager	pt	Percentagem de membros disponíveis para este projecto
 permission denied !!!	projectmanager	pt	Permissão negada !!!
 planned	projectmanager	pt	Planeado
+planned time	projectmanager	pt	Tempo previsto
 planned times	projectmanager	pt	Tempo previsto
 please download a recent version from %1 and install it in %2.	projectmanager	pt	Por favor, transfira uma versão mais recente de %1 e instale-a em %2
 price	projectmanager	pt	Preço
@@ -164,6 +175,7 @@ read access, incl. budget and adding elements	projectmanager	pt	Acesso de leitur
 read access, no budget	projectmanager	pt	Acesso de leitura, sem orçamentos
 real end	projectmanager	pt	Fim real
 real start	projectmanager	pt	Início real
+remark	projectmanager	pt	Remarcar
 resources	projectmanager	pt	Recursos
 role	projectmanager	pt	Papel
 role deleted	projectmanager	pt	Papel eliminado
@@ -189,18 +201,21 @@ start working on %1	projectmanager	pt	Início do trabalho no dia de %1
 start, end, category, ...	projectmanager	pt	Ínicio, Fim, Categoria, ...
 start- & enddate	projectmanager	pt	Data de início e de fim
 startdate	projectmanager	pt	Data de início
-state	projectmanager	pt	Estado
+startrecord	projectmanager	pt	Iniciar registo
 status filter	projectmanager	pt	Filtro de estado
 subprojects	projectmanager	pt	Subprojectos
 synchronise all	projectmanager	pt	Sincronizar todos
 template	projectmanager	pt	Modelo
 template including elment-tree saved as new project	projectmanager	pt	O modelo inclui uma árvore de elementos guardada como um novo projecto.
+test import (show importable records <u>only</u> in browser)	projectmanager	pt	Importação de Teste (exibir no navegador <u>apenas</u> os registos importáveis)
 time	projectmanager	pt	Tempo
 times	projectmanager	pt	Tempo
 title must not be empty	projectmanager	pt	O campo do título não pode ficar vazio
+to many might exceed your execution-time-limit	projectmanager	pt	Demasiados podem exceder o seu tempo limite de execução
 unit	projectmanager	pt	Unidade
 unitprice	projectmanager	pt	Preço por unidade
 used	projectmanager	pt	Utilizado/a
+used time	projectmanager	pt	Tempo utilizado
 valid since	projectmanager	pt	Válido desde
 view ganttchart of this project	projectmanager	pt	Ver a tabela de Gantt deste projecto
 view milestone	projectmanager	pt	Ver objectivos
@@ -213,7 +228,6 @@ view this price	projectmanager	pt	Ver este preço
 view this project	projectmanager	pt	Ver este projecto
 view this project-element	projectmanager	pt	Ver este elemento do projecto
 working duration on %1	projectmanager	pt	Horário de trabalho no dia de %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	pt	Está a utilizar uma versão antiga do JPGraph incluída no eGroupWare. Tem funcionalidade limitada.
 you can leave the date of the first price empty	projectmanager	pt	Pode deixar a data do primeiro preço vazia
 you need to select a project first	projectmanager	pt	É necessário seleccionar um projecto primeiro
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	pt	A sua base de dados NÃO está actualizada (%1 vs. %2), por favor execute as %3configurações%4 para actualizar a sua base de dados.

@@ -1,0 +1,47 @@
+%1 records imported	projectmanager	el	%1 εγγραφές εισήχθησαν
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	el	%1 εγγραφές αναγνώσθηκαν (δεν εισηχθησαν ακόμη, μπορείτε να %2επιστρέψετε%3 και να ξετσεκάρετε τη Δοκιμαστική Εισαγωγή)
+actions	projectmanager	el	Ενέργειες
+apply the changes	projectmanager	el	εφαρμόστε τις αλλαγές
+by	projectmanager	el	μέσω
+check all	projectmanager	el	Έλεγχος όλων
+create new links	projectmanager	el	Δημιουργία νέων συνδέσμων
+created	projectmanager	el	Δημιουργήθηκε
+csv-fieldname	projectmanager	el	Ονομα πεδίου  CSV
+csv-filename	projectmanager	el	Ονομα αρχείου CSV
+csv-import	common	el	CSV-Εισαγωγή
+custom fields	projectmanager	el	Προσαρμοσμένα πεδία
+days	projectmanager	el	ημέρες
+deleted	projectmanager	el	διεγράφη
+empty for all	projectmanager	el	Κενό για όλα
+enddate	projectmanager	el	Τελος ημερομηνίας
+existing links	projectmanager	el	Υπάρχοντες σύνδεσμοι
+fieldseparator	projectmanager	el	Διαχωριστής πεδίων
+global categories	projectmanager	el	Παγκόσμιες κατηγορίες
+hours	projectmanager	el	Ωρες
+last modified	projectmanager	el	Τελευταία τροποποίηση
+links	projectmanager	el	Σύνδεσμοι
+modified	projectmanager	el	Τροποποιήθηκε
+modified by	projectmanager	el	Τροποποιήθηκε από
+new	projectmanager	el	Νέο
+no details	projectmanager	el	συνοπτικά
+nonactive	projectmanager	el	ανενεργό
+number of records to read (%1)	projectmanager	el	Αριθμός εγγραφών προς ανάγνωση (%1)
+permission denied !!!	projectmanager	el	Άδεια απορρίπτεται !!!
+planned	projectmanager	el	προγραμματίστηκε
+planned time	projectmanager	el	ώρα σχεδίου
+price	projectmanager	el	Τιμή
+pricelist	projectmanager	el	Τιμοκατάλογος
+quantity	projectmanager	el	Ποσότητα
+remark	projectmanager	el	Ξαναμαρκάρετε
+resources	projectmanager	el	Πόροι
+role	projectmanager	el	Ρόλος
+select a project	projectmanager	el	Επιλέξτε ένα έργο
+startdate	projectmanager	el	Ημερομηνία έναρξης
+startrecord	projectmanager	el	Αρχική εγγραφή
+template	projectmanager	el	Πρότυπο
+test import (show importable records <u>only</u> in browser)	projectmanager	el	Δοκιμαστική Εισαγωγή
+times	projectmanager	el	Φορες
+timezone	projectmanager	el	Ζώνη ώρας
+to many might exceed your execution-time-limit	projectmanager	el	Πάρα πολλοί. Ενδεχόμενο υπέρβασης ορίου χρόνου εκτέλεσης
+used time	projectmanager	el	χρησιμοποιημένος χρόνος
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	el	Το ηλεκτρονικό σας αρχείο ΔΕΝ είναι ενημερωμένο (%1 vs. %2), παρακαλώ τρέξτε %3setup%4  για να ενημερώσετε το ηλεκτρονικό σας αρχείο.
