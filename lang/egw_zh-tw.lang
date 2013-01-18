@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	zh-tw	%1 個項目更新了
 %1 new project-elements imported	projectmanager	zh-tw	匯入了 %1 個專案元件
 %1 projects deleted	projectmanager	zh-tw	刪除了 %1 個專案
+%1 records imported	projectmanager	zh-tw	共有%1  筆紀錄被匯入
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	zh-tw	共有%1 筆記錄被讀取（還未被匯入，您應該 %2回上頁%3 並取消「匯入測試」）
 %1 times permission denied, %2 projects deleted	projectmanager	zh-tw	%1 次沒有權限的存取，%2個專案刪除了
 - planned	projectmanager	zh-tw	- 規劃
 0ngoing (0 < % < 100)	projectmanager	zh-tw	進行中(0 < % < 100)
@@ -48,11 +50,15 @@ create a new empty project or use a template	projectmanager	zh-tw	建立一個�
 create new links	projectmanager	zh-tw	建立新連結
 created	projectmanager	zh-tw	建立日期
 created a ganttchart from the checked projects	projectmanager	zh-tw	從選擇的專案建立甘特圖
+csv-fieldname	projectmanager	zh-tw	CSV欄位名稱
+csv-filename	projectmanager	zh-tw	CSV檔名
+csv-import	common	zh-tw	CSV-匯入
 cumulated elements too	projectmanager	zh-tw	包括集合的元件
 custom fields	projectmanager	zh-tw	自訂欄位
 customer title	projectmanager	zh-tw	客戶名稱
 datasource	projectmanager	zh-tw	資料來源
 dates	projectmanager	zh-tw	日期
+days	projectmanager	zh-tw	日
 default all and a selectbox to choose	projectmanager	zh-tw	預設全選，並且提供一個下拉選單
 delete all checked projects	projectmanager	zh-tw	刪除所有勾選的專案
 delete this milestone	projectmanager	zh-tw	刪除這個里程碑
@@ -60,10 +66,12 @@ delete this price	projectmanager	zh-tw	刪除這個價格
 delete this project	projectmanager	zh-tw	刪除這個專案
 delete this project-element, does not remove the linked entry	projectmanager	zh-tw	刪除這個專案元件，但不會移除相連結的資料
 delete this role	projectmanager	zh-tw	刪除這個角色
+deleted	projectmanager	zh-tw	刪除了
 depth of display	projectmanager	zh-tw	顯示的深度
 details of cumulated	projectmanager	zh-tw	集合的細節
 details of subelements	projectmanager	zh-tw	次元件的細節
 do not use that entry as project-element	projectmanager	zh-tw	不要使用那筆資料作為專案元件
+document '%1' does not exist or is not readable for you!	projectmanager	zh-tw	文件 '%1' 不存在或是無法讀取！
 done (100%)	projectmanager	zh-tw	完成(100%)
 edit access, incl. editing budget and elements	projectmanager	zh-tw	編輯存取權限，包括編輯預算與元件
 edit budget	projectmanager	zh-tw	編輯預算
@@ -81,6 +89,7 @@ elements of elements	projectmanager	zh-tw	元素的元素
 elements that can't start before this one is finished	projectmanager	zh-tw	元件不能夠在這個項目完成前開始
 elements which have to be finished before this can start	projectmanager	zh-tw	在這個項目開始前必須完成的元件
 empty	projectmanager	zh-tw	清空
+empty for all	projectmanager	zh-tw	全部清除
 encode non-ascii	projectmanager	zh-tw	非拉丁編碼
 end before	projectmanager	zh-tw	截止日期
 enddate	projectmanager	zh-tw	結束日期
@@ -97,6 +106,7 @@ error: saving the project-element (%1) !!!	projectmanager	zh-tw	錯誤：儲存�
 everything recursive	projectmanager	zh-tw	遞迴選取
 existing links	projectmanager	zh-tw	已經存在的連結
 exit without saving	projectmanager	zh-tw	離開且不儲存
+fieldseparator	projectmanager	zh-tw	欄位分隔
 font	projectmanager	zh-tw	字型
 font charset	projectmanager	zh-tw	字型字集
 font style	projectmanager	zh-tw	字型風格
@@ -107,9 +117,9 @@ from %1 to %2	projectmanager	zh-tw	從 %1 到 %2
 full access	projectmanager	zh-tw	完全存取
 ganttchart	projectmanager	zh-tw	甘特圖
 ganttchart parameter	projectmanager	zh-tw	甘特圖參數
-general	projectmanager	zh-tw	一般
 general availibility	projectmanager	zh-tw	一般效用
 general pricelist	projectmanager	zh-tw	一般價格表
+global categories	projectmanager	zh-tw	全域類別
 h	projectmanager	zh-tw	時
 health	projectmanager	zh-tw	健全的
 hours	projectmanager	zh-tw	時
@@ -134,6 +144,7 @@ milestones	projectmanager	zh-tw	里程碑
 milestones before this element has to be finished	projectmanager	zh-tw	在這個元素前的里程碑必須先完成
 modified	projectmanager	zh-tw	修改日期
 modified by	projectmanager	zh-tw	修改人
+name of current user, all other contact fields are valid too	projectmanager	zh-tw	目前使用者的名稱，所有其他聯絡人欄位也是正確的
 necessary for project-elements doing that not automatic	projectmanager	zh-tw	無法自動執行但是專案元素所需要的
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	zh-tw	需要的 PHP 外掛 %1 尚未執行！
 new	projectmanager	zh-tw	新增
@@ -145,12 +156,14 @@ no save necessary	projectmanager	zh-tw	不需要儲存
 nonactive	projectmanager	zh-tw	未啟用
 not started (0%)	projectmanager	zh-tw	未開始 (0%)
 not working	projectmanager	zh-tw	未工作
+number of records to read (%1)	projectmanager	zh-tw	讀取記錄號碼(%1)
 only this project	projectmanager	zh-tw	只有這個專案
 overwrite the datasource	projectmanager	zh-tw	覆蓋資料來源
 percentage the member is availible for projects	projectmanager	zh-tw	專案可以使用的成員比率
 percentage the member is availible for this project	projectmanager	zh-tw	這個專案可以使用的成員比率
 permission denied !!!	projectmanager	zh-tw	沒有存取權限！
 planned	projectmanager	zh-tw	已規劃
+planned time	projectmanager	zh-tw	已規劃時間
 planned times	projectmanager	zh-tw	已規劃時間
 please download a recent version from %1 and install it in %2.	projectmanager	zh-tw	請從 %1 下載最新版本並且安裝在 %2 。
 price	projectmanager	zh-tw	價格
@@ -171,11 +184,13 @@ project-elements	projectmanager	zh-tw	專案元素
 projectlist	projectmanager	zh-tw	專案清單
 projectmanager	common	zh-tw	專案管理員
 projectmember	projectmanager	zh-tw	專案成員
+projects	projectmanager	zh-tw	專案
 quantity	projectmanager	zh-tw	數量
 read access, incl. budget and adding elements	projectmanager	zh-tw	讀取權限，包含預算與新增的元素
 read access, no budget	projectmanager	zh-tw	讀取權限，不包含預算
 real end	projectmanager	zh-tw	實際結束日期
 real start	projectmanager	zh-tw	實際開始日期
+remark	projectmanager	zh-tw	標註
 resources	projectmanager	zh-tw	資源
 role	projectmanager	zh-tw	角色
 role deleted	projectmanager	zh-tw	角色刪除了
@@ -203,7 +218,7 @@ start working on %1	projectmanager	zh-tw	開始工作於 %1
 start, end, category, ...	projectmanager	zh-tw	開始、結束、類別、...
 start- & enddate	projectmanager	zh-tw	開始與結束日期
 startdate	projectmanager	zh-tw	開始日期
-state	projectmanager	zh-tw	狀態
+startrecord	projectmanager	zh-tw	開始記錄
 status filter	projectmanager	zh-tw	狀態過濾
 style used for everything but elements. some fonts have only normal style.	projectmanager	zh-tw	用在元件以外的風格，部份字型只有一般風格。
 subelements	projectmanager	zh-tw	子元件
@@ -211,14 +226,18 @@ subprojects	projectmanager	zh-tw	子專案
 synchronise all	projectmanager	zh-tw	全部同步
 template	projectmanager	zh-tw	樣板
 template including elment-tree saved as new project	projectmanager	zh-tw	使用包含元素樹的樣板新增專案
+test import (show importable records <u>only</u> in browser)	projectmanager	zh-tw	測試匯入？（在瀏覽器中<u>只顯示</u>可匯入的紀錄）
 the charset depends on the font you want to use.	projectmanager	zh-tw	字集依賴您想要使用的字型
 time	projectmanager	zh-tw	次
 times	projectmanager	zh-tw	次
+timezone	projectmanager	zh-tw	時區
 title must not be empty	projectmanager	zh-tw	標題不能為空白
+to many might exceed your execution-time-limit	projectmanager	zh-tw	太多可能會超過您的時間限制
 tree with %1	projectmanager	zh-tw	%1 的樹狀結構
 unit	projectmanager	zh-tw	單位
 unitprice	projectmanager	zh-tw	單價
 used	projectmanager	zh-tw	使用的
+used time	projectmanager	zh-tw	使用的時間
 valid since	projectmanager	zh-tw	啟用日期
 view ganttchart of this project	projectmanager	zh-tw	瀏覽這個專案的甘特圖
 view milestone	projectmanager	zh-tw	瀏覽里程碑
@@ -231,7 +250,6 @@ view this price	projectmanager	zh-tw	瀏覽這個價格
 view this project	projectmanager	zh-tw	瀏覽這個專案
 view this project-element	projectmanager	zh-tw	瀏覽這個專案元素
 working duration on %1	projectmanager	zh-tw	%1 的工作期間
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	zh-tw	eGroupWare 內建的 JPGraph 版本較舊，因此部份功能也許無法順利執行。
 you can leave the date of the first price empty	projectmanager	zh-tw	您可以讓第一個價格的日期留白
 you need to select a project first	projectmanager	zh-tw	您必須先選擇一個專案
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	zh-tw	您的資料庫沒有更新（%1 vs. %2），請執行 %3安裝%4 來更新資料庫。

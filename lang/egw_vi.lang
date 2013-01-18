@@ -1,0 +1,17 @@
+%1 records imported	projectmanager	vi	%1 &#273;&#432;&#7907;c nh&#7853;p
+csv-fieldname	projectmanager	vi	CSV-Tên tr&#432;&#7901;ng
+csv-filename	projectmanager	vi	CSV-Tên t&#7853;p tin
+custom fields	projectmanager	vi	Các tr&#432;&#7901;ng t&#7921; t&#7841;o
+days	projectmanager	vi	ngày
+deleted	projectmanager	vi	&#272;ã xóa
+empty for all	projectmanager	vi	làm r&#7895;ng h&#7871;t
+enddate	projectmanager	vi	Ngày k&#7871;t thúc
+fieldseparator	projectmanager	vi	D&#7845;u phân cách tr&#432;&#7901;ng
+global categories	projectmanager	vi	Các phân lo&#7841;i chung
+hours	projectmanager	vi	gi&#7901;
+modified	projectmanager	vi	&#272;ã hi&#7879;u ch&#7881;nh
+number of records to read (%1)	projectmanager	vi	S&#7889; l&#432;&#7907;ng m&#7849;u tin &#273;&#7885;c (%1)
+startdate	projectmanager	vi	Ngày b&#7855;t &#273;&#7847;u
+startrecord	projectmanager	vi	Ghi nh&#7853;n b&#7855;t &#273;&#7847;u
+test import (show importable records <u>only</u> in browser)	projectmanager	vi	Ki&#7875;m tra nh&#7853;p (<u>ch&#7881;</u> li&#7879;t kê các m&#7849;u tin có th&#7875; nh&#7853;p &#273;&#432;&#7907;c trong trình duy&#7879;t)
+to many might exceed your execution-time-limit	projectmanager	vi	quá nhi&#7873;u, có kh&#7843; n&#259;ng v&#432;&#7907;t quá gi&#7899;i h&#7841;n th&#7901;i gian th&#7921;c hi&#7879;n c&#7911;a b&#7841;n

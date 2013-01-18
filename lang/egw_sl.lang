@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	sl	%1 element(-a/-i/-ov) posodobljen(-a/-i/-ih)
 %1 new project-elements imported	projectmanager	sl	%1 novih elementov projekta je bilo uvoženih
 %1 projects deleted	projectmanager	sl	%1 projektov je bilo zbrisanih
+%1 records imported	projectmanager	sl	%1 zapisov uvoženih
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	sl	1% zapisov prebranih (niso še uvoženi, lahko greste %2nazaj%3 in odznačite preizkus uvoza)
 %1 times permission denied, %2 projects deleted	projectmanager	sl	%1 krat je bil dostop zavrnjen, %2 projektov zbrisanih
 - planned	projectmanager	sl	- planirano
 0ngoing (0 < % < 100)	projectmanager	sl	V teku (0 < % < 100)
@@ -27,6 +29,7 @@ archive	projectmanager	sl	Arhiv
 assistant	projectmanager	sl	Pomočnik
 at which time do you start working on the given day.	projectmanager	sl	Ob kateri uri začnete delati na določen dan.
 availible	projectmanager	sl	Na voljo
+bookable	projectmanager	sl	Se lahko rezervira
 budget	projectmanager	sl	Proračun
 budget (no pricelist)	projectmanager	sl	Proračun (brez stroškovnika)
 budget and pricelist	projectmanager	sl	Proračun s stroškovnikom
@@ -36,13 +39,19 @@ coordinator	projectmanager	sl	Koordinator
 cost per time	projectmanager	sl	Strošek na uro
 create new links	projectmanager	sl	Ustvari nove povezave
 created	projectmanager	sl	ustvarjeno
+csv-fieldname	projectmanager	sl	CSV-Ime polja
+csv-filename	projectmanager	sl	CSV-Ime datoteke
+csv-import	common	sl	CSV-Uvoz
 custom fields	projectmanager	sl	Lastna polja
 datasource	projectmanager	sl	Vir podatkov
 dates	projectmanager	sl	Datumi
+days	projectmanager	sl	Dni
 delete all checked projects	projectmanager	sl	Zbriši vse izbrane projekte
 delete this price	projectmanager	sl	Zbriši to ceno
 delete this project	projectmanager	sl	Zbriši ta projekt
+deleted	projectmanager	sl	Zbrisano
 depth of display	projectmanager	sl	Globina prikaza
+document '%1' does not exist or is not readable for you!	projectmanager	sl	Dokument '%1' ne obstaja ali pa nimate pravice branja!
 done (100%)	projectmanager	sl	Narejeno (100%)
 edit budget	projectmanager	sl	Uredi proračun
 edit price	projectmanager	sl	Uredi ceno
@@ -53,18 +62,46 @@ edit this project	projectmanager	sl	Uredi ta projekt
 edit this project-element	projectmanager	sl	Uredi ta element projekta
 elementlist	projectmanager	sl	Seznam elementov
 empty	projectmanager	sl	Prazno
+empty for all	projectmanager	sl	Izprazni za vse
 end before	projectmanager	sl	Konec pred
 enddate	projectmanager	sl	Končni datum
 existing links	projectmanager	sl	Obstoječe povezave
+exists	projectmanager	sl	Obstaja
+fieldseparator	projectmanager	sl	Ločilo polj
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	sl	Za tipska pisma uporabite značko. Vsebino, ki jo želite imeti v vseh dokumentih, vnesite med značke.
 full access	projectmanager	sl	poln dostop
-general	projectmanager	sl	Splošno
+global categories	projectmanager	sl	Globalne kategorije
 h	projectmanager	sl	h
 hours	projectmanager	sl	ure
+insert	projectmanager	sl	Vstavi
 last modified	projectmanager	sl	nazadnje spremenjeno
 links	projectmanager	sl	Povezave
 members	projectmanager	sl	Člani
 modified	projectmanager	sl	Spremenjeno
+name of current user, all other contact fields are valid too	projectmanager	sl	Ime trenutnega uporabnika, veljavna so tudi vsa druga polja stika
 new	projectmanager	sl	nov
+no details	projectmanager	sl	Brez podrobnosti
+nonactive	projectmanager	sl	Neaktivno
+number of records to read (%1)	projectmanager	sl	Število zapisov za branje (%1)
+permission denied !!!	projectmanager	sl	Dostop zavrnjen!
+planned	projectmanager	sl	Planirano
+planned time	projectmanager	sl	Planirani čas
 price	projectmanager	sl	Cena
 pricelist	projectmanager	sl	Cenik
+projectmanager	common	sl	Upravljalec projektov
 quantity	projectmanager	sl	Količina
+remark	projectmanager	sl	Opazka
+resources	projectmanager	sl	Sredstva
+role	projectmanager	sl	Vloga
+select a project	projectmanager	sl	Izberite projekt
+startdate	projectmanager	sl	Začetni datum
+startrecord	projectmanager	sl	Začetni zapis
+tag to mark positions for address labels	projectmanager	sl	Oznaka za označitev položajev oznak adresarja
+template	projectmanager	sl	Predloga
+test import (show importable records <u>only</u> in browser)	projectmanager	sl	Preizkus uvoza (Pokaže uvožene zapise<u>samo</u> v brskalniku).
+times	projectmanager	sl	Časi
+timezone	projectmanager	sl	Časovni pas
+to many might exceed your execution-time-limit	projectmanager	sl	Preveč lahko preseže čas izvajanja
+use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	sl	Uporabi to značko za naslov nalepk. Stik, ki ga želite ponoviti, dajte med dve znački.
+used time	projectmanager	sl	Porabljen čas
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sl	Vaša podatkovna baza NI obnovljena (%1 vs. %2), prosimo poženite %3 nastavitev%4 za prenovo vaše podatkovne baze.

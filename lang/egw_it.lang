@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	it	%1 elemento/i aggiornato/i
 %1 new project-elements imported	projectmanager	it	%1 nuovi elementi-progetto importati
 %1 projects deleted	projectmanager	it	%1 progetti eliminati
+%1 records imported	projectmanager	it	%1 record importati
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	it	%1 record letti (non ancora importati, è possibile tornare %2indietro%3 e deselezionare Test Importazione)
 %1 times permission denied, %2 projects deleted	projectmanager	it	%1 permessi tempi negati, %2 progetti eliminati
 - planned	projectmanager	it	- pianificato
 0ngoing (0 < % < 100)	projectmanager	it	in corso (0 < % < 100)
@@ -47,11 +49,15 @@ create a new empty project or use a template	projectmanager	it	Crea un nuovo pro
 create new links	projectmanager	it	Crea nuovi collegamenti
 created	projectmanager	it	creato
 created a ganttchart from the checked projects	projectmanager	it	Creato un grafico gantt dai progetti selezionati
+csv-fieldname	projectmanager	it	CSV-Nome del Campo
+csv-filename	projectmanager	it	CSV-Nome del File
+csv-import	common	it	CSV Importa
 cumulated elements too	projectmanager	it	Anche gli elementi cumulati
 custom fields	projectmanager	it	Campi personalizzati
 customer title	projectmanager	it	Titolo cliente
 datasource	projectmanager	it	Sorgente dati
 dates	projectmanager	it	Date
+days	projectmanager	it	giorni
 default all and a selectbox to choose	projectmanager	it	tutto predefinito e una selectbox per scegliere
 delete all checked projects	projectmanager	it	Elimina tutti i progetti selezionati
 delete this milestone	projectmanager	it	Cancella questo traguardo
@@ -59,6 +65,7 @@ delete this price	projectmanager	it	Cancella questo prezzo
 delete this project	projectmanager	it	Cancella questo progetto
 delete this project-element, does not remove the linked entry	projectmanager	it	Cancella questo elemento-progetto, NON rimuove la voce collegata
 delete this role	projectmanager	it	Cancella questo ruolo
+deleted	projectmanager	it	cancellato
 depth of display	projectmanager	it	Profondità visualizzazione
 details of cumulated	projectmanager	it	Dettagli dei cumulati
 details of subelements	projectmanager	it	Dettagli dei sottoelementi
@@ -80,6 +87,7 @@ elements of elements	projectmanager	it	Elementi di elementi
 elements that can't start before this one is finished	projectmanager	it	Elementi che non possono iniziare prima che questo sia finito
 elements which have to be finished before this can start	projectmanager	it	Elementi che devono essere finiti prima che questo possa iniziare
 empty	projectmanager	it	Vuoto
+empty for all	projectmanager	it	per tutti vuoto
 end before	projectmanager	it	Fine prima di
 enddate	projectmanager	it	Data fine
 error: deleting price !!!	projectmanager	it	Errore: cancellando prezzo !!!
@@ -94,15 +102,18 @@ error: saving the project (%1) !!!	projectmanager	it	Errore: salvando il progett
 error: saving the project-element (%1) !!!	projectmanager	it	Errore: salvando l'elemento-progetto (%1) !!!
 everything recursive	projectmanager	it	Tutto ricorsivo
 existing links	projectmanager	it	Collegamenti esistenti
+exists	projectmanager	it	Esiste
 exit without saving	projectmanager	it	Esci senza salvare
+fieldseparator	projectmanager	it	Separatore dei campi
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	it	Per una lettera seriale, utilizzare questo tag. Immettere il contenuto che si vuole ripetere tra due tag.
 free descriptiv text	projectmanager	it	testo descrittivo libero
 from %1 to %2	projectmanager	it	da %1 a %2
 full access	projectmanager	it	accesso completo
 ganttchart	projectmanager	it	Grafico Gantt
 ganttchart parameter	projectmanager	it	Parametri per grafico Gantt
-general	projectmanager	it	Generale
 general availibility	projectmanager	it	Disponibilità generale
 general pricelist	projectmanager	it	Listino generale
+global categories	projectmanager	it	Categorie Globali
 h	projectmanager	it	h
 health	projectmanager	it	Salute
 hours	projectmanager	it	ore
@@ -111,6 +122,7 @@ how long do you work on the given day.	projectmanager	it	Quanto lavori il dato g
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	it	Come deve essere visualizzata la selezione progetti nel menù: un albero dà un quadro d'insieme migliore, una selectbox può avere prestazioni migliori.
 ignore that entry	projectmanager	it	ignora quella voce
 ignored	projectmanager	it	ignorato
+insert	projectmanager	it	Inserisci
 last modified	projectmanager	it	ultima modifica
 leave it empty if you dont need a different customer title	projectmanager	it	lascialo vuoto se non serve un titolo cliente differente
 leave it empty to have one generated	projectmanager	it	lascialo vuoto per averne uno generato
@@ -126,6 +138,7 @@ milestones	projectmanager	it	Traguardi
 milestones before this element has to be finished	projectmanager	it	I traguardi prima di questo elemento devono essere raggiunti
 modified	projectmanager	it	Modificato
 modified by	projectmanager	it	modificato da
+name of current user, all other contact fields are valid too	projectmanager	it	Nome dell'utente corrente, tutti gli altri campi di contatto sono validi pure.
 necessary for project-elements doing that not automatic	projectmanager	it	necessario per gli elementi-progetto che non lo fanno in automatico
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	it	Estensioni PHP necessarie (%1) non caricate e non caricabili !!!
 new	projectmanager	it	nuovo
@@ -137,12 +150,14 @@ no save necessary	projectmanager	it	non necessario salvare
 nonactive	projectmanager	it	non attivo
 not started (0%)	projectmanager	it	Non iniziato (0%)
 not working	projectmanager	it	non funzionante
+number of records to read (%1)	projectmanager	it	Numero di record da leggere (%1)
 only this project	projectmanager	it	Solo questo progetto
 overwrite the datasource	projectmanager	it	Sovrascrivi sorgente dati
 percentage the member is availible for projects	projectmanager	it	Percentuale disponibilità del membro per progetti
 percentage the member is availible for this project	projectmanager	it	Percentuale disponibilità del membro per questo progetto
 permission denied !!!	projectmanager	it	Permesso negato !!!
 planned	projectmanager	it	pianificato
+planned time	projectmanager	it	tempo pianificato
 planned times	projectmanager	it	Ore pianificate
 please download a recent version from %1 and install it in %2.	projectmanager	it	Per favore scarica una versione recente da %1 e installala in %2.
 price	projectmanager	it	Prezzo
@@ -163,11 +178,13 @@ project-elements	projectmanager	it	Elementi-Progetto
 projectlist	projectmanager	it	Elenco progetti
 projectmanager	common	it	Gestione Progetti
 projectmember	projectmanager	it	Membro progetto
+projects	projectmanager	it	Progetti
 quantity	projectmanager	it	Quantità
 read access, incl. budget and adding elements	projectmanager	it	accesso in lettura, incl. budget e aggiunta elementi
 read access, no budget	projectmanager	it	accesso in lettura, no budget
 real end	projectmanager	it	Fine reale
 real start	projectmanager	it	Inizio reale
+remark	projectmanager	it	Osservazione
 resources	projectmanager	it	Risorse
 role	projectmanager	it	Ruolo
 role deleted	projectmanager	it	Ruolo cancellato
@@ -195,20 +212,27 @@ start working on %1	projectmanager	it	Ha iniziato a lavorare il %1
 start, end, category, ...	projectmanager	it	Inizio, Fine, Categoria, ...
 start- & enddate	projectmanager	it	Data Inizio e Fine
 startdate	projectmanager	it	Data inizio
-state	projectmanager	it	Stato
+startrecord	projectmanager	it	Record Iniziale
 status filter	projectmanager	it	Filtro di stato
 subelements	projectmanager	it	Sottoelementi
 subprojects	projectmanager	it	Sottoprogetti
 synchronise all	projectmanager	it	Sincronizza tutto
+tag to mark positions for address labels	projectmanager	it	Tagga per marcare le posizioni per le etichette di indirizzo
 template	projectmanager	it	Template
 template including elment-tree saved as new project	projectmanager	it	Template contenente albero-elementi salvato come nuovo progetto
+test import (show importable records <u>only</u> in browser)	projectmanager	it	Test importazione (mostra <u>solo</u> record importabili nel browser)
 time	projectmanager	it	Tempo
 times	projectmanager	it	Tempi
+timezone	projectmanager	it	Fuso orario
 title must not be empty	projectmanager	it	Il titolo non deve essere vuoto
+to many might exceed your execution-time-limit	projectmanager	it	troppi potrebbero far superare il tempo-limite-esecuzione
 tree with %1	projectmanager	it	Albero con %1
 unit	projectmanager	it	Unità
 unitprice	projectmanager	it	Prezzo unitario
+usage	projectmanager	it	Utilizzo
+use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	it	Usa questo tag per le etichette di indirizzo. Posiziona il contenuto da ripetere, tra due tag.
 used	projectmanager	it	usato
+used time	projectmanager	it	tempo effettivo
 valid since	projectmanager	it	Valido fino al
 view ganttchart of this project	projectmanager	it	Visualizza grafico Gantt di questo progetto
 view milestone	projectmanager	it	Vedi traguardo
@@ -221,7 +245,6 @@ view this price	projectmanager	it	Vedi questo prezzo
 view this project	projectmanager	it	Vedi questo progetto
 view this project-element	projectmanager	it	Vedi questo elemento-progetto
 working duration on %1	projectmanager	it	Durata lavoro il %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	it	Stai usando la vecchia versione di JPGraph, fornita con eGroupWare. Ha solo funzionalità limitate.
 you can leave the date of the first price empty	projectmanager	it	puoi lasciare la data del primo prezzo vuota
 you need to select a project first	projectmanager	it	Devi prima selezionare un progetto
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	it	Il tuo database NON è aggiornato (%1 contro %2), per favore esegui %3setup%4 per aggiornarlo.

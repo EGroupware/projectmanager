@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	no	%1 element(er) ble oppdatert
 %1 new project-elements imported	projectmanager	no	%1 nye prosjektelementer ble importert
 %1 projects deleted	projectmanager	no	%1 prosjekt(er) ble slettet
+%1 records imported	projectmanager	no	%1 rekker importert
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	no	%1 rekker lest (ikke importert enda, du kan gå %2tilbake%3 og fjerne haken på Test Import.
 %1 times permission denied, %2 projects deleted	projectmanager	no	%1 ganger tillatelse nekter, %2 prosjekter slettet
 - planned	projectmanager	no	- planlagt
 0ngoing (0 < % < 100)	projectmanager	no	Pågående (0 < % < 100)
@@ -47,10 +49,14 @@ create a new empty project or use a template	projectmanager	no	Opprett et nytt t
 create new links	projectmanager	no	Opprette nye lenker
 created	projectmanager	no	skapt
 created a ganttchart from the checked projects	projectmanager	no	Lage et Gantt-diagram fra de valgte prosjekter
+csv-fieldname	projectmanager	no	CSV-Feltnavn
+csv-filename	projectmanager	no	CSV-FIlnavn
+csv-import	common	no	CSV-Import
 custom fields	projectmanager	no	Tilpasse felt
 customer title	projectmanager	no	Tilpasset tittel
 datasource	projectmanager	no	Datakilde
 dates	projectmanager	no	Datoer
+days	projectmanager	no	dager
 default all and a selectbox to choose	projectmanager	no	standard alle og en nedtrekksmeny for å velge
 delete all checked projects	projectmanager	no	Slett all avkryssede prosjekter
 delete this milestone	projectmanager	no	Slett denne milepelen
@@ -58,6 +64,7 @@ delete this price	projectmanager	no	Slett denne prisen
 delete this project	projectmanager	no	Slett dette prosjektet
 delete this project-element, does not remove the linked entry	projectmanager	no	Sletting av prosjektelementet, sletter IKKE linkede forekomster
 delete this role	projectmanager	no	Slett denne rollen
+deleted	projectmanager	no	slettet
 depth of display	projectmanager	no	Dypde av visningen
 do not use that entry as project-element	projectmanager	no	ikke benytt denne forekomsten som et prosjektelement
 done (100%)	projectmanager	no	Utført (100%)
@@ -77,6 +84,7 @@ elements of elements	projectmanager	no	Elementer av elementer
 elements that can't start before this one is finished	projectmanager	no	Elementer som ikke kan starte før denne er avsluttet
 elements which have to be finished before this can start	projectmanager	no	Elementer som må være avsluttet før denne kan starte
 empty	projectmanager	no	Uten innhold
+empty for all	projectmanager	no	tom for alle
 end before	projectmanager	no	Slutte før
 enddate	projectmanager	no	Sluttdato
 error: deleting price !!!	projectmanager	no	Feil : Slette pris !
@@ -92,14 +100,15 @@ error: saving the project-element (%1) !!!	projectmanager	no	Feil : Lagre prosje
 everything recursive	projectmanager	no	Alt rekursiv
 existing links	projectmanager	no	Eksisterende lenker
 exit without saving	projectmanager	no	Avslutte uten å lagre
+fieldseparator	projectmanager	no	Feltskiller
 free descriptiv text	projectmanager	no	Fri beskrivende tekst
 from %1 to %2	projectmanager	no	fra %1 til %2
 full access	projectmanager	no	Full adgang
 ganttchart	projectmanager	no	Gantt diagram
 ganttchart parameter	projectmanager	no	Gantt diagram parametre
-general	projectmanager	no	Generell
 general availibility	projectmanager	no	Generell tilgjengelighet
 general pricelist	projectmanager	no	Generell prisliste
+global categories	projectmanager	no	Globale Kategorier
 h	projectmanager	no	t
 health	projectmanager	no	Helse
 hours	projectmanager	no	timer
@@ -133,12 +142,14 @@ no save necessary	projectmanager	no	Ingen lagring nødvendig.
 nonactive	projectmanager	no	Ikke aktiv
 not started (0%)	projectmanager	no	Ikke startet (0%)
 not working	projectmanager	no	arbeider ikke
+number of records to read (%1)	projectmanager	no	Antall rekker som leses (%1)
 only this project	projectmanager	no	Bare dette prosjektet
 overwrite the datasource	projectmanager	no	Overskrive kildekoden
 percentage the member is availible for projects	projectmanager	no	Prosent medlemmet er tilgjengelig for prosjektet
 percentage the member is availible for this project	projectmanager	no	Prosent medlemmet er tilgjengelig for dette prosjektet
 permission denied !!!	projectmanager	no	Adgang nektet !
 planned	projectmanager	no	Planlagt
+planned time	projectmanager	no	Planlagt tid
 planned times	projectmanager	no	Planlagt ant. ganger
 please download a recent version from %1 and install it in %2.	projectmanager	no	Last ned en nyere versjon fra %1 og installer denne i %2
 price	projectmanager	no	Pris
@@ -164,6 +175,7 @@ read access, incl. budget and adding elements	projectmanager	no	leseadgang, inkl
 read access, no budget	projectmanager	no	leseadgang, ikke budsjett
 real end	projectmanager	no	Virkelig slutt
 real start	projectmanager	no	Virkelig start
+remark	projectmanager	no	Merknad
 resources	projectmanager	no	Ressurser
 role	projectmanager	no	Rolle
 role deleted	projectmanager	no	Rolle slettet
@@ -189,18 +201,21 @@ start working on %1	projectmanager	no	Start arbeidet den %1
 start, end, category, ...	projectmanager	no	Start, slutt, kategori
 start- & enddate	projectmanager	no	Start- og sluttdato
 startdate	projectmanager	no	Startdato
-state	projectmanager	no	Status
+startrecord	projectmanager	no	Startrekke
 status filter	projectmanager	no	Statusfilter
 subprojects	projectmanager	no	Underprosjekter
 synchronise all	projectmanager	no	Synkroniser alle
 template	projectmanager	no	Mal
 template including elment-tree saved as new project	projectmanager	no	Mal inklusive elementtre lagret som et nytt prosjekt.
+test import (show importable records <u>only</u> in browser)	projectmanager	no	Test Import (vis <u>kun</u> importerbare rekker i webleser)
 time	projectmanager	no	Tid
 times	projectmanager	no	Tider
 title must not be empty	projectmanager	no	Tittel kan ikke være tom
+to many might exceed your execution-time-limit	projectmanager	no	for mange vil muligens overskride din eksekverings-tidsgrense
 unit	projectmanager	no	Enhet
 unitprice	projectmanager	no	Enhetspris
 used	projectmanager	no	brukt
+used time	projectmanager	no	brukt tid
 valid since	projectmanager	no	Gyldig fra
 view ganttchart of this project	projectmanager	no	Vis Gantt diagram for dette prosjektet
 view milestone	projectmanager	no	Vis milepel
@@ -213,7 +228,6 @@ view this price	projectmanager	no	Vis denne prisen
 view this project	projectmanager	no	Vis dette prosjektet
 view this project-element	projectmanager	no	Vis dette prosjektelementet
 working duration on %1	projectmanager	no	Arbeidet varighet for %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	no	Du benytter en gammel versjon av JPGraph som følger med eGroupware.  Denne har bare begrenset funksjonalitet
 you can leave the date of the first price empty	projectmanager	no	Du kan la dato for den første prisen stå tom
 you need to select a project first	projectmanager	no	Du må velge et prosjekt først
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	no	Din database er ikke oppdatert (%1 vs. %2. Start %3setup%4 for å oppdatere databasen.

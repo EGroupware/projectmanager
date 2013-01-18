@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	zh	%1个要素被更新
 %1 new project-elements imported	projectmanager	zh	导入%1个项目要素
 %1 projects deleted	projectmanager	zh	%1个项目被删除
+%1 records imported	projectmanager	zh	已导入%1条记录
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	zh	已读取%1条记录(但尚未导入，您可以去%2返回%3，并且取消"测试导入"复选框)
 %1 times permission denied, %2 projects deleted	projectmanager	zh	%1没有权限，%2个项目被删除
 - planned	projectmanager	zh	- 计划
 0ngoing (0 < % < 100)	projectmanager	zh	进行中 (0 < % < 100)
@@ -48,12 +50,16 @@ create a new empty project or use a template	projectmanager	zh	创建一空项�
 create new links	projectmanager	zh	创建新链接
 created	projectmanager	zh	已创建
 created a ganttchart from the checked projects	projectmanager	zh	从选择的项目创建的甘特图
+csv-fieldname	projectmanager	zh	CSV - 字段名
+csv-filename	projectmanager	zh	CSV - 文件名
+csv-import	common	zh	从CSV文件导入
 cumulated elements too	projectmanager	zh	集合了许多要素
 custom fields	projectmanager	zh	自定义字段
 customer title	projectmanager	zh	客户名称
 datasource	projectmanager	zh	数据来源
 datasources too	projectmanager	zh	包括数据源
 dates	projectmanager	zh	日期
+days	projectmanager	zh	日
 default all and a selectbox to choose	projectmanager	zh	默认全部及一个选择框供选择
 delete all checked projects	projectmanager	zh	删除所有选择的项目
 delete this milestone	projectmanager	zh	删除该里程碑
@@ -61,10 +67,12 @@ delete this price	projectmanager	zh	删除此价格
 delete this project	projectmanager	zh	删除此项目
 delete this project-element, does not remove the linked entry	projectmanager	zh	删除这个项目的组成部分，并不移除项目链接
 delete this role	projectmanager	zh	删除此角色
+deleted	projectmanager	zh	已删除
 depth of display	projectmanager	zh	显示深度
 details of cumulated	projectmanager	zh	集合细节
 details of subelements	projectmanager	zh	子要素细节
 do not use that entry as project-element	projectmanager	zh	不要使用那一条目作为项目要素
+document '%1' does not exist or is not readable for you!	projectmanager	zh	文件'%1'不存在或是您没有读取权限！
 done (100%)	projectmanager	zh	完成 (100%)
 edit access, incl. editing budget and elements	projectmanager	zh	编辑访问权限，包括预算编辑和要素
 edit budget	projectmanager	zh	编辑预算
@@ -82,6 +90,7 @@ elements of elements	projectmanager	zh	要素的要素
 elements that can't start before this one is finished	projectmanager	zh	要素不能在这一个完成之前开始
 elements which have to be finished before this can start	projectmanager	zh	开始前必须完成的要素
 empty	projectmanager	zh	清空
+empty for all	projectmanager	zh	全部清空
 encode non-ascii	projectmanager	zh	非 ascii 编码
 end before	projectmanager	zh	截至日
 enddate	projectmanager	zh	结束日期
@@ -98,6 +107,7 @@ error: saving the project-element (%1) !!!	projectmanager	zh	错误：保存这�
 everything recursive	projectmanager	zh	一切递归
 existing links	projectmanager	zh	已经存在的链接
 exit without saving	projectmanager	zh	离开且不保存
+fieldseparator	projectmanager	zh	字段分隔符
 font	projectmanager	zh	字型
 font charset	projectmanager	zh	字符集
 font style	projectmanager	zh	字型风格
@@ -108,7 +118,6 @@ from %1 to %2	projectmanager	zh	从%1到%2
 full access	projectmanager	zh	完全存取
 ganttchart	projectmanager	zh	甘特图
 ganttchart parameter	projectmanager	zh	甘特图参数
-general	projectmanager	zh	通用
 general availibility	projectmanager	zh	通用有效性
 general pricelist	projectmanager	zh	通用价格表
 global categories	projectmanager	zh	全局分类
@@ -137,6 +146,7 @@ milestones	projectmanager	zh	里程碑
 milestones before this element has to be finished	projectmanager	zh	在这个要素之前的里程碑必须先完成
 modified	projectmanager	zh	修改日期
 modified by	projectmanager	zh	修改人
+name of current user, all other contact fields are valid too	projectmanager	zh	目前用户的名称，所有其他联系人字段也是正确的
 necessary for project-elements doing that not automatic	projectmanager	zh	对此项目要素必须动作不是自动进行的
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	zh	必须的 PHP 扩展 %1 尚未加载！
 new	projectmanager	zh	新建
@@ -148,6 +158,7 @@ no save necessary	projectmanager	zh	不需要保存
 nonactive	projectmanager	zh	未激活
 not started (0%)	projectmanager	zh	未开始 (0%)
 not working	projectmanager	zh	不工作
+number of records to read (%1)	projectmanager	zh	读取记录编号(%1)
 only this project	projectmanager	zh	只有该项目
 overwrite the datasource	projectmanager	zh	覆盖数据源
 percentage the member is availible for projects	projectmanager	zh	项目可以使用的成员的比率
@@ -174,11 +185,13 @@ project-elements	projectmanager	zh	项目要素
 projectlist	projectmanager	zh	项目列表
 projectmanager	common	zh	项目管理
 projectmember	projectmanager	zh	项目成员
+projects	projectmanager	zh	项目
 quantity	projectmanager	zh	数量
 read access, incl. budget and adding elements	projectmanager	zh	读取权限，包含预算与新增的要素
 read access, no budget	projectmanager	zh	读取权限，不包含预算
 real end	projectmanager	zh	实际结束日期
 real start	projectmanager	zh	实际开始日期
+remark	projectmanager	zh	注释
 resources	projectmanager	zh	资源
 role	projectmanager	zh	角色
 role deleted	projectmanager	zh	角色已删除
@@ -206,7 +219,7 @@ start working on %1	projectmanager	zh	%1开始工作时间
 start, end, category, ...	projectmanager	zh	开始、结束、类别、...
 start- & enddate	projectmanager	zh	开始- 和结束日期
 startdate	projectmanager	zh	开始日期
-state	projectmanager	zh	状态
+startrecord	projectmanager	zh	起始记录
 status filter	projectmanager	zh	状态筛选
 style used for everything but elements. some fonts have only normal style.	projectmanager	zh	风格可用于除要素以外的所有地方，而某些字体只有一般风格。
 subelements	projectmanager	zh	子要素
@@ -214,10 +227,13 @@ subprojects	projectmanager	zh	子项目
 synchronise all	projectmanager	zh	全部同步
 template	projectmanager	zh	模板
 template including elment-tree saved as new project	projectmanager	zh	含要素树的模板保存为新项目
+test import (show importable records <u>only</u> in browser)	projectmanager	zh	导入测试 (<u>仅</u> 仅显示可导入记录)
 the charset depends on the font you want to use.	projectmanager	zh	字符集依赖您想要使用的字型。
 time	projectmanager	zh	时间
 times	projectmanager	zh	时间
+timezone	projectmanager	zh	时区
 title must not be empty	projectmanager	zh	标题不能为空白
+to many might exceed your execution-time-limit	projectmanager	zh	许多可能超过你的执行时间限制
 tree with %1	projectmanager	zh	%1的树状结构
 unit	projectmanager	zh	单位
 unitprice	projectmanager	zh	单价
@@ -234,7 +250,6 @@ view this price	projectmanager	zh	查看这个价格
 view this project	projectmanager	zh	查看这个项目
 view this project-element	projectmanager	zh	查看这个项目要素
 working duration on %1	projectmanager	zh	%1工作持续时间
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	zh	您所使用的是 eGroupWare 捆绑的旧版本的 JPGraph，它只有有限的功能。
 you can leave the date of the first price empty	projectmanager	zh	您可以让第一个价格的日期留空
 you need to select a project first	projectmanager	zh	您必须首先选择一个项目
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	zh	您的数据库没有更新到(%1 vs. %2)，请运行%3安装%4更新您的数据库。

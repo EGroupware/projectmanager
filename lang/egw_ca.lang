@@ -1,6 +1,8 @@
 %1 element(s) updated	projectmanager	ca	%1 element(s) actualitzat
 %1 new project-elements imported	projectmanager	ca	%1 elements nous de projecte importats
 %1 projects deleted	projectmanager	ca	%1 projectes esborrats
+%1 records imported	projectmanager	ca	%1 registres importats
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ca	%1 registres llegits (no importats encara, podeu tornar %2enrere%3 i desmarcar Prova d'Importació)
 %1 times permission denied, %2 projects deleted	projectmanager	ca	%1 vegades s'ha denegat el permís, %2 projectes esborrats
 - planned	projectmanager	ca	- planificat
 0ngoing (0 < % < 100)	projectmanager	ca	Va fent (0 < % < 100)
@@ -48,11 +50,15 @@ create a new empty project or use a template	projectmanager	ca	Crea un nou proje
 create new links	projectmanager	ca	Crea nous enllaços
 created	projectmanager	ca	creat
 created a ganttchart from the checked projects	projectmanager	ca	Creat un diagrama de Gantt dels projectes senyalats
+csv-fieldname	projectmanager	ca	Camp CSV
+csv-filename	projectmanager	ca	Arxiu CSV
+csv-import	common	ca	CSV-Importar
 cumulated elements too	projectmanager	ca	També elements acumulats
 custom fields	projectmanager	ca	Camps personalitzats
 customer title	projectmanager	ca	Títol del client
 datasource	projectmanager	ca	Font de les dades
 dates	projectmanager	ca	Dades
+days	projectmanager	ca	dies
 default all and a selectbox to choose	projectmanager	ca	tot per defecte i un camp de sel·lecció per triar
 delete all checked projects	projectmanager	ca	Esborra tots els projectes senyalats
 delete this milestone	projectmanager	ca	Esborra aquesta fita
@@ -60,6 +66,7 @@ delete this price	projectmanager	ca	Esborra aquest preu
 delete this project	projectmanager	ca	Esborra aquest projecte
 delete this project-element, does not remove the linked entry	projectmanager	ca	Esborra aquest element de projecte, NO esborra l'enllaç
 delete this role	projectmanager	ca	Esborra aquest rol
+deleted	projectmanager	ca	eliminat
 depth of display	projectmanager	ca	Profunditat de visualització
 details of cumulated	projectmanager	ca	Detalls d'acumulat
 details of subelements	projectmanager	ca	Detalls de subelements
@@ -81,6 +88,7 @@ elements of elements	projectmanager	ca	Elements d'elements
 elements that can't start before this one is finished	projectmanager	ca	Elements que no poden començar fins que aquest hagi acabat
 elements which have to be finished before this can start	projectmanager	ca	Elements que han d'haver acabat abans que aquest pugui començar
 empty	projectmanager	ca	Buit
+empty for all	projectmanager	ca	buit per a tot
 encode non-ascii	projectmanager	ca	Codifica no-ASCII
 end before	projectmanager	ca	Acaba abans de
 enddate	projectmanager	ca	Data final
@@ -97,6 +105,7 @@ error: saving the project-element (%1) !!!	projectmanager	ca	Error guardant l'el
 everything recursive	projectmanager	ca	Tot recursiu
 existing links	projectmanager	ca	Enllaços existents
 exit without saving	projectmanager	ca	Surt sense guardar
+fieldseparator	projectmanager	ca	Separador de camps
 font	projectmanager	ca	Font
 font charset	projectmanager	ca	Joc de caràcters de la font
 font style	projectmanager	ca	Estil de la font
@@ -107,9 +116,9 @@ from %1 to %2	projectmanager	ca	des de %1 fins a %2
 full access	projectmanager	ca	accés total
 ganttchart	projectmanager	ca	Diagrama de Gantt
 ganttchart parameter	projectmanager	ca	Paràmetre del diagrama de Gantt
-general	projectmanager	ca	General
 general availibility	projectmanager	ca	Disponibilitat general
 general pricelist	projectmanager	ca	Llista General de Preus
+global categories	projectmanager	ca	Categories globals
 h	projectmanager	ca	h
 health	projectmanager	ca	Salud
 hours	projectmanager	ca	hores
@@ -145,12 +154,14 @@ no save necessary	projectmanager	ca	no és necessari guardar
 nonactive	projectmanager	ca	No actiu
 not started (0%)	projectmanager	ca	No iniciat (0%)
 not working	projectmanager	ca	no funciona
+number of records to read (%1)	projectmanager	ca	Número de registres a llegir (%1)
 only this project	projectmanager	ca	Només aquest projecte
 overwrite the datasource	projectmanager	ca	Sobreescriu la font de dades
 percentage the member is availible for projects	projectmanager	ca	Percentatge en que el membre està disponible pels projectes
 percentage the member is availible for this project	projectmanager	ca	Percentatge en que el membre està disponible per aquest projecte
 permission denied !!!	projectmanager	ca	Permís denegat !!!
 planned	projectmanager	ca	Planificat
+planned time	projectmanager	ca	temps planificat
 planned times	projectmanager	ca	Horaris planificats
 please download a recent version from %1 and install it in %2.	projectmanager	ca	Per favor, descarrega una versió recent de %1 i instal·la-la a %2.
 price	projectmanager	ca	Preu
@@ -176,6 +187,7 @@ read access, incl. budget and adding elements	projectmanager	ca	accés de lectur
 read access, no budget	projectmanager	ca	accés de lectura, sense pressupost
 real end	projectmanager	ca	Final real
 real start	projectmanager	ca	Inici real
+remark	projectmanager	ca	Comentari
 resources	projectmanager	ca	Recursos
 role	projectmanager	ca	Rol
 role deleted	projectmanager	ca	Rol esborrat
@@ -203,7 +215,7 @@ start working on %1	projectmanager	ca	Comença fent feina amb %1
 start, end, category, ...	projectmanager	ca	Inici, Fi, Categoria,...
 start- & enddate	projectmanager	ca	Dates d'inici i Fi
 startdate	projectmanager	ca	Data d'inici
-state	projectmanager	ca	Estat
+startrecord	projectmanager	ca	Registre inicial
 status filter	projectmanager	ca	Filtre d'estat
 style used for everything but elements. some fonts have only normal style.	projectmanager	ca	Estil utilitzat per tot excepte els elements. Algunes fonts només tenen l'estil normal.
 subelements	projectmanager	ca	Subelements
@@ -211,14 +223,18 @@ subprojects	projectmanager	ca	Subprojectes
 synchronise all	projectmanager	ca	Sincronitza-ho tot
 template	projectmanager	ca	Plantilla
 template including elment-tree saved as new project	projectmanager	ca	Plantilla que inclou l'arbre d'elements guardat com un projecte nou
+test import (show importable records <u>only</u> in browser)	projectmanager	ca	Prova d'Importació - (mostrar els registres que es poden importar <b>només</b> al navegador)
 the charset depends on the font you want to use.	projectmanager	ca	El joc de caràcters depen de la font que vulguis utilitzar.
 time	projectmanager	ca	Hora
 times	projectmanager	ca	Hores
+timezone	projectmanager	ca	Zona horària
 title must not be empty	projectmanager	ca	El títol no pot estar buit
+to many might exceed your execution-time-limit	projectmanager	ca	quant pot excedir el temps límit d'execució
 tree with %1	projectmanager	ca	Arbre amb %1
 unit	projectmanager	ca	Unitat
 unitprice	projectmanager	ca	Unitat de Preu
 used	projectmanager	ca	utilitzat
+used time	projectmanager	ca	temps usat
 valid since	projectmanager	ca	Vàlid des de
 view ganttchart of this project	projectmanager	ca	Veure diagrama de Gantt d'aquest projecte
 view milestone	projectmanager	ca	Veure fita
@@ -231,7 +247,6 @@ view this price	projectmanager	ca	Veure aquest preu
 view this project	projectmanager	ca	Veure aquest projecte
 view this project-element	projectmanager	ca	Veure aquest element de projecte
 working duration on %1	projectmanager	ca	Durada de la feina a %1
-you are using the old version of jpgraph, bundled with egroupware. it has only limited functionality.	projectmanager	ca	Estàs utilitzant la versió antiga de JPGraph, lligat a eGroupware. Té una funcionalitat limitada.
 you can leave the date of the first price empty	projectmanager	ca	pots deixar la data del primer preu buida
 you need to select a project first	projectmanager	ca	Primer has de seleccionar un projecte
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ca	La teva base de dades NO està al dia (%1 vs. %2), si us plau, executa %3setup%4 per actualitzar la teva base de dades.

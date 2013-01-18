@@ -40,7 +40,6 @@ budget (no pricelist)	projectmanager	cs	Rozpočet (bez ceníku)
 budget and pricelist	projectmanager	cs	Rozpočet a ceník
 by	projectmanager	cs	od
 calculate budget by quantity (eg. time) and price	projectmanager	cs	Spočítat rozpočet na základě množství (např. času) a ceny
-charset of file	projectmanager	cs	Znaková sada souboru
 charset of the above selected font	projectmanager	cs	Znaková sada výše vybraného písma
 check all	projectmanager	cs	Vybrat vše
 close the window, discard the changes made	projectmanager	cs	Zavřít okno, zahodit provedené změny
@@ -61,6 +60,7 @@ customer title	projectmanager	cs	Jméno klienta
 datasource	projectmanager	cs	Datový zdroj
 datasources too	projectmanager	cs	datové zdroje také
 dates	projectmanager	cs	Datumy
+days	projectmanager	cs	dny
 default all and a selectbox to choose	projectmanager	cs	výchozí vše a rozbalovací nabídka pro výběr
 delete all checked projects	projectmanager	cs	Smazat všechny vybrané projekty
 delete this milestone	projectmanager	cs	Smazat milník
@@ -68,10 +68,12 @@ delete this price	projectmanager	cs	Smazat cenu
 delete this project	projectmanager	cs	Smazat projekt
 delete this project-element, does not remove the linked entry	projectmanager	cs	Smazat prvek projektu, neodstraní odkazovaný záznam
 delete this role	projectmanager	cs	Smazat roli
+deleted	projectmanager	cs	smazáno
 depth of display	projectmanager	cs	Hloubka zobrazení
 details of cumulated	projectmanager	cs	Detaily kumulovaných
 details of subelements	projectmanager	cs	Detaily dílčích součástí
 do not use that entry as project-element	projectmanager	cs	nepoužívat tento záznam jako součást projektu
+document '%1' does not exist or is not readable for you!	projectmanager	cs	Dokument '%1' neexistuje nebo nemáte oprávnění k jeho čtení!
 done (100%)	projectmanager	cs	Hotovo (100%)
 edit access, incl. editing budget and elements	projectmanager	cs	oprávnění k editaci, včetně úprav rozpočtu a součástí
 edit budget	projectmanager	cs	Editovat rozpočet
@@ -114,12 +116,12 @@ font charset	projectmanager	cs	Znaková sada písma
 font style	projectmanager	cs	Styl písma
 font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	cs	Písmo, které má být použito v Ganntově diagramu. Součástí Správce projektů je jen písmo Vera.
 fontfile '%1' not found!!!	projectmanager	cs	Soubor písma %1' nebyl nalezen!!!
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	cs	Pro hromadný dopis použijte tento štítek. Obsah, který chcete opakovat vložte mezi dva štítky.
 free descriptiv text	projectmanager	cs	volný popisný text
 from %1 to %2	projectmanager	cs	od %1 do %2
 full access	projectmanager	cs	plný přístup
 ganttchart	projectmanager	cs	Ganttův postupový diagram
 ganttchart parameter	projectmanager	cs	parametr Ganttova diagramu
-general	projectmanager	cs	Obecné
 general availibility	projectmanager	cs	Všeobecná  dostupnost
 general pricelist	projectmanager	cs	Hlavní ceník
 global categories	projectmanager	cs	Globální kategorie
@@ -134,7 +136,6 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	cs	Pokud uvidíte entity (např. {) v Ganttově diagramu, vypněte tuto volbu.
 ignore that entry	projectmanager	cs	ignorovat záznam
 ignored	projectmanager	cs	ignorován
-import	projectmanager	cs	Importovat
 last modified	projectmanager	cs	Naposledy změněno
 leave it empty if you dont need a different customer title	projectmanager	cs	ponechte prázdné, pokud nepotřebujete jiné jméno klienta
 leave it empty to have one generated	projectmanager	cs	ponechte prázdné pro automatické vygenerování
@@ -150,6 +151,7 @@ milestones	projectmanager	cs	Milníky
 milestones before this element has to be finished	projectmanager	cs	Milníky před touto součástí musí být ukončeny
 modified	projectmanager	cs	Změněno
 modified by	projectmanager	cs	Změnil(a)
+name of current user, all other contact fields are valid too	projectmanager	cs	Jméno aktuálního uživatele, všechny ostatní položky kontaktu jsou také platné
 necessary for project-elements doing that not automatic	projectmanager	cs	nezbytné pro součásti projektu, aby se to nedělalo automaticky
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	cs	Potřebné rozšíření PHP %1 není nahráno a nelze nahrát !!!
 new	projectmanager	cs	Nové
@@ -168,6 +170,7 @@ percentage the member is availible for projects	projectmanager	cs	Na kolik proce
 percentage the member is availible for this project	projectmanager	cs	Na kolik procent je člen dostupný pro tento projekt
 permission denied !!!	projectmanager	cs	Přístup zablokován!!!
 planned	projectmanager	cs	plánované
+planned time	projectmanager	cs	plánovaný čas
 planned times	projectmanager	cs	Plánované časy
 please download a recent version from %1 and install it in %2.	projectmanager	cs	Stáhněte si prosím aktuální verzi z %1 a nainstalujte ji do %2.
 price	projectmanager	cs	Cena
@@ -189,12 +192,15 @@ projectlist	projectmanager	cs	Seznam projektů
 projectmanager	common	cs	Správce projektů
 projectmanager-fieldname	projectmanager	cs	Správce projektů - Název položky
 projectmember	projectmanager	cs	Člen projektu
+projects	projectmanager	cs	Projekty
 quantity	projectmanager	cs	Množství
 re-planned	projectmanager	cs	přeplánované
+re-planned time	projectmanager	cs	Přeplánovaný čas
 read access, incl. budget and adding elements	projectmanager	cs	oprávnění ke čtení, včetně rozpočtu a přidávání součástí
 read access, no budget	projectmanager	cs	oprávnění ke čtení, bez rozpočtu
 real end	projectmanager	cs	Skutečný konec
 real start	projectmanager	cs	Skutečný začátek
+remark	projectmanager	cs	Poznámka
 resources	projectmanager	cs	Zdroje
 role	projectmanager	cs	Role
 role deleted	projectmanager	cs	Role smazána
@@ -228,19 +234,23 @@ style used for everything but elements. some fonts have only normal style.	proje
 subelements	projectmanager	cs	Dílčí součásti
 subprojects	projectmanager	cs	Dílčí projekty
 synchronise all	projectmanager	cs	Synchronizovat vše
+tag to mark positions for address labels	projectmanager	cs	Značka pro vyznačení pozic v adresních štítcích
 template	projectmanager	cs	Šablona
 template including elment-tree saved as new project	projectmanager	cs	Šablona včetně stromu součástí uložena jako nový projekt
 test import (show importable records <u>only</u> in browser)	projectmanager	cs	Testovat import (záznamy, které lze importovat <u>jen zobrazí</u> v prohlížeči)
 the charset depends on the font you want to use.	projectmanager	cs	Znaková sada zavisí na písmu, které chcete použít.
 time	projectmanager	cs	Čas
 times	projectmanager	cs	Časy
+timezone	projectmanager	cs	Časová zóna
 title must not be empty	projectmanager	cs	Název nesmí být prázdný
 to many might exceed your execution-time-limit	projectmanager	cs	příliš mnoho může překročit nastavený časový limit spuštění
-translation	projectmanager	cs	Překlad
 tree with %1	projectmanager	cs	Strom s %1
 unit	projectmanager	cs	Jednotka
 unitprice	projectmanager	cs	Jednotková cena
+usage	projectmanager	cs	Využití
+use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	cs	Použijte tuto značku pro adresní štítky. Obsah, který chcete opakovat, vložte mezi dvě značky.
 used	projectmanager	cs	použito
+used time	projectmanager	cs	spotřebovaný čas
 valid since	projectmanager	cs	Platné od
 view ganttchart of this project	projectmanager	cs	Zobrazit Ganttův diagram projektu
 view milestone	projectmanager	cs	Zobrazit milník

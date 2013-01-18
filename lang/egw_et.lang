@@ -1,0 +1,31 @@
+actions	projectmanager	et	Tegevused
+apply the changes	projectmanager	et	rakenda uuendused
+check all	projectmanager	et	Kontrolli kõik
+create new links	projectmanager	et	Tee uued lingid
+created	projectmanager	et	Tehtud
+csv-fieldname	projectmanager	et	CSV-Väljanimi
+csv-filename	projectmanager	et	CSV-Failinimi
+csv-import	common	et	CSV-Impirt
+days	projectmanager	et	päeva
+deleted	projectmanager	et	kustutatud
+empty for all	projectmanager	et	tühi kõigijaoks
+enddate	projectmanager	et	Lõpukuupäev
+existing links	projectmanager	et	Eksisteerivad lingid
+fieldseparator	projectmanager	et	Väljaeraldaja
+global categories	projectmanager	et	Globaalsed Kategooriad
+hours	projectmanager	et	tundi
+last modified	projectmanager	et	Viimati muudetud
+links	projectmanager	et	Lingid
+modified	projectmanager	et	Muudetud
+new	projectmanager	et	Uus
+no details	projectmanager	et	mitte detailselt
+permission denied !!!	projectmanager	et	Õigused puuduvad !!!
+planned	projectmanager	et	kavandatud
+planned time	projectmanager	et	kavandatud aeg
+price	projectmanager	et	Hind
+projects	projectmanager	et	Projektid
+quantity	projectmanager	et	Kogus
+resources	projectmanager	et	Resursid
+select a project	projectmanager	et	Vali Projekt
+startdate	projectmanager	et	Algus kuupäev
+used time	projectmanager	et	kasutauud aeg
