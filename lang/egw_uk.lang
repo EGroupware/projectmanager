@@ -1,0 +1,25 @@
+%1 records imported	projectmanager	uk	%1 записів імпортовано
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	uk	%1 записів прочитано (ще не імпортовано, %2поверніться%3 та зніміть відмітку Тестувати Імпорт)
+actions	projectmanager	uk	Дії
+charset of file	projectmanager	uk	Кодування файлу
+create new links	projectmanager	uk	Створити нові посилання
+csv-fieldname	projectmanager	uk	CSV-Fieldname
+csv-filename	projectmanager	uk	CSV-Filename
+custom fields	projectmanager	uk	Власні поля
+empty for all	projectmanager	uk	Порожнє для всіх
+enddate	projectmanager	uk	Число закінчення
+existing links	projectmanager	uk	Існуючі посилання
+fieldseparator	projectmanager	uk	Розділитель полів
+global categories	projectmanager	uk	Глобальні категорії
+hours	projectmanager	uk	години
+import	projectmanager	uk	Імпорт
+last modified	projectmanager	uk	Востаннє змінено
+links	projectmanager	uk	Посилання
+modified	projectmanager	uk	Змінено
+number of records to read (%1)	projectmanager	uk	Кількість записів для читання (%1)
+startdate	projectmanager	uk	Число початку
+startrecord	projectmanager	uk	Початковий запис
+test import (show importable records <u>only</u> in browser)	projectmanager	uk	Тестувати Імпорт (тільки показати записи, що можуть бути імпортовані)
+times	projectmanager	uk	Раз
+to many might exceed your execution-time-limit	projectmanager	uk	надто багато може перевищити Ваш ліміт часу
+translation	projectmanager	uk	Переклад

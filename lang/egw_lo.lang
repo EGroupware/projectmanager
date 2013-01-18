@@ -1,0 +1,31 @@
+%1 records imported	projectmanager	lo	%1 ບັນທຶກການນໍາເຂົ້າ
+apply the changes	projectmanager	lo	ໃຊ້ການປ່ຽນແປງ
+bookable	projectmanager	lo	ໃຫ້ຈອງໄດ້
+by	projectmanager	lo	ໂດຍ
+check all	projectmanager	lo	ກວດສອບທັງໝົດ
+create new links	projectmanager	lo	ສ້າງການເຊື່ອມຕໍ່ໃໝ່
+created	projectmanager	lo	ຖືກສ້າງແລ້ວ
+csv-fieldname	projectmanager	lo	ຊື່ຂອບເຂດຂອງ CSV
+csv-filename	projectmanager	lo	ຊື່ຟາຍຂອງ CSV
+custom fields	projectmanager	lo	ກໍານົດ fields
+empty for all	projectmanager	lo	ບ່ອນວ່າງສຳລັບທັງໝົດ
+enddate	projectmanager	lo	ວັນສຸດທ້າຍ
+existing links	projectmanager	lo	ການເຊື່ອມຕໍ່ທີ່ມີຢູ່ແລ້ວ
+fieldseparator	projectmanager	lo	ການແຍກຟີລ
+general	projectmanager	lo	ທົ່ວໄປ
+global categories	projectmanager	lo	ໝວດທົ່ວໄປ
+h	projectmanager	lo	ຊົ່ວໂມງ
+hours	projectmanager	lo	ຊົ່ວໂມງ
+links	projectmanager	lo	ເຊື່ອມຕໍ່
+modified	projectmanager	lo	ປັບປຸງ
+number of records to read (%1)	projectmanager	lo	ຈໍານວນຂອງບັນທຶກທີ່ຈະອ່ານ (%1)
+permission denied !!!	projectmanager	lo	ບໍ່ໄດ້ຮັບອະນຸຍາດ !!!
+projectmanager	common	lo	ຜູ້ຈັດການໂຄງການ
+quantity	projectmanager	lo	ປະລິມານ
+resources	projectmanager	lo	ແຫຼ່ງຂໍ້ມູນ
+role	projectmanager	lo	ບົດບາດ
+startdate	projectmanager	lo	ວັນທີ່ເລີ່ມ
+startrecord	projectmanager	lo	ເລີ່ມບັນທຶກ
+test import (show importable records <u>only</u> in browser)	projectmanager	lo	ທົດສອບການນໍາເຂົ້າ, ສະແດງການບັນທຶກ ທີ່ສໍາຄັນ <u>ພຽງແຕ່</u> ໃນໜ້າຕ່າງ
+times	projectmanager	lo	ຄັ້ງ
+to many might exceed your execution-time-limit	projectmanager	lo	ຫຼາຍເກີນໄປອາດຈະເກີນໄລຍະເວລາຈໍາກັດການປະຕິບັດແຜນການຂອງທ່ານ

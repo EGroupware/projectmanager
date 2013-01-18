@@ -1,0 +1,98 @@
+%1 element(s) updated	projectmanager	sl	%1 element(-a/-i/-ov) posodobljen(-a/-i/-ih)
+%1 new project-elements imported	projectmanager	sl	%1 novih elementov projekta je bilo uvoženih
+%1 projects deleted	projectmanager	sl	%1 projektov je bilo zbrisanih
+%1 records imported	projectmanager	sl	%1 zapisov uvoženih
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	sl	1% zapisov prebranih (niso še uvoženi, lahko greste %2nazaj%3 in odznačite preizkus uvoza)
+%1 times permission denied, %2 projects deleted	projectmanager	sl	%1 krat je bil dostop zavrnjen, %2 projektov zbrisanih
+- planned	projectmanager	sl	- planirano
+0ngoing (0 < % < 100)	projectmanager	sl	V teku (0 < % < 100)
+a describtive title for the project, must not be empty	projectmanager	sl	Opisni naslov projekta ne sme bit prazen
+accounting	projectmanager	sl	Računovodstvo
+accounting options	projectmanager	sl	Možnosti računovodstva
+accounting type	projectmanager	sl	Vrsta računovodstva
+actions	projectmanager	sl	Dejanja
+activity	projectmanager	sl	Aktivnost
+add a new milestone	projectmanager	sl	Dodaj nov milestone
+add a new project	projectmanager	sl	Dodaj nov projekt
+add element	projectmanager	sl	Dodaj element
+add existing	projectmanager	sl	Dodaj obstoječega
+add milestone	projectmanager	sl	Dodaj milestone
+add price	projectmanager	sl	Dodaj ceno
+add project	projectmanager	sl	Dodaj projekt
+add project-elements	projectmanager	sl	Dodaj elemente projekta
+allow users to change their working times	projectmanager	sl	Dovoli uporabnikom spreminjanje svojega delovnega časa
+allowed accounting types	projectmanager	sl	Dovoljene vrste računovodstva
+allowed units	projectmanager	sl	Dovoljene enote
+app.	projectmanager	sl	Apl.
+apply the changes	projectmanager	sl	Uveljavi spremenbe
+archive	projectmanager	sl	Arhiv
+assistant	projectmanager	sl	Pomočnik
+at which time do you start working on the given day.	projectmanager	sl	Ob kateri uri začnete delati na določen dan.
+availible	projectmanager	sl	Na voljo
+bookable	projectmanager	sl	Se lahko rezervira
+budget	projectmanager	sl	Proračun
+budget (no pricelist)	projectmanager	sl	Proračun (brez stroškovnika)
+budget and pricelist	projectmanager	sl	Proračun s stroškovnikom
+by	projectmanager	sl	od
+charset of file	projectmanager	sl	Kodna tabela datoteke
+check all	projectmanager	sl	Izberi vse
+coordinator	projectmanager	sl	Koordinator
+cost per time	projectmanager	sl	Strošek na uro
+create new links	projectmanager	sl	Ustvari nove povezave
+created	projectmanager	sl	ustvarjeno
+csv-fieldname	projectmanager	sl	CSV-Ime polja
+csv-filename	projectmanager	sl	CSV-Ime datoteke
+csv-import	common	sl	CSV-Uvoz
+custom fields	projectmanager	sl	Lastna polja
+datasource	projectmanager	sl	Vir podatkov
+dates	projectmanager	sl	Datumi
+delete all checked projects	projectmanager	sl	Zbriši vse izbrane projekte
+delete this price	projectmanager	sl	Zbriši to ceno
+delete this project	projectmanager	sl	Zbriši ta projekt
+depth of display	projectmanager	sl	Globina prikaza
+done (100%)	projectmanager	sl	Narejeno (100%)
+edit budget	projectmanager	sl	Uredi proračun
+edit price	projectmanager	sl	Uredi ceno
+edit project	projectmanager	sl	Uredi projekt
+edit project-elements	projectmanager	sl	Uredi elemente projekta
+edit this price	projectmanager	sl	Uredi to ceno
+edit this project	projectmanager	sl	Uredi ta projekt
+edit this project-element	projectmanager	sl	Uredi ta element projekta
+elementlist	projectmanager	sl	Seznam elementov
+empty	projectmanager	sl	Prazno
+empty for all	projectmanager	sl	Izprazni za vse
+end before	projectmanager	sl	Konec pred
+enddate	projectmanager	sl	Končni datum
+existing links	projectmanager	sl	Obstoječe povezave
+fieldseparator	projectmanager	sl	Ločilo polj
+full access	projectmanager	sl	poln dostop
+general	projectmanager	sl	Splošno
+global categories	projectmanager	sl	Globalne kategorije
+h	projectmanager	sl	h
+hours	projectmanager	sl	ure
+import	projectmanager	sl	Uvoz
+last modified	projectmanager	sl	nazadnje spremenjeno
+links	projectmanager	sl	Povezave
+members	projectmanager	sl	Člani
+modified	projectmanager	sl	Spremenjeno
+new	projectmanager	sl	nov
+no details	projectmanager	sl	Brez podrobnosti
+nonactive	projectmanager	sl	Neaktivno
+number of records to read (%1)	projectmanager	sl	Število zapisov za branje (%1)
+permission denied !!!	projectmanager	sl	Dostop zavrnjen!
+planned	projectmanager	sl	Planirano
+price	projectmanager	sl	Cena
+pricelist	projectmanager	sl	Cenik
+projectmanager	common	sl	Upravljalec projektov
+quantity	projectmanager	sl	Količina
+resources	projectmanager	sl	Sredstva
+role	projectmanager	sl	Vloga
+select a project	projectmanager	sl	Izberite projekt
+startdate	projectmanager	sl	Začetni datum
+startrecord	projectmanager	sl	Začetni zapis
+template	projectmanager	sl	Predloga
+test import (show importable records <u>only</u> in browser)	projectmanager	sl	Preizkus uvoza (Pokaže uvožene zapise<u>samo</u> v brskalniku).
+times	projectmanager	sl	Časi
+to many might exceed your execution-time-limit	projectmanager	sl	Preveč lahko preseže čas izvajanja
+translation	projectmanager	sl	Prevod
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sl	Vaša podatkovna baza NI obnovljena (%1 vs. %2), prosimo poženite %3 nastavitev%4 za prenovo vaše podatkovne baze.

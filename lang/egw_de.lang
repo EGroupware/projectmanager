@@ -153,7 +153,6 @@ modified by	projectmanager	de	Geändert durch
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht gelanden und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
-new project submitted by %1 at %2	projectmanager	de	Neues Projekt übertragen von %1 am %2
 no accounting, only status	projectmanager	de	Keine Abrechnung, nur Status
 no accounting, only times and status	projectmanager	de	Keine Abrechnung, nur Zeiten und Status
 no details	projectmanager	de	Keine Details
@@ -180,7 +179,6 @@ project availibility	projectmanager	de	Projekt- Verfügbarkeit
 project deleted	projectmanager	de	Projekt gelöscht
 project id	projectmanager	de	Projekt-ID
 project members and roles	projectmanager	de	Projekt Mitarbeiter und Rollen
-project modified by %1 at %2	projectmanager	de	Projekt geändert von %1 am %2
 project overview	projectmanager	de	Projektübersicht
 project saved	projectmanager	de	Projekt gespeichert
 project specific title, prices, ...	projectmanager	de	Projectspezifischer Titel, Preis, ...

@@ -1,0 +1,22 @@
+%1 records imported	projectmanager	tr	%1 kay?t ithal edildi.
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	tr	%1 kay?t okundu. (Henüz ithal edilmedi, %2geri%3 giderek ?thal Etme seçene?indeki tik i?aretini kald?rabilirsiniz.)
+actions	projectmanager	tr	Eylemler
+charset of file	projectmanager	tr	Dosya Karakter Kümesi (char-set)
+csv-fieldname	projectmanager	tr	CSV Alan-Ad?
+csv-filename	projectmanager	tr	CSV Dosya Ad?
+custom fields	projectmanager	tr	Özel Alanlar
+empty for all	projectmanager	tr	Tamam? için bo?
+enddate	projectmanager	tr	BitiþTarih
+fieldseparator	projectmanager	tr	Alan ayrac?
+global categories	projectmanager	tr	Genel kategoriler
+hours	projectmanager	tr	saat
+import	projectmanager	tr	?thal Et
+modified	projectmanager	tr	Deðiþtirilmiþ
+new	projectmanager	tr	Yeni
+number of records to read (%1)	projectmanager	tr	Okunacak kay?t say?s? (1%)
+startdate	projectmanager	tr	Baþlangýç tarihi
+startrecord	projectmanager	tr	Kaydetmeye ba?la
+test import (show importable records <u>only</u> in browser)	projectmanager	tr	?thal test (?thal edilebilecek ba?lant?lar? <u>sadece</u> görüntüle.
+times	projectmanager	tr	Kere
+to many might exceed your execution-time-limit	projectmanager	tr	çok fazlas? execution-time-limit'inizi a?abilir!
+translation	projectmanager	tr	Tercüme

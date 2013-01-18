@@ -1,0 +1,46 @@
+%1 records imported	projectmanager	bg	Импортирани са %1 записа
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	bg	%1 записа прочетени (все още не импортирани, може да се %2върнете%3 и да размаркирате Тест Импорт)
+actions	projectmanager	bg	Действия
+apply the changes	projectmanager	bg	прилагане на промените
+archive	projectmanager	bg	архив
+by	projectmanager	bg	от
+charset of file	projectmanager	bg	Символен набор на файла
+check all	projectmanager	bg	Маркира всички
+create new links	projectmanager	bg	Създаване на нови връзки
+created	projectmanager	bg	Създаден
+csv-fieldname	projectmanager	bg	Име на поле в CSV
+csv-filename	projectmanager	bg	Име на CSV файл
+csv-import	common	bg	Импорт на CSV
+custom fields	projectmanager	bg	Полета по избор
+empty for all	projectmanager	bg	празен за всички
+enddate	projectmanager	bg	Крайна дата
+existing links	projectmanager	bg	Съществуващи връзки
+fieldseparator	projectmanager	bg	Разделител на полета
+general	projectmanager	bg	Общи
+global categories	projectmanager	bg	Глобални категории
+hours	projectmanager	bg	часа
+import	projectmanager	bg	Импорт
+last modified	projectmanager	bg	Последно модифициран
+links	projectmanager	bg	Връзки
+modified	projectmanager	bg	Редактирано
+new	projectmanager	bg	Нова
+no details	projectmanager	bg	без детайли
+nonactive	projectmanager	bg	неактивен
+number of records to read (%1)	projectmanager	bg	Брой записи за четене (%1)
+permission denied !!!	projectmanager	bg	Достъпът отказан !!!
+planned	projectmanager	bg	планиран
+price	projectmanager	bg	Цена
+pricelist	projectmanager	bg	Ценова листа
+quantity	projectmanager	bg	Количество
+resources	projectmanager	bg	Ресурси
+role	projectmanager	bg	Роля
+select a project	projectmanager	bg	Изберете проект
+startdate	projectmanager	bg	Начална дата
+startrecord	projectmanager	bg	Начален запис
+template	projectmanager	bg	Шаблон
+test import (show importable records <u>only</u> in browser)	projectmanager	bg	Тестов импорт (показва импортируемите записи <u>само</u> в браузъра
+times	projectmanager	bg	Времена
+to many might exceed your execution-time-limit	projectmanager	bg	твърде много може да надвиши ограничението за време на изпълнение
+translation	projectmanager	bg	Превод
+unitprice	projectmanager	bg	Цена на артикул
+your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	bg	Базата данни не е обновена (%1 вм. %2). Моля, използвайте %3setup%4 за обновяване.

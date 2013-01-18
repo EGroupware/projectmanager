@@ -254,6 +254,6 @@ view this project	projectmanager	es-es	Ver este proyecto
 view this project-element	projectmanager	es-es	Ver este elemento del proyecto
 working duration on %1	projectmanager	es-es	Duración del trabajo en %1
 you can leave the date of the first price empty	projectmanager	es-es	puede dejar la fecha del primer precio en blanco
-you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	es-es	No tiene la versión %1 o superior de de JPGraph instalada. Se necesita para que el administrador de proyectos use gráficas Gantt.
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	es-es	¡No tiene la versión %1 de JPGraph o superior instalada! Se necesita desde el Administador de proyectos para gráficas Gantt.
 you need to select a project first	projectmanager	es-es	Necesita seleccionar un proyecto antes
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	es-es	La base de datos NO está actualizada (%1 en vez de %2). Por favor, ejecute %3setup%4 para actualizar la base de datos.
