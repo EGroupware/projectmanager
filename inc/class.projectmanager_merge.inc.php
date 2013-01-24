@@ -140,6 +140,7 @@ class projectmanager_merge extends bo_merge
 		$this->role_so = new projectmanager_roles_so();
 		$roles = $this->role_so->query_list();
 		$roles = array_combine($roles, $roles);
+		$this->projectmanager_fields += $roles;
 		foreach($roles as $role => &$label)
 		{
 			$label = lang($label);
@@ -367,11 +368,12 @@ class projectmanager_merge extends bo_merge
 		}
 		foreach($all_roles as $name => $users) {
 			$project[$name] = implode(', ', $users);
+			$project[lang($name)] = $project[$name];
 			if(count($users) == 0) {
 				unset($all_roles[$name]);
 				continue;
 			}
-			$project['all_roles'][] = $name . ': ' . $project[$name];
+			$project['all_roles'][] = lang($name) . ': ' . $project[$name];
 		}
 		$project['all_roles'] = implode("\n",(Array)$project['all_roles']);
 
