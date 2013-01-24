@@ -92,9 +92,13 @@ class projectmanager_elements_so extends so_sql
 	{
 		if (!$this->pm_id) return false;
 
-		$this->db->update($this->table_name, array(
-				'cat_id' => $cat_id,
-			), array(
+		$set = array('cat_id' => $cat_id);
+
+		// need to set / unset PM_CAT_ID in pe_overwrite, as otherwise cat_id would get overwritten again
+		require_once EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php';	// defines PM_CAT_ID
+		$set[] = $cat_id ? 'pe_overwrite=pe_overwrite|'.PM_CAT_ID : 'pe_overwrite=pe_overwrite&~'.PM_CAT_ID;
+
+		$this->db->update($this->table_name, $set, array(
 				'pm_id' => $this->pm_id,
 				'pe_id' => $pe_ids,
 			), __LINE__, __FILE__, 'projectmanager');
@@ -196,7 +200,7 @@ class projectmanager_elements_so extends so_sql
 				$having_pe_app = 'HAVING pe_app='.$this->db->quote($filter['pe_app']).' ';
 				unset($filter['pe_app']);
 			}
-			
+
 			$order_by = $having_pe_app. "ORDER BY (link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
 		}
 		// fix some special filters: resources, cats

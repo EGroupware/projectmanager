@@ -237,6 +237,8 @@ class projectmanager_bo extends projectmanager_so
 		$save_necessary = false;
 		foreach($this->pe_name2id as $name => $id)
 		{
+			if ($id == PM_CAT_ID) continue;	// do NOT set category from elements
+
 			$pm_name = str_replace('pe_','pm_',$name);
 			if (!($this->data['pm_overwrite'] & $id) && $this->data[$pm_name] != $pe_summary[$name])
 			{
