@@ -355,58 +355,13 @@ class projectmanager_hooks
 		unset($apps[$unset_app]);
 		}
 		asort($apps);
-
-		$start = array();
-		for($i = 0; $i < 24*60; $i += 30)
-		{
-			if ($GLOBALS['egw_info']['user']['preferences']['common']['timeformat'] == 12)
-			{
-				if (!($hour = ($i / 60) % 12))
-				{
-					$hour = 12;
-				}
-				$start[$i] = sprintf('%01d:%02d %s',$hour,$i % 60,$i < 12*60 ? 'am' : 'pm');
-			}
-			else
-			{
-				$start[$i] = sprintf('%01d:%02d',$i/60,$i % 60);
-			}
-		}
-		$duration = array(0 => lang('not working'));
-		for($i = 30; $i <= 24*60; $i += 30)
-		{
-			$duration[$i] = sprintf('%3.1lf',$i / 60.0).' '.lang('hours');
-		}
-		foreach(self::$weekdays as $day => $label)
-		{
-			$settings['duration_'.$day] = array(
-				'type'   => 'select',
-				'label'  => lang('Working duration on %1',lang($label)),
-				'run_lang' => -1,
-				'name'   => 'duration_'.$day,
-				'values' => $duration,
-				'help'   => 'How long do you work on the given day.',
-				'xmlrpc' => True,
-				'admin'  => !self::$config['allow_change_workingtimes'],
-				'default'=> $day && $day < 5 ? 8*60 : ($day == 5 ? 6*60 : 0),
-			);
-			$settings['start_'.$day] = array(
-				'type'   => 'select',
-				'label'  => lang('Start working on %1',lang($label)),
-				'run_lang' => -1,
-				'name'   => 'start_'.$day,
-				'values' => $start,
-				'help'   => 'At which time do you start working on the given day.',
-				'xmlrpc' => True,
-				'admin'  => !self::$config['allow_change_workingtimes'],
-				'default'=> $day && $day < 6 ? 9*60 : 0,
-			);
-			// forcing Saturday (6) and Sunday (0)
-			if ($day == 6 || $day == 0)
-			{
-				$settings['duration_'.$day]['forced'] = $settings['start_'.$day]['forced'] = '0';
-			}
-		}
+		$settings[] = Array(
+			'type'  => 'section',
+			'title' => lang('General settings'),
+			'no_lang'=> true,
+			'xmlrpc' => False,
+			'admin'  => False
+		);
 		$settings['show_custom_app_icons'] = array(
 			'type'   => 'check',
 			'label'  => 'Show status icons of the datasources',
@@ -484,8 +439,73 @@ class projectmanager_hooks
 			'xmlrpc' 	=> True,
 			'admin'  	=> False
 		);
+		$start = array();
+		for($i = 0; $i < 24*60; $i += 30)
+		{
+			if ($GLOBALS['egw_info']['user']['preferences']['common']['timeformat'] == 12)
+			{
+				if (!($hour = ($i / 60) % 12))
+				{
+					$hour = 12;
+				}
+				$start[$i] = sprintf('%01d:%02d %s',$hour,$i % 60,$i < 12*60 ? 'am' : 'pm');
+			}
+			else
+			{
+				$start[$i] = sprintf('%01d:%02d',$i/60,$i % 60);
+			}
+		}
+		$duration = array(0 => lang('not working'));
+		for($i = 30; $i <= 24*60; $i += 30)
+		{
+			$duration[$i] = sprintf('%3.1lf',$i / 60.0).' '.lang('hours');
+		}
+		$settings[] = array(
+			'type'  => 'section',
+			'title' => lang('Availability settings'),
+			'no_lang'=> true,
+			'xmlrpc' => False,
+			'admin'  => False
+		);
+		foreach(self::$weekdays as $day => $label)
+		{
+			$settings['duration_'.$day] = array(
+				'type'   => 'select',
+				'label'  => lang('Working duration on %1',lang($label)),
+				'run_lang' => -1,
+				'name'   => 'duration_'.$day,
+				'values' => $duration,
+				'help'   => 'How long do you work on the given day.',
+				'xmlrpc' => True,
+				'admin'  => !self::$config['allow_change_workingtimes'],
+				'default'=> $day && $day < 5 ? 8*60 : ($day == 5 ? 6*60 : 0),
+			);
+			$settings['start_'.$day] = array(
+				'type'   => 'select',
+				'label'  => lang('Start working on %1',lang($label)),
+				'run_lang' => -1,
+				'name'   => 'start_'.$day,
+				'values' => $start,
+				'help'   => 'At which time do you start working on the given day.',
+				'xmlrpc' => True,
+				'admin'  => !self::$config['allow_change_workingtimes'],
+				'default'=> $day && $day < 6 ? 9*60 : 0,
+			);
+			// forcing Saturday (6) and Sunday (0)
+			if ($day == 6 || $day == 0)
+			{
+				$settings['duration_'.$day]['forced'] = $settings['start_'.$day]['forced'] = '0';
+			}
+		}
 
 
+		$settings[] = array(
+			'type'  => 'section',
+			'title' => lang('Data exchange settings'),
+			'no_lang'=> true,
+			'xmlrpc' => False,
+			'admin'  => False
+		);
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			$link = egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
