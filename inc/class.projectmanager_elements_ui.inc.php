@@ -570,6 +570,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
  			}
 		}
 		array_unshift($rows,false);	// manually make the array start with index 1!
+		if (class_exists('etemplate_old', false))	// only for old etemplate
+		{
+			array_unshift($rows,false);	// manually make the array start with index 1!
+		}
 
 		if ($this->prefs['show_custom_app_icons'] || $this->prefs['show_infolog_type_icon'])
 		{
@@ -806,6 +810,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'csv_fields'     => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-export-definition-element'],
 				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
 				'actions' => $this->get_actions(),
+				'dataStorePrefix' => 'projectmanager_elements'
 			);
 			// use the state of the last session stored in the user prefs
 			if ($state = @unserialize($this->prefs['pe_index_state']))
