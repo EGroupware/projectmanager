@@ -16,7 +16,6 @@
 				<column disabled="@no_pe_used_budget_pe_planned_budget"/>
 				<column/>
 				<column/>
-				<column/>
 			</columns>
 			<rows>
 				<row class="th">
@@ -69,56 +68,6 @@
 						<nextmatch-sortheader label="last modified" id="pe_modified"/>
 						<nextmatch-sortheader label="modified by" id="pe_modifier"/>
 					</vbox>
-					<hbox class="noPrint" options="0,0">
-						<nextmatch-header align="center" label="Actions" id="legacy_actions" class="noPrint"/>
-						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="check"/>
-					</hbox>
-				</row>
-				<row class="th rowNoDelete">
-					<image align="center" label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
-					<vbox>
-						<description id="${row}[pe_title]" no_lang="1" href="@${row}[view_link]"/>
-						<html id="${row}[pe_details]" no_lang="1"/>
-						<description id="${row}[pe_remark]" no_lang="1"/>
-						<link-string id="${row}[pe_links]"/>
-					</vbox>
-					<menulist>
-						<menupopup type="select-cat" id="${row}[cat_id]" readonly="true"/>
-					</menulist>
-					<description readonly="true"/>
-					<listbox type="select-account" id="${row}[pe_resources]" readonly="true" rows="2"/>
-					<vbox>
-						<date id="${row}[pe_real_start]" readonly="true"/>
-						<date id="${row}[pe_planned_start]" no_lang="1" readonly="true" class="planned"/>
-					</vbox>
-					<vbox readonly="true">
-						<date id="${row}[pe_real_end]" readonly="true"/>
-						<date id="${row}[pe_planned_end]" no_lang="1" readonly="true" class="planned"/>
-					</vbox>
-					<vbox readonly="true">
-						<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
-						<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" class="planned"/>
-					</vbox>
-					<vbox readonly="true">
-						<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
-						<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" class="planned"/>
-						<date-duration id="${row}[pe_replanned_time]" readonly="true" options="@duration_format" class="replanned"/>
-					</vbox>
-					<vbox readonly="true">
-						<textbox type="float" id="${row}[pe_used_budget]" readonly="true" max="2"/>
-						<textbox type="float" id="${row}[pe_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
-					</vbox>
-					<progress align="center" label="$row_cont[pe_completion]" id="${row}[pe_completion]" no_lang="1"/>
-					<vbox readonly="true">
-						<date-time id="${row}[pe_modified]" readonly="true"/>
-						<menulist>
-							<menupopup type="select-account" id="${row}[pe_modifier]" readonly="true"/>
-						</menulist>
-					</vbox>
-					<hbox align="center" class="noPrint">
-						<image statustext="View Ganttchart of this project" label="Ganttchart" src="ganttchart" href="projectmanager.projectmanager_ganttchart.show&amp;pm_id=$row_cont[pm_id]"/>
-						<button statustext="Edit this project" label="Edit" id="edit[$row_cont[pm_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;pm_id=$row_cont[pm_id]'),'_blank','dependent=yes,width=900,height=480,scrollbars=yes,status=yes'); return false;" image="edit"/>
-					</hbox>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
 					<image align="center" label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
@@ -174,16 +123,11 @@
 							<menupopup type="select-account" id="${row}[pe_modifier]" readonly="true"/>
 						</menulist>
 					</vbox>
-					<hbox align="center" class="noPrint">
-						<button statustext="Edit this project-element" label="Edit" id="edit[$row_cont[pe_id]]" onclick="egw_open($row_cont[pe_id],'projectelement'); return false;" image="edit"/>
-						<button statustext="Delete this project-element, does NOT remove the linked entry" label="Delete" id="delete[$row_cont[pe_id]]" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');" image="delete"/>
-						<checkbox statustext="Select mutliple elements for a further action" id="checked[]" options="$row_cont[pe_app]:$row_cont[pe_app_id]:$row_cont[pe_id]"/>
-					</hbox>
 				</row>
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.004">
+	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%">
 			<columns>
 				<column/>

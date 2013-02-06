@@ -499,6 +499,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$self['pe_icon']   = 'projectmanager/navbar';
 		$self['pe_modified'] = $this->project->data['pm_modified'];
 		$self['pe_modifier'] = $this->project->data['pm_modifier'];
+		$self['link'] = array(
+			'app'=>'projectmanager',
+			'id' => $this->pm_id
+		);
+		$self['class'] = 'th rowNoDelete';
 		$rows = array_merge(array($self),$rows);
 
 		$readonlys = array();
@@ -568,11 +573,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					}
 				}
  			}
-		}
-		array_unshift($rows,false);	// manually make the array start with index 1!
-		if (class_exists('etemplate_old', false))	// only for old etemplate
-		{
-			array_unshift($rows,false);	// manually make the array start with index 1!
 		}
 
 		if ($this->prefs['show_custom_app_icons'] || $this->prefs['show_infolog_type_icon'])
@@ -809,7 +809,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time,legacy_actions',
 				'csv_fields'     => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-export-definition-element'],
 				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
-				'actions' => $this->get_actions(),
 				'dataStorePrefix' => 'projectmanager_elements'
 			);
 			// use the state of the last session stored in the user prefs
@@ -818,6 +817,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$content['nm'] = array_merge($content['nm'],$state);
 			}
 		}
+
+		// Need to set this each time.  Nextmatch widget removes string keys from action, so we can't
+		// edit sync_all
+		$content['nm']['actions'] = $this->get_actions();
 
 		// add "buttons" only with add-rights
 		if ($this->project->check_acl(EGW_ACL_ADD))
