@@ -1,6 +1,33 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
+	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="0.4.001">
+		<link-add id="link_add" class="solidBorder"/>
+	</template>
+	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
+		<grid width="99%" height="99%">
+			<columns>
+				<column width="90%"/>
+				<column width="9%"/>
+			</columns>
+			<rows>
+				<row>
+					<link-to id="link_to"/>
+					<image align="right" label="Show more options" src="extra_icons" onclick="toggleMoreOptions(this);"/>
+				</row>
+			</rows>
+		</grid>
+		<grid width="99%" height="99%" class="egwLinkMoreOptions">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<projectmanager-select-erole label="Element roles" id="eroles_add" no_lang="1" options="8,true,width:99%" span="all"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
 	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%">
 			<columns>
@@ -131,23 +158,25 @@
 		<grid width="100%">
 			<columns>
 				<column/>
-				<column/>
 			</columns>
 			<rows>
+				<row disabled="1">
+					<hbox>
+						<template id="add-new"/>
+						<template id="add"/>
+					</hbox>
+				</row>
 				<row disabled="!@msg">
 					<description align="center" id="msg" no_lang="1" class="redItalic"/>
-					<description/>
 				</row>
 				<row>
 					<nextmatch id="nm" options="projectmanager.elements.list.rows"/>
-					<description/>
 				</row>
 				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
 					<hbox align="right">
 						<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
 						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
 					</hbox>
-					<description/>
 				</row>
 			</rows>
 		</grid>
