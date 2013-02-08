@@ -134,7 +134,7 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
-import	projectmanager	de	Import
+import	projectmanager	de	Importieren
 last modified	projectmanager	de	Zuletzt geändert
 leave it empty if you dont need a different customer title	projectmanager	de	Feld leer lassen, wenn kein kundenspezifischer Titel benötigt wird
 leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine zu generieren

@@ -40,7 +40,7 @@ budget (no pricelist)	projectmanager	hu	Költségvetés (árlista nélkül)
 budget and pricelist	projectmanager	hu	Költségvetés és árlista
 by	projectmanager	hu	by
 calculate budget by quantity (eg. time) and price	projectmanager	hu	Költségvetés kiszámítása mennyiség (pl. idő) és ár alapján
-charset of file	projectmanager	hu	File karakterkódolása
+charset of file	projectmanager	hu	Állomány karakterkészlete
 charset of the above selected font	projectmanager	hu	A korábban kiválasztott font karakterkódolása
 check all	projectmanager	hu	Összes kijelölese
 close the window, discard the changes made	projectmanager	hu	Ablak bezárása, változások elvetése

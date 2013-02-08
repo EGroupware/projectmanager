@@ -39,7 +39,7 @@ budget (no pricelist)	projectmanager	pt-br	Orçamento (sem lista de preços)
 budget and pricelist	projectmanager	pt-br	Orçamento e lista de preços
 by	projectmanager	pt-br	por
 calculate budget by quantity (eg. time) and price	projectmanager	pt-br	Calcular orçamento por quantidade (ex. tempo) e preço
-charset of file	projectmanager	pt-br	Codificação do arquivo
+charset of file	projectmanager	pt-br	Charset do arquivo
 charset of the above selected font	projectmanager	pt-br	Codificação de caracteres para a fonte acima selecionada
 check all	projectmanager	pt-br	Marcar todos
 close the window, discard the changes made	projectmanager	pt-br	Feche a janela, descarte as modificações feitas
