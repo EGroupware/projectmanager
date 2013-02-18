@@ -55,7 +55,7 @@ created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Ga
 csv-fieldname	projectmanager	de	CSV-Feldname
 csv-filename	projectmanager	de	CSV-Dateiname
 csv-import	common	de	CSV-Import
-cumulated elements too	projectmanager	de	Auch zusammengefaßte Elemente
+cumulated elements too	projectmanager	de	Auch zusammengefasste Elemente
 custom fields	projectmanager	de	Extra
 customer title	projectmanager	de	Kundentitel
 datasource	projectmanager	de	Datenquelle
@@ -66,10 +66,10 @@ delete all checked projects	projectmanager	de	Ausgewählten Projekte löschen
 delete this milestone	projectmanager	de	Diesen Meilenstein löschen
 delete this price	projectmanager	de	Diesen Preis löschen
 delete this project	projectmanager	de	Dieses Projekt löschen
-delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, beläßt den verlinkten Eintrag unverändert
+delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, belässt den verlinkten Eintrag unverändert
 delete this role	projectmanager	de	Diese Rolle löschen
 depth of display	projectmanager	de	Tiefe der Anzeige
-details of cumulated	projectmanager	de	Details der zusammengefaßten
+details of cumulated	projectmanager	de	Details der zusammengefassten
 details of subelements	projectmanager	de	Details der Unterelemente
 do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
 done (100%)	projectmanager	de	erledigt (100%)
@@ -129,8 +129,8 @@ hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
-if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreutzt werden die Datenquellen der Element (zB. InfoLog Einträge) mit gelöscht.
-if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreutzt werden der Status der Datenquellen der Element (zB. InfoLog Einträge) mit geändert.
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Element (z.B. InfoLog Einträge) mit gelöscht.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Element (z.B. InfoLog Einträge) mit geändert.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
@@ -151,12 +151,12 @@ milestones before this element has to be finished	projectmanager	de	Meilensteine
 modified	projectmanager	de	Geändert
 modified by	projectmanager	de	Geändert durch
 necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement die das nicht automatisch machen
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht gelanden und kann nicht geladen werden !!!
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht geladen und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
 no accounting, only status	projectmanager	de	Keine Abrechnung, nur Status
 no accounting, only times and status	projectmanager	de	Keine Abrechnung, nur Zeiten und Status
 no details	projectmanager	de	Keine Details
-no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	de	Kein LESE-Recht an der Datenquelle: entfernen von überschriebenen Werten hinterläßt diese leer !!!
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	de	Kein LESE-Recht an der Datenquelle: entfernen von überschriebenen Werten hinterlässt diese leer !!!
 no save necessary	projectmanager	de	Kein Abspeichern notwendig
 nonactive	projectmanager	de	Nicht aktiv
 not started (0%)	projectmanager	de	nicht gestartet (0%)
@@ -181,13 +181,13 @@ project id	projectmanager	de	Projekt-ID
 project members and roles	projectmanager	de	Projekt Mitarbeiter und Rollen
 project overview	projectmanager	de	Projektübersicht
 project saved	projectmanager	de	Projekt gespeichert
-project specific title, prices, ...	projectmanager	de	Projectspezifischer Titel, Preis, ...
+project specific title, prices, ...	projectmanager	de	Projektspezifischer Titel, Preis, ...
 project-element deleted	projectmanager	de	Projektelement gelöscht
 project-element saved	projectmanager	de	Projektelement gespeichert
 project-elements	projectmanager	de	Projektelemente
 projectlist	projectmanager	de	Projektliste
 projectmanager	common	de	Projektmanager
-projectmanager-fieldname	projectmanager	de	Projectmanager-feldname
+projectmanager-fieldname	projectmanager	de	Projektmanager-Feldname
 projectmember	projectmanager	de	Projektmitarbeiter
 quantity	projectmanager	de	Menge
 re-planned	projectmanager	de	umgeplant
