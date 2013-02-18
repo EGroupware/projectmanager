@@ -117,7 +117,6 @@ element role title	projectmanager	en	Element role title
 element roles	projectmanager	en	Element roles
 element roles defined as "mutliple" can be used here.	projectmanager	en	Element roles defined as "multiple" can be used here.
 element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	en	Element roles feature is currently not enabled in your global ProjectManager configuration.
-element roles:	projectmanager	en	Element roles:
 element status	projectmanager	en	Element status
 element title	projectmanager	en	Element title
 elementlist	projectmanager	en	Elementlist
@@ -154,8 +153,6 @@ existing data will be overwrited if checked	projectmanager	en	Existing data will
 existing links	projectmanager	en	Existing links
 exists	projectmanager	en	Exists.
 exit without saving	projectmanager	en	Exit without saving
-export definitition to use for nextmatch export (elements*)	projectmanager	en	Export definition to use for nextmatch export (Elements*)
-export definitition to use for nextmatch export (projects*)	projectmanager	en	Export definition to use for nextmatch export (Projects*)
 exports a list of project elements to a csv file.	projectmanager	en	Exports a list of project elements to a CSV file.
 exports a list of projects to a csv file.	projectmanager	en	Exports a list of projects to a CSV file.
 fields for element roles:	projectmanager	en	Fields for element roles:
@@ -342,7 +339,6 @@ template name - project title	projectmanager	en	Template name - project title
 test import (show importable records <u>only</u> in browser)	projectmanager	en	Test import. Show importable records <u>only</u> in browser.
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	en	That action allows to download the specified document with the project and elements data inserted.
 the charset depends on the font you want to use.	projectmanager	en	The charset depends on the font you want to use.
-the document can contain placeholders like %1 to be replaced with the project data (%2full list of placeholder names%3).	projectmanager	en	The document can contain placeholders like %1 to be replaced with the project data. %2Full list of placeholder names%3.
 time	projectmanager	en	Time
 times	projectmanager	en	Times
 timezone	projectmanager	en	Time zone
