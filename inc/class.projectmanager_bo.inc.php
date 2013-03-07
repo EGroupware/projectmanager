@@ -552,6 +552,8 @@ class projectmanager_bo extends projectmanager_so
 	{
 		static $cache = array();
 
+		$pm_id = (!$data ? $this->data['pm_id'] : (is_array($data) ? $data['pm_id'] : $data));
+
 		if (!$user) $user = $this->user;
 		if ($user == $this->user)
 		{
@@ -562,7 +564,6 @@ class projectmanager_bo extends projectmanager_so
 		{
 			$grants = $GLOBALS['egw']->acl->get_grants('projectmanager',true,$user);
 		}
-		$pm_id = (!$data ? $this->data['pm_id'] : (is_array($data) ? $data['pm_id'] : $data));
 
 		if (!$pm_id)	// new entry, everything allowed, but delete
 		{
