@@ -494,7 +494,6 @@ class projectmanager_ui extends projectmanager_bo
 
 			if (!$this->check_acl(EGW_ACL_BUDGET,$row))
 			{
-error_log(__METHOD__."() removing budget from row=".array2string($row));
 				unset($row['pm_used_budget']);
 				unset($row['pm_planned_budget']);
 			}
