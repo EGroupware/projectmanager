@@ -649,9 +649,8 @@ class projectmanager_ui extends projectmanager_bo
 			$content['nm']['search'] = $_GET['search'];
 		}
 		$sel_options = array(
-			'template' => $this->get_templates(),
+			'template_id' => $this->get_templates(),
 		);
-
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
 		$tpl->exec('projectmanager.projectmanager_ui.index',$content,$sel_options);
 	}
