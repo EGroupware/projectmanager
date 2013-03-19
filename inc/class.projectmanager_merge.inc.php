@@ -421,27 +421,13 @@ class projectmanager_merge extends bo_merge
 			}
 			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
 		}
-
 		// Project links - check content first, finding all the links is expensive
-		if(strpos($content, ($prefix ? $prefix.'/':'').'links') !== False)
+		$links = $this->get_all_links('projectmanager', $project['pm_id'], $prefix, $content);
+		foreach($links as $placeholder => $replacement)
 		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links('projectmanager', $project['pm_id'], '!'.egw_link::VFS_APPNAME);
+			$replacements['$$'.$placeholder.'$$'] = $replacement;
 		}
-		if(strpos($content, ($prefix ? $prefix.'/':'').'attachments') !== False)
-		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links('projectmanager', $project['pm_id'], egw_link::VFS_APPNAME);
-		}
-		if(strpos($content, ($prefix ? $prefix.'/':'').'links_attachments') !== False)
-		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'links_attachments$$'] = $this->get_links('projectmanager', $project['pm_id']);
-		}
-		foreach(array_keys($GLOBALS['egw_info']['user']['apps']) as $app)
-		{
-			if(strpos($content, ($prefix ? $prefix.'/':'')."links/$app") !== False)
-			{
-				$replacements["$$".($prefix?$prefix.'/':'')."links/{$app}$$"] = $this->get_links('projectmanager',$project['pm_id'], $app);
-			}
-		}
+
 
 		return $replacements;
 	}
