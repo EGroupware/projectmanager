@@ -185,7 +185,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$this->project_summary['pe_total_shares'] += round((string) $content['pe_share'] !== '' ? $content['pe_share'] : $default_share);
 				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, default_share=$default_share, content[pe_share]={$content['pe_share']}</p>\n";
 
-				foreach(array('pe_status','cat_id','pe_remark','pe_constraints','pe_share','pe_eroles') as $name)
+				foreach(array('pe_status','pe_remark','pe_constraints','pe_share','pe_eroles') as $name)
 				{
 					if ($name == 'pe_constraints')
 					{
