@@ -726,17 +726,25 @@ class projectmanager_merge extends bo_merge
 		{
 			// get project elements
 			$query = array('pm_id' => $this->pm_id);
-			if($this->elements) $query['pe_id'] = $this->elements;
-
-			$limit = array(0,-1);
-			if($this->export_limit && !bo_merge::is_export_limit_excepted()) {
-				$limit = array(0,(int)$this->export_limit);
-				// Need to do this to give an error
-				$count = count($this->projectmanager_elements_bo->search($query));
-			}
-			if(!($elements = $this->projectmanager_elements_bo->search($query,false,'','','',False,'AND',$limit)))
+			if($this->elements)
 			{
-				return false;
+				foreach($this->elements as $elem_id)
+				{
+					$elements[] = $this->projectmanager_elements_bo->read($elem_id);
+				}
+			}
+			else
+			{
+				$limit = array(0,-1);
+				if($this->export_limit && !bo_merge::is_export_limit_excepted()) {
+					$limit = array(0,(int)$this->export_limit);
+					// Need to do this to give an error
+					$count = count($this->projectmanager_elements_bo->search($query));
+				}
+				if(!($elements = $this->projectmanager_elements_bo->search($query,false,'','','',False,'AND',$limit)))
+				{
+					return false;
+				}
 			}
 			if($count && count($elements) < $count) {
 				throw new egw_exception(lang('No rights to export more then %1 entries!',(int)$this->export_limit));
