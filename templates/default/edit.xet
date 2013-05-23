@@ -11,21 +11,21 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<description value="Category" options=",,,cat_id"/>
+					<description value="Category" for="cat_id"/>
 					<menulist>
 						<menupopup type="select-cat" id="cat_id" options="None"/>
 					</menulist>
-					<description value="Access" options=",,,pm_access"/>
+					<description value="Access" for="pm_access"/>
 					<menulist>
 						<menupopup id="pm_access" no_lang="1"/>
 					</menulist>
 				</row>
 				<row class="row">
-					<description value="Priority" options=",,,pm_priority"/>
+					<description value="Priority" for="pm_priority"/>
 					<menulist>
 						<menupopup type="select-number" id="pm_priority" options=",1,10"/>
 					</menulist>
-					<description value="Status" options=",,,pm_status"/>
+					<description value="Status" for="pm_status"/>
 					<hbox options="0,0">
 						<menulist>
 							<menupopup id="pm_status" no_lang="1"/>
@@ -39,42 +39,42 @@
 					<description value="Elementlist" span="all"/>
 				</row>
 				<row class="row">
-					<description value="Startdate" options=",,,pm_real_start"/>
+					<description value="Startdate" for="pm_real_start"/>
 					<date-time id="pm_real_start"/>
 					<date-time id="ds[pe_real_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
-					<description value="- planned" options=",,,pm_planned_end"/>
+					<description value="- planned" for="pm_planned_end"/>
 					<date-time id="pm_planned_start"/>
 					<date-time id="ds[pe_planned_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
-					<description value="Enddate" options=",,,pm_real_end"/>
+					<description value="Enddate" for="pm_real_end"/>
 					<date-time id="pm_real_end"/>
 					<date-time id="ds[pe_real_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
-					<description value="- planned" options=",,,pm_planned_end"/>
+					<description value="- planned" for="pm_planned_end"/>
 					<date-time id="pm_planned_end"/>
 					<date-time id="ds[pe_planned_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description value="Times" options=",,,pm_used_time"/>
+					<description value="Times" for="pm_used_time"/>
 					<date-duration id="pm_used_time" options="@duration_format"/>
 					<date-duration id="ds[pe_used_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description value="- planned" options=",,,pm_planned_time"/>
+					<description value="- planned" for="pm_planned_time"/>
 					<date-duration id="pm_planned_time" options="@duration_format"/>
 					<date-duration id="ds[pe_planned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description value="- re-planned" options=",,,pm_replanned_time"/>
+					<description value="- re-planned" for="pm_replanned_time"/>
 					<date-duration id="pm_replanned_time" options="@duration_format"/>
 					<date-duration id="ds[pe_replanned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row">
-					<description value="Status" options=",,,pm_completion"/>
+					<description value="Status" for="pm_completion"/>
 					<menulist>
 						<menupopup type="select-percent" id="pm_completion" options="None"/>
 					</menulist>
@@ -95,7 +95,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.members" template="" lang="" group="0" version="1.9.001">
+	<template id="projectmanager.edit.members" template="" lang="" group="0" version="1.9.002">
 		<grid width="100%" height="310" overflow="auto">
 			<columns>
 				<column/>
@@ -115,11 +115,11 @@
 				</row>
 				<row class="row" height="12" disabled="@view">
 					<menulist>
-						<menupopup type="select-account" id="member[1]" options="select one"/>
+						<menupopup type="select-account" id="member[1]" options="select one,both"/>
 					</menulist>
 					<textbox type="float" statustext="Percentage the member is availible for projects" id="general_avail[1]"/>
 					<textbox type="float" statustext="Percentage the member is availible for this project" id="availibility[1]"/>
-					<hbox options="0,0">
+					<hbox orient=",0,0" options="0,0">
 						<menulist>
 							<menupopup id="role[1]"/>
 						</menulist>
@@ -148,7 +148,7 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top" height="12">
-					<description value="Accounting type" options=",,,pm_accounting_type"/>
+					<description value="Accounting type" for="pm_accounting_type"/>
 					<menulist span="all">
 						<menupopup id="pm_accounting_type" onchange="1"/>
 					</menulist>
@@ -159,12 +159,12 @@
 					<description value="Elementlist"/>
 				</row>
 				<row class="row" height="12" disabled="@no_budget">
-					<description value="Budget" options=",,,pm_used_budget"/>
+					<description value="Budget" for="pm_used_budget"/>
 					<textbox type="float" id="pm_used_budget"/>
 					<textbox type="float" id="ds[pe_used_budget]" readonly="true" min="2"/>
 				</row>
 				<row class="row" valign="top" height="12" disabled="@no_budget">
-					<description value="- planned" options=",,,pm_planned_budget"/>
+					<description value="- planned" for="pm_planned_budget"/>
 					<textbox type="float" id="pm_planned_budget"/>
 					<textbox type="float" id="ds[pe_planned_budget]" readonly="true" min="2"/>
 				</row>
@@ -238,21 +238,21 @@
 					<description/>
 				</row>
 				<row class="th">
-					<description value="Project ID" options=",,,pm_number"/>
+					<description value="Project ID" for="pm_number"/>
 					<textbox statustext="leave it empty to have one generated" id="pm_number" no_lang="1" size="20" maxlength="64"/>
-					<description value="Title" options=",,,pm_title"/>
-					<textbox statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" size="64" maxlength="255"/>
+					<description value="Title" for="pm_title"/>
+					<textbox statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" size="64" maxlength="255" tabindex="1"/>
 				</row>
 				<row>
 					<tabbox id="tabs" span="all">
 						<tabs>
-							<tab label="General" statustext="Start, End, Category, ..."/>
-							<tab label="Description" statustext="free descriptiv text"/>
-							<tab label="Members" statustext="Project members and roles"/>
-							<tab label="Accounting" statustext="Accounting options"/>
-							<tab label="Custom" statustext="Custom fields"/>
-							<tab label="Links" statustext="Linked elements"/>
-							<tab label="History" statustext=""/>
+							<tab id="general" label="General" statustext="Start, End, Category, ..."/>
+							<tab id="description" label="Description" statustext="free descriptiv text"/>
+							<tab id="members" label="Members" statustext="Project members and roles"/>
+							<tab id="accounting" label="Accounting" statustext="Accounting options"/>
+							<tab id="custom" label="Custom" statustext="Custom fields"/>
+							<tab id="links" label="Links" statustext="Linked elements"/>
+							<tab id="history" label="History"/>
 						</tabs>
 						<tabpanels>
 							<template id="projectmanager.edit.general"/>
@@ -267,13 +267,13 @@
 				</row>
 				<row disabled="!@pm_id">
 					<description value="Modified"/>
-					<hbox options="2,0" span="2">
+					<hbox orient=",2,0" options="2,0" span="2">
 						<date-time id="pm_modified" readonly="true"/>
 						<menulist>
 							<menupopup type="select-account" label="by" id="pm_modifier" readonly="true"/>
 						</menulist>
 					</hbox>
-					<hbox align="right" options="2,0" span="2">
+					<hbox align="right" orient=",2,0" options="2,0" span="2">
 						<date-time label="created" id="pm_created" no_lang="1" readonly="true"/>
 						<menulist>
 							<menupopup type="select-account" label="by" id="pm_creator" readonly="true"/>
