@@ -322,11 +322,13 @@ use this tag for addresslabels. put the content, you want to repeat, between two
 used	projectmanager	de	benutzt
 used time	projectmanager	de	benötigte Zeit
 valid since	projectmanager	de	Gültig seit
+view all subs of this entry	projectmanager	de	alle Untereinträge dieses Eintrag anzeigen
 view ganttchart of this project	projectmanager	de	Ganttchart dieses Projekts anzeigen
 view milestone	projectmanager	de	Meilenstein anzeigen
 view price	projectmanager	de	Preis anzeigen
 view project	projectmanager	de	Projekt anzeigen
 view project-elements	projectmanager	de	Projektelement anzeigen
+view subs	projectmanager	de	Untereinträge anzeigen
 view this element in %1	projectmanager	de	Diese Element im %1 anzeigen
 view this milestone	projectmanager	de	Diesen Meilenstein anzeigen
 view this price	projectmanager	de	Diesen Preis anzeigen
