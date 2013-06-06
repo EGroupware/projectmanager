@@ -359,11 +359,13 @@ used quantity	projectmanager	en	Used quantity
 used time	projectmanager	en	Used time
 used time in minutes	projectmanager	en	Used time in minutes
 valid since	projectmanager	en	Valid since
+view all subs of this entry	projectmanager	en	View all subs of this entry
 view ganttchart of this project	projectmanager	en	View GanttChart of this project
 view milestone	projectmanager	en	View milestone
 view price	projectmanager	en	View price
 view project	projectmanager	en	View project
 view project-elements	projectmanager	en	View project elements
+view subs	projectmanager	en	View subs
 view this element in %1	projectmanager	en	View this element in %1
 view this milestone	projectmanager	en	View this milestone
 view this price	projectmanager	en	View this price

@@ -705,6 +705,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'allowOnMultiple' => false,
 				'group' => ++$group,
 			),
+			'infolog-subs' => array(
+				'icon' => 'infolog/navbar',
+				'caption' => 'View subs',
+				'hint' => 'View all subs of this entry',
+				'group' => $group,
+				'allowOnMultiple' => false,
+				'enableId' => '^infolog:',
+				'enableClass' => 'rowHasSubs',
+				'url' => 'menuaction=infolog.infolog_ui.index&action=sp&action_id=$id',
+				'targetapp' => 'infolog',
+			),
 		);
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
