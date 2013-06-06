@@ -241,7 +241,7 @@ class projectmanager_hooks
 		{
 			$file = Array(
 				'Site configuration' => egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
-				'Custom fields' => egw::link('/index.php','menuaction=admin.customfields.edit&appname=projectmanager'),
+				'Custom fields' => egw::link('/index.php','menuaction=admin.customfields.edit&appname=projectmanager&use_private=1'),
 				'Global Categories'  => egw::link('/index.php',array(
 					'menuaction' => 'admin.admin_categories.index',
 					'appname'    => $appname,
