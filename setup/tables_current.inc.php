@@ -1,12 +1,12 @@
 <?php
 /**
- * ProjectManager - current table definitions
+ * EGroupware - ProjectManager - current table definitions
  *
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
  * @subpackage setup
- * @copyright (c) 2005-8 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-13 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -18,19 +18,19 @@ $phpgw_baseline = array(
 			'pm_number' => array('type' => 'varchar','precision' => '64','nullable' => False,'comment' => 'project number'),
 			'pm_title' => array('type' => 'varchar','precision' => '255','nullable' => False,'comment' => 'project title'),
 			'pm_description' => array('type' => 'text','default' => '','comment' => 'project description'),
-			'pm_creator' => array('type' => 'int','precision' => '4','nullable' => False,'comment' => 'account id of the creator'),
-			'pm_created' => array('type' => 'int','precision' => '8','nullable' => False,'comment' => 'timestamp of the creation'),
-			'pm_modifier' => array('type' => 'int','precision' => '4','comment' => 'account id of last modified'),
-			'pm_modified' => array('type' => 'int','precision' => '8','comment' => 'timestamp of last modified'),
-			'pm_planned_start' => array('type' => 'int','precision' => '8','comment' => 'planned start of the project - timestamp'),
-			'pm_planned_end' => array('type' => 'int','precision' => '8','comment' => 'planned end of the project - timestamp'),
-			'pm_real_start' => array('type' => 'int','precision' => '8','comment' => 'real start of the project - timestamp'),
-			'pm_real_end' => array('type' => 'int','precision' => '8','comment' => 'real end of the project - timestamp'),
-			'cat_id' => array('type' => 'int','precision' => '4','default' => '0','comment' => 'category id'),
+			'pm_creator' => array('type' => 'int','meta' => 'user','precision' => '4','nullable' => False,'comment' => 'account id of the creator'),
+			'pm_created' => array('type' => 'int','meta' => 'timestamp','precision' => '8','nullable' => False,'comment' => 'timestamp of the creation'),
+			'pm_modifier' => array('type' => 'int','meta' => 'user','precision' => '4','comment' => 'account id of last modified'),
+			'pm_modified' => array('type' => 'int','meta' => 'timestamp','precision' => '8','comment' => 'timestamp of last modified'),
+			'pm_planned_start' => array('type' => 'int','meta' => 'timestamp','precision' => '8','comment' => 'planned start of the project - timestamp'),
+			'pm_planned_end' => array('type' => 'int','meta' => 'timestamp','precision' => '8','comment' => 'planned end of the project - timestamp'),
+			'pm_real_start' => array('type' => 'int','meta' => 'timestamp','precision' => '8','comment' => 'real start of the project - timestamp'),
+			'pm_real_end' => array('type' => 'int','meta' => 'timestamp','precision' => '8','comment' => 'real end of the project - timestamp'),
+			'cat_id' => array('type' => 'int','meta' => 'category','precision' => '4','default' => '0','comment' => 'category id'),
 			'pm_access' => array('type' => 'varchar','precision' => '7','default' => 'public','comment' => 'privat or public'),
 			'pm_priority' => array('type' => 'int','precision' => '2','default' => '1','comment' => 'priority value 1-10'),
 			'pm_status' => array('type' => 'varchar','precision' => '9','default' => 'active','comment' => 'active, non-activ, archive or template'),
-			'pm_completion' => array('type' => 'int','precision' => '2','default' => '0','comment' => 'completion of the project'),
+			'pm_completion' => array('type' => 'int','meta' => 'percent','precision' => '2','default' => '0','comment' => 'completion of the project'),
 			'pm_used_time' => array('type' => 'int','precision' => '4','comment' => 'used time'),
 			'pm_planned_time' => array('type' => 'int','precision' => '4','comment' => 'planned time'),
 			'pm_replanned_time' => array('type' => 'int','precision' => '4','comment' => 're-planned time'),
@@ -47,11 +47,11 @@ $phpgw_baseline = array(
 	'egw_pm_extra' => array(
 		'fd' => array(
 			'pm_id' => array('type' => 'int','precision' => '4'),
-			'pm_extra_name' => array('type' => 'varchar','precision' => '40'),
-			'pm_extra_value' => array('type' => 'text')
+			'pm_extra_name' => array('type' => 'varchar','meta' => 'cfname','precision' => '40'),
+			'pm_extra_value' => array('type' => 'text','meta' => 'cfvalue')
 		),
 		'pk' => array('pm_id','pm_extra_name'),
-		'fk' => array('pm_id' => array('egw_pm_projects' => 'pm_id')),
+		'fk' => array(),
 		'ix' => array(),
 		'uc' => array()
 	),
@@ -60,27 +60,27 @@ $phpgw_baseline = array(
 			'pm_id' => array('type' => 'int','precision' => '4'),
 			'pe_id' => array('type' => 'int','precision' => '4'),
 			'pe_title' => array('type' => 'varchar','precision' => '255','nullable' => False),
-			'pe_completion' => array('type' => 'int','precision' => '2'),
+			'pe_completion' => array('type' => 'int','meta' => 'percent','precision' => '2'),
 			'pe_planned_time' => array('type' => 'int','precision' => '4'),
 			'pe_replanned_time' => array('type' => 'int','precision' => '4'),
 			'pe_used_time' => array('type' => 'int','precision' => '4'),
 			'pe_planned_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
 			'pe_used_budget' => array('type' => 'decimal','precision' => '20','scale' => '2'),
-			'pe_planned_start' => array('type' => 'int','precision' => '8'),
-			'pe_real_start' => array('type' => 'int','precision' => '8'),
-			'pe_planned_end' => array('type' => 'int','precision' => '8'),
-			'pe_real_end' => array('type' => 'int','precision' => '8'),
+			'pe_planned_start' => array('type' => 'int','meta' => 'timestamp','precision' => '8'),
+			'pe_real_start' => array('type' => 'int','meta' => 'timestamp','precision' => '8'),
+			'pe_planned_end' => array('type' => 'int','meta' => 'timestamp','precision' => '8'),
+			'pe_real_end' => array('type' => 'int','meta' => 'timestamp','precision' => '8'),
 			'pe_overwrite' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
 			'pl_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
-			'pe_synced' => array('type' => 'int','precision' => '8'),
-			'pe_modified' => array('type' => 'int','precision' => '8','nullable' => False),
-			'pe_modifier' => array('type' => 'int','precision' => '4','nullable' => False),
+			'pe_synced' => array('type' => 'int','meta' => 'timestamp','precision' => '8'),
+			'pe_modified' => array('type' => 'int','meta' => 'timestamp','precision' => '8','nullable' => False),
+			'pe_modifier' => array('type' => 'int','meta' => 'user','precision' => '4','nullable' => False),
 			'pe_status' => array('type' => 'varchar','precision' => '8','nullable' => False,'default' => 'new'),
 			'pe_unitprice' => array('type' => 'decimal','precision' => '20','scale' => '2'),
-			'cat_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+			'cat_id' => array('type' => 'int','meta' => 'category','precision' => '4','nullable' => False,'default' => '0'),
 			'pe_share' => array('type' => 'int','precision' => '4'),
 			'pe_health' => array('type' => 'int','precision' => '2'),
-			'pe_resources' => array('type' => 'varchar','precision' => '255'),
+			'pe_resources' => array('type' => 'varchar','meta' => 'user-commasep','precision' => '255'),
 			'pe_details' => array('type' => 'text'),
 			'pe_planned_quantity' => array('type' => 'float','precision' => '8'),
 			'pe_used_quantity' => array('type' => 'float','precision' => '8'),
@@ -107,7 +107,7 @@ $phpgw_baseline = array(
 		'fd' => array(
 			'ms_id' => array('type' => 'auto','nullable' => False),
 			'pm_id' => array('type' => 'int','precision' => '4','nullable' => False),
-			'ms_date' => array('type' => 'int','precision' => '8','nullable' => False),
+			'ms_date' => array('type' => 'int','meta' => 'timestamp','precision' => '8','nullable' => False),
 			'ms_title' => array('type' => 'varchar','precision' => '255'),
 			'ms_description' => array('type' => 'text')
 		),
@@ -132,7 +132,7 @@ $phpgw_baseline = array(
 	'egw_pm_members' => array(
 		'fd' => array(
 			'pm_id' => array('type' => 'int','precision' => '4','nullable' => False),
-			'member_uid' => array('type' => 'int','precision' => '4','nullable' => False),
+			'member_uid' => array('type' => 'int','meta' => 'account','precision' => '4','nullable' => False),
 			'role_id' => array('type' => 'int','precision' => '4','default' => '0'),
 			'member_availibility' => array('type' => 'float','precision' => '4','default' => '100.0')
 		),
@@ -146,7 +146,7 @@ $phpgw_baseline = array(
 			'pl_id' => array('type' => 'auto','nullable' => False),
 			'pl_title' => array('type' => 'varchar','precision' => '255','nullable' => False),
 			'pl_description' => array('type' => 'text','default' => ''),
-			'cat_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
+			'cat_id' => array('type' => 'int','meta' => 'category','precision' => '4','nullable' => False,'default' => '0'),
 			'pl_unit' => array('type' => 'varchar','precision' => '20','nullable' => False)
 		),
 		'pk' => array('pl_id'),
@@ -158,10 +158,10 @@ $phpgw_baseline = array(
 		'fd' => array(
 			'pm_id' => array('type' => 'int','precision' => '4','nullable' => False,'default' => '0'),
 			'pl_id' => array('type' => 'int','precision' => '4','nullable' => False),
-			'pl_validsince' => array('type' => 'int','precision' => '8','nullable' => False,'default' => '0'),
+			'pl_validsince' => array('type' => 'int','meta' => 'timestamp','precision' => '8','nullable' => False,'default' => '0'),
 			'pl_price' => array('type' => 'float','precision' => '8'),
-			'pl_modifier' => array('type' => 'int','precision' => '4','nullable' => False),
-			'pl_modified' => array('type' => 'int','precision' => '8','nullable' => False),
+			'pl_modifier' => array('type' => 'int','meta' => 'user','precision' => '4','nullable' => False),
+			'pl_modified' => array('type' => 'int','meta' => 'timestamp','precision' => '8','nullable' => False),
 			'pl_customertitle' => array('type' => 'varchar','precision' => '255'),
 			'pl_billable' => array('type' => 'int','precision' => '2','default' => '1')
 		),
@@ -176,7 +176,7 @@ $phpgw_baseline = array(
 			'pm_id' => array('type' => 'int','precision' => '4','default' => '0'),
 			'role_title' => array('type' => 'varchar','precision' => '80','nullable' => False),
 			'role_description' => array('type' => 'varchar','precision' => '255'),
-			'role_multi' => array('type' => 'bool','nullable' => False,'default' => False)
+			'role_multi' => array('type' => 'bool','nullable' => False,'default' => '')
 		),
 		'pk' => array('role_id'),
 		'fk' => array(),
