@@ -234,11 +234,13 @@ use this tag for addresslabels. put the content, you want to repeat, between two
 used	projectmanager	it	usato
 used time	projectmanager	it	tempo effettivo
 valid since	projectmanager	it	Valido fino al
+view all subs of this entry	projectmanager	it	Visualizza tutti le sub voci
 view ganttchart of this project	projectmanager	it	Visualizza grafico Gantt di questo progetto
 view milestone	projectmanager	it	Vedi traguardo
 view price	projectmanager	it	Vedi prezzo
 view project	projectmanager	it	Vedi progetto
 view project-elements	projectmanager	it	Vedi elementi-progetto
+view subs	projectmanager	it	visualizza sub
 view this element in %1	projectmanager	it	Vedi questo elemento in %1
 view this milestone	projectmanager	it	Vedi questo traguardo
 view this price	projectmanager	it	Vedi questo prezzo
