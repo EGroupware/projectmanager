@@ -52,11 +52,11 @@ class projectmanager_so extends so_sql_cf
 	 */
 	var $acl_join;
 	/**
-	 * Extracolumns from the members table
+	 * Extra column from the members table
 	 *
-	 * @var array/string
+	 * @var string
 	 */
-	var $acl_extracols='role_acl';
+	var $acl_extracol='role_acl';
 	/**
 	 * ACL grants from other users
 	 *
@@ -234,7 +234,7 @@ class projectmanager_so extends so_sql_cf
 
 			if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 			$extra_cols = array_merge($extra_cols,array(
-				$this->acl_extracols,
+				'BIT_OR('.$this->acl_extracol.') AS '.$this->acl_extracol,
 				$this->table_name.'.pm_id AS pm_id',
 			));
 			if ($only_keys === true) $only_keys='';	// otherwise we use ambigues pm_id
@@ -252,7 +252,11 @@ class projectmanager_so extends so_sql_cf
 			// include an ACL filter for read-access
 			$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
 				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
-				($join == $this->acl_join ? ' OR '.$this->roles_table.'.role_acl!=0' : '').')';
+				($join == $this->acl_join ? ' OR '.$this->acl_extracol.'!=0' : '').')';
+			// group by pm_id, to be able to biswise or role_acl
+			$table_def = $this->db->get_table_definitions('projectmanager', $this->table_name);
+			$order_by = 'GROUP BY '.$this->table_name.'.'.implode(','.$this->table_name.'.', array_keys($table_def['fd'])).
+				($order_by ? ' ORDER BY '.$order_by : '');
 		}
 		if ($filter['subs_or_mains'])
 		{
