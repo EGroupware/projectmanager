@@ -228,15 +228,13 @@ class projectmanager_so extends so_sql_cf
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
-		$_join = $join;
 		if ($join === true)	// add acl-join, to get role_acl of current user
 		{
-			$_join = $this->acl_join;
-			if ($join === true) $_join = ''; // role_acl in list view seems not to be used at all, so we disable it, as it may causing multiple rows per project if member is of type group
+			$join = $this->acl_join;
 
 			if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 			$extra_cols = array_merge($extra_cols,array(
-				($join === true?"NULL as $this->acl_extracols":$this->acl_extracols),
+				$this->acl_extracols,
 				$this->table_name.'.pm_id AS pm_id',
 			));
 			if ($only_keys === true) $only_keys='';	// otherwise we use ambigues pm_id
@@ -254,7 +252,7 @@ class projectmanager_so extends so_sql_cf
 			// include an ACL filter for read-access
 			$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
 				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
-				($_join == $this->acl_join ? ' OR '.$this->roles_table.'.role_acl!=0' : '').')';
+				($join == $this->acl_join ? ' OR '.$this->roles_table.'.role_acl!=0' : '').')';
 		}
 		if ($filter['subs_or_mains'])
 		{
@@ -281,20 +279,20 @@ class projectmanager_so extends so_sql_cf
 			if ($filter['subs_or_mains'] == 'mains')
 			{
 				$filter[] = 'link_id2 IS NULL';
-				$_join .= ' LEFT';
+				$join .= ' LEFT';
 			}
 			// PostgreSQL requires cast as link_idx is varchar and pm_id an integer
 			$pm_id = $this->db->to_varchar($this->table_name.'.pm_id');
-			$_join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=$pm_id";
+			$join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=$pm_id";
 
 			if (is_array($filter['subs_or_mains']))	// sub-projects of given parent-projects
 			{
-				$_join .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
+				$join .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
 			}
 		}
 		unset($filter['subs_or_mains']);
 
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$_join,$need_full_no_count);
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 
 	/**
