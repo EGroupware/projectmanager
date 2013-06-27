@@ -234,7 +234,6 @@ class projectmanager_so extends so_sql_cf
 
 			if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 			$extra_cols = array_merge($extra_cols,array(
-				'BIT_OR('.$this->acl_extracol.') AS '.$this->acl_extracol,
 				$this->table_name.'.pm_id AS pm_id',
 			));
 			if ($only_keys === true) $only_keys='';	// otherwise we use ambigues pm_id
@@ -253,10 +252,32 @@ class projectmanager_so extends so_sql_cf
 			$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
 				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
 				($join == $this->acl_join ? ' OR '.$this->acl_extracol.'!=0' : '').')';
-			// group by pm_id, to be able to biswise or role_acl
-			$table_def = $this->db->get_table_definitions('projectmanager', $this->table_name);
-			$order_by = 'GROUP BY '.$this->table_name.'.'.implode(','.$this->table_name.'.', array_keys($table_def['fd'])).
-				($order_by ? ' ORDER BY '.$order_by : '');
+
+			// only add role-acl column if we NOT already group by something (eg. stylite.links for PM groups by it's hash)
+			if (stripos($order_by, 'GROUP BY') === false)
+			{
+				if ($only_keys === false)
+				{
+					$table_def = $this->db->get_table_definitions('projectmanager', $this->table_name);
+					$cols = array_merge(array_keys($table_def['fd']), $extra_cols);
+				}
+				else
+				{
+					$cols = array_merge(is_array($only_keys) ? $only_keys : explode(',', $only_keys), $extra_cols);
+				}
+				$group_by = array();
+				foreach($cols as $col)
+				{
+					$alias = $col;
+					if (stripos($col, ' as ') !== false)
+					{
+						list($col, $alias) = explode(' as ', str_replace(' AS ', ' as ', $col));
+					}
+					$group_by[$alias] = $col;
+				}
+				$order_by = 'GROUP BY '.implode(',', $group_by).($order_by ? ' ORDER BY '.$order_by : '');
+				$extra_cols[] = 'BIT_OR('.$this->acl_extracol.') AS '.$this->acl_extracol;
+			}
 		}
 		if ($filter['subs_or_mains'])
 		{
