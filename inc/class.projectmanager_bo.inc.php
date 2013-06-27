@@ -298,8 +298,13 @@ class projectmanager_bo extends projectmanager_so
 		$this->data =& $new;
 		if (!($err = parent::save()) && $do_notify)
 		{
+			$extra = array();
+			if ($old && $this->link_title($new) !== ($old_title=$this->link_title($old)))
+			{
+				$extra[egw_link::OLD_LINK_TITLE] = $old_title;
+			}
 			// notify the link-class about the update, as other apps may be subscribt to it
-			egw_link::notify_update('projectmanager',$this->data['pm_id'],$this->data);
+			egw_link::notify_update('projectmanager',$this->data['pm_id'],$this->data+$extra);
 		}
 		//$changed[] = array();
 		if (isset($old)) foreach($old as $name => $value)
