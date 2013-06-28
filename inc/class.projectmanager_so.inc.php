@@ -256,26 +256,7 @@ class projectmanager_so extends so_sql_cf
 			// only add role-acl column if we NOT already group by something (eg. stylite.links for PM groups by it's hash)
 			if (stripos($order_by, 'GROUP BY') === false)
 			{
-				if ($only_keys === false)
-				{
-					$table_def = $this->db->get_table_definitions('projectmanager', $this->table_name);
-					$cols = array_merge(array_keys($table_def['fd']), $extra_cols);
-				}
-				else
-				{
-					$cols = array_merge(is_array($only_keys) ? $only_keys : explode(',', $only_keys), $extra_cols);
-				}
-				$group_by = array();
-				foreach($cols as $col)
-				{
-					$alias = $col;
-					if (stripos($col, ' as ') !== false)
-					{
-						list($col, $alias) = explode(' as ', str_replace(' AS ', ' as ', $col));
-					}
-					$group_by[$alias] = $col;
-				}
-				$order_by = 'GROUP BY '.implode(',', $group_by).($order_by ? ' ORDER BY '.$order_by : '');
+				$order_by = 'GROUP BY '.$this->table_name.'.pm_id'.($order_by ? ' ORDER BY '.$order_by : '');
 				$extra_cols[] = 'BIT_OR('.$this->acl_extracol.') AS '.$this->acl_extracol;
 			}
 		}
