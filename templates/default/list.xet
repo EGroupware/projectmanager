@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.001">
+	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.002">
 		<hbox>
 			<menulist>
 				<menupopup statustext="Create a new empty project or use a template" id="template_id" no_lang="1" options="Empty"/>
 			</menulist>
-			<buttononly statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
+			<buttononly statustext="Add a new project" label="Add" id="add" onclick="return (typeof app.projectmanager.new_project == 'undefined' ? window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes') : app.projectmanager.new_project());"/>
 		</hbox>
 	</template>
 	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
@@ -149,7 +149,7 @@
 					<template align="right" id="projectmanager.list.right" span="all"/>
 				</row>
 				<row>
-					<nextmatch id="nm" options="projectmanager.list.rows"/>
+					<nextmatch id="nm" template="projectmanager.list.rows"/>
 				</row>
 				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
 					<hbox>

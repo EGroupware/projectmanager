@@ -505,6 +505,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		);
 		$self['class'] = 'th rowNoDelete';
 		$rows = array_merge(array($self),$rows);
+		$total++;
 
 		$readonlys = array();
 		foreach($rows as $n => &$row)
