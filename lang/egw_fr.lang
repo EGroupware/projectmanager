@@ -236,11 +236,13 @@ use this tag for addresslabels. put the content, you want to repeat, between two
 used	projectmanager	fr	Utilisé
 used time	projectmanager	fr	Temps utilisé
 valid since	projectmanager	fr	Valide depuis
+view all subs of this entry	projectmanager	fr	Voir tous les Enfants de cette entrée
 view ganttchart of this project	projectmanager	fr	Voir le diagramme de Gantt de ce projet
 view milestone	projectmanager	fr	Voir l'étape
 view price	projectmanager	fr	Voir le prix
 view project	projectmanager	fr	Voir le projet
 view project-elements	projectmanager	fr	Voir les éléments du projet
+view subs	projectmanager	fr	Voir les Enfants
 view this element in %1	projectmanager	fr	Voir cet élément dans %1
 view this milestone	projectmanager	fr	Voir cette étape
 view this price	projectmanager	fr	Voir ce prix
