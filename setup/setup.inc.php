@@ -6,7 +6,7 @@
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
  * @subpackage setup
- * @copyright (c) 2005-12 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-13 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -44,6 +44,7 @@ $setup_info['projectmanager']['hooks']['settings'] = 'projectmanager_hooks::sett
 $setup_info['projectmanager']['hooks']['admin'] = 'projectmanager_hooks::all_hooks';
 $setup_info['projectmanager']['hooks']['sidebox_menu'] = 'projectmanager_hooks::all_hooks';
 $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager_hooks::search_link';
+$setup_info['projectmanager']['hooks']['acl_rights'] = 'projectmanager_hooks::acl_rights';
 
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(

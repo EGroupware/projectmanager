@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-13 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -605,6 +605,24 @@ class projectmanager_hooks
 		}
 
 		return $settings;
+	}
+
+	/**
+	 * ACL rights and labels used
+	 *
+	 * @param string|array string with location or array with parameters incl. "location", specially "owner" for selected acl owner
+	 */
+	public static function acl_rights($params)
+	{
+		return array(
+			acl::READ    => 'read',
+			acl::EDIT    => 'edit',
+			acl::DELETE  => 'delete',
+			acl::PRIVAT  => 'private',
+			acl::ADD     => 'add element',
+			acl::CUSTOM1 => 'budget',
+			acl::CUSTOM2 => 'edit budget',
+		);
 	}
 }
 
