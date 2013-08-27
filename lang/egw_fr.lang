@@ -40,7 +40,8 @@ budget and pricelist	projectmanager	fr	Budget et liste de prix
 by	projectmanager	fr	par
 calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le budget par quantité (p.ex. temps) et prix
 charset of file	projectmanager	fr	Jeu de caractères du fichier
-check all	projectmanager	fr	Vérifier tout
+charset of the above selected font	projectmanager	fr	Jeu de caractères de la police sélectionnée ci-dessus
+check all	projectmanager	fr	Tout cocher
 close the window, discard the changes made	projectmanager	fr	Fermer la fenêtre en ignorant les modifications
 constraints	projectmanager	fr	Contraintes
 conversation between days and hours, default 8	projectmanager	fr	conversion entre jours et heures, par défaut 8
@@ -120,7 +121,7 @@ how long do you work on the given day.	projectmanager	fr	Combien de temps travai
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	fr	Comment doit apparaître la sélection du projet dans lemenu: une arborescence donne une meilleure vue d'ensemble, une boîte de sélection peut être plus efficace.
 ignore that entry	projectmanager	fr	Ignorer cette entrée
 ignored	projectmanager	fr	Ignoré
-import	projectmanager	fr	Importation
+import	projectmanager	fr	Import
 last modified	projectmanager	fr	Dernière modification
 leave it empty if you dont need a different customer title	projectmanager	fr	laissez vide si vous n'avez pas besoin d'un titre de client différent
 leave it empty to have one generated	projectmanager	fr	Laissez ce champ vide pour que la valeur soit générée automatiquement
