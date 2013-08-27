@@ -1,5 +1,8 @@
 %1 element(s) updated	projectmanager	fr	%1 élément(s) mis à jour
 %1 new project-elements imported	projectmanager	fr	%1 nouveaux éléments de projet importés
+%1 project(s) %2	projectmanager	fr	%1 projet(s) %2
+%1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	fr	%1 projet(s) %2, %3 en échec pour droits insuffisants !
+%1 project-element(s) deleted.	projectmanager	fr	%1 élément(s) de projet suprimé(s)
 %1 projects deleted	projectmanager	fr	%1 projets supprimés
 %1 records imported	projectmanager	fr	%1 enregistrements importés
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	fr	%1 enregistrements lus (non encore importé, vous devriez retourner en arrière %2back%3 et décocher le test de límportation)
@@ -17,11 +20,14 @@ add a new project	projectmanager	fr	Ajouter un nouveau projet
 add element	projectmanager	fr	Ajouter un élément
 add existing	projectmanager	fr	Ajouter un élément existant
 add milestone	projectmanager	fr	Ajouter une étape
+add or edit element roles	projectmanager	fr	Ajouter ou modifier des rôles
 add or edit roles and their acl	projectmanager	fr	Ajouter ou éditer les rôles et leurs ACL
 add price	projectmanager	fr	Ajouter un prix
 add project	projectmanager	fr	Ajouter un projet
 add project-elements	projectmanager	fr	Ajouter des éléments de projet
 add this role	projectmanager	fr	Ajouter ce rôle
+all roles	projectmanager	fr	Tous les rôles
+all_roles	projectmanager	fr	Tous les rôles
 allow users to change their working times	projectmanager	fr	Autoriser les utilisateurs à changer leurs horaires de travail
 allowed accounting types	projectmanager	fr	Types de comptabilité autorisés
 allowed units	projectmanager	fr	Unités autorisées
@@ -31,6 +37,8 @@ apply the changes	projectmanager	fr	Appliquer les modifications
 archive	projectmanager	fr	Archive
 assistant	projectmanager	fr	Assistant
 at which time do you start working on the given day.	projectmanager	fr	A quelle heure commencez-vous à travailler ce jour-là ?
+availability settings	projectmanager	fr	Paramètres de disponibilité
+available fields for this plugin:	projectmanager	fr	Champs disponibles pour ce plugin :
 availible	projectmanager	fr	Disponible
 billable	projectmanager	fr	facturable
 bookable	projectmanager	fr	qu'on peut réserver
@@ -39,8 +47,10 @@ budget (no pricelist)	projectmanager	fr	Budget (sans liste de prix)
 budget and pricelist	projectmanager	fr	Budget et liste de prix
 by	projectmanager	fr	par
 calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le budget par quantité (p.ex. temps) et prix
+category set	projectmanager	fr	Catégorie définie
 change category	projectmanager	fr	Changer la catégorie
-check all	projectmanager	fr	Vérifier tout
+charset of the above selected font	projectmanager	fr	Jeu de caractères de la police sélectionnée ci-dessus
+check all	projectmanager	fr	Tout cocher
 close the window, discard the changes made	projectmanager	fr	Fermer la fenêtre en ignorant les modifications
 constraints	projectmanager	fr	Contraintes
 conversation between days and hours, default 8	projectmanager	fr	conversion entre jours et heures, par défaut 8
@@ -50,6 +60,7 @@ create a new empty project or use a template	projectmanager	fr	Créer un projet 
 create new links	projectmanager	fr	Créer de nouveaux liens
 created	projectmanager	fr	créé
 created a ganttchart from the checked projects	projectmanager	fr	Créé un diagramme de Gantt à partir des projets sélectionnés
+creation date and time	projectmanager	fr	Date et heure de création
 csv-fieldname	projectmanager	fr	CSV - Nom du champ
 csv-filename	projectmanager	fr	CSV - Nom du fichier
 csv-import	common	fr	CSV-Importer
@@ -70,7 +81,9 @@ deleted	projectmanager	fr	supprimé
 depth of display	projectmanager	fr	Profondeur d'affichage
 details of cumulated	projectmanager	fr	Détail cumul
 details of subelements	projectmanager	fr	Détails des sous-éléments
+directory with documents to insert project data	projectmanager	fr	Répertoire avec les documents pour l'insertion de données
 do not use that entry as project-element	projectmanager	fr	Ne pas utiliser cette entrée comme élément de projet
+document '%1' does not exist or is not readable for you!	projectmanager	fr	Le document '%1' n'existe pas ou n'est pas lisible avec votre profil !
 done (100%)	projectmanager	fr	Fait (100%)
 edit access, incl. editing budget and elements	projectmanager	fr	Accès en édition (comprenant l'édition du budget et des éléments)
 edit budget	projectmanager	fr	Modifier le budget
@@ -84,6 +97,7 @@ edit this project	projectmanager	fr	Modifier ce projet
 edit this project-element	projectmanager	fr	Modifier cet élément de projet
 edit this role	projectmanager	fr	Modifier ce rôle
 elementlist	projectmanager	fr	Liste d'éléments
+elements	projectmanager	fr	Eléments
 elements of elements	projectmanager	fr	Eléments d'éléments
 elements that can't start before this one is finished	projectmanager	fr	Eléments ne pouvant commencer avant que celui-ci ne soit terminé
 elements which have to be finished before this can start	projectmanager	fr	Eléments ne pouvant être terminés avant que celui-ci ne commence
@@ -125,6 +139,7 @@ ignore that entry	projectmanager	fr	Ignorer cette entrée
 ignored	projectmanager	fr	Ignoré
 insert	projectmanager	fr	Insérer
 last modified	projectmanager	fr	Dernière modification
+last sync date and time	projectmanager	fr	Date et heure de la dernière synchro
 leave it empty if you dont need a different customer title	projectmanager	fr	laissez vide si vous n'avez pas besoin d'un titre de client différent
 leave it empty to have one generated	projectmanager	fr	Laissez ce champ vide pour que la valeur soit générée automatiquement
 leave it empty, if identitcal to the time	projectmanager	fr	Laissez ce champ vide si identique au temps
@@ -139,6 +154,7 @@ milestones	projectmanager	fr	Etapes
 milestones before this element has to be finished	projectmanager	fr	Etapes avant que cet élément ne soit terminé
 modified	projectmanager	fr	Modifié
 modified by	projectmanager	fr	Modifié par
+modify status	projectmanager	fr	Modifier le statut
 name of current user, all other contact fields are valid too	projectmanager	fr	Nom de l'utilisateur courant, tous les autres champs de contacts sont valides aussi
 necessary for project-elements doing that not automatic	projectmanager	fr	nécessaire pour les éléments de projet ne le faisant pas automatiquement
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fr	Les extensions PHP nécessaires %1 ne sont pas chargées et ne peuvent pas l'être !!!
