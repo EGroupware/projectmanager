@@ -195,6 +195,7 @@ project-elements	projectmanager	fr	Eléments de projet
 projectlist	projectmanager	fr	Liste de projets
 projectmanager	common	fr	Gestionnaire de projets
 projectmember	projectmanager	fr	Membre de projet
+projects	projectmanager	fr	Projets
 quantity	projectmanager	fr	Quantité
 re-planned	projectmanager	fr	Re-planifié
 re-planned time	projectmanager	fr	Temps re-planifié
@@ -266,5 +267,6 @@ view this project	projectmanager	fr	Voir ce projet
 view this project-element	projectmanager	fr	Voir cet élément de projet
 working duration on %1	projectmanager	fr	Durée de travail sur %1
 you can leave the date of the first price empty	projectmanager	fr	vous pouvez laisser la date du premier prix vide
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	fr	Vous n'avez pas de version de JPGraph %1 ou plus !  Ceci est nécessaire pour les diagrammes de Gantt dans le gestionnaire de projets.
 you need to select a project first	projectmanager	fr	Vous devez d'abord sélectionner un projet
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	fr	Votre base de données n'est PAS à jour (%1 contre %2), exécutez %3setup%4 pour la mettre à jour.
