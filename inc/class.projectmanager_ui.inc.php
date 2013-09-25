@@ -648,8 +648,14 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$content['nm']['search'] = $_GET['search'];
 		}
+		list(,,$show) = explode('_',$this->prefs['show_projectselection']);
+		$p_templ=array();
+		foreach((array)$this->get_templates() as $id =>$c)
+		{
+			$p_templ[$id]=$c[($show == 'number'?'label':'title')];
+		}
 		$sel_options = array(
-			'template_id' => $this->get_templates(),
+			'template_id' => $p_templ
 		);
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
