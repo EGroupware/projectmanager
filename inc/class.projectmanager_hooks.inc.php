@@ -136,7 +136,7 @@ class projectmanager_hooks
 				),
 			);
 			// show pricelist menuitem only if we use pricelists
-			if (!self::$config['accounting_types'] || in_array('pricelist',explode(',',self::$config['accounting_types'])))
+			if (!self::$config['accounting_types'] || in_array('pricelist',(is_array(self::$config['accounting_types'])?self::$config['accounting_types']:explode(',',self::$config['accounting_types']))))
 			{
 				// menuitem links to project-spezific priclist only if user has rights and it is used
 				// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(EGW_ACL_READ),
