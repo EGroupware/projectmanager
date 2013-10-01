@@ -652,7 +652,7 @@ class projectmanager_ui extends projectmanager_bo
 		$p_templ=array();
 		foreach((array)$this->get_templates() as $id =>$c)
 		{
-			$p_templ[$id]=$c[($show == 'number'?'label':'title')];
+			$p_templ[$id]=(!empty($c[($show == 'number'?'label':'title')])?$c[($show == 'number'?'label':'title')]:$c[($show == 'number'?'caption':'hint')]);
 		}
 		$sel_options = array(
 			'template_id' => $p_templ
