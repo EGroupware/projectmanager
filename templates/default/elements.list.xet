@@ -2,7 +2,7 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
-		<link-add id="link_add" class="solidBorder"/>
+		<link-add id="link_add" class="projectmanager_solidBorder"/>
 	</template>
 	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
 		<grid width="99%" height="99%">

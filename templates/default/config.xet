@@ -66,7 +66,7 @@
 						<menulist>
 							<menupopup statustext="Font to use in the Ganttchart, only the Vera fonts are included in the ProjectManager." id="GANTT_FONT" no_lang="1"/>
 						</menulist>
-						<description value=" " id="font_msg" no_lang="1" class="leftPad5 $cont[font_msg_class]"/>
+						<description value=" " id="font_msg" no_lang="1" class="projectmanager_leftPad5 $cont[font_msg_class]"/>
 					</hbox>
 				</row>
 				<row class="row" disabled="@jpg_msg">

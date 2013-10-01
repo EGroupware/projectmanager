@@ -688,7 +688,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'group' => $group,
 				'allowOnMultiple' => false,
 				'enableId' => '^infolog:',
-				'enableClass' => 'rowHasSubs',
+				'enableClass' => 'projectmanager_rowHasSubs',
 				'url' => 'menuaction=infolog.infolog_ui.index&action=sp&action_id=$id',
 				'targetapp' => 'infolog',
 			),

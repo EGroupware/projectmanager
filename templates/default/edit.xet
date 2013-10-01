@@ -30,7 +30,7 @@
 						<menulist>
 							<menupopup id="pm_status" no_lang="1"/>
 						</menulist>
-						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" class="leftPad5"/>
+						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" class="projectmanager_leftPad5"/>
 					</hbox>
 				</row>
 				<row class="th">
