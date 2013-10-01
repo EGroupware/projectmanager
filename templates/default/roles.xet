@@ -7,7 +7,7 @@
 				<menulist>
 					<menupopup label="Project" onchange="1" no_lang="1" id="pm_id" options="All"/>
 				</menulist>
-				<description no_lang="1" align="right" id="msg" class="redItalic"/>
+				<description no_lang="1" align="right" id="msg" class="message"/>
 			</hbox>
 			<grid>
 				<columns>

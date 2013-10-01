@@ -143,7 +143,7 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description align="center" id="msg" no_lang="1" class="redItalic"/>
+					<description align="center" id="msg" no_lang="1" class="message"/>
 				</row>
 				<row disabled="1">
 					<template align="right" id="projectmanager.list.right" span="all"/>

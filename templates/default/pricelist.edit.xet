@@ -90,7 +90,7 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description span="all" class="redItalic" no_lang="1" id="msg" align="center"/>
+					<description span="all" class="message" no_lang="1" id="msg" align="center"/>
 					<description/>
 					<description/>
 				</row>

@@ -818,7 +818,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		if (!$this->modernJPGraph)
 		{
 			$msg .= $this->msg_install_new_jpgraph();
-			$GLOBALS['egw']->framework->render('<h3 class="redItalic">'.$msg.'</h3>',null,true);
+			$GLOBALS['egw']->framework->render('<h3 class="message">'.$msg.'</h3>',null,true);
 			common::egw_exit();
 		}
 		unset($content['update']);

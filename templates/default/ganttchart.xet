@@ -8,7 +8,7 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<html align="center" id="msg" span="all" class="redItalic"/>
+					<html align="center" id="msg" span="all" class="message"/>
 				</row>
 				<row>
 					<groupbox cols="5" rows="2">
