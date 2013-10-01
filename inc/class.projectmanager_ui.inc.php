@@ -433,8 +433,7 @@ class projectmanager_ui extends projectmanager_bo
 
 			$readonlys['links'] = $readonlys['link_to'] = true;
 		}
-		_debug_array($sel_options);
-		_debug_array($content);
+		
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project') : lang('Edit project')) : lang('Add project'));
 		$tpl->exec('projectmanager.projectmanager_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
