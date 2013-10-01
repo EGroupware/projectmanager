@@ -132,7 +132,6 @@
 						<button id="button[save]" label="Save" statustext="Save the changes made"/>
 						<button id="button[apply]" label="Apply" statustext="Apply the changes"/>
 						<button id="button[cancel]" label="Cancel" statustext="Closes the window without saving the changes" onclick="window.close();"/>
-						<html id="js"/>
 					</hbox>
 				</row>
 			</rows>

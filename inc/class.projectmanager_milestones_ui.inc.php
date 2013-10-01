@@ -29,7 +29,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 	 */
 	function __construct()
 	{
-		$this->tpl = new etemplate();
+		$this->tpl = new etemplate_new();
 
 		if ((int) $_REQUEST['pm_id'])
 		{
@@ -97,10 +97,8 @@ class projectmanager_milestones_ui extends projectmanager_bo
 					else
 					{
 						$msg = lang('Milestone saved');
-						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
-							'msg'        => $msg,
-						))."';";
+						egw_framework::refresh_opener($msg, 'projectmanager', 'edit');
+
 					}
 				}
 				if ($content['delete'] && $content['ms_id'])
@@ -111,10 +109,8 @@ class projectmanager_milestones_ui extends projectmanager_bo
 					)))
 					{
 						$msg = lang('Milestone deleted');
-						$js = "opener.location.href='".$GLOBALS['phpgw']->link('/index.php',array(
-							'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
-							'msg'        => $msg,
-						))."';";
+						egw_framework::refresh_opener($msg, 'projectmanager', 'edit');
+
 					}
 				}
 				if ($content['edit'] && $this->check_acl(EGW_ACL_EDIT))
@@ -124,8 +120,8 @@ class projectmanager_milestones_ui extends projectmanager_bo
 			}
 			if ($content['save'] || $content['cancel'] || $content['delete'])
 			{
-				$js .= 'window.close();';
-				echo '<html><body onload="'.$js.'"></body></html>';
+				egw_framework::window_close();
+
 				$GLOBALS['egw']->common->egw_exit();
 			}
 		}
@@ -141,7 +137,6 @@ class projectmanager_milestones_ui extends projectmanager_bo
 		}
 		$content = $this->milestones->data + array(
 			'msg' => $msg,
-			'js'  => '<script>'.$js.'</script>',
 		);
 
 		$sel_options = array(

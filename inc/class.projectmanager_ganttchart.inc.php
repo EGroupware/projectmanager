@@ -139,7 +139,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 	 */
 	function __construct()
 	{
-		$this->tmpl = new etemplate();
+		$this->tmpl = new etemplate_new();
 
 		if (!check_load_extension($php_extension='gd') || !function_exists('imagecopyresampled'))
 		{
@@ -863,7 +863,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			),
 		);
 		$this->tmpl->read('projectmanager.ganttchart');
-		return $this->tmpl->exec('projectmanager.projectmanager_ganttchart.show',$content,$sel_options,'',array('pm_id'=>$content['pm_id']));
+		return $this->tmpl->exec('projectmanager.projectmanager_ganttchart.show',$content,$sel_options,$readonlys,array('pm_id'=>$content['pm_id']));
 	}
 
 	/**

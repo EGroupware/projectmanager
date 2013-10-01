@@ -96,22 +96,22 @@
 				</row>
 				<row class="row">
 					<description value="Quantity" for="pe_used_quantity"/>
-					<textbox type="float" blur="@used_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_used_quantity" onchange="calc_budget(this.form);"/>
+					<textbox type="float" blur="@used_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_used_quantity" onchange="app.projectmanager.calc_budget(this.form);"/>
 					<textbox type="float" id="ds[pe_used_quantity]" readonly="true"/>
 				</row>
 				<row class="row">
 					<description value="- planned" for="pe_planned_quantity"/>
-					<textbox type="float" blur="@planned_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_planned_quantity" onchange="calc_budget(this.form);"/>
+					<textbox type="float" blur="@planned_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_planned_quantity" onchange="app.projectmanager.calc_budget(this.form);"/>
 					<textbox type="float" id="ds[pe_planned_quantity]" readonly="true"/>
 				</row>
 				<row class="row" disabled="@no_pricelist">
 					<description value="Activity"/>
-					<projectmanager-pricelist statustext="select an activity if you want to calculate costs by quantity (time) and price" id="pl_id" onchange="this.form['exec[pe_unitprice]'].value=this.options[this.selectedIndex].text.lastIndexOf('(') &lt; 0 ? '' : this.options[this.selectedIndex].text.slice(this.options[this.selectedIndex].text.lastIndexOf('(')+1,-1); calc_budget(this.form);" options="None"/>
+					<projectmanager-pricelist statustext="select an activity if you want to calculate costs by quantity (time) and price" id="pl_id" onchange="this.form['exec[pe_unitprice]'].value=this.options[this.selectedIndex].text.lastIndexOf('(') &lt; 0 ? '' : this.options[this.selectedIndex].text.slice(this.options[this.selectedIndex].text.lastIndexOf('(')+1,-1); app.projectmanager.calc_budget(this.form);" options="None"/>
 					<projectmanager-pricelist id="ds[pl_id]" readonly="true" span="all"/>
 				</row>
 				<row class="row" valign="top">
 					<description value="Unitprice" for="pe_cost_per_time"/>
-					<textbox type="float" blur="@ds[pe_unitprice]" id="pe_unitprice" onchange="calc_budget(this.form);"/>
+					<textbox type="float" blur="@ds[pe_unitprice]" id="pe_unitprice" onchange="app.projectmanager.calc_budget(this.form);"/>
 					<textbox type="float" id="ds[pe_unitprice]" readonly="true" min="2"/>
 				</row>
 				<row class="th">
@@ -278,9 +278,8 @@
 						<button statustext="Save this project element" label="Save" id="save"/>
 						<button statustext="Apply the changes" label="Apply" id="apply"/>
 						<button statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"/>
-						<html id="js"/>
 					</hbox>
-					<button align="right" statustext="Delete this project-element, does NOT remove the linked entry" label="Delete" id="delete" onclick="return confirm('Delete this project-element, does NOT remove the linked entry');"/>
+					<button align="right" statustext="Delete this project-element, does NOT remove the linked entry" label="Delete" id="delete" onclick="app.projectmanager.p_element_delete();"/>
 				</row>
 			</rows>
 		</grid>

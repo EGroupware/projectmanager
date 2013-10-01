@@ -66,7 +66,7 @@ class projectmanager_admin
 	 */
 	function config($content=null)
 	{
-		$tpl = new etemplate('projectmanager.config');
+		$tpl = new etemplate_new('projectmanager.config');
 
 		if ($content['save'] || $content['apply'])
 		{

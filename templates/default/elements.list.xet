@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="0.4.001">
+	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
 		<link-add id="link_add" class="solidBorder"/>
 	</template>
 	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
@@ -12,8 +12,8 @@
 			</columns>
 			<rows>
 				<row>
-					<link-to id="link_to"/>
-					<image align="right" label="Show more options" src="extra_icons" onclick="toggleMoreOptions(this);"/>
+					<link-to  id="link_to"/>
+					<image align="right" label="Show more options" src="extra_icons" onclick="app.projectmanager.toggleMoreOptions(this);"/>
 				</row>
 			</rows>
 		</grid>

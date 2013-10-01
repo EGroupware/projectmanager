@@ -11,23 +11,31 @@
 
 /**
  * UI for projectmanager
- * 
+ *
  * @augments AppJS
  */
 app.projectmanager = AppJS.extend(
 {
 	appname: 'projectmanager',
 	/**
+	 * et2 widget container
+	 */
+	et2: null,
+	/**
+	 * path widget
+	 */
+
+	/**
 	 * Constructor
-	 * 
+	 *
 	 * @memberOf app.projectmanager
 	 */
-	init: function() 
+	init: function()
 	{
 		// call parent
 		this._super.apply(this, arguments);
 	},
-	
+
 	/**
 	 * Destructor
 	 */
@@ -36,11 +44,79 @@ app.projectmanager = AppJS.extend(
 		// call parent
 		this._super.apply(this, arguments);
 	},
-	
+
 	/**
-	 * Open window for a new project using link system, and pass on the 
+	 * This function is called when the etemplate2 object is loaded
+	 * and ready.  If you must store a reference to the et2 object,
+	 * make sure to clean it up in destroy().
+	 *
+	 * @param et2 etemplate2 Newly ready object
+	 */
+	et2_ready: function(et2)
+	{
+		// call parent
+		this._super.apply(this, arguments);
+
+
+	},
+	/**
+	 * Handles delete button in edit popup
+	 *
+	 */
+	p_element_delete: function()
+	{
+		var template = this.et2._inst;
+		if (template)
+		{
+			var content = template.widgetContainer.getArrayMgr('content');
+			var id = content.data['pe_id'];
+		}
+		console.log('I am element delete');
+		opener.location.href= egw.link('/index.php', {
+				menuaction: (content.data['caller'])? content.data['caller'] :'projectmanager.projectmanager_elements_ui.index',
+				delete: id,
+			});
+		window.close();
+	},
+
+	/**
+	 *
+	 *
+	 */
+	calc_budget: function(form)
+	{
+		form['exec[pe_used_budget]'].value = form['exec[pe_used_quantity]'].value.replace(/,/,'.') * form['exec[pe_unitprice]'].value.replace(/,/,'.');
+		if (form['exec[pe_used_budget]'].value == '0')
+		{
+			form['exec[pe_used_budget]'].value = '';
+		}
+		form['exec[pe_planned_budget]'].value = form['exec[pe_planned_quantity]'].value.replace(/,/,'.') * form['exec[pe_unitprice]'].value.replace(/,/,'.');
+		if (form['exec[pe_planned_budget]'].value == '0')
+		{
+			form['exec[pe_planned_budget]'].value = '';
+		}
+	},
+	/**
+	 *
+	 *
+	 */
+	toggleMoreOptions: function(button)
+	{
+		element = $j(button).closest('div').parent('div').find('table.egwLinkMoreOptions');
+		if($j(element).css('display') == 'none')
+		{
+			$j(element).fadeIn('medium');
+		}
+		else
+		{
+			$j(element).fadeOut('medium');
+		}
+	},
+
+	/**
+	 * Open window for a new project using link system, and pass on the
 	 * template if one is selected.
-	 * 
+	 *
 	 * @param {etemplate_widget} widget The button, gives us access to the widget
 	 *	context without needing to store a reference.
 	 */
@@ -60,9 +136,9 @@ app.projectmanager = AppJS.extend(
 		{
 			template = document.getElementById(et2_form_name('nm','template_id')).value;
 		}
-		
+
 		// Open the popup
 		egw.open('','projectmanager','add',{'template': template},'_blank');
 		return false;
-	}
+	},
 });

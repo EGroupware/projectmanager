@@ -26,34 +26,34 @@
 							<rows>
 								<row>
 									<description value="Startdate" for="start"/>
-									<date id="start" onchange="1"/>
+									<date id="start"/>
 									<description value="Depth of display" for="depth"/>
 									<menulist>
-										<menupopup id="depth" no_lang="1" onchange="1"/>
+										<menupopup id="depth" no_lang="1" />
 									</menulist>
-									<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"/>
+									<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" />
 									<description/>
 									<button label="Update" id="update"/>
 								</row>
 								<row>
 									<description value="Enddate" for="end"/>
-									<date id="end" onchange="1"/>
+									<date id="end" />
 									<description value="Status filter" for="filter"/>
 									<menulist>
-										<menupopup id="filter" no_lang="1" onchange="1"/>
+										<menupopup id="filter" no_lang="1" />
 									</menulist>
-									<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints" onchange="1"/>
+									<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints" />
 									<description/>
 									<button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"/>
 								</row>
 								<row>
 									<description value="Resources"/>
 									<menulist>
-										<menupopup type="select-account" id="pe_resources" onchange="1" options="All"/>
+										<menupopup type="select-account" id="pe_resources" options="All"/>
 									</menulist>
 									<description value="Category"/>
 									<menulist span="3">
-										<menupopup type="select-cat" id="cat_id" onchange="1" options="All"/>
+										<menupopup type="select-cat" id="cat_id"  options="All"/>
 									</menulist>
 									<description/>
 								</row>

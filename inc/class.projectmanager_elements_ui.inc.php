@@ -51,7 +51,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function __construct()
 	{
-		$this->tpl = new etemplate();
+		$this->tpl = new etemplate_new();
 
 		if ((int) $_REQUEST['pm_id'])
 		{
@@ -229,10 +229,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					else
 					{
 						$msg = lang('Project-Element saved');
-						$js = "opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
-							'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.projectmanager_elements_ui.index',
-							'msg'        => $msg,
-						))."';";
+
+						egw_framework::refresh_opener($msg,'projectmanager',$content[pe_id], 'edit');
 					}
 				}
 				else
@@ -240,30 +238,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					$msg = lang('no save necessary');
 				}
 			}
-			if ($content['delete'] && $this->check_acl(EGW_ACL_DELETE))
-			{
-				// all delete are done by index
-				$js = "opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
-					'menuaction' => $content['caller'] ? $content['caller'] : 'projectmanager.projectmanager_elements_ui.index',
-					'delete'     => $this->data['pe_id'],
-				))."';";
-				/*
-				return $this->index(array('nm'=>array('rows'=>array(
-					'delete' => array($this->data['pe_id']=>true)
-				))));
-				*/
-			}
+			error_log(__METHOD__. "Caller = " . $content['caller']);
+
 			if ($content['save'] || $content['cancel'] || $content['delete'])
 			{
-				$js .= 'window.close();';
-				echo '<html><body onload="'.$js.'"></body></html>';
-				$GLOBALS['egw']->common->egw_exit();
-				/*
-				$this->tpl->location(array(
-					'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
-					'msg'        => $msg,
-				));
-				*/
+				egw_framework::window_close();
+				common::egw_exit();
 			}
 		}
 		else
@@ -283,7 +263,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				if (!$this->check_acl(EGW_ACL_EDIT)) $view = true;
 			}
-			$js = 'window.focus();';
 
 			$datasource = $this->datasource($this->data['pe_app']);
 			if (($ds_read_from_element = !($ds = $datasource->read($this->data['pe_app_id'],$this->data))))
@@ -331,12 +310,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$this->data[$name] = '';
 			}
 		}
-		$js .= "\nfunction calc_budget(form) {
-			form['exec[pe_used_budget]'].value = form['exec[pe_used_quantity]'].value.replace(/,/,'.') * form['exec[pe_unitprice]'].value.replace(/,/,'.');
-			if (form['exec[pe_used_budget]'].value == '0') form['exec[pe_used_budget]'].value = '';
-			form['exec[pe_planned_budget]'].value = form['exec[pe_planned_quantity]'].value.replace(/,/,'.') * form['exec[pe_unitprice]'].value.replace(/,/,'.');
-			if (form['exec[pe_planned_budget]'].value == '0') form['exec[pe_planned_budget]'].value = '';
-		}";
 		$tabs = 'dates|times|budget|constraints|resources|details|eroles';
 		if ($this->data['pe_replanned_time'])
 		{
@@ -354,7 +327,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$content = $this->data + array(
 			'ds'  => $ds,
 			'msg' => $msg,
-			'js'  => '<script>'.$js.'</script>',
 			'default_share' => $default_share,
 			'duration_format' => $this->config['duration_format'],
 			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
@@ -674,6 +646,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'hideOnDisabled' => true,
 				'allowOnMultiple' => false,
 				'default' => true,
+				'enabled' => true,
 			),
 			'project' => array(	// Edit sub-project
 				'caption' => 'Project',
@@ -683,6 +656,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'enableId' => '^projectmanager:[^:]+:[1-9]',
 				'hideOnDisabled' => true,
 				'allowOnMultiple' => false,
+				'enabled' => true,
 			),
 			'edit' => array(	// Edit project element for all elements
 				'caption' => 'Project-element',
@@ -698,6 +672,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'caption' => 'Ganttchart',
 				'group' => $group,
 				'enableId' => '^projectmanager:',
+				'enabled' => true,
 			),
 			'timesheet' => array(
 				'icon' => 'timesheet/navbar',

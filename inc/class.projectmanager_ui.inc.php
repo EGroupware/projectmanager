@@ -90,7 +90,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("projectmanager_ui::edit(,$view) content=".print_r($content,true));
 
-		$tpl = new etemplate('projectmanager.edit');
+		$tpl = new etemplate_new('projectmanager.edit');
 
 		if (is_array($content))
 		{
@@ -217,6 +217,7 @@ class projectmanager_ui extends projectmanager_bo
 							array('pm_id'=>$this->data['pm_id']),$this->data['pm_status']);
 					}
 				}
+				if ($content['apply']) egw_framework::refresh_opener($msg, 'projectmanager');
 			}
 			if ($content['delete'] && $this->check_acl(EGW_ACL_DELETE))
 			{
@@ -224,8 +225,8 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			if ($content['save'] || $content['delete'])	// refresh opener and output message
 			{
-				echo "<html><body><script>var referer = opener.location;opener.location.href = referer+(referer.search?'&':'?')+'msg=".
-					addslashes(urlencode($msg))."'; window.close();</script></body></html>\n";
+				egw_framework::refresh_opener($msg,'projectmanager', $content['pm_id'], 'edit');
+				egw_framework::window_close();
 				common::egw_exit();
 			}
 			$template = $content['template'];
@@ -432,6 +433,8 @@ class projectmanager_ui extends projectmanager_bo
 
 			$readonlys['links'] = $readonlys['link_to'] = true;
 		}
+		_debug_array($sel_options);
+		_debug_array($content);
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project') : lang('Edit project')) : lang('Add project'));
 		$tpl->exec('projectmanager.projectmanager_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
@@ -556,7 +559,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_ui::index(,$msg) content=".print_r($content,true));
 
-		$tpl = new etemplate('projectmanager.list');
+		$tpl = new etemplate_new('projectmanager.list');
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 

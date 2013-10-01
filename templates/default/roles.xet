@@ -68,7 +68,6 @@
 				<button label="Save" id="save" statustext="Save the changes made"/>
 				<button label="Apply" id="apply" statustext="Applies the changes made"/>
 				<button label="Cancel" onclick="window.close();" id="cancel" statustext="Close the window, discard the changes made"/>
-				<html id="js"/>
 			</hbox>
 		</vbox>
 	</template>

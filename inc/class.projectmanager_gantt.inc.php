@@ -79,7 +79,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 				'done'    => lang('Done (100%)'),
 			),
 		);
-		$template = new etemplate();
+		$template = new etemplate_new();
 		$template->read('projectmanager.gantt');
 		$content .= $template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
 		$GLOBALS['egw']->framework->render($content, 'Test', true);

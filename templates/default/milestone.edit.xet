@@ -27,7 +27,6 @@
 				<row class="row">
 					<description options=",,,ms_date" value="Date"/>
 					<date id="ms_date" needed="1"/>
-					<html id="js"/>
 				</row>
 				<row class="row">
 					<htmlarea span="all" id="ms_description" mode="extended" height="300px" width="100%" toolbar="true"/>

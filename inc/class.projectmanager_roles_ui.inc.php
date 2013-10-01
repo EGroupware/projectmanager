@@ -57,7 +57,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 	 */
 	function roles($content=null)
 	{
-		$tpl = new etemplate('projectmanager.roles');
+		$tpl = new etemplate_new('projectmanager.roles');
 
 		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
 
@@ -73,10 +73,11 @@ class projectmanager_roles_ui extends projectmanager_bo
 			}
 		}
 		$role_to_edit = array('pm_id' => $only);
-		$js = 'window.focus();';
+		//$js = 'window.focus();';
 
 		if (($content['save'] || $content['apply']) && (!$pm_id && $this->is_admin || $pm_id && $project_rights))
 		{
+			error_log(__METHOD__. "content" . array2string($content));
 			if (!$content[1]['role_title'])
 			{
 				$role_to_edit = $content[1];
@@ -101,7 +102,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 
 					$js = 'opener.document.eTemplate.submit();';
 
-					if ($content['save']) $js .= 'window.close();';
+					if ($content['save']) egw_framework::window_close();
 				}
 				else
 				{
@@ -147,7 +148,6 @@ class projectmanager_roles_ui extends projectmanager_bo
 			'pm_id' => $pm_id,
 			'msg'   => $msg,
 			'view'  => !($pm_id && $project_rights) && !$this->is_admin,
-			'js'    => '<script>'.$js.'</script>',
 			1       => $role_to_edit,
 		);
 		$n = 2;

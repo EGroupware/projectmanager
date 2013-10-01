@@ -11,14 +11,14 @@
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id: class.projectmanager_eroles_ui.inc.php 27222 2009-06-08 16:21:14Z jaytraxx $
  */
- 
+
 define('EGW_ACL_PROJECT_EROLES',EGW_ACL_EDIT);
 
 /**
  * ProjectManager UI: eRoles
  * eRoles - element roles - define the role of an egroupware element when it gets merged with a document
  */
- 
+
 class projectmanager_eroles_ui extends projectmanager_bo
 {
 	/**
@@ -29,7 +29,7 @@ class projectmanager_eroles_ui extends projectmanager_bo
 	var $public_functions = array(
 		'eroles' => true,
 	);
-	
+
 	/**
 	 * Instance of the boprojectmanger class
 	 *
@@ -54,7 +54,7 @@ class projectmanager_eroles_ui extends projectmanager_bo
 	 */
 	function eroles($content=null)
 	{
-		$tpl = new etemplate('projectmanager.eroles');
+		$tpl = new etemplate_new('projectmanager.eroles');
 
 		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
 
@@ -100,7 +100,7 @@ class projectmanager_eroles_ui extends projectmanager_bo
 
 					$js = 'opener.document.eTemplate.submit();';
 
-					if ($content['save']) $js .= 'window.close();';
+					if ($content['save']) egw_framework::window_close();
 				}
 				else
 				{

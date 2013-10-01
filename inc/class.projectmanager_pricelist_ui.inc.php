@@ -53,8 +53,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 
 	function edit($content=null,$view=false,$msg='')
 	{
-		$tpl = new etemplate('projectmanager.pricelist.edit');
-
+		$tpl = new etemplate_new('projectmanager.pricelist.edit');
 		if (!is_array($content))
 		{
 			if (($pl_id = (int) $_GET['pl_id']) && $this->read(array(
@@ -78,9 +77,10 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			if (!$this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT) &&
 				!($this->pm_id && $this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT,$this->pm_id)))
 			{
-				$js = "alert('".lang('Permission denied !!!')."'); window.close();";
+				egw_framework::window_close(lang('Permission denied !!!'));
+
 				common::egw_header();
-				echo "<script>\n$js\n</script>\n";
+
 				common::egw_exit();
 			}
 			if (count($this->data['project_prices'])) $content['tabs'] = 'project';	// open project tab
@@ -126,15 +126,12 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 						$msg = lang('Error: saving the price (%1) !!!',$err);
 						$button = 'apply';	// dont close the window
 					}
-					$js = "window.opener.location.href='".$GLOBALS['egw']->link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_pricelist_ui.index',
-						'msg' => $msg,
-					))."';";
+					egw_framework::refresh_opener($msg, 'projectmanager');
+
 					if ($button == 'apply') break;
 					// fall through
 				case 'cancel':
-					$js .= 'window.close();';
-					echo '<html><body onload="'.$js.'"></body></html>';
+					egw_framework::window_close();
 					common::egw_exit();
 					break;
 
@@ -149,7 +146,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 
 		$content = $this->data + array(
 			'msg' => $msg,
-			'js'  => $js ? "<script>\n".$js."\n</script>" : '',
 			'view' => $view,
 			'view_prices' => $view_prices,
 			'view_project_prices' => $view_project_prices,
@@ -292,7 +288,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				));
 			}
 		}
-		$tpl = new etemplate('projectmanager.pricelist.list');
+		$tpl = new etemplate_new('projectmanager.pricelist.list');
 
 		if (!is_array($content))
 		{

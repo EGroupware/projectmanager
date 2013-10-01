@@ -18,19 +18,6 @@ function do_action(selbox)
 	}
 }
 
-function toggleMoreOptions(button)
-{
-	element = $j(button).closest('div').parent('div').find('table.egwLinkMoreOptions');
-	if($j(element).css('display') == 'none')
-	{
-		$j(element).fadeIn('medium');
-	}
-	else
-	{
-		$j(element).fadeOut('medium');
-	}
-}
-
 $j(document).ready(function()
 {
 	$j('table.egwLinkMoreOptions').parent('div').parent('div').css('position', 'relative');
