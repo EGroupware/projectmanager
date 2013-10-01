@@ -21,7 +21,7 @@ class projectmanager_gantt extends projectmanager_elements_bo {
                 {
                         $pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
                 }
-		if(!$pm_id) 
+		if(!$pm_id)
 		{
 			egw::redirect_link('/index.php', array(
                                 'menuaction' => 'projectmanager.projectmanager_ui.index',
@@ -54,7 +54,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		// Default to project elements
 		if(!array_key_exists('depth',$data)) $data['depth'] = 1;
 
-		
+
 		if ($pm_id != $this->project->data['pm_id'])
 		{
 			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
@@ -81,7 +81,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		);
 		$template = new etemplate();
 		$template->read('projectmanager.gantt');
-		$content .= $template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys, 2);
+		$content .= $template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
 		$GLOBALS['egw']->framework->render($content, 'Test', true);
 	}
 
@@ -148,7 +148,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		{
 			$project['elements'] = $this->add_elements($pm_id, $params, $params['level'] ? $params['level'] : 1);
 		}
-		
+
 		return $project;
 	}
 
@@ -234,7 +234,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 					}
 				}
 				$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
-			
+
 				$elements[] = $pe;
 			}
 			$element_index[$pe['pe_id']] = $pe;
@@ -286,7 +286,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 				// Duration comes in hours
 				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'] * 60;
 			}
-			if(array_key_exists('start', $values)) 
+			if(array_key_exists('start', $values))
 			{
 				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = $values['start'];
 			}
