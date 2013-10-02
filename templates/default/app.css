@@ -1,5 +1,6 @@
 .redItalic { color: red; font-style: italic; }
 .planned { font-style: italic; font-size: 95%; }
+#projectmanager-elements-list_link_to {position:relative;width:auto;}
 div.projectmanager_solidBorder { border: 2px solid black; }
 .projectmanager_leftPad5 { padding-left: 5px; }
 tr.projectmanager_rowHasSubs > td:first-child {
