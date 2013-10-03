@@ -95,6 +95,15 @@ class projectmanager_hooks
 
 		if ($location == 'sidebox_menu')
 		{
+			// Magic etemplate2 favorites menu (from nextmatch widget)
+			display_sidebox($appname,lang('Favorites'),array(
+				array(
+					'no_lang' => true,
+					'text'=> etemplate_widget_nextmatch::favorite_list($appname,'projectmanager.projectmanager_ui.get_rows'),
+					'link'=>false,
+					'icon' => false
+				)
+			));
 			// project-dropdown in sidebox menu
 			if (!is_object($GLOBALS['projectmanager_bo']))
 			{

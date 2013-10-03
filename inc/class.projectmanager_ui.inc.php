@@ -433,7 +433,7 @@ class projectmanager_ui extends projectmanager_bo
 
 			$readonlys['links'] = $readonlys['link_to'] = true;
 		}
-		
+
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project') : lang('Edit project')) : lang('Add project'));
 		$tpl->exec('projectmanager.projectmanager_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
@@ -639,6 +639,7 @@ class projectmanager_ui extends projectmanager_bo
 				'header_right'   => 'projectmanager.list.right',
 				'row_id'         => 'pm_id',
 				'actions'        => $this->get_actions(),
+				'favorites'		=> true,
 			);
 			// use the state of the last session stored in the user prefs
 			if ($state = @unserialize($this->prefs['pm_index_state']))
