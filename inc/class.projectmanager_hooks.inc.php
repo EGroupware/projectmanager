@@ -220,24 +220,7 @@ class projectmanager_hooks
 			unset($GLOBALS['egw_info']['user']['preferences']['common']['auto_hide_sidebox']);
 		}
 
-		if ($GLOBALS['egw_info']['user']['apps']['preferences'] && $location != 'admin')
-		{
-			$file = array(
-				'Preferences'     => egw::link('/index.php','menuaction=preferences.uisettings.index&appname='.$appname,'preferences'),
-				'Grant Access'    => egw::link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
-				'Edit Categories' => egw::link('/index.php','menuaction=preferences.preferences_categories_ui.index&cats_app=' . $appname . '&cats_level=True&global_cats=True')
-			);
-			if ($location == 'preferences')
-			{
-				display_section($appname,$file);
-			}
-			else
-			{
-				display_sidebox($appname,lang('Preferences'),$file);
-			}
-		}
-
-		if ($GLOBALS['egw_info']['user']['apps']['admin'] && $location != 'preferences')
+		if ($GLOBALS['egw_info']['user']['apps']['admin'])
 		{
 			$file = Array(
 				'Site configuration' => egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
@@ -623,6 +606,17 @@ class projectmanager_hooks
 			acl::CUSTOM1 => 'budget',
 			acl::CUSTOM2 => 'edit budget',
 		);
+	}
+
+	/**
+	 * Hook to tell framework we use standard categories method
+	 *
+	 * @param string|array $data hook-data or location
+	 * @return boolean
+	 */
+	public static function categories($data)
+	{
+		return true;
 	}
 }
 

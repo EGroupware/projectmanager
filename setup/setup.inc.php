@@ -39,12 +39,12 @@ $setup_info['projectmanager']['note'] =
 </ul>';
 
 /* The hooks this app includes, needed for hooks registration */
-$setup_info['projectmanager']['hooks']['preferences'] = 'projectmanager_hooks::all_hooks';
 $setup_info['projectmanager']['hooks']['settings'] = 'projectmanager_hooks::settings';
 $setup_info['projectmanager']['hooks']['admin'] = 'projectmanager_hooks::all_hooks';
 $setup_info['projectmanager']['hooks']['sidebox_menu'] = 'projectmanager_hooks::all_hooks';
 $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager_hooks::search_link';
 $setup_info['projectmanager']['hooks']['acl_rights'] = 'projectmanager_hooks::acl_rights';
+$setup_info['projectmanager']['hooks']['categories'] = 'projectmanager_hooks::categories';
 
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(
