@@ -100,18 +100,7 @@ app.projectmanager = AppJS.extend(
 	 *
 	 *
 	 */
-	toggleMoreOptions: function(button)
-	{
-		element = $j(button).closest('div').parent('div').find('table.egwLinkMoreOptions');
-		if($j(element).css('display') == 'none')
-		{
-			$j(element).fadeIn('medium');
-		}
-		else
-		{
-			$j(element).fadeOut('medium');
-		}
-	},
+
 
 	/**
 	 * Open window for a new project using link system, and pass on the
@@ -140,5 +129,27 @@ app.projectmanager = AppJS.extend(
 		// Open the popup
 		egw.open('','projectmanager','add',{'template': template},'_blank');
 		return false;
+	},
+
+	/**
+	 * Refresh the multi select box of eroles list
+	 */
+	erole_refresh: function(action)
+	{
+		var elemEditWind = window.opener;
+		if (elemEditWind)
+		{
+			elemEditWind.location.reload();
+		}
+		switch (action)
+		{
+			case 'delete':
+				return confirm("Delete this role?");
+				break;
+			case 'edit'	:
+				break;
+			default:
+				this.et2._inst.submit();
+		}
 	},
 });
