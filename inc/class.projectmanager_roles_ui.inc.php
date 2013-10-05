@@ -73,11 +73,10 @@ class projectmanager_roles_ui extends projectmanager_bo
 			}
 		}
 		$role_to_edit = array('pm_id' => $only);
-		//$js = 'window.focus();';
 
 		if (($content['save'] || $content['apply']) && (!$pm_id && $this->is_admin || $pm_id && $project_rights))
 		{
-			error_log(__METHOD__. "content" . array2string($content));
+
 			if (!$content[1]['role_title'])
 			{
 				$role_to_edit = $content[1];
@@ -100,8 +99,6 @@ class projectmanager_roles_ui extends projectmanager_bo
 				{
 					$msg = lang('Role saved');
 
-					$js = 'opener.document.eTemplate.submit();';
-
 					if ($content['save']) egw_framework::window_close();
 				}
 				else
@@ -109,6 +106,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 					$msg = lang('Error: saving role !!!');
 				}
 			}
+			error_log(__METHOD__. "content" . array2string($content));
 		}
 		if ($content['delete'] || $content['edit'])
 		{
@@ -124,7 +122,6 @@ class projectmanager_roles_ui extends projectmanager_bo
 				if ($this->roles->delete($role))
 				{
 					$msg = lang('Role deleted');
-					$js = 'opener.document.eTemplate.submit();';
 				}
 				else
 				{
