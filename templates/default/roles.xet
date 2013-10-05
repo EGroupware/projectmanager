@@ -59,14 +59,14 @@
 						<checkbox align="center" readonly="true" id="${row}[acl_edit_budget]"/>
 						<hbox orient=",0,0">
 							<button label="Edit" id="edit[$row_cont[role_id]]" image="edit" statustext="Edit this role"/>
-							<button label="Delete" onclick="return confirm('Delete this role');" align="right" id="delete[$row_cont[role_id]]" image="delete" statustext="Delete this role"/>
+							<button label="Delete" onclick="return app.projectmanager.erole_refresh('delete');" align="right" id="delete[$row_cont[role_id]]" image="delete" statustext="Delete this role"/>
 						</hbox>
 					</row>
 				</rows>
 			</grid>
 			<hbox>
-				<button label="Save" id="save" statustext="Save the changes made"/>
-				<button label="Apply" id="apply" statustext="Applies the changes made"/>
+				<button label="Save" id="save" statustext="Save the changes made" onclick="app.projectmanager.erole_refresh()"/>
+				<button label="Apply" id="apply" statustext="Applies the changes made" onclick="app.projectmanager.erole_refresh()"/>
 				<button label="Cancel" onclick="window.close();" id="cancel" statustext="Close the window, discard the changes made"/>
 			</hbox>
 		</vbox>
