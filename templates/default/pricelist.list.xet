@@ -27,7 +27,7 @@
 						<nextmatch-sortheader label="Last modified" id="pl_modified"/>
 						<nextmatch-sortheader label="Modified by" id="pl_modifier"/>
 					</vbox>
-					<description value="Actions" class="noPrint"/>
+					<description value="Actions" class="noPrint" id="actions"/>
 				</row>
 				<row class="row $row_cont[class]">
 					<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
