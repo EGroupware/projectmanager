@@ -152,4 +152,22 @@ app.projectmanager = AppJS.extend(
 				this.et2._inst.submit();
 		}
 	},
+		
+	/**
+	 * Toggles display of a div
+	 * 
+	 *  Used in erole list in element list, maybe others?
+	 */
+	toggleDiv: function(target)
+	{
+		element = $j(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
+		if($j(element).css('display') == 'none')
+		{
+			$j(element).fadeIn('medium');
+		}
+		else
+		{
+			$j(element).fadeOut('medium');
+		}
+	}
 });
