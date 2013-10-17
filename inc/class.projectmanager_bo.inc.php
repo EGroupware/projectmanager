@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-13 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -601,15 +601,20 @@ class projectmanager_bo extends projectmanager_so
 			{
 				$rights &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
 			}
+			// anonymous access implies read rights for everyone
+			if (is_array($data) && $data['pm_access'] === 'anonym')
+			{
+				$rights |= EGW_ACL_READ;
+			}
 		}
 		// private project need either a private grant or a role ACL
 		if (is_array($data) && $data['pm_access'] === 'private' && !($rights & EGW_ACL_PRIVATE) && !$data['pm_members'][$user]['role_acl'])
 		{
 			$access = false;
 		}
-		elseif ($required == EGW_ACL_READ)	// read-rights are implied by all other rights, or for everyone, if access=anonym
+		elseif ($required & EGW_ACL_READ)	// read-rights are implied by all other rights
 		{
-			$access = $rights || is_array($data) && $data['pm_access'] === 'anonym';
+			$access = $rights != 0;
 		}
 		else
 		{
@@ -618,7 +623,7 @@ class projectmanager_bo extends projectmanager_so
 			$access = (boolean) ($rights & $required);
 		}
 		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message(__METHOD__."($required,pm_id=$pm_id,$no_cache,$user) rights=$rights returning ".array2string($access));
-
+		//error_log(__METHOD__."($required) pm_id=$pm_id, data[pm_access]=".(is_array($data) ? array2string($data['pm_access']) : 'data='.array2string($data))." returning ".array2string($access));
 		return $access;
 	}
 
@@ -729,6 +734,7 @@ class projectmanager_bo extends projectmanager_so
 	 * @ToDo Implement own acl rights for file access
 	 * @param int $id pm_id of project
 	 * @param int $check EGW_ACL_READ for read and EGW_ACL_EDIT for write or delete access
+	 * @param string $rel_path path relative to project directory (currently not used)
 	 * @param int $user=null for which user to check, default current user
 	 * @return boolean true if access is granted or false otherwise
 	 */
