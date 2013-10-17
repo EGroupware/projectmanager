@@ -746,7 +746,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function index($content=null,$msg='')
 	{
-		egw_framework::validate_file('.','projectmanagerElements','projectmanager');
 
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_elements_ui::index(".print_r($content,true).",$msg)");
 
