@@ -71,7 +71,6 @@ class projectmanager_eroles_ui extends projectmanager_bo
 		}
 
 		$erole_to_edit = array('pm_id' => $only);
-		$js = 'window.focus();';
 
 		if (($content['save'] || $content['apply']))
 		{
@@ -98,7 +97,6 @@ class projectmanager_eroles_ui extends projectmanager_bo
 				{
 					$msg = lang('Element role saved');
 
-					$js = 'opener.document.eTemplate.submit();';
 
 					if ($content['save']) egw_framework::window_close();
 				}
@@ -120,7 +118,6 @@ class projectmanager_eroles_ui extends projectmanager_bo
 				if ($this->eroles->delete($erole))
 				{
 					$msg = lang('Element role deleted');
-					$js = 'opener.document.eTemplate.submit();';
 				}
 				else
 				{
@@ -140,7 +137,6 @@ class projectmanager_eroles_ui extends projectmanager_bo
 			'pm_id' => $pm_id,
 			'msg'   => $msg,
 			'view'  => !($pm_id && $project_rights) && !$this->is_admin,
-			'js'    => '<script>'.$js.'</script>',
 			1       => $erole_to_edit,
 		);
 		$n = 2;
