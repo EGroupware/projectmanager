@@ -57,7 +57,31 @@ app.projectmanager = AppJS.extend(
 		// call parent
 		this._super.apply(this, arguments);
 
-
+		// Sidebox menu doesn't get updated in jdots when you select a project, so
+		// enable / disable gantt chart link if a single project is set
+		var gantt_link = egw.window.$j('#egw_fw_sidemenu, #sidebox')
+			.find('div:contains('+egw.lang('GanttChart')+')')
+			.last();
+		// Check for project in top level, or link-to widget in element list nm header
+		var pm_id = this.et2.getArrayMgr("content").getEntry('pm_id') ||
+			this.et2.getArrayMgr("content").getEntry('nm[link_to][to_id]');
+		if(pm_id)
+		{
+			$j('a',gantt_link).attr('href','#');
+			gantt_link.addClass('et2_link');
+			
+			// Add a namespaced handler for easy removal
+			gantt_link.on('click.projectmanager',jQuery.proxy(function() {
+				// Fake ID to match what comes from nm action
+				this.show_gantt(null,[{id: 'projectmanager::'+pm_id}]);
+				return false;
+			},this));
+		}
+		else
+		{
+			gantt_link.removeClass('et2_link');
+			gantt_link.off('.projectmanager');
+		}
 	},
 	/**
 	 * Handles delete button in edit popup
@@ -169,5 +193,21 @@ app.projectmanager = AppJS.extend(
 		{
 			$j(element).fadeOut('medium');
 		}
+	},
+	
+	/**
+	 * Show a jpgraph gantt chart.
+	 * 
+	 * The gantt chart is a single image of static size.  The size must be known
+	 * in advance, so we include it in the GET request.
+	 */
+	show_gantt: function(action,selected)
+	{
+		var id = selected[0].id.split('::');
+		egw.open_link(egw.link('/index.php', {
+			menuaction: 'projectmanager.projectmanager_ganttchart.show',
+			pm_id:id[1]||'',
+			width: $j(app.projectmanager.et2.getDOMNode() || window).width()
+		}), 'projectmanager',false,'projectmanager');
 	}
 });

@@ -638,7 +638,6 @@ class projectmanager_ui extends projectmanager_bo
 				'csv_fields'     => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-export-definition-project'],
 				'header_right'   => 'projectmanager.list.right',
 				'row_id'         => 'pm_id',
-				'actions'        => $this->get_actions(),
 				'favorites'		=> true,
 			);
 			// use the state of the last session stored in the user prefs
@@ -647,6 +646,7 @@ class projectmanager_ui extends projectmanager_bo
 				$content['nm'] = array_merge($content['nm'],$state);
 			}
 		}
+		$content['nm']['actions'] = $this->get_actions();
 		if($_GET['search'])
 		{
 			$content['nm']['search'] = $_GET['search'];
@@ -758,7 +758,7 @@ class projectmanager_ui extends projectmanager_bo
 			'ganttchart' => array(
 				'icon' => 'projectmanager/navbar',
 				'caption' => 'Ganttchart',
-				'url' => 'menuaction=projectmanager.projectmanager_ganttchart.show&pm_id=$id',
+				'onExecute' => 'javaScript:app.projectmanager.show_gantt',
 				'group' => ++$group,
 			),
 			'pricelist' => array(

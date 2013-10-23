@@ -724,6 +724,7 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			$params['width'] = $this->tmpl->innerWidth -
 				($this->prefs['common']['auto_hide_sidebox'] ? 60 : 245);
 		}
+		$params['width'] = max(200, $params['width']);
 		if (!isset($params['pm_id']) && $this->project->data['pm_id'])
 		{
 			$params['pm_id'] = $this->project->data['pm_id'];
@@ -831,6 +832,8 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 		}
 		$img = tempnam($tmp,'ganttchart');
 		$img_name = basename($img);
+		
+		egw_framework::validate_file('','app','projectmanager');
 
 		// Catch and silence any exceptions here, they'll show up in an error image later
 		try {
