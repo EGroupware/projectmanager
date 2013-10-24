@@ -671,7 +671,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'icon' => 'projectmanager/navbar',
 				'caption' => 'Ganttchart',
 				'group' => $group,
-				'enableId' => '^projectmanager:',
+				'enableId' => 'projectmanager:',
+				'onExecute' => 'javaScript:app.projectmanager.show_gantt',
 				'enabled' => true,
 			),
 			'timesheet' => array(

@@ -203,10 +203,18 @@ app.projectmanager = AppJS.extend(
 	 */
 	show_gantt: function(action,selected)
 	{
-		var id = selected[0].id.split('::');
+		var id = [];
+		for(var i = 0; i < selected.length; i++)
+		{
+			// IDs look like projectmanager::#, or projectmanager_elements::projectmanager:#:#
+			// gantt wants just #
+			var split = selected[i].id.split('::');
+			var matches = split[1].match(':([0-9]+):?')
+			id.push(matches ? matches[1] : split[1]);
+		}
 		egw.open_link(egw.link('/index.php', {
 			menuaction: 'projectmanager.projectmanager_ganttchart.show',
-			pm_id:id[1]||'',
+			pm_id:id.join(','), // Server expects CSV, not array
 			width: $j(app.projectmanager.et2.getDOMNode() || window).width()
 		}), 'projectmanager',false,'projectmanager');
 	}
