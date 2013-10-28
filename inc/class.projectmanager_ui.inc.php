@@ -790,6 +790,14 @@ class projectmanager_ui extends projectmanager_bo
 			)+array(
 				'disableClass' => 'rowNoEdit',
 			),
+			'export' => array(
+				'caption' => 'Export',
+				'icon' => 'filesave',
+				'group' => $group,
+				'allowOnMultiple' => true,
+				'url' => 'menuaction=importexport.importexport_export_ui.export_dialog&appname=projectmanager&plugin=projectmanager_export_projects_csv&selection=$id',
+				'popup' => '850x440'
+			),
 			'sources_too' => array(
 				'caption' => 'Datasources too',
 				'checkbox' => true,

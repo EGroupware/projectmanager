@@ -39,9 +39,9 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		$query = array();
 
 		// do we need to query the cf's
-                foreach($options['mapping'] as $field => $map) {
-                        if($field[0] == '#') $query['custom_fields'][] = $field;
-                }
+		foreach($options['mapping'] as $field => $map) {
+			if($field[0] == '#') $query['custom_fields'][] = $field;
+		}
 
 		// Determine the appropriate list (project or element) to use for query
 		$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
@@ -86,11 +86,19 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			// Reset UI to project
 			$ui = new projectmanager_ui();
 
-			// Got projects as elements, need to do them as projects
 			$projects = array();
 			foreach($selection as $element)
 			{
-				if($element['pe_app'] == 'projectmanager') $projects[] = $element['pe_app_id'];
+				// Got projects as elements, need to do them as projects
+				if(is_array($element) && $element['pe_app'] == 'projectmanager')
+				{
+					$projects[] = $element['pe_app_id'];
+				}
+				// Project list passed as list
+				else if (!is_array($element))
+				{
+					$projects[] = $element;
+				}
 			}
 			$selection = $ui->search(array('pm_id'=>$projects), false);
 		}
