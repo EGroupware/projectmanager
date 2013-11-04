@@ -14,7 +14,7 @@
  *
  * @augments AppJS
  */
-app.projectmanager = AppJS.extend(
+app.classes.projectmanager = AppJS.extend(
 {
 	appname: 'projectmanager',
 	/**
@@ -69,7 +69,7 @@ app.projectmanager = AppJS.extend(
 		{
 			$j('a',gantt_link).attr('href','#');
 			gantt_link.addClass('et2_link');
-			
+
 			// Add a namespaced handler for easy removal
 			gantt_link.on('click.projectmanager',jQuery.proxy(function() {
 				// Fake ID to match what comes from nm action
@@ -176,10 +176,10 @@ app.projectmanager = AppJS.extend(
 				this.et2._inst.submit();
 		}
 	},
-		
+
 	/**
 	 * Toggles display of a div
-	 * 
+	 *
 	 *  Used in erole list in element list, maybe others?
 	 */
 	toggleDiv: function(target)
@@ -194,10 +194,10 @@ app.projectmanager = AppJS.extend(
 			$j(element).fadeOut('medium');
 		}
 	},
-	
+
 	/**
 	 * Show a jpgraph gantt chart.
-	 * 
+	 *
 	 * The gantt chart is a single image of static size.  The size must be known
 	 * in advance, so we include it in the GET request.
 	 */
