@@ -134,7 +134,8 @@ class projectmanager_eroles_ui extends projectmanager_bo
 			$readonlys['save'] = $readonlys['apply'] = true;
 		}
 		$content = array(
-			'pm_id' => $pm_id,
+			// Cast pm_id to string to match erole values (& checkbox value type)
+			'pm_id' => (string)$pm_id,
 			'msg'   => $msg,
 			'view'  => !($pm_id && $project_rights) && !$this->is_admin,
 			1       => $erole_to_edit,

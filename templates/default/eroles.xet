@@ -28,14 +28,14 @@
 					<row class="row" disabled="@view">
 						<textbox id="${row}[role_title]" size="16" maxlength="80"/>
 						<textbox id="${row}[role_description]" size="24" maxlength="255"/>
-						<checkbox align="center" id="${row}[pm_id]"/>
+						<checkbox align="center" id="${row}[pm_id]" selected_value="@pm_id"/>
 						<checkbox align="center" statustext="Check to make one element role assignable to multiple elements" id="${row}[role_multi]"/>
 						<description align="right"/>
 					</row>
 					<row class="row">
 						<description id="${row}[role_title]"/>
 						<description id="${row}[role_description]"/>
-						<checkbox align="center" id="${row}[pm_id]" readonly="true"/>
+						<checkbox align="center" id="${row}[pm_id]" readonly="true" selected_value="@pm_id"/>
 						<checkbox align="center" id="${row}[role_multi]" readonly="true"/>
 						<hbox orient=",0,0" options="0,0">
 							<button statustext="Edit this element role" label="Edit" id="edit[$row_cont[role_id]]" image="edit"/>
