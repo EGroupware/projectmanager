@@ -410,7 +410,11 @@ class projectmanager_ui extends projectmanager_bo
 
 		if ($this->config['accounting_types'])	// only allow the configured types
 		{
-			$allowed = explode(',',$this->config['accounting_types']);
+			$allowed = $this->config['accounting_types'];
+			if(!is_array($allowed))
+			{
+				$allowed = explode(',',$allowed);
+			}
 			foreach($sel_options['pm_accounting_type'] as $key => $label)
 			{
 				if (!in_array($key,$allowed)) unset($sel_options['pm_accounting_type'][$key]);
