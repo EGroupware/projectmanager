@@ -117,6 +117,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		// $options['selection'] is array of identifiers as this plugin doesn't
 		// support other selectors atm.
 		foreach ($selection as $record) {
+			if((int)$record) $record = $ui->read($record);
 			if(!is_array($record) || !$record['pm_id']) continue;
 
 			// Add in roles
