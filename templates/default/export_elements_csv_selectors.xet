@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.export_elements_csv_selectors" template="" lang="" group="0" version="1.9.001">
+		<grid>
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<radio label="Use all" id="selection" options="all"/>
+				</row>
+				<row>
+					<radio label="Use search results" id="selection" options="selected"/>
+				</row>
+				<row>
+					<radio label="Selected project" id="selection" options="project"/>
+				</row>
+				<row>
+					<projectmanager-select id="pm_id" onchange="document.getElementById(form::name('selection[project]')).checked='checked';" options="Select"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.export_csv_selectors" template="" lang="" group="0" version="1.9.001">
+		<grid>
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<radio label="Use all" id="selection" options="all"/>
+				</row>
+				<row>
+					<radio label="Use search results" id="selection" options="selected"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>
