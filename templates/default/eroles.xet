@@ -45,8 +45,8 @@
 				</rows>
 			</grid>
 			<hbox>
-				<button statustext="Save the changes made" label="Save" id="save" onclick="app.projectmanager.erole_refresh()"/>
-				<button statustext="Applies the changes made" label="Apply" id="apply" onclick="app.projectmanager.erole_refresh()"/>
+				<button statustext="Save the changes made" label="Save" id="save" onclick="app.projectmanager.erole_refresh"/>
+				<button statustext="Applies the changes made" label="Apply" id="apply" onclick="app.projectmanager.erole_refresh"/>
 				<button statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"/>
 			</hbox>
 		</vbox>

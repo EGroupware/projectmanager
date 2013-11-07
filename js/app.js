@@ -160,11 +160,6 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	erole_refresh: function(action)
 	{
-		var elemEditWind = window.opener;
-		if (elemEditWind)
-		{
-			elemEditWind.location.reload();
-		}
 		switch (action)
 		{
 			case 'delete':
@@ -174,6 +169,20 @@ app.classes.projectmanager = AppJS.extend(
 				break;
 			default:
 				this.et2._inst.submit();
+				
+		}
+		
+		// Refresh element edit so it knows about the new role
+		var elemEditWind = window.opener;
+		if(elemEditWind)
+		{
+			elemEditWind.location.reload();
+			
+			// Refresh list so it knows about the new role
+			if (elemEditWind.opener)
+			{
+				elemEditWind.opener.egw_appWindow('projectmanager').location.reload();
+			}
 		}
 	},
 
