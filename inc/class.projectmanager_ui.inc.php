@@ -300,7 +300,7 @@ class projectmanager_ui extends projectmanager_bo
 				'to_app' => 'projectmanager',
 			),
 			'duration_format' => ','.$this->config['duration_format'],
-			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET,0,true) || in_array($this->data['pm_accounting_type'],array('status','times')) ||
+			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET,0,true) || !$this->data['pm_accounting_type'] || in_array($this->data['pm_accounting_type'],array('status','times')) ||
 				$this->config['accounting_types'] && !array_intersect(!is_array($this->config['accounting_types']) ? explode(',',$this->config['accounting_types']) : $this->config['accounting_types'],array('budget','pricelist')),
 			'status_sources' => $content['status_sources'],
 		);
