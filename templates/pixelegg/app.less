@@ -1,0 +1,237 @@
+/**
+ * EGroupware: CSS with less preprocessor
+ *
+ * Please do NOT change app.css directly, instead change app.less and compile it!
+ *
+ * @link http://www.egroupware.org
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @author Stefan Reinhard <stefan.reinhard@pixelegg.de>
+ * @package projectmanager
+ * @version $Id$
+ */
+
+@import (reference) "../../../phpgwapi/templates/default/def_buttons.less";
+@import (reference) "../../../phpgwapi/templates/default/def_design_pattern_color_font_shadow.less";
+
+
+
+
+/*//******************************************************************
+// iframe*/
+
+
+/*hinzufügen*/
+#projectmanager-elements-list .nextmatch_header {
+    
+                                        /*linke Box*/
+                                        div#projectmanager-elements-list_link_add{
+                                            padding: 1em;
+                                            .Complete_Button_add;
+                                               &:hover {
+                                                .Complete_Button_add_hover;
+                                                        }
+                                        }
+                                        
+                                        /*rechte Box*/
+                                        #projectmanager-elements-list_projectmanager-elements-list-add{
+                                            padding: 0.2em;
+                                            .Complete_Button_add;
+                                            &:before{font-size: 1em;}
+                                            color: #fff;
+                                            height: auto;
+                                               &:hover {
+                                                .Complete_Button_add_hover;
+                                                        }
+
+                                              table.et2_grid {border-top: 0px;}      
+                                              
+                                              .et2_nextmatch * .et2_link_to,
+                                              #projectmanager-elements-list_link_to{
+                                                position: relative;
+                                                left: 0px;
+                                                background-color: @egw_color_blue_lighter !important;
+                                                border: 1px gray;
+                                                padding: 5px;
+                                              
+                                        }
+                                            
+                                    }
+
+                                    
+                                    
+                                    
+                                    
+                                    
+div.projectmanager-elements-list{
+    
+    div {
+        
+        table.et2_grid {
+            
+            tr {
+                /*ELemente*/
+                div#projectmanager-list_nm {
+                            
+                    
+                    .nextmatch_header {
+                                    vertical-align: center;
+                                    width: 99%;
+                    
+                                    div.ui-helper-clearfix , div.ui-helper-reset {
+                                            
+                                                    button#projectmanager-list_add {
+                                                                                        .Complete_Button_add;
+                                                                                        &:hover {
+                                                                                                .Complete_Button_add_hover;
+                                                                                                }
+                                                                                    }
+
+                                                    select {
+                                                                .Complete_Button_select;
+                                                                height: 35px;
+                                                                position: relative;
+                                                                top: 0px;
+                                                        }
+                                    }
+                                    
+                                    /*linke Box*/
+                                    
+                                    
+                                    
+                                    div#projectmanager-elements-list_projectmanager-elements-list-add-new{
+                                        
+                                        border: none;
+                                        
+                                        div#projectmanager-elements-list_link_add{
+                                                                    .Complete_Button_add;
+                                                                    &:hover {
+                                                                            .Complete_Button_add_hover;
+                                                                            }
+                                        }
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+
+                                    span.header_count ui-corner-all {
+                                    }
+
+                                    div.filters {
+                                    }
+
+                                    table {
+                                    }
+                            }
+                    }
+                
+            }
+            
+        }
+        
+    }
+    
+}
+/*Ende iframe*/
+
+
+
+/*weitere*/
+.et2_container {
+	.background-color-10-gray;
+}
+
+#projectmanager-list {
+	.egwGridView_scrollarea {
+		min-height: 700px;
+	}
+}
+
+#projectmanager-edit {
+	width: 800px;
+	padding: 5px;
+	#projectmanager-edit_tabs {
+		.et2_tabheader {
+			background-color: transparent;
+		}
+	}
+}
+
+
+
+#link_add.solidBorder {
+	.color-100-gray;
+	text-shadow: none;
+	height: 40px;
+	background-image: none ! important;
+	vertical-align: bottom;
+	button {
+		background-color: green;
+		background-image: none ! important;
+		color: #FFFFFF;
+		height: 35px;
+		text-shadow: none;
+	}
+
+	button:before {
+		content: "+";
+		font-size: 2em;
+	}
+
+	select {
+		.Complete_Button_select;
+		position: relative;
+		top: -10px;
+		margin-left: 10px;
+	}
+}
+
+.redItalic {
+	color: red;
+	font-style: italic;
+}
+
+.planned {
+	font-style: italic;
+	font-size: 95%;
+}
+
+.leftPad5 {
+	padding-left: 5px;
+}
+
+tr.rowHasSubs > td:first-child {
+	background-image: url(../../../phpgwapi/templates/default/images/egw_action/arrow_left.png);
+	background-repeat: no-repeat;
+	background-position: 0px 11px;
+}
+
+tr.rowHasParent > td:first-child {
+	background-image: url(../../../phpgwapi/templates/default/images/egw_action/arrow_up.png);
+	background-repeat: no-repeat;
+	background-position: 0px 11px;
+}
+
+.et2_hbox.et2_box_widget table.et2_grid label.et2_label {
+}
+
+// Element list hidden eroles
+table.egwLinkMoreOptions {
+	position: absolute;
+	right: 0;
+	width: 240px;
+	opacity: 0.9;
+	z-index: 999;
+	background-color: white;
+//	border: 2px solid black ! important
+	border-top: none ! important;
+}
+
+
+
+
+
+//

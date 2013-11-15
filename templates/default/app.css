@@ -26,63 +26,19 @@ div#projectmanager-list_nm .nextmatch_header {
   vertical-align: center;
   width: 99%;
 }
+div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix,
+div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset {
+  /*            select{
+                .Complete_Button_select;
+                height: 35px;
+                position: relative;
+                top: 0px;
+            }*/
+}
 div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add,
 div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add {
-  background-color: #0b5fa4;
-  color: #FFF;
-  text-shadow: none;
-  height: 35px;
-  background-image: none !important;
-  -webkit-border-radius: 3px;
-  -webkit-border-top-left-radius: 20px;
-  -moz-border-radius: 3px;
-  -moz-border-radius-topleft: 20px;
-  border-radius: 3px;
-  border-top-left-radius: 20px;
-}
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add:before,
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add:before {
-  content: "+";
-  font-size: 2em;
-  color: #ffc200;
-}
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add:before,
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add:before {
-  content: "+";
-  font-size: 2em;
-  color: #ffc200;
-}
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add:hover,
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add:hover {
-  background-color: #66a1d2 !important;
-  color: #ffc200;
-  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
-  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
-  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
-  -webkit-border-radius: 3px;
-  -webkit-border-top-left-radius: 20px;
-  -moz-border-radius: 3px;
-  -moz-border-radius-topleft: 20px;
-  border-radius: 3px;
-  border-top-left-radius: 20px;
-}
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix select,
-div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset select {
-  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
-  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
-  width: auto;
-  margin: 0.5em 0em 0.5em 0.5em;
-  padding: 3px;
-  outline: none;
-  display: inline-block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  height: 35px;
-  position: relative;
-  top: 0px;
+  /*.Complete_Button_add;*/
+  /*&:hover {.Complete_Button_add_hover;}*/
 }
 #link_add.solidBorder {
   color: #000000;

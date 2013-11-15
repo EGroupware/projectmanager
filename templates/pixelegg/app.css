@@ -1,0 +1,264 @@
+/**
+ * EGroupware: CSS with less preprocessor
+ *
+ * Please do NOT change app.css directly, instead change app.less and compile it!
+ *
+ * @link http://www.egroupware.org
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @author Stefan Reinhard <stefan.reinhard@pixelegg.de>
+ * @package projectmanager
+ * @version $Id$
+ */
+/*//******************************************************************
+// iframe*/
+/*hinzufügen*/
+#projectmanager-elements-list .nextmatch_header {
+  /*linke Box*/
+  /*rechte Box*/
+}
+#projectmanager-elements-list .nextmatch_header div#projectmanager-elements-list_link_add {
+  padding: 1em;
+  background-color: #0b5fa4;
+  color: #FFF;
+  text-shadow: none;
+  height: 35px;
+  background-image: none !important;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+}
+#projectmanager-elements-list .nextmatch_header div#projectmanager-elements-list_link_add:before {
+  content: "+";
+  font-size: 2em;
+  color: #ffc200;
+}
+#projectmanager-elements-list .nextmatch_header div#projectmanager-elements-list_link_add:hover {
+  background-color: #66a1d2 !important;
+  color: #ffc200;
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add {
+  padding: 1em;
+  background-color: #0b5fa4;
+  color: #FFF;
+  text-shadow: none;
+  height: 35px;
+  background-image: none !important;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+  color: #fff;
+  height: auto;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add:before {
+  content: "+";
+  font-size: 2em;
+  color: #ffc200;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add:before {
+  font-size: 1em;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add:hover {
+  background-color: #66a1d2 !important;
+  color: #ffc200;
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add table.et2_grid {
+  border-top: 0px;
+}
+div.projectmanager-elements-list div table.et2_grid tr {
+  /*ELemente*/
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header {
+  vertical-align: center;
+  width: 99%;
+  /*linke Box*/
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add,
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add {
+  background-color: #0b5fa4;
+  color: #FFF;
+  text-shadow: none;
+  height: 35px;
+  background-image: none !important;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add:before,
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add:before {
+  content: "+";
+  font-size: 2em;
+  color: #ffc200;
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add:hover,
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add:hover {
+  background-color: #66a1d2 !important;
+  color: #ffc200;
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix select,
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset select {
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+  width: auto;
+  margin: 0.5em 0em 0.5em 0.5em;
+  padding: 3px;
+  outline: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  height: 35px;
+  position: relative;
+  top: 0px;
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new {
+  border: none;
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new div#projectmanager-elements-list_link_add {
+  background-color: #0b5fa4;
+  color: #FFF;
+  text-shadow: none;
+  height: 35px;
+  background-image: none !important;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new div#projectmanager-elements-list_link_add:before {
+  content: "+";
+  font-size: 2em;
+  color: #ffc200;
+}
+div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new div#projectmanager-elements-list_link_add:hover {
+  background-color: #66a1d2 !important;
+  color: #ffc200;
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 20px;
+  border-radius: 3px;
+  border-top-left-radius: 20px;
+}
+/*Ende iframe*/
+/*weitere*/
+.et2_container {
+  background-color: #f0f0f0;
+}
+#projectmanager-list .egwGridView_scrollarea {
+  min-height: 700px;
+}
+#projectmanager-edit {
+  width: 800px;
+  padding: 5px;
+}
+#projectmanager-edit #projectmanager-edit_tabs .et2_tabheader {
+  background-color: transparent;
+}
+#link_add.solidBorder {
+  color: #000000;
+  text-shadow: none;
+  height: 40px;
+  background-image: none ! important;
+  vertical-align: bottom;
+}
+#link_add.solidBorder button {
+  background-color: green;
+  background-image: none ! important;
+  color: #FFFFFF;
+  height: 35px;
+  text-shadow: none;
+}
+#link_add.solidBorder button:before {
+  content: "+";
+  font-size: 2em;
+}
+#link_add.solidBorder select {
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+  width: auto;
+  margin: 0.5em 0em 0.5em 0.5em;
+  padding: 3px;
+  outline: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  top: -10px;
+  margin-left: 10px;
+}
+.redItalic {
+  color: red;
+  font-style: italic;
+}
+.planned {
+  font-style: italic;
+  font-size: 95%;
+}
+.leftPad5 {
+  padding-left: 5px;
+}
+tr.rowHasSubs > td:first-child {
+  background-image: url(../../../phpgwapi/templates/default/images/egw_action/arrow_left.png);
+  background-repeat: no-repeat;
+  background-position: 0px 11px;
+}
+tr.rowHasParent > td:first-child {
+  background-image: url(../../../phpgwapi/templates/default/images/egw_action/arrow_up.png);
+  background-repeat: no-repeat;
+  background-position: 0px 11px;
+}
+table.egwLinkMoreOptions {
+  position: absolute;
+  right: 0;
+  width: 240px;
+  opacity: 0.9;
+  z-index: 999;
+  background-color: white;
+  border-top: none ! important;
+}
