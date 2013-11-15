@@ -779,12 +779,6 @@ class projectmanager_ui extends projectmanager_bo
 				'allowOnMultiple' => false,
 				'group' => $group,
 			),
-			'select_all' => array(
-				'caption' => 'Whole query',
-				'checkbox' => true,
-				'hint' => 'Apply the action on the whole query, NOT only the shown entries',
-				'group' => ++$group,
-			),
 			'documents' => projectmanager_merge::document_action(
 				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
 				$group, 'Insert in document', 'document_'
@@ -830,7 +824,7 @@ class projectmanager_ui extends projectmanager_bo
 			unset($actions['filemanager']);
 		}
 		// show pricelist only if we use pricelists
-		if ($this->config['accounting_types'] && !in_array('pricelist',explode(',',$this->config['accounting_types'])))
+		if ($this->config['accounting_types'] && !in_array('pricelist',$this->config['accounting_types']))
 		{
 			unset($actions['pricelist']);
 		}
