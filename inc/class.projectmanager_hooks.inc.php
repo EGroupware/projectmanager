@@ -50,6 +50,7 @@ class projectmanager_hooks
 			'titles'     => 'projectmanager.projectmanager_bo.link_titles',
 			'view'       => array(
 				'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
+				'ajax'   => 'true',
 			),
 			'view_id'    => 'pm_id',
 			'list'       => array(

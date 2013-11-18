@@ -409,3 +409,11 @@ function projectmanager_upgrade1_9_001()
 
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.002';
 }
+
+/**
+ * Dummy update to force new index-url incl. ajax=true
+ */
+function projectmanager_upgrade1_9_002()
+{
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.003';
+}
