@@ -120,11 +120,13 @@ class projectmanager_hooks
 			}
 			$file = array(
 				'Projectlist' => egw::link('/index.php',array(
-					'menuaction' => 'projectmanager.projectmanager_ui.index' )),
-				array(
+					'menuaction' => 'projectmanager.projectmanager_ui.index',
+					'ajax' => 'true',
+				)),	array(
 					'text' => 'Elementlist',
 					'link' => $pm_id ? egw::link('/index.php',array(
 						'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
+						'ajax' => 'true',
 					)) : False,
 				),
 				array(
@@ -170,6 +172,7 @@ class projectmanager_hooks
 					'link' => egw::link('/index.php',array(
 						'menuaction' => 'filemanager.filemanager_ui.index',
 						'pm_id'      => $pm_id,
+						'ajax'       => 'true',
 					)),
 				);
 			}
