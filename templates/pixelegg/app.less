@@ -10,8 +10,9 @@
  * @version $Id$
  */
 
-@import (reference) "../../../phpgwapi/templates/default/def_buttons.less";
-@import (reference) "../../../phpgwapi/templates/default/def_design_pattern_color_font_shadow.less";
+@import (reference) "../../../pixelegg/less/def_buttons.less";
+@import (reference) "../../../pixelegg/less/def_design_pattern_color_font_shadow.less";
+@import (less) "../default/app.css";
 
 
 
@@ -57,7 +58,7 @@
                                             
                                     }
 
-                                    
+}                                  
                                     
                                     
                                     
@@ -219,19 +220,13 @@ tr.rowHasParent > td:first-child {
 }
 
 // Element list hidden eroles
-table.egwLinkMoreOptions {
+table.egwLinkMoreOptions{
 	position: absolute;
 	right: 0;
 	width: 240px;
 	opacity: 0.9;
 	z-index: 999;
 	background-color: white;
-//	border: 2px solid black ! important
 	border-top: none ! important;
 }
-
-
-
-
-
 //
