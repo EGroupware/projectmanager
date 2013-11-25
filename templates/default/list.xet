@@ -157,7 +157,7 @@
 							<menulist>
 								<menupopup statustext="Create a new empty project or use a template" id="template_id" no_lang="1" options="Empty"/>
 							</menulist>
-							<buttononly statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
+							<buttononly class="add" statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
 						</hbox>
 						<hbox align="right">
 							<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
