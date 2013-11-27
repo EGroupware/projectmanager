@@ -300,6 +300,10 @@ div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_n
 #projectmanager-edit #projectmanager-edit_tabs .et2_tabheader {
   background-color: transparent;
 }
+#projectmanager-edit #projectmanager-edit_tabs .et2_tabs #projectmanager-edit_link_to .et2_button_icon {
+  height: auto;
+  width: auto;
+}
 #link_add.solidBorder {
   color: #000000;
   text-shadow: none;
