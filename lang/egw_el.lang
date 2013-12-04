@@ -44,4 +44,6 @@ times	projectmanager	el	Φορες
 timezone	projectmanager	el	Ζώνη ώρας
 to many might exceed your execution-time-limit	projectmanager	el	Πάρα πολλοί. Ενδεχόμενο υπέρβασης ορίου χρόνου εκτέλεσης
 used time	projectmanager	el	χρησιμοποιημένος χρόνος
+view all subs of this entry	projectmanager	el	Εμφάνιση όλων των υποκατηγοριών αυτής της καταχώρησης
+view subs	projectmanager	el	εμφάνιση υποκατηγοριών
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	el	Το ηλεκτρονικό σας αρχείο ΔΕΝ είναι ενημερωμένο (%1 vs. %2), παρακαλώ τρέξτε %3setup%4  για να ενημερώσετε το ηλεκτρονικό σας αρχείο.

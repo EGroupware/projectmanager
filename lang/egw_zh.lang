@@ -239,11 +239,13 @@ unit	projectmanager	zh	单位
 unitprice	projectmanager	zh	单价
 used	projectmanager	zh	使用的
 valid since	projectmanager	zh	有效期自
+view all subs of this entry	projectmanager	zh	查看该条目的所有子任务
 view ganttchart of this project	projectmanager	zh	查看这个项目的甘特图
 view milestone	projectmanager	zh	查看里程碑
 view price	projectmanager	zh	查看价格
 view project	projectmanager	zh	查看项目
 view project-elements	projectmanager	zh	查看项目要素
+view subs	projectmanager	zh	查看子任务
 view this element in %1	projectmanager	zh	在%1查看这个要素
 view this milestone	projectmanager	zh	查看这个里程碑
 view this price	projectmanager	zh	查看这个价格

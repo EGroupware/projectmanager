@@ -217,11 +217,13 @@ unitprice	projectmanager	pt	Preço por unidade
 used	projectmanager	pt	Utilizado/a
 used time	projectmanager	pt	Tempo utilizado
 valid since	projectmanager	pt	Válido desde
+view all subs of this entry	projectmanager	pt	Ver todos os su-registos deste registo
 view ganttchart of this project	projectmanager	pt	Ver a tabela de Gantt deste projecto
 view milestone	projectmanager	pt	Ver objectivos
 view price	projectmanager	pt	Ver preço
 view project	projectmanager	pt	Ver projecto
 view project-elements	projectmanager	pt	Ver elementos do projecto
+view subs	projectmanager	pt	Ver sub-registo(s)
 view this element in %1	projectmanager	pt	Ver este elemento em %1
 view this milestone	projectmanager	pt	Ver este objectivo
 view this price	projectmanager	pt	Ver este preço

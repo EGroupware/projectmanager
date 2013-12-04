@@ -236,11 +236,13 @@ unitprice	projectmanager	ca	Unitat de Preu
 used	projectmanager	ca	utilitzat
 used time	projectmanager	ca	temps usat
 valid since	projectmanager	ca	Vàlid des de
+view all subs of this entry	projectmanager	ca	Veure tots els subs d'aquesta entrada
 view ganttchart of this project	projectmanager	ca	Veure diagrama de Gantt d'aquest projecte
 view milestone	projectmanager	ca	Veure fita
 view price	projectmanager	ca	Veure preu
 view project	projectmanager	ca	Veure projecte
 view project-elements	projectmanager	ca	Veure elements de projecte
+view subs	projectmanager	ca	Veure subs
 view this element in %1	projectmanager	ca	Veure aquest element a %1
 view this milestone	projectmanager	ca	Veure aquesta fita
 view this price	projectmanager	ca	Veure aquest preu

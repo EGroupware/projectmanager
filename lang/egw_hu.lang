@@ -246,11 +246,13 @@ unitprice	projectmanager	hu	Egységár
 used	projectmanager	hu	használt
 used time	projectmanager	hu	felhasznált idő
 valid since	projectmanager	hu	Érvényesség kezdete
+view all subs of this entry	projectmanager	hu	Bejegyzés összes albejegyzésének a megtekintése
 view ganttchart of this project	projectmanager	hu	Projekt gantt diagrammjának megtekintése
 view milestone	projectmanager	hu	Mérföldkő megtekintése
 view price	projectmanager	hu	Ár megtekintése
 view project	projectmanager	hu	Projekt megtekintése
 view project-elements	projectmanager	hu	Projekt-elemek megtekintése
+view subs	projectmanager	hu	Albejegyzések megtekintése
 view this element in %1	projectmanager	hu	Elem megtekintése itt %1
 view this milestone	projectmanager	hu	Mérföldkő megtekintése
 view this price	projectmanager	hu	Ár megtekintése

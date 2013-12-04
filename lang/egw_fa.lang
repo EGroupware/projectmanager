@@ -214,11 +214,13 @@ unitprice	projectmanager	fa	واحد قیمت
 used	projectmanager	fa	استفاده شده
 used time	projectmanager	fa	زمان صرف شده
 valid since	projectmanager	fa	معتبر است تا
+view all subs of this entry	projectmanager	fa	نمای همه ورودیهای تحت این ورودی
 view ganttchart of this project	projectmanager	fa	دیدن نمودار وضعیت این پروژه
 view milestone	projectmanager	fa	دیدن مرحله
 view price	projectmanager	fa	دیدن قیمت
 view project	projectmanager	fa	دیدن پروژه
 view project-elements	projectmanager	fa	دیدن عناصر پروژه
+view subs	projectmanager	fa	نمایش جواب/ارجاعها
 view this element in %1	projectmanager	fa	دیدن عناصر پروژه در %1
 view this milestone	projectmanager	fa	دیدن این مرحله
 view this price	projectmanager	fa	دیدن این قیمت

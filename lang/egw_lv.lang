@@ -162,9 +162,11 @@ times	projectmanager	lv	Reizes
 title must not be empty	projectmanager	lv	Virsraksts nedrīkst būt tukšs
 to many might exceed your execution-time-limit	projectmanager	lv	pārāk daudz, var pārsniegt izpildes laika limitu
 used	projectmanager	lv	lietots
+view all subs of this entry	projectmanager	lv	Rādīt apakškategoriju šim ierakstam
 view ganttchart of this project	projectmanager	lv	Rādīt šī projekta Ganta diagrammu
 view project	projectmanager	lv	Rādīt projektu
 view project-elements	projectmanager	lv	Rādīt projekta elementus
+view subs	projectmanager	lv	Rādīt apakškategorijas
 view this element in %1	projectmanager	lv	Rādīt šo elementu %1
 view this project	projectmanager	lv	Rādīt šo projektu
 view this project-element	projectmanager	lv	Rādīt šo projekta elementu

@@ -177,6 +177,7 @@ view milestone	projectmanager	id	Lihat milestone
 view price	projectmanager	id	Lihat harga
 view project	projectmanager	id	Lihat proyek
 view project-elements	projectmanager	id	Lihat elemen-proyek
+view subs	projectmanager	id	view Subs
 view this element in %1	projectmanager	id	Lihat elemen ini pada %1
 view this milestone	projectmanager	id	Lihat milestone ini
 view this price	projectmanager	id	Lihat harga ini

@@ -47,4 +47,6 @@ timezone	projectmanager	bg	Часова зона
 to many might exceed your execution-time-limit	projectmanager	bg	твърде много може да надвиши ограничението за време на изпълнение
 unitprice	projectmanager	bg	Цена на артикул
 used time	projectmanager	bg	използвано време
+view all subs of this entry	projectmanager	bg	Показва всички под- на записа
+view subs	projectmanager	bg	показва Под-
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	bg	Базата данни не е обновена (%1 вм. %2). Моля, използвайте %3setup%4 за обновяване.

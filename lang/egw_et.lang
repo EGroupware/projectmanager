@@ -29,3 +29,4 @@ resources	projectmanager	et	Resursid
 select a project	projectmanager	et	Vali Projekt
 startdate	projectmanager	et	Algus kuupäev
 used time	projectmanager	et	kasutauud aeg
+view subs	projectmanager	et	näita Alam

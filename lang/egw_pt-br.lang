@@ -244,11 +244,13 @@ unitprice	projectmanager	pt-br	Preço da unidade
 used	projectmanager	pt-br	usado
 used time	projectmanager	pt-br	Horas utilizadas
 valid since	projectmanager	pt-br	Válido desde
+view all subs of this entry	projectmanager	pt-br	Ver todas as subs para este registro
 view ganttchart of this project	projectmanager	pt-br	Visualizar o gráfico de Gantt deste projeto
 view milestone	projectmanager	pt-br	Visualizar marco
 view price	projectmanager	pt-br	Visualizar preço
 view project	projectmanager	pt-br	Visualizar projeto
 view project-elements	projectmanager	pt-br	Visualizar elementos de projeto
+view subs	projectmanager	pt-br	ver inferiores
 view this element in %1	projectmanager	pt-br	Visualizar este elemento em %1
 view this milestone	projectmanager	pt-br	Visualizar este marco
 view this price	projectmanager	pt-br	Visualizar este preço

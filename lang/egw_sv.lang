@@ -226,11 +226,13 @@ unitprice	projectmanager	sv	Enhetspris
 used	projectmanager	sv	Använd
 used time	projectmanager	sv	Förbrukad tid
 valid since	projectmanager	sv	Giltig efter
+view all subs of this entry	projectmanager	sv	Visa alla under denna post
 view ganttchart of this project	projectmanager	sv	Visa projektets ganttdiagram
 view milestone	projectmanager	sv	Visa milstolpe
 view price	projectmanager	sv	Visa pris
 view project	projectmanager	sv	Visa projekt
 view project-elements	projectmanager	sv	Visa projektelement
+view subs	projectmanager	sv	Visa under
 view this element in %1	projectmanager	sv	Visa elementet i %1
 view this milestone	projectmanager	sv	Visa milstolpen
 view this price	projectmanager	sv	Visa priset

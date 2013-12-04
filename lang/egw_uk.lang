@@ -23,3 +23,5 @@ startrecord	projectmanager	uk	Початковий запис
 test import (show importable records <u>only</u> in browser)	projectmanager	uk	Тестувати Імпорт (тільки показати записи, що можуть бути імпортовані)
 times	projectmanager	uk	Раз
 to many might exceed your execution-time-limit	projectmanager	uk	надто багато може перевищити Ваш ліміт часу
+view all subs of this entry	projectmanager	uk	Переглянути всі підзаписи цього запису
+view subs	projectmanager	uk	переглянути підзаписи

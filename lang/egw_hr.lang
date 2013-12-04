@@ -28,3 +28,5 @@ template	projectmanager	hr	Template
 test import (show importable records <u>only</u> in browser)	projectmanager	hr	Testiraj Uvoz (prikaži zapise koji se mogu uvesti <u>samo</u> u internet pregledniku)
 times	projectmanager	hr	Times
 to many might exceed your execution-time-limit	projectmanager	hr	to many might exceed your execution-time-limit
+view all subs of this entry	projectmanager	hr	Prikaži sve podzapise za ovaj zapis
+view subs	projectmanager	hr	Prikaži podzapise

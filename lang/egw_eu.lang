@@ -175,10 +175,12 @@ unitprice	projectmanager	eu	Unitateko prezioa
 used	projectmanager	eu	erabilia
 used time	projectmanager	eu	erabilitako denbora
 valid since	projectmanager	eu	Baliagarria noiztik
+view all subs of this entry	projectmanager	eu	Sarrera honen azpi guztiak ikusi
 view ganttchart of this project	projectmanager	eu	Proiektu honen Gantt diagrama ikusi
 view price	projectmanager	eu	Prezioa ikusi
 view project	projectmanager	eu	Proiektua ikusi
 view project-elements	projectmanager	eu	Proiektuaren osagaiak ikusi
+view subs	projectmanager	eu	Azpiak ikusi
 view this element in %1	projectmanager	eu	Ikusi elementu hau %1ean
 view this price	projectmanager	eu	Prezio hau ikusi
 view this project	projectmanager	eu	Proiektu hau ikusi

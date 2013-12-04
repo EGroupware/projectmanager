@@ -117,7 +117,6 @@ element role title	projectmanager	es-es	Título del rol del elemento
 element roles	projectmanager	es-es	Roles del elemento
 element roles defined as "mutliple" can be used here.	projectmanager	es-es	Los roles del elemento definidos como "múltiple" se pueden usar aquí.
 element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	es-es	La característica de roles de elementos no está activada actualmente en la configuración global del Administrador de proyectos.
-element roles:	projectmanager	es-es	Roles de elemento:
 element status	projectmanager	es-es	Estado del elemento
 element title	projectmanager	es-es	Título del elemento
 elementlist	projectmanager	es-es	Lista de elementos
@@ -154,8 +153,6 @@ existing data will be overwrited if checked	projectmanager	es-es	Si se seleccion
 existing links	projectmanager	es-es	Enlaces existentes
 exists	projectmanager	es-es	Existe
 exit without saving	projectmanager	es-es	Salir sin guardar
-export definitition to use for nextmatch export (elements*)	projectmanager	es-es	Definición de exportar para usar al exportar nextmatch (Elementos)
-export definitition to use for nextmatch export (projects*)	projectmanager	es-es	Definición de exportar para usar al exportar nextmatch (Proyectos)
 exports a list of project elements to a csv file.	projectmanager	es-es	Exporta una lista de elementos de proyecto a un fichero CSV.
 exports a list of projects to a csv file.	projectmanager	es-es	Exporta una lista de proyectos a un fichero CSV.
 fields for element roles:	projectmanager	es-es	Campos para roles de elemento:
@@ -342,7 +339,6 @@ template name - project title	projectmanager	es-es	Nombre de la plantilla - tít
 test import (show importable records <u>only</u> in browser)	projectmanager	es-es	Prueba de importar (mostrar registros importables <u>sólo</u> en el navegador)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	es-es	Esa acción permite descargar el documento especificado con los datos del proyecto y elementos insertados.
 the charset depends on the font you want to use.	projectmanager	es-es	El juego de caracteres depende del tipo de letra que quiera usar.
-the document can contain placeholders like %1 to be replaced with the project data (%2full list of placeholder names%3).	projectmanager	es-es	El documento puede contener marcadores como %1 para ser sustituidos con los datos del proyecto. %2Lista completa de nombres de marcadores%3.
 time	projectmanager	es-es	Tiempo
 times	projectmanager	es-es	Tiempos
 timezone	projectmanager	es-es	Zona horaria
@@ -362,11 +358,13 @@ used quantity	projectmanager	es-es	Cantidad utilizada
 used time	projectmanager	es-es	Tiempo utilizado
 used time in minutes	projectmanager	es-es	Tiempo utilizado en minutos
 valid since	projectmanager	es-es	Válido desde
+view all subs of this entry	projectmanager	es-es	Ver todos los subs de esta entrada
 view ganttchart of this project	projectmanager	es-es	Ver diagrama de Gantt de este proyecto
 view milestone	projectmanager	es-es	Ver hito
 view price	projectmanager	es-es	Ver precio
 view project	projectmanager	es-es	Ver proyecto
 view project-elements	projectmanager	es-es	Ver elementos del proyecto
+view subs	projectmanager	es-es	ver subs
 view this element in %1	projectmanager	es-es	Ver este elemento en %1
 view this milestone	projectmanager	es-es	Ver este hito
 view this price	projectmanager	es-es	Ver este precio

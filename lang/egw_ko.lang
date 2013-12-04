@@ -32,3 +32,5 @@ test import (show importable records <u>only</u> in browser)	projectmanager	ko	�
 times	projectmanager	ko	시간
 to many might exceed your execution-time-limit	projectmanager	ko	너무 많을 경우 최대실행시간(execution-time-limit)을 초과함
 used time	projectmanager	ko	사용한 시간
+view all subs of this entry	projectmanager	ko	이 엔트리의 모든 하위보기
+view subs	projectmanager	ko	하위보기

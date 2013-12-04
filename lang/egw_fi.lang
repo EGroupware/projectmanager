@@ -262,11 +262,13 @@ use this tag for addresslabels. put the content, you want to repeat, between two
 used	projectmanager	fi	Käytetty
 used time	projectmanager	fi	Käytetty aika
 valid since	projectmanager	fi	Voimassa tähän asti
+view all subs of this entry	projectmanager	fi	Näytä kaikki tämän merkinnän alamerkinnät
 view ganttchart of this project	projectmanager	fi	Näytä projektin GanttChart
 view milestone	projectmanager	fi	Näytä tavoite
 view price	projectmanager	fi	Näytä hinta
 view project	projectmanager	fi	Näytä projekti
 view project-elements	projectmanager	fi	Näytä projektin elementit
+view subs	projectmanager	fi	Näytä alamerkinnät
 view this element in %1	projectmanager	fi	Näytä tämä elementti %1
 view this milestone	projectmanager	fi	Näytä tämä tavoite
 view this price	projectmanager	fi	Näytä tämä hinta

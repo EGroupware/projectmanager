@@ -252,11 +252,13 @@ use this tag for addresslabels. put the content, you want to repeat, between two
 used	projectmanager	cs	použito
 used time	projectmanager	cs	spotřebovaný čas
 valid since	projectmanager	cs	Platné od
+view all subs of this entry	projectmanager	cs	Zobrazit všechny podpoložky záznamu
 view ganttchart of this project	projectmanager	cs	Zobrazit Ganttův diagram projektu
 view milestone	projectmanager	cs	Zobrazit milník
 view price	projectmanager	cs	Zobrazit cenu
 view project	projectmanager	cs	Zobrazit projekt
 view project-elements	projectmanager	cs	Zobrazit součásti projektu
+view subs	projectmanager	cs	zobrazit podpoložky
 view this element in %1	projectmanager	cs	Zobrazit tuto součást v %1
 view this milestone	projectmanager	cs	Zobrazit tento milník
 view this price	projectmanager	cs	Zobrazit tuto cenu

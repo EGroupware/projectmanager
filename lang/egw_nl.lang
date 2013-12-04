@@ -247,11 +247,13 @@ unitprice	projectmanager	nl	Eenheidstarief
 used	projectmanager	nl	gebruikt
 used time	projectmanager	nl	gebruikte tijd
 valid since	projectmanager	nl	Geldig sinds
+view all subs of this entry	projectmanager	nl	Alle sub's van deze infolog weergeven
 view ganttchart of this project	projectmanager	nl	Ganttchart van dit project weergeven
 view milestone	projectmanager	nl	Mijpaal weergeven
 view price	projectmanager	nl	Tarief weergeven
 view project	projectmanager	nl	Project weergeven
 view project-elements	projectmanager	nl	Projectelementen weergeven
+view subs	projectmanager	nl	Sub's weergeven
 view this element in %1	projectmanager	nl	Dit element in %1 weergeven
 view this milestone	projectmanager	nl	Deze mijlpaal weergeven
 view this price	projectmanager	nl	Dit tarief weergeven

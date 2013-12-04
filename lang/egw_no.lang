@@ -217,11 +217,13 @@ unitprice	projectmanager	no	Enhetspris
 used	projectmanager	no	brukt
 used time	projectmanager	no	brukt tid
 valid since	projectmanager	no	Gyldig fra
+view all subs of this entry	projectmanager	no	Viser alle subs for dette innslaget
 view ganttchart of this project	projectmanager	no	Vis Gantt diagram for dette prosjektet
 view milestone	projectmanager	no	Vis milepel
 view price	projectmanager	no	Vis pris
 view project	projectmanager	no	Vis prosjekt
 view project-elements	projectmanager	no	Vis prosjekt-elementer
+view subs	projectmanager	no	vis Subs
 view this element in %1	projectmanager	no	Vis dette element i %1
 view this milestone	projectmanager	no	Vis denne milepelen
 view this price	projectmanager	no	Vis denne prisen

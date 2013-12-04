@@ -239,11 +239,13 @@ unitprice	projectmanager	zh-tw	單價
 used	projectmanager	zh-tw	使用的
 used time	projectmanager	zh-tw	使用的時間
 valid since	projectmanager	zh-tw	啟用日期
+view all subs of this entry	projectmanager	zh-tw	顯示這個事件的所有附屬資訊
 view ganttchart of this project	projectmanager	zh-tw	瀏覽這個專案的甘特圖
 view milestone	projectmanager	zh-tw	瀏覽里程碑
 view price	projectmanager	zh-tw	瀏覽價格
 view project	projectmanager	zh-tw	瀏覽專案
 view project-elements	projectmanager	zh-tw	瀏覽專案元素
+view subs	projectmanager	zh-tw	顯示附屬的
 view this element in %1	projectmanager	zh-tw	在 %1 瀏覽這個元素
 view this milestone	projectmanager	zh-tw	瀏覽這個里程碑
 view this price	projectmanager	zh-tw	瀏覽這個價格

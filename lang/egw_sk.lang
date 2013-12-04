@@ -117,7 +117,6 @@ element role title	projectmanager	sk	Názov úlohy v prvku
 element roles	projectmanager	sk	Úlohy v prvku
 element roles defined as "mutliple" can be used here.	projectmanager	sk	Dajú sa použiť úlohy v prvku označené ako "viacero".
 element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	sk	Funkcia úloh v prvku v súčasnosti nie je zapnutá v globálnom nastavení Projektovníka.
-element roles:	projectmanager	sk	Úlohy v prvku:
 element status	projectmanager	sk	Stav prvku
 element title	projectmanager	sk	Názov prvku
 elementlist	projectmanager	sk	Zoznam prvkov
@@ -340,7 +339,6 @@ template name - project title	projectmanager	sk	Názov šablóny - názov projek
 test import (show importable records <u>only</u> in browser)	projectmanager	sk	Test Importu (zobrazí importovateľné záznamy <u>iba</u> v prehliadači)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	sk	Táto akcia umožňuje stiahnuť vybraný dokument s vloženými údajmi projektu a prvkov.
 the charset depends on the font you want to use.	projectmanager	sk	Znaková sada závisí na fonte, ktorý chcete používať.
-the document can contain placeholders like %1 to be replaced with the project data (%2full list of placeholder names%3).	projectmanager	sk	Dokument môže obsahovať premenné ako napr. %1 ktoré sa nahradia údajmi projektu. %2Úplný zoznam názvov premenných%3.
 time	projectmanager	sk	Čas
 times	projectmanager	sk	Časy
 timezone	projectmanager	sk	Časové pásmo
@@ -359,11 +357,13 @@ used quantity	projectmanager	sk	Použité množstvo
 used time	projectmanager	sk	Použitý čas
 used time in minutes	projectmanager	sk	Použitý čas v minútach
 valid since	projectmanager	sk	Platné od
+view all subs of this entry	projectmanager	sk	Zobraziť všetky podradené záznamy
 view ganttchart of this project	projectmanager	sk	Zobraziť priebehový diagram tohto projektu
 view milestone	projectmanager	sk	Zobraziť medzník
 view price	projectmanager	sk	Zobraziť cenu
 view project	projectmanager	sk	Zobraziť projekt
 view project-elements	projectmanager	sk	Zobraziť prvky projektu
+view subs	projectmanager	sk	Zobraziť Podradené záznamy
 view this element in %1	projectmanager	sk	Zobraziť tento prvok v %1
 view this milestone	projectmanager	sk	Zobraziť tento medzník
 view this price	projectmanager	sk	Zobraziť túto cenu

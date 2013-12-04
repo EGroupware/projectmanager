@@ -28,3 +28,5 @@ template	projectmanager	iw	תבנית
 test import (show importable records <u>only</u> in browser)	projectmanager	iw	(בדוק ייבוא (הצג <u>רק</u> רשומות הניתנות לייבאו בדפדפן
 times	projectmanager	iw	פעמים
 to many might exceed your execution-time-limit	projectmanager	iw	יתכן כי רבים מיידי יעברו על הקצאת זמן העיבוד שלך
+view all subs of this entry	projectmanager	iw	הצג את כל תתי-הרשומה
+view subs	projectmanager	iw	הצג תתי רשומה

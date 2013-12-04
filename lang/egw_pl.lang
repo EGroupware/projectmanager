@@ -255,11 +255,13 @@ use this tag for addresslabels. put the content, you want to repeat, between two
 used	projectmanager	pl	używany
 used time	projectmanager	pl	wykorzystany czas
 valid since	projectmanager	pl	Ważny od
+view all subs of this entry	projectmanager	pl	Zoabcz wszystkie podrzędne dla tego wpisu
 view ganttchart of this project	projectmanager	pl	Pokaż wykres Gantta tego projektu
 view milestone	projectmanager	pl	Pokaż kamień milowy
 view price	projectmanager	pl	Pokaż cenę
 view project	projectmanager	pl	Pokaż projekt
 view project-elements	projectmanager	pl	Pokaż elementy projektu
+view subs	projectmanager	pl	zobacz podrzędne
 view this element in %1	projectmanager	pl	Pokąż ten składnik w %1
 view this milestone	projectmanager	pl	Pokaż ten kamień milowy
 view this price	projectmanager	pl	Pokaż tę cenę

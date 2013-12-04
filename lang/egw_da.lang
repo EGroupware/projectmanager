@@ -35,4 +35,6 @@ test import (show importable records <u>only</u> in browser)	projectmanager	da	T
 times	projectmanager	da	Gange
 to many might exceed your execution-time-limit	projectmanager	da	for mange kan overskride din tildelte tid
 used time	projectmanager	da	brugt tid
+view all subs of this entry	projectmanager	da	Vis alle underkategorier for denne postering
+view subs	projectmanager	da	vis underkategori
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	da	Din database er ikke up to date (%1 vs. %2) Kør %3setup%4 for at opdatere database.
