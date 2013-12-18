@@ -273,6 +273,7 @@ project id	projectmanager	de	Projekt-ID
 project id - template name	projectmanager	de	Projekt-ID - Name des Templates
 project members and roles	projectmanager	de	Projekt Mitarbeiter und Rollen
 project modified by %1 at %2	projectmanager	de	Projekt geändert von %1 am %2
+project modifier	projectmanager	de	Projekt geändert durch
 project number	projectmanager	de	Projektnummer
 project overview	projectmanager	de	Projektübersicht
 project priority	projectmanager	de	Projektpriorität
