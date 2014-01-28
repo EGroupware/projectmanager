@@ -363,8 +363,8 @@ times	projectmanager	de	Zeiten
 timezone	projectmanager	de	Zeitzone
 title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	de	Der Titel enthält ungültige Zeichen. Bitte verwenden Sie nur Zahlen, Buchstaben A-Z, Punkte und Unterstriche
 title must not be empty	projectmanager	de	Titel darf nicht leer sein
-titles of any entries linked to the current record, excluding attached files	projectmanager	de	Titel aller Einträge die mit dem akuellen Eintrag verknüpft sind, mit Ausnahme der Anhänge
-to many might exceed your execution-time-limit	projectmanager	de	zuviel könnte Ihre Laufzeitbeschränkung überschreiten
+titles of any entries linked to the current record, excluding attached files	projectmanager	de	Titel aller Einträge die mit dem aktuellen Eintrag verknüpft sind, mit Ausnahme der Anhänge
+to many might exceed your execution-time-limit	projectmanager	de	Zuviel könnte Ihre Laufzeitbeschränkung überschreiten
 total completion shares	projectmanager	de	Gesamte Komplettierung der der Anteile
 total shares	projectmanager	de	Anteile Gesamt
 translation	projectmanager	de	Übersetzung
