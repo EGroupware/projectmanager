@@ -62,7 +62,7 @@ class projectmanager_widget
 		// check if user has rights to run projectmanager
 		if (!$GLOBALS['egw_info']['user']['apps']['projectmanager'])
 		{
-			$cell = $tmpl->empty_cell();
+			$cell = boetemplate::empty_cell();
 			$value = '';
 			return false;
 		}
@@ -126,7 +126,7 @@ class projectmanager_widget
 
 				if (!$cell['help']) $cell['help'] = /*lang(*/ 'Select a price' /*)*/;
 				break;
-				
+
 			case 'projectmanager-select-erole': // rows, short_label (true or false),type2: extraStyleMultiselect
 				list($rows,$short_label,$type2) = explode(',',$cell['size']);
 				$eroles = new projectmanager_eroles_bo();
@@ -153,7 +153,7 @@ class projectmanager_widget
 					}
 					break;
 				}
-				
+
 				foreach($eroles->get_free_eroles() as $id => $data)
 				{
 					$cell['sel_options'][$data['role_id']] = array(
@@ -161,12 +161,12 @@ class projectmanager_widget
 						'title' => lang('Element role title').': '.$data['role_title'],
 					);
 				}
-				
+
 				$cell['size'] = $rows.($type2 ? ','.$type2 : '');
 				$cell['no_lang'] = True;
 				unset($rows,$short_label,$type2);
 				break;
-				
+
 		}
 		$cell['no_lang'] = True;
 		$cell['type'] = 'select';
@@ -176,7 +176,7 @@ class projectmanager_widget
 		}
 		return True;	// extra Label Ok
 	}
-	
+
 	/**
 	 * postprocessing method, called after the submission of the form
 	 *
