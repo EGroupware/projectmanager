@@ -242,7 +242,6 @@ class projectmanager_hooks
 					'menuaction' => 'admin.admin_categories.index',
 					'appname'    => $appname,
 					'global_cats'=> True)),
-					'CSV-Import'         => egw::link('/projectmanager/csv_import.php')
 			);
 			if ($location == 'admin')
 			{
