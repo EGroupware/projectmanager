@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.export_project_options" template="" lang="" group="0" version="1.9.001">
+		<grid>
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th">
+					<description value="Duration format"/>
+				</row>
+				<row>
+					<menulist>
+						<menupopup label="Used time" id="pm_used_time"/>
+					</menulist>
+				</row>
+				<row>
+					<menulist>
+						<menupopup label="Planned time" id="pm_planned_time"/>
+					</menulist>
+				</row>
+				<row>
+					<menulist>
+						<menupopup label="Replanned time" id="pm_replanned_time"/>
+					</menulist>
+				</row>
+				<row>
+					<description/>
+				</row>
+				<row>
+					<menulist>
+						<menupopup type="select-bool" label="Include units" id="include_duration_unit"/>
+					</menulist>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>
