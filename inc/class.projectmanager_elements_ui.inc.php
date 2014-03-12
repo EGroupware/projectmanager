@@ -484,23 +484,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			if ($n && !$this->check_acl(EGW_ACL_EDIT,$row))
 			{
-				$readonlys["edit[$row[pe_id]]"] = true;
 				$row['class'] .= ' rowNoEdit';
 			}
 			if ($n && !$this->check_acl(EGW_ACL_DELETE,$row))
 			{
-				$readonlys["delete[$row[pe_id]]"] = true;
 				$row['class'] .= ' rowNoDelete';
 			}
-			if (!$n)
-			{
-				// no link for own project
-				if (!$this->project->check_acl(EGW_ACL_EDIT,$this->project->data))
-				{
-					$readonlys['edit'] = true;
-				}
-			}
-			else
+			if ($n)
 			{
 				$row['link'] = array(
 					'app'  => $row['pe_app'],

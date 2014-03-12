@@ -30,7 +30,6 @@
 				<column/>
 				<column/>
 				<column/>
-				<column/>
 			</columns>
 			<rows>
 				<row class="th">
@@ -68,10 +67,6 @@
 					<nextmatch-sortheader align="center" label="Status" id="pm_completion"/>
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
 					<nextmatch-customfields id="customfields"/>
-					<hbox align="center" class="noPrint">
-						<nextmatch-header align="center" label="Actions" id="legacy_actions"/>
-						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.list.rows').toggleAllSelected(); return false;" image="check"/>
-					</hbox>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
 					<description id="${row}[pm_number]" no_lang="1"/>
@@ -126,12 +121,6 @@
 						</menulist>
 					</vbox>
 					<customfields-list id="$row"/>
-					<hbox align="center" class="noPrint">
-						<button statustext="View ganttchart of this project" label="Ganttchart" id="ganttchart[$row_cont[pm_id]]" image="ganttchart"/>
-						<button statustext="Edit this project" label="Edit" id="edit[$row_cont[pm_id]]" onclick="egw_open($row_cont[pm_id],'projectmanager'); return false;" image="edit"/>
-						<button statustext="Delete this project" label="Delete" id="delete[$row_cont[pm_id]]" onclick="return confirm('Delete this project');" image="delete"/>
-						<checkbox statustext="Select multiple projects for a further action" id="checked[]" options="$row_cont[pm_id]"/>
-					</hbox>
 				</row>
 			</rows>
 		</grid>

@@ -493,7 +493,6 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			if (!$this->check_acl(EGW_ACL_DELETE,$row))
 			{
-				$readonlys["delete[$row[pm_id]]"] = true;
 				$row['class'] .= ' rowNoDelete';
 			}
 			$pm_ids[] = $row['pm_id'];
