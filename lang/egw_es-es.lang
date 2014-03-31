@@ -41,6 +41,7 @@ apply the changes	projectmanager	es-es	Aplicar los cambios
 archive	projectmanager	es-es	Archivar
 assistant	projectmanager	es-es	Asistente
 at which time do you start working on the given day.	projectmanager	es-es	La hora a la que se empieza a trabajar en el día indicado.
+availability settings	projectmanager	es-es	Opciones disponibles
 available fields for this plugin:	projectmanager	es-es	Campos disponibles para este plugin:
 availible	projectmanager	es-es	Disponible
 billable	projectmanager	es-es	Facturable
@@ -54,6 +55,7 @@ can be used with element roles, "eroles" table plugin and "elements" table plugi
 category in %1 project-element(s) updated.	projectmanager	es-es	Se ha actualizado la categoría en %1 elementos de proyecto
 category set	projectmanager	es-es	Se ha establecido la categoría
 change category	projectmanager	es-es	Cambiar categoría
+charset of file	projectmanager	es-es	Juego de caracteres del fichero
 charset of the above selected font	projectmanager	es-es	Juego de caracteres del tipo de letra seleccionado arriba
 check all	projectmanager	es-es	Comprobar todo
 choose the default filename for downloaded documents.	projectmanager	es-es	Elegir el nombre predeterminado para los documentos descargados.
@@ -69,12 +71,14 @@ create new links	projectmanager	es-es	Crear enlaces nuevos
 created	projectmanager	es-es	creado
 created a ganttchart from the checked projects	projectmanager	es-es	Se ha creado un gráfico Gantt a partir de los proyectos seleccionados
 creation date and time	projectmanager	es-es	Fecha y hora de creación
+creator	projectmanager	es-es	Creador
 csv-fieldname	projectmanager	es-es	Nombre de campo CSV
 csv-filename	projectmanager	es-es	Nombre de fichero CSV
 csv-import	common	es-es	Importar fichero CSV
 cumulated elements too	projectmanager	es-es	También los elementos acumulados
 custom fields	projectmanager	es-es	Campos personalizados
 customer title	projectmanager	es-es	Cargo del cliente
+data exchange settings	projectmanager	es-es	Opciones para intercambio de datos
 datasource	projectmanager	es-es	Fuente de datos
 datasources too	projectmanager	es-es	también las fuentes de datos
 dates	projectmanager	es-es	Fechas
@@ -117,6 +121,7 @@ element role title	projectmanager	es-es	Título del rol del elemento
 element roles	projectmanager	es-es	Roles del elemento
 element roles defined as "mutliple" can be used here.	projectmanager	es-es	Los roles del elemento definidos como "múltiple" se pueden usar aquí.
 element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	es-es	La característica de roles de elementos no está activada actualmente en la configuración global del Administrador de proyectos.
+element roles:	projectmanager	es-es	Roles del elemento:
 element status	projectmanager	es-es	Estado del elemento
 element title	projectmanager	es-es	Título del elemento
 elementlist	projectmanager	es-es	Lista de elementos
@@ -153,8 +158,11 @@ existing data will be overwrited if checked	projectmanager	es-es	Si se seleccion
 existing links	projectmanager	es-es	Enlaces existentes
 exists	projectmanager	es-es	Existe
 exit without saving	projectmanager	es-es	Salir sin guardar
+export definition to use for nextmatch export (elements)	projectmanager	es-es	Exportar la definición para exportarla con nextmatch (elementos)
+export definition to use for nextmatch export (projects)	projectmanager	es-es	Exportar la definición para exportarla con nextmatch (proyectos)
 exports a list of project elements to a csv file.	projectmanager	es-es	Exporta una lista de elementos de proyecto a un fichero CSV.
 exports a list of projects to a csv file.	projectmanager	es-es	Exporta una lista de proyectos a un fichero CSV.
+favorites	projectmanager	es-es	Favoritos
 fields for element roles:	projectmanager	es-es	Campos para roles de elemento:
 fieldseparator	projectmanager	es-es	Separador de campos
 font	projectmanager	es-es	Tipo de letra
@@ -170,7 +178,9 @@ furthermore addressbook elements in the projectmanager elements list can be sele
 ganttchart	projectmanager	es-es	Diagrama Gantt
 ganttchart parameter	projectmanager	es-es	Parámetro de diagrama Gantt
 general availibility	projectmanager	es-es	Disponibilidad general
+general fields:	projectmanager	es-es	Campos generales:
 general pricelist	projectmanager	es-es	Lista de precios general
+general settings	projectmanager	es-es	Opciones generales
 global categories	projectmanager	es-es	Categorías globales
 h	projectmanager	es-es	h
 health	projectmanager	es-es	Salud
@@ -178,11 +188,14 @@ hours	projectmanager	es-es	horas
 hours per workday	projectmanager	es-es	Horas por día de trabajo
 how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
+html link to the current record	projectmanager	es-es	Enlace HTML al registro actual
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	es-es	Si se selecciona, también se borran los elementos de origen (p. ej, entradas InfoLog).
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	es-es	Si se selecciona, también se cambiará el estado de los elementos de origen (p. ej, entradas InfoLog).
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	es-es	Si ve entidades (p. ej. {) en el diagrama de Gantt, desactive esta opción.
+if you specify an export definition, it will be used when you export	projectmanager	es-es	Si especifica una definición de exportación, se usará cuando exporte
 ignore that entry	projectmanager	es-es	ignorar esa entrada
 ignored	projectmanager	es-es	ignorado
+import	projectmanager	es-es	Importar
 imports a list of projects from a csv file.  does not include project elements.	projectmanager	es-es	Importa una lista de proyectos desde un fichero CSV. No incluye elementos de proyectos.
 insert	projectmanager	es-es	Insertar
 last modified	projectmanager	es-es	última modificación
@@ -190,12 +203,17 @@ last sync date and time	projectmanager	es-es	Última fecha y hora de sincronizac
 leave it empty if you dont need a different customer title	projectmanager	es-es	dejar en blanco si no es necesario un cargo de cliente distinto
 leave it empty to have one generated	projectmanager	es-es	dejar en blanco para generar uno
 leave it empty, if identitcal to the time	projectmanager	es-es	dejar en blanco si es idéntico a la hora
+limit number of characters in ganttchart element title (0 for no limit)	projectmanager	es-es	Limitar el número de caracteres en el título del elemento en la gráfica Gantt (0 para ilimitado)
 linked elements	projectmanager	es-es	Elementos vinculados
 links	projectmanager	es-es	Enlaces
+links and attached files	projectmanager	es-es	Enlaces y ficheros adjuntos
+links to specified application.  example: {{links/infolog}}	projectmanager	es-es	Enlaces a la aplicación especificada. Ejemplo: {{links/infolog}}
+list of files linked to the current record	projectmanager	es-es	Lista de ficheros vinculados al registro actual
 lists all elements assigned to an element role in a table.	projectmanager	es-es	Lista de todos los elementos asignados a un rol de elemento en una tabla.
 lists all project elements in a table.	projectmanager	es-es	Lista de todos los elementos de proyecto en una tabla.
 mainproject only	projectmanager	es-es	Sólo proyecto principal
 mainprojects	projectmanager	es-es	Proyectos principales
+manage mapping	projectmanager	es-es	Gestionar mapeos
 members	projectmanager	es-es	Miembros
 milestone deleted	projectmanager	es-es	Se ha borrado el hito
 milestone saved	projectmanager	es-es	Se ha guardado el hito
@@ -204,6 +222,7 @@ milestones before this element has to be finished	projectmanager	es-es	Hitos ant
 modified	projectmanager	es-es	Modificado
 modified by	projectmanager	es-es	Modificado por
 modified date and time	projectmanager	es-es	Fecha y hora de modificación
+modifier	projectmanager	es-es	Modificador
 modify status	projectmanager	es-es	Estado de modificación
 multi assignments	projectmanager	es-es	Múltiples asignaciones
 name of current user, all other contact fields are valid too	projectmanager	es-es	Nombre del usuario actual, el resto de los campos del contacto también son válidos
@@ -215,13 +234,16 @@ no accounting, only status	projectmanager	es-es	Sin cuentas, sólo estado
 no accounting, only times and status	projectmanager	es-es	Sin cuentas, sólo tiempos y estado
 no details	projectmanager	es-es	Sin detalles
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	es-es	¡¡Sin acceso de LECTURA a la fuente de datos: eliminar los valores sobreescritos sólo los vaciará!!
+no rights to export more then %1 entries!	projectmanager	es-es	¡No tiene permiso para exportar más de %1 entradas!
 no save necessary	projectmanager	es-es	No es necesario guardar
 nonactive	projectmanager	es-es	No activo
 not available	projectmanager	es-es	No está disponible
 not started (0%)	projectmanager	es-es	Sin iniciar (0%)
 not working	projectmanager	es-es	no está trabajando
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	es-es	El número de caracteres al que se reducirá el título de los elementos de la gráfica Gantt.
 number of records to read (%1)	projectmanager	es-es	Número de registros a leer (%1)
 only this project	projectmanager	es-es	Sólo este proyecto
+order of sub-project bars in ganttcharts	projectmanager	es-es	El orden de las barras del subproyecto en la gráfica Gantt
 overwrite the datasource	projectmanager	es-es	Sobreescribir la fuente de datos
 percentage the member is availible for projects	projectmanager	es-es	Porcentaje de disponibilidad del miembro para los proyectos
 percentage the member is availible for this project	projectmanager	es-es	Porcentaje de disponibilidad del miembro para este proyecto
@@ -305,17 +327,25 @@ select multiple projects for a further action	projectmanager	es-es	Seleccionar m
 select the accounting types visible for users of projectmanager	projectmanager	es-es	seleccionar los tipos de cuentas visibles para los usuarios del administrador de proyectos
 select this project and show it's elements	projectmanager	es-es	Seleccionar este proyecto y mostrar sus elementos
 selectbox with %1	projectmanager	es-es	Lista con %1
+set order to show sub-project bars in ganttcharts.	projectmanager	es-es	Establecer el orden a mostrar las barras de los subproyectos en gráficas Gantt.
 share	projectmanager	es-es	Compartir
 share on the whole project	projectmanager	es-es	Compartir en todo el proyecto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	es-es	Compartir en todo el proyecto en horas o porcentaje. Por defecto, el tiempo planificado
 shared time in minutes	projectmanager	es-es	Tiempo compartido en minutos
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	es-es	Indicar si se deben mostrar los iconos dedicados a entradas de infolog en la lista de elementos del proyecto. Los iconos para tipos personalizados de infolog pueden añadirse en la añadirse en la ruta VFS donde se pueden encontrar imágenes, iconos o logos adicionales (ver Configuración del sitio). Si se suben iconos de 32x32 pixels con un nombre de fichero terminado en '_element', ese icono de mayor tamaño se cargará en la lista de elementos.
+should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	es-es	Indicar si se deben mostrar los enlaces a otras aplicaciones y/o los adjuntos a los ficheros de los elementos del proyecto  en la lista de elementos del proyecto (sólo al mostrar los detalles).
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	es-es	Debe mostrar el administrador de proyectos los iconos de estado de la fuente de datos (p. ej. el registro de notas y tareas) o sólo una barra de progreso con el estado númerico (más rápido)
 show constraints and milestones	projectmanager	es-es	Mostrar restricciones e hitos
+show elements in ganttchart by applications	projectmanager	es-es	Mostrar los elementos en la gráfica Gantt por las aplicaciones
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	es-es	Mostrar los elementos en la gráfica Gantt que dependen de las aplicaciones de las que vienen (ninguno=todos)
+show infolog type icon in the project elements list	projectmanager	es-es	Mostrar el icono del tipo de infolog en la lista de elementos del proyecto
+show links in the project elements list	projectmanager	es-es	Mostrar enlaces en la lista de elementos del proyecto
 show planned times instead of the real times	projectmanager	es-es	Mostrar tiempos planificados en vez de los reales
 show status icons of the datasources	projectmanager	es-es	Mostrar iconos de estado de las fuentes de datos
 show the project selection as	projectmanager	es-es	Mostrar la selección del proyecto como
 site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
 start after	projectmanager	es-es	Comenzar después de
+start date, end date	projectmanager	es-es	Fecha de inicio, fecha de fin
 start working on %1	projectmanager	es-es	Comenzar a trabajar en %1
 start, end, category, ...	projectmanager	es-es	Inicio, fin, categoría...
 start- & enddate	projectmanager	es-es	Fecha de inicio y fin
@@ -339,15 +369,20 @@ template name - project title	projectmanager	es-es	Nombre de la plantilla - tít
 test import (show importable records <u>only</u> in browser)	projectmanager	es-es	Prueba de importar (mostrar registros importables <u>sólo</u> en el navegador)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	es-es	Esa acción permite descargar el documento especificado con los datos del proyecto y elementos insertados.
 the charset depends on the font you want to use.	projectmanager	es-es	El juego de caracteres depende del tipo de letra que quiera usar.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	es-es	el documento puede contener marcas como {{%3}}, que se sustituyen con los datos (%1 lista completa de nombre de marcas %2).
+the following document-types are supported:	projectmanager	es-es	Los siguientes tipos de documento están soportados:
 time	projectmanager	es-es	Tiempo
 times	projectmanager	es-es	Tiempos
 timezone	projectmanager	es-es	Zona horaria
 title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	es-es	El título contiene caracteres no válidos. Use A-Z, números, guión y subrayado.
 title must not be empty	projectmanager	es-es	El título no debe estar vacío
+titles of any entries linked to the current record, excluding attached files	projectmanager	es-es	Títulos de cualquier entrada vinculada al registro actual, excluyendo los ficheros adjuntos
 to many might exceed your execution-time-limit	projectmanager	es-es	a cuánto puede exceder el tiempo límite de ejecución
 total completion shares	projectmanager	es-es	Total de completado de lo compartido
 total shares	projectmanager	es-es	Total de compartido
+translation	projectmanager	es-es	Traducción
 tree with %1	projectmanager	es-es	Arbol con %1
+unable to find parent project %1	projectmanager	es-es	No se pudo encontrar el proyecto padre %1
 unit	projectmanager	es-es	Unidad
 unitprice	projectmanager	es-es	Precio por unidad
 usage	projectmanager	es-es	Uso
