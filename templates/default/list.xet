@@ -43,23 +43,23 @@
 					<nextmatch-header label="@roles[2]" id="role2"/>
 					<nextmatch-header label="@roles[3]" id="role3"/>
 					<nextmatch-header label="@roles[4]" id="role4"/>
-					<vbox options="0,0">
+					<vbox>
 						<nextmatch-sortheader label="Startdate" id="pm_real_start"/>
 						<nextmatch-sortheader label="planned" id="pm_planned_start" class="planned"/>
 					</vbox>
-					<vbox options="0,0">
+					<vbox>
 						<nextmatch-sortheader label="Enddate" id="pm_real_end"/>
 						<nextmatch-sortheader label="planned" id="pm_planned_end" class="planned"/>
 					</vbox>
-					<vbox options="0,0">
+					<vbox>
 						<nextmatch-sortheader label="Budget" id="pm_used_budget"/>
 						<nextmatch-sortheader label="planned" id="pm_planned_budget" class="planned"/>
 					</vbox>
-					<vbox options="0,0">
+					<vbox>
 						<nextmatch-sortheader label="Times" id="pm_used_time"/>
 						<nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
 					</vbox>
-					<vbox options="0,0">
+					<vbox>
 						<nextmatch-sortheader label="Times" id="pm_used_time"/>
 						<nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
 						<nextmatch-sortheader label="re-planned" id="pm_replanned_time" class="replanned"/>
@@ -70,7 +70,7 @@
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
 					<description id="${row}[pm_number]" no_lang="1"/>
-					<description statustext="Select this project and show it's elements" id="${row}[pm_title]" no_lang="1" href="projectmanager.projectmanager_elements_ui.index&amp;pm_id=$row_cont[pm_id]"/>
+					<description id="${row}[pm_title]" no_lang="1" />
 					<description align="center" id="${row}[pm_priority]" no_lang="1"/>
 					<menulist>
 						<menupopup type="select-cat" id="${row}[cat_id]" no_lang="1" readonly="true"/>
@@ -83,11 +83,11 @@
 					<listbox type="select-account" id="${row}[role2]" readonly="true" rows="2"/>
 					<listbox type="select-account" id="${row}[role3]" readonly="true" rows="2"/>
 					<listbox type="select-account" id="${row}[role4]" readonly="true" rows="2"/>
-					<vbox options="0,0">
+					<vbox>
 						<date id="${row}[pm_real_start]" readonly="true"/>
 						<date id="${row}[pm_planned_start]" readonly="true" class="planned"/>
 					</vbox>
-					<vbox options="0,0">
+					<vbox>
 						<date id="${row}[pm_real_end]" readonly="true"/>
 						<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>
 					</vbox>
@@ -95,26 +95,26 @@
 						<textbox type="float" id="${row}[pm_used_budget]" readonly="true" max="2"/>
 						<textbox type="float" id="${row}[pm_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
 					</vbox>
-					<vbox options="0,0">
+					<vbox>
 						<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
 						<date-duration id="${row}[pm_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 					</vbox>
-					<vbox readonly="true" options="0,0">
-						<hbox id="pml_used_time" options="1,0">
+					<vbox readonly="true">
+						<hbox id="pml_used_time">
 							<image label="Times" src="timesheet"/>
 							<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
 						</hbox>
-						<hbox id="planified" options="1,0">
+						<hbox id="planified">
 							<image label="planned time" src="k_alarm"/>
 							<date-duration id="${row}[pm_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 						</hbox>
-						<hbox id="replanified" options="1,0">
+						<hbox id="replanified">
 							<image label="Re-planned time" src="agt_reload"/>
 							<date-duration id="${row}[pm_replanned_time]" readonly="true" options="@duration_format" span="all" class="replanned"/>
 						</hbox>
 					</vbox>
 					<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
-					<vbox readonly="true" options="0,0">
+					<vbox readonly="true">
 						<date-time id="${row}[pm_modified]" readonly="true"/>
 						<menulist>
 							<menupopup type="select-account" id="${row}[pm_modifier]" readonly="true"/>
@@ -126,6 +126,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
+		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
 		<grid width="100%">
 			<columns>
 				<column/>

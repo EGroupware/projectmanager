@@ -157,6 +157,11 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			$pm_id = (int) $_REQUEST['pm_id'];
 			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
 		}
+		else if ($_GET['pm_id'])
+		{
+			// AJAX requests have pm_id only in GET, not REQUEST
+			$pm_id = (int)$_GET['pm_id'];
+		}
 		else
 		{
 			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
@@ -866,6 +871,9 @@ class projectmanager_ganttchart extends projectmanager_elements_bo
 			),
 		);
 		$this->tmpl->read('projectmanager.ganttchart');
+		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
+		$content['project_tree'] = 'projectmanager::'.$this->pm_id;
+		$this->tmpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 		return $this->tmpl->exec('projectmanager.projectmanager_ganttchart.show',$content,$sel_options,$readonlys,array('pm_id'=>$content['pm_id']));
 	}
 

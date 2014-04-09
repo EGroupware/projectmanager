@@ -9,7 +9,6 @@
 				<column/>
 				<column/>
 				<column/>
-				<column/>
 			</columns>
 			<rows>
 				<row class="th">
@@ -27,7 +26,6 @@
 						<nextmatch-sortheader label="Last modified" id="pl_modified"/>
 						<nextmatch-sortheader label="Modified by" id="pl_modifier"/>
 					</vbox>
-					<description value="Actions" class="noPrint" id="legacy_actions"/>
 				</row>
 				<row class="row $row_cont[class]">
 					<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
@@ -50,16 +48,12 @@
 							<menupopup type="select-account" id="${row}[pl_modifier]" readonly="true"/>
 						</menulist>
 					</vbox>
-					<hbox class="noPrint">
-						<button statustext="View this price" label="View" id="view[$row_cont[pl_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.view&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" image="view"/>
-						<button statustext="Edit this price" label="Edit" id="edit[$row_cont[pl_id]]" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit&amp;pl_id=$row_cont[pl_id]'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;" image="edit"/>
-						<button statustext="Delete this price" label="Delete" id="delete[$row_cont[pm_id]:$row_cont[pl_id]]" onclick="return confirm('Delete this price');" image="delete"/>
-					</hbox>
 				</row>
 			</rows>
 		</grid>
 	</template>
 	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
+		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
 		<grid width="100%">
 			<columns>
 				<column/>

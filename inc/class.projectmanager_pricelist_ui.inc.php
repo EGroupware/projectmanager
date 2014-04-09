@@ -34,10 +34,16 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 	 */
 	function __construct($pm_id=null)
 	{
+		error_log(array2string($_GET));
 		if (!is_null($pm_id) || isset($_REQUEST['pm_id']))
 		{
 			if (is_null($pm_id)) $pm_id = (int) $_REQUEST['pm_id'];
 			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
+		}
+		else if ($_GET['pm_id'])
+		{
+			// AJAX requests have pm_id only in GET, not REQUEST
+			$pm_id = (int)$_GET['pm_id'];
 		}
 		else
 		{
@@ -258,10 +264,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		foreach($rows as $n => $val)
 		{
 			$row =& $rows[$n];
-			if (!$this->check_acl(EGW_ACL_EDIT) && !($this->pm_id && $this->check_acl(EGW_ACL_EDIT,$this->pm_id)))
-			{
-				$readonlys["edit[$row[pl_id]]"] = true;
-			}
 			// we only delete prices from the shown pricelist, not inhirited ones or onces from the general list
 			if ($row['pm_id'] != $this->pm_id || !$this->check_acl(EGW_ACL_EDIT,$this->pm_id))
 			{
@@ -351,14 +353,22 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		}
 		$projects[0] = lang('General pricelist');
 
+		$sel_options = array(
+			'pl_billable' => $this->billable_lables,
+			'pm_id' => $projects,
+		);
+		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
+		if($this->pm_id)
+		{
+			$content['project_tree'] = 'projectmanager::'.$this->pm_id;
+		}
+		$tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
+
 		$readonlys = array(
 			// show add button only, if user has rights to add a new price
 			'add' => !$this->check_acl(EGW_ACL_EDIT,$this->pm_id),
 		);
-		return $tpl->exec('projectmanager.projectmanager_pricelist_ui.index',$content,array(
-			'pl_billable' => $this->billable_lables,
-			'pm_id' => $projects,
-		),$readonlys);
+		return $tpl->exec('projectmanager.projectmanager_pricelist_ui.index',$content,$sel_options,$readonlys);
 	}
 
         /**

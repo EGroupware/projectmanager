@@ -2,6 +2,7 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="1.9.002">
+		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
 		<grid>
 			<columns>
 				<column/>

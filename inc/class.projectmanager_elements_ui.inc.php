@@ -53,10 +53,16 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	{
 		$this->tpl = new etemplate_new();
 
+		error_log(array2string($_GET));
 		if ((int) $_REQUEST['pm_id'])
 		{
 			$pm_id = (int) $_REQUEST['pm_id'];
 			// store the current project (only for index, as popups may be called by other parent-projects)
+		}
+		else if ($_GET['pm_id'])
+		{
+			// AJAX requests have pm_id only in GET, not REQUEST
+			$pm_id = (int)$_GET['pm_id'];
 		}
 		else
 		{
@@ -830,13 +836,16 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'to_app'   => 'projectmanager',
 			'add_app'  => 'infolog',
 		);
+		$this->tpl->read('projectmanager.elements.list');
+		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
+		$content['project_tree'] = 'projectmanager::'.$this->pm_id;
+		$this->tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 
 		// set id for automatic linking via quick add
 		$GLOBALS['egw_info']['flags']['currentid'] = $this->pm_id;
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
-		$this->tpl->read('projectmanager.elements.list');
 
 		// fill the sel_options Applications
 		$sel_options ['pe_app'] = egw_link::app_list('add_app');

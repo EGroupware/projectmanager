@@ -661,8 +661,10 @@ class projectmanager_ui extends projectmanager_bo
 			$p_templ[$id]=(!empty($c[($show == 'number'?'label':'title')])?$c[($show == 'number'?'label':'title')]:$c[($show == 'number'?'caption':'hint')]);
 		}
 		$sel_options = array(
-			'template_id' => $p_templ
+			'template_id' => $p_templ,
+			'project_tree' => $this->ajax_tree(0, true)
 		);
+		$tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
 		$tpl->exec('projectmanager.projectmanager_ui.index',$content,$sel_options);
 	}
@@ -926,5 +928,118 @@ class projectmanager_ui extends projectmanager_bo
 		}
 
 		return !$failed;
+	}
+
+	/**
+	 * Generate the project tree nodes
+	 *
+	 * @param boolean $return Return the information (true), or send it back as JSON
+	 */
+	public static function ajax_tree($parent_pm_id = null, $return = false)
+	{
+		$type = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
+		if (substr($type,-5) == 'title')
+		{
+			$label = 'pm_title';
+			$title = 'pm_number';
+		}
+		else
+		{
+			$label = 'pm_number';
+			$title = 'pm_title';
+		}
+		$filter = array('pm_status' => 'active');
+		if($parent_pm_id) $filter['pm_parent'] = $parent_pm_id;
+		$projects = array();
+		$stack = array();
+		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter) as $project)
+		{
+			if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection']=='tree_with_number_title')
+			{
+				$text = $project[$title].': '.$project[$label];
+			}
+			else
+			{
+				$text = $project[$label];
+			}
+
+			$p = array(
+				// Using UID for consistency with nextmatch
+				'id' => 'projectmanager::'.$project['pm_id'],
+				'text'	=>	$text,
+				'path'	=>	$project['path'],
+				/*
+				These ones to play nice when a user puts a tree & a selectbox with the same
+				ID on the form (addressbook edit):
+				if tree overwrites selectbox options, selectbox will still work
+				*/
+				'label'	=>	$text,
+				'title'	=>	$project[$title]
+				
+			);
+			if($project['pm_parent'] == null)
+			{
+				$projects[$project['pm_id']] = $p;
+			}
+			else
+			{
+				$path = explode('/',$project['path']);
+				array_shift($path);
+				array_pop($path);
+				$parent =& $projects;
+				foreach($path as $part)
+				{
+					$parent =& $parent[$part];
+				}
+				$parent['item'][$project['id']] = $p;
+			}
+		}
+
+		// Tree it up
+		$projects = array('id'=>0,'item'=>$projects);
+		$f = function(&$project) use (&$f)
+		{
+			if(!$project['item']) return;
+			$project['item'] = array_values($project['item']);
+			foreach($project['item'] as &$item)
+			{
+				$f($item);
+			}
+		};
+		$f($projects);
+		
+		if($return) return $projects;
+		etemplate_widget_tree::send_quote_json($projects);
+	}
+
+	/**
+	 * Generate the project tree actions
+	 */
+	public static function project_tree_actions()
+	{
+		$actions = array(
+			array(
+				'caption' => 'Ganttchart',
+				'icon' => 'navbar',
+				'app'  => 'projectmanager',
+				'onExecute' => 'javaScript:app.projectmanager.show_gantt'
+			),
+
+		);
+		// show pricelist only if we use pricelists
+		$config = config::read('projectmanager');
+		if (!$config['accounting_types'] || in_array('pricelist',(is_array($config['accounting_types'])?$config['accounting_types']:explode(',',$config['accounting_types']))))
+		{
+			// menuitem links to project-spezific priclist only if user has rights and it is used
+			// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(EGW_ACL_READ),
+			// specialy the always existing READ right for the general pricelist!!!
+			$actions[] = array(
+				'caption' => 'Pricelist',
+				'icon' => 'pricelist',
+				'app'  => 'projectmanager',
+				'onExecute' => 'javaScript:app.projectmanager.show_pricelist'
+			);
+		}
+		return $actions;
 	}
 }

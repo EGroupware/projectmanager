@@ -17,13 +17,6 @@
 app.classes.projectmanager = AppJS.extend(
 {
 	appname: 'projectmanager',
-	/**
-	 * et2 widget container
-	 */
-	et2: null,
-	/**
-	 * path widget
-	 */
 
 	/**
 	 * Constructor
@@ -83,6 +76,31 @@ app.classes.projectmanager = AppJS.extend(
 			gantt_link.off('.projectmanager');
 		}
 	},
+
+	/**
+	 * Change the selected project
+	 *
+	 * @param {string|egwAction} 
+	 */
+	set_project: function(node_id, tree_widget, old_node_id)
+	{
+		if(node_id == old_node_id)
+		{
+			return false;
+		}
+
+		if(node_id)
+		{
+			var split = node_id.split('::');
+			if(split.length > 1 && split[1]) node_id = split[1];
+			this.egw.open(node_id, 'projectmanager', 'view',{},'projectmanager','projectmanager');
+		}
+		else
+		{
+			this.egw.open('','projectmanager','list',{},'projectmanager','projectmanager');
+		}
+	},
+
 	/**
 	 * Handles delete button in edit popup
 	 *
@@ -218,13 +236,44 @@ app.classes.projectmanager = AppJS.extend(
 			// IDs look like projectmanager::#, or projectmanager_elements::projectmanager:#:#
 			// gantt wants just #
 			var split = selected[i].id.split('::');
-			var matches = split[1].match(':([0-9]+):?')
-			id.push(matches ? matches[1] : split[1]);
+			if(split.length > 1)
+			{
+				var matches = split[1].match(':([0-9]+):?');
+				id.push(matches ? matches[1] : split[1]);
+			}
 		}
 		egw.open_link(egw.link('/index.php', {
 			menuaction: 'projectmanager.projectmanager_ganttchart.show',
 			pm_id:id.join(','), // Server expects CSV, not array
-			width: $j(app.projectmanager.et2.getDOMNode() || window).width()
+			width: $j(app.projectmanager.et2.getDOMNode() || window).width(),
+			ajax: 'true'
+		}), 'projectmanager',false,'projectmanager');
+	},
+
+	/**
+	 * Show the pricelist for a selected project
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 */
+	show_pricelist: function(action,selected)
+	{
+		var id = [];
+		for(var i = 0; i < selected.length; i++)
+		{
+			// IDs look like projectmanager::#, or projectmanager_elements::projectmanager:#:#
+			// pricelist wants just #
+			var split = selected[i].id.split('::');
+			if(split.length > 1)
+			{
+				var matches = split[1].match(':([0-9]+):?');
+				id.push(matches ? matches[1] : split[1]);
+			}
+		}
+		egw.open_link(egw.link('/index.php', {
+			menuaction: 'projectmanager.projectmanager_pricelist_ui.index',
+			pm_id:id.join(','), // Server expects CSV, not array
+			ajax: 'true'
 		}), 'projectmanager',false,'projectmanager');
 	}
 });

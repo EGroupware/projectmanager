@@ -109,6 +109,10 @@ class projectmanager_hooks
 			{
 				egw_session::appsession('pm_id','projectmanager',$pm_id = (int) $_REQUEST['pm_id']);
 			}
+			else if ($_GET['pm_id'])
+			{
+				$pm_id = (int) $_REQUEST['pm_id'];
+			}
 			else
 			{
 				$pm_id = (int) egw_session::appsession('pm_id','projectmanager');
@@ -117,29 +121,7 @@ class projectmanager_hooks
 				'Projectlist' => egw::link('/index.php',array(
 					'menuaction' => 'projectmanager.projectmanager_ui.index',
 					'ajax' => 'true',
-				)),	array(
-					'text' => 'Elementlist',
-					'link' => $pm_id ? egw::link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
-						'ajax' => 'true',
-					)) : False,
-				),
-				array(
-					'text' => 'Ganttchart',
-					'icon' => 'navbar',
-					'app'  => 'projectmanager',
-					'link' => $pm_id ? egw::link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
-					)) : False,
-				),
-				array(
-					'text' => 'New Ganttchart',
-					'icon' => 'navbar',
-					'app'  => 'projectmanager',
-					'link' => $pm_id ? egw::link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_gantt.chart',
-					)) : False,
-				),
+				))
 			);
 			// show pricelist menuitem only if we use pricelists
 			if (!self::$config['accounting_types'] || in_array('pricelist',(is_array(self::$config['accounting_types'])?self::$config['accounting_types']:explode(',',self::$config['accounting_types']))))
@@ -155,6 +137,7 @@ class projectmanager_hooks
 						'menuaction' => 'projectmanager.projectmanager_pricelist_ui.index',
 						'pm_id' => $pm_id && $GLOBALS['projectmanager_bo']->check_acl(EGW_ACL_BUDGET,$pm_id) &&
 							 $GLOBALS['projectmanager_bo']->data['pm_accounting_type'] == 'pricelist' ? $pm_id : 0,
+						'ajax' => 'true',
 					)
 				));
 			}
@@ -172,54 +155,13 @@ class projectmanager_hooks
 				);
 			}
 
-			// include the filter of the projectlist into the projectlist, eg. if you watch the list of templates, include them in the tree
-			$filter = array('pm_status' => 'active');
-			$list_filter = egw_session::appsession('project_list','projectmanager');
-			if ($_GET['menuaction'] == 'projectmanager.projectmanager_ui.index' && isset($_POST['exec']['nm']['filter2']))
-			{
-				//echo "<p align=right>set pm_status={$_POST['exec']['nm']['filter2']}</p>\n";
-				$list_filter['pm_status'] = $_POST['exec']['nm']['filter2'];	// necessary as projectmanager_ui::get_rows is not yet executed
-			}
-			if(in_array($list_filter['filter2'],array('nonactive','archive','template')))
-			{
-				$filter['pm_status'] = array('active',$list_filter['filter2']);
-			}
-			switch($_GET['menuaction'])
-			{
-				case 'projectmanager.projectmanager_ganttchart.show':
-				case 'projectmanager.projectmanager_pricelist_ui.index':
-				case 'filemanager.filemanager_ui.index':
-					$selbox_action = $_GET['menuaction'];
-					break;
-				default:
-					$selbox_action = 'projectmanager.projectmanager_elements_ui.index';
-					break;
-			}
-			$select_link = egw::link('/index.php',array('menuaction' => $selbox_action),false).'&pm_id=';
-
-			// show the project-selection as tree or -selectbox
-			// $_POST['user']['show_projectselection'] is used to give the user immediate feedback, if he changes the prefs
-			$type = isset($_POST['user']['show_projectselection']) ? $_POST['user']['show_projectselection'] :
-				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
-			if (substr($type,-5) == 'title')
-			{
-				$label = 'pm_title';
-				$title = 'pm_number';
-			}
-			else
-			{
-				$label = 'pm_number';
-				$title = 'pm_title';
-			}
-			if (substr($type,0,9) == 'selectbox')
-			{
-				$projectlist =& self::_project_selectbox($pm_id,$filter,$select_link,$label,$title);
-			}
-			else
-			{
-				$projectlist =& self::_project_tree($pm_id,$filter,$select_link,$label,$title);
-			}
-			if ($projectlist) $file[] =& $projectlist;
+			// Target for project tree
+			$file[] = array(
+				'no_lang' => true,
+				'text'=>'<span id="projectmanager-tree_target" />',
+				'link'=>false,
+				'icon' => false
+			);
 
 			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 
@@ -394,11 +336,9 @@ class projectmanager_hooks
 			'values' => array(
 				'tree_with_number'      => lang('Tree with %1',lang('Project ID')),
 				'tree_with_title'       => lang('Tree with %1',lang('Title')),
-				'tree_with_number_title'=> lang('Tree with %1',lang('Project ID').': '.lang('Title')),
-				'selectbox_with_number' => lang('Selectbox with %1',lang('Project ID').': '.lang('Title')),
-				'selectbox_with_title'  => lang('Selectbox with %1',lang('Title').' ('.lang('Project ID').')'),
+				'tree_with_number_title'=> lang('Tree with %1',lang('Project ID').': '.lang('Title'))
 			),
-			'help'   => 'How should the project selection in the menu be displayed: A tree gives a better overview, a selectbox might perform better.',
+			'help'   => 'How should the project selection in the menu be displayed',
 			'xmlrpc' => True,
 			'admin'  => False,
 			'default'=> 'tree_with_title',
