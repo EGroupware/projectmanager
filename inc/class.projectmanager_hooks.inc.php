@@ -163,6 +163,7 @@ class projectmanager_hooks
 				'icon' => false
 			);
 
+			$file['Placeholders'] = egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
 			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 
 			// allways show sidebox
