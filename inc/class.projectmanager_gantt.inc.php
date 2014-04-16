@@ -13,76 +13,78 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 
 	public function chart($data = array()) {
 		if (isset($_REQUEST['pm_id']))
-                {
-                        $pm_id = $_REQUEST['pm_id'];
-                        $GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
-                }
-                else
-                {
-                        $pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
-                }
+		{
+			$pm_id = $_REQUEST['pm_id'];
+			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
+		}
+		else if ($_GET['pm_id'])
+		{
+			// AJAX requests have pm_id only in GET, not REQUEST
+			$pm_id = $_GET['pm_id'];
+		}
+		else if ($data['project_tree'])
+		{
+			$pm_id = array();
+			$data['project_tree'] = is_array($data['project_tree']) ? $data['project_tree'] : explode(',',$data['project_tree']);
+			foreach($data['project_tree'] as $project)
+			{
+				list(,$pm_id[]) = explode('::',$project,2);
+			}
+		}
+		else
+		{
+			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+		}
 		if(!$pm_id)
 		{
 			egw::redirect_link('/index.php', array(
-                                'menuaction' => 'projectmanager.projectmanager_ui.index',
-                                'msg'        => lang('You need to select a project first'),
-                        ));
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
+				'msg'        => lang('You need to select a project first'),
+			));
 		}
 		if ($data['sync_all'])
-                {
+		{
 			$this->project = new projectmanager_bo($pm_id);
 			if($this->project->check_acl(EGW_ACL_ADD))
 			{
 				$data['msg'] = lang('%1 element(s) updated',$this->sync_all());
 			}
 			unset($data['sync_all']);
-                }
+		}
 
-		egw_framework::validate_file('dhtmlxGantt/sources','dhtmlxcommon');
-		egw_framework::validate_file('dhtmlxGantt/sources','dhtmlxgantt');
-		egw_framework::includeCSS('/phpgwapi/js/dhtmlxGantt/codebase/dhtmlxgantt.css');
-		egw_framework::validate_file('.','gantt','projectmanager');
 		egw_framework::includeCSS('projectmanager','gantt');
 
 		// Yes, we want the link registry
 		$GLOBALS['egw_info']['flags']['js_link_registry'] = true;
 
-		$content .= '<script type="text/javascript">var gantt_project_ids = ' . json_encode($pm_id) . ';
-var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['calendar']['workdayends'] - $GLOBALS['egw_info']['user']['preferences']['calendar']['workdaystarts']) . ';
-		</script>';
+		// Default to project elements, and their children - others will be done via ajax
+		if(!array_key_exists('depth',$data)) $data['depth'] = 2;
 
-		// Default to project elements
-		if(!array_key_exists('depth',$data)) $data['depth'] = 1;
+		$pm_id = is_array($pm_id) ? $pm_id : explode(',',$pm_id);
 
-
-		if ($pm_id != $this->project->data['pm_id'])
+		$data['gantt'] = array('data' => array(), 'links' => array());
+		$data['project_tree'] = array();
+		foreach($pm_id as $id)
 		{
-			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
-			{
-				return;
-			}
-			if(!$data['start']) $data['start'] = $this->project->data['pm_real_start'];
-			if(!$data['end']) $data['end'] = $this->project->data['pm_real_end'];
+			$this->add_project($data['gantt'], $id, $data);
+			$data['project_tree'][] = 'projectmanager::'.$id;
 		}
 
 		$sel_options = array(
-			'depth' => array(
-				0  => '0: '.lang('Mainproject only'),
-				1  => '1: '.lang('Project-elements'),
-				2  => '2: '.lang('Elements of elements'),
-				99 => lang('Everything recursive'),
-			),
 			'filter' => array(
 				''        => lang('All'),
 				'not'     => lang('Not started (0%)'),
-				'ongoing' => lang('0ngoing (0 < % < 100)'),
+				'ongoing' => lang('Ongoing (0 < % < 100)'),
 				'done'    => lang('Done (100%)'),
 			),
 		);
 		$template = new etemplate_new();
 		$template->read('projectmanager.gantt');
-		$content .= $template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
-		$GLOBALS['egw']->framework->render($content, 'Test', true);
+		
+		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
+		$template->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
+
+		$template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
 	}
 
 	public function ajax_gantt_project($project_id, $params) {
@@ -121,7 +123,7 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 	}
 
 	// Get the data into required format
-	protected function add_project($pm_id, $params) {
+	protected function add_project(&$data = array(), $pm_id, $params) {
 		if ($pm_id != $this->project->data['pm_id'])
 		{
 			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
@@ -130,12 +132,32 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 			}
 		}
 		$project = $this->project->data + array(
-			'name'	=>	egw_link::title('projectmanager', $this->project->data['pm_id']),
+			'id'	=>	$this->project->data['pm_id'],
+			'text'	=>	egw_link::title('projectmanager', $this->project->data['pm_id']),
 			'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
-			'start'	=>	$params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],
-			'end'	=>	$params['planned_times'] ? $this->project->data['pm_planned_end'] : $this->project->data['pm_real_end']
+			'start_date'	=>	egw_time::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],egw_time::DATABASE),
+			'open'	=>	$params['level'] < $params['depth'],
+			'completion' => ((int)substr($this->project->data['pm_completion'],0,-1))/100
 		);
+		if($params['planned_times'] ? $this->project->data['pm_planned_end'] : $this->project->data['pm_real_end'])
+		{
+			// Make sure we don't kill the gantt chart with too large a time span - limit to 10 years
+			$start = $params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'];
+			$end = min($params['planned_times'] ? $this->project->data['pm_planned_end'] : $this->project->data['pm_real_end'],
+				strtotime('+10 years',$start)
+			);
+			// Avoid a 0 length project, that causes display and control problems
+			// Add 1 day - 1 second to go from 0:00 to 23:59
+			if($end == $start) strtotime('+1 day', $end)-1;
+			$project['end_date'] = egw_time::to($end,egw_time::DATABASE);
+		}
+		else
+		{
+			$project['duration'] = $params['planned_times'] ? $this->project->data['pm_planned_time'] : 1;
+		}
 
+		error_log("Project $pm_id");
+		error_log(array2string($project));
 		// Not sure how it happens, but it causes problems
 		if($project['start'] && $project['start'] < 10) $project['start'] = 0;
 
@@ -144,15 +166,18 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 				$member_data['name'] = common::grab_owner_name($member_data['member_uid']);
 			}
 		}
+		$data['data'][] = $project;
 		if($params['depth'])
 		{
-			$project['elements'] = $this->add_elements($pm_id, $params, $params['level'] ? $params['level'] : 1);
+			$project['elements'] = $this->add_elements($data, $pm_id, $params, $params['level'] ? $params['level'] : 1);
+			$data['data'] = array_merge($data['data'], $project['elements']);
 		}
 
 		return $project;
 	}
 
-	protected function add_elements($pm_id, $params, $level = 1) {
+	protected function add_elements(&$data, $pm_id, $params, $level = 1) {
+		error_log(__METHOD__ . "(data, $pm_id, $params, $level)");
 		$elements = array();
 
 		if($level > $params['depth']) return $elements;
@@ -172,8 +197,6 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		$filter = array(
 			'pm_id'	=> $pm_id,
 			"pe_status != 'ignore'",
-	//		"$start IS NOT NULL",
-	//		"$end IS NOT NULL",
 			'cumulate' => true,
 		);
 		$extra_cols = array(
@@ -215,28 +238,32 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 		$element_index = array();
 		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
                         '',false,'AND',false,$filter) as $pe)
-                {
-                        //echo "$line: ".print_r($pe,true)."<br>\n";
-                        if (!$pe) continue;
+		{
+			if (!$pe) continue;
 
 			if($pe['pe_app'] == 'projectmanager') {// && $level < $params['depth']) {
 				$project = true;
 				$elements[] = $pe;
 			} else {
-				$pe['pe_start'] = (int)$pe['pe_start'];
-				$pe['duration'] = ($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']) / 60;
+				$pe['id'] = $pe['pe_id'];
+				$pe['text'] = $pe['pe_title'];
+				$pe['parent'] = $pm_id;
+				$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
+				$pe['duration'] = (float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']);
 				if($pe['pe_end'] && !$pe['duration'])
 				{
-					$pe['duration'] = max((($pe['pe_end'] - $pe['pe_start']) / 3600 / 24) * $hours_per_day, 0);
-					if(function_exists('date_diff')) {
-						$diff = date_diff(new egw_time($pe['pe_end']), new egw_time($pe['pe_start']));
-						$pe['duration'] = $diff->d * $hours_per_day + $diff->h;
-					}
+					$pe['end_date'] = egw_time::to((int)$pe['pe_end'],egw_time::DATABASE);
 				}
 				$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
 
 				$elements[] = $pe;
 			}
+			
+			// 0 duration tasks must be handled specially to avoid errors
+			if(!$pe['duration']) $pe['duration'] = 1;
+
+			// Set field for filter to filter on
+			$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
 			$element_index[$pe['pe_id']] = $pe;
 		}
 
@@ -246,7 +273,10 @@ var gantt_hours_per_day = ' . ($GLOBALS['egw_info']['user']['preferences']['cale
 			foreach($elements as &$pe)
 			{
 				$params['level'] = $level + 1;
-				if($pe['pe_app'] == 'projectmanager') $pe = $this->add_project($pe['pe_app_id'], $params);
+				if($pe['pe_app'] == 'projectmanager')
+				{
+					$pe = $this->add_project($data, $pe['pe_app_id'], $params);
+				}
 			}
 		}
 

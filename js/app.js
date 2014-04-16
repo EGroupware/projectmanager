@@ -49,32 +49,6 @@ app.classes.projectmanager = AppJS.extend(
 	{
 		// call parent
 		this._super.apply(this, arguments);
-
-		// Sidebox menu doesn't get updated in jdots when you select a project, so
-		// enable / disable gantt chart link if a single project is set
-		var gantt_link = egw.window.$j('#egw_fw_sidemenu, #sidebox')
-			.find('div:contains('+egw.lang('GanttChart')+')')
-			.last();
-		// Check for project in top level, or link-to widget in element list nm header
-		var pm_id = this.et2.getArrayMgr("content").getEntry('pm_id') ||
-			this.et2.getArrayMgr("content").getEntry('nm[link_to][to_id]');
-		if(pm_id)
-		{
-			$j('a',gantt_link).attr('href','#');
-			gantt_link.addClass('et2_link');
-
-			// Add a namespaced handler for easy removal
-			gantt_link.on('click.projectmanager',jQuery.proxy(function() {
-				// Fake ID to match what comes from nm action
-				this.show_gantt(null,[{id: 'projectmanager::'+pm_id}]);
-				return false;
-			},this));
-		}
-		else
-		{
-			gantt_link.removeClass('et2_link');
-			gantt_link.off('.projectmanager');
-		}
 	},
 
 	/**
@@ -243,7 +217,7 @@ app.classes.projectmanager = AppJS.extend(
 			}
 		}
 		egw.open_link(egw.link('/index.php', {
-			menuaction: 'projectmanager.projectmanager_ganttchart.show',
+			menuaction: 'projectmanager.projectmanager_gantt.chart',
 			pm_id:id.join(','), // Server expects CSV, not array
 			width: $j(app.projectmanager.et2.getDOMNode() || window).width(),
 			ajax: 'true'
