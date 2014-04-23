@@ -225,6 +225,26 @@ app.classes.projectmanager = AppJS.extend(
 	},
 
 	/**
+	 * Handler for double clicking on a task in the gantt chart
+	 *
+	 * @param {Object} task Task information, as sent to the gantt
+	 * @param {et2_gantt} gantt_widget Gantt widget
+	 */
+	gantt_open: function(task, gantt_widget)
+	{
+		// Project element
+		if(task.pe_app)
+		{
+			this.egw.open(task.pe_app_id, task.pe_app);
+		}
+		// Project
+		else
+		{
+			this.egw.open(task.id, 'projectmanager');
+		}
+	},
+
+	/**
 	 * Show the pricelist for a selected project
 	 *
 	 * @param {egwAction} action

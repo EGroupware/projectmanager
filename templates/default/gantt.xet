@@ -3,62 +3,50 @@
 <overlay>
 	<template id="projectmanager.gantt" template="" lang="" group="0" version="1.9.001">
 		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
-		<grid width="100%">
-			<columns>
-				<column/>
-				<column/>
-			</columns>
-			<rows>
-				<row>
-					<hbox>
-						<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"/>
-						<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints"/>
-						<button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"/>
-					</hbox>
-				</row>
-				<row >
-					<gantt id="gantt" class="ganttContent" autoload="projectmanager.projectmanager_gantt.ajax_gantt_project" span="all">
-						<grid>
-							<columns>
-								<column/>
-								<column/>
-								<column/>
-								<column/>
-								<column/>
-								<column/>
-								<column/>
-							</columns>
-							<rows>
-								<row>
-									<description value="Startdate" for="start"/>
-									<date id="start_date"/>
-									<description value="Enddate" for="end"/>
-									<date id="end_date"/>
-									<description/>
-									<description/>
-								</row>
-								<row>
-									<description value="Category"/>
-									<menulist>
-										<menupopup type="select-cat" id="cat_id" options="All"/>
-									</menulist>
-									<description value="Status filter" for="filter"/>
-									<menulist>
-										<menupopup id="filter" no_lang="1"/>
-									</menulist>
-									<description value="Resources"/>
-									<menulist>
-										<menupopup type="select-account" id="pe_resources" options="All"/>
-									</menulist>
-								</row>
-							</rows>
-						</grid>
-					</gantt>
-				</row>
-				<row>
-					<button statustext="Add a new milestone" label="Add milestone" id="milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"/>
-				</row>
-			</rows>
-		</grid>
+		<vbox width="100%" height="100%">
+			<hbox>
+				<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"/>
+				<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints"/>
+				<button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"/>
+				<button statustext="Add a new milestone" label="Add milestone" id="milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"/>
+			</hbox>
+			<gantt id="gantt" class="ganttContent" autoload="projectmanager.projectmanager_gantt.ajax_gantt_project" ajax_update="projectmanager.projectmanager_gantt.ajax_update" span="all" on_edit="app.projectmanager.gantt_open">
+				<grid>
+					<columns>
+						<column/>
+						<column/>
+						<column/>
+						<column/>
+						<column/>
+						<column/>
+						<column/>
+					</columns>
+					<rows>
+						<row>
+							<description value="Startdate" for="start"/>
+							<date id="start_date"/>
+							<description value="Enddate" for="end"/>
+							<date id="end_date"/>
+							<description/>
+							<description/>
+						</row>
+						<row>
+							<description value="Category"/>
+							<menulist>
+								<menupopup type="select-cat" id="cat_id" options="All"/>
+							</menulist>
+							<description value="Status filter" for="filter"/>
+							<menulist>
+								<menupopup id="filter" no_lang="1"/>
+							</menulist>
+							<description value="Resources"/>
+							<menulist>
+								<menupopup type="select-account" id="pe_resources" options="All"/>
+							</menulist>
+						</row>
+					</rows>
+				</grid>
+			</gantt>
+		</vbox>
 	</template>
 </overlay>

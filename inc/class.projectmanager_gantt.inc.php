@@ -53,7 +53,8 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		}
 
 		egw_framework::includeCSS('projectmanager','gantt');
-
+		$GLOBALS['egw_info']['flags']['app_header'] = '';
+		
 		// Yes, we want the link registry
 		$GLOBALS['egw_info']['flags']['js_link_registry'] = true;
 
@@ -91,9 +92,9 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		if(!is_array($project_id)) {
 			$project_id = explode(',',$project_id);
 		}
-		$projects = array();
-		$params = $params['exec'];
-
+		$data = array('data' => array(), 'links' => array());
+		$params['level'] = 1;
+		if(!$params['depth']) $params['depth'] = 2;
 
 		// Parse times
 		if($params['start']['str']) {
@@ -116,10 +117,10 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		}
 
 		foreach($project_id as $pm_id) {
-			$projects[] = $this->add_project($pm_id, $params);
+			$projects[] = $this->add_project($data, $pm_id, $params);
 		}
 		$response = egw_json_response::get();
-		$response->data($projects);
+		$response->data($data);
 	}
 
 	// Get the data into required format
@@ -137,7 +138,7 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 			'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
 			'start_date'	=>	egw_time::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],egw_time::DATABASE),
 			'open'	=>	$params['level'] < $params['depth'],
-			'completion' => ((int)substr($this->project->data['pm_completion'],0,-1))/100
+			'progress' => ((int)substr($this->project->data['pm_completion'],0,-1))/100
 		);
 		if($params['planned_times'] ? $this->project->data['pm_planned_end'] : $this->project->data['pm_real_end'])
 		{
@@ -254,16 +255,12 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 				{
 					$pe['end_date'] = egw_time::to((int)$pe['pe_end'],egw_time::DATABASE);
 				}
+				$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
 				$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
 
 				$elements[] = $pe;
 			}
 			
-			// 0 duration tasks must be handled specially to avoid errors
-			if(!$pe['duration']) $pe['duration'] = 1;
-
-			// Set field for filter to filter on
-			$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
 			$element_index[$pe['pe_id']] = $pe;
 		}
 
@@ -272,6 +269,12 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		{
 			foreach($elements as &$pe)
 			{
+				// 0 duration tasks must be handled specially to avoid errors
+				if(!$pe['duration']) $pe['duration'] = 1;
+
+				// Set field for filter to filter on
+				$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
+				
 				$params['level'] = $level + 1;
 				if($pe['pe_app'] == 'projectmanager')
 				{
@@ -303,28 +306,53 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 	/**
 	 * User updated start date or duration from gantt chart
 	 */
-	public function ajax_update($changes, $params)
+	public function ajax_update($values, $params)
 	{
-		$params = $params['exec'];
-
-		foreach((array)$changes as $pe_id => $values)
+		if($params['planned_times'] == 'false') $params['planned_times'] = false;
+		if($values['pe_id'])
 		{
-			$this->read(array('pe_id' => (int)$pe_id));
+			$this->read(array('pe_id' => (int)$values['pe_id']));
 			$keys = array();
+			$keys['pe_completion'] = (int)($values['progress'] * 100).'%';
 			if(array_key_exists('duration', $values))
 			{
-				// Duration comes in hours
-				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'] * 60;
+				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'];
 			}
-			if(array_key_exists('start', $values))
+			if(array_key_exists('start_date', $values))
 			{
-				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = $values['start'];
+				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = egw_time::to($values['start_date'],'ts');
+			}
+			if(array_key_exists('end_date', $values))
+			{
+				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = egw_time::to($values['end_date'],'ts');
 			}
 			if($keys)
 			{
 				$result = $this->save($keys);
 			}
 		}
+		else if ($values['pm_id'])
+		{
+			$pm_bo = new projectmanager_bo((int)$values['pm_id']);
+			$keys['pm_completion'] = (int)($values['progress'] * 100).'%';
+			if(array_key_exists('duration', $values))
+			{
+				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'];
+			}
+			if(array_key_exists('start_date', $values))
+			{
+				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = egw_time::to($values['start_date'],'ts');
+			}
+			if(array_key_exists('end_date', $values))
+			{
+				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = egw_time::to($values['end_date'],'ts');
+			}
+			if($keys)
+			{
+				$result = $pm_bo->save($keys);
+			}
+		}
+		error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
 }
 ?>
