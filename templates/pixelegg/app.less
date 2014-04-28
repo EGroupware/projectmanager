@@ -49,20 +49,45 @@ table.egwLinkMoreOptions {
 	border-top: none !important;
 }
 
-/*//******************************************************************
-// iframe*/
-
 
 /*#########################################################*/
 /*List View */
 
+.et2_grid td {border: 0px;}
+
+
 /*Button Add Project*/
 button#projectmanager-list_add {
-    .Complete_Button_add;
-    
-    
-    &:hover {.Complete_Button_add_hover;}
+            .Complete_Button_add_only_plus;
+            .dimension_height_m;
+
+
+            &:hover {.Complete_Button_add_only_plus_hover;}
+            &:active {background-color: @color_positive_action_active !important;}
 }
+
+// Filter
+div.et2_dropdown {top: -15px;}
+
+// Export
+#projectmanager-list_export{
+    position: relative;
+    top: -2px;
+    .dimension_width_height_s;
+    .Complete_Button_Icon_normal;
+    padding: 0.2em;
+
+        &:hover {.Complete_Button_Icon_hover;}
+
+
+}
+
+// Box width Templates + ADD
+#projectmanager-list_projectmanager-list-right {
+    div.et2_hbox {top: -8px;}
+    button {position: relative; top: 4px;}
+    }
+
 
 
 /*#########################################################*/
@@ -72,16 +97,8 @@ button#projectmanager-list_add {
 /*hinzufügen*/
 #projectmanager-elements-list .nextmatch_header {
 
-    /*linke Box*/
-    div#projectmanager-elements-list_link_add{
-        
-        .Complete_Button_add;
-        padding: 0.4em;
-        
-        &:hover {
-            .Complete_Button_add_hover;
-        }
-    }
+
+
 
     /*rechte Box*/
     #projectmanager-elements-list_projectmanager-elements-list-add{
@@ -91,20 +108,20 @@ button#projectmanager-list_add {
         /*    height: auto;*/
             background-image: none !important;
             .border_radius_button_lefttop;
-        
+
         &:hover { background-color: @egw_color_blue_lightest !important; }
 
         table.et2_grid {
             border-top: 0px;
-            
+
             td {
                 .et2_label {
-                    
+
                     &:before {content: "+";font-size: 1.5em;color: @egw_color_1;}
                 }
             }
-            
-        
+
+
             .et2_nextmatch * .et2_link_to,
             #projectmanager-elements-list_link_to{
                         position: relative;
@@ -115,15 +132,15 @@ button#projectmanager-list_add {
                         margin: 0px;
 
         }
-            
-            
-        }      
 
-        
+
+        }
+
+
 
     }
 
-}                                  
+}
 
 
 
@@ -206,9 +223,9 @@ div.projectmanager-elements-list{
 
 
 /*weitere*/
-.et2_container {
-    .background-color-10-gray;
-}
+/*.et2_container {
+    background-color: @gray_10;
+}*/
 
 #projectmanager-list {
     .egwGridView_scrollarea {
@@ -237,7 +254,7 @@ div.projectmanager-elements-list{
 
 
 #link_add.solidBorder {
-    .color-100-gray;
+    color: @gray_100;
     text-shadow: none;
     height: 40px;
     background-image: none ! important;

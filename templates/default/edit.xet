@@ -237,7 +237,7 @@
 					<description/>
 					<description/>
 				</row>
-				<row class="th dialog-header">
+				<row class="th dialogHeader">
 					<description value="Project ID" for="pm_number"/>
 					<textbox statustext="leave it empty to have one generated" id="pm_number" no_lang="1" size="20" maxlength="64"/>
 					<description value="Title" for="pm_title"/>
@@ -280,7 +280,7 @@
 						</menulist>
 					</hbox>
 				</row>
-				<row class="dialog-footer-toolbar">
+				<row class="dialogFooterToolbar">
 					<hbox span="3">
 						<button statustext="Edit this project" label="Edit" id="edit" image="edit" background_image="1"/>
 						<button statustext="Save the changes made" label="Save" id="save" image="save" background_image="1"/>
