@@ -61,23 +61,23 @@ class projectmanager_constraints_so extends so_sql
 		{
 			$filter['pm_id'] = $this->pm_id;
 		}
-		if (isset($criteria['pe_id']) && (int)$criteria['pe_id'])
+		if (isset($criteria['pe_id']) && $criteria['pe_id'])
 		{
-			$pe_id = (int) $criteria['pe_id'];
+			$pe_id = is_numeric($criteria['pe_id']) ? (int) $criteria['pe_id'] : implode(',',array_map('intval',$criteria['pe_id']));
 			unset($criteria['pe_id']);
 		}
-		if (isset($filter['pe_id']) && (int)$filter['pe_id'])
+		if (isset($filter['pe_id']) && $filter['pe_id'])
 		{
-			$pe_id = (int) $filter['pe_id'];
+			$pe_id = is_numeric($filter['pe_id']) ? (int) $filter['pe_id'] : implode(',',array_map('intval',$filter['pe_id']));
 			unset($filter['pe_id']);
 		}
 		if ($pe_id)
 		{
-			$filter[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";
+			$filter[] = "(pe_id_end IN ($pe_id) OR pe_id_start IN ($pe_id))";
 
 			if ($extra_cols && !is_array($extra_cols)) $extra_cols = explode(',',$extra_cols);
 			// defines 3 constrain-types: milestone, start and end
-			$extra_cols[] = "CASE WHEN ms_id != 0 THEN 'milestone' WHEN pe_id_start=$pe_id THEN 'start' ELSE 'end' END AS constraint_type";
+			$extra_cols[] = "CASE WHEN ms_id != 0 THEN 'milestone' WHEN pe_id_start IN ($pe_id) THEN 'start' ELSE 'end' END AS constraint_type";
 			if (!$order_by) $order_by = 'constraint_type';
 		}
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
