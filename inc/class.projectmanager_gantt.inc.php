@@ -284,21 +284,18 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		}
 
 		// adding the constraints
-		if($params['constraints']) {
-			foreach($elements as &$pe)
+		if($params['constraints'])
+		{
+			foreach((array)$this->constraints->search(array('pm_id'=>$pm_id, 'pe_id'=>array_keys($element_index))) as $constraint)
 			{
-				foreach((array)$this->constraints->search(array('pm_id'=>$pm_id, 'pe_id'=>$pe['pe_id'])) as $constraint)
-				{
-					if($pe['pe_id'] == $constraint['pe_id_end']) continue;
-					$next_id = $constraint['pe_id_end'];
-					// Chart requires constraints to respect dates
-					if($pe['pe_start'] > $element_index[$next_id]['pe_start'])
-					{
-					//	$pe['pe_constraint'][] = $next_id;
-					}
-					$pe['pe_constraint'][] = $next_id;
-				}
-			}
+				$data['links'][] = array(
+					'id' => $constraint['pm_id'] . ':'.$constraint['pe_id_start'].':'.$constraint['pe_id_end'],
+					'source' => $constraint['pe_id_start'],
+					'target' => $constraint['pe_id_end'],
+					// TODO: Get proper type
+					'type' => 0
+				);
+			}			
 		}
 		return $elements;
 	}
