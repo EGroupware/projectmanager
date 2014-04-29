@@ -54,13 +54,25 @@ app.classes.projectmanager = AppJS.extend(
 	/**
 	 * Change the selected project
 	 *
-	 * @param {string|egwAction} 
+	 * This is a callback for the tree, either on click (node_id is a string) or
+	 * context menu
+	 *
+	 * TODO: This could be a little more efficient and just change the project ID of
+	 * whatever we're viewing
+	 *
+	 * Crazy parameters thanks to action system.
+	 * @param {string|egwAction} node_id Either the selected leaf, or a context-menu action
+	 * @param {et2_tree|egwActionObject[]} tree_widget Either the tree widget, or the selected leaf.
 	 */
 	set_project: function(node_id, tree_widget, old_node_id)
 	{
 		if(node_id == old_node_id)
 		{
 			return false;
+		}
+		if(typeof node_id == 'object' && tree_widget[0])
+		{
+			node_id = tree_widget[0].id;
 		}
 
 		if(node_id)

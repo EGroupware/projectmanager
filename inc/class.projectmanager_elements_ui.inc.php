@@ -73,6 +73,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$this->tpl->location(array(
 				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('You need to select a project first'),
+				'ajax'       => 'true'
 			));
 		}
 		parent::__construct($pm_id);
@@ -83,6 +84,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$this->tpl->location(array(
 				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'msg'        => lang('Permission denied !!!'),
+				'ajax'       => 'true'
 			));
 		}
 
@@ -838,7 +840,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		);
 		$this->tpl->read('projectmanager.elements.list');
 		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
-		$content['project_tree'] = 'projectmanager::'.$this->pm_id;
+		if($this->pm_id) $content['project_tree'] = 'projectmanager::'.$this->pm_id;
 		$this->tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 
 		// set id for automatic linking via quick add

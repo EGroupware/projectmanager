@@ -1019,6 +1019,12 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		$actions = array(
 			array(
+				'caption' => 'Elementlist',
+				'allowOnMultiple' => false,
+				'onExecute' => 'javaScript:app.projectmanager.set_project',
+				'default' => true,
+			),
+			array(
 				'caption' => 'Ganttchart',
 				'icon' => 'navbar',
 				'app'  => 'projectmanager',
