@@ -1023,6 +1023,7 @@ class projectmanager_ui extends projectmanager_bo
 				'allowOnMultiple' => false,
 				'onExecute' => 'javaScript:app.projectmanager.set_project',
 				'default' => true,
+				'allowOnMultiple' => false,
 			),
 			array(
 				'caption' => 'Ganttchart',
@@ -1043,7 +1044,17 @@ class projectmanager_ui extends projectmanager_bo
 				'caption' => 'Pricelist',
 				'icon' => 'pricelist',
 				'app'  => 'projectmanager',
-				'onExecute' => 'javaScript:app.projectmanager.show_pricelist'
+				'onExecute' => 'javaScript:app.projectmanager.show_pricelist',
+				'allowOnMultiple' => false,
+			);
+		}
+		if (isset($GLOBALS['egw_info']['user']['apps']['filemanager']))
+		{
+			$actions[] = array(
+				'caption' => 'Filemanager',
+				'icon' => 'filemanager/navbar',
+				'onExecute' => 'javaScript:app.projectmanager.show_filemanager',
+				'allowOnMultiple' => false,
 			);
 		}
 		return $actions;

@@ -158,7 +158,7 @@ class projectmanager_hooks
 						'menuaction' => 'filemanager.filemanager_ui.index',
 						'pm_id'      => $pm_id,
 						'ajax'       => 'true',
-					)),
+					),'filemanager'),
 				);
 			}
 

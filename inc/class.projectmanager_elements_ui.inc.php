@@ -678,6 +678,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'onExecute' => 'javaScript:app.projectmanager.show_gantt',
 				'enabled' => true,
 			),
+			'sync_all' => array(
+				'caption' => 'Synchronise all',
+				'icon' => 'agt_reload',
+				'hint' => 'necessary for project-elements doing that not automatic',
+				'group' => ++$group,
+			),
+			'cat' => nextmatch_widget::category_action(
+				'projectmanager',$group,'Change category','cat_'
+				)+array(
+					'disableClass' => 'rowNoEdit',
+				
+			),
+			'erole' => array(
+				'caption' => 'Element roles',
+				'group' => $group,
+				'disableClass' => 'rowNoEdit',
+
+			),
 			'timesheet' => array(
 				'icon' => 'timesheet/navbar',
 				'caption' => 'Timesheet',
@@ -708,27 +726,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			);
 		}
 		$actions += array(
-			'sync_all' => array(
-				'caption' => 'Synchronise all',
-				'icon' => 'agt_reload',
-				'hint' => 'necessary for project-elements doing that not automatic',
-				'group' => ++$group,
-			),
-			/* not (yet) implemented
-			'select_all' => array(
-				'caption' => 'Whole query',
-				'checkbox' => true,
-				'hint' => 'Apply the action on the whole query, NOT only the shown entries',
-				'group' => ++$group,
-			),*/
 			'documents' => projectmanager_merge::document_action(
 				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
 				$group, 'Insert in document', 'document_'
-			),
-			'cat' => nextmatch_widget::category_action(
-				'projectmanager',$group,'Change category','cat_'
-			)+array(
-				'disableClass' => 'rowNoEdit',
 			),
 			'delete' => array(
 				'caption' => 'Delete',
@@ -737,7 +737,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'disableClass' => 'rowNoDelete',
 			),
 		);
-
+		if(!$this->config['enable_eroles'])
+		{
+			unset($actions['erole']);
+		}
+		else
+		{
+			$actions['erole']['children'] = array();
+			foreach($this->eroles->get_free_eroles() as $erole)
+			{
+				$actions['erole']['children']['erole_'.$erole['role_id']] = $erole + array(
+					'caption' => $erole['role_title'],
+					'group' => $actions['erole']['group'],
+					'enabled' => 'javaScript:app.projectmanager.is_erole_allowed'
+				);
+			}
+		}
 		//_debug_array($actions);
 		return $actions;
 	}
@@ -939,6 +954,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$action = 'document';
 		}
 		if (substr($action,0,4) == 'cat_') list($action,$cat_id) = explode('_',$action);
+		if (substr($action,0,6) == 'erole_') list($action,$erole) = explode('_',$action);
 
 		switch($action)
 		{
@@ -954,7 +970,30 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					return true;
 				}
 				break;
+			case 'erole':
+				foreach($checked as $id)
+				{
+					$element = $this->read($id);
+					if($element['pe_eroles'] && !is_array($element['pe_eroles']))
+					{
+						$element['pe_eroles'] = explode(',',$element['pe_eroles']);
+					}
+					else
+					{
+						$element['pe_eroles'] = array();
+					}
+					$element['pe_eroles'][] = $erole;
 
+					if($this->save(array('pe_eroles' => implode(',',array_unique($element['pe_eroles'])))))
+					{
+
+					}
+					else
+					{
+						$msg = lang('%1 element(s) updated',count($checked));
+					}
+				}
+				break;
 			case 'delete':
 				if (!$this->project->check_acl(EGW_ACL_ADD))
 				{

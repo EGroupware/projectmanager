@@ -281,5 +281,68 @@ app.classes.projectmanager = AppJS.extend(
 			pm_id:id.join(','), // Server expects CSV, not array
 			ajax: 'true'
 		}), 'projectmanager',false,'projectmanager');
+	},
+
+	/**
+	 * Show the filemanager for a selected project
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 */
+	show_filemanager: function(action,selected)
+	{
+		var id = [];
+		for(var i = 0; i < selected.length; i++)
+		{
+			// IDs look like projectmanager::#, or projectmanager_elements::projectmanager:#:#
+			// filemanager wants just #
+			var split = selected[i].id.split('::');
+			if(split.length > 1)
+			{
+				var matches = split[1].match(':([0-9]+):?');
+				id.push(matches ? matches[1] : split[1]);
+			}
+		}
+		egw.open_link(egw.link('/index.php', {
+			menuaction: 'filemanager.filemanager_ui.index',
+			pm_id:id.join(','), // Server expects CSV, not array
+			ajax: 'true'
+		}), 'filemanager',false,'filemanager');
+	},
+
+	/**
+	 * Enabled check for erole action
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 */
+	is_erole_allowed: function(action,selected)
+	{
+		var allowed = true;
+
+		// Some eroles can only be assigned to a single element.  If already assigned,
+		// they won't be an action, but we'll prevent setting multiple elements
+		if(action.data && !action.data.role_multi && selected.length > 1)
+		{
+			allowed = false;
+		}
+		
+		// Erole is limited to only these apps, from projectmanager_elements_bo
+		var erole_apps = ['addressbook','calendar','infolog'];
+
+		for(var i = 0; i < selected.length && allowed; i++)
+		{
+			var data = egw.dataGetUIDdata(selected[i].id)
+			if(!data || !data.data)
+			{
+				allowed = false;
+			}
+			if(erole_apps.indexOf(data.data.pe_app) < 0)
+			{
+				allowed = false
+			}
+		}
+		
+		return allowed;
 	}
 });
