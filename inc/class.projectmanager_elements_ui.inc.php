@@ -260,6 +260,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			{
 				$this->read((int) $_GET['pe_id']);
 			}
+			else if ($_GET['pe_id'] && strpos($_GET['pe_id'],':') > 0)
+			{
+				list($app,$app_id,$pe_id) = explode(':',$_GET['pe_id']);
+				$this->read((int) $pe_id);
+			}
 			if ($this->data['pe_id'])
 			{
 				if (!$this->check_acl(EGW_ACL_READ))
