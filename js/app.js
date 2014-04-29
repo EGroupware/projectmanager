@@ -195,9 +195,9 @@ app.classes.projectmanager = AppJS.extend(
 	 *
 	 *  Used in erole list in element list, maybe others?
 	 */
-	toggleDiv: function(target)
+	toggleDiv: function(event, widget, target)
 	{
-		element = $j(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
+		var element = $j(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
 		if($j(element).css('display') == 'none')
 		{
 			$j(element).fadeIn('medium');

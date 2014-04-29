@@ -13,7 +13,9 @@
 			<rows>
 				<row>
 					<link-to label="Add existing" id="link_to" no_files="true"/>
-					<image align="right" label="Show more options" src="extra_icons" onclick="app.projectmanager.toggleDiv"/>
+					<!--
+					<image align="right" label="Show more options" src="extra_icons" onclick="app.projectmanager.toggleDiv" readonly="true"/>
+					-->
 				</row>
 			</rows>
 		</grid>

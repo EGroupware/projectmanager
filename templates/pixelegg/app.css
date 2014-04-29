@@ -48,6 +48,7 @@ tr.projectmanager_rowHasParent > td:first-child {
 }
 /* Element list hidden eroles */
 table.egwLinkMoreOptions {
+  display: none;
   position: absolute;
   right: 0;
   width: 240px;
@@ -84,6 +85,7 @@ tr.projectmanager_rowHasParent > td:first-child {
 }
 /* Element list hidden eroles */
 table.egwLinkMoreOptions {
+  display: none;
   position: absolute;
   right: 0;
   width: 240px;
