@@ -291,21 +291,30 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	show_filemanager: function(action,selected)
 	{
-		var id = [];
-		for(var i = 0; i < selected.length; i++)
+		var app = '';
+		var id = '';
+		for(var i = 0; i < selected.length && id == ''; i++)
 		{
-			// IDs look like projectmanager::#, or projectmanager_elements::projectmanager:#:#
-			// filemanager wants just #
+			// IDs look like projectmanager::#, or projectmanager_elements::app:app_id:element_id
 			var split = selected[i].id.split('::');
 			if(split.length > 1)
 			{
-				var matches = split[1].match(':([0-9]+):?');
-				id.push(matches ? matches[1] : split[1]);
+				var matches = split[1].match('([_a-z]+):([0-9]+):?');
+				if(matches != null)
+				{
+					app = matches[1];
+					id = matches[2];
+				}
+				else
+				{
+					app = split[0];
+					id = split[1];
+				}
 			}
 		}
 		egw.open_link(egw.link('/index.php', {
 			menuaction: 'filemanager.filemanager_ui.index',
-			pm_id:id.join(','), // Server expects CSV, not array
+			path: '/apps/'+app+'/'+id,
 			ajax: 'true'
 		}), 'filemanager',false,'filemanager');
 	},

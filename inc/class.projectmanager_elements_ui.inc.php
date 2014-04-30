@@ -718,11 +718,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			$actions['filemanager'] = array(
-				// Has to be a submit, IDs are more than just a number
 				'icon' => 'filemanager/navbar',
 				'caption' => 'Filemanager',
 				'allowOnMultiple' => false,
 				'group' => $group,
+				'onExecute' => 'javaScript:app.projectmanager.show_filemanager',
 			);
 		}
 		$actions += array(
@@ -929,14 +929,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						unset($checked[$key]);
 					}
-				}
-				else if ($action == 'filemanager')
-				{
-					$link = array(
-						'menuaction' => 'filemanager.filemanager_ui.index',
-						'path' => "/apps/$app/$app_id"
-					);
-					egw::redirect_link('/index.php',$link);
 				}
 				elseif (strpos($action,'document') !== false && $app == 'projectmanager' && $id == 0)
 				{

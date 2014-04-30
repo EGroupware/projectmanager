@@ -776,7 +776,7 @@ class projectmanager_ui extends projectmanager_bo
 			'filemanager' => array(
 				'icon' => 'filemanager/navbar',
 				'caption' => 'Filemanager',
-				'url' => 'menuaction=filemanager.filemanager_ui.index&path=/apps/projectmanager/$id',
+				'onExecute' => 'javaScript:app.projectmanager.show_filemanager',
 				'allowOnMultiple' => false,
 				'group' => $group,
 			),
