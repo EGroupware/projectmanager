@@ -237,23 +237,40 @@ app.classes.projectmanager = AppJS.extend(
 	},
 
 	/**
-	 * Handler for double clicking on a task in the gantt chart
+	 * Handler for open action (double click) on the gantt chart
 	 *
-	 * @param {Object} task Task information, as sent to the gantt
-	 * @param {et2_gantt} gantt_widget Gantt widget
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
 	 */
-	gantt_open: function(task, gantt_widget)
+	gantt_open_action: function(action,selected)
 	{
+		var task = {};
+		if(selected[0].data)
+		{
+			task = selected[0].data;
+		}
 		// Project element
 		if(task.pe_app)
 		{
 			this.egw.open(task.pe_app_id, task.pe_app);
+		}
+		else if (task.type && task.type == 'milestone')
+		{
+			egw.open_link(egw.link('/index.php',{
+				menuaction: 'projectmanager.projectmanager_milestones_ui.edit',
+				pm_id: task.pm_id,
+				ms_id: task.ms_id
+			}), false, '680x450', 'projectmanager');
 		}
 		// Project
 		else
 		{
 			this.egw.open(task.id, 'projectmanager');
 		}
+	},
+
+	gantt_edit_element: function(action,selected)
+	{
 	},
 
 	/**
@@ -295,20 +312,29 @@ app.classes.projectmanager = AppJS.extend(
 		var id = '';
 		for(var i = 0; i < selected.length && id == ''; i++)
 		{
-			// IDs look like projectmanager::#, or projectmanager_elements::app:app_id:element_id
-			var split = selected[i].id.split('::');
-			if(split.length > 1)
+			// Data was provided, just read from there
+			if(selected[i].data && selected[i].data.pe_app)
 			{
-				var matches = split[1].match('([_a-z]+):([0-9]+):?');
-				if(matches != null)
+				app = selected[i].data.pe_app;
+				id = selected[i].data.pe_app_id;
+			}
+			else
+			{
+				// IDs look like projectmanager::#, or projectmanager_elements::app:app_id:element_id
+				var split = selected[i].id.split('::');
+				if(split.length > 1)
 				{
-					app = matches[1];
-					id = matches[2];
-				}
-				else
-				{
-					app = split[0];
-					id = split[1];
+					var matches = split[1].match('([_a-z]+):([0-9]+):?');
+					if(matches != null)
+					{
+						app = matches[1];
+						id = matches[2];
+					}
+					else
+					{
+						app = split[0];
+						id = split[1];
+					}
 				}
 			}
 		}
@@ -341,12 +367,14 @@ app.classes.projectmanager = AppJS.extend(
 
 		for(var i = 0; i < selected.length && allowed; i++)
 		{
-			var data = egw.dataGetUIDdata(selected[i].id)
-			if(!data || !data.data)
+			var data = selected[i].data || egw.dataGetUIDdata(selected[i].id);
+			if(data && data.data) data = data.data;
+			if(!data)
 			{
 				allowed = false;
+				continue;
 			}
-			if(erole_apps.indexOf(data.data.pe_app) < 0)
+			if(erole_apps.indexOf(data.pe_app) < 0)
 			{
 				allowed = false
 			}

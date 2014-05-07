@@ -1,6 +1,6 @@
 <?php
 
-class projectmanager_gantt extends projectmanager_elements_bo {
+class projectmanager_gantt extends projectmanager_elements_ui {
 
 	public $public_functions = array(
 		'chart'	=> true,
@@ -42,6 +42,7 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 				'msg'        => lang('You need to select a project first'),
 			));
 		}
+		$pm_id = is_array($pm_id) ? $pm_id : explode(',',$pm_id);
 		if ($data['sync_all'])
 		{
 			$this->project = new projectmanager_bo($pm_id);
@@ -52,6 +53,26 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 			unset($data['sync_all']);
 		}
 
+		if($data)
+		{
+			// Save settings implicitly as user preference
+			$GLOBALS['egw']->preferences->add('projectmanager','gantt_planned_times',$data['planned_times']);
+			$GLOBALS['egw']->preferences->add('projectmanager','gantt_constraints',$data['constraints']);
+			// save prefs, but do NOT invalid the cache (unnecessary)
+			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
+
+			// Save filters in session per project
+			error_log("Stuffing into session");
+			$result = egw_cache::setSession('projectmanager', 'gantt_'.$pm_id[0], $data['gantt']);
+		}
+		else
+		{
+			$data = array(
+				'planned_times' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_planned_times'],
+				'constraints' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_constraints'],
+				'gantt' => (array)egw_cache::getSession('projectmanager', 'gantt_'.$pm_id[0])
+			);
+		}
 		egw_framework::includeCSS('projectmanager','gantt');
 		$GLOBALS['egw_info']['flags']['app_header'] = '';
 		
@@ -61,9 +82,8 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		// Default to project elements, and their children - others will be done via ajax
 		if(!array_key_exists('depth',$data)) $data['depth'] = 2;
 
-		$pm_id = is_array($pm_id) ? $pm_id : explode(',',$pm_id);
 
-		$data['gantt'] = array('data' => array(), 'links' => array());
+		$data['gantt'] = $data['gantt'] + array('data' => array(), 'links' => array());
 		$data['project_tree'] = array();
 		foreach($pm_id as $id)
 		{
@@ -84,11 +104,24 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		
 		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
 		$template->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
+		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
 
 		$template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
 	}
 
-	public function ajax_gantt_project($project_id, $params) {
+	/**
+	 * Get (context menu) actions for the gantt chart
+	 */
+	protected function get_gantt_actions()
+	{
+		$actions = $this->get_actions();
+		$actions['open']['onExecute'] = 'javaScript:app.projectmanager.gantt_open_action';
+		$actions['edit']['onExecute'] = 'javaScript:app.projectmanager.gantt.edit_element';
+		return $actions;
+	}
+
+	public function ajax_gantt_project($project_id, $params)
+	{
 		if(!is_array($project_id)) {
 			$project_id = explode(',',$project_id);
 		}
@@ -133,13 +166,16 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 			}
 		}
 		$project = $this->project->data + array(
-			'id'	=>	$this->project->data['pm_id'],
+			'id'	=>	'projectmanager::'.$this->project->data['pm_id'],
 			'text'	=>	egw_link::title('projectmanager', $this->project->data['pm_id']),
 			'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
 			'start_date'	=>	egw_time::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],egw_time::DATABASE),
 			'open'	=>	$params['level'] < $params['depth'],
 			'progress' => ((int)substr($this->project->data['pm_completion'],0,-1))/100
 		);
+		// Set field for filter to filter on
+		$project['filter'] = $project['pm_completion'] > 0 ? ($pe['pm_completion'] != 100 ? 'ongoing' : 'done') : 'not';
+
 		if($params['planned_times'] ? $this->project->data['pm_planned_end'] : $this->project->data['pm_real_end'])
 		{
 			// Make sure we don't kill the gantt chart with too large a time span - limit to 10 years
@@ -157,8 +193,6 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 			$project['duration'] = $params['planned_times'] ? $this->project->data['pm_planned_time'] : 1;
 		}
 
-		error_log("Project $pm_id");
-		error_log(array2string($project));
 		// Not sure how it happens, but it causes problems
 		if($project['start'] && $project['start'] < 10) $project['start'] = 0;
 
@@ -168,6 +202,23 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 			}
 		}
 		$data['data'][] = $project;
+
+		// Milestones are tasks too
+		$milestones = $this->milestones->search(array('pm_id' => $pm_id),'ms_id,ms_date,ms_title');
+		foreach($milestones as $milestone)
+		{
+			$data['data'][] = array(
+				'id'	=>	'milestone:'.$milestone['ms_id'],
+				'pm_id' => $pm_id,
+				'ms_id' => $milestone['ms_id'],
+				'text'	=>	$milestone['ms_title'],
+				'parent' => 'projectmanager::'.$pm_id,
+				'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
+				'start_date'	=>	egw_time::to($milestone['ms_date'],egw_time::DATABASE),
+				'type' => 'milestone'
+			);
+		}
+
 		if($params['depth'])
 		{
 			$project['elements'] = $this->add_elements($data, $pm_id, $params, $params['level'] ? $params['level'] : 1);
@@ -178,7 +229,6 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 	}
 
 	protected function add_elements(&$data, $pm_id, $params, $level = 1) {
-		error_log(__METHOD__ . "(data, $pm_id, $params, $level)");
 		$elements = array();
 
 		if($level > $params['depth']) return $elements;
@@ -246,9 +296,9 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 				$project = true;
 				$elements[] = $pe;
 			} else {
-				$pe['id'] = $pe['pe_id'];
+				$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
 				$pe['text'] = $pe['pe_title'];
-				$pe['parent'] = $pm_id;
+				$pe['parent'] = 'projectmanager::'.$pm_id;
 				$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
 				$pe['duration'] = (float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']);
 				if($pe['pe_end'] && !$pe['duration'])
@@ -258,9 +308,12 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 				$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
 				$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
 
+				// Set field for filter to filter on
+				$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
+
 				$elements[] = $pe;
 			}
-			
+
 			$element_index[$pe['pe_id']] = $pe;
 		}
 
@@ -271,10 +324,6 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 			{
 				// 0 duration tasks must be handled specially to avoid errors
 				if(!$pe['duration']) $pe['duration'] = 1;
-
-				// Set field for filter to filter on
-				$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
-				
 				$params['level'] = $level + 1;
 				if($pe['pe_app'] == 'projectmanager')
 				{
@@ -288,12 +337,17 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 		{
 			foreach((array)$this->constraints->search(array('pm_id'=>$pm_id, 'pe_id'=>array_keys($element_index))) as $constraint)
 			{
+				// IDs have to match what we give the gantt chart
+				$start = $element_index[$constraint['pe_id_start']];
+				$end = $element_index[$constraint['pe_id_end']];
+				$constraint['pe_id_start'] = $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'];
+				$constraint['pe_id_end'] = $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'];
 				$data['links'][] = array(
 					'id' => $constraint['pm_id'] . ':'.$constraint['pe_id_start'].':'.$constraint['pe_id_end'],
 					'source' => $constraint['pe_id_start'],
 					'target' => $constraint['pe_id_end'],
 					// TODO: Get proper type
-					'type' => 0
+					'type' => $constraint['constraint_type']=='start' ? 0 : 3
 				);
 			}			
 		}
@@ -322,6 +376,10 @@ class projectmanager_gantt extends projectmanager_elements_bo {
 			if(array_key_exists('end_date', $values))
 			{
 				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = egw_time::to($values['end_date'],'ts');
+			}
+			foreach($keys as $field => $val)
+			{
+				if(is_int($val)) error_log("$field: " . egw_time::to($val));
 			}
 			if($keys)
 			{

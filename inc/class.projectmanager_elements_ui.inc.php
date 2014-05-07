@@ -627,7 +627,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 *
 	 * @return array see nextmatch_widget::egw_actions()
 	 */
-	private function get_actions()
+	protected function get_actions()
 	{
 		$actions = array(
 			'open' => array(	// Open for project itself and elements other then (sub-)projects
