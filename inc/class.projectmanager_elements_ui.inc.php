@@ -619,7 +619,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		return $total;
 	}
-
+	
 	/**
 	 * Get actions / context menu for index
 	 *
@@ -629,6 +629,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	protected function get_actions()
 	{
+		//Create app list for "Add new" menu items
+		$app_list = egw_link::app_list('query');
+		foreach ($app_list as $inx => $val)
+		{
+			$app_list_menu [$inx] = array(
+						'caption' => $val,
+						'icon' => 'navbar/'.$inx,
+						'onExecute' => 'app.projectmanager.add_new',
+						);
+		}
+		
 		$actions = array(
 			'open' => array(	// Open for project itself and elements other then (sub-)projects
 				'caption' => 'Open',
@@ -677,6 +688,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'enableId' => 'projectmanager:',
 				'onExecute' => 'javaScript:app.projectmanager.show_gantt',
 				'enabled' => true,
+			),
+			'add_new' => array (
+				'caption' => 'Add new',
+				'group' => ++$group,
+				'icon' => 'add',
+				'children' => $app_list_menu
+			),
+			'add_existing' => array(
+				'caption' => 'Add existing',
+				'group' => $group,
+				'nm_action' => 'open_popup',
 			),
 			'sync_all' => array(
 				'caption' => 'Synchronise all',
@@ -786,7 +808,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if ($content['nm']['action'])
 		{
-			$this->action($content['nm']['action'], $content['nm']['selected'], $msg);
+			$this->action($content['nm']['action'], $content['nm']['selected'], $msg, $content['add_existing_popup']);
 		}
 		$content = array(
 			'nm' => $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager'),
@@ -808,6 +830,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					4 => 'Cumulated elements too',
 					5 => 'Details of cumulated',
 				),
+				'header_row' => 'projectmanager.elements.list.add-new',
 				'col_filter' => array('pe_resources' => null),	// default value, to suppress loop
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
@@ -829,8 +852,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// add "buttons" only with add-rights
 		if ($this->project->check_acl(EGW_ACL_ADD))
 		{
-			$content['nm']['header_right'] = 'projectmanager.elements.list.add';
-			$content['nm']['header_left']  = 'projectmanager.elements.list.add-new';
 			if(!$this->config['enable_eroles'])
 			{
 				// disable moreOptions button to select eRoles
@@ -841,17 +862,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		else
 		{
-			unset($content['nm']['header_right']);
-			unset($content['nm']['header_left']);
 			$content['nm']['actions']['sync_all']['enabled'] = false;
 		}
-		$content['nm']['link_to'] = array(
-			'to_id'    => $this->pm_id,
-			'to_app'   => 'projectmanager',
-			'no_files' => true,
-			'search_label' => 'Add existing',
-			'link_label'   => 'Add',
-		);
 		$content['nm']['link_add'] = array(
 			'to_id'    => $this->pm_id,
 			'to_app'   => 'projectmanager',
@@ -908,7 +920,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 * @param string $msg to give back for the view or index
 	 * @return boolean true on success, false otherwise
 	 */
-	function action($action,$checked,&$msg)
+	function action($action,$checked,&$msg, $add_existing)
 	{
 		$document_projects = array();
 
@@ -949,6 +961,30 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		switch($action)
 		{
+			case 'add_existing':
+				$btn = $add_existing['link_action'];
+				$link_id = $add_existing['link']['id'];
+				$app = $add_existing['link']['app'];
+				if($btn['cancel'] || !$link_id)
+				{
+					break;
+				}
+				$title = egw_link::title($app, $link_id);
+				
+				if($btn['add'])
+				{
+					$action_msg = lang('linked to %1', $title);
+					if(egw_link::link('projectmanager', $this->pm_id, $app, $link_id))
+					{
+						$success++;
+					}
+					else
+					{
+						$failed++;
+					}
+				}
+				return $failed == 0;
+
 			case 'cat':
 				if (!$this->project->check_acl(EGW_ACL_ADD) ||
 					($num = $this->update_cat($checked, $cat_id)) === false)

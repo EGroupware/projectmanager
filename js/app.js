@@ -381,5 +381,15 @@ app.classes.projectmanager = AppJS.extend(
 		}
 		
 		return allowed;
+	},
+	
+	/**
+	 * Add new record's apps to a project
+	 * @param {type} name description
+	 * @param {type} name description
+	 */
+	add_new: function (action, selected)
+	{
+		console.log();
 	}
 });
