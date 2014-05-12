@@ -385,11 +385,20 @@ app.classes.projectmanager = AppJS.extend(
 	
 	/**
 	 * Add new record's apps to a project
-	 * @param {type} name description
-	 * @param {type} name description
+	 * 
+	 * @param {action object} action
+	 *
 	 */
-	add_new: function (action, selected)
+	add_new: function (action)
 	{
-		console.log();
+		var content = this.et2.getArrayMgr('content');
+		if (typeof content != 'undefined')
+		{
+			var pm_id = content.data['project_tree'].replace('::',':');
+			if (typeof action != 'undefined')
+			{
+				this.egw.open(pm_id, action.id.replace('act-',''), 'add');
+			}
+		}
 	}
 });

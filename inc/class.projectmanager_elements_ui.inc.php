@@ -629,17 +629,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	protected function get_actions()
 	{
-		//Create app list for "Add new" menu items
-		$app_list = egw_link::app_list('query');
-		foreach ($app_list as $inx => $val)
-		{
-			$app_list_menu [$inx] = array(
-						'caption' => $val,
-						'icon' => 'navbar/'.$inx,
-						'onExecute' => 'app.projectmanager.add_new',
-						);
-		}
-		
 		$actions = array(
 			'open' => array(	// Open for project itself and elements other then (sub-)projects
 				'caption' => 'Open',
@@ -693,7 +682,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'caption' => 'Add new',
 				'group' => ++$group,
 				'icon' => 'add',
-				'children' => $app_list_menu
 			),
 			'add_existing' => array(
 				'caption' => 'Add existing',
@@ -774,6 +762,18 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					'enabled' => 'javaScript:app.projectmanager.is_erole_allowed'
 				);
 			}
+		}
+		
+		//Create app list for "Add new" menu items
+		$app_list = egw_link::app_list('query');
+		$actions['add_new']['children'] = array();
+		foreach ($app_list as $inx => $val)
+		{
+			$actions['add_new']['children']['act-'.$inx] = array(
+						'caption' => $val,
+						'icon' => $inx.'/navbar',
+						'onExecute' => 'javaScript:app.projectmanager.add_new',
+						);
 		}
 		//_debug_array($actions);
 		return $actions;
