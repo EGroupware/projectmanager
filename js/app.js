@@ -271,6 +271,16 @@ app.classes.projectmanager = AppJS.extend(
 
 	gantt_edit_element: function(action,selected)
 	{
+		var task = {};
+		if(selected[0].data)
+		{
+			task = selected[0].data;
+		}
+		// Project element
+		if(task.pe_id)
+		{
+			this.egw.open(task.pe_id, 'projectelement');
+		}
 	},
 
 	/**
@@ -394,7 +404,12 @@ app.classes.projectmanager = AppJS.extend(
 		var content = this.et2.getArrayMgr('content');
 		if (typeof content != 'undefined')
 		{
-			var pm_id = content.data['project_tree'].replace('::',':');
+			var pm_id = content.getEntry('project_tree');
+
+			// Gantt chart can have multiple selected
+			if(jQuery.isArray(pm_id)) pm_id = pm_id[0];
+			
+			pm_id = pm_id.replace('::',':');
 			if (typeof action != 'undefined')
 			{
 				this.egw.open(pm_id, action.id.replace('act-',''), 'add');

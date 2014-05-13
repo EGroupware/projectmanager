@@ -62,7 +62,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
 
 			// Save filters in session per project
-			error_log("Stuffing into session");
 			$result = egw_cache::setSession('projectmanager', 'gantt_'.$pm_id[0], $data['gantt']);
 		}
 		else
@@ -116,7 +115,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	{
 		$actions = $this->get_actions();
 		$actions['open']['onExecute'] = 'javaScript:app.projectmanager.gantt_open_action';
-		$actions['edit']['onExecute'] = 'javaScript:app.projectmanager.gantt.edit_element';
+		$actions['edit']['onExecute'] = 'javaScript:app.projectmanager.gantt_edit_element';
+		
 		return $actions;
 	}
 
@@ -205,7 +205,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 		// Milestones are tasks too
 		$milestones = $this->milestones->search(array('pm_id' => $pm_id),'ms_id,ms_date,ms_title');
-		foreach($milestones as $milestone)
+		foreach((array)$milestones as $milestone)
 		{
 			$data['data'][] = array(
 				'id'	=>	'milestone:'.$milestone['ms_id'],
