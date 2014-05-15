@@ -154,7 +154,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	function notify($data)
 	{
 		if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify(link_id=$data[link_id], type=$data[type], target=$data[target_app]-$data[target_id])");
-
+		//error_log(__METHOD__."(".array2string($data).')');
 		switch($data['type'])
 		{
 			case 'link':
@@ -165,6 +165,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 					$link = egw_link::get_link($data['link_id']);
 					if ($link['link_id2'] == $data['id'])
 					{
+						//error_log(__METHOD__."() --> ignoring notification to child");
 						return;	// this is a notification to a child / subproject --> ignore it
 					}
 					// for new links we need to make sure the new child is not an ancestor of us
@@ -173,6 +174,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 						if (($ancestors = $this->project->ancestors($data['id'])) && in_array($data['target_id'],$ancestors))
 						{
 							if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify: cant use pm_id=$data[target_id] as child as it's one of our (pm_id=$data[id]) ancestors=".print_r($ancestors,true));
+							//error_log(__METHOD__."() --> ignoring notification as no project-element");
 							return;	// the link is not used as an project-element, thought it's still a regular link
 						}
 						if ((int) $this->debug >= 3 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify: ancestors($data[id])=".print_r($ancestors,true));
@@ -217,7 +219,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		if (!$pm_id) $pm_id = $this->pm_id;
 
 		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("projectmanager_elements_bo::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
-
+		//error_log(__METHOD__."('$app', $id, pe_id=$pe_id, pm_id=$pm_id, update_project=$update_project, extra_keys=".array2string($extra_keys).")");
 		if (!$app || !$id || !(int) $pm_id)
 		{
 			return false;
@@ -255,6 +257,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 		if (!($data = $datasource->read($id,$this->data)))
 		{
+			//error_log(__METHOD__."() --> no read access");
 			return false;	// eg. no read access, so I cant update
 		}
 		foreach($data as $name => $value)
@@ -262,7 +265,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			if (isset($datasource->name2id[$name]) && !($this->data['pe_overwrite'] & $datasource->name2id[$name]) &&
 				$this->data[$name] != $value)
 			{
-				//if ((int) $pe_id) echo "<p>projectmanager_elements_bo::update($app,$id,$pe_id,$pm_id) $name ({$datasource->name2id[$name]}) updated, pe_overwrite={$this->data['pe_overwrite']}: '{$this->data[$name]}' != '$value'</p>\n";
+				//if ((int) $pe_id) error_log(__METHOD__."($app,$id,$pe_id,$pm_id) $name ({$datasource->name2id[$name]}) updated, pe_overwrite={$this->data['pe_overwrite']}: '{$this->data[$name]}' != '$value'");
 				$this->data[$name] = $value;
 				$this->updated |= $datasource->name2id[$name];
 			}
@@ -271,6 +274,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 		if((int) $pe_id && ($need_save_anyway || $this->updated))
 		{
+			//error_log(__METHOD__."() pe_id=$pe_id, need_save_anyway=$need_save_anyway, this->updated=$this->updated --> saving");
 			$this->save(null,false,$update_project ? $this->updated & ~PM_TITLE & ~PM_DETAILS & ~PM_RESOURCES : 0);	// dont set modified, only synced
 		}
 		return $this->data;
