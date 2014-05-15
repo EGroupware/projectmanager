@@ -210,6 +210,7 @@ class projectmanager_bo extends projectmanager_so
 	 */
 	function update($pm_id=null,$update_necessary=-1,$data=null)
 	{
+		//error_log(__METHOD__."($pm_id, $update_necessary, ".array2string($data).")");
 		if (!$pm_id)
 		{
 			$pm_id = $this->data['pm_id'];
@@ -222,6 +223,7 @@ class projectmanager_bo extends projectmanager_so
 			if (!$this->read(array('pm_id' => $pm_id))) return;	// project does (no longer) exist
 		}
 		$pe_summary = $this->pe_summary($pm_id);
+		//error_log(__METHOD__."() pe_summary($pm_id) = ".array2string($pe_summary));
 
 		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("projectmanager_bo::update($pm_id,$update_necessary) pe_summary=".print_r($pe_summary,true));
 
@@ -248,6 +250,7 @@ class projectmanager_bo extends projectmanager_so
 		}
 		if ($save_necessary)
 		{
+			//error_log(__METHOD__."() calling save");
 			$this->save(null,false);	// dont touch modification date
 		}
 		// restore $this->data
@@ -269,6 +272,7 @@ class projectmanager_bo extends projectmanager_so
 	 */
 	function save($keys=null,$touch_modified=true,$do_notify=true)
 	{
+		//error_log(__METHOD__."(".array2string($keys).", touch_modified=$touch_modified, do_notify=$do_notify)");
 		if ($keys) $this->data_merge($keys);
 
 		// check if we have a project-ID and generate one if not
@@ -304,6 +308,7 @@ class projectmanager_bo extends projectmanager_so
 				$extra[egw_link::OLD_LINK_TITLE] = $old_title;
 			}
 			// notify the link-class about the update, as other apps may be subscribt to it
+			//error_log(__METHOD__."() calling egw_link::notify_update('projectmanager', {$this->data['pm_id']}, ".array2string($this->data+$extra).")");
 			egw_link::notify_update('projectmanager',$this->data['pm_id'],$this->data+$extra);
 		}
 		//$changed[] = array();
