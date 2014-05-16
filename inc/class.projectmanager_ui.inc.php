@@ -131,7 +131,7 @@ class projectmanager_ui extends projectmanager_bo
 						    !($this->data['pm_overwrite'] & $id) && $this->data[$pm_name] != $pe_summary[$pe_name])
 					{
 						// if we have a change in the datasource, set pe_synced
-						if ($this->data[$pm_name] != $pe_summary[$name])
+						if ($this->data[$pm_name] != $pe_summary[$pe_name])
 						{
 							$this->data['pm_synced'] = $this->now_su;
 						}
@@ -311,6 +311,7 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$content['links'] = $content['link_to'];
 
+		$preserv = $this->data;
 		// empty not explicitly in the project set values
 		if (!is_object($datasource)) $datasource =& CreateObject('projectmanager.datasource');
 		foreach($datasource->name2id as $pe_name => $id)
@@ -368,7 +369,7 @@ class projectmanager_ui extends projectmanager_bo
 			++$n;
 		}
 		//_debug_array($content);
-		$preserv = $this->data + array(
+		$preserv += array(
 			'view'     => $view,
 			'add_link' => $add_link,
 			'member'   => $content['member'],
