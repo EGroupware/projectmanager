@@ -176,6 +176,44 @@ div.et2_dropdown {
   position: relative;
   top: 4px;
 }
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button {
+  width: 32px;
+  border: 1px solid #0C5DA5;
+  margin: 6px 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  padding: -0.5em;
+  background-color: #e6e6e6 !important;
+  background-size: 16px 16px;
+  height: 24px;
+  margin-right: 0px;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button:before {
+  content: "";
+  font-size: 2em;
+  color: #0c5da5;
+  line-height: 0.6em;
+  padding-left: 0.1em;
+  padding-right: 100em;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button:active {
+  background-color: #1aa200;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button:hover {
+  background-color: #66a1d2 !important;
+  color: #ffc200;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 10px;
+}
+#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button:active {
+  background-color: #1aa200 !important;
+}
 /*#########################################################*/
 /*edit view*/
 /*hinzufügen*/
