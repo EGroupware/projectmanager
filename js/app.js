@@ -265,7 +265,7 @@ app.classes.projectmanager = AppJS.extend(
 		// Project
 		else
 		{
-			this.egw.open(task.id, 'projectmanager');
+			this.egw.open(task.pm_id, 'projectmanager');
 		}
 	},
 

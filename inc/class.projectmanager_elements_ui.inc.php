@@ -694,7 +694,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'hint' => 'necessary for project-elements doing that not automatic',
 				'group' => ++$group,
 			),
-			'cat' => nextmatch_widget::category_action(
+			'cat' => etemplate_widget_nextmatch::category_action(
 				'projectmanager',$group,'Change category','cat_'
 				)+array(
 					'disableClass' => 'rowNoEdit',
@@ -765,7 +765,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		
 		//Create app list for "Add new" menu items
-		$app_list = egw_link::app_list('query');
+		$app_list = egw_link::app_list('add');
 		$actions['add_new']['children'] = array();
 		foreach ($app_list as $inx => $val)
 		{

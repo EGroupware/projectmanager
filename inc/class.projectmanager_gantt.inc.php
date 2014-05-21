@@ -12,6 +12,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	}
 
 	public function chart($data = array()) {
+
+		// Find out which project we're working with
 		if (isset($_REQUEST['pm_id']))
 		{
 			$pm_id = $_REQUEST['pm_id'];
@@ -43,6 +45,17 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			));
 		}
 		$pm_id = is_array($pm_id) ? $pm_id : explode(',',$pm_id);
+		$this->pm_id = $pm_id[0];
+
+		// Deal with incoming
+		if($data['gantt']['action'])
+		{
+			$result = $this->action($data['gantt']['action'], $data['gantt']['selected'], $msg, $add_existing);
+			if($msg)
+			{
+				egw_framework::message($msg, $result ? 'success' : 'error');
+			}
+		}
 		if ($data['sync_all'])
 		{
 			$this->project = new projectmanager_bo($pm_id);
@@ -116,7 +129,33 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		$actions = $this->get_actions();
 		$actions['open']['onExecute'] = 'javaScript:app.projectmanager.gantt_open_action';
 		$actions['edit']['onExecute'] = 'javaScript:app.projectmanager.gantt_edit_element';
-		
+
+		// Cat IDs don't get a prefix, nm does something extra to them
+		$add_id = function(&$action) use (&$add_id)
+		{
+			$children = $action['children'];
+			$action['children'] = array();
+			foreach($children as $id => $sub)
+			{
+				if($sub['id'] == $id) continue;
+				$sub['id'] = 'cat_'.$id;
+				$action['children'][] = $sub;
+				if($sub['children'])
+				{
+					$add_id($sub);
+				}
+			}
+		};
+		$add_id($actions['cat']);
+
+
+
+		// Don't do add existing, documents or timesheet,
+		// they're not implemented / tested
+		unset($actions['add_existing']);
+		unset($actions['timesheet']);
+		unset($actions['documents']);
+
 		return $actions;
 	}
 
@@ -340,14 +379,15 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				// IDs have to match what we give the gantt chart
 				$start = $element_index[$constraint['pe_id_start']];
 				$end = $element_index[$constraint['pe_id_end']];
-				$constraint['pe_id_start'] = $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'];
-				$constraint['pe_id_end'] = $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'];
+				$constraint['pe_id_start'] = $start ? $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'] : 'milestone:'.$constraint['ms_id'];
+				$constraint['pe_id_end'] = $end ? $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'] : 'milestone:'.$constraint['ms_id'];
+				error_log(array2string($constraint));
 				$data['links'][] = array(
 					'id' => $constraint['pm_id'] . ':'.$constraint['pe_id_start'].':'.$constraint['pe_id_end'],
 					'source' => $constraint['pe_id_start'],
 					'target' => $constraint['pe_id_end'],
 					// TODO: Get proper type
-					'type' => $constraint['constraint_type']=='start' ? 0 : 3
+					'type' => $constraint['constraint_type']=='start' || $constraint['constraint_type'] =='milestone' ? 0 : 3
 				);
 			}			
 		}
@@ -357,12 +397,13 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	/**
 	 * User updated start date or duration from gantt chart
 	 */
-	public function ajax_update($values, $params)
+	public static function ajax_update($values, $params)
 	{
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
 		if($values['pe_id'])
 		{
-			$this->read(array('pe_id' => (int)$values['pe_id']));
+			$pe_bo = new projectmanager_elements_bo((int)$values['pm_id']);
+			$pe_bo->read(array('pe_id' => (int)$values['pe_id']));
 			$keys = array();
 			$keys['pe_completion'] = (int)($values['progress'] * 100).'%';
 			if(array_key_exists('duration', $values))
@@ -383,8 +424,15 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			}
 			if($keys)
 			{
-				$result = $this->save($keys);
+				$result = $pe_bo->save($keys);
 			}
+		}
+		else if ($values['ms_id'])
+		{
+			// Update milestone
+			$pe_bo = new projectmanager_elements_bo((int)$values['pm_id']);
+			$milestone = $pe_bo->milestones->read((int)$values['ms_id']);
+			$pe_bo->milestones->save(array('ms_date' => egw_time::to($values['start_date'],'ts')));
 		}
 		else if ($values['pm_id'])
 		{
@@ -407,7 +455,40 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$result = $pm_bo->save($keys);
 			}
 		}
+		else if ($values['id'] && $values['source'] && $values['target'])
+		{
+			// Link added or removed
+			$pe_bo = new projectmanager_elements_bo((int)$pm_id);
+
+			error_log(array2string($values));
+			list(,$pm_id) = explode('::',$values['parent']);
+			list(,$m_start_id,$start_id) = explode(':',$values['source']);
+			list(,$m_end_id,$end_id) = explode(':',$values['target']);
+			$keys = array(
+				'pm_id' => $pm_id,
+				'pe_id_start' => (int)$start_id,
+				'pe_id_end' => (int)$end_id,
+				'ms_id' => !(int)$start_id ? $m_start_id : (!(int)$end_id ? $m_end_id : 0)
+			);
+			// Gantt chart gives new links integer IDs
+			if($values['id'] && is_numeric($values['id']))
+			{
+				$pe_bo->constraints->save($keys);
+
+				// Return the new key so we can tell new from old
+				egw_json_response::get()->data($keys['pm_id'] . ':'.$values['source'].':'.$values['target']);
+			}
+			else if ($values['id'])
+			{
+				$pe_bo->constraints->delete($keys);
+			}
+		}
+		else
+		{
+			error_log(array2string($values));
+		}
 		error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
+	
 }
 ?>
