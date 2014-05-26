@@ -89,6 +89,7 @@ app.classes.projectmanager = AppJS.extend(
 	 * Crazy parameters thanks to action system.
 	 * @param {string|egwAction} node_id Either the selected leaf, or a context-menu action
 	 * @param {et2_tree|egwActionObject[]} tree_widget Either the tree widget, or the selected leaf.
+	 * @param {string|egwAction} old_node_id Either the selected leaf, or a context-menu action
 	 */
 	set_project: function(node_id, tree_widget, old_node_id)
 	{
@@ -128,14 +129,14 @@ app.classes.projectmanager = AppJS.extend(
 		console.log('I am element delete');
 		opener.location.href= egw.link('/index.php', {
 				menuaction: (content.data['caller'])? content.data['caller'] :'projectmanager.projectmanager_elements_ui.index',
-				delete: id,
+				delete: id
 			});
 		window.close();
 	},
 
 	/**
 	 *
-	 *
+	 * @param {object} form 
 	 */
 	calc_budget: function(form)
 	{
@@ -187,6 +188,8 @@ app.classes.projectmanager = AppJS.extend(
 
 	/**
 	 * Refresh the multi select box of eroles list
+	 * 
+	 * @param {string} action name of action
 	 */
 	erole_refresh: function(action)
 	{
@@ -220,6 +223,9 @@ app.classes.projectmanager = AppJS.extend(
 	 * Toggles display of a div
 	 *
 	 *  Used in erole list in element list, maybe others?
+	 *  @param {egw_event object} event 
+	 *  @param {wiget object} widget 
+	 *  @param {string} target jQuery selector
 	 */
 	toggleDiv: function(event, widget, target)
 	{
@@ -239,6 +245,8 @@ app.classes.projectmanager = AppJS.extend(
 	 *
 	 * The gantt chart is a single image of static size.  The size must be known
 	 * in advance, so we include it in the GET request.
+	 * @param {egwAction object} action
+	 * @param {object} selected
 	 */
 	show_gantt: function(action,selected)
 	{
@@ -412,7 +420,7 @@ app.classes.projectmanager = AppJS.extend(
 			}
 			if(erole_apps.indexOf(data.pe_app) < 0)
 			{
-				allowed = false
+				allowed = false;
 			}
 		}
 		
