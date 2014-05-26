@@ -31,7 +31,7 @@ jQuery(document).ready(function(){
 		var egw_data = task.TaskInfo.egw_data;
 		var id = egw_data.pe_id;
 		if(task.TaskInfo.EST != egw_data.startDate) {
-			if(!changes[id]) changes[id] = {}
+			if(!changes[id]) changes[id] = {};
 			changes[id].start = task.TaskInfo.EST.valueOf() / 1000;
 		}
 	});
@@ -40,7 +40,7 @@ jQuery(document).ready(function(){
 		var egw_data = task.TaskInfo.egw_data;
 		var id = egw_data.pe_id;
 		if(task.TaskInfo.Duration != egw_data.duration) {
-			if(!changes[id]) changes[id] = {}
+			if(!changes[id]) changes[id] = {};
 			changes[id].duration = task.TaskInfo.Duration;
 		}
 	});
@@ -79,6 +79,8 @@ function getGanttData() {
 /**
  * Load data from eGW style format into gantt chart, then set up 
  * eGW's UI actions.
+ * 
+ * @param {object} data
  */
 function ganttLoadProject(data) {
 	if(this.arrProjects.length > 0)
@@ -151,7 +153,7 @@ function ganttAddElement(project_data, data) {
 		name: data.pe_title,
 		startTime: new Date(data.pe_start*1000),
 		duration: data.duration || 1,
-		percentage: data.pe_completion ? parseInt(data.pe_completion.substr(0,data.pe_completion.length-1)) : 0,
+		percentage: data.pe_completion ? parseInt(data.pe_completion.substr(0,data.pe_completion.length-1)) : 0
 	};
 	// Chart can only handle single, correct constraints
 	if(data.pe_constraint) {
