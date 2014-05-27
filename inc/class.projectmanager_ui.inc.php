@@ -991,7 +991,7 @@ class projectmanager_ui extends projectmanager_bo
 				{
 					$parent =& $parent[$part];
 				}
-				$parent['item'][$project['id']] = $p;
+				$parent['item'][$project['pm_id']] = $p;
 			}
 		}
 
