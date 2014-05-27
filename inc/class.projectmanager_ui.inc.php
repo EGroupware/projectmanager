@@ -989,13 +989,13 @@ class projectmanager_ui extends projectmanager_bo
 				$parent =& $projects;
 				foreach($path as $part)
 				{
-					$parent =& $parent[$part];
+					$parent =& $parent[$part]['item'];
 				}
-				$parent['item'][$project['pm_id']] = $p;
+				$parent[$project['pm_id']] = $p;
 			}
 		}
 
-		// Tree it up
+		// Remove keys for tree widget
 		$projects = array('id'=>0,'item'=>$projects);
 		$f = function(&$project) use (&$f)
 		{
