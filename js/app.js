@@ -71,13 +71,16 @@ app.classes.projectmanager = AppJS.extend(
 	{
 		var appList = egw.link_app_list('query');
 		
-		if (typeof _links['projectmanager'] != 'undefined')
-		{	
-			if (typeof appList[_app] != 'undefined')
-			{
-				var nm = this.et2 ? this.et2.getWidgetById('nm') : null;
-				if (nm) nm.applyFilters();
-			}
+		if (typeof appList[_app] != 'undefined')
+		{
+			if (typeof _links != 'undefined')
+			{	
+				if (typeof _links.projectmanager != 'undefined')
+				{	
+					var nm = this.et2 ? this.et2.getWidgetById('nm') : null;
+					if (nm) nm.applyFilters();
+				}
+			}	
 		}	
 	},
 
