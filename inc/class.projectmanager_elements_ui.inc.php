@@ -53,7 +53,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	{
 		$this->tpl = new etemplate_new();
 
-		error_log(array2string($_GET));
 		if ((int) $_REQUEST['pm_id'])
 		{
 			$pm_id = (int) $_REQUEST['pm_id'];
