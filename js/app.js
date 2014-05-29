@@ -219,10 +219,7 @@ app.classes.projectmanager = AppJS.extend(
 			elemEditWind.location.reload();
 			
 			// Refresh list so it knows about the new role
-			if (elemEditWind.opener)
-			{
-				elemEditWind.opener.egw_appWindow('projectmanager').location.reload();
-			}
+			egw(elemEditWind).refresh('','projectmanager');
 		}
 	},
 
