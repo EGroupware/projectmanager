@@ -154,7 +154,19 @@ class projectmanager_widget
 					break;
 				}
 
-				foreach($eroles->get_free_eroles() as $id => $data)
+				$erole_list = $eroles->get_free_eroles();
+				// Make sure selected eroles are there
+				if($value)
+				{
+					foreach(is_array($value) ? $value : explode(',',$value) as $erole)
+					{
+						$erole_list[] = array(
+							'role_id' => $erole,
+							'role_title'=>$eroles->id2title($erole)
+						);
+					}
+				}
+				foreach($erole_list as $id => $data)
 				{
 					$cell['sel_options'][$data['role_id']] = array(
 						'label' => $eroles->id2description($data['role_id']).($short_label != 'true' ? $eroles->get_info($data['role_id']) : ''),
