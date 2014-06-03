@@ -317,7 +317,7 @@ app.classes.projectmanager = AppJS.extend(
 		// Project element
 		if(task.pe_id)
 		{
-			this.egw.open(task.pe_id, 'projectelement');
+			this.egw.open(task.pe_id, 'projectelement', 'edit', {pm_id: task.pm_id});
 		}
 	},
 
