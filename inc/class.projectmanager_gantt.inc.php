@@ -408,9 +408,19 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
 		if($values['pe_id'])
 		{
+			// Needed for field constants
+			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
+			
 			$pe_bo = new projectmanager_elements_bo((int)$values['pm_id']);
 			$pe_bo->read(array('pe_id' => (int)$values['pe_id']));
-			$keys = array();
+
+			$update_mask = (int)PM_COMPLETION;
+			$update_mask |= ($params['planned_times'] ?
+				PM_PLANNED_TIME | PM_PLANNED_START | PM_PLANNED_END :
+				PM_USED_TIME | PM_REAL_START | PM_REAL_END
+			);
+
+			$keys = array('pe_overwrite' => $update_mask);
 			$keys['pe_completion'] = (int)($values['progress'] * 100).'%';
 			if(array_key_exists('duration', $values))
 			{
@@ -424,13 +434,9 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			{
 				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = egw_time::to($values['end_date'],'ts');
 			}
-			foreach($keys as $field => $val)
-			{
-				if(is_int($val)) error_log("$field: " . egw_time::to($val));
-			}
 			if($keys)
 			{
-				$result = $pe_bo->save($keys);
+				$result = $pe_bo->save($keys,true, $update_mask);
 			}
 		}
 		else if ($values['ms_id'])
