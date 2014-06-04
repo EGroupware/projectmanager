@@ -610,7 +610,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		unset($query['col_filter']['pe_app']); //pe_app should not change summary
 		if (array_diff(array_keys($query['col_filter']),array(0,'pe_status','pm_id')) || !is_array($query['col_filter']['pe_status']))
 		{
-			$rows += $this->summary(null,$query['col_filter']);
+			$totals = $this->summary(null,$query['col_filter']);
+			foreach($totals as $field => $value)
+			{
+				$rows['total_' . $field] = $value;
+			}
 		}
 		if ((int)$this->debug >= 2 || $this->debug == 'get_rows')
 		{
@@ -842,6 +846,15 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			{
 				$content['nm'] = array_merge($content['nm'],$state);
 			}
+			
+			
+		}
+		
+		// Put totals in the right place for initial load
+		$totals = $this->summary($this->project->data['pm_id'],$content['nm']['col_filter']);
+		foreach($totals as $field => $value)
+		{
+			$content['nm']['total_' . $field] = $value;
 		}
 
 		// Need to set this each time.  Nextmatch widget removes string keys from action, so we can't

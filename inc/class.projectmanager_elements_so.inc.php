@@ -137,6 +137,12 @@ class projectmanager_elements_so extends so_sql
 		// fix some special filters: resources, cats
 		$filter = $this->_fix_filter($filter);
 
+		if (isset($filter['pe_app']) && $filter['pe_app'])
+		{
+			$having_pe_app = 'HAVING pe_app='.$this->db->quote($filter['pe_app']).' ';
+		}
+		unset($filter['pe_app']);
+		
 		foreach($this->db->select($this->table_name,array(
 			"SUM(pe_completion * ($share)) AS pe_sum_completion_shares",
 			"SUM(CASE WHEN pe_completion IS NULL THEN NULL ELSE ($share) END) AS pe_total_shares",
@@ -150,7 +156,7 @@ class projectmanager_elements_so extends so_sql
 			'MIN(pe_planned_start) AS pe_planned_start',
 			'MAX(pe_real_end) AS pe_real_end',
 			'MAX(pe_planned_end) AS pe_planned_end',
-		),$filter,__LINE__,__FILE__,false,'','projectmanager',0,$this->links_join) as $data)
+		)+$this->links_extracols,$filter,__LINE__,__FILE__,false,$having_pe_app,'projectmanager',0,$this->links_join) as $data)
 		{
 			if ($data['pe_total_shares'])
 			{

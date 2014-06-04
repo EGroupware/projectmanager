@@ -58,40 +58,40 @@
 					<nextmatch-accountfilter id="pe_resources" options="Resources"/>
 					<vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
-						<date id="pe_real_start" readonly="true"/>
+						<date id="total_pe_real_start" readonly="true"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_start" class="planned"/>
-						<date id="pe_planned_start" readonly="true"/>
+						<date id="total_pe_planned_start" readonly="true"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Enddate" id="pe_real_end"/>
-						<date id="pe_real_end" readonly="true"/>
+						<date id="total_pe_real_end" readonly="true"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_end" class="planned"/>
-						<date id="pe_planned_end" readonly="true"/>
+						<date id="total_pe_planned_end" readonly="true"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-						<date-duration id="pe_used_time" readonly="true" options="@duration_format"/>
+						<date-duration id="total_pe_used_time" readonly="true" options="@duration_format"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-						<date-duration id="pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
+						<date-duration id="total_pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-						<date-duration id="pe_used_time" readonly="true" options="@duration_format"/>
+						<date-duration id="total_pe_used_time" readonly="true" options="@duration_format"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-						<date-duration id="pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
+						<date-duration id="total_pe_planned_time" readonly="true" options="@duration_format" class="planned"/>
 						<nextmatch-sortheader label="re-planned" id="pe_replanned_time" class="replanned"/>
-						<date-duration id="pe_replanned_time" readonly="true" options="@duration_format" class="replanned"/>
+						<date-duration id="total_pe_replanned_time" readonly="true" options="@duration_format" class="replanned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Budget" id="pe_used_budget"/>
-						<description id="pe_used_budget" no_lang="1"/>
+						<description id="total_pe_used_budget" no_lang="1"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_budget" class="planned"/>
-						<description id="pe_planned_budget" no_lang="1"/>
+						<description id="total_pe_planned_budget" no_lang="1"/>
 					</vbox>
 					<vbox align="center">
 						<nextmatch-sortheader align="center" disabled="true" label="Health" id="pe_health"/>
 						<nextmatch-sortheader align="center" label="Status" id="pe_completion"/>
-						<description id="pe_completion" no_lang="1"/>
+						<description id="total_pe_completion" no_lang="1"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="last modified" id="pe_modified"/>
@@ -111,7 +111,7 @@
 						<menupopup type="select-cat" id="${row}[cat_id]" readonly="true"/>
 					</menulist>
 					<projectmanager-select-erole id="${row}[pe_eroles]" readonly="true"/>
-					<listbox type="select-account" id="${row}[pe_resources]" readonly="true" rows="2"/>
+					<listbox type="select-account" id="${row}[pe_resources]" readonly="true"/>
 					<vbox>
 						<date id="${row}[pe_real_start]" readonly="true"/>
 						<date id="${row}[pe_planned_start]" no_lang="1" readonly="true" class="planned"/>
@@ -124,16 +124,16 @@
 						<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
 						<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 					</vbox>
-					<vbox options="0,0">
-						<hbox id="pe_used_time" options="1,0">
+					<vbox>
+						<hbox id="pe_used_time">
 							<image label="Times" src="timesheet"/>
 							<date-duration id="${row}[pe_used_time]" readonly="true" options="@duration_format"/>
 						</hbox>
-						<hbox id="planified" options="1,0">
+						<hbox id="planified">
 							<image label="planned time" src="k_alarm.png"/>
 							<date-duration id="${row}[pe_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
 						</hbox>
-						<hbox id="replanified" options="1,0">
+						<hbox id="replanified">
 							<image label="Re-planned time" src="agt_reload.png"/>
 							<date-duration id="${row}[pe_replanned_time]" readonly="true" options="@duration_format" span="all" class="replanned"/>
 						</hbox>
