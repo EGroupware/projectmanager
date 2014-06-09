@@ -13,15 +13,18 @@
 /**
  * Constraints storage object of the projectmanager
  *
- * There are 3 constraint-types:
- * - start:     PE has to start after an other PE (own pe_id is in pe_id_start)
- * - end:       PE has to end before the start an other PE (own pe_id is in pe_id_end)
- * - milestone: PE has to end before a milestone (own pe_id is in pe_id_end)
- *
  * Tables: egw_pm_constraints
  */
 class projectmanager_constraints_so extends so_sql
 {
+	// Gantt chart supports 4 constraint types.  The most common is 0,
+	// <start> Ends before <end>.
+	static $constraint_types = array(
+		'Ends before',
+		'Starts before',
+		'Ends after',
+		'Starts after',
+	);
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
@@ -63,22 +66,20 @@ class projectmanager_constraints_so extends so_sql
 		}
 		if (isset($criteria['pe_id']) && $criteria['pe_id'])
 		{
-			$pe_id = is_numeric($criteria['pe_id']) ? (int) $criteria['pe_id'] : implode(',',array_map('intval',$criteria['pe_id']));
+			$pe_id = is_numeric($criteria['pe_id']) ? (int) $criteria['pe_id'] : array_map('intval',$criteria['pe_id']);
 			unset($criteria['pe_id']);
 		}
 		if (isset($filter['pe_id']) && $filter['pe_id'])
 		{
-			$pe_id = is_numeric($filter['pe_id']) ? (int) $filter['pe_id'] : implode(',',array_map('intval',$filter['pe_id']));
+			$pe_id = is_numeric($filter['pe_id']) ? (int) $filter['pe_id'] : array_map('intval',$filter['pe_id']);
 			unset($filter['pe_id']);
 		}
 		if ($pe_id)
 		{
-			$filter[] = "(pe_id_end IN ($pe_id) OR pe_id_start IN ($pe_id))";
+			$filter[] = '('.$this->db->column_data_implode(' OR ',array('pe_id_start' => $pe_id, 'pe_id_end' => $pe_id)) .')';
 
 			if ($extra_cols && !is_array($extra_cols)) $extra_cols = explode(',',$extra_cols);
-			// defines 3 constrain-types: milestone, start and end
-			$extra_cols[] = "CASE WHEN ms_id != 0 THEN 'milestone' WHEN pe_id_start IN ($pe_id) THEN 'start' ELSE 'end' END AS constraint_type";
-			if (!$order_by) $order_by = 'constraint_type';
+			if (!$order_by) $order_by = 'pe_id_start';
 		}
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
 	}
@@ -96,7 +97,7 @@ class projectmanager_constraints_so extends so_sql
 	*/
 	function read($keys,$extra_cols='',$join='')
 	{
-		if (!$search =& $this->search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$keys))
+		if (!$search =& $this->search($criteria,$only_keys=False,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$keys))
 		{
 			return false;
 		}
@@ -111,20 +112,14 @@ class projectmanager_constraints_so extends so_sql
 		}
 		elseif ((int) $keys['pe_id'])
 		{
-			foreach($search as $row)
+			$ret =& $search;
+
+			// Add in a generated ID for UI to use
+			foreach($search as &$row)
 			{
-				switch($row['constraint_type'])
-				{
-					case 'milestone':
-						$ret['milestone'][] = $row['ms_id'];
-						break;
-					case 'start':
-						$ret['start'][] = $row['pe_id_end'];
-						break;
-					case 'end':
-						$ret['end'][] = $row['pe_id_start'];
-						break;
-				}
+				$pe_id_start = $row['pe_id_start'] ? $row['pe_id_start']: 'milestone:'.$row['ms_id'];
+				$pe_id_end = $row['pe_id_end'] ? $row['pe_id_end']: 'milestone:'.$row['ms_id'];
+				$row['id'] = $row['pm_id'] . ':'.$pe_id_start.':'.$pe_id_end;
 			}
 		}
 		else
@@ -163,42 +158,13 @@ class projectmanager_constraints_so extends so_sql
 				'pm_id' => $pm_id,
 				'pe_id' => $pe_id,
 			));
-			foreach($data as $type => $ids)
+			foreach($data as $row)
 			{
-				foreach(is_array($ids) ? $ids : explode(',',$ids) as $id)
+				$row['pm_id'] = $pm_id;
+
+				if (($err = parent::save($row)))
 				{
-					if (!$id) continue;
-
-					switch($type)
-					{
-						case 'milestone':
-							$row = array(
-								'pe_id_end'   => $pe_id,
-								'pe_id_start' => 0,
-								'ms_id'       => $id,
-							);
-							break;
-						case 'start':
-							$row = array(
-								'pe_id_end'   => $id,
-								'pe_id_start' => $pe_id,
-								'ms_id'       => 0,
-							);
-							break;
-						case 'end':
-							$row = array(
-								'pe_id_end'   => $pe_id,
-								'pe_id_start' => $id,
-								'ms_id'       => 0,
-							);
-							break;
-					}
-					$row['pm_id'] = $pm_id;
-
-					if (($err = parent::save($row)))
-					{
-						return $err;
-					}
+					return $err;
 				}
 			}
 			return 0;

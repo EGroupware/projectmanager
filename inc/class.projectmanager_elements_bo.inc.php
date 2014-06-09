@@ -606,11 +606,48 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	function &titles($keys=array())
 	{
 		$titles = array();
+		
+		// Support link titles, which just provides IDs
+		if(!$keys['pe_id'] && !$keys['pm_id'] && !$keys['ms_id'] && count($keys))
+		{
+			$keys = array('pe_id' => $keys);
+		}
 		foreach((array) $this->search(array(),'pe_id,pe_title','pe_app,pe_title','','',false,'AND',false,$keys) as $element)
 		{
 			if ($element) $titles[$element['pe_id']] = lang($element['pe_app']).': '.$element['pe_title'];
 		}
 		return $titles;
+	}
+	
+	/**
+	 * query projectmanager elements for entries matching $pattern
+	 *
+	 * Is called as hook to participate in the linking
+	 *
+	 * @param string $pattern pattern to search
+	 * @param array $options Array of options for the search
+	 * @return array with pm_id - title pairs of the matching entries
+	 */
+	function link_query( $pattern, Array &$options = array() )
+	{
+		$limit = false;
+		$need_count = false;
+		if($options['start'] || $options['num_rows']) {
+			$limit = array($options['start'], $options['num_rows']);
+			$need_count = true;
+		}
+		$result = array();
+		$filter = array();
+		if($options['pm_id'])
+		{
+			$filter['pm_id'] = $options['pm_id'];
+		}
+		foreach((array) $this->search($pattern,false,'pm_id,pe_title','','%',false,'OR',$limit,$filter, true, $need_count) as $entry )
+		{
+			if ($entry['pe_id']) $result[$entry['pe_id']] = lang($entry['pe_app']).': '.$entry['pe_title'];
+		}
+		$options['total'] = $need_count ? $this->total : count($result);
+		return $result;
 	}
 
 	/**

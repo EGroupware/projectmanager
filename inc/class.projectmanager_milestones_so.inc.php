@@ -65,18 +65,24 @@ class projectmanager_milestones_so extends so_sql
 	 *	"LEFT JOIN table2 ON (x=y)", Note: there's no quoting done on $join!
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
-	function &search($criteria,$only_keys=True,$order_by='ms_date',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join='')
+	function &search($criteria,$only_keys=True,$order_by='ms_date',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join='',$need_full_no_count=false)
 	{
 		if ($this->pm_id && !isset($criteria['pm_id']) && !isset($filter['pm_id']))
 		{
 			$filter['pm_id'] = $this->pm_id;
 		}
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 
 	function &titles($keys=array())
 	{
 		$milestones = array();
+
+		// Support link titles, which just provides IDs
+		if(!$keys['pe_id'] && !$keys['pm_id'] && !$keys['ms_id'] && count($keys))
+		{
+			$keys = array('ms_id' => $keys);
+		}
 		foreach((array)$this->search($keys,'ms_id,ms_date,ms_title') as $milestone)
 		{
 			if (!$milestone) continue;
@@ -85,6 +91,38 @@ class projectmanager_milestones_so extends so_sql
 				': '.$milestone['ms_title'];
 		}
 		return $milestones;
+	}
+	
+	/**
+	 * query projectmanager milestones for entries matching $pattern
+	 *
+	 * Is called as hook to participate in the linking
+	 *
+	 * @param string $pattern pattern to search
+	 * @param array $options Array of options for the search
+	 * @return array with pm_id - title pairs of the matching entries
+	 */
+	function link_query( $pattern, Array &$options = array() )
+	{
+		$limit = false;
+		$need_count = false;
+		if($options['start'] || $options['num_rows']) {
+			$limit = array($options['start'], $options['num_rows']);
+			$need_count = true;
+		}
+		$result = array();
+		$filter = array();
+		if($options['pm_id'])
+		{
+			$filter['pm_id'] = $options['pm_id'];
+		}
+		foreach((array) $this->search($pattern,false,'pm_id,ms_title','','%',false,'OR',$limit,$filter,'', $need_count) as $entry )
+		{
+			if ($entry['ms_id']) $result[$entry['ms_id']] = date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'],$entry['ms_date']).
+				': '.$entry['ms_title'];
+		}
+		$options['total'] = $need_count ? $this->total : count($result);
+		return $result;
 	}
 
 	/**

@@ -417,3 +417,16 @@ function projectmanager_upgrade1_9_002()
 {
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.003';
 }
+
+function projectmanager_upgrade1_9_003()
+{
+	$GLOBALS['egw_setup']->oProc->AddColumn('egw_pm_constraints','type',array(
+		'type' => 'int',
+		'precision' => '1',
+		'nullable' => False,
+		'default' => '0',
+		'comment' => 'Constraint type, see projectmanager_constraints_so::$constraint_types'
+	));
+
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.004';
+}

@@ -72,11 +72,32 @@ class projectmanager_hooks
 			'file_access_user' => true,	// file_access supports 4th parameter $user
 			'additional' => array(
 				'projectelement' => array(
+					'view' => array(
+						'menuaction' => 'projectmanager.projectmanager_elements_ui.edit',
+					),
+					'view_id' => 'pe_id',
+					'view_popup' => '600x450',
 					'edit' => array(
 						'menuaction' => 'projectmanager.projectmanager_elements_ui.edit',
 					),
 					'edit_id' => 'pe_id',
 					'edit_popup' => '600x450',
+					'titles' => 'projectmanager.projectmanager_elements_bo.titles',
+					'query' => 'projectmanager.projectmanager_elements_bo.link_query',
+				),
+				'pm_milestone' => array(
+					'view' => array(
+						'menuaction' => 'projectmanager.projectmanager_milestones_ui.edit'
+					),
+					'view_id' => 'ms_id',
+					'view_popup' => '680x450',
+					'edit' => array(
+						'menuaction' => 'projectmanager.projectmanager_milestones_ui.edit'
+					),
+					'edit_id' => 'ms_id',
+					'edit_popup' => '680x450',
+					'titles' => 'projectmanager.projectmanager_milestones_so.titles',
+					'query' => 'projectmanager.projectmanager_milestones_so.link_query',
 				)
 			),
 			'merge' => true,

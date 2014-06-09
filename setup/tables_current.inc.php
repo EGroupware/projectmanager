@@ -96,7 +96,8 @@ $phpgw_baseline = array(
 			'pm_id' => array('type' => 'int','precision' => '4'),
 			'pe_id_end' => array('type' => 'int','precision' => '4'),
 			'pe_id_start' => array('type' => 'int','precision' => '4'),
-			'ms_id' => array('type' => 'int','precision' => '4')
+			'ms_id' => array('type' => 'int','precision' => '4'),
+			'type' => array('type' => 'int','precision' => '1','nullable' => False,'default' => '0','comment' => 'Constraint type, see projectmanager_constraints_so::$constraint_types')
 		),
 		'pk' => array('pm_id','pe_id_end','pe_id_start','ms_id'),
 		'fk' => array(),

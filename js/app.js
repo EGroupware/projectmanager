@@ -142,6 +142,22 @@ app.classes.projectmanager = AppJS.extend(
 	},
 
 	/**
+	 * Limits constraint target link-entry widget to current project
+	 *
+	 * @param {object} request
+	 * @param {object} response
+	 * @returns {boolean} true to do the search
+	 */
+	element_constraint_pre_query: function(request,response)
+	{
+		if(!request.options) request.options = {};
+		request.options.pm_id = this.et2.getInstanceManager().widgetContainer.getArrayMgr('content').getEntry('pm_id');
+
+		// Return true to proceed with the search
+		return true;
+	},
+
+	/**
 	 *
 	 * @param {object} form 
 	 */
@@ -368,7 +384,7 @@ app.classes.projectmanager = AppJS.extend(
 			}
 			else
 			{
-				// IDs look like projectmanager::#, or projectmanager_elements::app:app_id:element_id
+				// IDs look like projectmanager::#, or projectelement::app:app_id:element_id
 				var split = selected[i].id.split('::');
 				if(split.length > 1)
 				{

@@ -31,7 +31,7 @@
 				</row>
 				<row class="row" disabled="!@no_times">
 					<description value="Share" for="pe_share"/>
-					<hbox options="1,1" span="all">
+					<hbox span="all">
 						<textbox statustext="Share on the whole project" id="pe_share" size="10" validator="/^[0-9.]*\.?[0-9%]*$/"/>
 						<textbox type="float" label="default" id="default_percentage" readonly="true"/>
 					</hbox>
@@ -64,7 +64,7 @@
 				</row>
 				<row class="row">
 					<description value="Share" for="pe_share"/>
-					<hbox options="0,0">
+					<hbox>
 						<date-duration statustext="Share on the whole project in hours or percent, defaults to planned time" id="pe_share" options=",%$cont[duration_format],1"/>
 						<date-duration label="/" id="share_total" readonly="true" options=",$cont[duration_format],1"/>
 						<description value="=" id="share_percentage" no_lang="1"/>
@@ -128,23 +128,41 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="170" overflow="auto">
+		<grid width="100%" overflow="auto" id="pe_constraints" disabled="!@pe_constraints">
 			<columns>
 				<column width=" 95"/>
 				<column/>
+				<column width=" 95"/>
+				<column width="22"/>
 			</columns>
 			<rows>
-				<row class="row" valign="top">
-					<description value="Start after" for="end_constraints"/>
-					<listbox statustext="Elements which have to be finished before this can start" id="pe_constraints[start]" no_lang="1" rows="3"/>
+				<row valign="top">
+					<vbox>
+						<link id="${row}[pe_id_start]" readonly="true" only_app="projectelement"/>
+						<link id="${row}[ms_id]" readonly="true" only_app="pm_milestone" disabled="$row_cont[pe_id_start]"/>
+					</vbox>
+					<listbox id="${row}[type]" readonly="true"/>
+					<vbox>
+						<link id="${row}[pe_id_end]" readonly="true" only_app="projectelement"/>
+						<link id="${row}[ms_id]" readonly="true" only_app="pm_milestone" disabled="${row_cont[pe_id_end]}"/>
+					</vbox>
+					<button id="delete[${row}]" image="delete"/>
 				</row>
-				<row class="row" valign="top">
-					<description value="End before" for="end_constraints"/>
-					<listbox statustext="Elements that can't start before this one is finished" id="pe_constraints[end]" no_lang="1" rows="3"/>
-				</row>
-				<row class="row" valign="top">
-					<description value="Milestones" for="milestone_constraints"/>
-					<listbox statustext="Milestones before this element has to be finished" id="pe_constraints[milestone]" no_lang="1" rows="3"/>
+			</rows>
+		</grid>
+		<grid id="new_constraint">
+			<columns>
+				<column width=" 95"/>
+				<column/>
+				<column width=" 95"/>
+				<column width="22"/>
+			</columns>
+			<rows>
+				<row valign="top">
+					<link readonly="true" only_app="projectelement" value="$cont[pe_id]"/>
+					<listbox id="type"/>
+					<link-entry id="target" application_list="projectelement,pm_milestone" query="app.projectmanager.element_constraint_pre_query"/>
+					<button id="add_button" image="add"/>
 				</row>
 			</rows>
 		</grid>
@@ -158,7 +176,7 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description cols="1" value="Resources" rows="1"/>
+					<description value="Resources"/>
 					<listbox type="select-account" id="pe_resources" rows="12"/>
 					<listbox type="select-account" id="ds[pe_resources]" readonly="true" rows="8"/>
 				</row>
@@ -232,7 +250,7 @@
 				</row>
 				<row class="row">
 					<description value="Status" for="pe_completion"/>
-					<hbox options="0" orient="0">
+					<hbox>
 						<menulist>
 							<menupopup type="select-percent" id="pe_completion" options="None"/>
 						</menulist>
@@ -241,7 +259,7 @@
 					<description id="ds[pe_completion]" no_lang="1"/>
 				</row>
 				<row>
-					<tabbox id="dates|times|budget|constraints|resources|details|eroles" span="all">
+					<tabbox id="dates|times|budget|constraints|resources|details|eroles" span="all" height="180">
 						<tabs>
 							<tab id="dates" label="Dates" statustext="Start- &amp; Enddate"/>
 							<tab id="times" label="Times" statustext="Times"/>

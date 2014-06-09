@@ -219,12 +219,38 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						if ($name == 'pe_remark') $this->data['update_remark'] = true;
 					}
 				}
+				if($content['new_constraint'])
+				{
+					if($content['new_constraint']['add_button'] && $content['new_constraint']['target']['id'] )
+					{
+						$save_necessary = true;
+						$new = $content['new_constraint'];
+						$this->data['pe_constraints'][] = array(
+							'pm_id' => $this->data['pm_id'],
+							'pe_id_start' => $this->data['pe_id'],
+							'pe_id_end' => $new['target']['app'] == 'pm_milestone' ? 0 : $new['target']['id'],
+							'ms_id' => $new['target']['app'] != 'pm_milestone' ? 0 : $new['target']['id'],
+							'type' => $new['type']
+						);
+					}
+					unset($this->data['new_constraint']);
+				}
+				if($content['pe_constraints']['delete'])
+				{
+					unset($this->data['pe_constraints'][key($content['pe_constraints']['delete'])]);
+					unset($this->data['pe_constraints']['delete']);
+					$save_necessary = true;
+
+					// Doesn't re-load, so we need to explicitly re-key the constraints
+					$this->data['pe_constraints'] = array_values($this->data['pe_constraints']);
+				}
 			}
 			//echo "projectmanager_elements_ui::edit(): save_necessary=".(int)$save_necessary.", update_necessary=$update_necessary, data="; _debug_array($this->data);
 
 			$view = $content['view'] && !($content['edit'] && $this->check_acl(EGW_ACL_EDIT));
 
-			if (($content['save'] || $content['apply']) && $this->check_acl(EGW_ACL_EDIT))
+			if (($content['save'] || $content['apply'] ||
+				$content['pe_constraints']['delete'] || $content['new_constraint']['add_button']) && $this->check_acl(EGW_ACL_EDIT))
 			{
 				if ($update_necessary || $save_necessary)
 				{
@@ -367,13 +393,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		//_debug_array($content);
 		$sel_options = array(
-			'pe_constraints' => $this->titles(array(	// only titles of elements displayed in a gantchart
-				"pe_status != 'ignore'",
-//				'(pe_planned_start IS NOT NULL OR pe_real_start IS NOT NULL)',
-//				'(pe_planned_end IS NOT NULL OR pe_real_end IS NOT NULL)',
-				'pe_id != '.(int)$this->data['pe_id'],	// dont show own title
-			)),
-			'milestone'     => $this->milestones->titles(array('pm_id' => $this->data['pm_id'])),
+			// These match the gantt chart
+			'type' => projectmanager_constraints_so::$constraint_types,
 		);
 		$readonlys = array(
 			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
@@ -401,7 +422,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 			$readonlys['pe_remark'] = true;
 			$readonlys['save'] = $readonlys['apply'] = true;
-			$readonlys['pe_constraints[start]'] = $readonlys['pe_constraints[end]'] = $readonlys['pe_constraints[milestone]'] = true;
+			$readonlys['pe_constraints'] = true;
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project-elements') : lang('Edit project-elements')) : lang('Add project-elements'));

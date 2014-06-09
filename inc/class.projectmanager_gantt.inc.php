@@ -245,7 +245,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		foreach((array)$milestones as $milestone)
 		{
 			$data['data'][] = array(
-				'id'	=>	'milestone:'.$milestone['ms_id'],
+				'id'	=>	'pm_milestone:'.$milestone['ms_id'],
 				'pm_id' => $pm_id,
 				'ms_id' => $milestone['ms_id'],
 				'text'	=>	$milestone['ms_title'],
@@ -380,20 +380,20 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		// adding the constraints for found elements
 		if($params['constraints'] && count($element_index) > 0)
 		{
-			foreach((array)$this->constraints->search(array('pm_id'=>$pm_id, 'pe_id'=>array_keys($element_index))) as $constraint)
+			foreach((array)$this->constraints->search(array('pm_id'=>$pm_id, 'pe_id'=>array_keys($element_index)),false) as $constraint)
 			{
 				// IDs have to match what we give the gantt chart
 				$start = $element_index[$constraint['pe_id_start']];
 				$end = $element_index[$constraint['pe_id_end']];
-				$constraint['pe_id_start'] = $start ? $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'] : 'milestone:'.$constraint['ms_id'];
-				$constraint['pe_id_end'] = $end ? $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'] : 'milestone:'.$constraint['ms_id'];
+				$constraint['pe_id_start'] = $start ? $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'] : 'pm_milestone:'.$constraint['ms_id'];
+				$constraint['pe_id_end'] = $end ? $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'] : 'pm_milestone:'.$constraint['ms_id'];
 				error_log(array2string($constraint));
 				$data['links'][] = array(
 					'id' => $constraint['pm_id'] . ':'.$constraint['pe_id_start'].':'.$constraint['pe_id_end'],
 					'source' => $constraint['pe_id_start'],
 					'target' => $constraint['pe_id_end'],
 					// TODO: Get proper type
-					'type' => $constraint['constraint_type']=='start' || $constraint['constraint_type'] =='milestone' ? 0 : 3
+					'type' => $constraint['type']
 				);
 			}			
 		}
@@ -480,7 +480,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'pm_id' => $pm_id,
 				'pe_id_start' => (int)$start_id,
 				'pe_id_end' => (int)$end_id,
-				'ms_id' => !(int)$start_id ? $m_start_id : (!(int)$end_id ? $m_end_id : 0)
+				'ms_id' => !(int)$start_id ? $m_start_id : (!(int)$end_id ? $m_end_id : 0),
+				'type' => $values['type']
 			);
 			// Gantt chart gives new links integer IDs
 			if($values['id'] && is_numeric($values['id']))
