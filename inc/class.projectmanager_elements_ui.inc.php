@@ -221,7 +221,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				if($content['new_constraint'])
 				{
-					if($content['new_constraint']['add_button'] && $content['new_constraint']['target']['id'] )
+					if($content['new_constraint']['target']['id'] )
 					{
 						$save_necessary = true;
 						$new = $content['new_constraint'];
@@ -391,6 +391,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$content['pe_share'] = $content['share_percentage'];
 		}
+		// Set classes on constraints
+		foreach($content['pe_constraints'] as &$constraint)
+		{
+			$constraint['class'] = $constraint['pe_id_start'] == $this->data['pe_id'] ? 'source' : 'target';
+		}
+		
 		//_debug_array($content);
 		$sel_options = array(
 			// These match the gantt chart

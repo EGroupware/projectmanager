@@ -136,7 +136,7 @@
 				<column width="22"/>
 			</columns>
 			<rows>
-				<row valign="top">
+				<row valign="top" class="${row_cont[class]}">
 					<vbox>
 						<link id="${row}[pe_id_start]" readonly="true" only_app="projectelement"/>
 						<link id="${row}[ms_id]" readonly="true" only_app="pm_milestone" disabled="$row_cont[pe_id_start]"/>

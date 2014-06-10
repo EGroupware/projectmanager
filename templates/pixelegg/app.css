@@ -61,6 +61,11 @@ table.egwLinkMoreOptions {
   border: 2px solid black !important;
   border-top: none !important;
 }
+/* Highlight the current entry in the constraint list */
+#projectmanager-elements-edit_projectmanager-elements-edit-constraints .source [id*="pe_id_start"],
+#projectmanager-elements-edit_projectmanager-elements-edit-constraints .target [id*="pe_id_end"] {
+  font-weight: bold;
+}
 /*default */
 .planned {
   font-style: italic;
