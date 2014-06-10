@@ -406,19 +406,20 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	public static function ajax_update($values, $params)
 	{
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
+
+		// Needed for field constants
+		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
+
+		$update_mask = (int)PM_COMPLETION;
+		$update_mask |= ($params['planned_times'] ?
+			PM_PLANNED_TIME | PM_PLANNED_START | PM_PLANNED_END :
+			PM_USED_TIME | PM_REAL_START | PM_REAL_END
+		);
+
 		if($values['pe_id'])
 		{
-			// Needed for field constants
-			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
-			
 			$pe_bo = new projectmanager_elements_bo((int)$values['pm_id']);
 			$pe_bo->read(array('pe_id' => (int)$values['pe_id']));
-
-			$update_mask = (int)PM_COMPLETION;
-			$update_mask |= ($params['planned_times'] ?
-				PM_PLANNED_TIME | PM_PLANNED_START | PM_PLANNED_END :
-				PM_USED_TIME | PM_REAL_START | PM_REAL_END
-			);
 
 			$keys = array('pe_overwrite' => $update_mask);
 			$keys['pe_completion'] = (int)($values['progress'] * 100).'%';
@@ -449,6 +450,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		else if ($values['pm_id'])
 		{
 			$pm_bo = new projectmanager_bo((int)$values['pm_id']);
+			$keys = array('pm_overwrite' => $update_mask);
 			$keys['pm_completion'] = (int)($values['progress'] * 100).'%';
 			if(array_key_exists('duration', $values))
 			{
