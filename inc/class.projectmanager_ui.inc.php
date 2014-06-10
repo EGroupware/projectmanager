@@ -335,12 +335,16 @@ class projectmanager_ui extends projectmanager_bo
 			}
 		}
 
+		if(!is_array($this->config['accounting_types']))
+		{
+			$this->config['accounting_types'] = explode(',',$this->config['accounting_types']);
+		}
 		$readonlys = array(
 			'delete' => !$this->data['pm_id'] || !$this->check_acl(EGW_ACL_DELETE),
 			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
 			'tabs' => array(
 				'accounting' => !$this->check_acl(EGW_ACL_BUDGET) &&	// disable the tab, if no budget rights and no owner or coordinator
-					($this->config['accounting_types'] && count(explode(',',$this->config['accounting_types'])) == 1 ||
+					($this->config['accounting_types'] && count($this->config['accounting_types']) == 1 ||
 					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1 ||
 					$coord_from_groups_roles)) ||
 					$this->config['accounting_types'] == 'status' || $this->config['accounting_types'] == 'times',
