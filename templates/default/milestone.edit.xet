@@ -14,29 +14,29 @@
 					<description/>
 					<description/>
 				</row>
-				<row class="th">
+				<row class="dialogHeader">
 					<description options=",,,pm_id" value="Project"/>
 					<menulist span="all">
 						<menupopup id="pm_id" no_lang="1"/>
 					</menulist>
 				</row>
-				<row class="row">
+				<row class="row dialogHeader2">
 					<description options=",,,ms_title" value="Title"/>
 					<textbox size="64" maxlength="255" id="ms_title" span="all" needed="1"/>
 				</row>
-				<row class="row">
+				<row class="row dialogHeader3">
 					<description options=",,,ms_date" value="Date"/>
 					<date id="ms_date" needed="1"/>
 				</row>
 				<row class="row">
 					<htmlarea span="all" id="ms_description" mode="extended" height="300px" width="100%" toolbar="true"/>
 				</row>
-				<row>
+				<row class="dialogFooterToolbar">
 					<hbox span="2">
-						<button label="Edit" id="edit" statustext="Edit this milestone"/>
-						<button id="save" label="Save" statustext="Save the changes made"/>
-						<button id="apply" label="Apply" statustext="Apply the changes"/>
-						<button id="cancel" label="Cancel" statustext="Close the window, discard the changes made" onclick="window.close();"/>
+						<button label="Edit" id="edit" statustext="Edit this milestone" image="edit" background_image="1"/>
+						<button id="save" label="Save" statustext="Save the changes made" image="save" background_image="1"/>
+						<button id="apply" label="Apply" statustext="Apply the changes" image="apply" background_image="1"/>
+						<button id="cancel" label="Cancel" statustext="Close the window, discard the changes made" onclick="window.close();" image="cancel" background_image="1"/>
 					</hbox>
 					<button label="Delete" align="right" id="delete" statustext="Delete this milestone" onclick="return confirm('Delete this milestone');"/>
 				</row>

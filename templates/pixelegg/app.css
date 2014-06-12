@@ -146,7 +146,8 @@ button#projectmanager-list_add:hover {
 button#projectmanager-list_add:active {
   background-color: #1aa200 !important;
 }
-#projectmanager-list_favorite_wrapper div.et2_dropdown {
+#projectmanager-list_favorite_wrapper div.et2_dropdown,
+#projectmanager-list_favorite {
   top: -15px;
 }
 #projectmanager-list_export {
@@ -219,150 +220,7 @@ button#projectmanager-list_add:active {
 #projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button:active {
   background-color: #1aa200 !important;
 }
-/*#########################################################*/
-/*edit view*/
-/*hinzufügen*/
-#projectmanager-elements-list .nextmatch_header {
-  /*rechte Box*/
-}
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add {
-  padding-left: 15px;
-}
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button {
-  background-image: url(http://egroupware.hnategh.com/egroupware/pixelegg/images/add.png);
-  background-size: 20px;
-  background-repeat: no-repeat;
-  text-indent: 20px;
-  background-position: left;
-}
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add,
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add {
-  background-color: #0b5fa4 !important;
-  color: #FFF;
-  text-shadow: none;
-  /*    height: auto;*/
-  background-image: none !important;
-  -webkit-border-radius: 3px;
-  -webkit-border-top-left-radius: 10px;
-  -moz-border-radius: 3px;
-  -moz-border-radius-topleft: 10px;
-  border-radius: 3px;
-  border-top-left-radius: 10px;
-}
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add:hover,
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add:hover {
-  background-color: #66a1d2 !important;
-}
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add table.et2_grid,
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add table.et2_grid {
-  border-top: 0px;
-}
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add table.et2_grid td .et2_label:before,
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add table.et2_grid td .et2_label:before {
-  content: "+";
-  font-size: 1.5em;
-  color: #ffc200;
-}
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add table.et2_grid .et2_nextmatch * .et2_link_to,
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add table.et2_grid .et2_nextmatch * .et2_link_to,
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_projectmanager-elements-list-add table.et2_grid #projectmanager-elements-list_link_to,
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add table.et2_grid #projectmanager-elements-list_link_to {
-  position: relative;
-  left: 0px;
-  background-color: transparent !important;
-  border: 0px gray;
-  padding: 5px;
-  margin: 0px;
-}
-div.projectmanager-elements-list div table.et2_grid tr {
-  /*ELemente*/
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header {
-  vertical-align: center;
-  width: 99%;
-  /*linke Box*/
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add,
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add {
-  color: #FFF;
-  text-shadow: none;
-  height: 24px;
-  /*    height: auto;*/
-  background-image: none !important;
-  /*.border_radius_button_lefttop;*/
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add:before,
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add:before {
-  content: "+";
-  font-size: 1.5em;
-  color: #ffc200;
-  line-height: 1.1em;
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix button#projectmanager-list_add:hover,
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset button#projectmanager-list_add:hover {
-  background-color: #66a1d2 !important;
-  color: #ffc200;
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
-  -webkit-border-radius: 3px;
-  -webkit-border-top-left-radius: 10px;
-  -moz-border-radius: 3px;
-  -moz-border-radius-topleft: 10px;
-  border-radius: 3px;
-  border-top-left-radius: 10px;
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-clearfix select,
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div.ui-helper-reset select {
-  /*.box_shadow_standard_light;*/
-  width: auto;
-  margin: 5px 0em 5px 5px;
-  padding: 3px;
-  outline: none;
-  display: inline-block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  height: 35px;
-  position: relative;
-  top: 0px;
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new {
-  border: none;
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new div#projectmanager-elements-list_link_add {
-  color: #FFF;
-  text-shadow: none;
-  height: 24px;
-  /*    height: auto;*/
-  background-image: none !important;
-  /*.border_radius_button_lefttop;*/
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new div#projectmanager-elements-list_link_add:before {
-  content: "+";
-  font-size: 1.5em;
-  color: #ffc200;
-  line-height: 1.1em;
-}
-div.projectmanager-elements-list div table.et2_grid tr div#projectmanager-list_nm .nextmatch_header div#projectmanager-elements-list_projectmanager-elements-list-add-new div#projectmanager-elements-list_link_add:hover {
-  background-color: #66a1d2 !important;
-  color: #ffc200;
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
-  -webkit-border-radius: 3px;
-  -webkit-border-top-left-radius: 10px;
-  -moz-border-radius: 3px;
-  -moz-border-radius-topleft: 10px;
-  border-radius: 3px;
-  border-top-left-radius: 10px;
-}
 /*Ende iframe*/
-/*weitere*/
-/*.et2_container {
-    background-color: @gray_10;
-}*/
 #projectmanager-list .egwGridView_scrollarea {
   min-height: 700px;
 }
@@ -439,4 +297,115 @@ table.egwLinkMoreOptions {
   z-index: 999;
   background-color: white;
   border-top: none ! important;
+}
+#projectmanager-gantt_milestone,
+#projectmanager-gantt_sync_all {
+  /*.background_color_10_gray;*/
+  -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  height: 24px;
+  margin-left: 5px;
+}
+#projectmanager-gantt_milestone:hover,
+#projectmanager-gantt_sync_all:hover {
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+#projectmanager-gantt_milestone:focus,
+#projectmanager-gantt_sync_all:focus {
+  outline: 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #b4b4b4;
+  -webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+div#projectmanager-pricelist-list {
+  /*tr.noPrint {height: 0px;}*/
+}
+div#projectmanager-pricelist-list #projectmanager-pricelist-list_nm {
+  position: relative;
+  top: -44px;
+}
+div#projectmanager-pricelist-list #projectmanager-pricelist-list_add {
+  border: 1px solid #0C5DA5;
+  margin: 6px 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  padding: -0.5em;
+  background-color: #e6e6e6 !important;
+  background-size: 16px 16px;
+  height: 24px;
+  position: relative;
+  right: 6px;
+  top: 0px;
+  width: 32px;
+  z-index: 200;
+}
+div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:before {
+  content: "";
+  font-size: 2em;
+  color: #0c5da5;
+  line-height: 0.6em;
+  padding-left: 0.1em;
+  padding-right: 100em;
+}
+div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
+  background-color: #1aa200;
+}
+div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:hover {
+  background-color: #66a1d2 !important;
+  color: #ffc200;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 10px;
+}
+div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
+  background-color: #1aa200 !important;
+}
+div#projectmanager-pricelist-list .header_count {
+  right: 36px;
+}
+#projectmanager-elements-list_nm #projectmanager-elements-list_link_add button {
+  color: #FFF;
+  text-shadow: none;
+  /*    height: auto;*/
+  background-image: none !important;
+  /*.border_radius_button_lefttop;*/
+  height: 24px;
+  margin-right: 0px;
+}
+#projectmanager-elements-list_nm #projectmanager-elements-list_link_add button:before {
+  content: "+";
+  font-size: 1.5em;
+  color: #ffc200;
+  line-height: 1.1em;
+}
+#projectmanager-elements-list_nm #projectmanager-elements-list_link_add button:hover {
+  background-color: #66a1d2 !important;
+  color: #ffc200;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 10px;
+}
+#projectmanager-elements-list_nm #projectmanager-elements-list_link_add button:active {
+  background-color: #1aa200 !important;
 }

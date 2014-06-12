@@ -94,19 +94,19 @@
 					<description/>
 					<description/>
 				</row>
-				<row class="th" height="28">
+				<row class="dialogHeader" height="50">
 					<description options=",,,pl_title" value="Title"/>
 					<textbox size="60" maxlength="255" id="pl_title" needed="1" span="all" class="inputFullWidth"/>
 					<description/>
 				</row>
-				<row class="row">
+				<row class="row dialogHeader2">
 					<description options=",,,pl_unit" value="Unit"/>
 					<textbox size="20" maxlength="20" id="pl_unit" blur="h"/>
 					<menulist>
 						<menupopup label="General pricelist" id="gen_pl_billable" options="Not available"/>
 					</menulist>
 				</row>
-				<row class="row">
+				<row class="row dialogHeader3">
 					<description options=",,,cat_id" value="Category"/>
 					<menulist span="all">
 						<menupopup type="select-cat" options="None" id="cat_id"/>
@@ -126,7 +126,7 @@
 						</tabpanels>
 					</tabbox>
 				</row>
-				<row>
+				<row class="dialogFooterToolbar">
 					<hbox span="all">
 						<button label="Edit" id="button[edit]" statustext="Edit this price"/>
 						<button id="button[save]" label="Save" statustext="Save the changes made"/>

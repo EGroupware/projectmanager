@@ -229,17 +229,17 @@
 					<image align="center" src="pe_icon"/>
 					<description id="pe_title" no_lang="1" span="2"/>
 				</row>
-				<row class="row">
+				<row class="dialogHeader" height="50">
 					<description value="Comment" for="pe_remark"/>
 					<textbox id="pe_remark" size="48" maxlength="50"/>
 					<checkbox statustext="do not use that entry as project-element" label="ignore that entry" id="pe_status" options="ignore,regular" span="2"/>
 				</row>
-				<row class="th">
+				<row class="dialogHeader2">
 					<description value="Value"/>
 					<description value="Overwrite the datasource"/>
 					<description value="Datasource"/>
 				</row>
-				<row class="row">
+				<row class="dialogHeader3">
 					<description value="Category" for="pe_cat_id"/>
 					<menulist>
 						<menupopup type="select-cat" id="cat_id" options="None"/>
@@ -248,7 +248,7 @@
 						<menupopup type="select-cat" id="ds[cat_id]" readonly="true"/>
 					</menulist>
 				</row>
-				<row class="row">
+				<row class="dialogHeader4">
 					<description value="Status" for="pe_completion"/>
 					<hbox>
 						<menulist>
@@ -280,7 +280,7 @@
 						</tabpanels>
 					</tabbox>
 				</row>
-				<row class="row_on">
+				<row class="row_on dialogOperators">
 					<description value="Modified"/>
 					<hbox>
 						<date-time id="pe_modified" readonly="true"/>
@@ -290,7 +290,7 @@
 					</hbox>
 					<date-time id="pe_synced" readonly="true"/>
 				</row>
-				<row>
+				<row class="dialogFooterToolbar">
 					<hbox span="2">
 						<button statustext="Edit this project-element" label="Edit" id="edit"/>
 						<button statustext="Save this project element" label="Save" id="save"/>
