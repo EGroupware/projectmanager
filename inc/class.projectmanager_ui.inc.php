@@ -646,6 +646,7 @@ class projectmanager_ui extends projectmanager_bo
 				'header_row'     => 'projectmanager.list.right',
 				'row_id'         => 'pm_id',
 				'favorites'		=> true,
+				'row_modified'	=> 'pm_modified'
 			);
 			// use the state of the last session stored in the user prefs
 			if ($state = @unserialize($this->prefs['pm_index_state']))
