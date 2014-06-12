@@ -146,7 +146,7 @@ button#projectmanager-list_add:hover {
 button#projectmanager-list_add:active {
   background-color: #1aa200 !important;
 }
-div.et2_dropdown {
+#projectmanager-list_favorite_wrapper div.et2_dropdown {
   top: -15px;
 }
 #projectmanager-list_export {
