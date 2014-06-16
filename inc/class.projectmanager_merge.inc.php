@@ -332,26 +332,30 @@ class projectmanager_merge extends bo_merge
 	 */
 	public function projectmanager_replacements($project,$prefix='',&$content='')
 	{
-		if (!is_array($project))
-		{
-			$project = $this->projectmanager_bo->read($project);
-		}
+		$record = new projectmanager_egw_record_project(is_array($project) ? $pm_id : $project);
+		$project = $record->get_record_array();
+
 		if (!is_array($project)) return array();
 		$replacements = array();
 
-		// Expand custom fields
-		if($content && strpos($content, '#') !== 0)
-                {
-                        $this->cf_link_to_expand($project, $content, $replacements);
-                }
+		// Convert to human friendly values
+		$types = projectmanager_egw_record_project::$types;
+		$selects = array();
+		if($content && strpos($content, '$$#') !== 0)
+		{
+			$this->cf_link_to_expand($record->get_record_array(), $content, $replacements);
+		}
 
+		importexport_export_csv::convert($record, $types, 'projectmanager', $selects);
+		$project = $record->get_record_array();
+		
 		// Set any missing custom fields, or the marker will stay
 		$custom = config::get_customfields('projectmanager');
-                foreach($custom as $name => $field)
-                {
+		foreach($custom as $name => $field)
+		{
 			$this->projectmanager_fields['#'.$name] = $field['label'];
-                        if(!$project['#'.$name]) $project['#'.$name] = '';
-                }
+			if(!$project['#'.$name]) $project['#'.$name] = '';
+		}
 		
 		// Add in roles
 		$roles = $this->role_so->query_list();
