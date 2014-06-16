@@ -77,6 +77,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		parent::__construct($pm_id);
 
+
+		$GLOBALS['egw']->session->appsession('pm_id','projectmanager', $pm_id);
+		
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
@@ -263,7 +266,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						$msg = lang('Project-Element saved');
 
-						egw_framework::refresh_opener($msg,'projectmanager',$content[pe_id], 'edit');
+						egw_framework::refresh_opener($msg,'projectmanager',$content['pe_id'], 'edit');
 					}
 				}
 				else
