@@ -54,53 +54,7 @@
 					<description value="Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go. " span="all"/>
 				</row>
 				<row class="th">
-					<description value="Ganttchart" span="all"/>
-				</row>
-				<row disabled="!@jpg_msg">
-					<html id="jpg_msg" no_lang="1" span="all" class="message"/>
-					<description/>
-				</row>
-				<row class="row" disabled="@jpg_msg">
-					<description value="Font"/>
-					<hbox options="0,0">
-						<menulist>
-							<menupopup statustext="Font to use in the Ganttchart, only the Vera fonts are included in the ProjectManager." id="GANTT_FONT" no_lang="1"/>
-						</menulist>
-						<description value=" " id="font_msg" no_lang="1" class="projectmanager_leftPad5 $cont[font_msg_class]"/>
-					</hbox>
-				</row>
-				<row class="row" disabled="@jpg_msg">
-					<description statustext="Charset of the above selected font" value="Font charset" for="LANGUAGE_CHARSET"/>
-					<textbox statustext="The charset depends on the font you want to use." id="LANGUAGE_CHARSET"/>
-				</row>
-				<row class="row" disabled="@jpg_msg">
-					<description value="Font style" for="GANTT_STYLE"/>
-					<menulist>
-						<menupopup statustext="Style used for everything but elements. Some fonts have only normal style." id="GANTT_STYLE" no_lang="1"/>
-					</menulist>
-				</row>
-				<row>
-					<description value="Child indenting"/>
-					<menulist>
-						<menupopup type="select-number" id="gantt_element_indent" options=",0,10"/>
-					</menulist>
-				</row>
-				<row disabled="@jpg_msg">
-					<description value="Encode non-ascii" for="GANTT_CHAR_ENCODE"/>
-					<menulist>
-						<menupopup statustext="If you see entities (eg. &amp;#123;) in the Ganttchart, switch this off." id="GANTT_CHAR_ENCODE"/>
-					</menulist>
-				</row>
-				<row>
-					<description/>
-					<description/>
-				</row>
-				<row class="th">
 					<description value="ID generation"/>
-					<description/>
-				</row>
-				<row>
-					<description/>
 					<description/>
 				</row>
 				<row>

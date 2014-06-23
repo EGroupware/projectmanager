@@ -1,4 +1,13 @@
 <?php
+/**
+ * ProjectManager - Gantchart creation
+ *
+ * @link http://www.egroupware.org
+ * @author Nathan Gray <ng@stylite.de>
+ * @package projectmanager
+ * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
+ * @version $Id$
+ */
 
 class projectmanager_gantt extends projectmanager_elements_ui {
 
@@ -87,7 +96,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		egw_framework::includeCSS('projectmanager','gantt');
 		$GLOBALS['egw_info']['flags']['app_header'] = '';
-		
+
 		// Yes, we want the link registry
 		$GLOBALS['egw_info']['flags']['js_link_registry'] = true;
 
@@ -395,7 +404,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 					// TODO: Get proper type
 					'type' => $constraint['type']
 				);
-			}			
+			}
 		}
 		return $elements;
 	}
@@ -504,6 +513,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
-	
+
 }
 ?>

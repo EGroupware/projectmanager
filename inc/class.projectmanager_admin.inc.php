@@ -87,30 +87,12 @@ class projectmanager_admin
 				'msg' => $msg,
 			));
 		}
-		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.projectmanager_ganttchart.inc.php');
 
 		$content = $this->config->config_data;
 		if (!$content['duration_units']) $content['duration_units'] = array_keys($this->duration_units);
 		if (!$content['hours_per_workday']) $content['hours_per_workday'] = 8;
 		if (!$content['accounting_types']) $content['accounting_types'] = array_keys($this->accounting_types);
 
-		// Ganttchart config
-		$content['jpg_msg'] = projectmanager_ganttchart::msg_install_new_jpgraph();
-		if (!$content['GANTT_FONT']) $content['GANTT_FONT'] = GANTT_FONT;
-		if (!$content['LANGUAGE_CHARSET']) $content['LANGUAGE_CHARSET'] = LANGUAGE_CHARSET;
-		if (!$content['GANTT_STYLE']) $content['GANTT_STYLE'] = GANTT_STYLE;
-		if (!isset($content['GANTT_CHAR_ENCODE'])) $content['GANTT_CHAR_ENCODE'] = GANTT_CHAR_ENCODE;
-		if (is_readable(TTF_DIR.$content['GANTT_FONT_FILE']))
-		{
-			$content['font_msg'] = TTF_DIR.$content['GANTT_FONT_FILE'];
-			$content['font_msg_class'] = '';
-		}
-		else
-		{
-			$content['font_msg'] = lang("Fontfile '%1' not found!!!",$content['GANTT_FONT_FILE']);
-			$content['font_msg_class'] = 'message';
-		}
-		if(!$content['gantt_element_indent']) $content['gantt_element_indent'] = 2;
 		if(!$content['ID_GENERATION_FORMAT']) $content['ID_GENERATION_FORMAT'] = 'P-%Y-%04ix';
 		if(!$content['ID_GENERATION_FORMAT_SUB']) $content['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
 		$content['msg'] = $msg;
