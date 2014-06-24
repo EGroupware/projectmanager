@@ -475,14 +475,13 @@ class projectmanager_hooks
 		);
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
-			$link = egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
 			$settings['document_dir'] = array(
 				'type'   => 'vfs_dirs',
 				'size'   => 60,
 				'label'  => 'Directory with documents to insert project data',
 				'name'   => 'document_dir',
 				'help'   => lang('If you specify a directory (full vfs path) here, %1 displays an action for each document. That action allows to download the specified document with the data inserted.',lang('projectmanager')).' '.
-					lang('the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).','<a href="'.$link.'" target="_blank">','</a>','pm_title').' '.
+					lang('the document can contain placeholder like {{%1}}, to be replaced with the data.','pm_title').' '.
 					lang('Furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.').' '.
 					lang('The following document-types are supported:'). implode(',',bo_merge::get_file_extensions()),
 				'run_lang' => false,
