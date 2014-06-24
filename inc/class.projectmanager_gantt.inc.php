@@ -45,7 +45,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		else
 		{
-			$pm_id = $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
+			$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		}
 		if(!$pm_id)
 		{

@@ -41,7 +41,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		if($options['pm_id']) {
 			$_REQUEST['pm_id'] = $options['pm_id'];
 			$no_project = false;
-		} elseif(!$GLOBALS['egw_info']['preferences']['projectmanager']['current_project']) {
+		} elseif(!$GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project']) {
 			// Fake a pm_id so elements_ui works
 			$_REQUEST['pm_id'] = 1;
 		}

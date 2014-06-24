@@ -39,7 +39,7 @@ if ($setup_info['projectmanager']['version'] != $GLOBALS['egw_info']['apps']['pr
 }
 unset($setup_info);
 
-$pm_id = $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
+$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 
 $GLOBALS['egw']->redirect_link('/index.php',array(
 	'menuaction' => $pm_id ? 'projectmanager.projectmanager_elements_ui.index' : 'projectmanager.projectmanager_ui.index',

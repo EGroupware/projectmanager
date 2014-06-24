@@ -65,7 +65,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		else
 		{
-			$pm_id = $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
+			$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		}
 		if (!$pm_id)
 		{

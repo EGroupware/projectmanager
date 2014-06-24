@@ -48,7 +48,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		}
 		else
 		{
-			$pm_id = (int) $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
+			$pm_id = (int) $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		}
 		parent::__construct($pm_id);	// sets $this->pm_id
 	}

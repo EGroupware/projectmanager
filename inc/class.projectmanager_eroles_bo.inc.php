@@ -59,9 +59,9 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		{
 			$this->pm_id = (int) $_REQUEST['pm_id'];
 		}
-		elseif($GLOBALS['egw_info']['preferences']['projectmanager']['current_project'])
+		elseif($GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'])
 		{
-			$this->pm_id = (int)$GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
+			$this->pm_id = (int)$GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		}
 		elseif(isset($_REQUEST['etemplate_exec_id']))
 		{
