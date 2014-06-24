@@ -39,11 +39,11 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		$no_project = true;
 
 		if($options['pm_id']) {
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', $options['pm_id']);
+			$_REQUEST['pm_id'] = $options['pm_id'];
 			$no_project = false;
-		} elseif(!$GLOBALS['egw']->session->appsession('pm_id','projectmanager')) {
+		} elseif(!$GLOBALS['egw_info']['preferences']['projectmanager']['current_project']) {
 			// Fake a pm_id so elements_ui works
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', 1);
+			$_REQUEST['pm_id'] = 1;
 		}
 		$ui = new projectmanager_elements_ui();
 		$selection = array();
@@ -114,7 +114,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		if($no_project)
 		{
 			// Reset faked project ID
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager', null);
+			unset($_REQUEST['pm_id']);
 		}
 
 		$this->export_object = new importexport_export_csv($_stream, (array)$options);

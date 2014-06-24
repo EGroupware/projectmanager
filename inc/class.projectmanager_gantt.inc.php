@@ -26,7 +26,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		if (isset($_REQUEST['pm_id']))
 		{
 			$pm_id = $_REQUEST['pm_id'];
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
+			$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
+			$GLOBALS['egw']->preferences->save_repository();
 		}
 		else if ($_GET['pm_id'])
 		{
@@ -44,7 +45,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		else
 		{
-			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+			$pm_id = $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 		}
 		if(!$pm_id)
 		{

@@ -38,7 +38,8 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		if (!is_null($pm_id) || isset($_REQUEST['pm_id']))
 		{
 			if (is_null($pm_id)) $pm_id = (int) $_REQUEST['pm_id'];
-			$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$pm_id);
+			$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
+			$GLOBALS['egw']->preferences->save_repository();
 		}
 		else if ($_GET['pm_id'])
 		{
@@ -47,7 +48,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		}
 		else
 		{
-			$pm_id = (int) $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+			$pm_id = (int) $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 		}
 		parent::__construct($pm_id);	// sets $this->pm_id
 	}
@@ -280,7 +281,8 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		{
 			if ($this->pm_id)	// try falling back to the general pricelist
 			{
-				$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$_REQUEST['pm_id'] = $this->pm_id = 0);
+				$GLOBALS['egw']->preferences->add('projectmanager','current_project', $_REQUEST['pm_id'] = $this->pm_id = 0);
+				$GLOBALS['egw']->preferences->save_repository();
 			}
 			else
 			{

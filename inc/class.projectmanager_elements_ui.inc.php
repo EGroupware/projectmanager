@@ -65,7 +65,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		else
 		{
-			$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+			$pm_id = $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 		}
 		if (!$pm_id)
 		{
@@ -78,7 +78,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		parent::__construct($pm_id);
 
 
-		$GLOBALS['egw']->session->appsession('pm_id','projectmanager', $pm_id);
+		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
+		$GLOBALS['egw']->preferences->save_repository();
 		
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
@@ -824,7 +825,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_elements_ui::index(".print_r($content,true).",$msg)");
 
 		// store the current project (only for index, as popups may be called by other parent-projects)
-		$GLOBALS['egw']->session->appsession('pm_id','projectmanager',$this->project->data['pm_id']);
+		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $this->project->data['pm_id']);
+		$GLOBALS['egw']->preferences->save_repository();
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 

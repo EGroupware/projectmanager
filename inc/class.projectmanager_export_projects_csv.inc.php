@@ -44,7 +44,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		}
 
 		// Determine the appropriate list (project or element) to use for query
-		$pm_id = $GLOBALS['egw']->session->appsession('pm_id','projectmanager');
+		$pm_id = $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 		if($pm_id)
 		{
 			// Looking at a certain project
