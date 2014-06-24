@@ -12,7 +12,7 @@
  */
 
 $setup_info['projectmanager']['name']      = 'projectmanager';
-$setup_info['projectmanager']['version']   = '1.9.004';
+$setup_info['projectmanager']['version']   = '14.1';
 $setup_info['projectmanager']['app_order'] = 5;
 $setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones','egw_pm_roles','egw_pm_members','egw_pm_pricelist','egw_pm_prices','egw_pm_eroles');
 $setup_info['projectmanager']['enable']    = 1;
@@ -49,9 +49,9 @@ $setup_info['projectmanager']['hooks']['categories'] = 'projectmanager_hooks::ca
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'phpgwapi',
-	 'versions' => Array('1.7','1.8','1.9')
+	 'versions' => Array('14.1')
 );
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'etemplate',
-	 'versions' => Array('1.7','1.8','1.9')
+	 'versions' => Array('14.1')
 );

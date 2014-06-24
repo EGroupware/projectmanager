@@ -430,3 +430,8 @@ function projectmanager_upgrade1_9_003()
 
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '1.9.004';
 }
+
+function projectmanager_upgrade1_9_004()
+{
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '14.1';
+}
