@@ -81,6 +81,10 @@ class projectmanager_milestones_ui extends projectmanager_bo
 		{
 			if ($content['pm_id'] != $this->data['pm_id'])
 			{
+				if($content['ms_id'])
+				{
+					egw_link::unlink(0, 'projectmanager', $this->data['pm_id'],'pm_milestone',$content['ms_id']);
+				}
 				$this->read($content['pm_id']);
 			}
 			$this->milestones->data_merge($content);
@@ -97,6 +101,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 					else
 					{
 						$msg = lang('Milestone saved');
+						egw_link::link('projectmanager', $this->data['pm_id'],'pm_milestone',$this->milestones->data['ms_id']);
 						egw_framework::refresh_opener($msg, 'projectmanager', 'edit');
 
 					}
@@ -108,6 +113,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 						'ms_id' => $content['ms_id'],
 					)))
 					{
+						egw_link::unlink(0, 'pm_milestone', $content['ms_id']);
 						$msg = lang('Milestone deleted');
 						egw_framework::refresh_opener($msg, 'projectmanager', 'edit');
 
