@@ -382,7 +382,7 @@ div#projectmanager-pricelist-list .header_count {
   color: #FFF;
   text-shadow: none;
   /*    height: auto;*/
-  background-image: none !important;
+  background-image: none;
   /*.border_radius_button_lefttop;*/
   height: 24px;
   margin-right: 0px;
