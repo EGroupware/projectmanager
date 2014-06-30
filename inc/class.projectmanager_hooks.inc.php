@@ -128,7 +128,9 @@ class projectmanager_hooks
 			}
 			if (isset($_REQUEST['pm_id']))
 			{
-				egw_session::appsession('pm_id','projectmanager',$pm_id = (int) $_REQUEST['pm_id']);
+				$pm_id = (int) $_REQUEST['pm_id'];
+				$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
+				$GLOBALS['egw']->preferences->save_repository();
 			}
 			else if ($_GET['pm_id'])
 			{
@@ -136,7 +138,7 @@ class projectmanager_hooks
 			}
 			else
 			{
-				$pm_id = (int) egw_session::appsession('pm_id','projectmanager');
+				$pm_id = (int) $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 			}
 			$file = array(
 				'Projectlist' => egw::link('/index.php',array(
