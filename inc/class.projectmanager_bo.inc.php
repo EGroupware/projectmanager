@@ -897,7 +897,7 @@ class projectmanager_bo extends projectmanager_so
 			$projects = $both;
 
 			// only return one level if $_parents is set, unless $_parents === 'mains' and current-project is not yet included
-			if (isset($_parents) && ($_parents !== 'mains' || !$_pm_id || in_array($_pm_id, $parents)))
+			if (!$parents || isset($_parents) && ($_parents !== 'mains' || !$_pm_id || in_array($_pm_id, $parents)))
 			{
 				break;
 			}
