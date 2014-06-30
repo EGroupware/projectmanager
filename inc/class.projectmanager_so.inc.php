@@ -228,11 +228,18 @@ class projectmanager_so extends so_sql_cf
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
+		if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
+		// should we return (number or) children
+		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
+		{
+			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
+			$extra_cols[$key] = "(SELECT COUNT(*) FROM egw_links children WHERE children.link_app1='projectmanager' AND children.link_app2='projectmanager' AND children.link_id1=".
+				$this->db->to_varchar($this->table_name.'.pm_id').") AS children";
+		}
 		if ($join === true)	// add acl-join, to get role_acl of current user
 		{
 			$join = $this->acl_join;
 
-			if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 			$extra_cols = array_merge($extra_cols,array(
 				$this->table_name.'.pm_id AS pm_id',
 			));
@@ -291,7 +298,7 @@ class projectmanager_so extends so_sql_cf
 			$pm_id = $this->db->to_varchar($this->table_name.'.pm_id');
 			$join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=$pm_id";
 
-			if (is_array($filter['subs_or_mains']))	// sub-projects of given parent-projects
+			if (is_array($filter['subs_or_mains']) || is_numeric($filter['subs_or_mains']))	// sub-projects of given parent-projects
 			{
 				$join .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
 			}

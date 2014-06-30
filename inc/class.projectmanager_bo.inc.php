@@ -842,17 +842,25 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * @param array $filter=array('pm_status' => 'active') filter for the search, default active projects
 	 * @param string $filter_op='AND' AND or OR filters together, default AND
+	 * @param array|string $_parents=null pm_id(s) of parents or null to return whole tree
+	 *  if $_parents is given we also return number of (grand-)children as value for key "children"
+	 * @param int $_pm_id=null pm_id of (current) project, which need to be included for $_parents==='mains'
 	 * @return array with path => array(pm_id,pm_number,pm_title,pm_parent) pairs
 	 */
-	function get_project_tree($filter = array('pm_status' => 'active'),$filter_op='AND')
+	function get_project_tree($filter = array('pm_status' => 'active'),$filter_op='AND', $_parents=null, $_pm_id=null)
 	{
-		$projects = array();
-		$parents = 'mains';
+		$projects = $extra_cols = array();
+		$parents = !isset($_parents) ? 'mains' : $_parents;
+		//error_log(__METHOD__."(".array2string($filter).", '$filter_op, ".array2string($_parents).") parents=".array2string($parents));
+
+		// if parents given, also return number of (grand-)children
+		if (isset($_parents)) $extra_cols[] = 'children';
+
 		// get the children
-		while (($children = $this->search($filter,$GLOBALS['projectmanager_bo']->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent,pm_status',
-			'pm_status,pm_number','','',false,$filter_op,false,array('subs_or_mains' => $parents))))
+		while (($children = $this->search($filter,$this->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent,pm_status',
+			'pm_status,pm_number',$extra_cols,'',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
-			//echo $parents == 'mains' ? "Mains" : "Children of ".implode(',',$parents)."<br>"; #_debug_array($children);
+			//error_log(__METHOD__."(".array2string($filter).", '$filter_op, ".array2string($_parents).") parents=".array2string($parents)." --> children=".array2string($children));
 			// sort the children behind the parents
 			$parents = $both = array();
 			foreach ($projects as $parent)
@@ -862,7 +870,6 @@ class projectmanager_bo extends projectmanager_so
 				$search = array_pop($arr);
 				if (count($arr) >= 1 && in_array($search,$arr))
 				{
-					echo "<div>".lang('ERROR: Rekursion found: Id %1 more than once in Projectpath, while building Projecttree:',$search).' '.$parent['path'].array2string($projects[$parent['path']])."</div>";
 					error_log(lang('ERROR: Rekursion found: Id %1 more than once in Projectpath, while building Projecttree:',$search).' '.$parent['path']."\n".array2string($projects[$parent['path']]));
 					break 2;
 				}
@@ -884,12 +891,18 @@ class projectmanager_bo extends projectmanager_so
 			{
 				$child['path'] = '/' . $child['pm_id'];
 				$both[$child['path']] = $child;
-				$parents[] = $child['pm_id'];
-
+				// only query children, if neccessary
+				if (!isset($child['children']) || $child['children']) $parents[] = $child['pm_id'];
 			}
 			$projects = $both;
+
+			// only return one level if $_parents is set, unless $_parents === 'mains' and current-project is not yet included
+			if (isset($_parents) && ($_parents !== 'mains' || !$_pm_id || in_array($_pm_id, $parents)))
+			{
+				break;
+			}
 		}
-		//echo "tree"; _debug_array($projects);
+		//error_log(__METHOD__."(".array2string($filter).", '$filter_op, ".array2string($_parents).") current_project=$current_project --> returning ".array2string($projects));
 		return $projects;
 	}
 
@@ -902,7 +915,7 @@ class projectmanager_bo extends projectmanager_so
 	{
 		if ($this->logfile && ($f = @fopen($this->logfile,'a+')))
 		{
-			fwrite($f,date('Y-m-d H:i:s: ').$GLOBALS['egw']->common->grab_owner_name($GLOBALS['egw_info']['user']['account_id'])."\n");
+			fwrite($f,date('Y-m-d H:i:s: ').common::grab_owner_name($GLOBALS['egw_info']['user']['account_id'])."\n");
 			fwrite($f,$msg."\n\n");
 			fclose($f);
 		}

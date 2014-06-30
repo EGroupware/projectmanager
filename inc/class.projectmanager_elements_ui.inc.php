@@ -80,7 +80,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
 		$GLOBALS['egw']->preferences->save_repository();
-		
+
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
@@ -400,7 +400,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$constraint['class'] = $constraint['pe_id_start'] == $this->data['pe_id'] ? 'source' : 'target';
 		}
-		
+
 		//_debug_array($content);
 		$sel_options = array(
 			// These match the gantt chart
@@ -653,7 +653,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		return $total;
 	}
-	
+
 	/**
 	 * Get actions / context menu for index
 	 *
@@ -732,7 +732,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'projectmanager',$group,'Change category','cat_'
 				)+array(
 					'disableClass' => 'rowNoEdit',
-				
+
 			),
 			'erole' => array(
 				'caption' => 'Element roles',
@@ -797,7 +797,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				);
 			}
 		}
-		
+
 		//Create app list for "Add new" menu items
 		$app_list = egw_link::app_list('add');
 		$actions['add_new']['children'] = array();
@@ -878,10 +878,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			{
 				$content['nm'] = array_merge($content['nm'],$state);
 			}
-			
-			
+
+
 		}
-		
+
 		// Put totals in the right place for initial load
 		$totals = $this->summary($this->project->data['pm_id'],$content['nm']['col_filter']);
 		foreach($totals as $field => $value)
@@ -914,7 +914,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'add_app'  => 'infolog',
 		);
 		$this->tpl->read('projectmanager.elements.list');
-		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
+		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true, $this->pm_id);
 		if($this->pm_id) $content['project_tree'] = 'projectmanager::'.$this->pm_id;
 		$this->tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 
@@ -1014,7 +1014,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					break;
 				}
 				$title = egw_link::title($app, $link_id);
-				
+
 				if($btn['add'])
 				{
 					$action_msg = lang('linked to %1', $title);

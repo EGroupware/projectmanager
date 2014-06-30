@@ -938,10 +938,17 @@ class projectmanager_ui extends projectmanager_bo
 	/**
 	 * Generate the project tree nodes
 	 *
+	 * @param int $parent_pm_id= just return children of this project
 	 * @param boolean $return Return the information (true), or send it back as JSON
+	 * @param int $_pm_id=null current project allways to include
 	 */
-	public static function ajax_tree($parent_pm_id = null, $return = false)
+	public static function ajax_tree($parent_pm_id=null, $return=false, $_pm_id=null)
 	{
+		if (!$return && !isset($parent_pm_id) && !empty($_GET['id']))
+		{
+			list(,$parent_pm_id) = explode('::', $_GET['id']);
+		}
+		//error_log(__METHOD__."($parent_pm_id, $return, $current_pm_id) \$_GET['id']=".array2string($_GET['id']));
 		$type = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
 		if (substr($type,-5) == 'title')
 		{
@@ -954,10 +961,8 @@ class projectmanager_ui extends projectmanager_bo
 			$title = 'pm_title';
 		}
 		$filter = array('pm_status' => 'active');
-		if($parent_pm_id) $filter['pm_parent'] = $parent_pm_id;
 		$projects = array();
-		$stack = array();
-		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter) as $project)
+		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter,'AND',$parent_pm_id ? $parent_pm_id : 'mains', $_pm_id) as $project)
 		{
 			if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection']=='tree_with_number_title')
 			{
@@ -979,8 +984,8 @@ class projectmanager_ui extends projectmanager_bo
 				if tree overwrites selectbox options, selectbox will still work
 				*/
 				'label'	=>	$text,
-				'title'	=>	$project[$title]
-				
+				'title'	=>	$project[$title],
+				'child' => (int)($project['children'] > 0),
 			);
 			if($project['pm_parent'] == null)
 			{
@@ -999,9 +1004,13 @@ class projectmanager_ui extends projectmanager_bo
 				$parent[$project['pm_id']] = $p;
 			}
 		}
+		//error_log(__METHOD__."($parent_pm_id, $return, $current_pm_id) \$_GET['id']=".array2string($_GET['id']).", projects=".array2string($projects));
 
 		// Remove keys for tree widget
-		$projects = array('id'=>0,'item'=>$projects);
+		$nodes = array(
+			'id' => empty($_GET['id']) ? 0 : $_GET['id'],
+			'item' => $projects,
+		);
 		$f = function(&$project) use (&$f)
 		{
 			if(!$project['item']) return;
@@ -1011,10 +1020,13 @@ class projectmanager_ui extends projectmanager_bo
 				$f($item);
 			}
 		};
-		$f($projects);
-		
-		if($return) return $projects;
-		etemplate_widget_tree::send_quote_json($projects);
+		$f($nodes);
+
+		if ($return)
+		{
+			return $nodes;
+		}
+		etemplate_widget_tree::send_quote_json($nodes);
 	}
 
 	/**
