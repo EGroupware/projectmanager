@@ -804,12 +804,18 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		foreach ($app_list as $inx => $val)
 		{
 			$actions['add_new']['children']['act-'.$inx] = array(
-						'caption' => $val,
-						'icon' => $inx.'/navbar',
-						'onExecute' => 'javaScript:app.projectmanager.add_new',
-						);
+				'caption' => $val,
+				'icon' => $inx.'/navbar',
+				'onExecute' => 'javaScript:app.projectmanager.add_new',
+			);
 		}
-		//_debug_array($actions);
+		// Milestone isn't an app, so is not returned by app_list()
+		$actions['add_new']['children']['act-pm_milestone'] = array(
+			'caption' => 'Milestone',
+			'icon' => 'projectmanager/milestone',
+			'onExecute' => 'javaScript:app.projectmanager.add_new',
+		);
+		//error_log(array2string($actions));
 		return $actions;
 	}
 

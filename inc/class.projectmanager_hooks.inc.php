@@ -96,6 +96,11 @@ class projectmanager_hooks
 					),
 					'edit_id' => 'ms_id',
 					'edit_popup' => '680x450',
+					'add' => array(
+						'menuaction' => 'projectmanager.projectmanager_milestones_ui.edit'
+					),
+					'add_id' => 'ms_id',
+					'add_popup' => '680x450',
 					'titles' => 'projectmanager.projectmanager_milestones_so.titles',
 					'query' => 'projectmanager.projectmanager_milestones_so.link_query',
 				)
