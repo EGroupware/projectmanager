@@ -111,12 +111,18 @@ table.egwLinkMoreOptions {
 /*Button Add Project*/
 button#projectmanager-list_add {
   width: 32px;
-  border: 1px solid #0C5DA5;
+  /*border: 1px solid #0C5DA5;*/
   margin: 6px 2px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   padding: -0.5em;
   background-color: #e6e6e6 !important;
   background-size: 16px 16px;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 10px;
   height: 24px;
 }
 button#projectmanager-list_add:before {
@@ -131,7 +137,7 @@ button#projectmanager-list_add:active {
   background-color: #1aa200;
 }
 button#projectmanager-list_add:hover {
-  background-color: #66a1d2 !important;
+  background-color: #189800 !important;
   color: #ffc200;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
@@ -184,12 +190,18 @@ button#projectmanager-list_add:active {
 }
 #projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button {
   width: 32px;
-  border: 1px solid #0C5DA5;
+  /*border: 1px solid #0C5DA5;*/
   margin: 6px 2px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   padding: -0.5em;
   background-color: #e6e6e6 !important;
   background-size: 16px 16px;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 10px;
   height: 24px;
   margin-right: 0px;
 }
@@ -205,7 +217,7 @@ button#projectmanager-list_add:active {
   background-color: #1aa200;
 }
 #projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button:hover {
-  background-color: #66a1d2 !important;
+  background-color: #189800 !important;
   color: #ffc200;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
@@ -335,12 +347,18 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_nm {
   top: -44px;
 }
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add {
-  border: 1px solid #0C5DA5;
+  /*border: 1px solid #0C5DA5;*/
   margin: 6px 2px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   padding: -0.5em;
   background-color: #e6e6e6 !important;
   background-size: 16px 16px;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 10px;
   height: 24px;
   position: relative;
   right: 6px;
@@ -360,7 +378,7 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
   background-color: #1aa200;
 }
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:hover {
-  background-color: #66a1d2 !important;
+  background-color: #189800 !important;
   color: #ffc200;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
@@ -383,7 +401,12 @@ div#projectmanager-pricelist-list .header_count {
   text-shadow: none;
   /*    height: auto;*/
   background-image: none;
-  /*.border_radius_button_lefttop;*/
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius: 3px;
+  -moz-border-radius-topleft: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 10px;
   height: 24px;
   margin-right: 0px;
 }
@@ -394,7 +417,7 @@ div#projectmanager-pricelist-list .header_count {
   line-height: 1.1em;
 }
 #projectmanager-elements-list_nm #projectmanager-elements-list_link_add button:hover {
-  background-color: #66a1d2 !important;
+  background-color: #189800 !important;
   color: #ffc200;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
