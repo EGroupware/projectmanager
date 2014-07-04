@@ -1,10 +1,14 @@
 %1 element(s) updated	projectmanager	pt-br	%1 elemento(s) atualizados
 %1 new project-elements imported	projectmanager	pt-br	%1 novos elementos de projeto importados
+%1 project(s) %2	projectmanager	pt-br	% 1 projeto (s)% 2
+%1 project-element(s) deleted.	projectmanager	pt-br	% 1 elemento (s) projeto excluído.
 %1 projects deleted	projectmanager	pt-br	%1 projetos apagados
 %1 records imported	projectmanager	pt-br	%1 registros importados
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	pt-br	%1 registros lidos (ainda não importados, você deve %2voltar%3 e desmarcar Testar Importação)
 %1 times permission denied, %2 projects deleted	projectmanager	pt-br	permissão negada %1 vezes, %2 projetos removidos
+(project id) project title - template name	projectmanager	pt-br	(Project ID) título do projeto - nome do modelo
 - planned	projectmanager	pt-br	- planejado
+- re-planned	projectmanager	pt-br	- Re-planejado
 0ngoing (0 < % < 100)	projectmanager	pt-br	Acontecendo (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	pt-br	um título descritivo para o projeto, não pode ser deixado em branco
 accounting	projectmanager	pt-br	Contabilização
@@ -22,6 +26,9 @@ add price	projectmanager	pt-br	Adicionar preço
 add project	projectmanager	pt-br	Adicionar projeto
 add project-elements	projectmanager	pt-br	Adicionar elementos de projeto
 add this role	projectmanager	pt-br	Adicionar este perfil
+addressbook fields	projectmanager	pt-br	Campos do catálogo de endereços
+all roles	projectmanager	pt-br	todas as funções
+all_roles	projectmanager	pt-br	todas as funções
 allow users to change their working times	projectmanager	pt-br	Permitir que usuários modifiquem suas horas de trabalho
 allowed accounting types	projectmanager	pt-br	Tipos de contabilização permitidas
 allowed units	projectmanager	pt-br	Unidades permitidas
@@ -31,6 +38,8 @@ apply the changes	projectmanager	pt-br	Aplicar alterações
 archive	projectmanager	pt-br	Arquivar
 assistant	projectmanager	pt-br	Assistente
 at which time do you start working on the given day.	projectmanager	pt-br	A que horas você começa a trabalhar no dia em questão.
+availability settings	projectmanager	pt-br	configurações de disponibilidade
+available fields for this plugin:	projectmanager	pt-br	Campos disponíveis para este plugin:
 availible	projectmanager	pt-br	Disponível
 billable	projectmanager	pt-br	sujeito a cobrança
 bookable	projectmanager	pt-br	sujeito a agendamento
@@ -39,10 +48,16 @@ budget (no pricelist)	projectmanager	pt-br	Orçamento (sem lista de preços)
 budget and pricelist	projectmanager	pt-br	Orçamento e lista de preços
 by	projectmanager	pt-br	por
 calculate budget by quantity (eg. time) and price	projectmanager	pt-br	Calcular orçamento por quantidade (ex. tempo) e preço
+category in %1 project-element(s) updated.	projectmanager	pt-br	Categoria em% 1 elemento (s) do projeto atualizado.
+category set	projectmanager	pt-br	Categoria set
+change category	projectmanager	pt-br	alterar categoria
+charset of file	projectmanager	pt-br	Charset de arquivo
 charset of the above selected font	projectmanager	pt-br	Codificação de caracteres para a fonte acima selecionada
 check all	projectmanager	pt-br	Marcar todos
 close the window, discard the changes made	projectmanager	pt-br	Feche a janela, descarte as modificações feitas
+completion	projectmanager	pt-br	realização
 constraints	projectmanager	pt-br	Regras
+contact fields for serial letters	projectmanager	pt-br	Contato campos para letras de série
 conversation between days and hours, default 8	projectmanager	pt-br	conversão de dias para horas, padrão 8
 coordinator	projectmanager	pt-br	Coordenador
 cost per time	projectmanager	pt-br	Custo por Tempo
@@ -50,12 +65,15 @@ create a new empty project or use a template	projectmanager	pt-br	Criar um proje
 create new links	projectmanager	pt-br	Criar novos links
 created	projectmanager	pt-br	criado
 created a ganttchart from the checked projects	projectmanager	pt-br	Criado um gráfico de Gantt a partir dos projetos marcados
+creation date and time	projectmanager	pt-br	Data e hora de criação
+creator	projectmanager	pt-br	criador
 csv-fieldname	projectmanager	pt-br	CSV-Nome do Campo
 csv-filename	projectmanager	pt-br	CSV-Nome do Arquivo
 csv-import	common	pt-br	CSV-Importar
 cumulated elements too	projectmanager	pt-br	Elementos acumulados também
 custom fields	projectmanager	pt-br	Campos customizados
 customer title	projectmanager	pt-br	Tratamento do Cliente
+data exchange settings	projectmanager	pt-br	Configurações de troca de dados
 datasource	projectmanager	pt-br	Origem de dados
 datasources too	projectmanager	pt-br	Origens de dados também
 dates	projectmanager	pt-br	Datas
@@ -71,8 +89,10 @@ deleted	projectmanager	pt-br	removido
 depth of display	projectmanager	pt-br	Profundidade da visualização
 details of cumulated	projectmanager	pt-br	Detalhes dos acumulados
 details of subelements	projectmanager	pt-br	Detalhes dos subelementos
+directory with documents to insert project data	projectmanager	pt-br	Diretório com documentos para inserir os dados do projeto
 do not use that entry as project-element	projectmanager	pt-br	não use esta entrada como elemento de projeto
 document '%1' does not exist or is not readable for you!	projectmanager	pt-br	Documento '%1' não existe ou você não pode ser lido por você!
+document download filename	projectmanager	pt-br	Documento download nome do arquivo
 done (100%)	projectmanager	pt-br	Feito (100%)
 edit access, incl. editing budget and elements	projectmanager	pt-br	editar acesso, incl. edição de orçamento e elementos
 edit budget	projectmanager	pt-br	Editar orçamento
@@ -85,7 +105,20 @@ edit this price	projectmanager	pt-br	Editar este preço
 edit this project	projectmanager	pt-br	Editar este projeto
 edit this project-element	projectmanager	pt-br	Editar este elemento de projeto
 edit this role	projectmanager	pt-br	Editar este perfil
+element category	projectmanager	pt-br	categoria elemento
+element details	projectmanager	pt-br	Elemento detalhes
+element id	projectmanager	pt-br	Element ID
+element list	projectmanager	pt-br	lista de elementos
+element modifier	projectmanager	pt-br	modificador Elemento
+element role deleted	projectmanager	pt-br	Papel de elemento excluído.
+element role saved	projectmanager	pt-br	Papel de elemento salvo.
+element role title	projectmanager	pt-br	Título papel de elemento
+element roles	projectmanager	pt-br	papéis elemento
+element roles:	projectmanager	pt-br	Papéis Elemento:
+element status	projectmanager	pt-br	Elemento Estado
+element title	projectmanager	pt-br	título Elemento
 elementlist	projectmanager	pt-br	Lista de elementos
+elements	projectmanager	pt-br	Elemento
 elements of elements	projectmanager	pt-br	Elementos de elementos
 elements that can't start before this one is finished	projectmanager	pt-br	Elementos que não podem iniciar antes deste terminar
 elements which have to be finished before this can start	projectmanager	pt-br	Elementos que devem terminar antes que esse possa iniciar
@@ -94,19 +127,29 @@ empty for all	projectmanager	pt-br	vazio para todos
 encode non-ascii	projectmanager	pt-br	Codificar não-ASCII
 end before	projectmanager	pt-br	Termina antes
 enddate	projectmanager	pt-br	Data Final
+error: deleting element role !!!	projectmanager	pt-br	Eliminação de erros papel elemento!
 error: deleting price !!!	projectmanager	pt-br	Erro: removendo preço !!!
 error: deleting project !!!	projectmanager	pt-br	Erro: removendo projeto !!!
 error: deleting project-element !!!	projectmanager	pt-br	Erro: removendo elementos de projeto !!!
 error: deleting role !!!	projectmanager	pt-br	Erro: removendo perfil !!!
 error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	pt-br	Erro: ID de projeto já existe, escolha um outro ou deixe em branco para gerar automaticamente !!!
+error: saving element role !!!	projectmanager	pt-br	Economizando papel elemento Error!
 error: saving milestone	projectmanager	pt-br	Erro: salvando marco
 error: saving role !!!	projectmanager	pt-br	Error: salvando perfil !!!
 error: saving the price (%1) !!!	projectmanager	pt-br	Erro: salvando o preço (%1) !!!
 error: saving the project (%1) !!!	projectmanager	pt-br	Erro: salvando o projeto (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	pt-br	Erro: salvando o elemento de projeto (%1) !!!
 everything recursive	projectmanager	pt-br	Tudo recursivo
+example:	projectmanager	pt-br	exemplo:
+examples:	projectmanager	pt-br	exemplos:
+existing data will be overwrited if checked	projectmanager	pt-br	Os dados existentes serão substituídos se verificado.
 existing links	projectmanager	pt-br	Links existentes
+exists	projectmanager	pt-br	existentes
 exit without saving	projectmanager	pt-br	Sair sem salvar
+exports a list of project elements to a csv file.	projectmanager	pt-br	Exporta uma lista de elementos do projeto para um arquivo CSV.
+exports a list of projects to a csv file.	projectmanager	pt-br	Exporta uma lista de projetos para um arquivo CSV.
+favorites	projectmanager	pt-br	Favoritos
+fields for element roles:	projectmanager	pt-br	Campos para funções de elemento:
 fieldseparator	projectmanager	pt-br	Separador de campos
 font	projectmanager	pt-br	Fonte
 font charset	projectmanager	pt-br	Codificação de caracteres da fonte
@@ -120,7 +163,9 @@ full access	projectmanager	pt-br	acesso completo
 ganttchart	projectmanager	pt-br	Gráfico de Gantt
 ganttchart parameter	projectmanager	pt-br	parâmetro do gráfico de Gantt
 general availibility	projectmanager	pt-br	Disponibilidade geral
+general fields:	projectmanager	pt-br	Campos gerais:
 general pricelist	projectmanager	pt-br	Lista de preços geral
+general settings	projectmanager	pt-br	definições gerais
 global categories	projectmanager	pt-br	Categorias Globais
 h	projectmanager	pt-br	h
 health	projectmanager	pt-br	Saúde
@@ -128,19 +173,27 @@ hours	projectmanager	pt-br	horas
 hours per workday	projectmanager	pt-br	Horas por dias de trabalho
 how long do you work on the given day.	projectmanager	pt-br	Quanto tempo você trabalha em um dado dia.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a seleção de projeto deverá ser exibida no menu: Uma árvore dá uma melhor visão; uma caixa de seleção pode ter uma melhor performance.
+html link to the current record	projectmanager	pt-br	Link HTML para o registro atual
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) são removidas também.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) terão seus status alterados também.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se você ver entidades (exemplo: {) no gráfico de Gantt, desabilite-o.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
+import	projectmanager	pt-br	importação
+insert	projectmanager	pt-br	inserir
 last modified	projectmanager	pt-br	última modificação
+last sync date and time	projectmanager	pt-br	Última data e hora sync
 leave it empty if you dont need a different customer title	projectmanager	pt-br	deixe em branco se você não precisar de um tratamento diferente para o cliente
 leave it empty to have one generated	projectmanager	pt-br	deixe em branco para gerar automaticamente
 leave it empty, if identitcal to the time	projectmanager	pt-br	deixe em branco, se idêntico ao tempo
 linked elements	projectmanager	pt-br	Elementos relacionados
 links	projectmanager	pt-br	Links
+links and attached files	projectmanager	pt-br	Links e arquivos anexados
+list of files linked to the current record	projectmanager	pt-br	Lista de arquivos vinculados ao registro atual
+lists all project elements in a table.	projectmanager	pt-br	Lista todos os elementos do projeto em uma tabela.
 mainproject only	projectmanager	pt-br	Apenas projeto Principal
 mainprojects	projectmanager	pt-br	Projetos principais
+manage mapping	projectmanager	pt-br	Gerenciar mapeamento
 members	projectmanager	pt-br	Membros
 milestone deleted	projectmanager	pt-br	Marco removido
 milestone saved	projectmanager	pt-br	Marco salvo
@@ -148,54 +201,96 @@ milestones	projectmanager	pt-br	Marcos
 milestones before this element has to be finished	projectmanager	pt-br	Marcos antes deste elemento devem ser finalizados
 modified	projectmanager	pt-br	Modificado
 modified by	projectmanager	pt-br	modificado por
+modified date and time	projectmanager	pt-br	Data e hora Modificado
+modifier	projectmanager	pt-br	Modifier
+modify status	projectmanager	pt-br	modificar o estado
+multi assignments	projectmanager	pt-br	atribuições multi
 name of current user, all other contact fields are valid too	projectmanager	pt-br	Nome do usuário atual, todos outros campos são válidos também
 necessary for project-elements doing that not automatic	projectmanager	pt-br	necessário para elementos de projeto que não o fazem automaticamente
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pt-br	Necessária a extensão PHP %1: não carregada e não pode ser carregada !!!
 new	projectmanager	pt-br	novo
+new project submitted by %1 at %2	projectmanager	pt-br	Novo projeto apresentado por% 1 em% 2
 no accounting, only status	projectmanager	pt-br	Sem contabilização, apenas estado
 no accounting, only times and status	projectmanager	pt-br	Sem contabilização, apenas horas e estado
 no details	projectmanager	pt-br	sem detalhes
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	pt-br	Sem acesso de LEITURA à origem de dados: a remoção de valores sobrescritos apenas vai deixá-los em branco !!!
+no rights to export more then %1 entries!	projectmanager	pt-br	Nenhum direito de exportar mais, em seguida, as entradas 1%!
 no save necessary	projectmanager	pt-br	não é necessário salvar
 nonactive	projectmanager	pt-br	Não ativo
+not available	projectmanager	pt-br	não disponível
 not started (0%)	projectmanager	pt-br	Não iniciado (0%)
 not working	projectmanager	pt-br	Não trabalhando
 number of records to read (%1)	projectmanager	pt-br	Número de registros para ler (%1)
 only this project	projectmanager	pt-br	Apenas este projeto
+order of sub-project bars in ganttcharts	projectmanager	pt-br	Ordem dos bares sub-projeto em gráficos de Gantt
 overwrite the datasource	projectmanager	pt-br	Sobrescrever a origem de dados
 percentage the member is availible for projects	projectmanager	pt-br	Percentual de disponibilidade do membro para projetos
 percentage the member is availible for this project	projectmanager	pt-br	Percentual de disponibilidade do membro para este projeto
 permission denied !!!	projectmanager	pt-br	Permissão negada !!!
 planned	projectmanager	pt-br	planejado
+planned budget	projectmanager	pt-br	orçamento previsto
+planned end	projectmanager	pt-br	final planejado
+planned end date and time	projectmanager	pt-br	Data de término planejada e tempo
+planned quantitiy	projectmanager	pt-br	quantidade planejada
+planned quantity	projectmanager	pt-br	quantidade planejada
+planned start	projectmanager	pt-br	início previsto
+planned start date and time	projectmanager	pt-br	Data de início planejada e tempo
 planned time	projectmanager	pt-br	Horas planejadas
+planned time in minutes	projectmanager	pt-br	Planejado tempo em minutos
 planned times	projectmanager	pt-br	Horas planejadas
 please download a recent version from %1 and install it in %2.	projectmanager	pt-br	Por favor, faça o download de uma versão recente de %1 e instale-a em %2.
 price	projectmanager	pt-br	Preço
 price / unit	projectmanager	pt-br	Preço / Unidade
 price deleted	projectmanager	pt-br	Preço removido
+price per unit	projectmanager	pt-br	Preço por unidade
 price saved	projectmanager	pt-br	Price salvo
 pricelist	projectmanager	pt-br	Lista de preços
+project access (e.g. public)	projectmanager	pt-br	Projeto acesso, por exemplo, público
 project availibility	projectmanager	pt-br	Disponibilidade para projeto
+project category	projectmanager	pt-br	categoria Projeto
+project completion (e.g. 100%)	projectmanager	pt-br	A conclusão do projeto, por exemplo, 100%
+project creator	projectmanager	pt-br	criador do projeto
+project csv export	projectmanager	pt-br	Exportação CSV Projeto
+project csv import	projectmanager	pt-br	Importação CSV Projeto
 project deleted	projectmanager	pt-br	Projeto removido
+project element csv export	projectmanager	pt-br	Elemento do projeto CSV exportação
 project id	projectmanager	pt-br	ID de Projeto
+project id - template name	projectmanager	pt-br	ID Project - nome do modelo
 project members and roles	projectmanager	pt-br	Membros do projeto e seus perfis
+project modified by %1 at %2	projectmanager	pt-br	Projeto modificado por% 1 em% 2
+project modifier	projectmanager	pt-br	modificador de Projetos
+project number	projectmanager	pt-br	número do projeto
 project overview	projectmanager	pt-br	visão geral do projeto
+project priority	projectmanager	pt-br	prioridade Projeto
 project saved	projectmanager	pt-br	Projeto salvo
 project specific title, prices, ...	projectmanager	pt-br	Título, preço, ... específico do projeto
+project status	projectmanager	pt-br	da situação dos projetos
+project title	projectmanager	pt-br	Título do projeto
+project title - template name	projectmanager	pt-br	Título do projeto - nome do modelo
+project-element	projectmanager	pt-br	elemento do projeto
 project-element deleted	projectmanager	pt-br	Elemento de projeto removido
 project-element saved	projectmanager	pt-br	Elemento de projeto salvo
 project-elements	projectmanager	pt-br	Elementos de projeto
+projectid	projectmanager	pt-br	Projeto ID
 projectlist	projectmanager	pt-br	Lista de projeto
 projectmanager	common	pt-br	Gerenciador de Projetos
+projectmanager element fields	projectmanager	pt-br	Campos elemento Project Manager
+projectmanager element fields:	projectmanager	pt-br	Campos elemento Project Manager:
+projectmanager fields:	projectmanager	pt-br	Campos Gerente de Projetos:
 projectmanager-fieldname	projectmanager	pt-br	Gerenciador de Projetos - Nome do campo
 projectmember	projectmanager	pt-br	Membro do Projeto
 projects	projectmanager	pt-br	Projetos
 quantity	projectmanager	pt-br	Quantidade
+re-planned	projectmanager	pt-br	Re-planejado
+re-planned time	projectmanager	pt-br	Tempo re-planejado
 read access, incl. budget and adding elements	projectmanager	pt-br	acesso de leitura, incl. orçamento e adição de elementos
 read access, no budget	projectmanager	pt-br	acesso de leitura, sem orçamento
 real end	projectmanager	pt-br	Fim real
+real end date and time	projectmanager	pt-br	Data final do real e do tempo
 real start	projectmanager	pt-br	Início real
+real start date and time	projectmanager	pt-br	Data final do real e do tempo
 remark	projectmanager	pt-br	Destaque
+replanned time in minutes	projectmanager	pt-br	Tempo re-planejado em minutos
 resources	projectmanager	pt-br	Recursos
 role	projectmanager	pt-br	Perfil
 role deleted	projectmanager	pt-br	Perfil removido
@@ -205,44 +300,67 @@ save the changes made	projectmanager	pt-br	Salvar as modificações realizadas
 save this project element	projectmanager	pt-br	Salvar este elemento de projeto
 select a project	projectmanager	pt-br	selecionar um projeto
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	pt-br	selecione uma atividade se você quer calcular custo por quantidade (tempo) e preço
+select export options	projectmanager	pt-br	Selecione as opções de exportação
 select multiple projects for a further action	projectmanager	pt-br	Selecione múltiplos projetos para continuar
 select the accounting types visible for users of projectmanager	projectmanager	pt-br	selecione os tipos de contabilização visíveis para usuários do módulo Gerência de Projetos
 select this project and show it's elements	projectmanager	pt-br	Selecione este projeto e mostre seus elementos
 selectbox with %1	projectmanager	pt-br	Caixa de seleção com %1
+set order to show sub-project bars in ganttcharts.	projectmanager	pt-br	Definir a fim de mostrar bares sub-projeto em ganttcharts.
 share	projectmanager	pt-br	Compartilhamento
 share on the whole project	projectmanager	pt-br	Compartilhamento em todo o projeto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	pt-br	Compartilhamento em todo o projeto em horas ou percentual, o padrão e hora planejada
+shared time in minutes	projectmanager	pt-br	Compartilhados em tempo em minutos
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	pt-br	O módulo Gerência de Projetos deve mostrar os ícones de estado da origem de dados (ex. InfoLog) ou apenas uma barra de progresso com o estado numérico(mais rápido).
 show constraints and milestones	projectmanager	pt-br	Mostra regras e marcos
+show elements in ganttchart by applications	projectmanager	pt-br	Mostrar elementos em GanttChart por aplicações
+show links in the project elements list	projectmanager	pt-br	Mostrar links na lista Elementos de Projetos
 show planned times instead of the real times	projectmanager	pt-br	Mostra horas planejadas no lugar de horas reais
 show status icons of the datasources	projectmanager	pt-br	Mostra ícones de estado das origens de dados
 show the project selection as	projectmanager	pt-br	Exibir a seleção do projeto como
 site configuration saved	projectmanager	pt-br	Configuração do site salva
 start after	projectmanager	pt-br	Começar depois
+start date, end date	projectmanager	pt-br	Data de Início, Data Fim
 start working on %1	projectmanager	pt-br	Iniciando o trabalho em %1
 start, end, category, ...	projectmanager	pt-br	Início, Fim, Categoria, ...
 start- & enddate	projectmanager	pt-br	Data Inicial- & Final
 startdate	projectmanager	pt-br	Data inicial
 startrecord	projectmanager	pt-br	Registro inicial
 status filter	projectmanager	pt-br	Filtro de estado
+status set	projectmanager	pt-br	Definir status
 style used for everything but elements. some fonts have only normal style.	projectmanager	pt-br	Estilo usado por tudo, exceto elementos. Algumas fontes têm somente estilo normal.
 subelements	projectmanager	pt-br	Subelementos
-subprojects	projectmanager	pt-br	Subprojetos
+subproject	projectmanager	pt-br	Sub projeto
+subprojects	projectmanager	pt-br	Sub projetos
+synced	projectmanager	pt-br	Sub Projetos
 synchronise all	projectmanager	pt-br	Sincronizar tudo
+table plugins:	projectmanager	pt-br	Plugins de mesa:
+tag to mark positions for address labels	projectmanager	pt-br	Tag para marcar posições para etiquetas de endereço
 template	projectmanager	pt-br	Modelo
+template as subproject	projectmanager	pt-br	Template como subprojeto
 template including elment-tree saved as new project	projectmanager	pt-br	Modelo incluindo árvore de elementos salva como novo projeto
+template name	projectmanager	pt-br	nome do modelo
+template name - project title	projectmanager	pt-br	Nome do modelo - título do projeto
 test import (show importable records <u>only</u> in browser)	projectmanager	pt-br	Testar importação (exibir <u>apenas</u> registros importáveis no navegador)
 the charset depends on the font you want to use.	projectmanager	pt-br	A codificação de caracteres depende da fonte que você irá usar.
+the following document-types are supported:	projectmanager	pt-br	Os seguintes tipos de documentos são suportados:
 time	projectmanager	pt-br	Hora
 times	projectmanager	pt-br	Horas
 timezone	projectmanager	pt-br	Zona de horário
 title must not be empty	projectmanager	pt-br	Tratamento não pode ser vazio
 to many might exceed your execution-time-limit	projectmanager	pt-br	muitos poderão exceder seu tempo limite de execução
+total completion shares	projectmanager	pt-br	Total de ações de conclusão
+total shares	projectmanager	pt-br	Total de ações
+translation	projectmanager	pt-br	tradução
 tree with %1	projectmanager	pt-br	Árvore com %1
+unable to find parent project %1	projectmanager	pt-br	Incapaz de encontrar um projeto pai%
 unit	projectmanager	pt-br	Unidade
 unitprice	projectmanager	pt-br	Preço da unidade
+usage	projectmanager	pt-br	uso
 used	projectmanager	pt-br	usado
+used budget	projectmanager	pt-br	orçamento Usado
+used quantity	projectmanager	pt-br	quantidade utilizada
 used time	projectmanager	pt-br	Horas utilizadas
+used time in minutes	projectmanager	pt-br	Tempo de uso em minutos
 valid since	projectmanager	pt-br	Válido desde
 view all subs of this entry	projectmanager	pt-br	Ver todas as subs para este registro
 view ganttchart of this project	projectmanager	pt-br	Visualizar o gráfico de Gantt deste projeto
