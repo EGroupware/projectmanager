@@ -72,7 +72,7 @@ app.classes.projectmanager = AppJS.extend(
 		var appList = egw.link_app_list('query');
 		var nm = this.et2 ? this.et2.getWidgetById('nm') : null;
 		
-		if (typeof appList[_app] != 'undefined')
+		if (typeof appList[_app] != 'undefined'  && _app != 'projectmanager')
 		{
 			if (typeof _links != 'undefined')
 			{	
@@ -82,8 +82,8 @@ app.classes.projectmanager = AppJS.extend(
 				}
 				else if (nm)
 				{
-					var rex = RegExp(_app+":"+_id+".*");
-					if (nm.getValue().selected[0].match(rex)) nm.applyFilters();
+					var rex = RegExp("projectmanager_elements::"+_app+":"+_id+".*");
+					egw.dataRefreshUIDs(rex,'delete');
 				}
 			}
 		}	
