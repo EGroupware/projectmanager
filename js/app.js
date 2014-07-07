@@ -69,24 +69,49 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	observer: function(_msg, _app, _id, _type, _msg_type, _links)
 	{
-		var appList = egw.link_app_list('query');
-		var nm = this.et2 ? this.et2.getWidgetById('nm') : null;
-		
-		if (typeof appList[_app] != 'undefined'  && _app != 'projectmanager')
+		switch (_app)
 		{
-			if (typeof _links != 'undefined')
-			{	
-				if (typeof _links.projectmanager != 'undefined')
+			case 'projectmanager':
+				var tree = this.et2.getWidgetById('project_tree');
+				var itemId =_app+"::"+_id;
+				if (tree)
 				{	
-					if (nm) nm.applyFilters();
-				}
-				else if (nm)
+					var node = tree.getNode(itemId);
+					switch(_type)
+					{
+						case 'add':
+						case 'update':
+						case 'edit':
+							tree.refreshItem(tree.input.getParentId(itemId)||0);
+							break;
+						case 'delete':
+							if (node)
+							{
+								tree.deleteItem(itemId);
+							}
+					}
+				}	
+				break;
+			default:
+				var appList = egw.link_app_list('query');
+				var nm = this.et2 ? this.et2.getWidgetById('nm') : null;
+
+				if (typeof appList[_app] != 'undefined')
 				{
-					var rex = RegExp("projectmanager_elements::"+_app+":"+_id+".*");
-					egw.dataRefreshUIDs(rex,'delete');
-				}
-			}
-		}	
+					if (typeof _links != 'undefined')
+					{	
+						if (typeof _links.projectmanager != 'undefined')
+						{	
+							if (nm) nm.applyFilters();
+						}
+						else if (nm)
+						{
+							var rex = RegExp("projectmanager_elements::"+_app+":"+_id+".*");
+							egw.dataRefreshUIDs(rex,'delete');
+						}
+					}
+				}	
+		}
 	},
 
 	/**

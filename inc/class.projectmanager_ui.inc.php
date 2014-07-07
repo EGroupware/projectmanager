@@ -217,7 +217,7 @@ class projectmanager_ui extends projectmanager_bo
 							array('pm_id'=>$this->data['pm_id']),$this->data['pm_status']);
 					}
 				}
-				if ($content['apply']) egw_framework::refresh_opener($msg, 'projectmanager');
+				if ($content['apply']) egw_framework::refresh_opener($msg, 'projectmanager',  $content['pm_id'], 'edit');
 			}
 			if ($content['delete'] && $this->check_acl(EGW_ACL_DELETE))
 			{
@@ -225,7 +225,7 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			if ($content['save'] || $content['delete'])	// refresh opener and output message
 			{
-				egw_framework::refresh_opener($msg,'projectmanager', $content['pm_id'], 'edit');
+				egw_framework::refresh_opener($msg,'projectmanager', $content['pm_id'], $content['save']?'edit':'delete');
 				egw_framework::window_close();
 				common::egw_exit();
 			}
@@ -934,7 +934,7 @@ class projectmanager_ui extends projectmanager_bo
 
 		return !$failed;
 	}
-
+	
 	/**
 	 * Generate the project tree nodes
 	 *
