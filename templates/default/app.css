@@ -45,3 +45,4 @@ table.egwLinkMoreOptions {
 #projectmanager-elements-edit_projectmanager-elements-edit-constraints .target [id*="pe_id_end"]{
 	font-weight: bold;
 }
+#projectmanager-elements-list_add_existing_popup {display:none;}
