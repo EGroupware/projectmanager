@@ -289,7 +289,7 @@
 					</hbox>
 					<hbox align="right">
 						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"/>
-						<button statustext="Delete this project" label="Delete" id="delete" onclick="return confirm('Delete this project');" image="delete" background_image="1"/>
+						<button statustext="Delete this project" label="Delete" id="delete" onclick="et2_dialog.confirm(widget,'Delete this project','Delete')" image="delete" background_image="1"/>
 					</hbox>
 				</row>
 			</rows>
