@@ -236,9 +236,6 @@ button#projectmanager-list_add:active {
   background-color: #1aa200 !important;
 }
 /*Ende iframe*/
-#projectmanager-list .egwGridView_scrollarea {
-  min-height: 700px;
-}
 #projectmanager-edit {
   width: 800px;
   padding: 5px;
