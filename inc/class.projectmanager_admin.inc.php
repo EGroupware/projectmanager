@@ -82,10 +82,7 @@ class projectmanager_admin
 		}
 		if ($content['cancel'] || $content['save'])
 		{
-			$tpl->location(array(
-				'menuaction' => 'projectmanager.projectmanager_ui.index',
-				'msg' => $msg,
-			));
+			egw::redirect_link('/admin/index.php', null, 'admin');
 		}
 
 		$content = $this->config->config_data;
