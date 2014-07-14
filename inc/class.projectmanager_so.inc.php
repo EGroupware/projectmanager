@@ -83,7 +83,7 @@ class projectmanager_so extends so_sql_cf
 		parent::__construct('projectmanager','egw_pm_projects','egw_pm_extra','','pm_extra_name','pm_extra_value','pm_id');
 
 		$this->config = config::read('projectmanager');
-		$this->config['duration_format'] = str_replace(',','',$this->config['duration_units']).','.$this->config['hours_per_workday'];
+		$this->config['duration_format'] = (is_array($this->config['duration_units']) ? implode('',$this->config['duration_units']) : str_replace(',','',$this->config['duration_units'])).','.$this->config['hours_per_workday'];
 
 		$this->grants = $GLOBALS['egw']->acl->get_grants('projectmanager');
 		$this->user = (int) $GLOBALS['egw_info']['user']['account_id'];
