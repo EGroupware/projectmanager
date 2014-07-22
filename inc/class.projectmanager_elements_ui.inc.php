@@ -580,7 +580,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
  			}
 		}
-
+		//Set icon for milestone as Milestone is not an application therefore, its icon won't get set like the others
+		if ($row['pe_app'] === 'pm_milestone')
+		{
+			$row['pe_icon'] = 'projectmanager/milestone';
+		}
 		if ($this->prefs['show_custom_app_icons'] || $this->prefs['show_infolog_type_icon'])
 		{
 			$custom_app_icons['location'] = 'pm_custom_app_icons';
