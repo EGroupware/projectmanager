@@ -144,7 +144,8 @@
 					</vbox>
 					<vbox align="center">
 						<image align="center" src="${row}[pe_healt_icon]"/>
-						<progress align="center" label="$row_cont[pe_completion]" id="${row}[pe_completion_icon]" no_lang="1"/>
+						<progress align="center" id="${row}[pe_completion]" no_lang="1"/>
+						<image align="center" src="${row}[pe_completion_icon]" no_lang="1"/>
 					</vbox>
 					<vbox readonly="true">
 						<date-time id="${row}[pe_modified]" readonly="true"/>
