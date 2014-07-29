@@ -2,7 +2,6 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.gantt" template="" lang="" group="0" version="1.9.001">
-		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
 		<vbox width="100%" height="100%">
 			<hbox>
 				<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"/>

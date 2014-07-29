@@ -268,7 +268,7 @@ button#projectmanager-list_add:active {
 #link_add.solidBorder select {
   /*.box_shadow_standard_light;*/
   width: auto;
-  margin: 5px 0em 5px 5px;
+  margin: 5px 0em 5px 0px;
   padding: 3px;
   outline: none;
   display: inline-block;
@@ -339,13 +339,6 @@ table.egwLinkMoreOptions {
   -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
 }
-div#projectmanager-pricelist-list {
-  /*tr.noPrint {height: 0px;}*/
-}
-div#projectmanager-pricelist-list #projectmanager-pricelist-list_nm {
-  position: relative;
-  top: -44px;
-}
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add {
   /*border: 1px solid #0C5DA5;*/
   margin: 6px 2px;
@@ -392,9 +385,6 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:hover {
 }
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
   background-color: #1aa200 !important;
-}
-div#projectmanager-pricelist-list .header_count {
-  right: 36px;
 }
 #projectmanager-elements-list_nm #projectmanager-elements-list_link_add button {
   color: #FFF;

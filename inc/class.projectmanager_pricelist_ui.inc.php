@@ -34,7 +34,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 	 */
 	function __construct($pm_id=null)
 	{
-		error_log(array2string($_GET));
 		if (!is_null($pm_id) || isset($_REQUEST['pm_id']))
 		{
 			if (is_null($pm_id)) $pm_id = (int) $_REQUEST['pm_id'];
@@ -336,6 +335,9 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!legacy_actions',
 				'row_id'         => 'pl_id',
+				'header_row'     => 'projectmanager.pricelist.add-new',
+				'dataStorePrefix' => 'pm_prices', // Default would be projectmanager, which would collide with project list
+				'num_rows'       => 0, // No data when first sent
 			);
 		}
 		$content['nm']['col_filter']['pm_id'] = $this->pm_id;
@@ -359,13 +361,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			'pl_billable' => $this->billable_lables,
 			'pm_id' => $projects,
 		);
-		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
-		if($this->pm_id)
-		{
-			$content['project_tree'] = 'projectmanager::'.$this->pm_id;
-		}
-		$tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
-
+		
 		$readonlys = array(
 			// show add button only, if user has rights to add a new price
 			'add' => !$this->check_acl(EGW_ACL_EDIT,$this->pm_id),

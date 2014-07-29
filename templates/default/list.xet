@@ -78,11 +78,11 @@
 					<menulist>
 						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>
 					</menulist>
-					<listbox type="select-account" id="${row}[role0]" readonly="true" rows="2"/>
-					<listbox type="select-account" id="${row}[role1]" readonly="true" rows="2"/>
-					<listbox type="select-account" id="${row}[role2]" readonly="true" rows="2"/>
-					<listbox type="select-account" id="${row}[role3]" readonly="true" rows="2"/>
-					<listbox type="select-account" id="${row}[role4]" readonly="true" rows="2"/>
+					<listbox type="select-account" id="${row}[role0]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role1]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role2]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role3]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role4]" readonly="true"/>
 					<vbox>
 						<date id="${row}[pm_real_start]" readonly="true"/>
 						<date id="${row}[pm_planned_start]" readonly="true" class="planned"/>

@@ -158,7 +158,6 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
-		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
 		<grid width="100%">
 			<columns>
 				<column/>

@@ -22,6 +22,7 @@ class projectmanager_ui extends projectmanager_bo
 	 */
 	var $public_functions = array(
 		'index' => true,
+		'list'	=> true,
 		'edit'  => true,
 		'view'  => true,
 	);
@@ -71,6 +72,25 @@ class projectmanager_ui extends projectmanager_bo
 		);
 	}
 
+
+	/**
+	 * Set up all project templates so the user can quickly switch between them,
+	 * with no reload needed
+	 */
+	public function index(array $content = null)
+	{
+		$element_list = new projectmanager_elements_ui();
+		$element_list->index();
+
+		$gantt = new projectmanager_gantt();
+		$gantt->chart();
+
+		$prices = new projectmanager_pricelist_ui();
+		$prices->index();
+
+
+		$this->pm_list();
+	}
 
 	/**
 	 * View a project
@@ -562,7 +582,7 @@ class projectmanager_ui extends projectmanager_bo
 	 * @param array $content=null
 	 * @param string $msg=''
 	 */
-	function index($content=null,$msg='')
+	function pm_list($content=null,$msg='')
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_ui::index(,$msg) content=".print_r($content,true));
 
@@ -667,9 +687,13 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$sel_options = array(
 			'template_id' => $p_templ,
-			'project_tree' => $this->ajax_tree(0, true)
+			'project_tree' => $this->ajax_tree(0, true,$this->prefs['current_project'])
 		);
 		$tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
+		if($this->prefs['current_project'])
+		{
+			$content['project_tree'] = 'projectmanager::'.$this->prefs['current_project'];
+		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
 		$tpl->exec('projectmanager.projectmanager_ui.index',$content,$sel_options);
 	}
@@ -715,7 +739,7 @@ class projectmanager_ui extends projectmanager_bo
 				'caption' => 'Elementlist',
 				'default' => true,
 				'allowOnMultiple' => false,
-				'egw_open' => 'view-projectmanager',
+				'onExecute' => 'javaScript:app.projectmanager.set_project',
 				'target' => '_self',
 				'group' => $group=1,
 				'default' => true,
@@ -774,7 +798,7 @@ class projectmanager_ui extends projectmanager_bo
 			'pricelist' => array(
 				'icon' => 'pricelist',
 				'caption' => 'Pricelist',
-				'url' => 'menuaction=projectmanager.projectmanager_pricelist_ui.index&pm_id=$id',
+				'onExecute' => 'javaScript:app.projectmanager.show_pricelist',
 				'allowOnMultiple' => false,
 				'group' => $group,
 			),
@@ -948,7 +972,7 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			list(,$parent_pm_id) = explode('::', $_GET['id']);
 		}
-		//error_log(__METHOD__."($parent_pm_id, $return, $current_pm_id) \$_GET['id']=".array2string($_GET['id']));
+		//error_log(__METHOD__."($parent_pm_id, $return, $_pm_id) \$_GET['id']=".array2string($_GET['id']));
 		$type = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
 		if (substr($type,-5) == 'title')
 		{
@@ -1004,7 +1028,7 @@ class projectmanager_ui extends projectmanager_bo
 				$parent[$project['pm_id']] = $p;
 			}
 		}
-		//error_log(__METHOD__."($parent_pm_id, $return, $current_pm_id) \$_GET['id']=".array2string($_GET['id']).", projects=".array2string($projects));
+		//error_log(__METHOD__."($parent_pm_id, $return, $_pm_id) \$_GET['id']=".array2string($_GET['id']).", projects=".array2string($projects));
 
 		// Remove keys for tree widget
 		$nodes = array(
