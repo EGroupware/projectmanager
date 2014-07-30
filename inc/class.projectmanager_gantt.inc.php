@@ -126,8 +126,13 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	protected function get_gantt_actions()
 	{
 		$actions = $this->get_actions();
+
+		// Redirect action to gantt specific JS code
 		$actions['open']['onExecute'] = 'javaScript:app.projectmanager.gantt_open_action';
 		$actions['edit']['onExecute'] = 'javaScript:app.projectmanager.gantt_edit_element';
+
+		// Allow projectelement for anything in gantt chart
+		unset($actions['edit']['enableId']);
 
 		// Cat IDs don't get a prefix, nm does something extra to them
 		$add_id = function(&$action) use (&$add_id)
@@ -195,7 +200,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	}
 
 	// Get the data into required format
-	protected function add_project(&$data = array(), $pm_id, $params) {
+	protected function &add_project(&$data = array(), $pm_id, $params) {
 		if ($pm_id != $this->project->data['pm_id'])
 		{
 			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
@@ -334,38 +339,36 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 			if($pe['pe_app'] == 'projectmanager') {// && $level < $params['depth']) {
 				$project = true;
-				$elements[] = $pe;
-			} else {
-				$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
-				$pe['text'] = $pe['pe_title'];
-				$pe['parent'] = 'projectmanager::'.$pm_id;
-				$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
-				$pe['duration'] = (float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']);
-				if($pe['pe_end'] && !$pe['duration'])
-				{
-					$pe['end_date'] = egw_time::to((int)$pe['pe_end'],egw_time::DATABASE);
-				}
-				$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
-				$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
-
-				// Set field for filter to filter on
-				$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
-
-				// Skip elements that would be 0 duration
-				if(!($pe['duration'] || $pe['end_date']))
-				{
-					continue;
-				}
-				$elements[] = $pe;
 			}
+			$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
+			$pe['text'] = $pe['pe_title'];
+			$pe['parent'] = 'projectmanager::'.$pm_id;
+			$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
+			$pe['duration'] = (float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']);
+			if($pe['pe_end'] && !$pe['duration'])
+			{
+				$pe['end_date'] = egw_time::to((int)$pe['pe_end'],egw_time::DATABASE);
+			}
+			$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
+			$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
 
+			// Set field for filter to filter on
+			$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
+
+			// Skip elements that would be 0 duration
+			if(!($pe['duration'] || $pe['end_date']))
+			{
+				continue;
+			}
+			$elements[] = $pe;
+			
 			$element_index[$pe['pe_id']] = $pe;
 		}
 
 		// Get project children
 		if($project)
 		{
-			foreach($elements as &$pe)
+			foreach($elements as $e_id => $pe)
 			{
 				// 0 duration tasks must be handled specially to avoid errors
 				if(!$pe['duration']) $pe['duration'] = 1;
@@ -373,7 +376,9 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$params['parent'] = $pm_id;
 				if($pe['pe_app'] == 'projectmanager')
 				{
-					$pe =& $this->add_project($data, $pe['pe_app_id'], $params);
+					$p =& $this->add_project($data, $pe['pe_app_id'], $params);
+					$p += $pe;
+					unset($elements[$e_id]);
 				}
 				unset($params['parent']);
 			}

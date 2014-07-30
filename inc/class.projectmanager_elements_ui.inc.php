@@ -278,7 +278,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			if ((int) $_GET['pe_id'])
 			{
-				$this->read((int) $_GET['pe_id']);
+				$read = array('pe_id' => (int)$_GET['pe_id']);
+				if((int)$_GET['pm_id'])
+				{
+					$read['pm_id'] = (int)$_GET['pm_id'];
+				}
+				$this->read($read);
 			}
 			else if ($_GET['pe_id'] && strpos($_GET['pe_id'],':') > 0)
 			{
