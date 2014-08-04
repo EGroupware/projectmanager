@@ -701,7 +701,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'allowOnMultiple' => false,
 				'group' => $group,
 				'egw_open' => 'edit-projectelement-2',
-				'enableId' => ':[^:]+:[1-9]',
+				'enableId' => '^(?!.*pm_milestone).*:[0-9]+:[1-9]',
 				'hideOnDisabled' => true,
 				'allowOnMultiple' => false,
 			),

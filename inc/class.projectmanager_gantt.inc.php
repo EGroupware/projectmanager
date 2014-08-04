@@ -131,9 +131,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		$actions['open']['onExecute'] = 'javaScript:app.projectmanager.gantt_open_action';
 		$actions['edit']['onExecute'] = 'javaScript:app.projectmanager.gantt_edit_element';
 
-		// Allow projectelement for anything in gantt chart
-		unset($actions['edit']['enableId']);
-
 		// Cat IDs don't get a prefix, nm does something extra to them
 		$add_id = function(&$action) use (&$add_id)
 		{
