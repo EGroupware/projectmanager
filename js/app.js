@@ -771,6 +771,34 @@ app.classes.projectmanager = AppJS.extend(
 		
 		return allowed;
 	},
+	
+	/**
+	 * Enabled check for project element action, used by context menu
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 */
+	gantt_edit_enabled: function(action,selected)
+	{
+		var allowed = true;
+		for(var i = 0; i < selected.length && allowed; i++)
+		{
+			var data = selected[i].data || egw.dataGetUIDdata(selected[i].id);
+			if(data && data.data) data = data.data;
+			if(!data)
+			{
+				allowed = false;
+				continue;
+			}
+			// No milestones, no top-level tasks
+			if(selected[i].id.indexOf('pm_milestone')==0 || !data.parent)
+			{
+				allowed = false;
+			}
+		}
+
+		return allowed;
+	},
 
 	/**
 	 * Add new record's apps to a project
