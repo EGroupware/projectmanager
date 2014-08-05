@@ -287,7 +287,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			if ((int) $_GET['pe_id'])
 			{
-				$this->read((int) $_GET['pe_id']);
+				$read = array('pe_id' => (int)$_GET['pe_id']);
+				if((int)$_GET['pm_id'])
+				{
+					$read['pm_id'] = (int)$_GET['pm_id'];
+				}
+				$this->read($read);
 			}
 			else if ($_GET['pe_id'] && strpos($_GET['pe_id'],':') > 0)
 			{
@@ -704,7 +709,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'allowOnMultiple' => false,
 				'group' => $group,
 				'egw_open' => 'edit-projectelement-2',
-				'enableId' => ':[^:]+:[1-9]',
+				'enableId' => '^(?!.*pm_milestone).*:[0-9]+:[1-9]',
 				'hideOnDisabled' => true,
 				'allowOnMultiple' => false,
 			),
