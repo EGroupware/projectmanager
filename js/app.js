@@ -440,8 +440,9 @@ app.classes.projectmanager = AppJS.extend(
 			if(split.length > 1 && split[1]) node_id = split[1];
 			if(this.views['elements'].etemplate != null)
 			{
-				// Just update the existing list
-				this.show('elements',node_id);
+				// Change the current view to the new project, or element list
+				// if current view is project list
+				this.show(this.view == 'list' ? 'elements' : this.view,node_id);
 			}
 			else
 			{
