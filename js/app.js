@@ -108,6 +108,10 @@ app.classes.projectmanager = AppJS.extend(
 			{
 				this.show('list');
 			}
+			else
+			{
+				this.show(this.view);
+			}
 		}
 	},
 	
