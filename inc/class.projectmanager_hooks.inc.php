@@ -189,7 +189,6 @@ class projectmanager_hooks
 					'app'  => 'filemanager',
 					'link' => egw::link('/index.php',array(
 						'menuaction' => 'filemanager.filemanager_ui.index',
-						'pm_id'      => $pm_id,
 						'ajax'       => 'true',
 					),'filemanager'),
 				);

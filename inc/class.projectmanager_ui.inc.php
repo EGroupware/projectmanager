@@ -31,7 +31,7 @@ class projectmanager_ui extends projectmanager_bo
 	 *
 	 * @var array
 	 */
-	var $status_labels;
+	static $status_labels;
 	/**
 	 * Labels for pm_access, value - label pairs
 	 *
@@ -54,7 +54,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		parent::__construct();
 
-		$this->status_labels = array(
+		static::$status_labels = array(
 			'active'    => lang('Active'),
 			'nonactive' => lang('Nonactive'),
 			'archive'   => lang('Archive'),
@@ -403,7 +403,7 @@ class projectmanager_ui extends projectmanager_bo
 		$this->instanciate('roles');
 
 		$sel_options = array(
-			'pm_status' => &$this->status_labels,
+			'pm_status' => &self::$status_labels,
 			'pm_access' => &$this->access_labels,
 			'role'      => $this->roles->query_list(array(
 				'label' => 'role_title',
@@ -654,7 +654,7 @@ class projectmanager_ui extends projectmanager_bo
 			$content['nm'] = array(
 				'get_rows'       =>	'projectmanager.projectmanager_ui.get_rows',
 				'filter2'        => 'active',// I initial value for the filter
-				'options-filter2'=> $this->status_labels,
+				'options-filter2'=> self::$status_labels,
 				'filter2_no_lang'=> True,// I  set no_lang for filter (=dont translate the options)
 				'filter'         => 'mains',
 				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
@@ -836,7 +836,7 @@ class projectmanager_ui extends projectmanager_bo
 				'icon' => 'apply',
 				'caption' => 'Modify status',
 				'group' => $group,
-				'children' => $this->status_labels,
+				'children' => self::$status_labels,
 				'prefix' => 'status_',
 				'disableClass' => 'rowNoEdit',
 			),
@@ -970,9 +970,73 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if (!$return && !isset($parent_pm_id) && !empty($_GET['id']))
 		{
-			list(,$parent_pm_id) = explode('::', $_GET['id']);
+			list($filter,$parent_pm_id) = explode('::', $_GET['id']);
 		}
-		//error_log(__METHOD__."($parent_pm_id, $return, $_pm_id) \$_GET['id']=".array2string($_GET['id']));
+
+		if($return && !$parent_pm_id)
+		{
+			$projects = array();
+			foreach(self::$status_labels as $status => $label)
+			{
+				$projects[] = array(
+					'id'	=> $status,
+					'text'	=> $label,
+					'item'	=> array(),
+					'child'	=> 1
+				);
+			}
+			$nodes = array(
+				'id' => empty($_GET['id']) ? 0 : $_GET['id'],
+				'item' => $projects,
+			);
+		}
+		else
+		{
+			$nodes = array(
+				'id' => $_GET['id'],
+				'item' => array()
+			);
+			error_log(array2string(self::$status_labels));
+			if(in_array($filter, array_keys(self::$status_labels)))
+			{
+				$nodes = array(
+					'id'	=> $filter,
+					'text'	=> self::$status_labels[$filter],
+					'item'	=> array()
+				);
+				$filter = array('pm_status' => $filter);
+			}
+			else
+			{
+				$filter = array();
+			}
+			self::_project_tree_leaves($filter,$parent_pm_id?$parent_pm_id : 'mains',$_pm_id ? $_pm_id : $parent_pm_id,$nodes);
+		}
+
+		// Remove keys for tree widget
+		$f = function(&$project) use (&$f)
+		{
+			if(!$project['item']) return;
+			$project['item'] = array_values($project['item']);
+			foreach($project['item'] as &$item)
+			{
+				$f($item);
+			}
+		};
+		$f($nodes);
+
+		//error_log(__METHOD__."($parent_pm_id, $return, $_pm_id) \$_GET['id']=".array2string($_GET['id']).", projects=".array2string($nodes));
+		if ($return)
+		{
+			return $nodes;
+		}
+		etemplate_widget_tree::send_quote_json($nodes);
+	}
+
+	protected static function _project_tree_leaves($filter, $parent_pm_id = 'mains', $_pm_id, &$projects = array())
+	{
+		//error_log(__METHOD__ . "(".array2string($filter).", $parent_pm_id, $_pm_id)");
+		
 		$type = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
 		if (substr($type,-5) == 'title')
 		{
@@ -984,9 +1048,7 @@ class projectmanager_ui extends projectmanager_bo
 			$label = 'pm_number';
 			$title = 'pm_title';
 		}
-		$filter = array('pm_status' => 'active');
-		$projects = array();
-		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter,'AND',$parent_pm_id ? $parent_pm_id : 'mains', $_pm_id) as $project)
+		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter,'AND',$parent_pm_id, $_pm_id) as $project)
 		{
 			if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection']=='tree_with_number_title')
 			{
@@ -996,7 +1058,6 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				$text = $project[$label];
 			}
-
 			$p = array(
 				// Using UID for consistency with nextmatch
 				'id' => 'projectmanager::'.$project['pm_id'],
@@ -1011,7 +1072,7 @@ class projectmanager_ui extends projectmanager_bo
 				'title'	=>	$project[$title],
 				'child' => (int)($project['children'] > 0),
 			);
-			if($project['pm_parent'] == null)
+			if($project['pm_parent'] == null && !$filter)
 			{
 				$projects[$project['pm_id']] = $p;
 			}
@@ -1020,7 +1081,8 @@ class projectmanager_ui extends projectmanager_bo
 				$path = explode('/',$project['path']);
 				array_shift($path);
 				array_pop($path);
-				$parent =& $projects;
+				unset($p['path']);
+				$parent =& $projects['item'];
 				foreach($path as $part)
 				{
 					$parent =& $parent[$part]['item'];
@@ -1028,29 +1090,6 @@ class projectmanager_ui extends projectmanager_bo
 				$parent[$project['pm_id']] = $p;
 			}
 		}
-		//error_log(__METHOD__."($parent_pm_id, $return, $_pm_id) \$_GET['id']=".array2string($_GET['id']).", projects=".array2string($projects));
-
-		// Remove keys for tree widget
-		$nodes = array(
-			'id' => empty($_GET['id']) ? 0 : $_GET['id'],
-			'item' => $projects,
-		);
-		$f = function(&$project) use (&$f)
-		{
-			if(!$project['item']) return;
-			$project['item'] = array_values($project['item']);
-			foreach($project['item'] as &$item)
-			{
-				$f($item);
-			}
-		};
-		$f($nodes);
-
-		if ($return)
-		{
-			return $nodes;
-		}
-		etemplate_widget_tree::send_quote_json($nodes);
 	}
 
 	/**
