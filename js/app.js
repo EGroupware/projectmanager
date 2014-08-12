@@ -106,9 +106,17 @@ app.classes.projectmanager = AppJS.extend(
 
 			if(this.view == null && view.name == 'list')
 			{
+				// First load, bind filemanager too
+				var list = view;
+				this._bind_sidebox('filemanager', function() {
+					app.projectmanager.show_filemanager(null, [{id:
+						window.app.projectmanager.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue()||'projectmanager::'
+					}]);
+					return false;
+				});
 				this.show('list');
 			}
-			else
+			else if (this.view)
 			{
 				this.show(this.view);
 			}
