@@ -226,9 +226,10 @@ class projectmanager_ui extends projectmanager_bo
 					{
 						egw_link::link('projectmanager',$this->data['pm_id'],$content['link_to']['to_id']);
 					}
-					if ($content['template'] && $this->copy($content['template'],2))
+					if ($content['template'] && $new_id = $this->copy($content['template'],2))
 					{
 						$msg = lang('Template including elment-tree saved as new project');
+						$content['pm_id'] = $new_id;
 						unset($content['template']);
 					}
 					if ($content['status_sources'] && $old_status != $this->data['pm_status'])
@@ -695,7 +696,7 @@ class projectmanager_ui extends projectmanager_bo
 			$content['project_tree'] = 'projectmanager::'.$this->prefs['current_project'];
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
-		$tpl->exec('projectmanager.projectmanager_ui.index',$content,$sel_options);
+		$tpl->exec('projectmanager.projectmanager_ui.pm_list',$content,$sel_options);
 	}
 
 	/**
@@ -892,7 +893,7 @@ class projectmanager_ui extends projectmanager_bo
 			// only use the ids
 			foreach($projects as $project)
 			{
-				if($project['pm_id'] && is_numeric($project['pm_id'])) $checked[] = $project['pm_id'];
+				if(is_array($project) && $project['pm_id'] && is_numeric($project['pm_id'])) $checked[] = $project['pm_id'];
 			}
 			// Reset query
 			$GLOBALS['egw']->session->appsession('project_list','projectmanager',$old_query);
@@ -973,7 +974,7 @@ class projectmanager_ui extends projectmanager_bo
 			list($filter,$parent_pm_id) = explode('::', $_GET['id']);
 		}
 
-		if($return && !$parent_pm_id)
+		if($return || !($parent_pm_id || $filter))
 		{
 			$projects = array();
 			foreach(self::$status_labels as $status => $label)
