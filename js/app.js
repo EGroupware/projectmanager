@@ -382,9 +382,9 @@ app.classes.projectmanager = AppJS.extend(
 		switch (_app)
 		{
 			case 'projectmanager':
-				var tree = this.et2.getWidgetById('project_tree');
+				var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
 				var itemId =_app+"::"+_id;
-				if (tree)
+				if (tree && _id)
 				{	
 					var node = tree.getNode(itemId);
 					switch(_type)
@@ -815,16 +815,16 @@ app.classes.projectmanager = AppJS.extend(
 
 	/**
 	 * Add new record's apps to a project
-	 * 
-	 * @param {action object} action
 	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
 	 */
-	add_new: function (action)
+	add_new: function (action, selected)
 	{
-		var content = this.et2.getArrayMgr('content');
-		if (typeof content != 'undefined')
+		var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
+		if (tree)
 		{
-			var pm_id = content.getEntry('project_tree');
+			var pm_id = tree.getValue();
 
 			// Gantt chart can have multiple selected
 			if(jQuery.isArray(pm_id)) pm_id = pm_id[0];
