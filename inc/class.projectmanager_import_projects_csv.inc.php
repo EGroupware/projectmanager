@@ -15,52 +15,19 @@
 /**
  * class to import projects from CSV
  */
-class projectmanager_import_projects_csv implements importexport_iface_import_plugin  {
+class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 
-	private static $plugin_options = array(
-		'fieldsep', 		// char
-		'charset', 			// string
-		'contact_owner', 	// int
-		'update_cats', 			// string {override|add} overides record
-								// with cat(s) from csv OR add the cat from
-								// csv file to exeisting cat(s) of record
-		'num_header_lines', // int number of header lines
-		'field_conversion', // array( $csv_col_num => conversion)
-		'field_mapping',	// array( $csv_col_num => adb_filed)
-		'conditions',		/* => array containing condition arrays:
-				'type' => exists, // exists
-				'string' => '#kundennummer',
-				'true' => array(
-					'action' => update,
-					'last' => true,
-				),
-				'false' => array(
-					'action' => insert,
-					'last' => true,
-				),*/
-
-	);
-
+	/**
+	 * Since projectmanager has 2 different record types, we need to specify
+	 * which one to use.  Normally it's automatic.
+	 *
+	 * @var string
+	 */
+	static $record_class = 'projectmanager_egw_record_project';
+	
 	public static $special_fields = array(
 		'parent'  => 'Parent project, use Project-ID or Title',
 	);
-
-	/**
-	 * actions wich could be done to data entries
-	 */
-	protected static $actions = array( 'none', 'update', 'insert', 'delete', );
-
-	/**
-	 * conditions for actions
-	 *
-	 * @var array
-	 */
-	protected static $conditions = array( 'exists' );
-
-	/**
-	 * @var definition
-	 */
-	private $definition;
 
 	/**
 	 * @var bo
@@ -73,187 +40,152 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 	protected $tracking;
 
 	/**
-	 * @var bool
-	 */
-	private $dry_run = false;
-
-	/**
-	 * @var bool is current user admin?
-	 */
-	private $is_admin = false;
-
-	/**
-	 * @var int
-	 */
-	private $user = null;
-
-	/**
-	 * List of import warnings
-	 */
-	protected $warnings = array();
-
-	/**
-	 * List of import errors
-	 */
-	protected $errors = array();
-
-	/**
-         * List of actions, and how many times that action was taken
-         */
-        protected $results = array();
-
-	/**
 	 * imports entries according to given definition object.
 	 * @param resource $_stream
 	 * @param string $_charset
 	 * @param definition $_definition
 	 */
-	public function import( $_stream, importexport_definition $_definition ) {
-		$import_csv = new importexport_import_csv( $_stream, array(
-			'fieldsep' => $_definition->plugin_options['fieldsep'],
-			'charset' => $_definition->plugin_options['charset'],
-		));
-
-		$this->definition = $_definition;
-
-		// user, is admin ?
-		$this->is_admin = isset( $GLOBALS['egw_info']['user']['apps']['admin'] ) && $GLOBALS['egw_info']['user']['apps']['admin'];
-		$this->user = $GLOBALS['egw_info']['user']['account_id'];
-
-		// dry run?
-		$this->dry_run = isset( $_definition->plugin_options['dry_run'] ) ? $_definition->plugin_options['dry_run'] :  false;
-
+	public function init(importexport_definition &$_definition )
+	{
 		// fetch the project bo
 		$this->bo = new projectmanager_bo();
 
 		// Get the tracker for changes
 		$this->tracking = new projectmanager_tracking($this->bo);
+		
+		// List roles as account type
+		$roles = new projectmanager_roles_so();
+		$role_list = $roles->query_list();
+		foreach($role_list as $id => $name) {
+			projectmanager_egw_record_project::$types['select-account'][] = 'role-'.$id;
+		}
+	}
 
-		// set FieldMapping.
-		$import_csv->mapping = $_definition->plugin_options['field_mapping'];
+	/**
+	 * Import a single record
+	 *
+	 * You don't need to worry about mappings or translations, they've been done already.
+	 *
+	 * Updates the count of actions taken
+	 *
+	 * @return boolean success
+	 */
+	protected function import_record(importexport_iface_egw_record &$record, &$import_csv)
+	{
+		// Need to set overwrite bits to match the fields provided in the import file
+		// Otherwise, they'll be cleared when project is edited.
+		if (!$this->bo->pe_name2id)
+		{
+			// we need the PM_ id's
+			include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
 
-		// set FieldConversion
-		$import_csv->conversion = $_definition->plugin_options['field_conversion'];
-
-		//check if file has a header lines
-		if ( isset( $_definition->plugin_options['num_header_lines'] ) && $_definition->plugin_options['num_header_lines'] > 0) {
-			$import_csv->skip_records($_definition->plugin_options['num_header_lines']);
-		} elseif(isset($_definition->plugin_options['has_header_line']) && $_definition->plugin_options['has_header_line']) {
-			// First method is preferred
-			$import_csv->skip_records(1);
+			$ds = new datasource();
+			$this->bo->pe_name2id = $ds->name2id;
+			unset($ds);
 		}
 
-		// Start counting successes
-		$count = 0;
-		$this->results = array();
-
-		// Failures
-		$this->errors = array();
-
-		$_lookups = array();
-
-		while ( $record = $import_csv->get_record() ) {
-			$success = false;
-
-			// don't import empty records
-			if( count( array_unique( $record ) ) < 2 ) continue;
-
-			importexport_import_csv::convert($record, projectmanager_export_projects_csv::$types, 'projectmanager', $_lookups, $_definition->plugin_options['convert']);
-
-			// Automatically handle text categories without explicit translation
-			$record['cat_id'] = importexport_helper_functions::cat_name2id($record['cat_id']);
-
-			// Need to set overwrite bits to match the fields provided in the import file
-			// Otherwise, they'll be cleared when project is edited.
-			if (!$this->bo->pe_name2id)
+		// Project is a sub-project of something
+		if($record->parent && !is_numeric($record->parent))
+		{
+			$parent_id = self::project_id($record->parent);
+			if(!$parent_id)
 			{
-				// we need the PM_ id's
-				include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
-
-				$ds = new datasource();
-				$this->bo->pe_name2id = $ds->name2id;
-				unset($ds);
+				$this->warnings[$import_csv->get_current_position()] .= "\n" . lang('Unable to find parent project %1',$record->parent);
 			}
-
-			// Project is a sub-project of something
-			if($record['parent'] && !is_numeric($record['parent']))
+			else
 			{
-				$parent_id = self::project_id($record['parent']);
-				if(!$parent_id)
-				{
-					$this->warnings[$import_csv->get_current_position()] .= "\n" . lang('Unable to find parent project %1',$record['parent']);
-				}
-				else
-				{
-					// Process after record is added / updated
-					$record['parent'] = $parent_id;
-				}
+				// Process after record is added / updated
+				$record->parent = $parent_id;
 			}
-
-			foreach($this->bo->pe_name2id as $name => $id)
-			{
-				$pm_name = str_replace('pe_','pm_',$name);
-				if ($record[$pm_name])
-				{
-					$record['pm_overwrite'] |= $id;
-				}
-			}
-
-			if ( $_definition->plugin_options['conditions'] ) {
-				foreach ( $_definition->plugin_options['conditions'] as $condition ) {
-					$results = array();
-					switch ( $condition['type'] ) {
-						// exists
-						case 'exists' :
-							if($record[$condition['string']]) {
-								$results = $this->bo->search(
-									array( $condition['string'] => $record[$condition['string']]),
-									False
-								);
-							}
-
-							if ( is_array( $results ) && count( array_keys( $results )) >= 1 ) {
-								// apply action to all contacts matching this exists condition
-								$action = $condition['true'];
-								foreach ( (array)$results as $project ) {
-									$record['pm_id'] = $project['pm_id'];
-									if ( $_definition->plugin_options['update_cats'] == 'add' ) {
-										if ( !is_array( $project['cat_id'] ) ) $project['cat_id'] = explode( ',', $project['cat_id'] );
-										if ( !is_array( $record['cat_id'] ) ) $record['cat_id'] = explode( ',', $record['cat_id'] );
-										$record['cat_id'] = implode( ',', array_unique( array_merge( $record['cat_id'], $project['cat_id'] ) ) );
-									}
-									$success = $this->action(  $action['action'], $record, $import_csv->get_current_position() );
-								}
-							} else {
-								$action = $condition['false'];
-								$success = ($this->action(  $action['action'] ? $action['action'] : 'none', $record, $import_csv->get_current_position() ));
-							}
-							break;
-
-						// not supported action
-						default :
-							die('condition / action not supported!!!');
-							break;
-					}
-					if ($action['stop']) break;
-				}
-			} else {
-				// unconditional insert
-				$success = $this->action( 'insert', $record, $import_csv->get_current_position() );
-			}
-			if($success) $count++;
 		}
-		return $count;
+
+		$roles = array();
+		foreach($this->definition->plugin_options['field_mapping'] as $number => $field_name) {
+			if(!$record->$field_name || substr($field_name,0,5) != 'role-') continue;
+			list($role, $role_id) = explode('-', $field_name);
+
+			// Known accounts are already changed to account IDs
+			if(!is_array($record->$field_name)) $record->$field_name = explode(',',$record->$field_name);
+
+			// Getter is magic, so we can't just do $record->pm_members[user] = ...
+			$members = $record->pm_members ? $record->pm_members : array();
+			foreach($record->$field_name as $user)
+			{
+				// User can only have 1 role according to backend
+				$members[(int)$user] = array('member_uid' => (int)$user,'role_id'=>(int)$role_id);
+			}
+			$record->pm_members = $members;
+
+			// Not really a valid field, so remove it now that we're done
+			unset($record->field_name);
+		}
+		if(count($more_categories) > 0) $record->cat_id = array_merge(is_array($record->cat_id) ? $record->cat_id : explode(',',$record->cat_id), $more_categories);
+
+		foreach($this->bo->pe_name2id as $name => $id)
+		{
+			$pm_name = str_replace('pe_','pm_',$name);
+			if ($record->$pm_name)
+			{
+				$record->pm_overwrite |= $id;
+			}
+		}
+		return parent::import_record($record, $import_csv);
+	}
+
+	/**
+	 * Search for matching records, based on the the given condition
+	 *
+	 * @param record
+	 * @param condition array = array('string' => field name)
+	 * @param matches - On return, will be filled with matching records
+	 *
+	 * @return boolean
+	 */
+	protected function exists(importexport_iface_egw_record &$record, Array &$condition, &$matches = array())
+	{
+		$field = $condition['string'];
+		if($record->$field) {
+			$results = $this->bo->search(
+				array( $condition['string'] => $record->$field),
+				False
+			);
+		}
+
+		if ( is_array( $results ) && count( array_keys( $results )) >= 1 ) {
+			// apply action to all contacts matching this exists condition
+			$action = $condition['true'];
+			foreach ( (array)$results as $project ) {
+				$record->pm_id = $project['pm_id'];
+				if ( $this->definition->plugin_options['update_cats'] == 'add' )
+				{
+					if ( !is_array( $project['cat_id'] ) ) $project['cat_id'] = explode( ',', $project['cat_id'] );
+					if ( !is_array( $record->cat_id ) ) $record->cat_id = explode( ',', $record->cat_id );
+					$record->cat_id = implode( ',', array_unique( array_merge( $record->cat_id, $project['cat_id'] ) ) );
+				}
+				$matches[] = $project;
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/**
 	 * perform the required action
 	 *
+	 * If a record identifier (ID) is generated for the record because of the action
+	 * (eg: a new entry inserted) make sure to update the record with the identifier
+	 *
+	 * Make sure you record any errors you encounter here:
+	 * $this->errors[$record_num] = error message;
+	 *
 	 * @param int $_action one of $this->actions
-	 * @param array $_data contact data for the action
+	 * @param importexport_iface_egw_record $record contact data for the action
+	 * @param int $record_num Which record number is being dealt with.  Used for error messages.
 	 * @return bool success or not
 	 */
-	private function action ( $_action, $_data, $record_num = 0 ) {
+	protected function action ( $_action, importexport_iface_egw_record &$record, $record_num = 0 )
+	{
+		$_data = $record->get_record_array();
 		$this->bo->data = array();
 		switch ($_action) {
 			case 'none' :
@@ -280,13 +212,18 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 					$this->results[$_action]++;
 					return true;
 				} else {
+					// Members needs special setting, from projectmanager_ui:173
+					$this->bo->data['pm_members'] = $_data['pm_members'];
+					
 					$result = $this->bo->save( $_data, true, false );
 					if($result) {
 						$this->errors[$record_num] = $result;
 						return false;
 					} else {
 						$this->results[$_action]++;
-
+						$record->pm_id = $this->bo->data['pm_id'];
+						// This does nothing (yet?) but update the identifier
+						$record->save($result->pm_id);
 						// Process parent, if present
 						if($_data['parent'])
 						{
@@ -298,6 +235,27 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 			default:
 				throw new egw_exception('Unsupported action');
 			
+		}
+	}
+
+	/**
+	 * Handle special fields
+	 *
+	 * These include linking to other records, which requires a valid identifier,
+	 * so must be performed after the action.
+	 *
+	 * @param importexport_iface_egw_record $record
+	 */
+	protected function do_special_fields(importexport_iface_egw_record &$record, &$import_csv)
+	{
+		// Parent does some automatic linking based on field name, but parent doesn't
+		// fit the conditions
+		parent::do_special_fields($record, $import_csv);
+
+		$id = $record->get_identifier();
+		if($id && (int)$record->parent)
+		{
+			$link_id = egw_link::link($this->definition->application,$id,'projectmanager',$record->parent);
 		}
 	}
 
@@ -354,40 +312,40 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 	}
 
 	/**
-        * Returns warnings that were encountered during importing
-        * Maximum of one warning message per record, but you can append if you need to
-        *
-        * @return Array (
-        *       record_# => warning message
-        *       )
-        */
-        public function get_warnings() {
+	* Returns warnings that were encountered during importing
+	* Maximum of one warning message per record, but you can append if you need to
+	*
+	* @return Array (
+	*       record_# => warning message
+	*       )
+	*/
+	public function get_warnings() {
 		return $this->warnings;
 	}
 
 	/**
-        * Returns errors that were encountered during importing
-        * Maximum of one error message per record, but you can append if you need to
-        *
-        * @return Array (
-        *       record_# => error message
-        *       )
-        */
-        public function get_errors() {
+	* Returns errors that were encountered during importing
+	* Maximum of one error message per record, but you can append if you need to
+	*
+	* @return Array (
+	*       record_# => error message
+	*       )
+	*/
+	public function get_errors() {
 		return $this->errors;
 	}
 
 	/**
-        * Returns a list of actions taken, and the number of records for that action.
-        * Actions are things like 'insert', 'update', 'delete', and may be different for each plugin.
-        *
-        * @return Array (
-        *       action => record count
-        * )
-        */
-        public function get_results() {
-                return $this->results;
-        }
+	* Returns a list of actions taken, and the number of records for that action.
+	* Actions are things like 'insert', 'update', 'delete', and may be different for each plugin.
+	*
+	* @return Array (
+	*       action => record count
+	* )
+	*/
+	public function get_results() {
+		return $this->results;
+	}
 
 	public static function project_id($num_or_title)
 	{
@@ -406,5 +364,5 @@ class projectmanager_import_projects_csv implements importexport_iface_import_pl
 		}
 		return false;
 	}
-} // end of iface_export_plugin
+}
 ?>
