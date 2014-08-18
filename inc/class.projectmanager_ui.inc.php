@@ -981,6 +981,7 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				$projects[] = array(
 					'id'	=> $status,
+					'open'	=> $status == 'active',
 					'text'	=> $label,
 					'item'	=> array(),
 					'child'	=> 1
