@@ -170,10 +170,18 @@ app.classes.projectmanager = AppJS.extend(
 					break;
 				case 'gantt':
 					var gantt = et2.getWidgetById('gantt');
+					// Re-set dates for different project
+					gantt.getWidgetById('start_date').set_value('');
+					gantt.getWidgetById('end_date').set_value('');
+					
 					var values = gantt.getInstanceManager().getValues(gantt)[gantt.id];
+					delete values.start_date;
+					delete values.end_date;
+
 					this.egw.json('projectmanager_gantt::ajax_gantt_project',['projectmanager::'+current_project,values], function(data) {
-						gantt.set_zoom(0);
 						gantt.set_value(data);
+						gantt.set_zoom(false);// Auto
+						gantt.gantt.render(); // Need to force the re-render here
 					}).sendRequest(true);
 					break;
 				case 'prices':
