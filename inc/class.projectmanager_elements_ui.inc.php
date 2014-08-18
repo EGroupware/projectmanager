@@ -67,14 +67,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		}
-		if (!$pm_id)
-		{
-			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.projectmanager_ui.index',
-				'msg'        => lang('You need to select a project first'),
-				'ajax'       => 'true'
-			));
-		}
 		parent::__construct($pm_id);
 
 
@@ -275,7 +267,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					$msg = lang('no save necessary');
 				}
 			}
-			error_log(__METHOD__. "Caller = " . $content['caller']);
 
 			if ($content['save'] || $content['cancel'] || $content['delete'])
 			{
@@ -585,11 +576,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
  			}
 		}
-		//Set icon for milestone as Milestone is not an application therefore, its icon won't get set like the others
-		if ($row['pe_app'] === 'pm_milestone')
-		{
-			$row['pe_icon'] = 'projectmanager/milestone';
-		}
+
 		if ($this->prefs['show_custom_app_icons'] || $this->prefs['show_infolog_type_icon'])
 		{
 			$custom_app_icons['location'] = 'pm_custom_app_icons';
@@ -868,6 +855,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$content['nm'] = array(
 				'get_rows'       =>	'projectmanager.projectmanager_elements_ui.get_rows',
+				'num_rows'       => 0, // No data when first sent
 				'filter'         => 'used',// I initial value for the filter
 				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
 				'options-filter' => $this->status_labels,
@@ -895,6 +883,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 
 
+		}
+		// If no PM ID, don't get initial rows
+		if(!$this->pm_id)
+		{
+			$content['nm']['num_rows'] = 0;
 		}
 
 		// Put totals in the right place for initial load
@@ -929,9 +922,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'add_app'  => 'infolog',
 		);
 		$this->tpl->read('projectmanager.elements.list');
-		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true, $this->pm_id);
-		if($this->pm_id) $content['project_tree'] = 'projectmanager::'.$this->pm_id;
-		$this->tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 
 		// set id for automatic linking via quick add
 		$GLOBALS['egw_info']['flags']['currentid'] = $this->pm_id;

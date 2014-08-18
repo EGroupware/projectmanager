@@ -54,7 +54,7 @@ class projectmanager_hooks
 			),
 			'view_id'    => 'pm_id',
 			'list'       => array(
-				'menuaction' => 'projectmanager.projectmanager_ui.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.pm_list',
 			),
 			'notify'     => 'projectmanager.projectmanager_elements_bo.notify',
 			'add'        => array(
@@ -153,17 +153,16 @@ class projectmanager_hooks
 				array(
 					'text' => 'Elementlist',
 					'link' =>  egw::link('/index.php',array(
-							'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
-							'ajax' => 'true',
+						'menuaction' => 'projectmanager.projectmanager_ui.index',
+						'ajax' => 'true',
 					)),
 				),
 				array(
 					'text' => 'Gantt chart',
 					'link' =>  egw::link('/index.php',array(
-							'menuaction' => 'projectmanager.projectmanager_gantt.chart',
-							'ajax' => 'true',
+						'menuaction' => 'projectmanager.projectmanager_ui.index',
+						'ajax' => 'true',
 					)),
-
 				)
 			);
 			// show pricelist menuitem only if we use pricelists
@@ -176,13 +175,11 @@ class projectmanager_hooks
 					'text' => 'Pricelist',
 					'icon' => 'pricelist',
 					'app'  => 'projectmanager',
-					'link' => egw::link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_pricelist_ui.index',
-						'pm_id' => $pm_id && $GLOBALS['projectmanager_bo']->check_acl(EGW_ACL_BUDGET,$pm_id) &&
-							 $GLOBALS['projectmanager_bo']->data['pm_accounting_type'] == 'pricelist' ? $pm_id : 0,
+					'link' =>  egw::link('/index.php',array(
+						'menuaction' => 'projectmanager.projectmanager_ui.index',
 						'ajax' => 'true',
-					)
-				));
+					))
+				);
 			}
 			if (isset($GLOBALS['egw_info']['user']['apps']['filemanager']))
 			{

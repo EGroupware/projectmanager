@@ -47,13 +47,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		}
-		if(!$pm_id)
-		{
-			egw::redirect_link('/index.php', array(
-				'menuaction' => 'projectmanager.projectmanager_ui.index',
-				'msg'        => lang('You need to select a project first'),
-			));
-		}
 		$pm_id = is_array($pm_id) ? $pm_id : explode(',',$pm_id);
 		$this->pm_id = $pm_id[0];
 
@@ -106,11 +99,9 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 
 		$data['gantt'] = $data['gantt'] + array('data' => array(), 'links' => array());
-		$data['project_tree'] = array();
 		foreach($pm_id as $id)
 		{
 			$this->add_project($data['gantt'], $id, $data);
-			$data['project_tree'][] = 'projectmanager::'.$id;
 		}
 
 		$sel_options = array(
@@ -124,8 +115,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		$template = new etemplate_new();
 		$template->read('projectmanager.gantt');
 
-		$sel_options['project_tree'] = projectmanager_ui::ajax_tree(0, true);
-		$template->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
 
 		$template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
@@ -178,8 +167,11 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	 *
 	 * @param string $project_id Global (prefixed with projectmanager::) project ID
 	 * @param Array $params form values
+	 * @param string $parent Global (prefixed with projectmanager::) project ID to use as
+	 *	parent.  All top-level results will be children of this, to allow dynamic task expansion
+	 *  as well as ajax loading
 	 */
-	public static function ajax_gantt_project($project_id, $params)
+	public static function ajax_gantt_project($project_id, $params, $parent = false)
 	{
 		if(!is_array($project_id)) {
 			$project_id = explode(',',$project_id);
@@ -190,15 +182,15 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 		$bo = null;
 		foreach($project_id as $pm_id) {
-			$params['parent'] = $pm_id;
 			list(,$pm_id) = explode('::',$pm_id);
+			$params['parent'] = $parent ? str_replace('projectmanager::','',$parent) : $pm_id;
 			if($bo == null)
 			{
 				// Parent class checks $_GET for the ID, so just put it there
 				$_GET['pm_id'] = (int)$pm_id;
 				$bo = new projectmanager_gantt();
 			}
-			$projects[] = $bo->add_elements($data, $pm_id, $params);
+			$projects[] = $bo->add_project($data, $pm_id, $params);
 		}
 		$response = egw_json_response::get();
 		$response->data($data);
@@ -220,7 +212,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			'start_date'	=>	egw_time::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],egw_time::DATABASE),
 			'open'	=>	$params['level'] < $params['depth'],
 			'progress' => ((int)substr($this->project->data['pm_completion'],0,-1))/100,
-			'parent' => $params['parent'] ? 'projectmanager::'.$params['parent'] : 0
+			'parent' => $params['parent'] && $params['parent'] != $this->project->data['pm_id'] ? 'projectmanager::'.$params['parent'] : 0
 		);
 		// Set field for filter to filter on
 		$project['filter'] = $project['pm_completion'] > 0 ? ($pe['pm_completion'] != 100 ? 'ongoing' : 'done') : 'not';
@@ -264,7 +256,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'parent' => 'projectmanager::'.$pm_id,
 				'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
 				'start_date'	=>	egw_time::to($milestone['ms_date'],egw_time::DATABASE),
-				'type' => 'milestone'
+				'type' => 'milestone',
+				'pe_icon' => 'projectmanager/milestone'
 			);
 		}
 
@@ -385,7 +378,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 					unset($elements[$e_id]);
 				}
 				unset($params['parent']);
-				error_log(array2string($data['data'][count($data['data'])-1]));
 			}
 		}
 
@@ -399,7 +391,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$end = $element_index[$constraint['pe_id_end']];
 				$constraint['pe_id_start'] = $start ? $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'] : 'pm_milestone:'.$constraint['ms_id'];
 				$constraint['pe_id_end'] = $end ? $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'] : 'pm_milestone:'.$constraint['ms_id'];
-				error_log(array2string($constraint));
 				$data['links'][] = array(
 					'id' => $constraint['pm_id'] . ':'.$constraint['pe_id_start'].':'.$constraint['pe_id_end'],
 					'source' => $constraint['pe_id_start'],
@@ -486,7 +477,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			// Link added or removed
 			$pe_bo = new projectmanager_elements_bo((int)$pm_id);
 
-			error_log(array2string($values));
 			list(,$pm_id) = explode('::',$values['parent']);
 			list(,$m_start_id,$start_id) = explode(':',$values['source']);
 			list(,$m_end_id,$end_id) = explode(':',$values['target']);
@@ -514,7 +504,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			error_log(array2string($values));
 		}
-		error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
+		//error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
 
 }

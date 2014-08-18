@@ -42,7 +42,6 @@ class datasource_pm_milestone extends datasource
 	 */
 	function get($data_id)
 	{
-		error_log(__METHOD__ . "($data_id");
 		if (!is_array($data_id))
 		{
 			$data = $this->milestones->read($data_id);

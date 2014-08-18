@@ -300,7 +300,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		{
 			$ret = parent::update_cat($pe_ids, $cat_id);
 		}
-		error_log(__METHOD__."(".array2string($pe_ids).", $cat_id) pm_id=$this->pm_id returning ".array2string($ret));
+		//error_log(__METHOD__."(".array2string($pe_ids).", $cat_id) pm_id=$this->pm_id returning ".array2string($ret));
 		return $ret;
 	}
 	/**

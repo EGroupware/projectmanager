@@ -52,23 +52,18 @@
 			</rows>
 		</grid>
 	</template>
+	<template id="projectmanager.pricelist.add-new" template="" lang="" group="0" version="1.9.001">
+		<button align="right" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+	</template>
 	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
-		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
 		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
 			<rows>
-				<row disabled="!@msg">
-					<description align="center" id="msg" no_lang="1" span="all" class="message"/>
-				</row>
-				<row class="noPrint">
-					<button align="right" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
-				</row>
 				<row>
 					<nextmatch id="nm" options="projectmanager.pricelist.list.rows"/>
 				</row>
-
 			</rows>
 		</grid>
 	</template>
