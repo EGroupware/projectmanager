@@ -27,6 +27,17 @@ class projectmanager_wizard_import_projects_csv extends importexport_wizard_basi
 		// Field mapping
 		$bo = new projectmanager_bo();
 		$this->mapping_fields = $bo->field2label + projectmanager_import_projects_csv::$special_fields;
+
+		// Roles in seperate categories
+		$roles = new projectmanager_roles_so();
+		$roles = $roles->query_list();
+		$role_list = array();
+		foreach($roles as $id => $name) {
+			$role_list['role-'.$id] = $name;
+		}
+		if(count($role_list) > 0) {
+			$this->mapping_fields[lang('Roles')] = $role_list;
+		}
 		$custom = config::get_customfields('projectmanager', true);
 		foreach($custom as $name => $data) {
 			$this->mapping_fields['#'.$name] = $data['label'];
