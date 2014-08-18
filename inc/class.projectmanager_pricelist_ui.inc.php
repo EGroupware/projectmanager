@@ -255,6 +255,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		elseif ($query['col_filter']['pm_id'] != $this->pm_id)
 		{
 			$this->__construct($query['col_filter']['pm_id']);
+			$query['actions'] = $this->get_actions();
 		}
 		if ($query['col_filter']['pl_billable'] === '') unset($query['col_filter']['pl_billable']);
 
@@ -380,7 +381,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				'caption' => 'Open',
 				'allowOnMultiple' => false,
 				'popup' => '600x450',
-				'url' => 'menuaction=projectmanager.projectmanager_pricelist_ui.edit&pl_id=$id',
+				'url' => 'menuaction=projectmanager.projectmanager_pricelist_ui.edit&pm_id='.$this->pm_id.'&pl_id=$id',
 				'group' => $group=1,
 				'default' => true,
 			),
