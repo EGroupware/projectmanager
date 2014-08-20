@@ -572,7 +572,6 @@ class projectmanager_ui extends projectmanager_bo
 			$rows['no_pm_used_budget_pm_planned_budget'] = true;
 			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
 		}
-		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
 
 		return $total;
 	}
@@ -649,6 +648,7 @@ class projectmanager_ui extends projectmanager_bo
 		$content = array(
 			'nm' => $GLOBALS['egw']->session->appsession('project_list','projectmanager'),
 			'msg' => $msg,
+			'duration_format' => ','.$this->config['duration_format'],
 		);
 		if (!is_array($content['nm']))
 		{

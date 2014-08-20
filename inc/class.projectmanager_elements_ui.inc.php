@@ -644,7 +644,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$rows['no_pm_used_budget_pm_planned_budget'] = true;
 			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
 		}
-		$rows['duration_format'] = ','.$this->config['duration_format'].',,1';
 		if ($query['cat_id']) $rows['no_cat_id'] = true;
 		// calculate the filter-specific summary if we have a filter, beside the default pe_status=used=array(new,regular)
 		unset($query['col_filter']['pe_app']); //pe_app should not change summary
@@ -903,6 +902,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$content['nm']['num_rows'] = 0;
 		}
+		// Set duration format once for all
+		$content['duration_format']= ','.$this->config['duration_format'].',,1';
 
 		// Put totals in the right place for initial load
 		$totals = $this->summary($this->project->data['pm_id'],$content['nm']['col_filter']);

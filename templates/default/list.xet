@@ -96,21 +96,21 @@
 						<textbox type="float" id="${row}[pm_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
 					</vbox>
 					<vbox>
-						<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
-						<date-duration id="${row}[pm_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
+						<date-duration id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
+						<date-duration id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
 					</vbox>
 					<vbox readonly="true">
 						<hbox id="pml_used_time">
 							<image label="Times" src="timesheet"/>
-							<date-duration id="${row}[pm_used_time]" readonly="true" options="@duration_format"/>
+							<date-duration id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
 						</hbox>
 						<hbox id="planified">
 							<image label="planned time" src="k_alarm"/>
-							<date-duration id="${row}[pm_planned_time]" readonly="true" options="@duration_format" span="all" class="planned"/>
+							<date-duration id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
 						</hbox>
 						<hbox id="replanified">
 							<image label="Re-planned time" src="agt_reload"/>
-							<date-duration id="${row}[pm_replanned_time]" readonly="true" options="@duration_format" span="all" class="replanned"/>
+							<date-duration id="${row}[pm_replanned_time]" readonly="true" options="@@duration_format" span="all" class="replanned"/>
 						</hbox>
 					</vbox>
 					<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
