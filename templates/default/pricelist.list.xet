@@ -4,11 +4,11 @@
 	<template id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
-				<column/>
-				<column/>
-				<column/>
-				<column/>
-				<column/>
+				<column width="50%"/>
+				<column width="50%"/>
+				<column width="120"/>
+				<column width="120"/>
+				<column width="140"/>
 			</columns>
 			<rows>
 				<row class="th">

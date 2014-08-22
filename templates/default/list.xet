@@ -12,24 +12,24 @@
 	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
 			<columns>
-				<column/>
-				<column/>
-				<column/>
-				<column/>
-				<column/>
+				<column width="120"/>
+				<column width="60%"/>
+				<column width="50"/>
+				<column width="15%"/>
+				<column width="120"/>
 				<column disabled="@no_role0"/>
 				<column disabled="@no_role1"/>
 				<column disabled="@no_role2"/>
 				<column disabled="@no_role3"/>
 				<column disabled="@no_role4"/>
-				<column/>
-				<column/>
-				<column disabled="@no_pm_used_budget_pm_planned_budget"/>
-				<column/>
-				<column/>
-				<column/>
-				<column/>
-				<column/>
+				<column width="120"/>
+				<column width="120"/>
+				<column width="80" disabled="@no_pm_used_budget_pm_planned_budget"/>
+				<column width="80"/>
+				<column width="80"/>
+				<column width="00"/>
+				<column width="130"/>
+				<column width="25%"/>
 			</columns>
 			<rows>
 				<row class="th">
