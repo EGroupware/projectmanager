@@ -359,7 +359,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				continue;
 			}
 			$elements[] = $pe;
-			
+
 			$element_index[$pe['pe_id']] = $pe;
 		}
 
@@ -503,7 +503,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		else
 		{
-			error_log(array2string($values));
+			error_log(__METHOD__.' ['.__LINE__.']:'.array2string($values));
 		}
 		//error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
