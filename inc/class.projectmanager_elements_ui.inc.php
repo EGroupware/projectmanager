@@ -447,6 +447,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
+		if($query_in['col_filter']['pm_id'])
+		{
+			$this->pm_id = (int)$query_in['col_filter']['pm_id'];
+		}
+		else
+		{
+			return 0;
+		}
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
@@ -873,7 +881,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time,legacy_actions',
 				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
-				'dataStorePrefix' => 'projectmanager_elements'
+				'dataStorePrefix' => 'projectmanager_elements',
+				'placeholder_actions' => array()
 			);
 			// use the state of the last session stored in the user prefs
 			if ($state = @unserialize($this->prefs['pe_index_state']))
@@ -1094,13 +1103,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				{
 					$msg = lang('Permission denied !!!');
 				}
-				break;
-
-			case 'ganttchart':
-				egw::redirect_link('/index.php', array(
-					'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
-					'pm_id'      => implode(',',$checked),
-				));
 				break;
 
 			case 'document':
