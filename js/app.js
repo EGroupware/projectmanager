@@ -390,9 +390,9 @@ app.classes.projectmanager = AppJS.extend(
 		switch (_app)
 		{
 			case 'projectmanager':
-				var tree = this.et2.getWidgetById('project_tree');
+				var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
 				var itemId =_app+"::"+_id;
-				if (tree)
+				if (tree && _id)
 				{	
 					var node = tree.getNode(itemId);
 					switch(_type)
@@ -792,19 +792,47 @@ app.classes.projectmanager = AppJS.extend(
 		
 		return allowed;
 	},
+	
+	/**
+	 * Enabled check for project element action, used by context menu
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 */
+	gantt_edit_enabled: function(action,selected)
+	{
+		var allowed = true;
+		for(var i = 0; i < selected.length && allowed; i++)
+		{
+			var data = selected[i].data || egw.dataGetUIDdata(selected[i].id);
+			if(data && data.data) data = data.data;
+			if(!data)
+			{
+				allowed = false;
+				continue;
+			}
+			// No milestones, no top-level tasks
+			if(selected[i].id.indexOf('pm_milestone')==0 || !data.parent)
+			{
+				allowed = false;
+			}
+		}
+
+		return allowed;
+	},
 
 	/**
 	 * Add new record's apps to a project
-	 * 
-	 * @param {action object} action
 	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
 	 */
-	add_new: function (action)
+	add_new: function (action, selected)
 	{
-		var content = this.et2.getArrayMgr('content');
-		if (typeof content != 'undefined')
+		var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
+		if (tree)
 		{
-			var pm_id = content.getEntry('project_tree');
+			var pm_id = tree.getValue();
 
 			// Gantt chart can have multiple selected
 			if(jQuery.isArray(pm_id)) pm_id = pm_id[0];

@@ -130,6 +130,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		// Redirect action to gantt specific JS code
 		$actions['open']['onExecute'] = 'javaScript:app.projectmanager.gantt_open_action';
 		$actions['edit']['onExecute'] = 'javaScript:app.projectmanager.gantt_edit_element';
+		$actions['edit']['enabled'] = 'javaScript:app.projectmanager.gantt_edit_enabled';
 
 		// Cat IDs don't get a prefix, nm does something extra to them
 		$add_id = function(&$action) use (&$add_id)
