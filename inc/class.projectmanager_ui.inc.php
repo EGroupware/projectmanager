@@ -959,7 +959,7 @@ class projectmanager_ui extends projectmanager_bo
 
 		return !$failed;
 	}
-	
+
 	/**
 	 * Generate the project tree nodes
 	 *
@@ -998,7 +998,7 @@ class projectmanager_ui extends projectmanager_bo
 				'id' => $_GET['id'],
 				'item' => array()
 			);
-			error_log(array2string(self::$status_labels));
+			//error_log(array2string(self::$status_labels));
 			if(in_array($filter, array_keys(self::$status_labels)))
 			{
 				$nodes = array(
@@ -1038,7 +1038,7 @@ class projectmanager_ui extends projectmanager_bo
 	protected static function _project_tree_leaves($filter, $parent_pm_id = 'mains', $_pm_id, &$projects = array())
 	{
 		//error_log(__METHOD__ . "(".array2string($filter).", $parent_pm_id, $_pm_id)");
-		
+
 		$type = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
 		if (substr($type,-5) == 'title')
 		{
