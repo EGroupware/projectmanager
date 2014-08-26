@@ -854,7 +854,7 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	_bind_sidebox: function(label, click)
 	{
-		var sidebox = $j('a:contains("' +app.projectmanager.egw.lang(label)+'")',app.projectmanager.sidebox.parent().parent());
+		var sidebox = $j('a:contains("' +app.projectmanager.egw.lang(label)+'")',app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
 		sidebox.off('click.projectmanager');
 		sidebox.on('click.projectmanager', click);
 	}
