@@ -203,7 +203,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
 			{
-				return;
+				return array();
 			}
 		}
 		$project = $this->project->data + array(
