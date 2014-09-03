@@ -199,8 +199,11 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	}
 
 	// Get the data into required format
-	protected function &add_project(&$data = array(), $pm_id, $params) {
-		if(!$pm_id) return;
+	protected function &add_project(&$data, $pm_id, $params) {
+		if(!$pm_id)
+		{
+			return;
+		}
 		if ($pm_id != $this->project->data['pm_id'])
 		{
 			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
@@ -210,7 +213,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		$project = $this->project->data + array(
 			'id'	=>	'projectmanager::'.$this->project->data['pm_id'],
-			'text'	=>	egw_link::title('projectmanager', $this->project->data['pm_id']),
+			'text'	=>	$this->prefs['gantt_element_title_length'] ? substr(egw_link::title('projectmanager', $this->project->data['pm_id']), 0, $this->prefs['gantt_element_title_length']) : egw_link::title('projectmanager', $this->project->data['pm_id']),
 			'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
 			'start_date'	=>	egw_time::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],egw_time::DATABASE),
 			'open'	=>	$params['level'] < $params['depth'],
@@ -236,7 +239,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			$project['duration'] = $params['planned_times'] ? $this->project->data['pm_planned_time'] : 1;
 		}
-
+		
 		// Not sure how it happens, but it causes problems
 		if($project['start'] && $project['start'] < 10) $project['start'] = 0;
 
@@ -307,6 +310,13 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			$filter[] = $end.' >= ' . (int)$params['start'];
 		}
+		if($this->prefs['gantt_show_elements_by_type'])
+		{
+			if(!is_array($this->prefs['gantt_show_elements_by_type']))
+			{
+				$this->prefs['gantt_show_elements_by_type'] = explode(',',$this->prefs['gantt_show_elements_by_type']);
+			}
+		}
 		switch ($params['filter'])
 		{
 			case 'not':
@@ -335,13 +345,16 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
                         '',false,'AND',false,$filter) as $pe)
 		{
-			if (!$pe) continue;
+			if (!$pe || ($this->prefs['gantt_show_elements_by_type'] && !in_array($pe['pe_app'], $this->prefs['gantt_show_elements_by_type'])))
+			{
+				continue;
+			}
 
 			if($pe['pe_app'] == 'projectmanager') {// && $level < $params['depth']) {
 				$project = true;
 			}
 			$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
-			$pe['text'] = $pe['pe_title'];
+			$pe['text'] = $this->prefs['gantt_element_title_length'] ? substr($pe['pe_title'], 0, $this->prefs['gantt_element_title_length']) : $pe['pe_title'];
 			$pe['parent'] = 'projectmanager::'.$pm_id;
 			$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
 			$pe['duration'] = (float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']);
@@ -510,5 +523,5 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		//error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
 
-}
+		}
 ?>
