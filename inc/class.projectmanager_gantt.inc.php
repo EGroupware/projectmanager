@@ -43,10 +43,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				list(,$pm_id[]) = explode('::',$project,2);
 			}
 		}
-		else
-		{
-			$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
-		}
 		$pm_id = is_array($pm_id) ? $pm_id : explode(',',$pm_id);
 		$this->pm_id = $pm_id[0];
 
