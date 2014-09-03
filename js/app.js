@@ -167,6 +167,7 @@ app.classes.projectmanager = AppJS.extend(
 			{
 				case 'elements':
 					et2.getWidgetById('nm').applyFilters({col_filter:{'pm_id': current_project}});
+					et2.getWidgetById('link_add').options.value.to_id = current_project;
 					break;
 				case 'gantt':
 					var gantt = et2.getWidgetById('gantt');
