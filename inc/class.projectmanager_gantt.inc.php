@@ -95,9 +95,14 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 
 		$data['gantt'] = $data['gantt'] + array('data' => array(), 'links' => array());
-		foreach($pm_id as $id)
+		
+		// Only try to load if there is an ID, or we get every task.
+		if($pm_id)
 		{
-			$this->add_project($data['gantt'], $id, $data);
+			foreach($pm_id as $id)
+			{
+				$this->add_project($data['gantt'], $id, $data);
+			}
 		}
 
 		$sel_options = array(
@@ -195,6 +200,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 	// Get the data into required format
 	protected function &add_project(&$data = array(), $pm_id, $params) {
+		if(!$pm_id) return;
 		if ($pm_id != $this->project->data['pm_id'])
 		{
 			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
