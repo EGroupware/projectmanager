@@ -179,6 +179,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$project_id = explode(',',$project_id);
 		}
 		$data = array('data' => array(), 'links' => array());
+		if(is_array($params['gantt'])) $params += $params['gantt'];
+		
 		$params['level'] = 1;
 		if(!$params['depth']) $params['depth'] = 2;
 
@@ -249,6 +251,20 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			}
 		}
 		$data['data'][] =& $project;
+
+		// Try to set a reasonable duration based on the project length
+		if(!$params['duration_unit'])
+		{
+			$params['duration_unit'] = self::get_duration_unit($project);
+		}
+		if($params['duration_unit'] != $data['duration_unit'])
+		{
+			$data['duration_unit'] = $params['duration_unit'];
+		}
+		if($project['duration'] && $params['duration_unit'] != 'minute')
+		{
+			$project['duration'] = self::set_duration($data, $project['duration']);
+		}
 
 		// Milestones are tasks too
 		$milestones = $this->milestones->search(array('pm_id' => $pm_id),'ms_id,ms_date,ms_title');
@@ -345,22 +361,31 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		foreach((array) $this->search(array(),false,'pe_start,pe_end',$extra_cols,
                         '',false,'AND',false,$filter) as $pe)
 		{
+			// No element, or user prefers not to see elements from this app
 			if (!$pe || ($this->prefs['gantt_show_elements_by_type'] && !in_array($pe['pe_app'], $this->prefs['gantt_show_elements_by_type'])))
 			{
 				continue;
 			}
 
-			if($pe['pe_app'] == 'projectmanager') {// && $level < $params['depth']) {
+			// Limit children for sub-projects, we just need to know there are some
+			if($level > 1 && count($elements))
+			{
+				break;
+			}
+
+			// Check to see if we need project info
+			if($pe['pe_app'] == 'projectmanager') {
 				$project = true;
 			}
 			$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
 			$pe['text'] = $this->prefs['gantt_element_title_length'] ? substr($pe['pe_title'], 0, $this->prefs['gantt_element_title_length']) : $pe['pe_title'];
 			$pe['parent'] = 'projectmanager::'.$pm_id;
 			$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
-			$pe['duration'] = (float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']);
-			if($pe['pe_end'] && !$pe['duration'])
+			$pe['duration'] = self::get_duration($data,(float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']));
+			if($pe['pe_end'])
 			{
-				$pe['end_date'] = egw_time::to((int)$pe['pe_end'],egw_time::DATABASE);
+				// Make sure we don't kill the gantt chart with too large a time span - limit to 10 years
+				$pe['end_date'] = egw_time::to(min($pe['pe_end'],strtotime('+10 years',$pe['pe_start'])),egw_time::DATABASE	);
 			}
 			$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
 			$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
@@ -368,10 +393,10 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			// Set field for filter to filter on
 			$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
 
-			// Skip elements that would be 0 duration
+			// Fix elements that would be 0 duration and cause problems
 			if(!($pe['duration'] || $pe['end_date']))
 			{
-				continue;
+				$pe['end_date'] = $pe['start_date'];
 			}
 			$elements[] = $pe;
 
@@ -523,5 +548,59 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		//error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
 
+	/**
+	 * Set an appropriate duration unit based on start/end dates
+	 *
+	 */
+	protected static function get_duration_unit($task)
+	{
+		$start = new egw_time($task['start_date']);
+		$end = new egw_time($task['end_date']);
+		$diff = $start->diff($end);
+
+		// Determine a good unit.
+		// Values arbitrarily chosen
+		if($diff->y > 5)
+		{
+			$duration_unit = 'year';
 		}
+		else if ($diff->days > 90)
+		{
+			$duration_unit = 'week';
+		}
+		else if ($diff->days > 28)
+		{
+			$duration_unit = 'hour';
+		}
+		else
+		{
+			$duration_unit = 'minute';
+		}
+		
+		return $duration_unit;
+	}
+
+	/**
+	 * PM stores duration in minutes, but gantt can't handle that for long
+	 * projects, so we re-calculate to duration_unit
+	 *
+	 * @param array $data
+	 * @param integer $duration Task duration in minutes
+	 */
+	protected static function get_duration(&$data, $duration)
+	{
+		switch($data['duration_unit'])
+		{
+			case 'year':
+				$duration /= 52.0;
+			case 'week':
+				$duration /= 7.0;
+			case 'day':
+				$duration /= 24.0;
+			case 'hour':
+				$duration /= 60.0;
+		}
+		return round($duration,1);
+	}
+}
 ?>

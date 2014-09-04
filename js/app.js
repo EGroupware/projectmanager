@@ -178,11 +178,10 @@ app.classes.projectmanager = AppJS.extend(
 					var values = gantt.getInstanceManager().getValues(gantt)[gantt.id];
 					delete values.start_date;
 					delete values.end_date;
-
+					delete values.duration_unit;
 					this.egw.json('projectmanager_gantt::ajax_gantt_project',['projectmanager::'+current_project,values], function(data) {
+
 						gantt.set_value(data);
-						gantt.set_zoom(false);// Auto
-						gantt.gantt.render(); // Need to force the re-render here
 					}).sendRequest(true);
 					break;
 				case 'prices':
