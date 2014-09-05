@@ -263,7 +263,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		if($project['duration'] && $params['duration_unit'] != 'minute')
 		{
-			$project['duration'] = self::set_duration($data, $project['duration']);
+			$project['duration'] = self::get_duration($data, $project['duration']);
 		}
 
 		// Milestones are tasks too
