@@ -720,7 +720,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'onExecute' => 'javaScript:app.projectmanager.show_gantt',
 				'enabled' => true,
 			),
-			'add_new' => array (
+			'add' => array (
 				'caption' => 'Add new',
 				'group' => ++$group,
 				'icon' => 'add',
@@ -808,17 +808,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		//Create app list for "Add new" menu items
 		$app_list = egw_link::app_list('add');
-		$actions['add_new']['children'] = array();
+		$actions['add']['children'] = array();
 		foreach ($app_list as $inx => $val)
 		{
-			$actions['add_new']['children']['act-'.$inx] = array(
+			$actions['add']['children']['act-'.$inx] = array(
 				'caption' => $val,
 				'icon' => $inx.'/navbar',
 				'onExecute' => 'javaScript:app.projectmanager.add_new',
 			);
 		}
 		// Milestone isn't an app, so is not returned by app_list()
-		$actions['add_new']['children']['act-pm_milestone'] = array(
+		$actions['add']['children']['act-pm_milestone'] = array(
 			'caption' => 'Milestone',
 			'icon' => 'projectmanager/milestone',
 			'onExecute' => 'javaScript:app.projectmanager.add_new',
@@ -887,7 +887,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time,legacy_actions',
 				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
 				'dataStorePrefix' => 'projectmanager_elements',
-				'placeholder_actions' => array()
 			);
 			// use the state of the last session stored in the user prefs
 			if ($state = @unserialize($this->prefs['pe_index_state']))

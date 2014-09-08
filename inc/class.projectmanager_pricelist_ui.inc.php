@@ -339,6 +339,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				'header_row'     => 'projectmanager.pricelist.add-new',
 				'dataStorePrefix' => 'pm_prices', // Default would be projectmanager, which would collide with project list
 				'num_rows'       => 0, // No data when first sent
+				'placeholder_actions' => array(),	// we have no "add" action currently
 			);
 		}
 		$content['nm']['col_filter']['pm_id'] = $this->pm_id;
@@ -362,7 +363,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			'pl_billable' => $this->billable_lables,
 			'pm_id' => $projects,
 		);
-		
+
 		$readonlys = array(
 			// show add button only, if user has rights to add a new price
 			'add' => !$this->check_acl(EGW_ACL_EDIT,$this->pm_id),
