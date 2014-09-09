@@ -117,7 +117,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		$template->read('projectmanager.gantt');
 
 		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
-
+		
 		$template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
 	}
 
@@ -450,6 +450,20 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	public static function ajax_update($values, $params)
 	{
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
+
+		if(class_exists('stylite_projectmanager_gantt'))
+		{
+			$handled = stylite_projectmanager_gantt::ajax_update($values, $params);
+			if($handled) return;
+		}
+		else if(!$GLOBALS['egw_info']['user']['preferences']['projectmanager']['skip_stylite_warning'])
+		{
+			// Only tell them once
+			$GLOBALS['egw']->preferences->add('projectmanager','skip_stylite_warning', true);
+			$GLOBALS['egw']->preferences->save_repository();
+			egw_json_response::get()->apply('egw.message', Array(lang('Direct update from Gantt chart requires <a href="http://www.egroupware.org/products">Stylite EGroupware Enterprise Line (EPL)</a>.'
+			. '<br />Project elements will be updated but the associated datasource will not.'),'info'));
+		}
 
 		// Needed for field constants
 		include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
