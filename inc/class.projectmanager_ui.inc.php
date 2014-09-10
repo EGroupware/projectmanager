@@ -647,9 +647,12 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$content = array(
 			'nm' => $GLOBALS['egw']->session->appsession('project_list','projectmanager'),
-			'msg' => $msg,
 			'duration_format' => ','.$this->config['duration_format'],
 		);
+		if($msg)
+		{
+			egw_framework::message($msg);
+		}
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(

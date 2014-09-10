@@ -151,7 +151,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		$view = $view || $view_prices && $view_project_prices;	// nothing to edit => no rights
 
 		$content = $this->data + array(
-			'msg' => $msg,
 			'view' => $view,
 			'view_prices' => $view_prices,
 			'view_project_prices' => $view_project_prices,
@@ -324,7 +323,11 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				}
 			}
 		}
-		$content['msg'] = $msg ? $msg : $_GET['msg'];
+		$msg = $msg ? $msg : $_GET['msg'];
+		if($msg)
+		{
+			egw_framework::message($msg);
+		}
 		$content['nm'] = $GLOBALS['egw']->session->appsession('pricelist','projectmanager');
 		if (!is_array($content['nm']))
 		{
