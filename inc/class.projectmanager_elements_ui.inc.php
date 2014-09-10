@@ -419,6 +419,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			{
 				$readonlys[$key] = true;
 			}
+			unset($content['pe_planned_budget']);
+			unset($content['pe_used_budget']);
 		}
 		if ($view)
 		{
@@ -527,6 +529,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$total++;
 
 		$readonlys = array();
+		$budget_rights = $this->project->check_acl(EGW_ACL_BUDGET);
 		foreach($rows as $n => &$row)
 		{
 			if ($n && !$this->check_acl(EGW_ACL_EDIT,$row))
@@ -536,6 +539,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			if ($n && !$this->check_acl(EGW_ACL_DELETE,$row))
 			{
 				$row['class'] .= ' rowNoDelete';
+			}
+			if (!$budget_rights)
+			{
+				unset($row['pe_used_budget']);
+				unset($row['pe_planned_budget']);
 			}
 			if ($n)
 			{
@@ -652,7 +660,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$totals = $this->summary(null,$query['col_filter']);
 			foreach($totals as $field => $value)
 			{
-				$rows['total_' . $field] = $value;
+				if ($budget_rights || !in_array($field, array('pe_planned_budget', 'pe_used_budget')))
+				{
+					$rows['total_' . $field] = $value;
+				}
 			}
 		}
 		if ((int)$this->debug >= 2 || $this->debug == 'get_rows')
