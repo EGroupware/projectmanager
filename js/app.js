@@ -412,7 +412,7 @@ app.classes.projectmanager = AppJS.extend(
 				break;
 			default:
 				var appList = egw.link_app_list('query');
-				var nm = this.et2 ? this.et2.getWidgetById('nm') : null;
+				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null
 
 				if (typeof appList[_app] != 'undefined')
 				{
@@ -420,7 +420,7 @@ app.classes.projectmanager = AppJS.extend(
 					{	
 						if (typeof _links.projectmanager != 'undefined')
 						{	
-							if (nm) nm.applyFilters();
+							if (nm) nm.refresh();
 						}
 						else if (nm)
 						{
