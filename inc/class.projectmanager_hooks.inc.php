@@ -332,7 +332,7 @@ class projectmanager_hooks
 		$apps = egw_link::app_list('add_app');
 		foreach (array('addressbook', 'bookmarks', 'tracker', 'resources') as $unset_app) // these apps never show as pe since they don't have end date
 		{
-		unset($apps[$unset_app]);
+			unset($apps[$unset_app]);
 		}
 		asort($apps);
 		$settings[] = Array(
@@ -352,22 +352,22 @@ class projectmanager_hooks
 			'default'=> true,
 		);
 		$settings['show_links'] = array(
-				'type'   => 'check',
-				'label'  => 'Show links in the Project Elements list',
-				'name'   => 'show_links',
-				'help'   => 'Should Project Elements show the links to other applications and/or the file-attachments in the Project Elements list (only when showing details).',
-				'xmlrpc' => True,
-				'admin'  => False,
-				'default'=> false,
+			'type'   => 'check',
+			'label'  => 'Show links in the Project Elements list',
+			'name'   => 'show_links',
+			'help'   => 'Should Project Elements show the links to other applications and/or the file-attachments in the Project Elements list (only when showing details).',
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> false,
 		);
 		$settings['show_infolog_type_icon'] = array(
-				'type'   => 'check',
-				'label'  => 'Show infolog type icon in the Project Elements list',
-				'name'   => 'show_infolog_type_icon',
-				'help'   => 'Should Project Elements list show the dedicated icons of the infolog types. Icons for infolog custom types can be added at the VFS-Path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with \'_element\', that bigger icon will be loaded in the element list.',
-				'xmlrpc' => True,
-				'admin'  => False,
-				'forced'=> False,
+			'type'   => 'check',
+			'label'  => 'Show infolog type icon in the Project Elements list',
+			'name'   => 'show_infolog_type_icon',
+			'help'   => 'Should Project Elements list show the dedicated icons of the infolog types. Icons for infolog custom types can be added at the VFS-Path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with \'_element\', that bigger icon will be loaded in the element list.',
+			'xmlrpc' => True,
+			'admin'  => False,
+			'forced'=> False,
 		);
 		$settings['show_projectselection'] = array(
 			'type'   => 'select',
@@ -416,6 +416,22 @@ class projectmanager_hooks
 			'values' 	=> $apps,
 			'xmlrpc' 	=> True,
 			'admin'  	=> False
+		);
+		$settings['gantt_default_timeframe'] = array(
+			'type'   => 'select',
+			'label'  => 'Timeframe for gantt chart',
+			'name'   => 'gantt_default_timeframe',
+			'values' => array(
+				'all' => lang('All'),
+                'last_month' => lang('Last month'),
+                'last_3_months' => lang('Last 3 months'),
+                'this_year' => lang('This year'),
+                'last_year' => lang('Last year'),
+				'last_2_years' => lang('Last 2 years'),
+			),
+			'help'   => lang('Reduce load times by restricting the timeframe.'),
+			'run_lang' => false,
+			'default' => 'last_3_months',
 		);
 		$start = array();
 		for($i = 0; $i < 24*60; $i += 30)

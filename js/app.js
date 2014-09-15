@@ -171,16 +171,33 @@ app.classes.projectmanager = AppJS.extend(
 					break;
 				case 'gantt':
 					var gantt = et2.getWidgetById('gantt');
-					// Re-set dates for different project
-					gantt.getWidgetById('start_date').set_value('');
-					gantt.getWidgetById('end_date').set_value('');
-					
+
+					// Re-set dates for different project				
 					var values = gantt.getInstanceManager().getValues(gantt)[gantt.id];
 					delete values.start_date;
 					delete values.end_date;
 					delete values.duration_unit;
+					if(console.profile) console.profile('Gantt');
+					if(console.group) console.group("Gantt loading PM_ID " + current_project);
+					if(console.time) console.time("Gantt fetch");
 					this.egw.json('projectmanager_gantt::ajax_gantt_project',['projectmanager::'+current_project,values], function(data) {
+						// Limit _displayed_ data to preference, since that's what takes so long
+						// Since gantt has handy functions for this and we know it's loaded, we can use them
+						switch(egw.preference('gantt_default_timeframe', 'projectmanager'))
+						{
+							case 'last_month':
+								data.start_date = window.gantt.date.add(window.gantt.date.month_start(new Date()), -1, 'month').toJSON(); break;
+							case 'last_3_months':
+								data.start_date = window.gantt.date.add(window.gantt.date.month_start(new Date()), -3, 'month').toJSON(); break;
+							case 'this_year':
+								data.start_date = window.gantt.date.year_start(new Date()).toJSON(); break;
+							case 'last_year':
+								data.start_date = window.gantt.date.add(window.gantt.date.year_start(new Date()), -1, 'year').toJSON(); break;
+							case 'last_2_years':
+								data.start_date = window.gantt.date.add(window.gantt.date.year_start(new Date()), -2, 'year').toJSON(); break;
+						}
 
+						if(console.time) console.timeEnd("Gantt fetch");
 						gantt.set_value(data);
 					}).sendRequest(true);
 					break;
