@@ -45,6 +45,8 @@ app.classes.projectmanager = AppJS.extend(
 	{
 		// call parent
 		this._super.apply(this, arguments);
+
+		register_app_refresh('projectmanager',jQuery.proxy(this.linkHandler,this));
 	},
 
 	/**
@@ -99,7 +101,7 @@ app.classes.projectmanager = AppJS.extend(
 			})
 
 			// Start hidden, except for project list
-			if(!et2.widgetContainer.getArrayMgr('content').getEntry('project_tree'))
+			if($j(et2.DOMContainer).siblings('.et2_container').length && !et2.widgetContainer.getArrayMgr('content').getEntry('project_tree'))
 			{
 				$j(et2.DOMContainer).hide();
 			}
@@ -387,6 +389,23 @@ app.classes.projectmanager = AppJS.extend(
 	},
 
 	/**
+	 * Handle links for projectmanager using JS instead of reloading
+	 * 
+	 * @param {string} url
+	 * @returns {boolean} True if PM could handle the link internally, false to let framework handle it
+	 */
+	linkHandler: function(url)
+	{
+		var match = url.match(/projectmanager_elements_ui\.index&(pm_id)=(\d+)/);
+		if(match && match.length > 2 && match[1] == 'pm_id')
+		{
+			this.show('elements', match[2]);
+			return true;
+		}
+		return false;
+	},
+
+	/**
 	 * Observer method receives update notifications from all applications
 	 * 
 	 * @param {string} _msg message (already translated) to show, eg. 'Entry deleted'
@@ -404,6 +423,7 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	observer: function(_msg, _app, _id, _type, _msg_type, _links)
 	{
+		debugger;
 		switch (_app)
 		{
 			case 'projectmanager':
@@ -871,6 +891,7 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	_bind_sidebox: function(label, click)
 	{
+		if(!app.projectmanager.sidebox) return false;
 		var sidebox = $j('a:contains("' +app.projectmanager.egw.lang(label)+'")',app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
 		sidebox.off('click.projectmanager');
 		sidebox.on('click.projectmanager', click);
