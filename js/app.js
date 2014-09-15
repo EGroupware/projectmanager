@@ -391,8 +391,8 @@ app.classes.projectmanager = AppJS.extend(
 		{
 			case 'projectmanager':
 				var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
-				var itemId =_app+"::"+_id;
-				if (tree && _id)
+				var itemId = _id != 'undefined'?_app+"::"+_id:0;
+				if (tree && itemId)
 				{	
 					var node = tree.getNode(itemId);
 					switch(_type)
