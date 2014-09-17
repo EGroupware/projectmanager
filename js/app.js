@@ -173,7 +173,7 @@ app.classes.projectmanager = AppJS.extend(
 					break;
 				case 'gantt':
 					var gantt = et2.getWidgetById('gantt');
-
+					gantt.gantt.showCover();
 					// Re-set dates for different project				
 					var values = gantt.getInstanceManager().getValues(gantt)[gantt.id];
 					delete values.start_date;

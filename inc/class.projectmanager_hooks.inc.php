@@ -431,7 +431,7 @@ class projectmanager_hooks
 			),
 			'help'   => lang('Reduce load times by restricting the timeframe.'),
 			'run_lang' => false,
-			'default' => 'last_3_months',
+			'default' => 'all',
 		);
 		$start = array();
 		for($i = 0; $i < 24*60; $i += 30)
