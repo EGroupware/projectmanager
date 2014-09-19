@@ -408,7 +408,6 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	observer: function(_msg, _app, _id, _type, _msg_type, _links)
 	{
-		debugger;
 		switch (_app)
 		{
 			case 'projectmanager':
@@ -471,8 +470,10 @@ app.classes.projectmanager = AppJS.extend(
 		{
 			return false;
 		}
+		var same_view = true;
 		if(typeof node_id == 'object' && tree_widget[0])
 		{
+			same_view = false;
 			node_id = tree_widget[0].id;
 		}
 
@@ -484,7 +485,7 @@ app.classes.projectmanager = AppJS.extend(
 			{
 				// Change the current view to the new project, or element list
 				// if current view is project list
-				this.show(this.view == 'list' ? 'elements' : this.view,node_id);
+				this.show(same_view ? this.view : 'elements',node_id);
 			}
 			else
 			{
