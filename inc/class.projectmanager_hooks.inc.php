@@ -332,7 +332,7 @@ class projectmanager_hooks
 		$apps = egw_link::app_list('add_app');
 		foreach (array('addressbook', 'bookmarks', 'tracker', 'resources') as $unset_app) // these apps never show as pe since they don't have end date
 		{
-		unset($apps[$unset_app]);
+			unset($apps[$unset_app]);
 		}
 		asort($apps);
 		$settings[] = Array(

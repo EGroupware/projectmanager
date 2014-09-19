@@ -79,6 +79,8 @@ class projectmanager_ui extends projectmanager_bo
 	 */
 	public function index(array $content = null)
 	{
+		$this->pm_list();
+
 		$element_list = new projectmanager_elements_ui();
 		$element_list->index();
 
@@ -87,9 +89,6 @@ class projectmanager_ui extends projectmanager_bo
 
 		$prices = new projectmanager_pricelist_ui();
 		$prices->index();
-
-
-		$this->pm_list();
 	}
 
 	/**
