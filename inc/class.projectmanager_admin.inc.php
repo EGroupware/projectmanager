@@ -75,7 +75,10 @@ class projectmanager_admin
 		}
 		if ($content['cancel'] || $content['save'])
 		{
-			egw::redirect_link('/admin/index.php', null, 'admin');
+			egw::redirect_link('/index.php', array(
+				'menuaction' => 'admin.admin_ui.index',
+				'ajax' => 'true'
+			), 'admin');
 		}
 
 		$content = $this->config->config_data;
