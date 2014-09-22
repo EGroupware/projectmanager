@@ -470,7 +470,7 @@ app.classes.projectmanager = AppJS.extend(
 		{
 			return false;
 		}
-		var same_view = true;
+		var same_view = (this.view != 'list');
 		if(typeof node_id == 'object' && tree_widget[0])
 		{
 			same_view = false;
