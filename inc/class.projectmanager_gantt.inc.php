@@ -180,6 +180,10 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		$data = array('data' => array(), 'links' => array());
 		if(is_array($params['gantt'])) $params += $params['gantt'];
+		$params = array_merge(array(
+			'planned_times' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_planned_times'],
+			'constraints' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_constraints']
+		), $params);
 		
 		$params['level'] = 1;
 		if(!$params['depth']) $params['depth'] = 2;
@@ -366,6 +370,9 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			{
 				continue;
 			}
+
+			// Skip milestones, they're loaded by project
+			if($pe['pe_app'] == 'pm_milestone') continue;
 
 			// Limit children for sub-projects, we just need to know there are some
 			if($level > 1 && count($elements))
