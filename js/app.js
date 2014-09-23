@@ -449,7 +449,28 @@ app.classes.projectmanager = AppJS.extend(
 							egw.dataRefreshUIDs(rex,'delete');
 						}
 					}
-				}	
+				}
+		}
+		
+		if (this.view == 'gantt')
+		{
+			var ids = [];
+			var gantt = this.views.gantt.etemplate.widgetContainer.getWidgetById('gantt');
+			if(_type == 'add' && _links.projectmanager)
+			{
+				// Refresh the parent(s)
+				for(var i = 0; i < _links.projectmanager.length; i++)
+				{
+					ids.push('projectmanager::'+_links.projectmanager[i]);
+				}
+				_type == 'update';
+			}
+			else
+			{
+				ids.push(_app+"::"+_id);
+			}
+			gantt.refresh(ids,_type);
+			return false;
 		}
 	},
 

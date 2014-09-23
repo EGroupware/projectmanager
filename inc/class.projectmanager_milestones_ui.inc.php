@@ -102,7 +102,8 @@ class projectmanager_milestones_ui extends projectmanager_bo
 					{
 						$msg = lang('Milestone saved');
 						egw_link::link('projectmanager', $this->data['pm_id'],'pm_milestone',$this->milestones->data['ms_id']);
-						egw_framework::refresh_opener($msg, 'projectmanager', 'edit');
+						// Refresh the project via projectmanager, since PM's sub-types don't fit
+						egw_framework::refresh_opener($msg, 'projectmanager', $this->data['pm_id'], 'edit');
 
 					}
 				}
