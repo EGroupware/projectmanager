@@ -379,6 +379,10 @@ class projectmanager_ui extends projectmanager_bo
 		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))
 		{
 			$readonlys['pm_planned_budget'] = $readonlys['pm_used_budget'] = true;
+			unset($content['pm_planned_budget']);
+			unset($content['pm_used_budget']);
+			unset($content['ds']['pe_planned_budget']);
+			unset($content['ds']['pe_used_budget']);
 		}
 		$n = 2;
 		foreach((array)$this->data['pm_members'] as $uid => $data)
