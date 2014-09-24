@@ -139,7 +139,7 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	show: function(what, project_id)
 	{
-		var current_project = project_id;
+		var current_project = project_id && isNaN(project_id) ? (project_id[0] ? project_id[0] : null) : project_id;
 		if(!current_project)
 		{
 			if(this.views.list.etemplate)
@@ -179,10 +179,18 @@ app.classes.projectmanager = AppJS.extend(
 					delete values.start_date;
 					delete values.end_date;
 					delete values.duration_unit;
+
+					// Support multiple projects
+					if(!project_id || !project_id.map)
+					{
+						project_id = [current_project]
+					}
+					project_id = project_id.map(function(id) {return typeof id == 'string' && id.indexOf('projectmanager::') == 0 ? id : 'projectmanager::'+id;});
+
 					if(console.profile) console.profile('Gantt');
-					if(console.group) console.group("Gantt loading PM_ID " + current_project);
+					if(console.group) console.group("Gantt loading PM_ID " + project_id);
 					if(console.time) console.time("Gantt fetch");
-					this.egw.json('projectmanager_gantt::ajax_gantt_project',['projectmanager::'+current_project,values], function(data) {
+					this.egw.json('projectmanager_gantt::ajax_gantt_project',[project_id,values], function(data) {
 
 						if(console.time) console.timeEnd("Gantt fetch");
 						gantt.set_value(data);
@@ -668,7 +676,7 @@ app.classes.projectmanager = AppJS.extend(
 		if(this.views['gantt'].etemplate != null)
 		{
 			// Just update the existing gantt
-			this.show('gantt',id[0]);
+			this.show('gantt',id);
 		}
 		else
 		{
