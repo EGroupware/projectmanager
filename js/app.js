@@ -430,7 +430,7 @@ app.classes.projectmanager = AppJS.extend(
 							}
 					}
 				}	
-				break;
+				// Fall through to try the element list too
 			default:
 				var appList = egw.link_app_list('query');
 				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null
@@ -451,26 +451,35 @@ app.classes.projectmanager = AppJS.extend(
 					}
 				}
 		}
-		
-		if (this.view == 'gantt')
+
+		// Update current view with new info
+		switch (this.view)
 		{
-			var ids = [];
-			var gantt = this.views.gantt.etemplate.widgetContainer.getWidgetById('gantt');
-			if(_type == 'add' && _links.projectmanager)
-			{
-				// Refresh the parent(s)
-				for(var i = 0; i < _links.projectmanager.length; i++)
+			case 'list':
+				var nm = this.views.list.etemplate ? this.views.list.etemplate.widgetContainer.getWidgetById('nm') : null
+				if(nm)
 				{
-					ids.push('projectmanager::'+_links.projectmanager[i]);
+					nm.refresh(_id,_type);
 				}
-				_type == 'update';
-			}
-			else
-			{
-				ids.push(_app+"::"+_id);
-			}
-			gantt.refresh(ids,_type);
-			return false;
+				return false;
+			case 'gantt':
+				var ids = [];
+				var gantt = this.views.gantt.etemplate.widgetContainer.getWidgetById('gantt');
+				if(_type == 'add' && _links.projectmanager)
+				{
+					// Refresh the parent(s)
+					for(var i = 0; i < _links.projectmanager.length; i++)
+					{
+						ids.push('projectmanager::'+_links.projectmanager[i]);
+					}
+					_type == 'update';
+				}
+				else
+				{
+					ids.push(_app+"::"+_id);
+				}
+				gantt.refresh(ids,_type);
+				return false;
 		}
 	},
 
