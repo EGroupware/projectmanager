@@ -511,8 +511,6 @@ class projectmanager_ui extends projectmanager_bo
 
 		$total = parent::get_rows($query,$rows,$readonlys,true,true);
 
-		$this->instanciate('roles');
-
 		$readonlys = array();
 		foreach($rows as &$row)
 		{
@@ -532,15 +530,26 @@ class projectmanager_ui extends projectmanager_bo
 				unset($row['pm_planned_budget']);
 			}
 		}
-		$roles = $this->roles->query_list();
+
+		//Roles
 		// query the project-members only, if user choose to display them
-		if ($pm_ids && @strstr($GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-projectmanager.list.rows'],',role') !== false)
+		if ($pm_ids && (@strstr($GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-projectmanager.list.rows'],',role') !== false ||
+			// Current value, if user just changed column selection
+			@strstr(implode(',', $query['selectcols']),',role') !== false ))
 		{
+			$this->instanciate('roles');
+			$roles = $this->roles->query_list();
+
 			$all_members = $this->read_members($pm_ids);
 			foreach($rows as $n => $val)
 			{
 				$row =& $rows[$n];
 				$members = $row['pm_members'] = $all_members[$row['pm_id']];
+				// Set a value even if empty, or previous row won't be cleared.
+				for($i = 0; $i < 5; $i++)
+				{
+					$row['role'.$i] = array();
+				}
 				if (!$members) continue;
 
 				foreach($members as $uid => $data)
@@ -556,11 +565,6 @@ class projectmanager_ui extends projectmanager_bo
 		if ((int) $this->debug >= 2 || $this->debug == 'get_rows')
 		{
 			$this->debug_message("projectmanager_ui::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."\nreadonlys=".print_r($readonlys,true));
-		}
-		$rows['roles'] = array_values($roles);
-		for($i = count($roles); $i < 5; ++$i)
-		{
-			$rows['no_role'.$i] = true;
 		}
 		// disable time & budget columns if pm is configures for status or status and time only
 		if ($this->config['accounting_types'] == 'status')
@@ -692,6 +696,26 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$p_templ[$id]=(!empty($c[($show == 'number'?'label':'title')])?$c[($show == 'number'?'label':'title')]:$c[($show == 'number'?'caption':'hint')]);
 		}
+
+		// Set up role columns
+		$this->instanciate('roles');
+		$roles = $this->roles->query_list();
+		$role_count = 0;
+		foreach($roles as $role_id => $role_name)
+		{
+			if($role_count > 5)
+			{
+				break;
+			}
+			$content['nm']['roles'][$role_count] = $role_name;
+			$role_count++;
+		}
+		// Clear extras
+		for(; $role_count < 5; $role_count++)
+		{
+			$content['nm']['no_role'.$role_count] = true;
+		}
+
 		$sel_options = array(
 			'template_id' => $p_templ,
 			'project_tree' => $this->ajax_tree(0, true,$this->prefs['current_project'])
