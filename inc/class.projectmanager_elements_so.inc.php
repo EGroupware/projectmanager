@@ -5,7 +5,7 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-14 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
@@ -43,6 +43,12 @@ class projectmanager_elements_so extends so_sql
 		'link_remark AS pe_remark',
 	);
 	/**
+	 * Set by constructor from sql for above pe_app column fixed for PostgreSQL
+	 *
+	 * @var string
+	 */
+	var $pe_app_sql;
+	/**
 	 * Default share in minutes (on the whole project), used if no planned time AND no pe_share set
 	 *
 	 * @var int
@@ -79,6 +85,15 @@ class projectmanager_elements_so extends so_sql
 		}
 		// PostgreSQL needs cast to varchar (MySQL does NOT allow varchar)
 		$this->links_extracols = str_replace('pm_id',$this->db->to_varchar('pm_id'),$this->links_extracols);
+		// extract sql for pe_app column
+		foreach($this->links_extracols as $col)
+		{
+			if (substr($col, -10) == ' AS pe_app')
+			{
+				$this->pe_app_sql = substr($col, 0, -10);
+				break;
+			}
+		}
 	}
 
 	/**
@@ -109,11 +124,11 @@ class projectmanager_elements_so extends so_sql
 	/**
 	 * Summarize the information of all elements of a project: min(start-time), sum(time), avg(completion), ...
 	 *
-	 * @param int/array $pm_id=null int project-id, array of project-id's or null to use $this->pm_id
-	 * @param array $filter=array() columname => value pairs to filter, eg. '
-	 * @return array/boolean with summary information (keys as for a single project-element), false on error
+	 * @param int|array $pm_id =null int project-id, array of project-id's or null to use $this->pm_id
+	 * @param array $_filter =array() columname => value pairs to filter, eg. '
+	 * @return array|boolean with summary information (keys as for a single project-element), false on error
 	 */
-	function summary($pm_id=null,$filter=array())
+	function summary($pm_id=null, $_filter=array())
 	{
 		if (is_null($pm_id)) $pm_id = $this->pm_id;
 
@@ -132,18 +147,19 @@ class projectmanager_elements_so extends so_sql
 		}
 		if ($save_data) $this->project->data = $save_data;
 
-		if (!isset($filter['pm_id'])) $filter['pm_id'] = $pm_id;
-		if (!isset($filter['pe_status'])) $filter[] = "pe_status != 'ignore'";
+		if (!isset($_filter['pm_id'])) $_filter['pm_id'] = $pm_id;
+		if (!isset($_filter['pe_status'])) $_filter[] = "pe_status != 'ignore'";
 		// fix some special filters: resources, cats
-		$filter = $this->_fix_filter($filter);
+		$filter = $this->_fix_filter($_filter);
 
 		if (isset($filter['pe_app']) && $filter['pe_app'])
 		{
-			$having_pe_app = 'HAVING pe_app='.$this->db->quote($filter['pe_app']).' ';
+			$having_pe_app = "HAVING $this->pe_app_sql=".$this->db->quote($filter['pe_app']).' ';
+			$join = $this->links_join;
 		}
 		unset($filter['pe_app']);
 
-		foreach($this->db->select($this->table_name, array_merge(array(
+		foreach($this->db->select($this->table_name, array(
 			"SUM(pe_completion * ($share)) AS pe_sum_completion_shares",
 			"SUM(CASE WHEN pe_completion IS NULL THEN NULL ELSE ($share) END) AS pe_total_shares",
 //			'AVG(pe_completion) AS pe_completion',
@@ -156,8 +172,8 @@ class projectmanager_elements_so extends so_sql
 			'MIN(pe_planned_start) AS pe_planned_start',
 			'MAX(pe_real_end) AS pe_real_end',
 			'MAX(pe_planned_end) AS pe_planned_end',
-		), $this->links_extracols), $filter, __LINE__, __FILE__,
-			false,$having_pe_app,'projectmanager',0,$this->links_join) as $data)
+		), $filter, __LINE__, __FILE__,
+			false, $having_pe_app, 'projectmanager', 0, $join) as $data)
 		{
 			if ($data['pe_total_shares'])
 			{
@@ -175,16 +191,16 @@ class projectmanager_elements_so extends so_sql
 	/**
 	 * search elements, reimplemented to join in some information from the links table and fix some filters
 	 *
-	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
+	 * @param array|string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
 	 * @param boolean $only_keys True returns only keys, False returns all cols
 	 * @param string $order_by fieldnames + {ASC|DESC} separated by colons ','
-	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
+	 * @param array|string $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
 	 * @param string $wildcard appended befor and after each criteria
 	 * @param boolean $empty False=empty criteria are ignored in query, True=empty have to be empty in row
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
-	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
+	 * @param int|boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string/boolean $join=true default join with links-table or string as in so_sql
+	 * @param string|boolean $join =true default join with links-table or string as in so_sql
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
 	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
@@ -204,16 +220,16 @@ class projectmanager_elements_so extends so_sql
 			}
 			if (isset($filter['pe_app']) && $filter['pe_app'])
 			{
-				$having_pe_app = 'HAVING pe_app='.$this->db->quote($filter['pe_app']).' ';
+				$filter[] = $this->pe_app_sql.'='.$this->db->quote($filter['pe_app']);
 				unset($filter['pe_app']);
 			}
 
-			$order_by = $having_pe_app. "ORDER BY (link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
+			$order_by = "ORDER BY (link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
 		}
 		// fix some special filters: resources, cats
-		$filter = $this->_fix_filter($filter);
+		$fixed_filter = $this->_fix_filter($filter);
 
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$fixed_filter,$join);
 	}
 
 	/**
@@ -252,9 +268,9 @@ class projectmanager_elements_so extends so_sql
 	 * reads one project-element specified by $keys, reimplemented to use $this->pm_id, if no pm_id given
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
-	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
-	 * @param string/boolean $join=true default join with links-table or string as in so_sql
-	 * @return array/boolean data if row could be retrived else False
+	 * @param array|string $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
+	 * @param string|boolean $join =true default join with links-table or string as in so_sql
+	 * @return array|boolean data if row could be retrived else False
 	*/
 	function read($keys,$extra_cols='',$join=true)
 	{
