@@ -2,12 +2,7 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.002">
-		<hbox>
-			<menulist>
-				<menupopup statustext="Create a new empty project or use a template" id="template_id" no_lang="1" options="Empty"/>
-			</menulist>
-			<buttononly statustext="Add a new project" label="Add" id="add" onclick="return (typeof app.projectmanager.new_project == 'undefined' ? window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes') : app.projectmanager.new_project());"/>
-		</hbox>
+		<buttononly statustext="Add a new project" label="Add" id="add" onclick="egw.open('','projectmanager','add');"/>
 	</template>
 	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
@@ -17,17 +12,17 @@
 				<column width="50"/>
 				<column width="15%"/>
 				<column width="120"/>
-				<column disabled="@no_role0"/>
-				<column disabled="@no_role1"/>
-				<column disabled="@no_role2"/>
-				<column disabled="@no_role3"/>
-				<column disabled="@no_role4"/>
+				<column width="80" disabled="@no_role0"/>
+				<column width="80" disabled="@no_role1"/>
+				<column width="80" disabled="@no_role2"/>
+				<column width="80" disabled="@no_role3"/>
+				<column width="80" disabled="@no_role4"/>
 				<column width="120"/>
 				<column width="120"/>
 				<column width="80" disabled="@no_pm_used_budget_pm_planned_budget"/>
 				<column width="80"/>
 				<column width="80"/>
-				<column width="00"/>
+				<column width="60"/>
 				<column width="130"/>
 				<column width="25%"/>
 			</columns>
