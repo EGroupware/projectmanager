@@ -680,7 +680,7 @@ class projectmanager_ui extends projectmanager_bo
 				'row_modified'	=> 'pm_modified'
 			);
 			// use the state of the last session stored in the user prefs
-			if ($state = @unserialize($this->prefs['pm_index_state']))
+			if (($state = @unserialize($this->prefs['pm_index_state'])))
 			{
 				$content['nm'] = array_merge($content['nm'],$state);
 			}
@@ -690,18 +690,12 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$content['nm']['search'] = $_GET['search'];
 		}
-		list(,,$show) = explode('_',$this->prefs['show_projectselection']);
-		$p_templ=array();
-		foreach((array)$this->get_templates() as $id =>$c)
-		{
-			$p_templ[$id]=(!empty($c[($show == 'number'?'label':'title')])?$c[($show == 'number'?'label':'title')]:$c[($show == 'number'?'caption':'hint')]);
-		}
 
 		// Set up role columns
 		$this->instanciate('roles');
 		$roles = $this->roles->query_list();
 		$role_count = 0;
-		foreach($roles as $role_id => $role_name)
+		foreach($roles as $role_name)
 		{
 			if($role_count > 5)
 			{
@@ -717,7 +711,6 @@ class projectmanager_ui extends projectmanager_bo
 		}
 
 		$sel_options = array(
-			'template_id' => $p_templ,
 			'project_tree' => $this->ajax_tree(0, true,$this->prefs['current_project'])
 		);
 		$tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());

@@ -65,7 +65,7 @@ app.classes.projectmanager = AppJS.extend(
 		{
 			this.views[view].etemplate = null;
 		}
-		
+
 		// call parent
 		this._super.apply(this, arguments);
 	},
@@ -124,14 +124,14 @@ app.classes.projectmanager = AppJS.extend(
 			}
 		}
 	},
-	
+
 	/**
 	 * Switch the view
-	 * 
+	 *
 	 * ProjectManager is comprised of several views, Project list, element list,
 	 * gantt chart and price list.  We load them all at once, then switch between
 	 * them as needed.
-	 * 
+	 *
 	 * @param {string} what one of 'list', 'elements', 'gantt' or 'prices'
 	 * @param {string|Numeric} project_id Project ID to show.  If not provided,
 	 *	it will be pulled from the project tree
@@ -174,7 +174,7 @@ app.classes.projectmanager = AppJS.extend(
 				case 'gantt':
 					var gantt = et2.getWidgetById('gantt');
 					gantt.gantt.showCover();
-					// Re-set dates for different project				
+					// Re-set dates for different project
 					var values = gantt.getInstanceManager().getValues(gantt)[gantt.id];
 					delete values.start_date;
 					delete values.end_date;
@@ -230,7 +230,7 @@ app.classes.projectmanager = AppJS.extend(
 
 		// Show selected sub-template
 		$j(this.views[what].etemplate.DOMContainer).show();
-		
+
 		// Set header
 		this.egw.app_header(this.egw.lang(this.views[what].sidemenu),'projectmanager');
 
@@ -353,7 +353,7 @@ app.classes.projectmanager = AppJS.extend(
 			{
 				et2.widgetContainer.iterateOver(function(gantt) {
 					state = gantt.getInstanceManager().getValues(gantt)[gantt.id];
-					
+
 					// Gantt also needs the current PM ID stored
 					var current_project = false;
 					if(this.views.list.etemplate)
@@ -383,7 +383,7 @@ app.classes.projectmanager = AppJS.extend(
 
 	/**
 	 * Handle links for projectmanager using JS instead of reloading
-	 * 
+	 *
 	 * @param {string} url
 	 * @returns {boolean} True if PM could handle the link internally, false to let framework handle it
 	 */
@@ -400,7 +400,7 @@ app.classes.projectmanager = AppJS.extend(
 
 	/**
 	 * Observer method receives update notifications from all applications
-	 * 
+	 *
 	 * @param {string} _msg message (already translated) to show, eg. 'Entry deleted'
 	 * @param {string} _app application name
 	 * @param {(string|number)} _id id of entry to refresh or null
@@ -422,7 +422,7 @@ app.classes.projectmanager = AppJS.extend(
 				var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
 				var itemId = _id != 'undefined'?_app+"::"+_id:0;
 				if (tree && itemId)
-				{	
+				{
 					var node = tree.getNode(itemId);
 					switch(_type)
 					{
@@ -437,7 +437,7 @@ app.classes.projectmanager = AppJS.extend(
 								tree.deleteItem(itemId);
 							}
 					}
-				}	
+				}
 				// Fall through to try the element list too
 			default:
 				var appList = egw.link_app_list('query');
@@ -446,9 +446,9 @@ app.classes.projectmanager = AppJS.extend(
 				if (typeof appList[_app] != 'undefined')
 				{
 					if (typeof _links != 'undefined')
-					{	
+					{
 						if (typeof _links.projectmanager != 'undefined')
-						{	
+						{
 							if (nm) nm.refresh();
 						}
 						else if (nm)
@@ -574,37 +574,8 @@ app.classes.projectmanager = AppJS.extend(
 	},
 
 	/**
-	 * Open window for a new project using link system, and pass on the
-	 * template if one is selected.
-	 *
-	 * @param {etemplate_widget} widget The button, gives us access to the widget
-	 *	context without needing to store a reference.
-	 */
-	new_project: function(widget)
-	{
-		// Find the template
-		var template = '';
-		if(typeof widget != 'undefined')
-		{
-			var templ_widget = widget.getRoot().getWidgetById('template_id');
-			if(templ_widget)
-			{
-				template = templ_widget.getValue();
-			}
-		}
-		else if (document.getElementById(et2_form_name('nm','template_id')))
-		{
-			template = document.getElementById(et2_form_name('nm','template_id')).value;
-		}
-
-		// Open the popup
-		egw.open('','projectmanager','add',{'template': template},'_blank');
-		return false;
-	},
-
-	/**
 	 * Refresh the multi select box of eroles list
-	 * 
+	 *
 	 * @param {string} action name of action
 	 */
 	erole_refresh: function(action)
@@ -618,15 +589,15 @@ app.classes.projectmanager = AppJS.extend(
 				break;
 			default:
 				this.et2._inst.submit();
-				
+
 		}
-		
+
 		// Refresh element edit so it knows about the new role
 		var elemEditWind = window.opener;
 		if(elemEditWind)
 		{
 			elemEditWind.location.reload();
-			
+
 			// Refresh list so it knows about the new role
 			egw(elemEditWind).refresh('','projectmanager');
 		}
@@ -636,8 +607,8 @@ app.classes.projectmanager = AppJS.extend(
 	 * Toggles display of a div
 	 *
 	 *  Used in erole list in element list, maybe others?
-	 *  @param {egw_event object} event 
-	 *  @param {wiget object} widget 
+	 *  @param {egw_event object} event
+	 *  @param {wiget object} widget
 	 *  @param {string} target jQuery selector
 	 */
 	toggleDiv: function(event, widget, target)
@@ -832,7 +803,7 @@ app.classes.projectmanager = AppJS.extend(
 		{
 			allowed = false;
 		}
-		
+
 		// Erole is limited to only these apps, from projectmanager_elements_bo
 		var erole_apps = ['addressbook','calendar','infolog'];
 
@@ -850,10 +821,10 @@ app.classes.projectmanager = AppJS.extend(
 				allowed = false;
 			}
 		}
-		
+
 		return allowed;
 	},
-	
+
 	/**
 	 * Enabled check for project element action, used by context menu
 	 *
@@ -897,7 +868,7 @@ app.classes.projectmanager = AppJS.extend(
 
 			// Gantt chart can have multiple selected
 			if(jQuery.isArray(pm_id)) pm_id = pm_id[0];
-			
+
 			pm_id = pm_id.replace('::',':');
 			if (typeof action != 'undefined')
 			{

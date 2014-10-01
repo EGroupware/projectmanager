@@ -157,7 +157,7 @@ button#projectmanager-list_add:active {
 }
 #projectmanager-list_favorite_wrapper div.et2_dropdown,
 #projectmanager-list_favorite {
-  top: -15px;
+  top: -6px;
 }
 #projectmanager-list_export {
   position: relative;
