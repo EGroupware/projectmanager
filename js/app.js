@@ -423,7 +423,20 @@ app.classes.projectmanager = AppJS.extend(
 				var itemId = _id != 'undefined'?_app+"::"+_id:0;
 				if (tree && itemId)
 				{
-					var node = tree.getNode(itemId);
+					var node = tree.getNode(itemId);						
+					// Not in tree.  Either parent node not expanded, or a new project
+					if(_type != 'delete' && node == null && typeof _links.projectmanager != 'undefined' && _links.projectmanager.length > 0)
+					{
+						// First one should be parent
+						for(var i = 0; i < _links.projectmanager.length && node == null; i++)
+						{
+							node = tree.getNode(_app+"::"+_links.projectmanager[i]);
+						}
+						if(node !== null)
+						{
+							itemId = node.id;
+						}
+					}
 					switch(_type)
 					{
 						case 'add':
