@@ -152,10 +152,9 @@ class projectmanager_elements_so extends so_sql
 		// fix some special filters: resources, cats
 		$filter = $this->_fix_filter($_filter);
 
-		if (isset($filter['pe_app']) && $filter['pe_app'])
+		if (($link_app1 = array_search("link_app1!='projectmanager'", $filter)) !== false)
 		{
-			$having_pe_app = "HAVING $this->pe_app_sql=".$this->db->quote($filter['pe_app']).' ';
-			$join = $this->links_join;
+			unset($filter[$link_app1]);
 		}
 		unset($filter['pe_app']);
 
@@ -173,7 +172,7 @@ class projectmanager_elements_so extends so_sql
 			'MAX(pe_real_end) AS pe_real_end',
 			'MAX(pe_planned_end) AS pe_planned_end',
 		), $filter, __LINE__, __FILE__,
-			false, $having_pe_app, 'projectmanager', 0, $join) as $data)
+			false, '', 'projectmanager') as $data)
 		{
 			if ($data['pe_total_shares'])
 			{
