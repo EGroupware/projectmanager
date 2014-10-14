@@ -20,7 +20,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		parent::__construct();
 	}
 
-	public function chart($data = array()) {
+	public function chart($data = array())
+	{
 
 		// Find out which project we're working with
 		if (isset($_REQUEST['pm_id']))
