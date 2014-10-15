@@ -246,6 +246,15 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			$project['duration'] = $params['planned_times'] ? $this->project->data['pm_planned_time'] : 1;
 		}
+		// Add in planned start & end, if different
+		if($project['pm_planned_start'] && $project['pm_planned_start'] != egw_time::to($project['start_date'],egw_time::DATABASE))
+		{
+			$project['planned_start'] = egw_time::to((int)$project['pm_planned_start'], egw_time::DATABASE);
+		}
+		if($project['pm_planned_end'] && $project['pm_planned_start'] != egw_time::to($project['start_date'],egw_time::DATABASE))
+		{
+			$project['planned_end'] = egw_time::to((int)$project['pm_planned_end'], egw_time::DATABASE);
+		}
 		
 		// Not sure how it happens, but it causes problems
 		if($project['start'] && $project['start'] < 10) $project['start'] = 0;
@@ -389,11 +398,21 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$pe['text'] = $this->prefs['gantt_element_title_length'] ? substr($pe['pe_title'], 0, $this->prefs['gantt_element_title_length']) : $pe['pe_title'];
 			$pe['parent'] = 'projectmanager::'.$pm_id;
 			$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
+			if($pe['pe_planned_start'] && $pe['pe_planned_start'] != $pe['pe_start'])
+			{
+				$pe['start_date'] = egw_time::to($pe['pe_real_start'], egw_time::DATABASE);
+				$pe['planned_start'] = egw_time::to((int)$pe['pe_planned_start'], egw_time::DATABASE);
+			}
 			$pe['duration'] = self::get_duration($data,(float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']));
 			if($pe['pe_end'])
 			{
 				// Make sure we don't kill the gantt chart with too large a time span - limit to 10 years
 				$pe['end_date'] = egw_time::to(min($pe['pe_end'],strtotime('+10 years',$pe['pe_start'])),egw_time::DATABASE	);
+			}
+			if($pe['pe_planned_end'] && $pe['pe_planned_end'] != $pe['pe_end'])
+			{
+				$pe['end_date'] = egw_time::to($pe['pe_real_end'], egw_time::DATABASE);
+				$pe['planned_end'] = egw_time::to((int)$pe['pe_planned_end'], egw_time::DATABASE);
 			}
 			$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
 			$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
