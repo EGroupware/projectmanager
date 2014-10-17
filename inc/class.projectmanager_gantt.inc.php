@@ -247,13 +247,16 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$project['duration'] = $params['planned_times'] ? $this->project->data['pm_planned_time'] : 1;
 		}
 		// Add in planned start & end, if different
-		if($project['pm_planned_start'] && $project['pm_planned_start'] != egw_time::to($project['start_date'],egw_time::DATABASE))
+		if(!$params['planned_times'])
 		{
-			$project['planned_start'] = egw_time::to((int)$project['pm_planned_start'], egw_time::DATABASE);
-		}
-		if($project['pm_planned_end'] && $project['pm_planned_start'] != egw_time::to($project['start_date'],egw_time::DATABASE))
-		{
-			$project['planned_end'] = egw_time::to((int)$project['pm_planned_end'], egw_time::DATABASE);
+			if($project['pm_planned_start'] && $project['pm_planned_start'] != egw_time::to($project['start_date'],egw_time::DATABASE))
+			{
+				$project['planned_start'] = egw_time::to((int)$project['pm_planned_start'], egw_time::DATABASE);
+			}
+			if($project['pm_planned_end'] && $project['pm_planned_end'] != $project['pm_real_end'])
+			{
+				$project['planned_end'] = egw_time::to((int)$project['pm_planned_end'], egw_time::DATABASE);
+			}
 		}
 		
 		// Not sure how it happens, but it causes problems
