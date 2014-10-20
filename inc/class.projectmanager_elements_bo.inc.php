@@ -220,6 +220,12 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("projectmanager_elements_bo::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 		//error_log(__METHOD__."('$app', $id, pe_id=$pe_id, pm_id=$pm_id, update_project=$update_project, extra_keys=".array2string($extra_keys).")");
+
+		// Prevent infinite looping in some nested cases
+		static $updated = array();
+		if($updated["$app:$id:$pe_id"]) return;
+		$updated["$app:$id:$pe_id"] = true;
+
 		if (!$app || !$id || !(int) $pm_id)
 		{
 			return false;
