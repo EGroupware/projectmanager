@@ -481,6 +481,12 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	{
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
 
+		// Sub project - handle as project, or a tree loop might occur
+		if($values['pe_id'] && $values['pe_app'] == 'projectmanager' && $values['pe_app_id'])
+		{
+			unset($values['pe_id']);
+		}
+
 		if(class_exists('stylite_projectmanager_gantt'))
 		{
 			$handled = stylite_projectmanager_gantt::ajax_update($values, $params);
