@@ -266,6 +266,7 @@ price deleted	projectmanager	en	Price deleted.
 price per unit	projectmanager	en	Price per unit
 price saved	projectmanager	en	Price saved.
 pricelist	projectmanager	en	Price list
+project	common	en	Project
 project access (e.g. public)	projectmanager	en	Project access, e.g. public
 project availibility	projectmanager	en	Project availability
 project category	projectmanager	en	Project category
@@ -300,7 +301,7 @@ projectmanager element fields:	projectmanager	en	Project Manager element fields:
 projectmanager fields:	projectmanager	en	Project Manager fields:
 projectmanager-fieldname	projectmanager	en	Project Manager field name
 projectmember	projectmanager	en	Project member
-projects	projectmanager	en	Projects
+projects	common	en	Projects
 quantity	projectmanager	en	Quantity
 re-planned	projectmanager	en	Re-planned
 re-planned time	projectmanager	en	Re-planned time

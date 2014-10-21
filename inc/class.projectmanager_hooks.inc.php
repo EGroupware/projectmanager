@@ -106,6 +106,8 @@ class projectmanager_hooks
 				)
 			),
 			'merge' => true,
+			'entry' => 'Project',
+			'entries' => 'Projects',
 		);
 	}
 
