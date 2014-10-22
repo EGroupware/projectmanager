@@ -592,6 +592,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	*/
 	function read($keys,$extra_cols='',$join=true)
 	{
+		error_log("Reading " . array2string($keys));
 		if (!($data = parent::read($keys,$extra_cols,$join)))
 		{
 			return false;
