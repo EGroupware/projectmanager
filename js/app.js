@@ -116,7 +116,11 @@ app.classes.projectmanager = AppJS.extend(
 					}]);
 					return false;
 				});
-				this.show('list');
+				// First load, framework could not use our link handler since it wasn't loaded
+				if(!app.projectmanager.linkHandler(egw_getFramework().getApplicationByName('projectmanager').browser.currentLocation))
+				{
+					this.show('list');
+				}
 			}
 			else if (this.view)
 			{
@@ -389,10 +393,18 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	linkHandler: function(url)
 	{
-		var match = url.match(/projectmanager_elements_ui\.index&(pm_id)=(\d+)/);
+		var match = url.match(/projectmanager(?:_elements)?_ui\.index&(pm_id)=(\d+)/);
 		if(match && match.length > 2 && match[1] == 'pm_id')
 		{
-			this.show('elements', match[2]);
+			if(this.views.elements.etemplate)
+			{
+				this.show('elements', match[2]);
+			}
+			else
+			{
+				// Still loading
+				window.setTimeout(function() {app.projectmanager.linkHandler(url);},100);
+			}
 			return true;
 		}
 		return false;

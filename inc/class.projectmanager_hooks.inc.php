@@ -49,12 +49,12 @@ class projectmanager_hooks
 			'title'      => 'projectmanager.projectmanager_bo.link_title',
 			'titles'     => 'projectmanager.projectmanager_bo.link_titles',
 			'view'       => array(
-				'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 				'ajax'   => 'true',
 			),
 			'view_id'    => 'pm_id',
 			'list'       => array(
-				'menuaction' => 'projectmanager.projectmanager_ui.pm_list',
+				'menuaction' => 'projectmanager.projectmanager_ui.index',
 			),
 			'notify'     => 'projectmanager.projectmanager_elements_bo.notify',
 			'add'        => array(
