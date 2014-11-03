@@ -568,7 +568,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					'help' => lang("Select this project and show it's elements"),
 				);
 			}
-			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : $row['pe_completion'];
+			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : 'ongoing';
 
 			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
 
@@ -616,7 +616,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						if ($this->prefs['show_custom_app_icons'] && isset($app_info['status']))
 						{
-							$row['pe_completion_icon'] = $app_info['status'];
+							$row['pe_completion_icon'] = $app_info['status_icon'] ? $app_info['status_icon'] : $app_info['status'];
 						}
 						if ($this->prefs['show_infolog_type_icon'] && isset($app_info['icon']))
 						{
