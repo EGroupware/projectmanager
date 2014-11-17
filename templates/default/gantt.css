@@ -1,3 +1,7 @@
 .ganttContent {
 	margin: 0px;
 }
+.dhtmlx_message_area {
+	display: none;
+	visibility: hidden;
+}
