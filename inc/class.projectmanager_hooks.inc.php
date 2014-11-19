@@ -401,7 +401,8 @@ class projectmanager_hooks
 			'label'  => 'Order of sub-project bars in ganttcharts',
 			'name'   => 'gantt_pm_elementbars_order',
 			'values' => array(
-				'pe_start,pe_end'    => lang('Start Date, End Date'),
+				'pe_start,pe_end'    => lang('Start Date'),
+				'pe_end'             => lang('End Date'),
 				'pe_title'           => lang('Project ID'),
 			),
 			'help'   => 'Set order to show sub-project bars in ganttcharts.',
