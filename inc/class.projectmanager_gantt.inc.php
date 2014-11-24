@@ -487,6 +487,21 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			unset($values['pe_id']);
 		}
 
+		// Handle duration scaling
+		if($params['gantt']['duration_unit'] && $values['duration'])
+		{
+			switch($params['gantt']['duration_unit'])
+			{
+				case 'year':
+					$values['duration'] *= 52;
+				case 'week':
+					$values['duration'] *= 7;
+				case 'day':
+					$values['duration'] *= 24;
+				case 'hour':
+					$values['duration'] *= 60;
+			}
+		}
 		if(class_exists('stylite_projectmanager_gantt'))
 		{
 			$handled = stylite_projectmanager_gantt::ajax_update($values, $params);
