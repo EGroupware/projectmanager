@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<!-- This template is in a seperate file so home can find it -->
+<overlay>
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
+		<grid width="100%">
+			<columns>
+				<column width="120"/>
+				<column width="60%"/>
+				<column width="50"/>
+				<column width="15%"/>
+				<column width="120"/>
+				<column width="80" disabled="@no_role0"/>
+				<column width="80" disabled="@no_role1"/>
+				<column width="80" disabled="@no_role2"/>
+				<column width="80" disabled="@no_role3"/>
+				<column width="80" disabled="@no_role4"/>
+				<column width="120"/>
+				<column width="120"/>
+				<column width="80" disabled="@no_pm_used_budget_pm_planned_budget"/>
+				<column width="80"/>
+				<column width="80"/>
+				<column width="60"/>
+				<column width="130"/>
+				<column width="25%"/>
+			</columns>
+			<rows>
+				<row class="th">
+					<nextmatch-sortheader label="Project ID" id="pm_number"/>
+					<nextmatch-sortheader label="Title" id="pm_title"/>
+					<nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
+					<nextmatch-sortheader label="categories" id="cat_id"/>
+					<nextmatch-sortheader label="Owner" id="pm_creator"/>
+					<nextmatch-header label="@roles[0]" id="role0"/>
+					<nextmatch-header label="@roles[1]" id="role1"/>
+					<nextmatch-header label="@roles[2]" id="role2"/>
+					<nextmatch-header label="@roles[3]" id="role3"/>
+					<nextmatch-header label="@roles[4]" id="role4"/>
+					<vbox>
+						<nextmatch-sortheader label="Startdate" id="pm_real_start"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_start" class="planned"/>
+					</vbox>
+					<vbox>
+						<nextmatch-sortheader label="Enddate" id="pm_real_end"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_end" class="planned"/>
+					</vbox>
+					<vbox>
+						<nextmatch-sortheader label="Budget" id="pm_used_budget"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_budget" class="planned"/>
+					</vbox>
+					<vbox>
+						<nextmatch-sortheader label="Times" id="pm_used_time"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
+					</vbox>
+					<vbox>
+						<nextmatch-sortheader label="Times" id="pm_used_time"/>
+						<nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
+						<nextmatch-sortheader label="re-planned" id="pm_replanned_time" class="replanned"/>
+					</vbox>
+					<nextmatch-sortheader align="center" label="Status" id="pm_completion"/>
+					<nextmatch-sortheader label="last modified" id="pm_modified"/>
+					<nextmatch-customfields id="customfields"/>
+				</row>
+				<row class="$row_cont[cat_id] $row_cont[class]">
+					<description id="${row}[pm_number]" no_lang="1"/>
+					<description id="${row}[pm_title]" no_lang="1" />
+					<description align="center" id="${row}[pm_priority]" no_lang="1"/>
+					<menulist>
+						<menupopup type="select-cat" id="${row}[cat_id]" no_lang="1" readonly="true"/>
+					</menulist>
+					<menulist>
+						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>
+					</menulist>
+					<listbox type="select-account" id="${row}[role0]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role1]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role2]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role3]" readonly="true"/>
+					<listbox type="select-account" id="${row}[role4]" readonly="true"/>
+					<vbox>
+						<date id="${row}[pm_real_start]" readonly="true"/>
+						<date id="${row}[pm_planned_start]" readonly="true" class="planned"/>
+					</vbox>
+					<vbox>
+						<date id="${row}[pm_real_end]" readonly="true"/>
+						<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>
+					</vbox>
+					<vbox readonly="true">
+						<textbox type="float" id="${row}[pm_used_budget]" readonly="true" max="2"/>
+						<textbox type="float" id="${row}[pm_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
+					</vbox>
+					<vbox>
+						<date-duration id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
+						<date-duration id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
+					</vbox>
+					<vbox readonly="true">
+						<hbox id="pml_used_time">
+							<image label="Times" src="timesheet"/>
+							<date-duration id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
+						</hbox>
+						<hbox id="planified">
+							<image label="planned time" src="k_alarm"/>
+							<date-duration id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
+						</hbox>
+						<hbox id="replanified">
+							<image label="Re-planned time" src="agt_reload"/>
+							<date-duration id="${row}[pm_replanned_time]" readonly="true" options="@@duration_format" span="all" class="replanned"/>
+						</hbox>
+					</vbox>
+					<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+					<vbox readonly="true">
+						<date-time id="${row}[pm_modified]" readonly="true"/>
+						<menulist>
+							<menupopup type="select-account" id="${row}[pm_modifier]" readonly="true"/>
+						</menulist>
+					</vbox>
+					<customfields-list id="$row"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

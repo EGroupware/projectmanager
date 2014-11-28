@@ -756,7 +756,7 @@ class projectmanager_ui extends projectmanager_bo
 	 *
 	 * @return array see nextmatch_widget::egw_actions()
 	 */
-	private function get_actions()
+	public function get_actions()
 	{
 		$actions = array(
 			'view' => array(
