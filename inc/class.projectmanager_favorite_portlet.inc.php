@@ -88,6 +88,7 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 			if (!count($content['nm']['selected']) && !$content['nm']['select_all'])
 			{
 				$msg = lang('You need to select some entries first!');
+				egw_json_response::get()->apply('egw.message',array($msg,'error'));
 			}
 			else
 			{
@@ -95,10 +96,18 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 					$success,$failed,$action_msg,'project_list',$msg,$content['nm']['checkboxes']['sources_too']))
 				{
 					$msg .= lang('%1 project(s) %2',$success,$action_msg);
+					egw_json_response::get()->apply('egw.message',array($msg,'success'));
+					foreach($content['nm']['selected'] as &$id)
+					{
+						$id = 'projectmanager::'.$id;
+					}
+					// Directly request an update - this will get timesheet tab too
+					egw_json_response::get()->apply('egw.dataRefreshUIDs',array($content['nm']['selected']));
 				}
 				elseif(is_null($msg))
 				{
 					$msg .= lang('%1 project(s) %2, %3 failed because of insufficent rights !!!',$success,$action_msg,$failed);
+					egw_json_response::get()->apply('egw.message',array($msg,'error'));
 				}
 			}
 		}
