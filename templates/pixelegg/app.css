@@ -237,7 +237,6 @@ button#projectmanager-list_add:active {
 }
 /*Ende iframe*/
 #projectmanager-edit {
-  width: 800px;
   padding: 5px;
 }
 #projectmanager-edit #projectmanager-edit_tabs .et2_tabheader {
