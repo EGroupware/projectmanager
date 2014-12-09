@@ -220,4 +220,33 @@ class projectmanager_widget
 		return true;
 	}
 
+	/**
+	 * Get pricelist options via ajax so the pricelist can be set or updated
+	 * if the associated project is changed.
+	 *
+	 * @param int $pm_id
+	 */
+	public static function ajax_get_pricelist($pm_id)
+	{
+		$pricelist = new projectmanager_pricelist_bo();
+		$pricelist= $pricelist->pricelist($pm_id);
+		$options = array();
+
+		foreach($pricelist as $pl_id => $label)
+		{
+			if (!isset($cell['sel_options'][$pl_id]))
+			{
+				$options[$pl_id] = $label;
+			}
+			// if pl_id already used as index, we use pl_id-price as index
+			elseif (preg_match('/\(([0-9.,]+)\)$/',$label,$matches) &&
+					!isset($options[$pl_id.'-'.$matches[1]]))
+			{
+				$options[$pl_id.'-'.$matches[1]] = $label;
+			}
+		}
+
+		$response = egw_json_response::get();
+		$response->data($options);
+	}
 }
