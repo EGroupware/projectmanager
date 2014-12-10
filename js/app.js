@@ -203,10 +203,23 @@ app.classes.projectmanager = AppJS.extend(
 				case 'prices':
 					// Pricelist is not valid for all projects.  If we have the data, adjust accordingly
 					var data = this.egw.dataGetUIDdata('projectmanager::'+current_project);
-					var pricelist_project = current_project;
+					var pricelist_project = '0';
 					if(data && data.data && data.data.pm_accounting_type)
 					{
 						pricelist_project = (data.data.pm_accounting_type == 'pricelist' ? current_project : '0');
+					}
+					else if(et2.getWidgetById('pm_id'))
+					{
+						// Unknown project, try the filter options
+						var options = et2.getWidgetById('pm_id').options.select_options || [];
+						for(var i = 0; i < options.length; i++)
+						{
+							if(parseInt(options[i].value) == parseInt(current_project))
+							{
+								pricelist_project = current_project;
+								break;
+							}
+						}
 					}
 					et2.getWidgetById('nm').applyFilters({col_filter:{'pm_id': pricelist_project}});
 			}
