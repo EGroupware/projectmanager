@@ -254,7 +254,17 @@ class projectmanager_so extends so_sql_cf
 				$this->table_name.'.pm_id AS pm_id',
 			));
 			if ($only_keys === true) $only_keys='';	// otherwise we use ambigues pm_id
-			
+
+			if (is_array($criteria) && isset($criteria['pm_id']))
+			{
+				$criteria[$this->table_name.'.pm_id'] = $criteria['pm_id'];
+				unset($criteria['pm_id']);
+			}
+			if (isset($filter['pm_id']) && $filter['pm_id'])
+			{
+				$filter[$this->table_name.'.pm_id'] = $filter['pm_id'];
+				unset($filter['pm_id']);
+			}
 			// include an ACL filter for read-access
 			$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
 				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
