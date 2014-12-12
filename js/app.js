@@ -592,7 +592,7 @@ app.classes.projectmanager = AppJS.extend(
 				menuaction: (content.data['caller'])? content.data['caller'] :'projectmanager.projectmanager_elements_ui.index',
 				delete: id
 			});
-		window.close();
+		egw(window).close();
 	},
 
 	/**
