@@ -45,6 +45,7 @@ $setup_info['projectmanager']['hooks']['sidebox_menu'] = 'projectmanager_hooks::
 $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager_hooks::search_link';
 $setup_info['projectmanager']['hooks']['acl_rights'] = 'projectmanager_hooks::acl_rights';
 $setup_info['projectmanager']['hooks']['categories'] = 'projectmanager_hooks::categories';
+$setup_info['projectmanager']['hooks']['timesheet_set'] = 'projectmanager_hooks::timesheet_set';
 
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(

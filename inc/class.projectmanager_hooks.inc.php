@@ -606,6 +606,29 @@ class projectmanager_hooks
 	{
 		return true;
 	}
+
+	/**
+	 * Hook for timesheet to set some extra data and links
+	 *
+	 * @param array $data
+	 * @param int $data[id] project_id
+	 * @return array with key => value pairs to set in new timesheet and link_app/link_id arrays
+	 */
+	public static function timesheet_set($data)
+	{
+		$set = array();
+		if (!is_object($GLOBALS['projectmanager_bo']))
+		{
+			// dont assign it to $GLOBALS['projectmanager_bo'], as the constructor does it!!!
+			CreateObject('projectmanager.projectmanager_ui');
+		}
+		if ((int)$data['id'] && ($entry = $GLOBALS['projectmanager_bo']->read($data['id'])))
+		{
+			if ($entry['cat_id']) $set['cat_id'] = $entry['cat_id'];
+		}
+		return $set;
+	}
+
 }
 
 projectmanager_hooks::init_static();
