@@ -2,31 +2,31 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%" height="310">
+		<grid width="100%">
 			<columns>
 				<column width="95"/>
 				<column width="40%"/>
 				<column width="8%"/>
-				<column/>
+				<column width="40%"/>
 			</columns>
 			<rows>
 				<row class="row">
 					<description value="Category" for="cat_id"/>
-					<menulist>
+					<menulist class="et2_fullWidth">
 						<menupopup type="select-cat" id="cat_id" options="None"/>
 					</menulist>
 					<description value="Access" for="pm_access"/>
-					<menulist>
+					<menulist class="et2_fullWidth">
 						<menupopup id="pm_access" no_lang="1"/>
 					</menulist>
 				</row>
 				<row class="row">
 					<description value="Priority" for="pm_priority"/>
-					<menulist>
+					<menulist class="et2_fullWidth">
 						<menupopup type="select-number" id="pm_priority" options=",1,10"/>
 					</menulist>
 					<description value="Status" for="pm_status"/>
-					<hbox options="0,0">
+					<hbox>
 						<menulist>
 							<menupopup id="pm_status" no_lang="1"/>
 						</menulist>
@@ -40,42 +40,42 @@
 				</row>
 				<row class="row">
 					<description value="Startdate" for="pm_real_start"/>
-					<date-time id="pm_real_start"/>
+					<date-time id="pm_real_start" class="et2_fullWidth"/>
 					<date-time id="ds[pe_real_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description value="- planned" for="pm_planned_end"/>
-					<date-time id="pm_planned_start"/>
+					<date-time id="pm_planned_start" class="et2_fullWidth"/>
 					<date-time id="ds[pe_planned_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description value="Enddate" for="pm_real_end"/>
-					<date-time id="pm_real_end"/>
+					<date-time id="pm_real_end" class="et2_fullWidth"/>
 					<date-time id="ds[pe_real_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description value="- planned" for="pm_planned_end"/>
-					<date-time id="pm_planned_end"/>
+					<date-time id="pm_planned_end" class="et2_fullWidth"/>
 					<date-time id="ds[pe_planned_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<description value="Times" for="pm_used_time"/>
-					<date-duration id="pm_used_time" options="@duration_format"/>
+					<date-duration id="pm_used_time" options="@duration_format" class="et2_fullWidth"/>
 					<date-duration id="ds[pe_used_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<description value="- planned" for="pm_planned_time"/>
-					<date-duration id="pm_planned_time" options="@duration_format"/>
+					<date-duration id="pm_planned_time" options="@duration_format" class="et2_fullWidth"/>
 					<date-duration id="ds[pe_planned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<description value="- re-planned" for="pm_replanned_time"/>
-					<date-duration id="pm_replanned_time" options="@duration_format"/>
+					<date-duration id="pm_replanned_time" options="@duration_format" class="et2_fullWidth"/>
 					<date-duration id="ds[pe_replanned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row">
 					<description value="Status" for="pm_completion"/>
-					<menulist>
+					<menulist class="et2_fullWidth">
 						<menupopup type="select-percent" id="pm_completion" options="None"/>
 					</menulist>
 					<description id="ds[pe_completion]" no_lang="1" readonly="true" span="all"/>
@@ -84,7 +84,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.4.001">
-		<grid width="100%" height="310">
+		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
@@ -96,15 +96,15 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.members" template="" lang="" group="0" version="1.9.002">
-		<grid width="100%" height="310" overflow="auto">
+		<grid width="100%">
 			<columns>
-				<column/>
-				<column/>
-				<column/>
-				<column width="70%"/>
+				<column width="30%"/>
+				<column width="10%"/>
+				<column width="10%"/>
+				<column width="50%"/>
 			</columns>
 			<rows>
-				<row class="th" height="12">
+				<row class="th" height="20">
 					<description value="Members"/>
 					<description value="General availibility"/>
 					<description value="Project availibility"/>
@@ -114,7 +114,7 @@
 					</hbox>
 				</row>
 				<row class="row" height="12" disabled="@view">
-					<menulist>
+					<menulist class="et2_fullWidth">
 						<menupopup type="select-account" id="member[1]" options="select one,both"/>
 					</menulist>
 					<textbox type="float" statustext="Percentage the member is availible for projects" id="general_avail[1]"/>
@@ -140,7 +140,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%" height="310">
+		<grid width="100%">
 			<columns>
 				<column width="95"/>
 				<column width="40%"/>
@@ -177,7 +177,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%" height="310" overflow="auto">
+		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
@@ -189,7 +189,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.links" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%" height="310" overflow="auto">
+		<grid width="100%">
 			<columns>
 				<column width="95"/>
 				<column/>
@@ -211,7 +211,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.history" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%" height="310" overflow="auto">
+		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
@@ -238,7 +238,7 @@
 					<textbox statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" size="64" maxlength="255" tabindex="1"/>
 				</row>
 				<row>
-					<tabbox id="tabs" span="all">
+					<tabbox id="tabs" span="all" tab_height="260px">
 						<tabs>
 							<tab id="general" label="General" statustext="Start, End, Category, ..."/>
 							<tab id="description" label="Description" statustext="free descriptiv text"/>
@@ -259,15 +259,15 @@
 						</tabpanels>
 					</tabbox>
 				</row>
-				<row disabled="!@pm_id">
-					<description value="Modified"/>
-					<hbox orient=",2,0" options="2,0" span="2">
+				<row disabled="!@pm_id" class="dialogOperators">
+					<hbox span="2">
+						<description value="Modified"/>
 						<date-time id="pm_modified" readonly="true"/>
 						<menulist>
 							<menupopup type="select-account" label="by" id="pm_modifier" readonly="true"/>
 						</menulist>
 					</hbox>
-					<hbox align="right" orient=",2,0" options="2,0" span="2">
+					<hbox align="right" span="2">
 						<date-time label="created" id="pm_created" no_lang="1" readonly="true"/>
 						<menulist>
 							<menupopup type="select-account" label="by" id="pm_creator" readonly="true"/>

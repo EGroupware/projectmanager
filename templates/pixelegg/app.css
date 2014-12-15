@@ -236,9 +236,6 @@ button#projectmanager-list_add:active {
   background-color: #1aa200 !important;
 }
 /*Ende iframe*/
-#projectmanager-edit {
-  padding: 5px;
-}
 #projectmanager-edit #projectmanager-edit_tabs .et2_tabheader {
   background-color: transparent;
 }
