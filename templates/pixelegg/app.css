@@ -69,6 +69,12 @@ table.egwLinkMoreOptions {
 #projectmanager-elements-list_add_existing_popup {
   display: none;
 }
+#projectmanager-edit_projectmanager-edit-general .et2_date_duration.et2_fullWidth input {
+  width: 10em;
+}
+#projectmanager-edit_projectmanager-edit-general .et2_date_duration.et2_fullWidth select {
+  width: 60%;
+}
 /*default */
 .planned {
   font-style: italic;
@@ -246,6 +252,12 @@ button#projectmanager-list_add:active {
 #projectmanager-edit #projectmanager-edit_tabs .et2_tabs #projectmanager-edit_link_to .et2_button_icon {
   height: auto;
   width: auto;
+}
+#projectmanager-edit #projectmanager-edit_projectmanager-edit-general .et2_date_duration.et2_fullWidth input {
+  width: 10em;
+}
+#projectmanager-edit #projectmanager-edit_projectmanager-edit-general .et2_date_duration.et2_fullWidth select {
+  width: 60%;
 }
 #link_add.solidBorder {
   color: #000000;

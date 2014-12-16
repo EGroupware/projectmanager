@@ -46,3 +46,11 @@ table.egwLinkMoreOptions {
 	font-weight: bold;
 }
 #projectmanager-elements-list_add_existing_popup {display:none;}
+
+#projectmanager-edit_projectmanager-edit-general .et2_date_duration.et2_fullWidth input {
+	width: 10em;
+}
+
+#projectmanager-edit_projectmanager-edit-general .et2_date_duration.et2_fullWidth select {
+	width: 60%;
+}
