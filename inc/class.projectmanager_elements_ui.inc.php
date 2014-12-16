@@ -819,6 +819,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		//Create app list for "Add new" menu items
 		$app_list = egw_link::app_list('add');
+		// Bookmarks doesn't support link via URL this way
+		unset($app_list['bookmarks']);
 		$actions['add']['children'] = array();
 		foreach ($app_list as $inx => $val)
 		{
