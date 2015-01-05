@@ -928,5 +928,15 @@ app.classes.projectmanager = AppJS.extend(
 		var sidebox = $j('a:contains("' +app.projectmanager.egw.lang(label)+'")',app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
 		sidebox.off('click.projectmanager');
 		sidebox.on('click.projectmanager', click);
+	},
+	
+	/**
+	 * Get title in order to set it as document title
+	 * @returns {string}
+	 */
+	getWindowTitle: function()
+	{
+		var widget = this.et2.getWidgetById('pm_title');
+		if(widget) return widget.options.value;
 	}
 });
