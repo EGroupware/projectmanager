@@ -3,7 +3,7 @@
 <overlay>
 	<template id="projectmanager.roles" template="" lang="" group="0" version="0.2.001">
 		<vbox>
-			<hbox orient=",0,0">
+			<hbox>
 				<menulist>
 					<menupopup label="Project" onchange="1" no_lang="1" id="pm_id" options="All"/>
 				</menulist>
@@ -50,14 +50,14 @@
 					<row class="row">
 						<description id="${row}[role_title]"/>
 						<description id="${row}[role_description]"/>
-						<checkbox align="center" readonly="true" id="${row}[pm_id]"/>
+						<checkbox align="center" readonly="true" id="${row}[pm_id]" selected_value="@pm_id"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_read]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_edit]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_delete]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_add]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_budget]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_edit_budget]"/>
-						<hbox orient=",0,0">
+						<hbox>
 							<button label="Edit" id="edit[$row_cont[role_id]]" image="edit" statustext="Edit this role"/>
 							<button label="Delete" onclick="return app.projectmanager.erole_refresh('delete');" align="right" id="delete[$row_cont[role_id]]" image="delete" statustext="Delete this role"/>
 						</hbox>
