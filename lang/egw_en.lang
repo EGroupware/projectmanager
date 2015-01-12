@@ -312,7 +312,6 @@ real end date and time	projectmanager	en	Real end date and time
 real start	projectmanager	en	Real start
 real start date and time	projectmanager	en	Real start date and time
 remark	projectmanager	en	Remark
-replacements for inserting project data into documents	projectmanager	en	Replacements for inserting project data into documents
 replanned time in minutes	projectmanager	en	Re-planned time in minutes
 resources	projectmanager	en	Resources
 role	projectmanager	en	Role
