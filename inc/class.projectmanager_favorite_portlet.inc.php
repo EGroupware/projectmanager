@@ -38,7 +38,7 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 			'placeholder_actions'	=> array(),
 			// Start with reduced columns, it's easier for user to add them in
 			// than remove them
-			'default_cols'	=> 'pm_number,pm_title,pm_real_end_pm_planned_end',
+			'default_cols'	=> 'pm_number,pm_title,pm_completion',
 			'row_id'        => 'pm_id',
 			'row_modified'	=> 'pm_modified'
 		);
