@@ -40,6 +40,7 @@ budget (no pricelist)	projectmanager	nl	Budget (geen prijslijst)
 budget and pricelist	projectmanager	nl	Budget en prijslijst
 by	projectmanager	nl	door
 calculate budget by quantity (eg. time) and price	projectmanager	nl	Bereken budget per hoeveelheid (bijvoorbeeld tijd) en tarief
+charset of file	projectmanager	nl	Karakterset van bestand
 charset of the above selected font	projectmanager	nl	Karakterset van het hierboven gekozen lettertype
 check all	projectmanager	nl	Alles markeren
 close the window, discard the changes made	projectmanager	nl	Sluit het venster, negeer de gemaakte wijzigingen
@@ -51,12 +52,14 @@ create a new empty project or use a template	projectmanager	nl	Een nieuw leeg pr
 create new links	projectmanager	nl	Nieuwe links aanmaken
 created	projectmanager	nl	aangemaakt
 created a ganttchart from the checked projects	projectmanager	nl	Maak een ganttchart van de gemarkeerde projecten
+creator	projectmanager	nl	Melder
 csv-fieldname	projectmanager	nl	CSV-Veldnaam
 csv-filename	projectmanager	nl	CSV-Bestandsnaam
 csv-import	common	nl	CSV-Import
 cumulated elements too	projectmanager	nl	Ook gecumuleerde elementen
 custom fields	projectmanager	nl	Aangepaste velden
 customer title	projectmanager	nl	Klant titel
+data exchange settings	projectmanager	nl	Data exchange instellingen
 datasource	projectmanager	nl	Gegevensbron
 datasources too	projectmanager	nl	gegevensbronnen ook
 dates	projectmanager	nl	Data
@@ -106,7 +109,12 @@ error: saving the price (%1) !!!	projectmanager	nl	Fout: tarief (%1) bewaren !!!
 error: saving the project (%1) !!!	projectmanager	nl	Fout: project (%1) bewaren !!!
 error: saving the project-element (%1) !!!	projectmanager	nl	Fout: projectelement (%1) bewaren !!!
 everything recursive	projectmanager	nl	Alles recursief
+example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	nl	Example {{IF n_prefix~Mr~Hello Mr.~Hello Ms.}} - search the field "n_prefix", for "Mr", if found, write Hello Mr., else write Hello Ms.
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	nl	Example {{LETTERPREFIXCUSTOM n_prefix title n_family}} - Example: Mr Dr. James Miller
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	nl	Example {{NELF role}} - if field role is not empty, you will get a new line with the value of field role
+example {{nelfnv role}} - if field role is not empty, set a lf without any value of the field	projectmanager	nl	Example {{NELFNV role}} - if field role is not empty, set a LF without any value of the field
 existing links	projectmanager	nl	Bestaande links
+exists	projectmanager	nl	Bestaat
 exit without saving	projectmanager	nl	Sluiten zonder opslaan
 fieldseparator	projectmanager	nl	Veldscheidingsteken
 font	projectmanager	nl	Lettertype
@@ -121,7 +129,9 @@ full access	projectmanager	nl	volledige toegang
 ganttchart	projectmanager	nl	Ganttchart
 ganttchart parameter	projectmanager	nl	Ganttchart parameter
 general availibility	projectmanager	nl	Algemene beschikbaarheid
+general fields:	projectmanager	nl	Algemene velden:
 general pricelist	projectmanager	nl	Algemene prijslijst
+general settings	projectmanager	nl	Algemene instellingen
 global categories	projectmanager	nl	Algemene categoriën
 h	projectmanager	nl	h
 health	projectmanager	nl	Gezondheid
@@ -129,19 +139,27 @@ hours	projectmanager	nl	uren
 hours per workday	projectmanager	nl	Uren per werkdag
 how long do you work on the given day.	projectmanager	nl	Hoe lang werkt u op de gegeven dag.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	nl	Hoe moet de project keuze in het menu worden weergegeven: een boomstructuur geeft een beter overzicht, een keuzelijst werkt sneller.
+html link to the current record	projectmanager	nl	HTML link naar huidig record
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	nl	Indien aangevinkt worden de gegevensbronnen van de elementen (bijv. InfoLog records) ook verwijderd.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	nl	Indien aangevinkt worden de gegevensbronnen van de elementen (bijv. InfoLog records) ook van status veranderden.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	nl	Indien u tekens (bijv. {) in de Ganttchart ziet, dit uitschakelen.
+if you specify an export definition, it will be used when you export	projectmanager	nl	Als u een export definitie kiest, zal deze worden gebruikt bij de export
 ignore that entry	projectmanager	nl	negeer die entry
 ignored	projectmanager	nl	genegeerd
+import	projectmanager	nl	Importeren
+insert	projectmanager	nl	Voeg toe
 last modified	projectmanager	nl	laatst gewijzigd
 leave it empty if you dont need a different customer title	projectmanager	nl	laat dit leeg indien je geen afwijkende klant titel nodig hebt
 leave it empty to have one generated	projectmanager	nl	leeglaten om er een aangemaakt te laten worden
 leave it empty, if identitcal to the time	projectmanager	nl	laat dit leeg indien het gelijk is aan de tijd
 linked elements	projectmanager	nl	Gelinkte elementen
 links	projectmanager	nl	Links
+links and attached files	projectmanager	nl	Link naar bijgesloten bestand
+links to specified application.  example: {{links/infolog}}	projectmanager	nl	Verwijst naar een specifieke applicatie. Voorbeeld: {{links/infolog}}
+list of files linked to the current record	projectmanager	nl	Lijs van bestanden gelinkt aan huidig record
 mainproject only	projectmanager	nl	Uitsluitend hoofdproject
 mainprojects	projectmanager	nl	Hoofdprojecten
+manage mapping	projectmanager	nl	Beheer de mappings
 members	projectmanager	nl	Deelnemers
 milestone deleted	projectmanager	nl	Mijlpaal verwijderd
 milestone saved	projectmanager	nl	Mijlpaal opgeslagen
@@ -190,7 +208,7 @@ projectlist	projectmanager	nl	Projectlijst
 projectmanager	common	nl	Projectmanager
 projectmanager-fieldname	projectmanager	nl	Projectmanager - Veldnaam
 projectmember	projectmanager	nl	Projectdeelnemer
-projects	projectmanager	nl	Projecten
+projects	common	nl	Projecten
 quantity	projectmanager	nl	Hoeveelheid
 re-planned	projectmanager	nl	hergepland
 re-planned time	projectmanager	nl	Hergeplande tijd
@@ -232,18 +250,24 @@ style used for everything but elements. some fonts have only normal style.	proje
 subelements	projectmanager	nl	Subelementen
 subprojects	projectmanager	nl	Subprojecten
 synchronise all	projectmanager	nl	Alles synchroniseren
+tag to mark positions for address labels	projectmanager	nl	Tag voor markering tbv adreslabels
 template	projectmanager	nl	Template
 template including elment-tree saved as new project	projectmanager	nl	Template inclusief elementboom opgeslagen als een nieuw project
 test import (show importable records <u>only</u> in browser)	projectmanager	nl	Test Import (toont <u>uitsluitend</u> importeerbare records in de browser)
 the charset depends on the font you want to use.	projectmanager	nl	De karakterset hangt af van het lettertype dat u wilt gebruiken.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	nl	Het document kan een tijdelijke aanduiding als {{%3}} hebben, maar kan vervangen worden met data (%1 volledige lijst van tijdelijke aanduidingen %2)
+the following document-types are supported:	projectmanager	nl	De volgende document types worden ondersteund :
 time	projectmanager	nl	Tijd
 times	projectmanager	nl	Tijden
 timezone	projectmanager	nl	Tijdszone
 title must not be empty	projectmanager	nl	Titel mag niet leeg zijn
+titles of any entries linked to the current record, excluding attached files	projectmanager	nl	Namen van alle invoer gelinked aan huidig record, behalve de bijgesloten bestanden
 to many might exceed your execution-time-limit	projectmanager	nl	te veel kan leiden tot overschrijding van de executie-tijd-limiet
+translation	projectmanager	nl	Vertaling
 tree with %1	projectmanager	nl	Boom met %1
 unit	projectmanager	nl	Eenheid
 unitprice	projectmanager	nl	Eenheidstarief
+use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	nl	Gebruik deze tag voor adres labels.Plaats de inhoud welke je wilt herhalen tussen twee tags.
 used	projectmanager	nl	gebruikt
 used time	projectmanager	nl	gebruikte tijd
 valid since	projectmanager	nl	Geldig sinds

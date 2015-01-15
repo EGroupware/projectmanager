@@ -3,6 +3,7 @@
 actions	projectmanager	el	Ενέργειες
 apply the changes	projectmanager	el	εφαρμόστε τις αλλαγές
 by	projectmanager	el	μέσω
+charset of file	projectmanager	el	Κωδικοσελίδα αρχείου
 check all	projectmanager	el	Έλεγχος όλων
 create new links	projectmanager	el	Δημιουργία νέων συνδέσμων
 created	projectmanager	el	Δημιουργήθηκε
@@ -16,8 +17,10 @@ empty for all	projectmanager	el	Κενό για όλα
 enddate	projectmanager	el	Τελος ημερομηνίας
 existing links	projectmanager	el	Υπάρχοντες σύνδεσμοι
 fieldseparator	projectmanager	el	Διαχωριστής πεδίων
+general fields:	projectmanager	el	Γενικά πεδία:
 global categories	projectmanager	el	Παγκόσμιες κατηγορίες
 hours	projectmanager	el	Ωρες
+import	projectmanager	el	Εισαγωγή
 last modified	projectmanager	el	Τελευταία τροποποίηση
 links	projectmanager	el	Σύνδεσμοι
 modified	projectmanager	el	Τροποποιήθηκε
@@ -43,6 +46,7 @@ test import (show importable records <u>only</u> in browser)	projectmanager	el	�
 times	projectmanager	el	Φορες
 timezone	projectmanager	el	Ζώνη ώρας
 to many might exceed your execution-time-limit	projectmanager	el	Πάρα πολλοί. Ενδεχόμενο υπέρβασης ορίου χρόνου εκτέλεσης
+translation	projectmanager	el	Μετάφραση
 used time	projectmanager	el	χρησιμοποιημένος χρόνος
 view all subs of this entry	projectmanager	el	Εμφάνιση όλων των υποκατηγοριών αυτής της καταχώρησης
 view subs	projectmanager	el	εμφάνιση υποκατηγοριών

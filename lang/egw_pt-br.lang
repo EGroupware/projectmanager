@@ -279,7 +279,7 @@ projectmanager element fields:	projectmanager	pt-br	Campos elemento Project Mana
 projectmanager fields:	projectmanager	pt-br	Campos Gerente de Projetos:
 projectmanager-fieldname	projectmanager	pt-br	Gerenciador de Projetos - Nome do campo
 projectmember	projectmanager	pt-br	Membro do Projeto
-projects	projectmanager	pt-br	Projetos
+projects	common	pt-br	Projetos
 quantity	projectmanager	pt-br	Quantidade
 re-planned	projectmanager	pt-br	Re-planejado
 re-planned time	projectmanager	pt-br	Tempo re-planejado

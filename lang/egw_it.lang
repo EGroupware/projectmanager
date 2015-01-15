@@ -39,6 +39,8 @@ budget (no pricelist)	projectmanager	it	Budget (nessun listino)
 budget and pricelist	projectmanager	it	Budget e listino
 by	projectmanager	it	da
 calculate budget by quantity (eg. time) and price	projectmanager	it	Calcola il budget per quantità (es.tempo) e prezzo
+change category	projectmanager	it	Modifica categoria
+charset of file	projectmanager	it	Set di Caratteri del file
 check all	projectmanager	it	Seleziona tutto
 close the window, discard the changes made	projectmanager	it	Chiudi la finestra, annulla le modifiche fatte
 constraints	projectmanager	it	Vincoli
@@ -49,12 +51,14 @@ create a new empty project or use a template	projectmanager	it	Crea un nuovo pro
 create new links	projectmanager	it	Crea nuovi collegamenti
 created	projectmanager	it	creato
 created a ganttchart from the checked projects	projectmanager	it	Creato un grafico gantt dai progetti selezionati
+creator	projectmanager	it	Creatore
 csv-fieldname	projectmanager	it	CSV-Nome del Campo
 csv-filename	projectmanager	it	CSV-Nome del File
 csv-import	common	it	CSV Importa
 cumulated elements too	projectmanager	it	Anche gli elementi cumulati
 custom fields	projectmanager	it	Campi personalizzati
 customer title	projectmanager	it	Titolo cliente
+data exchange settings	projectmanager	it	Impostazioni di scambio dati
 datasource	projectmanager	it	Sorgente dati
 dates	projectmanager	it	Date
 days	projectmanager	it	giorni
@@ -101,9 +105,14 @@ error: saving the price (%1) !!!	projectmanager	it	Errore: salvando il prezzo (%
 error: saving the project (%1) !!!	projectmanager	it	Errore: salvando il progetto (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	it	Errore: salvando l'elemento-progetto (%1) !!!
 everything recursive	projectmanager	it	Tutto ricorsivo
+example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	it	Esempio {{IF n_prefix~Sig~Hello Mr.~Salve Sig.ra.}} -  ricerca nel campo  "n_prefix", per "Sig", se trovato scrivere "Salve Sig" altrimenti scrivere "Salve Sig.ra"
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	it	Esempio {{LETTERPREFIXCUSTOM n_prefix title n_family}} Esempio: Sig. Dott. Giorgio Rossi
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	it	Esempio {{NELF role}} - se il campo "Ruolo" non è vuoto, si otterrà una riga con il valore del campo "Ruolo"
+example {{nelfnv role}} - if field role is not empty, set a lf without any value of the field	projectmanager	it	Esempio {{NELFNV role}} - se il campo non è vuoto, impostare un LF senza alcun valore del campo
 existing links	projectmanager	it	Collegamenti esistenti
 exists	projectmanager	it	Esiste
 exit without saving	projectmanager	it	Esci senza salvare
+favorites	projectmanager	it	Preferiti
 fieldseparator	projectmanager	it	Separatore dei campi
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	it	Per una lettera seriale, utilizzare questo tag. Immettere il contenuto che si vuole ripetere tra due tag.
 free descriptiv text	projectmanager	it	testo descrittivo libero
@@ -112,7 +121,9 @@ full access	projectmanager	it	accesso completo
 ganttchart	projectmanager	it	Grafico Gantt
 ganttchart parameter	projectmanager	it	Parametri per grafico Gantt
 general availibility	projectmanager	it	Disponibilità generale
+general fields:	projectmanager	it	Campi generali
 general pricelist	projectmanager	it	Listino generale
+general settings	projectmanager	it	Impostazioni generali
 global categories	projectmanager	it	Categorie Globali
 h	projectmanager	it	h
 health	projectmanager	it	Salute
@@ -120,8 +131,11 @@ hours	projectmanager	it	ore
 hours per workday	projectmanager	it	Ore per giorno lavorativo
 how long do you work on the given day.	projectmanager	it	Quanto lavori il dato giorno.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	it	Come deve essere visualizzata la selezione progetti nel menù: un albero dà un quadro d'insieme migliore, una selectbox può avere prestazioni migliori.
+html link to the current record	projectmanager	it	Collegamento HTML al record attuale
+if you specify an export definition, it will be used when you export	projectmanager	it	Se specifichi una definizione di esportazione, allora verrà usata durante la relativa operazione
 ignore that entry	projectmanager	it	ignora quella voce
 ignored	projectmanager	it	ignorato
+import	projectmanager	it	Importa
 insert	projectmanager	it	Inserisci
 last modified	projectmanager	it	ultima modifica
 leave it empty if you dont need a different customer title	projectmanager	it	lascialo vuoto se non serve un titolo cliente differente
@@ -129,8 +143,12 @@ leave it empty to have one generated	projectmanager	it	lascialo vuoto per averne
 leave it empty, if identitcal to the time	projectmanager	it	lascialo vuoto se identico all'ora
 linked elements	projectmanager	it	elementi collegati
 links	projectmanager	it	Collegamenti
+links and attached files	projectmanager	it	Collegamenti e file allegati
+links to specified application.  example: {{links/infolog}}	projectmanager	it	Collegamenti alla applicazione specificata. Esempio: {{links/infolog}}
+list of files linked to the current record	projectmanager	it	Elenco dei file collegati al record attuale
 mainproject only	projectmanager	it	Solo progetto principale
 mainprojects	projectmanager	it	Progetti principali
+manage mapping	projectmanager	it	Gestisci la mappatura
 members	projectmanager	it	Membri
 milestone deleted	projectmanager	it	Traguardo cancellato
 milestone saved	projectmanager	it	Traguardo salvato
@@ -138,6 +156,7 @@ milestones	projectmanager	it	Traguardi
 milestones before this element has to be finished	projectmanager	it	I traguardi prima di questo elemento devono essere raggiunti
 modified	projectmanager	it	Modificato
 modified by	projectmanager	it	modificato da
+modifier	projectmanager	it	Modificatore
 name of current user, all other contact fields are valid too	projectmanager	it	Nome dell'utente corrente, tutti gli altri campi di contatto sono validi pure.
 necessary for project-elements doing that not automatic	projectmanager	it	necessario per gli elementi-progetto che non lo fanno in automatico
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	it	Estensioni PHP necessarie (%1) non caricate e non caricabili !!!
@@ -178,8 +197,10 @@ project-elements	projectmanager	it	Elementi-Progetto
 projectlist	projectmanager	it	Elenco progetti
 projectmanager	common	it	Gestione Progetti
 projectmember	projectmanager	it	Membro progetto
-projects	projectmanager	it	Progetti
+projects	common	it	Progetti
 quantity	projectmanager	it	Quantità
+re-planned	projectmanager	it	Rimodificato
+re-planned time	projectmanager	it	Tempo ripianificato
 read access, incl. budget and adding elements	projectmanager	it	accesso in lettura, incl. budget e aggiunta elementi
 read access, no budget	projectmanager	it	accesso in lettura, no budget
 real end	projectmanager	it	Fine reale
@@ -221,11 +242,15 @@ tag to mark positions for address labels	projectmanager	it	Tagga per marcare le 
 template	projectmanager	it	Template
 template including elment-tree saved as new project	projectmanager	it	Template contenente albero-elementi salvato come nuovo progetto
 test import (show importable records <u>only</u> in browser)	projectmanager	it	Test importazione (mostra <u>solo</u> record importabili nel browser)
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	it	Il documento può contenere variabili metasintattiche come {{%3}}, da rimpiazzare con i dati (%1elenco completo delle variabili metasintattiche%2)
+the following document-types are supported:	projectmanager	it	I seguenti tipi di documenti sono supportati:
 time	projectmanager	it	Tempo
 times	projectmanager	it	Tempi
 timezone	projectmanager	it	Fuso orario
 title must not be empty	projectmanager	it	Il titolo non deve essere vuoto
+titles of any entries linked to the current record, excluding attached files	projectmanager	it	I titoli delle voci collegate a questa, allegati esclusi
 to many might exceed your execution-time-limit	projectmanager	it	troppi potrebbero far superare il tempo-limite-esecuzione
+translation	projectmanager	it	Traduzione
 tree with %1	projectmanager	it	Albero con %1
 unit	projectmanager	it	Unità
 unitprice	projectmanager	it	Prezzo unitario

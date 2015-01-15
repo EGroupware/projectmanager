@@ -39,6 +39,7 @@ budget (no pricelist)	projectmanager	zh-tw	預算（沒有價格表）
 budget and pricelist	projectmanager	zh-tw	預算與價格表
 by	projectmanager	zh-tw	由
 calculate budget by quantity (eg. time) and price	projectmanager	zh-tw	依據數量（像時間）與價格計算預算
+charset of file	projectmanager	zh-tw	檔案字元編碼設定
 charset of the above selected font	projectmanager	zh-tw	上面選擇字型的字集
 check all	projectmanager	zh-tw	全部勾選
 close the window, discard the changes made	projectmanager	zh-tw	關閉視窗，取消修改
@@ -118,6 +119,7 @@ full access	projectmanager	zh-tw	完全存取
 ganttchart	projectmanager	zh-tw	甘特圖
 ganttchart parameter	projectmanager	zh-tw	甘特圖參數
 general availibility	projectmanager	zh-tw	一般效用
+general fields:	projectmanager	zh-tw	一般欄位：
 general pricelist	projectmanager	zh-tw	一般價格表
 global categories	projectmanager	zh-tw	全域類別
 h	projectmanager	zh-tw	時
@@ -129,6 +131,7 @@ how should the project selection in the menu be displayed: a tree gives a better
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	zh-tw	如果您看到甘特圖資料（例如 {），將這個功能關閉。
 ignore that entry	projectmanager	zh-tw	略過那筆資料
 ignored	projectmanager	zh-tw	忽略
+import	projectmanager	zh-tw	匯入
 last modified	projectmanager	zh-tw	最後更新
 leave it empty if you dont need a different customer title	projectmanager	zh-tw	如果不需要使用不同的客戶名稱，可以留白
 leave it empty to have one generated	projectmanager	zh-tw	保留空白來自動產生
@@ -137,6 +140,7 @@ linked elements	projectmanager	zh-tw	連結的元素
 links	projectmanager	zh-tw	連結
 mainproject only	projectmanager	zh-tw	只有主要專案
 mainprojects	projectmanager	zh-tw	主要專案
+manage mapping	projectmanager	zh-tw	管理對應
 members	projectmanager	zh-tw	成員
 milestone deleted	projectmanager	zh-tw	里程碑刪除了
 milestone saved	projectmanager	zh-tw	里程碑儲存了
@@ -184,7 +188,7 @@ project-elements	projectmanager	zh-tw	專案元素
 projectlist	projectmanager	zh-tw	專案清單
 projectmanager	common	zh-tw	專案管理員
 projectmember	projectmanager	zh-tw	專案成員
-projects	projectmanager	zh-tw	專案
+projects	common	zh-tw	專案
 quantity	projectmanager	zh-tw	數量
 read access, incl. budget and adding elements	projectmanager	zh-tw	讀取權限，包含預算與新增的元素
 read access, no budget	projectmanager	zh-tw	讀取權限，不包含預算
@@ -233,6 +237,7 @@ times	projectmanager	zh-tw	次
 timezone	projectmanager	zh-tw	時區
 title must not be empty	projectmanager	zh-tw	標題不能為空白
 to many might exceed your execution-time-limit	projectmanager	zh-tw	太多可能會超過您的時間限制
+translation	projectmanager	zh-tw	轉換
 tree with %1	projectmanager	zh-tw	%1 的樹狀結構
 unit	projectmanager	zh-tw	單位
 unitprice	projectmanager	zh-tw	單價

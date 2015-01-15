@@ -39,6 +39,7 @@ budget (no pricelist)	projectmanager	ca	Pressupost (sense llista de preus)
 budget and pricelist	projectmanager	ca	Pressupost i llista de preus
 by	projectmanager	ca	per
 calculate budget by quantity (eg. time) and price	projectmanager	ca	Calcula pressupost per quantitat (ex. temps) i preu
+charset of file	projectmanager	ca	Joc de caràcters de l'arxiu
 charset of the above selected font	projectmanager	ca	Joc de caràcters de la font seleccionada més amunt
 check all	projectmanager	ca	Comprova-ho tot
 close the window, discard the changes made	projectmanager	ca	Tanca la finestra, descarta els canvis fets
@@ -128,6 +129,7 @@ how should the project selection in the menu be displayed: a tree gives a better
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ca	Si veus entitats (per ex. {) en el diagrama de Gantt, desactiva això.
 ignore that entry	projectmanager	ca	ignora aquesta entrada
 ignored	projectmanager	ca	ignorat
+import	projectmanager	ca	Importar
 last modified	projectmanager	ca	darrera modificació
 leave it empty if you dont need a different customer title	projectmanager	ca	deixa-ho buit si no necessites un títol de client diferent
 leave it empty to have one generated	projectmanager	ca	deixa-ho buit per generar-ne un
@@ -230,6 +232,7 @@ times	projectmanager	ca	Hores
 timezone	projectmanager	ca	Zona horària
 title must not be empty	projectmanager	ca	El títol no pot estar buit
 to many might exceed your execution-time-limit	projectmanager	ca	quant pot excedir el temps límit d'execució
+translation	projectmanager	ca	Traducció
 tree with %1	projectmanager	ca	Arbre amb %1
 unit	projectmanager	ca	Unitat
 unitprice	projectmanager	ca	Unitat de Preu

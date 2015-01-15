@@ -41,6 +41,7 @@ budget and pricelist	projectmanager	fi	Budjetti ja hinnasto
 by	projectmanager	fi	Henkilö:
 calculate budget by quantity (eg. time) and price	projectmanager	fi	Laske budjetti määrän (esim. tuntien) ja hinnan mukaan
 change category	projectmanager	fi	Muuta kategoriaa
+charset of file	projectmanager	fi	Tiedoston merkistö
 charset of the above selected font	projectmanager	fi	Merkistökoodaus yllä valitulla fontilla
 check all	projectmanager	fi	Tarkista kaikki
 close the window, discard the changes made	projectmanager	fi	Sulje ikkuna ja hylkää tehdyt muutokset
@@ -52,6 +53,7 @@ create a new empty project or use a template	projectmanager	fi	Luo uusi tyhjä p
 create new links	projectmanager	fi	Luo uusi linkki
 created	projectmanager	fi	Luotu
 created a ganttchart from the checked projects	projectmanager	fi	Luotu ganttchart valitusta projekteista
+creator	projectmanager	fi	Luoja
 csv-fieldname	projectmanager	fi	CSV -kenttänimi
 csv-filename	projectmanager	fi	CSV -tiedostonimi
 csv-import	common	fi	CSV -tuonti
@@ -116,6 +118,7 @@ existing data will be overwrited if checked	projectmanager	fi	Olemassa olevan ti
 existing links	projectmanager	fi	Olemassa olevat linkit
 exists	projectmanager	fi	Olemassaoleva
 exit without saving	projectmanager	fi	Poistu ilman tallentamista
+favorites	projectmanager	fi	Suosikit
 fieldseparator	projectmanager	fi	Kenttäerotin
 font	projectmanager	fi	Fontti
 font charset	projectmanager	fi	Fontin merkistökoodaus
@@ -129,6 +132,7 @@ full access	projectmanager	fi	Täydet oikeudet
 ganttchart	projectmanager	fi	GanttChart
 ganttchart parameter	projectmanager	fi	GanttChart parametri
 general availibility	projectmanager	fi	Yleinen käytettävissä olo
+general fields:	projectmanager	fi	Yleiset kentät
 general pricelist	projectmanager	fi	Yleinen hinnasto
 global categories	projectmanager	fi	Yleiset kategoriat
 h	projectmanager	fi	t
@@ -140,8 +144,10 @@ how should the project selection in the menu be displayed: a tree gives a better
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	fi	Jos valittu, elementtien Datasourcet (esim. InfoLog merkinnät) poistetaan myös.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	fi	Jos valittu, elementtien Datasourcet (esim. InfoLog merkinnät) vaihtavat tilan.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	fi	Jos merkkejä kuten {) näkyy GanttChartissa, sulje tämä.
+if you specify an export definition, it will be used when you export	projectmanager	fi	Valitse viennin oletusasetus
 ignore that entry	projectmanager	fi	Jätä merkintä huomiotta
 ignored	projectmanager	fi	Hylätty
+import	projectmanager	fi	Tuonti
 insert	projectmanager	fi	Syötä
 last modified	projectmanager	fi	Viimeksi muokattu
 leave it empty if you dont need a different customer title	projectmanager	fi	Jätä tyhjäksi, jos tarvitset erilaisia asiakasnimikkeitä
@@ -149,8 +155,12 @@ leave it empty to have one generated	projectmanager	fi	Jätä tyhjäksi luodakse
 leave it empty, if identitcal to the time	projectmanager	fi	Jätä tyhjäksi, jos sama kuin aika
 linked elements	projectmanager	fi	Linkitetyt elementit
 links	projectmanager	fi	Linkit
+links and attached files	projectmanager	fi	Linkit ja liitetyt tiedostot
+links to specified application.  example: {{links/infolog}}	projectmanager	fi	Linkki määriteltyyn sovellukseen. Esim. {{links/infolog}}
+list of files linked to the current record	projectmanager	fi	Lista liitetyistä tiedostoista
 mainproject only	projectmanager	fi	Vain pääprojektit
 mainprojects	projectmanager	fi	Pääprojektit
+manage mapping	projectmanager	fi	Hallitse mappingiä
 members	projectmanager	fi	Jäsenet
 milestone deleted	projectmanager	fi	Tavoite poistettu
 milestone saved	projectmanager	fi	Tavoite tallennettu
@@ -158,6 +168,7 @@ milestones	projectmanager	fi	Tavoitteet
 milestones before this element has to be finished	projectmanager	fi	Tavoitteet pitää valmistua ennen tätä elementtiä
 modified	projectmanager	fi	Muokattu
 modified by	projectmanager	fi	Muokannut
+modifier	projectmanager	fi	Muokkaaja
 modify status	projectmanager	fi	Muokkaa tilaa
 name of current user, all other contact fields are valid too	projectmanager	fi	Nykyisen käyttäjän nimi, myös muut yhteystietokentät ovat voimassa.
 necessary for project-elements doing that not automatic	projectmanager	fi	Välttämätön, jotta projektin elementtejä ei tehdä automaattisesti
@@ -202,7 +213,7 @@ projectlist	projectmanager	fi	Projektilista
 projectmanager	common	fi	Projektinhallinta
 projectmanager-fieldname	projectmanager	fi	Projektinhallinnan kenttänimi
 projectmember	projectmanager	fi	Projektin jäsen
-projects	projectmanager	fi	Projektit
+projects	common	fi	Projektit
 quantity	projectmanager	fi	Määrä
 re-planned	projectmanager	fi	Uudelleen suunniteltu
 re-planned time	projectmanager	fi	Uudelleen suunniteltu aikataulu
@@ -249,11 +260,15 @@ template	projectmanager	fi	Mallipohja
 template including elment-tree saved as new project	projectmanager	fi	Mallipohja sisältää elementtirungon tallennuksen uutena projektina
 test import (show importable records <u>only</u> in browser)	projectmanager	fi	TestiTuonti (näyttää tuotavat tietueet <u>vain</u> selaimessa)
 the charset depends on the font you want to use.	projectmanager	fi	Merkistökoodaus riippuu käyttämästäsi fontista.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	fi	Tiedosto voi sisältää merkintöjä kuten {{%3}}, mihin syötetään haluttu tieto. %1Lista mahdollisista merkinnöistä%2
+the following document-types are supported:	projectmanager	fi	Seuraavat tiedostotyypit ovat tuettuja:
 time	projectmanager	fi	Aika
 times	projectmanager	fi	Ajat
 timezone	projectmanager	fi	Aikavyöhyke
 title must not be empty	projectmanager	fi	Otsake ei saa olla tyhjä
+titles of any entries linked to the current record, excluding attached files	projectmanager	fi	Linkitettyjen tietueiden otsikot/aiheet, poissulkien liitetyt tiedostot.
 to many might exceed your execution-time-limit	projectmanager	fi	Liian moni saattaa ylittää suoritusajan ylärajan.
+translation	projectmanager	fi	Käännös
 tree with %1	projectmanager	fi	Runko %1
 unit	projectmanager	fi	Yksikkö
 unitprice	projectmanager	fi	Yksikköhinta

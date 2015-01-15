@@ -33,6 +33,7 @@ budget	projectmanager	eu	Aurrekontua
 budget (no pricelist)	projectmanager	eu	Aurrekontua (prezioen zerrendarik gabe)
 budget and pricelist	projectmanager	eu	Aurrekontua eta prezioen zerrenda
 by	projectmanager	eu	nork
+charset of file	projectmanager	eu	Fitxategiaren Karaktere bilduma
 check all	projectmanager	eu	Egiaztatu guztia
 close the window, discard the changes made	projectmanager	eu	Itxi leihioa, aldaketak deskargatu
 constraints	projectmanager	eu	Murrizketak
@@ -96,6 +97,7 @@ hours per workday	projectmanager	eu	Orduak lan eguneko
 how long do you work on the given day.	projectmanager	eu	Zenbait lan egiten da egun honetan.
 ignore that entry	projectmanager	eu	Sarrera hori ez ikusi
 ignored	projectmanager	eu	ez ikusi
+import	projectmanager	eu	Inportatu
 last modified	projectmanager	eu	azken aldaketa
 leave it empty to have one generated	projectmanager	eu	utzi zurian bat sortzeko
 leave it empty, if identitcal to the time	projectmanager	eu	utzi zurian orduaren berdina bada
@@ -170,6 +172,7 @@ time	projectmanager	eu	Denbora
 times	projectmanager	eu	Denborak
 title must not be empty	projectmanager	eu	Izenburua ez da hutsik egon behar
 to many might exceed your execution-time-limit	projectmanager	eu	gehiegi, exekuzio denbora gainditu lezake.
+translation	projectmanager	eu	Itzulpena
 unit	projectmanager	eu	Unitatea
 unitprice	projectmanager	eu	Unitateko prezioa
 used	projectmanager	eu	erabilia

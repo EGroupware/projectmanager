@@ -2,6 +2,7 @@
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ko	%1 개의 레코드를 읽음 (아직 가져오기는 수행되지 않았음, %2뒤로가기%2 해서 가져오기 테스트를 체크해제한 후 수행하세요)
 actions	projectmanager	ko	액션
 apply the changes	projectmanager	ko	변경사항 적용
+charset of file	projectmanager	ko	파일의 문자셋
 create new links	projectmanager	ko	새 링크 만들기
 created	projectmanager	ko	생성됨
 csv-fieldname	projectmanager	ko	CSV-필드이름
@@ -15,6 +16,7 @@ existing links	projectmanager	ko	기존링크
 fieldseparator	projectmanager	ko	필드 구분자
 global categories	projectmanager	ko	전역 카테고리
 hours	projectmanager	ko	시간
+import	projectmanager	ko	가져오기
 last modified	projectmanager	ko	마지막 수정
 links	projectmanager	ko	링크
 modified	projectmanager	ko	변경됨
@@ -31,6 +33,7 @@ startrecord	projectmanager	ko	시작레코드
 test import (show importable records <u>only</u> in browser)	projectmanager	ko	가져오기 테스트 (가져올수 있는 레코드 <u>오직</u> 브라우저에서만 보여줍니다)
 times	projectmanager	ko	시간
 to many might exceed your execution-time-limit	projectmanager	ko	너무 많을 경우 최대실행시간(execution-time-limit)을 초과함
+translation	projectmanager	ko	번역
 used time	projectmanager	ko	사용한 시간
 view all subs of this entry	projectmanager	ko	이 엔트리의 모든 하위보기
 view subs	projectmanager	ko	하위보기

@@ -1,6 +1,7 @@
 %1 records imported	projectmanager	hr	%1 zapisa uvezeno
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	hr	%1 zapisa pročitano (još nije uvezeno, možete se %2vratiti%3 i odznačiti Testiraj Uvoz)
 actions	projectmanager	hr	Akcije
+charset of file	projectmanager	hr	Kodna straioca datoteke
 create new links	projectmanager	hr	Create new links
 created	projectmanager	hr	Napravljeno
 csv-fieldname	projectmanager	hr	CSV-Ime Polja
@@ -15,6 +16,7 @@ existing links	projectmanager	hr	Existing links
 fieldseparator	projectmanager	hr	Razmaknica polja
 global categories	projectmanager	hr	Globalne kategorije
 hours	projectmanager	hr	sati
+import	projectmanager	hr	Uvezi
 last modified	projectmanager	hr	Zadnja izmjena
 links	projectmanager	hr	Links
 modified	projectmanager	hr	Promijenjeno
@@ -28,5 +30,6 @@ template	projectmanager	hr	Template
 test import (show importable records <u>only</u> in browser)	projectmanager	hr	Testiraj Uvoz (prikaži zapise koji se mogu uvesti <u>samo</u> u internet pregledniku)
 times	projectmanager	hr	Times
 to many might exceed your execution-time-limit	projectmanager	hr	to many might exceed your execution-time-limit
+translation	projectmanager	hr	Prijevod
 view all subs of this entry	projectmanager	hr	Prikaži sve podzapise za ovaj zapis
 view subs	projectmanager	hr	Prikaži podzapise

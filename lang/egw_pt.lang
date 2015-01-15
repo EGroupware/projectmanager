@@ -39,6 +39,8 @@ budget (no pricelist)	projectmanager	pt	Orçamento (sem lista de preços)
 budget and pricelist	projectmanager	pt	Orçamento e lista de preços
 by	projectmanager	pt	por
 calculate budget by quantity (eg. time) and price	projectmanager	pt	Calcular orçamento por quantidade (ex: tempo) e preço
+change category	projectmanager	pt	Alterar categoria
+charset of file	projectmanager	pt	Charset do ficheiro
 check all	projectmanager	pt	Marcar todas
 close the window, discard the changes made	projectmanager	pt	Fechar a janela sem guardar as alterações efectuadas
 constraints	projectmanager	pt	Dificuldades
@@ -49,11 +51,13 @@ create a new empty project or use a template	projectmanager	pt	Criar um novo pro
 create new links	projectmanager	pt	Criar novas ligações
 created	projectmanager	pt	Criado/a
 created a ganttchart from the checked projects	projectmanager	pt	Criou uma tabela de Gantt a partir dos projectos marcados
+creator	projectmanager	pt	Criador
 csv-fieldname	projectmanager	pt	CSV - Nome do campo
 csv-filename	projectmanager	pt	CSV - Nome do ficheiro
 csv-import	common	pt	CSV - Importar
 custom fields	projectmanager	pt	Campos personalizados
 customer title	projectmanager	pt	Título do cliente
+data exchange settings	projectmanager	pt	Configurações de troca de dados
 datasource	projectmanager	pt	Fonte de informação
 dates	projectmanager	pt	Datas
 days	projectmanager	pt	Dias
@@ -79,6 +83,7 @@ edit this price	projectmanager	pt	Editar este preço
 edit this project	projectmanager	pt	Editar este projecto
 edit this project-element	projectmanager	pt	Editar este elemento do projecto
 edit this role	projectmanager	pt	Editar este papel
+element role title	projectmanager	pt	Título papel de elemento
 elementlist	projectmanager	pt	Lista de elementos
 elements of elements	projectmanager	pt	Elementos de elementos
 elements that can't start before this one is finished	projectmanager	pt	Os elementos não podem começar antes deste estar concluído
@@ -99,7 +104,9 @@ error: saving the project (%1) !!!	projectmanager	pt	Erro ao guardar o projecto 
 error: saving the project-element (%1) !!!	projectmanager	pt	Erro ao guardar o elemento do projecto (%1) !!!
 everything recursive	projectmanager	pt	Tudo recursivo
 existing links	projectmanager	pt	Ligações existentes
+exists	projectmanager	pt	Existe
 exit without saving	projectmanager	pt	Sair sem gravar
+favorites	projectmanager	pt	Favoritos
 fieldseparator	projectmanager	pt	Separador de campos
 free descriptiv text	projectmanager	pt	Texto descritivo
 from %1 to %2	projectmanager	pt	De %1 para %2
@@ -107,23 +114,31 @@ full access	projectmanager	pt	Acesso total
 ganttchart	projectmanager	pt	Tabela de Gantt
 ganttchart parameter	projectmanager	pt	Parâmetros da tabela de Gantt
 general availibility	projectmanager	pt	Disponibilidade geral
+general fields:	projectmanager	pt	Campos gerais:
 general pricelist	projectmanager	pt	Lista geral de preços
+general settings	projectmanager	pt	Definições gerais
 global categories	projectmanager	pt	Categorias gerais
 h	projectmanager	pt	h
 health	projectmanager	pt	Saúde
 hours	projectmanager	pt	Horas
 hours per workday	projectmanager	pt	Horas por dia de trabalho
 how long do you work on the given day.	projectmanager	pt	Duração deste dia de trabalho.
+html link to the current record	projectmanager	pt	Link HTML para o registro atual
 ignore that entry	projectmanager	pt	ignorar esse registo
 ignored	projectmanager	pt	Ignorado
+import	projectmanager	pt	Importar
+insert	projectmanager	pt	Inserir
 last modified	projectmanager	pt	Última modificação
 leave it empty if you dont need a different customer title	projectmanager	pt	Deixar vazio se não necessitar de um título de cliente diferente
 leave it empty to have one generated	projectmanager	pt	Deixar vazio para criar um
 leave it empty, if identitcal to the time	projectmanager	pt	Deixar vazio se igual ao tempo
 linked elements	projectmanager	pt	Elementos ligados
 links	projectmanager	pt	Ligações
+links and attached files	projectmanager	pt	Links e arquivos anexados
+list of files linked to the current record	projectmanager	pt	Lista de arquivos vinculados ao registro atual
 mainproject only	projectmanager	pt	Projecto principal apenas
 mainprojects	projectmanager	pt	Projectos principais
+manage mapping	projectmanager	pt	Gerenciar mapeamento
 members	projectmanager	pt	Membros
 milestone deleted	projectmanager	pt	Objectivo eliminado
 milestone saved	projectmanager	pt	Objectivo guardado
@@ -131,6 +146,7 @@ milestones	projectmanager	pt	Objectivos
 milestones before this element has to be finished	projectmanager	pt	Os objectivos têm de ser concluídos antes deste elemento
 modified	projectmanager	pt	Modificado
 modified by	projectmanager	pt	Modificado por
+modifier	projectmanager	pt	Modifier
 necessary for project-elements doing that not automatic	projectmanager	pt	É necessário não fazê-lo automaticamente para os elementos do projecto.
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pt	As extensões %1 PHP necessárias não foram nem podem ser carregadas !!!
 new	projectmanager	pt	Novo
@@ -171,6 +187,8 @@ projectlist	projectmanager	pt	Lista de projectos
 projectmanager	common	pt	Gestor de projectos
 projectmember	projectmanager	pt	Membro do projecto
 quantity	projectmanager	pt	Quantidade
+re-planned	projectmanager	pt	Re-planejado
+re-planned time	projectmanager	pt	Tempo re-planejado
 read access, incl. budget and adding elements	projectmanager	pt	Acesso de leitura, incluindo orçamentos e adição de elementos
 read access, no budget	projectmanager	pt	Acesso de leitura, sem orçamentos
 real end	projectmanager	pt	Fim real
@@ -205,13 +223,16 @@ startrecord	projectmanager	pt	Iniciar registo
 status filter	projectmanager	pt	Filtro de estado
 subprojects	projectmanager	pt	Subprojectos
 synchronise all	projectmanager	pt	Sincronizar todos
+tag to mark positions for address labels	projectmanager	pt	Tag para marcar posições para etiquetas de endereço
 template	projectmanager	pt	Modelo
 template including elment-tree saved as new project	projectmanager	pt	O modelo inclui uma árvore de elementos guardada como um novo projecto.
 test import (show importable records <u>only</u> in browser)	projectmanager	pt	Importação de Teste (exibir no navegador <u>apenas</u> os registos importáveis)
+the following document-types are supported:	projectmanager	pt	Os seguintes tipos de documentos são suportados:
 time	projectmanager	pt	Tempo
 times	projectmanager	pt	Tempo
 title must not be empty	projectmanager	pt	O campo do título não pode ficar vazio
 to many might exceed your execution-time-limit	projectmanager	pt	Demasiados podem exceder o seu tempo limite de execução
+translation	projectmanager	pt	Tradução
 unit	projectmanager	pt	Unidade
 unitprice	projectmanager	pt	Preço por unidade
 used	projectmanager	pt	Utilizado/a

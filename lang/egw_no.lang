@@ -39,6 +39,7 @@ budget (no pricelist)	projectmanager	no	Budsjett (ingen prisliste)
 budget and pricelist	projectmanager	no	Budsjett og prisliste
 by	projectmanager	no	ved
 calculate budget by quantity (eg. time) and price	projectmanager	no	Kalkuler budsjett ved kvantum ( eg. timer) og pris.
+charset of file	projectmanager	no	Karaktersett for filen
 check all	projectmanager	no	Kontroller alle
 close the window, discard the changes made	projectmanager	no	Lukk vinduet, tap av utførte endringer
 constraints	projectmanager	no	Tvinger
@@ -116,6 +117,7 @@ hours per workday	projectmanager	no	Timer pr. arbeidsdag
 how long do you work on the given day.	projectmanager	no	Hvor lenge arbeidet du den dagen
 ignore that entry	projectmanager	no	Ingnorer denne forekomsten
 ignored	projectmanager	no	oversett
+import	projectmanager	no	Importer
 last modified	projectmanager	no	Sist endret
 leave it empty if you dont need a different customer title	projectmanager	no	La det stå tomt dersom du ikke trenger en annen tilpasset tittel
 leave it empty to have one generated	projectmanager	no	la det stå blank for å få et automatisk
@@ -212,6 +214,7 @@ time	projectmanager	no	Tid
 times	projectmanager	no	Tider
 title must not be empty	projectmanager	no	Tittel kan ikke være tom
 to many might exceed your execution-time-limit	projectmanager	no	for mange vil muligens overskride din eksekverings-tidsgrense
+translation	projectmanager	no	Oversetting
 unit	projectmanager	no	Enhet
 unitprice	projectmanager	no	Enhetspris
 used	projectmanager	no	brukt

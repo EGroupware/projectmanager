@@ -54,6 +54,7 @@ can be used with element roles, "eroles" table plugin and "elements" table plugi
 category in %1 project-element(s) updated.	projectmanager	sk	Kategória v %1 prvkoch projektu bola aktualizovaná.
 category set	projectmanager	sk	Kategória bola nastavená
 change category	projectmanager	sk	Zmeniť kategóriu
+charset of file	projectmanager	sk	Znaková sada súboru
 charset of the above selected font	projectmanager	sk	Znaková sada vybraného písma
 check all	projectmanager	sk	Označiť všetko
 choose the default filename for downloaded documents.	projectmanager	sk	Vyberte predvolený názov súboru pre stiahnuté dokumenty.
@@ -69,6 +70,7 @@ create new links	projectmanager	sk	Vytvoriť nové odkazy
 created	projectmanager	sk	vytvorené
 created a ganttchart from the checked projects	projectmanager	sk	Vytvorený postupový diagram pre označené projekty
 creation date and time	projectmanager	sk	Dátum a čas vytvorenia
+creator	projectmanager	sk	Tvorca
 csv-fieldname	projectmanager	sk	CSV-názov poľa
 csv-filename	projectmanager	sk	CSV-názov súboru
 csv-import	common	sk	CSV-Import
@@ -155,6 +157,7 @@ exists	projectmanager	sk	Existuje.
 exit without saving	projectmanager	sk	Skončiť bez uloženia
 exports a list of project elements to a csv file.	projectmanager	sk	Exportuje zoznam prvkov projektu do súboru CSV.
 exports a list of projects to a csv file.	projectmanager	sk	Exportuje zoznam projektov do súboru CSV.
+favorites	projectmanager	sk	Obľúbené
 fields for element roles:	projectmanager	sk	Polia pre role prvku:
 fieldseparator	projectmanager	sk	Oddeľovač polí
 font	projectmanager	sk	Písmo
@@ -170,6 +173,7 @@ furthermore addressbook elements in the projectmanager elements list can be sele
 ganttchart	projectmanager	sk	Postupový diagram
 ganttchart parameter	projectmanager	sk	Parameter postupového diagramu
 general availibility	projectmanager	sk	Všeobecná dostupnosť
+general fields:	projectmanager	sk	Všeobecné polia:
 general pricelist	projectmanager	sk	Všeobecný cenník
 global categories	projectmanager	sk	Globálne kategórie
 h	projectmanager	sk	h
@@ -181,8 +185,10 @@ how should the project selection in the menu be displayed: a tree gives a better
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) sa tiež odstránia.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
+if you specify an export definition, it will be used when you export	projectmanager	sk	Ak zadáte exportnú definíciu, bude sa používať pri exportoch.
 ignore that entry	projectmanager	sk	ignorovať túto položku
 ignored	projectmanager	sk	Ignorované
+import	projectmanager	sk	Import
 imports a list of projects from a csv file.  does not include project elements.	projectmanager	sk	Naimportuje zoznam projektov zo súboru CSV. Neobsahuje prvky projektu.
 insert	projectmanager	sk	Vložiť
 last modified	projectmanager	sk	Naposledy zmenené
@@ -192,10 +198,14 @@ leave it empty to have one generated	projectmanager	sk	ponechajte prázdne, ak c
 leave it empty, if identitcal to the time	projectmanager	sk	ponechajte prázdne, ak je totožné s týmto časom
 linked elements	projectmanager	sk	Odkazované prvky
 links	projectmanager	sk	Odkazy
+links and attached files	projectmanager	sk	Odkazy a priložené súbory
+links to specified application.  example: {{links/infolog}}	projectmanager	sk	Odkazy na vybranú aplikáciu. Príklad: {{links/infolog}}
+list of files linked to the current record	projectmanager	sk	Zoznam súborov priložených k súčasnému záznamu
 lists all elements assigned to an element role in a table.	projectmanager	sk	Tabuľkový zoznam všetkých prvkov priradených k roli prvku.
 lists all project elements in a table.	projectmanager	sk	Zobrazí všetky prvky projektu v tabuľke.
 mainproject only	projectmanager	sk	Iba hlavný projekt
 mainprojects	projectmanager	sk	Hlavné projekty
+manage mapping	projectmanager	sk	Správa mapovania
 members	projectmanager	sk	Členovia
 milestone deleted	projectmanager	sk	Medzník bol odstránený
 milestone saved	projectmanager	sk	Medzník bol uložený
@@ -204,6 +214,7 @@ milestones before this element has to be finished	projectmanager	sk	Medzníky pr
 modified	projectmanager	sk	Upravené
 modified by	projectmanager	sk	Zmeny vykonal
 modified date and time	projectmanager	sk	Upravený dátum a čas
+modifier	projectmanager	sk	Upravil
 modify status	projectmanager	sk	Upraviť stav
 multi assignments	projectmanager	sk	Viacnásobné priradenia
 name of current user, all other contact fields are valid too	projectmanager	sk	Meno súčasného používateľa, všetky ostatné polia kontaktu sú tiež platné
@@ -278,7 +289,7 @@ projectmanager element fields:	projectmanager	sk	Polia prvku Projektovníka:
 projectmanager fields:	projectmanager	sk	Polia Projektovníka:
 projectmanager-fieldname	projectmanager	sk	Projektovník -názov poľa
 projectmember	projectmanager	sk	Člen projektu
-projects	projectmanager	sk	Projekty
+projects	common	sk	Projekty
 quantity	projectmanager	sk	Množstvo
 re-planned	projectmanager	sk	Pre-plánované
 re-planned time	projectmanager	sk	Pre-plánovaný čas
@@ -289,7 +300,6 @@ real end date and time	projectmanager	sk	Skutočný dátum a čas konca
 real start	projectmanager	sk	Skutočný začiatok
 real start date and time	projectmanager	sk	Skutočný dátum a čas začiatku
 remark	projectmanager	sk	Poznámka
-replacements for inserting project data into documents	projectmanager	sk	Náhrady pre vkladanie údajov projektu do dokumentov
 replanned time in minutes	projectmanager	sk	Pre-plánovaný čas v minútach
 resources	projectmanager	sk	Zdroje
 role	projectmanager	sk	Rola
@@ -339,13 +349,17 @@ template name - project title	projectmanager	sk	Názov šablóny - názov projek
 test import (show importable records <u>only</u> in browser)	projectmanager	sk	Test Importu (zobrazí importovateľné záznamy <u>iba</u> v prehliadači)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	sk	Táto akcia umožňuje stiahnuť vybraný dokument s vloženými údajmi projektu a prvkov.
 the charset depends on the font you want to use.	projectmanager	sk	Znaková sada závisí na fonte, ktorý chcete používať.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	sk	Dokument môže obsahovať premennú, napr. {{%3}} ktorá sa nahradí údajmi (%1úplný zoznam názvov premenných%2).
+the following document-types are supported:	projectmanager	sk	Podporované sú nasledovné typy dokumentov:
 time	projectmanager	sk	Čas
 times	projectmanager	sk	Časy
 timezone	projectmanager	sk	Časové pásmo
 title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	sk	Názov obsahuje neplatné znaky. Používajte znaky A-Z, čísla, lomku a podčiarkovník.
 title must not be empty	projectmanager	sk	Názov nesmie byť prázdny
+titles of any entries linked to the current record, excluding attached files	projectmanager	sk	Názvy akýchkoľvek položiek pripojených na súčasný záznam, okrem priložených súborov
 to many might exceed your execution-time-limit	projectmanager	sk	Príliš veľa záznamov môže spôsobiť prekročenie povoleného časového limitu
 total shares	projectmanager	sk	Podielov celkovo
+translation	projectmanager	sk	Preklad
 tree with %1	projectmanager	sk	Strom s %1
 unit	projectmanager	sk	Jednotka
 unitprice	projectmanager	sk	Cena za jednotku

@@ -1,6 +1,7 @@
 %1 records imported	projectmanager	iw	%1 רשומות הובאו
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	iw	%1 רשומות נקראו (אך עדיין לא הובאו. ניתן %2לחזור%3 ולהוריד את הסימן ליד בדוק ייבוא)
 actions	projectmanager	iw	פעולות
+charset of file	projectmanager	iw	סט תווים של הקובץ
 create new links	projectmanager	iw	יצור קישורים חדשים
 created	projectmanager	iw	נוצר
 csv-fieldname	projectmanager	iw	CSV שם שדה
@@ -15,6 +16,7 @@ existing links	projectmanager	iw	קישורים קיימים
 fieldseparator	projectmanager	iw	מפריד שדות
 global categories	projectmanager	iw	קטגוריות גלובליות
 hours	projectmanager	iw	שעות
+import	projectmanager	iw	ייבא
 last modified	projectmanager	iw	שונה לאחרונה
 links	projectmanager	iw	קישורים
 modified	projectmanager	iw	השתנה
@@ -28,5 +30,6 @@ template	projectmanager	iw	תבנית
 test import (show importable records <u>only</u> in browser)	projectmanager	iw	(בדוק ייבוא (הצג <u>רק</u> רשומות הניתנות לייבאו בדפדפן
 times	projectmanager	iw	פעמים
 to many might exceed your execution-time-limit	projectmanager	iw	יתכן כי רבים מיידי יעברו על הקצאת זמן העיבוד שלך
+translation	projectmanager	iw	תרגום
 view all subs of this entry	projectmanager	iw	הצג את כל תתי-הרשומה
 view subs	projectmanager	iw	הצג תתי רשומה

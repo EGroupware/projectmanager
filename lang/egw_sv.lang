@@ -39,6 +39,7 @@ budget (no pricelist)	projectmanager	sv	Budget (ingen prislista)
 budget and pricelist	projectmanager	sv	Budget och prislista
 by	projectmanager	sv	av
 calculate budget by quantity (eg. time) and price	projectmanager	sv	Beräkna budget efter antal (ex. tid) och pris
+charset of file	projectmanager	sv	Teckenuppsättning för filen
 check all	projectmanager	sv	Markera alla
 close the window, discard the changes made	projectmanager	sv	Stäng fönstret och spara inte ändringar
 constraints	projectmanager	sv	Villkor
@@ -120,6 +121,7 @@ how long do you work on the given day.	projectmanager	sv	Hur många timmar per d
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sv	Hur ska projektvalen visas i menyn: Ett träd ger bättre översyn, en valruta kan ge bättre prestanda.
 ignore that entry	projectmanager	sv	Ignorera posten
 ignored	projectmanager	sv	Ignorerad
+import	projectmanager	sv	Importera
 last modified	projectmanager	sv	Senast ändrad
 leave it empty if you dont need a different customer title	projectmanager	sv	Lämna tomt om du inte behöver annan kundrubrik
 leave it empty to have one generated	projectmanager	sv	Lämna tomt för ett automatiskt genererat
@@ -220,6 +222,7 @@ times	projectmanager	sv	Antal
 timezone	projectmanager	sv	Tidzon
 title must not be empty	projectmanager	sv	Rubriken får inte vara tom
 to many might exceed your execution-time-limit	projectmanager	sv	För många kan överstiga maxtiden
+translation	projectmanager	sv	Översättning
 tree with %1	projectmanager	sv	Träd med %1
 unit	projectmanager	sv	Enhet
 unitprice	projectmanager	sv	Enhetspris

@@ -14,6 +14,7 @@ existing links	projectmanager	et	Eksisteerivad lingid
 fieldseparator	projectmanager	et	Väljaeraldaja
 global categories	projectmanager	et	Globaalsed Kategooriad
 hours	projectmanager	et	tundi
+import	projectmanager	et	Import
 last modified	projectmanager	et	Viimati muudetud
 links	projectmanager	et	Lingid
 modified	projectmanager	et	Muudetud
@@ -23,10 +24,11 @@ permission denied !!!	projectmanager	et	Õigused puuduvad !!!
 planned	projectmanager	et	kavandatud
 planned time	projectmanager	et	kavandatud aeg
 price	projectmanager	et	Hind
-projects	projectmanager	et	Projektid
+projects	common	et	Projektid
 quantity	projectmanager	et	Kogus
 resources	projectmanager	et	Resursid
 select a project	projectmanager	et	Vali Projekt
 startdate	projectmanager	et	Algus kuupäev
+translation	projectmanager	et	Tõlkimine
 used time	projectmanager	et	kasutauud aeg
 view subs	projectmanager	et	näita Alam

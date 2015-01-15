@@ -190,6 +190,7 @@ html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintra
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Element (z.B. InfoLog Einträge) mit gelöscht.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Element (z.B. InfoLog Einträge) mit geändert.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
+if you specify an export definition, it will be used when you export	projectmanager	de	Wählen Sie eine Export Definition für den Export.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
 import	projectmanager	de	Import
@@ -203,6 +204,7 @@ leave it empty, if identitcal to the time	projectmanager	de	Feld leer lassen, we
 linked elements	projectmanager	de	Verknüpfte Elemente
 links	projectmanager	de	Verknüpfungen
 links and attached files	projectmanager	de	Verknüpfungen und Anhänge
+links to specified application.  example: {{links/infolog}}	projectmanager	de	Verknüpfungen zu bestimmten Anwendungen. Beispiel: {{links/infolog}}
 list of files linked to the current record	projectmanager	de	Liste der mit dem aktuellen Eintrag verknüpften Dateien
 lists all elements assigned to an element role in a table.	projectmanager	de	Listet alle Elemente einer Element-Rolle in einer Tabelle auf.
 lists all project elements in a table.	projectmanager	de	Listet alle Projekt Elemente in einer Tabelle auf.
@@ -358,6 +360,7 @@ template name - project title	projectmanager	de	Name der Vorlage - Projekt Titel
 test import (show importable records <u>only</u> in browser)	projectmanager	de	Test Import (zeigt importierte Datensätze <u>nur</b> im Browser an)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	de	Diese Aktion erlaubt den Download von Speziellen Dokumenten mit Daten aus den Projekte und Elementen.
 the charset depends on the font you want to use.	projectmanager	de	Der Zeichensatz hängt vom Font ab den Sie verwenden wollen.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	de	Das Dokument kann Platzhalter wie {{%3}} enthalten, die mit den Daten ersetzt werden (%1komplette Liste der Platzhalter%2).
 the following document-types are supported:	projectmanager	de	Folgende Dateitypen werden unterstützt:
 time	projectmanager	de	Zeit
 times	projectmanager	de	Zeiten

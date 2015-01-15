@@ -28,6 +28,7 @@ bookable	projectmanager	lv	Grāmatojams
 budget	projectmanager	lv	Budžets
 budget (no pricelist)	projectmanager	lv	Budžets (nav cenu saraksta)
 budget and pricelist	projectmanager	lv	Budžets un cenu saraksts
+charset of file	projectmanager	lv	faila kodējums
 check all	projectmanager	lv	Parbaudīt visu
 close the window, discard the changes made	projectmanager	lv	Aizvērt logu, atmest veiktas izmaiņas
 constraints	projectmanager	lv	Ierobežojumi
@@ -89,6 +90,7 @@ hours per workday	projectmanager	lv	Stundas darba dienā
 how long do you work on the given day.	projectmanager	lv	Cik ilgi tu strādā dotajā dienā.
 ignore that entry	projectmanager	lv	ignorēt to ierakstu
 ignored	projectmanager	lv	ignorēts
+import	projectmanager	lv	Importēt
 last modified	projectmanager	lv	pēdējo reizi parveidots
 leave it empty to have one generated	projectmanager	lv	atstāj tukšu, lai varetu uzģenerēt
 linked elements	projectmanager	lv	Saistītie elementi
@@ -161,6 +163,7 @@ time	projectmanager	lv	Laiks
 times	projectmanager	lv	Reizes
 title must not be empty	projectmanager	lv	Virsraksts nedrīkst būt tukšs
 to many might exceed your execution-time-limit	projectmanager	lv	pārāk daudz, var pārsniegt izpildes laika limitu
+translation	projectmanager	lv	Tulkojums
 used	projectmanager	lv	lietots
 view all subs of this entry	projectmanager	lv	Rādīt apakškategoriju šim ierakstam
 view ganttchart of this project	projectmanager	lv	Rādīt šī projekta Ganta diagrammu

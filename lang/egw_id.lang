@@ -33,6 +33,7 @@ budget	projectmanager	id	Anggaran
 budget (no pricelist)	projectmanager	id	Anggaran (tanpa daftar harga)
 budget and pricelist	projectmanager	id	Anggaran dan daftar harga
 by	projectmanager	id	oleh
+charset of file	projectmanager	id	Charset of file
 check all	projectmanager	id	Contreng semua
 constraints	projectmanager	id	Constraints
 coordinator	projectmanager	id	Koordinator
@@ -41,6 +42,7 @@ create a new empty project or use a template	projectmanager	id	Bikin proyek koso
 create new links	projectmanager	id	Bikin tautan baru
 created	projectmanager	id	dibuat
 created a ganttchart from the checked projects	projectmanager	id	Bikin ganttchart dari proyek terpilih
+creator	projectmanager	id	Creator
 csv-fieldname	projectmanager	id	Nama field-CSV
 csv-filename	projectmanager	id	Nama berkas CSV
 csv-import	common	id	Impor CSV
@@ -75,6 +77,7 @@ end before	projectmanager	id	Berakhir sebelum
 enddate	projectmanager	id	Tanggal berakhir
 everything recursive	projectmanager	id	Everything recursive
 existing links	projectmanager	id	Tautan yang ada
+favorites	projectmanager	id	Favorit
 fieldseparator	projectmanager	id	Pemisah field
 font	projectmanager	id	Font
 font charset	projectmanager	id	Font charset
@@ -84,6 +87,7 @@ full access	projectmanager	id	akses penuh
 ganttchart	projectmanager	id	Ganttchart
 ganttchart parameter	projectmanager	id	Ganttchart parameter
 general availibility	projectmanager	id	General availability
+general fields:	projectmanager	id	Field Umum:
 general pricelist	projectmanager	id	General pricelist
 global categories	projectmanager	id	Kategori Global
 h	projectmanager	id	h
@@ -92,11 +96,13 @@ hours	projectmanager	id	jam
 hours per workday	projectmanager	id	Jam per hari-kerja
 ignore that entry	projectmanager	id	abaikan entri tersebut
 ignored	projectmanager	id	diabaikan
+import	projectmanager	id	Impor
 last modified	projectmanager	id	pengubahan terakhir
 linked elements	projectmanager	id	Elemen terkait
 links	projectmanager	id	Tautan
 mainproject only	projectmanager	id	Hanya Proyek Utama
 mainprojects	projectmanager	id	Proyek Utama
+manage mapping	projectmanager	id	Mengelola pemetaan
 members	projectmanager	id	Anggota
 milestone deleted	projectmanager	id	Milestone dihapus
 milestone saved	projectmanager	id	Milestone disimpan
@@ -135,7 +141,7 @@ projectlist	projectmanager	id	Daftar Proyek
 projectmanager	common	id	Manajer Proyek
 projectmanager-fieldname	projectmanager	id	Nama field-Manajer Proyek
 projectmember	projectmanager	id	Anggota proyek
-projects	projectmanager	id	Projects
+projects	common	id	Projects
 quantity	projectmanager	id	Quantity
 re-planned	projectmanager	id	direncanakan ulang
 re-planned time	projectmanager	id	Waktu Perencanaan ulang
@@ -167,6 +173,7 @@ time	projectmanager	id	Waktu
 times	projectmanager	id	Waktu
 timezone	projectmanager	id	Zonawaktu
 title must not be empty	projectmanager	id	Judul tidak boleh kosong
+translation	projectmanager	id	Terjemahan
 unit	projectmanager	id	Satuan
 unitprice	projectmanager	id	Satuan harga
 used	projectmanager	id	terpakai

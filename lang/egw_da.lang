@@ -3,6 +3,7 @@
 actions	projectmanager	da	Handling
 apply the changes	projectmanager	da	Acceptér ændringerne
 by	projectmanager	da	af
+charset of file	projectmanager	da	Karakterset for fil
 create new links	projectmanager	da	Lav nyt link
 created	projectmanager	da	Oprettet
 csv-fieldname	projectmanager	da	CSV-Feltnavn
@@ -18,6 +19,7 @@ fieldseparator	projectmanager	da	Feltseperator
 global categories	projectmanager	da	Globale Kategorier
 h	projectmanager	da	h
 hours	projectmanager	da	timer
+import	projectmanager	da	Importer
 last modified	projectmanager	da	Sidst opdateret
 links	projectmanager	da	Links
 modified	projectmanager	da	Modificeret
@@ -34,6 +36,7 @@ startrecord	projectmanager	da	Start postering
 test import (show importable records <u>only</u> in browser)	projectmanager	da	Test Import (viser <u>kun</u> importeret posteringer i browser vinduet)
 times	projectmanager	da	Gange
 to many might exceed your execution-time-limit	projectmanager	da	for mange kan overskride din tildelte tid
+translation	projectmanager	da	Oversættelse
 used time	projectmanager	da	brugt tid
 view all subs of this entry	projectmanager	da	Vis alle underkategorier for denne postering
 view subs	projectmanager	da	vis underkategori

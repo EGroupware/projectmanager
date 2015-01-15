@@ -39,6 +39,7 @@ budget (no pricelist)	projectmanager	zh	预算 (无价格表)
 budget and pricelist	projectmanager	zh	预算和价格表
 by	projectmanager	zh	由
 calculate budget by quantity (eg. time) and price	projectmanager	zh	根据数量(例如：时间)和价格作预算
+charset of file	projectmanager	zh	文件的字符集
 charset of the above selected font	projectmanager	zh	上述选定字体的字符集
 check all	projectmanager	zh	选择全部
 close the window, discard the changes made	projectmanager	zh	关闭窗口，放弃所做修改
@@ -50,6 +51,7 @@ create a new empty project or use a template	projectmanager	zh	创建一空项�
 create new links	projectmanager	zh	创建新链接
 created	projectmanager	zh	已创建
 created a ganttchart from the checked projects	projectmanager	zh	从选择的项目创建的甘特图
+creator	projectmanager	zh	创建者
 csv-fieldname	projectmanager	zh	CSV - 字段名
 csv-filename	projectmanager	zh	CSV - 文件名
 csv-import	common	zh	从CSV文件导入
@@ -119,6 +121,7 @@ full access	projectmanager	zh	完全存取
 ganttchart	projectmanager	zh	甘特图
 ganttchart parameter	projectmanager	zh	甘特图参数
 general availibility	projectmanager	zh	通用有效性
+general fields:	projectmanager	zh	通用字段：
 general pricelist	projectmanager	zh	通用价格表
 global categories	projectmanager	zh	全局分类
 h	projectmanager	zh	时
@@ -131,6 +134,7 @@ if checked the datasources of the elements (eg. infolog entries) are deleted too
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	zh	如果您看到甘特图中的实体(例如：{)，将这个功能关闭。
 ignore that entry	projectmanager	zh	忽略这一条目
 ignored	projectmanager	zh	忽略
+import	projectmanager	zh	导入
 last modified	projectmanager	zh	最近修改
 leave it empty if you dont need a different customer title	projectmanager	zh	如果不需要一个不同的客户名则留空
 leave it empty to have one generated	projectmanager	zh	留空会自动生成
@@ -139,6 +143,7 @@ linked elements	projectmanager	zh	链接的要素
 links	projectmanager	zh	链接
 mainproject only	projectmanager	zh	只有主要项目
 mainprojects	projectmanager	zh	主要项目
+manage mapping	projectmanager	zh	管理匹配
 members	projectmanager	zh	成员
 milestone deleted	projectmanager	zh	里程碑已删除
 milestone saved	projectmanager	zh	里程碑已保存
@@ -146,6 +151,7 @@ milestones	projectmanager	zh	里程碑
 milestones before this element has to be finished	projectmanager	zh	在这个要素之前的里程碑必须先完成
 modified	projectmanager	zh	修改日期
 modified by	projectmanager	zh	修改人
+modifier	projectmanager	zh	修改人
 name of current user, all other contact fields are valid too	projectmanager	zh	目前用户的名称，所有其他联系人字段也是正确的
 necessary for project-elements doing that not automatic	projectmanager	zh	对此项目要素必须动作不是自动进行的
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	zh	必须的 PHP 扩展 %1 尚未加载！
@@ -185,7 +191,7 @@ project-elements	projectmanager	zh	项目要素
 projectlist	projectmanager	zh	项目列表
 projectmanager	common	zh	项目管理
 projectmember	projectmanager	zh	项目成员
-projects	projectmanager	zh	项目
+projects	common	zh	项目
 quantity	projectmanager	zh	数量
 read access, incl. budget and adding elements	projectmanager	zh	读取权限，包含预算与新增的要素
 read access, no budget	projectmanager	zh	读取权限，不包含预算
@@ -234,6 +240,7 @@ times	projectmanager	zh	时间
 timezone	projectmanager	zh	时区
 title must not be empty	projectmanager	zh	标题不能为空白
 to many might exceed your execution-time-limit	projectmanager	zh	许多可能超过你的执行时间限制
+translation	projectmanager	zh	翻译
 tree with %1	projectmanager	zh	%1的树状结构
 unit	projectmanager	zh	单位
 unitprice	projectmanager	zh	单价

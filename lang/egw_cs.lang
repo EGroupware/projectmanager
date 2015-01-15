@@ -40,6 +40,7 @@ budget (no pricelist)	projectmanager	cs	Rozpočet (bez ceníku)
 budget and pricelist	projectmanager	cs	Rozpočet a ceník
 by	projectmanager	cs	od
 calculate budget by quantity (eg. time) and price	projectmanager	cs	Spočítat rozpočet na základě množství (např. času) a ceny
+charset of file	projectmanager	cs	Znaková sada souboru
 charset of the above selected font	projectmanager	cs	Znaková sada výše vybraného písma
 check all	projectmanager	cs	Vybrat vše
 close the window, discard the changes made	projectmanager	cs	Zavřít okno, zahodit provedené změny
@@ -51,6 +52,7 @@ create a new empty project or use a template	projectmanager	cs	Vytvořit nový p
 create new links	projectmanager	cs	Vytvořit nové odkazy
 created	projectmanager	cs	vytvořeno
 created a ganttchart from the checked projects	projectmanager	cs	Vytvořen Ganttův diagram z vybraných projektů
+creator	projectmanager	cs	Tvůrce
 csv-fieldname	projectmanager	cs	CSV-jméno položky
 csv-filename	projectmanager	cs	CSV-jméno souboru
 csv-import	common	cs	CSV-import
@@ -110,6 +112,7 @@ everything recursive	projectmanager	cs	Vše rekurzivní
 existing data will be overwrited if checked	projectmanager	cs	Pokud zaškrtnete, budou stávající data přepsána
 existing links	projectmanager	cs	Stávající odkazy
 exit without saving	projectmanager	cs	Ukočit bez uložení
+favorites	projectmanager	cs	Oblíbené
 fieldseparator	projectmanager	cs	Oddělovač položek
 font	projectmanager	cs	Písmo
 font charset	projectmanager	cs	Znaková sada písma
@@ -123,6 +126,7 @@ full access	projectmanager	cs	plný přístup
 ganttchart	projectmanager	cs	Ganttův postupový diagram
 ganttchart parameter	projectmanager	cs	parametr Ganttova diagramu
 general availibility	projectmanager	cs	Všeobecná  dostupnost
+general fields:	projectmanager	cs	Obecné položky:
 general pricelist	projectmanager	cs	Hlavní ceník
 global categories	projectmanager	cs	Globální kategorie
 h	projectmanager	cs	h
@@ -136,6 +140,7 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	cs	Pokud uvidíte entity (např. {) v Ganttově diagramu, vypněte tuto volbu.
 ignore that entry	projectmanager	cs	ignorovat záznam
 ignored	projectmanager	cs	ignorován
+import	projectmanager	cs	Importovat
 last modified	projectmanager	cs	Naposledy změněno
 leave it empty if you dont need a different customer title	projectmanager	cs	ponechte prázdné, pokud nepotřebujete jiné jméno klienta
 leave it empty to have one generated	projectmanager	cs	ponechte prázdné pro automatické vygenerování
@@ -144,6 +149,7 @@ linked elements	projectmanager	cs	Odkazované součásti
 links	projectmanager	cs	Odkazy
 mainproject only	projectmanager	cs	Jen hlavní projekt
 mainprojects	projectmanager	cs	Hlavní projekty
+manage mapping	projectmanager	cs	Spravovat mapování
 members	projectmanager	cs	Členové
 milestone deleted	projectmanager	cs	Milník smazán
 milestone saved	projectmanager	cs	Milník uložen
@@ -192,7 +198,7 @@ projectlist	projectmanager	cs	Seznam projektů
 projectmanager	common	cs	Správce projektů
 projectmanager-fieldname	projectmanager	cs	Správce projektů - Název položky
 projectmember	projectmanager	cs	Člen projektu
-projects	projectmanager	cs	Projekty
+projects	common	cs	Projekty
 quantity	projectmanager	cs	Množství
 re-planned	projectmanager	cs	přeplánované
 re-planned time	projectmanager	cs	Přeplánovaný čas
@@ -244,6 +250,7 @@ times	projectmanager	cs	Časy
 timezone	projectmanager	cs	Časová zóna
 title must not be empty	projectmanager	cs	Název nesmí být prázdný
 to many might exceed your execution-time-limit	projectmanager	cs	příliš mnoho může překročit nastavený časový limit spuštění
+translation	projectmanager	cs	Překlad
 tree with %1	projectmanager	cs	Strom s %1
 unit	projectmanager	cs	Jednotka
 unitprice	projectmanager	cs	Jednotková cena

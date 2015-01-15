@@ -40,6 +40,7 @@ budget (no pricelist)	projectmanager	pl	Budżet (bez cennika)
 budget and pricelist	projectmanager	pl	Budżet i cennik
 by	projectmanager	pl	przez
 calculate budget by quantity (eg. time) and price	projectmanager	pl	Przelicz budżet z uwzględnieniem ilości (np. czasu) oraz ceny
+charset of file	projectmanager	pl	strona kodowa pliku
 charset of the above selected font	projectmanager	pl	Zestaw znaków dla wybranej powyżej czcionki
 check all	projectmanager	pl	Zaznacz wszystko
 close the window, discard the changes made	projectmanager	pl	Zamknij okno, anuluj poczynione zmiany
@@ -51,6 +52,7 @@ create a new empty project or use a template	projectmanager	pl	Utwórz nowy pust
 create new links	projectmanager	pl	Utwórz nowe odsyłacze
 created	projectmanager	pl	utworzony
 created a ganttchart from the checked projects	projectmanager	pl	Utworzony wykres Gantta z zaznaczonych projektów
+creator	projectmanager	pl	Twórca
 csv-fieldname	projectmanager	pl	Nazwa pola CSV
 csv-filename	projectmanager	pl	Nazwa pliku CSV
 csv-import	common	pl	Import CVS
@@ -111,6 +113,7 @@ existing data will be overwrited if checked	projectmanager	pl	Istniejące dane b
 existing links	projectmanager	pl	Istniejące odsyłacze
 exists	projectmanager	pl	istnieje
 exit without saving	projectmanager	pl	Wyjdź bez zapisywania
+favorites	projectmanager	pl	Ulubione
 fieldseparator	projectmanager	pl	Separator pól
 font	projectmanager	pl	Czcionka
 font charset	projectmanager	pl	Zestaw znaków czcionki
@@ -124,6 +127,7 @@ full access	projectmanager	pl	pełny dostęp
 ganttchart	projectmanager	pl	Wykres Gantta
 ganttchart parameter	projectmanager	pl	Paramentr wykresu Gantta
 general availibility	projectmanager	pl	Ogólna dostępność
+general fields:	projectmanager	pl	Pola ogólne:
 general pricelist	projectmanager	pl	Ogólny cennik
 global categories	projectmanager	pl	Kategorie globalne
 h	projectmanager	pl	h
@@ -137,6 +141,7 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pl	Jeżeli widzisz encje (np. {) na wykresach Gantta, wyłącz to.
 ignore that entry	projectmanager	pl	pomiń tą pozycję
 ignored	projectmanager	pl	pominięty
+import	projectmanager	pl	Importuj
 insert	projectmanager	pl	wstaw
 last modified	projectmanager	pl	ostatnio zmodyfikowany
 leave it empty if you dont need a different customer title	projectmanager	pl	pozostaw puste pole jeśli nie potrzebujesz innego tytułu klienta
@@ -146,6 +151,7 @@ linked elements	projectmanager	pl	Składniki powiązane
 links	projectmanager	pl	Odsyłacze
 mainproject only	projectmanager	pl	Tylko główne projekty
 mainprojects	projectmanager	pl	Główne projekty
+manage mapping	projectmanager	pl	Zarządzaj mapowaniem
 members	projectmanager	pl	Członkowie
 milestone deleted	projectmanager	pl	Kamień milowy usunięty
 milestone saved	projectmanager	pl	kamień milowy zapisany
@@ -196,7 +202,7 @@ projectlist	projectmanager	pl	Lista projektów
 projectmanager	common	pl	Menedżer Projektów
 projectmanager-fieldname	projectmanager	pl	Manager projektów - nazwa pola
 projectmember	projectmanager	pl	Członek projektu
-projects	projectmanager	pl	Projekty
+projects	common	pl	Projekty
 quantity	projectmanager	pl	Ilość
 re-planned	projectmanager	pl	re-planowany
 read access, incl. budget and adding elements	projectmanager	pl	dostęp do odczytu, także do budżetu oraz dodawania składników
@@ -247,6 +253,7 @@ times	projectmanager	pl	Czas
 timezone	projectmanager	pl	Strefa czasowa
 title must not be empty	projectmanager	pl	Tytuł nie może być pusty
 to many might exceed your execution-time-limit	projectmanager	pl	zbyt wiele może spowodować przekroczenie czasu wykonywania
+translation	projectmanager	pl	Tłumaczenie
 tree with %1	projectmanager	pl	Drzewko z %1
 unit	projectmanager	pl	Jednostka
 unitprice	projectmanager	pl	Cena jednostkowa

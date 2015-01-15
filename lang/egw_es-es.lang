@@ -300,7 +300,7 @@ projectmanager element fields:	projectmanager	es-es	Campos de elementos del Admi
 projectmanager fields:	projectmanager	es-es	Campos del Administrador de proyectos:
 projectmanager-fieldname	projectmanager	es-es	Administrador de proyectos - Nombre del campo
 projectmember	projectmanager	es-es	Miembro del proyecto
-projects	projectmanager	es-es	Proyectos
+projects	common	es-es	Proyectos
 quantity	projectmanager	es-es	Cantidad
 re-planned	projectmanager	es-es	re-planificado
 re-planned time	projectmanager	es-es	Tiempo replanificado
@@ -311,7 +311,6 @@ real end date and time	projectmanager	es-es	Fecha y hora real de finalización
 real start	projectmanager	es-es	Comienzo real
 real start date and time	projectmanager	es-es	Fecha y hora real de inicio
 remark	projectmanager	es-es	Remarcar
-replacements for inserting project data into documents	projectmanager	es-es	Sustituciones para insertar datos de proyectos en documentos
 replanned time in minutes	projectmanager	es-es	Tiempo replanificado en minutos
 resources	projectmanager	es-es	Recursos
 role	projectmanager	es-es	Rol

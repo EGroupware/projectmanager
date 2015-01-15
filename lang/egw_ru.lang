@@ -55,6 +55,7 @@ can be used with element roles, "eroles" table plugin and "elements" table plugi
 category in %1 project-element(s) updated.	projectmanager	ru	Категории в %1 элементах проекта обновлены.
 category set	projectmanager	ru	Категория установлена
 change category	projectmanager	ru	Изменить категорию
+charset of file	projectmanager	ru	Кодировка файла
 charset of the above selected font	projectmanager	ru	Таблица символов выбранного выше шрифта
 check all	projectmanager	ru	Отметить все
 choose the default filename for downloaded documents.	projectmanager	ru	Выбрать имя файла по умолчанию для загрузки документов
@@ -70,12 +71,14 @@ create new links	projectmanager	ru	Создайте новые ссылки
 created	projectmanager	ru	Создано
 created a ganttchart from the checked projects	projectmanager	ru	Создана диаграмма Гантта из отмеченных проектов
 creation date and time	projectmanager	ru	Создание даты и времени
+creator	projectmanager	ru	Создатель
 csv-fieldname	projectmanager	ru	Название поля CSV
 csv-filename	projectmanager	ru	Название файла CSV
 csv-import	common	ru	Импорт CSV
 cumulated elements too	projectmanager	ru	Сводные элементы также
 custom fields	projectmanager	ru	Пользовательские Поля
 customer title	projectmanager	ru	Пользовательские названия
+data exchange settings	projectmanager	ru	Установки обмена данных
 datasource	projectmanager	ru	Источник данных
 datasources too	projectmanager	ru	также источники данных
 dates	projectmanager	ru	Даты
@@ -156,6 +159,7 @@ exists	projectmanager	ru	Существует.
 exit without saving	projectmanager	ru	Выйти без сохранения
 exports a list of project elements to a csv file.	projectmanager	ru	Экспортирует список элементов проекта в файл формата CSV.
 exports a list of projects to a csv file.	projectmanager	ru	Экспортирует список проектов в файл формата CSV.
+favorites	projectmanager	ru	Избранное
 fields for element roles:	projectmanager	ru	Поля для ролей элементов:
 fieldseparator	projectmanager	ru	Разделитель полей
 font	projectmanager	ru	Шрифт
@@ -171,7 +175,9 @@ furthermore addressbook elements in the projectmanager elements list can be sele
 ganttchart	projectmanager	ru	Диаграмма Гантта
 ganttchart parameter	projectmanager	ru	Параметры диаграммы Гантта
 general availibility	projectmanager	ru	Общий доступ
+general fields:	projectmanager	ru	Общие поля:
 general pricelist	projectmanager	ru	Общий прайслист
+general settings	projectmanager	ru	Основные установки
 global categories	projectmanager	ru	Общие категории
 h	projectmanager	ru	ч
 health	projectmanager	ru	Здоровье
@@ -179,11 +185,14 @@ hours	projectmanager	ru	часы
 hours per workday	projectmanager	ru	Часов в рабочем дне
 how long do you work on the given day.	projectmanager	ru	Сколько вы работаете в данный день.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	ru	Как должно отображаться выбор проекта в меню: Дерево даёт лучший осмотр, Выбор даёт лучший результат.
+html link to the current record	projectmanager	ru	HTML-ссылка на запись
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также будут удалены.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также изменят свое состояние.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ru	Если вы видите объекты (напр. {) в диаграмме Гантта, выключите.
+if you specify an export definition, it will be used when you export	projectmanager	ru	Если указать определение экспорта, оно будет использовано при последующем экспорте
 ignore that entry	projectmanager	ru	Игнорировать эту запись
 ignored	projectmanager	ru	Проигнорировано.
+import	projectmanager	ru	Импорт
 imports a list of projects from a csv file.  does not include project elements.	projectmanager	ru	Импортирует список проектов из файла формата CVS. Не включая элементы проекта.
 insert	projectmanager	ru	Вставить
 last modified	projectmanager	ru	Последнее изменение
@@ -193,10 +202,14 @@ leave it empty to have one generated	projectmanager	ru	Оставьте это �
 leave it empty, if identitcal to the time	projectmanager	ru	Оставьте незаполненным, если идентично по времени
 linked elements	projectmanager	ru	Связанные элементы
 links	projectmanager	ru	Ссылки
+links and attached files	projectmanager	ru	Ссылки и прикреплённые файлы
+links to specified application.  example: {{links/infolog}}	projectmanager	ru	Ссылки на указанное приложение. Пример: {{links/infolog}}
+list of files linked to the current record	projectmanager	ru	Список файлов, связанных с текущей записью
 lists all elements assigned to an element role in a table.	projectmanager	ru	Списки всех элементов, которым присвоена роль в таблице.
 lists all project elements in a table.	projectmanager	ru	Списки всех элементов проекта в таблице.
 mainproject only	projectmanager	ru	Только главный проект
 mainprojects	projectmanager	ru	Главные проекты
+manage mapping	projectmanager	ru	Управление отображениями
 members	projectmanager	ru	Участники
 milestone deleted	projectmanager	ru	Веха удалена.
 milestone saved	projectmanager	ru	Веха сохранена.
@@ -205,6 +218,7 @@ milestones before this element has to be finished	projectmanager	ru	Вехи п�
 modified	projectmanager	ru	Изменено
 modified by	projectmanager	ru	изменено
 modified date and time	projectmanager	ru	Дата и время изменены
+modifier	projectmanager	ru	Изменено (кем)
 modify status	projectmanager	ru	Изменить статус
 multi assignments	projectmanager	ru	Множественное назначение
 name of current user, all other contact fields are valid too	projectmanager	ru	Имя текущего пользователя, все остальные поля контакта также верны
@@ -279,7 +293,7 @@ projectmanager element fields:	projectmanager	ru	Поля элементов п�
 projectmanager fields:	projectmanager	ru	Поля приложения Проекты:
 projectmanager-fieldname	projectmanager	ru	Название поля Управления проектами
 projectmember	projectmanager	ru	Участник проекта
-projects	projectmanager	ru	Проекты
+projects	common	ru	Проекты
 quantity	projectmanager	ru	Количество
 re-planned	projectmanager	ru	Запланировано повторно
 re-planned time	projectmanager	ru	Повторно запланированное время
@@ -290,7 +304,6 @@ real end date and time	projectmanager	ru	Фактическая дата и вр
 real start	projectmanager	ru	Фактический запуск
 real start date and time	projectmanager	ru	Фактическая дата и время старта
 remark	projectmanager	ru	Примечания
-replacements for inserting project data into documents	projectmanager	ru	Замены для вставки данных проекта в документы
 replanned time in minutes	projectmanager	ru	Повторно запланированное время в минутах
 resources	projectmanager	ru	ресурсы
 role	projectmanager	ru	Роли
@@ -340,14 +353,18 @@ template name - project title	projectmanager	ru	Имя шаблона - назв
 test import (show importable records <u>only</u> in browser)	projectmanager	ru	Тестовый Импорт (показать импортируемые записи <u>только</u> в браузере)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	ru	Это действие позволяет загрузить указанный документ с вставленными данными проекта и его элементов.
 the charset depends on the font you want to use.	projectmanager	ru	Таблица символов определяется шрифтом который вы желаете использовать.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	ru	Документ может содержать местоположение типа {{%3}} для замены данными. %1 полный список местоположений%2.
+the following document-types are supported:	projectmanager	ru	Поддерживаются следующие типы документов:
 time	projectmanager	ru	Время
 times	projectmanager	ru	Затраты времени
 timezone	projectmanager	ru	Часовой пояс
 title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	ru	Название содержит недопустимые символы. Используйте буквы A-Z, цифры, тире и подчеркивания.
 title must not be empty	projectmanager	ru	Название должно быть заполнено
+titles of any entries linked to the current record, excluding attached files	projectmanager	ru	Заголовки записей, ссылающихся на текущую, исключая прикреплённые файлы
 to many might exceed your execution-time-limit	projectmanager	ru	Слишком много может превысить ваше ограничение на время выполнения
 total completion shares	projectmanager	ru	Общее время, выделенное на завершение
 total shares	projectmanager	ru	Всего выделено
+translation	projectmanager	ru	Перевод
 tree with %1	projectmanager	ru	Дерево с %1
 unit	projectmanager	ru	Единица
 unitprice	projectmanager	ru	Цена за единицу

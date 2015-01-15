@@ -34,6 +34,7 @@ budget	projectmanager	sl	Proračun
 budget (no pricelist)	projectmanager	sl	Proračun (brez stroškovnika)
 budget and pricelist	projectmanager	sl	Proračun s stroškovnikom
 by	projectmanager	sl	od
+charset of file	projectmanager	sl	Kodna tabela datoteke
 check all	projectmanager	sl	Izberi vse
 coordinator	projectmanager	sl	Koordinator
 cost per time	projectmanager	sl	Strošek na uro
@@ -67,15 +68,19 @@ end before	projectmanager	sl	Konec pred
 enddate	projectmanager	sl	Končni datum
 existing links	projectmanager	sl	Obstoječe povezave
 exists	projectmanager	sl	Obstaja
+favorites	projectmanager	sl	Priljubljene
 fieldseparator	projectmanager	sl	Ločilo polj
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	sl	Za tipska pisma uporabite značko. Vsebino, ki jo želite imeti v vseh dokumentih, vnesite med značke.
 full access	projectmanager	sl	poln dostop
+general fields:	projectmanager	sl	Splošna polja:
 global categories	projectmanager	sl	Globalne kategorije
 h	projectmanager	sl	h
 hours	projectmanager	sl	ure
+import	projectmanager	sl	Uvoz
 insert	projectmanager	sl	Vstavi
 last modified	projectmanager	sl	nazadnje spremenjeno
 links	projectmanager	sl	Povezave
+manage mapping	projectmanager	sl	Upravljaj mapiranje
 members	projectmanager	sl	Člani
 modified	projectmanager	sl	Spremenjeno
 name of current user, all other contact fields are valid too	projectmanager	sl	Ime trenutnega uporabnika, veljavna so tudi vsa druga polja stika
@@ -102,6 +107,7 @@ test import (show importable records <u>only</u> in browser)	projectmanager	sl	P
 times	projectmanager	sl	Časi
 timezone	projectmanager	sl	Časovni pas
 to many might exceed your execution-time-limit	projectmanager	sl	Preveč lahko preseže čas izvajanja
+translation	projectmanager	sl	Prevod
 use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	sl	Uporabi to značko za naslov nalepk. Stik, ki ga želite ponoviti, dajte med dve znački.
 used time	projectmanager	sl	Porabljen čas
 view all subs of this entry	projectmanager	sl	Poglej vse podrejene zapise

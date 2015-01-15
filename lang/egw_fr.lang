@@ -49,6 +49,7 @@ by	projectmanager	fr	par
 calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le budget par quantité (p.ex. temps) et prix
 category set	projectmanager	fr	Catégorie définie
 change category	projectmanager	fr	Changer la catégorie
+charset of file	projectmanager	fr	Jeu de caractères du fichier
 charset of the above selected font	projectmanager	fr	Jeu de caractères de la police sélectionnée ci-dessus
 check all	projectmanager	fr	Tout cocher
 close the window, discard the changes made	projectmanager	fr	Fermer la fenêtre en ignorant les modifications
@@ -61,12 +62,14 @@ create new links	projectmanager	fr	Créer de nouveaux liens
 created	projectmanager	fr	créé
 created a ganttchart from the checked projects	projectmanager	fr	Créé un diagramme de Gantt à partir des projets sélectionnés
 creation date and time	projectmanager	fr	Date et heure de création
+creator	projectmanager	fr	Créateur
 csv-fieldname	projectmanager	fr	CSV - Nom du champ
 csv-filename	projectmanager	fr	CSV - Nom du fichier
 csv-import	common	fr	CSV-Importer
 cumulated elements too	projectmanager	fr	Eléments cumulés aussi
 custom fields	projectmanager	fr	Champs personnalisés
 customer title	projectmanager	fr	Titre client
+data exchange settings	projectmanager	fr	Paramètres d'échange de données
 datasource	projectmanager	fr	Source de données
 dates	projectmanager	fr	Dates
 days	projectmanager	fr	jours
@@ -127,7 +130,9 @@ full access	projectmanager	fr	Acccès complet
 ganttchart	projectmanager	fr	Diagramme de Gantt
 ganttchart parameter	projectmanager	fr	Paramètre du diagramme de Gantt
 general availibility	projectmanager	fr	Disponibilité générale
+general fields:	projectmanager	fr	Champs généraux :
 general pricelist	projectmanager	fr	Liste de prix générale
+general settings	projectmanager	fr	Paramètres généraux
 global categories	projectmanager	fr	Catégorie globale
 h	projectmanager	fr	h
 health	projectmanager	fr	Santé
@@ -135,8 +140,11 @@ hours	projectmanager	fr	heures
 hours per workday	projectmanager	fr	Heures par jour ouvré
 how long do you work on the given day.	projectmanager	fr	Combien de temps travaillez-vous ce jour-là.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	fr	Comment doit apparaître la sélection du projet dans lemenu: une arborescence donne une meilleure vue d'ensemble, une boîte de sélection peut être plus efficace.
+html link to the current record	projectmanager	fr	Lien HTML vers l'enregistrement courant
+if you specify an export definition, it will be used when you export	projectmanager	fr	Si vous spécifier un format d'export, il sera utilisé à l'export.
 ignore that entry	projectmanager	fr	Ignorer cette entrée
 ignored	projectmanager	fr	Ignoré
+import	projectmanager	fr	Importation
 insert	projectmanager	fr	Insérer
 last modified	projectmanager	fr	Dernière modification
 last sync date and time	projectmanager	fr	Date et heure de la dernière synchro
@@ -145,8 +153,12 @@ leave it empty to have one generated	projectmanager	fr	Laissez ce champ vide pou
 leave it empty, if identitcal to the time	projectmanager	fr	Laissez ce champ vide si identique au temps
 linked elements	projectmanager	fr	Eléments liés
 links	projectmanager	fr	Liens
+links and attached files	projectmanager	fr	Liens et fichiers attachés
+links to specified application.  example: {{links/infolog}}	projectmanager	fr	Liens vers les applications spécifiés. Exemple :  {{links/infolog}}
+list of files linked to the current record	projectmanager	fr	Listes des fichiers liés à l'enregistrement courant
 mainproject only	projectmanager	fr	Projet principal seulement
 mainprojects	projectmanager	fr	Projets principaux
+manage mapping	projectmanager	fr	Gestion des correspondances
 members	projectmanager	fr	Membres
 milestone deleted	projectmanager	fr	Etape effacée
 milestone saved	projectmanager	fr	Etape sauvegardée
@@ -154,6 +166,7 @@ milestones	projectmanager	fr	Etapes
 milestones before this element has to be finished	projectmanager	fr	Etapes avant que cet élément ne soit terminé
 modified	projectmanager	fr	Modifié
 modified by	projectmanager	fr	Modifié par
+modifier	projectmanager	fr	Editeur
 modify status	projectmanager	fr	Modifier le statut
 name of current user, all other contact fields are valid too	projectmanager	fr	Nom de l'utilisateur courant, tous les autres champs de contacts sont valides aussi
 necessary for project-elements doing that not automatic	projectmanager	fr	nécessaire pour les éléments de projet ne le faisant pas automatiquement
@@ -195,7 +208,7 @@ project-elements	projectmanager	fr	Eléments de projet
 projectlist	projectmanager	fr	Liste de projets
 projectmanager	common	fr	Gestionnaire de projets
 projectmember	projectmanager	fr	Membre de projet
-projects	projectmanager	fr	Projets
+projects	common	fr	Projets
 quantity	projectmanager	fr	Quantité
 re-planned	projectmanager	fr	Re-planifié
 re-planned time	projectmanager	fr	Temps re-planifié
@@ -240,11 +253,14 @@ tag to mark positions for address labels	projectmanager	fr	Balise pour marquer l
 template	projectmanager	fr	Modèle
 template including elment-tree saved as new project	projectmanager	fr	Modèle comprenant son arborescence enregistrée comme sous-projet
 test import (show importable records <u>only</u> in browser)	projectmanager	fr	Tester l'import (montrer <u>seulement</u> les enregistrements importables dans le navigateur)
+the following document-types are supported:	projectmanager	fr	Les documents types suivants sont supportés :
 time	projectmanager	fr	Temps
 times	projectmanager	fr	Temps
 timezone	projectmanager	fr	Fuseau horaire
 title must not be empty	projectmanager	fr	Le titre ne doit pas être vide
+titles of any entries linked to the current record, excluding attached files	projectmanager	fr	Titres de toutes les entrées liées à l'enregistrement courant, à l'exception des fichiers
 to many might exceed your execution-time-limit	projectmanager	fr	trop pourrait dépasser votre temps limite d'exécution
+translation	projectmanager	fr	Traduction
 tree with %1	projectmanager	fr	Arborescence avec %1
 unit	projectmanager	fr	Unité
 unitprice	projectmanager	fr	Unité de prix

@@ -40,6 +40,7 @@ budget (no pricelist)	projectmanager	hu	Költségvetés (árlista nélkül)
 budget and pricelist	projectmanager	hu	Költségvetés és árlista
 by	projectmanager	hu	by
 calculate budget by quantity (eg. time) and price	projectmanager	hu	Költségvetés kiszámítása mennyiség (pl. idő) és ár alapján
+charset of file	projectmanager	hu	Állomány karakterkészlete
 charset of the above selected font	projectmanager	hu	A korábban kiválasztott font karakterkódolása
 check all	projectmanager	hu	Összes kijelölese
 close the window, discard the changes made	projectmanager	hu	Ablak bezárása, változások elvetése
@@ -110,6 +111,7 @@ everything recursive	projectmanager	hu	Rekurzívan minden
 existing data will be overwrited if checked	projectmanager	hu	Létező adatok felülírása
 existing links	projectmanager	hu	Már létező linkek
 exit without saving	projectmanager	hu	Kilépés mentés nélkül
+favorites	projectmanager	hu	Kedvencek
 fieldseparator	projectmanager	hu	Mezőelválasztó
 font	projectmanager	hu	Font
 font charset	projectmanager	hu	Font karakterkódolás
@@ -122,6 +124,7 @@ full access	projectmanager	hu	teljes hozzáférés
 ganttchart	projectmanager	hu	Gantt diagramm
 ganttchart parameter	projectmanager	hu	Gantt diagramm paraméterek
 general availibility	projectmanager	hu	Rendelkezésre állás
+general fields:	projectmanager	hu	Általános mezők:
 general pricelist	projectmanager	hu	Általános árlista
 global categories	projectmanager	hu	Globális kategóriák
 h	projectmanager	hu	óra
@@ -135,6 +138,7 @@ if checked the datasources of the elements (eg. infolog entries) will change the
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	hu	Ha furcsaságokat lát (pl. {) a Ganttchart-ban, akkor ezt kapcsolja ki.
 ignore that entry	projectmanager	hu	bejegyzés figyelmen kívül hagyása
 ignored	projectmanager	hu	figyelmen kívül hagyva
+import	projectmanager	hu	Import
 last modified	projectmanager	hu	utolsó módosítás
 leave it empty if you dont need a different customer title	projectmanager	hu	hagyja üresen, ha nincs szükség más ügyfél megnevezésre
 leave it empty to have one generated	projectmanager	hu	hagyja üresen  és generálódik ez értéke
@@ -240,6 +244,7 @@ times	projectmanager	hu	Időtartam
 timezone	projectmanager	hu	Időzóna
 title must not be empty	projectmanager	hu	Cím nem lehet üres
 to many might exceed your execution-time-limit	projectmanager	hu	túl sok megnövelheti a végrehajtási időt
+translation	projectmanager	hu	Fordítás
 tree with %1	projectmanager	hu	Fa a következővel %1
 unit	projectmanager	hu	Egység
 unitprice	projectmanager	hu	Egységár
