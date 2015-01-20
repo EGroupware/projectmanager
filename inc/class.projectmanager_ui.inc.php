@@ -483,6 +483,17 @@ class projectmanager_ui extends projectmanager_bo
 	 */
 	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
+		// for unknown reason, order is sometimes set to an element column, eg. pe_modified
+		// need to fix that, as it gives a sql error otherwise
+		if (substr($query_in['order'], 0, 3) === 'pe_')
+		{
+			$query_in['order'] = 'pm_'.substr($query_in['order'], 3);
+		}
+		if (!$this->db->get_column_attribute($query_in['order'], $this->table_name))
+		{
+			$query_in['order'] = 'pm_modified';
+		}
+
 		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query=$query_in);
 
 		//echo "<p>projectmanager_ui::get_rows(".print_r($query,true).")</p>\n";
@@ -541,9 +552,8 @@ class projectmanager_ui extends projectmanager_bo
 			$roles = $this->roles->query_list();
 
 			$all_members = $this->read_members($pm_ids);
-			foreach($rows as $n => $val)
+			foreach($rows as &$row)
 			{
-				$row =& $rows[$n];
 				$members = $row['pm_members'] = $all_members[$row['pm_id']];
 				// Set a value even if empty, or previous row won't be cleared.
 				for($i = 0; $i < 5; $i++)
