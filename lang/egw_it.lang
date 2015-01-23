@@ -1,10 +1,15 @@
 %1 element(s) updated	projectmanager	it	%1 elemento/i aggiornato/i
 %1 new project-elements imported	projectmanager	it	%1 nuovi elementi-progetto importati
+%1 project(s) %2	projectmanager	it	%1 progetti %2
+%1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	it	%1 progetti %2, %3 fallito causa permessi insufficienti
+%1 project-element(s) deleted.	projectmanager	it	%1 elementi di progetto eliminati
 %1 projects deleted	projectmanager	it	%1 progetti eliminati
 %1 records imported	projectmanager	it	%1 record importati
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	it	%1 record letti (non ancora importati, è possibile tornare %2indietro%3 e deselezionare Test Importazione)
 %1 times permission denied, %2 projects deleted	projectmanager	it	%1 permessi tempi negati, %2 progetti eliminati
+(project id) project title - template name	projectmanager	it	(ID Progetto) titolo progetto - nome template
 - planned	projectmanager	it	- pianificato
+- re-planned	projectmanager	it	- ri-pianificato
 0ngoing (0 < % < 100)	projectmanager	it	in corso (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	it	un titolo descrittivo per il progetto, non può essere vuoto
 accounting	projectmanager	it	Contabilità
@@ -17,11 +22,16 @@ add a new project	projectmanager	it	Aggiungi un nuovo progetto
 add element	projectmanager	it	Aggiungi un nuovo elemento
 add existing	projectmanager	it	Aggiungi esistente
 add milestone	projectmanager	it	Aggiungi traguardo
+add or edit element roles	projectmanager	it	Aggiungi o modifica ruoli di elementi
 add or edit roles and their acl	projectmanager	it	Aggiungi o modifica ruoli e loro ACL
 add price	projectmanager	it	Aggiungi prezzo
 add project	projectmanager	it	Aggiungi progetto
 add project-elements	projectmanager	it	Aggiungi elementi-progetto
 add this role	projectmanager	it	Aggiungi questo ruolo
+addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	it	Elementi di rubrica di un progetto possono essere usati per definire destinatari individuali di lettere. I campi disponibili sono
+addressbook fields	projectmanager	it	Campi rubrica
+all roles	projectmanager	it	Tutti i ruoli
+all_roles	projectmanager	it	Tutti i ruoli
 allow users to change their working times	projectmanager	it	Permetti agli utenti di cambiare i propri orari di lavoro
 allowed accounting types	projectmanager	it	Tipi di contabilità permessi
 allowed units	projectmanager	it	Unità permesse
@@ -31,6 +41,8 @@ apply the changes	projectmanager	it	Applica modifiche
 archive	projectmanager	it	Archivio
 assistant	projectmanager	it	Assistente
 at which time do you start working on the given day.	projectmanager	it	A che ora inizi a lavorare nel dato giorno.
+availability settings	projectmanager	it	Impostazioni disponibilità
+available fields for this plugin:	projectmanager	it	Campi disponibili per questo plugin
 availible	projectmanager	it	Disponibile
 billable	projectmanager	it	fatturabile
 bookable	projectmanager	it	prenotabile
@@ -39,11 +51,18 @@ budget (no pricelist)	projectmanager	it	Budget (nessun listino)
 budget and pricelist	projectmanager	it	Budget e listino
 by	projectmanager	it	da
 calculate budget by quantity (eg. time) and price	projectmanager	it	Calcola il budget per quantità (es.tempo) e prezzo
+can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	it	Può essere usato con ruoli di elementi, "eRoles" plugin e "elements" plugin
+category in %1 project-element(s) updated.	projectmanager	it	Categoria aggiornata per %1 elementi di progetto
+category set	projectmanager	it	Categoria impostata
 change category	projectmanager	it	Modifica categoria
-charset of file	projectmanager	it	Set di Caratteri del file
+charset of file	projectmanager	it	Set di caratteri del file
+charset of the above selected font	projectmanager	it	Set di caratteri del font selezionato sopra
 check all	projectmanager	it	Seleziona tutto
+choose the default filename for downloaded documents.	projectmanager	it	Seleziona il nome predefinito di file per i documenti scaricati
 close the window, discard the changes made	projectmanager	it	Chiudi la finestra, annulla le modifiche fatte
+completion	projectmanager	it	Completamento
 constraints	projectmanager	it	Vincoli
+contact fields for serial letters	projectmanager	it	Campi di contatto per lettere seriali
 conversation between days and hours, default 8	projectmanager	it	conversione tra giorni e ore, predefinito 8
 coordinator	projectmanager	it	Coordinatore
 cost per time	projectmanager	it	Costo orario
@@ -51,6 +70,7 @@ create a new empty project or use a template	projectmanager	it	Crea un nuovo pro
 create new links	projectmanager	it	Crea nuovi collegamenti
 created	projectmanager	it	creato
 created a ganttchart from the checked projects	projectmanager	it	Creato un grafico gantt dai progetti selezionati
+creation date and time	projectmanager	it	Data e ora creazione
 creator	projectmanager	it	Creatore
 csv-fieldname	projectmanager	it	CSV-Nome del Campo
 csv-filename	projectmanager	it	CSV-Nome del File
@@ -60,6 +80,7 @@ custom fields	projectmanager	it	Campi personalizzati
 customer title	projectmanager	it	Titolo cliente
 data exchange settings	projectmanager	it	Impostazioni di scambio dati
 datasource	projectmanager	it	Sorgente dati
+datasources too	projectmanager	it	Anche le sorgenti di dati
 dates	projectmanager	it	Date
 days	projectmanager	it	giorni
 default all and a selectbox to choose	projectmanager	it	tutto predefinito e una selectbox per scegliere
@@ -73,7 +94,10 @@ deleted	projectmanager	it	cancellato
 depth of display	projectmanager	it	Profondità visualizzazione
 details of cumulated	projectmanager	it	Dettagli dei cumulati
 details of subelements	projectmanager	it	Dettagli dei sottoelementi
+directory with documents to insert project data	projectmanager	it	Cartella con documenti per l'inserimento di dati progetto
 do not use that entry as project-element	projectmanager	it	non usare quella voce come elemento-progetto
+document '%1' does not exist or is not readable for you!	projectmanager	it	Il documento '%1' non esiste o non è leggibile da te!
+document download filename	projectmanager	it	Nom file documento scaricato
 done (100%)	projectmanager	it	Completato (100%)
 edit access, incl. editing budget and elements	projectmanager	it	modifica accesso, incl. modifica budget ed elementi
 edit budget	projectmanager	it	Modifica budget
@@ -86,38 +110,71 @@ edit this price	projectmanager	it	Modifica questo prezzo
 edit this project	projectmanager	it	Modifica questo progetto
 edit this project-element	projectmanager	it	Modifica questo elemento-progetto
 edit this role	projectmanager	it	Modifica questo ruolo
+element category	projectmanager	it	Categoria elemento
+element details	projectmanager	it	Dettagli elemento
+element id	projectmanager	it	ID elemento
+element list	projectmanager	it	Elenco elementi
+element modifier	projectmanager	it	Elemento modificato da
+element role deleted	projectmanager	it	Ruolo elemento eliminato
+element role saved	projectmanager	it	Ruolo elemento salvato
+element role title	projectmanager	it	Titolo ruolo elemento
+element roles	projectmanager	it	Ruoli elementi
+element roles defined as "mutliple" can be used here.	projectmanager	it	Ruoli elementi definiti come multipli possono essere usati qui
+element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	it	La caratteristica di ruoli di elemento non è al momento abilitata nella configurazione globale della tua Gestione Progetti
+element roles:	projectmanager	it	Ruoli elemento:
+element status	projectmanager	it	Stato elemento
+element title	projectmanager	it	Titolo elemento
 elementlist	projectmanager	it	Elenco elementi
+elements	projectmanager	it	Elementi
 elements of elements	projectmanager	it	Elementi di elementi
 elements that can't start before this one is finished	projectmanager	it	Elementi che non possono iniziare prima che questo sia finito
 elements which have to be finished before this can start	projectmanager	it	Elementi che devono essere finiti prima che questo possa iniziare
 empty	projectmanager	it	Vuoto
 empty for all	projectmanager	it	per tutti vuoto
+encode non-ascii	projectmanager	it	Codifica non-ascii
 end before	projectmanager	it	Fine prima di
 enddate	projectmanager	it	Data fine
-error: deleting price !!!	projectmanager	it	Errore: cancellando prezzo !!!
-error: deleting project !!!	projectmanager	it	Errore: cancellando progetto !!!
-error: deleting project-element !!!	projectmanager	it	Errore: cancellando elemento-progetto !!!
-error: deleting role !!!	projectmanager	it	Errore: cancellando ruolo !!!
+error: deleting element role !!!	projectmanager	it	Errore di eliminazione ruolo elemento!
+error: deleting price !!!	projectmanager	it	Errore: cancellando prezzo!
+error: deleting project !!!	projectmanager	it	Errore: cancellando progetto!
+error: deleting project-element !!!	projectmanager	it	Errore: cancellando elemento-progetto!
+error: deleting role !!!	projectmanager	it	Errore: cancellando ruolo!
 error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	it	Errore: ID-progetto già esistente, scegline un'altra o lasciala generare lasciandola vuota !!!
-error: saving milestone	projectmanager	it	Errore: salvando traguardo !!!
-error: saving role !!!	projectmanager	it	Errore: salvando ruolo !!!
-error: saving the price (%1) !!!	projectmanager	it	Errore: salvando il prezzo (%1) !!!
-error: saving the project (%1) !!!	projectmanager	it	Errore: salvando il progetto (%1) !!!
-error: saving the project-element (%1) !!!	projectmanager	it	Errore: salvando l'elemento-progetto (%1) !!!
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	it	ERRORE: Ricorrenza trovata, ID %1 più di una volta nel percorso di progetto quando viene costituito l'albero dei progetti
+error: saving element role !!!	projectmanager	it	Errore nel salvataggio ruolo elemento!
+error: saving milestone	projectmanager	it	Errore: salvando traguardo!
+error: saving role !!!	projectmanager	it	Errore: salvando ruolo!
+error: saving the price (%1) !!!	projectmanager	it	Errore: salvando il prezzo (%1)!
+error: saving the project (%1) !!!	projectmanager	it	Errore: salvando il progetto (%1)!
+error: saving the project-element (%1) !!!	projectmanager	it	Errore: salvando l'elemento-progetto (%1)!
 everything recursive	projectmanager	it	Tutto ricorsivo
 example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	it	Esempio {{IF n_prefix~Sig~Hello Mr.~Salve Sig.ra.}} -  ricerca nel campo  "n_prefix", per "Sig", se trovato scrivere "Salve Sig" altrimenti scrivere "Salve Sig.ra"
 example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	it	Esempio {{LETTERPREFIXCUSTOM n_prefix title n_family}} Esempio: Sig. Dott. Giorgio Rossi
 example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	it	Esempio {{NELF role}} - se il campo "Ruolo" non è vuoto, si otterrà una riga con il valore del campo "Ruolo"
 example {{nelfnv role}} - if field role is not empty, set a lf without any value of the field	projectmanager	it	Esempio {{NELFNV role}} - se il campo non è vuoto, impostare un LF senza alcun valore del campo
+example:	projectmanager	it	Esempio:
+examples:	projectmanager	it	Esempi
+existing data will be overwrited if checked	projectmanager	it	I dati esistenti verranno sovrascritti se selezionato
 existing links	projectmanager	it	Collegamenti esistenti
 exists	projectmanager	it	Esiste
 exit without saving	projectmanager	it	Esci senza salvare
+export definition to use for nextmatch export (elements)	projectmanager	it	Definizione di esportazione da utilizzare nell'esportazione nextmatch (elementi)
+export definition to use for nextmatch export (projects)	projectmanager	it	Definizione di esportazione da utilizzare nell'esportazione nextmatch (progetti)
+exports a list of project elements to a csv file.	projectmanager	it	Esporta una lista di elementi di progetti in csv
+exports a list of projects to a csv file.	projectmanager	it	Esporta una lista di progetti in csv
 favorites	projectmanager	it	Preferiti
+fields for element roles:	projectmanager	it	Campi per ruoli elemento:
 fieldseparator	projectmanager	it	Separatore dei campi
+font	projectmanager	it	Font
+font charset	projectmanager	it	Set caratteri font
+font style	projectmanager	it	Stile font
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	it	Font da usare nel grafico Gantt, solo i font Vera sono inclusi
+fontfile '%1' not found!!!	projectmanager	it	File font '%1' non trovato
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	it	Per una lettera seriale, utilizzare questo tag. Immettere il contenuto che si vuole ripetere tra due tag.
 free descriptiv text	projectmanager	it	testo descrittivo libero
 from %1 to %2	projectmanager	it	da %1 a %2
 full access	projectmanager	it	accesso completo
+furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	it	Elementi rubrica nella lista elementi possono essere selezionati per definire destinatari individuali di lettere seriali
 ganttchart	projectmanager	it	Grafico Gantt
 ganttchart parameter	projectmanager	it	Parametri per grafico Gantt
 general availibility	projectmanager	it	Disponibilità generale
@@ -132,20 +189,28 @@ hours per workday	projectmanager	it	Ore per giorno lavorativo
 how long do you work on the given day.	projectmanager	it	Quanto lavori il dato giorno.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	it	Come deve essere visualizzata la selezione progetti nel menù: un albero dà un quadro d'insieme migliore, una selectbox può avere prestazioni migliori.
 html link to the current record	projectmanager	it	Collegamento HTML al record attuale
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	it	Se selezionato, verrano eliminate anche le sorgenti di elemento, p.es. schede attività
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	it	Se selezionato, verrà aggiornato lo stato anche delle sorgenti di elemento, p.es. schede attività
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	it	Se vedi entità (p.es. {) nel grafico Gantt, disabilita questa opzione
 if you specify an export definition, it will be used when you export	projectmanager	it	Se specifichi una definizione di esportazione, allora verrà usata durante la relativa operazione
 ignore that entry	projectmanager	it	ignora quella voce
 ignored	projectmanager	it	ignorato
 import	projectmanager	it	Importa
+imports a list of projects from a csv file.  does not include project elements.	projectmanager	it	Importa elenco progetti da CSV. Non comprende elementi.
 insert	projectmanager	it	Inserisci
-last modified	projectmanager	it	ultima modifica
+last modified	projectmanager	it	Ultima modifica
+last sync date and time	projectmanager	it	Ultima sincronizzazione
 leave it empty if you dont need a different customer title	projectmanager	it	lascialo vuoto se non serve un titolo cliente differente
 leave it empty to have one generated	projectmanager	it	lascialo vuoto per averne uno generato
 leave it empty, if identitcal to the time	projectmanager	it	lascialo vuoto se identico all'ora
+limit number of characters in ganttchart element title (0 for no limit)	projectmanager	it	Limita il numero di caratteri nel titolo elemento del Gantt (0 per nessun limite)
 linked elements	projectmanager	it	elementi collegati
 links	projectmanager	it	Collegamenti
 links and attached files	projectmanager	it	Collegamenti e file allegati
 links to specified application.  example: {{links/infolog}}	projectmanager	it	Collegamenti alla applicazione specificata. Esempio: {{links/infolog}}
 list of files linked to the current record	projectmanager	it	Elenco dei file collegati al record attuale
+lists all elements assigned to an element role in a table.	projectmanager	it	Elenca tutti gli elementi assegnati ad un ruolo in una tabella
+lists all project elements in a table.	projectmanager	it	Elenca tutti i progetti in una tabella
 mainproject only	projectmanager	it	Solo progetto principale
 mainprojects	projectmanager	it	Progetti principali
 manage mapping	projectmanager	it	Gestisci la mappatura
@@ -155,47 +220,86 @@ milestone saved	projectmanager	it	Traguardo salvato
 milestones	projectmanager	it	Traguardi
 milestones before this element has to be finished	projectmanager	it	I traguardi prima di questo elemento devono essere raggiunti
 modified	projectmanager	it	Modificato
-modified by	projectmanager	it	modificato da
+modified by	projectmanager	it	Modificato da
+modified date and time	projectmanager	it	Data e ora modifica
 modifier	projectmanager	it	Modificatore
+modify status	projectmanager	it	Modifica stato
+multi assignments	projectmanager	it	Assegnazioni multiple
 name of current user, all other contact fields are valid too	projectmanager	it	Nome dell'utente corrente, tutti gli altri campi di contatto sono validi pure.
 necessary for project-elements doing that not automatic	projectmanager	it	necessario per gli elementi-progetto che non lo fanno in automatico
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	it	Estensioni PHP necessarie (%1) non caricate e non caricabili !!!
-new	projectmanager	it	nuovo
+new	projectmanager	it	Nuovo
+new project submitted by %1 at %2	projectmanager	it	Nuovo progetto inserito da %1 alle %2
 no accounting, only status	projectmanager	it	No contabilità, solo stato
 no accounting, only times and status	projectmanager	it	No contabilità, solo ore e stato
 no details	projectmanager	it	no dettagli
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	it	Nessun accesso READ a sorgente dati: rimuovere i valori sovrascritti li svuoterà solamente !!!
-no save necessary	projectmanager	it	non necessario salvare
-nonactive	projectmanager	it	non attivo
+no rights to export more then %1 entries!	projectmanager	it	Puoi esportare solo %1 voci
+no save necessary	projectmanager	it	Non necessario salvare
+nonactive	projectmanager	it	Non attivo
+not available	projectmanager	it	Non disponibile
 not started (0%)	projectmanager	it	Non iniziato (0%)
 not working	projectmanager	it	non funzionante
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	it	Numero di caratteri a cui accorciare i titoli degli elementi nel Gantt
 number of records to read (%1)	projectmanager	it	Numero di record da leggere (%1)
 only this project	projectmanager	it	Solo questo progetto
+order of sub-project bars in ganttcharts	projectmanager	it	Ordine delle barre di sottoprogetto nel Gantt
 overwrite the datasource	projectmanager	it	Sovrascrivi sorgente dati
 percentage the member is availible for projects	projectmanager	it	Percentuale disponibilità del membro per progetti
 percentage the member is availible for this project	projectmanager	it	Percentuale disponibilità del membro per questo progetto
-permission denied !!!	projectmanager	it	Permesso negato !!!
-planned	projectmanager	it	pianificato
-planned time	projectmanager	it	tempo pianificato
+permission denied !!!	projectmanager	it	Permesso negato!
+planned	projectmanager	it	Pianificato
+planned budget	projectmanager	it	Budget pianificato
+planned end	projectmanager	it	Fine pianificata
+planned end date and time	projectmanager	it	Data e ora fine pianificati
+planned quantitiy	projectmanager	it	Quantità pianificata
+planned quantity	projectmanager	it	Quantità pianificata
+planned start	projectmanager	it	Inizio pianificato
+planned start date and time	projectmanager	it	Data e ora inizio pianificati
+planned time	projectmanager	it	Tempo pianificato
+planned time in minutes	projectmanager	it	Tempo pianificato in minuti
 planned times	projectmanager	it	Ore pianificate
 please download a recent version from %1 and install it in %2.	projectmanager	it	Per favore scarica una versione recente da %1 e installala in %2.
 price	projectmanager	it	Prezzo
 price / unit	projectmanager	it	Prezzo / Unità
 price deleted	projectmanager	it	Prezzo cancellato
+price per unit	projectmanager	it	Prezzo per unità
 price saved	projectmanager	it	Prezzo salvato
 pricelist	projectmanager	it	Listino
+project	common	it	Progetto
+project access (e.g. public)	projectmanager	it	Accesso al progetto, p.es. pubblico
 project availibility	projectmanager	it	Disponibilità progetto
+project category	projectmanager	it	Categoria progetto
+project completion (e.g. 100%)	projectmanager	it	Completamento progetto, p.es. 100%
+project creator	projectmanager	it	Creatore progetto
+project csv export	projectmanager	it	Esportazione CSV progetto
+project csv import	projectmanager	it	Importazione CSV progetto
 project deleted	projectmanager	it	Progetto cancellato
+project element csv export	projectmanager	it	Esportazione elementi progetto in CSV
 project id	projectmanager	it	ID progetto
+project id - template name	projectmanager	it	ID progetto - nome template
 project members and roles	projectmanager	it	Membri e ruoli progetto
-project overview	projectmanager	it	panoramica progetto
+project modified by %1 at %2	projectmanager	it	Progetto modificato da %1 alle %2
+project modifier	projectmanager	it	Progetto modificato da
+project number	projectmanager	it	Numero progetto
+project overview	projectmanager	it	Panoramica progetto
+project priority	projectmanager	it	Priorità progetto
 project saved	projectmanager	it	Progetto salvato
 project specific title, prices, ...	projectmanager	it	Progetto specificato: titolo, prezzi, ...
+project status	projectmanager	it	Stato progetto
+project title	projectmanager	it	Titolo progetto
+project title - template name	projectmanager	it	Titolo progetto - nome template
+project-element	projectmanager	it	Elemento progetto
 project-element deleted	projectmanager	it	Elemento-progetto cancellato
 project-element saved	projectmanager	it	Elemento-progetto salvato
 project-elements	projectmanager	it	Elementi-Progetto
+projectid	projectmanager	it	ID progetto
 projectlist	projectmanager	it	Elenco progetti
 projectmanager	common	it	Gestione Progetti
+projectmanager element fields	projectmanager	it	Campi elementi Gestione Progetti
+projectmanager element fields:	projectmanager	it	Campi elementi Gestione Progetti:
+projectmanager fields:	projectmanager	it	Campi Gestione Progetti:
+projectmanager-fieldname	projectmanager	it	Nome campo Gestione Progetti
 projectmember	projectmanager	it	Membro progetto
 projects	common	it	Progetti
 quantity	projectmanager	it	Quantità
@@ -204,8 +308,11 @@ re-planned time	projectmanager	it	Tempo ripianificato
 read access, incl. budget and adding elements	projectmanager	it	accesso in lettura, incl. budget e aggiunta elementi
 read access, no budget	projectmanager	it	accesso in lettura, no budget
 real end	projectmanager	it	Fine reale
+real end date and time	projectmanager	it	Data e ora fine reali
 real start	projectmanager	it	Inizio reale
+real start date and time	projectmanager	it	Data e ora inizio reali
 remark	projectmanager	it	Osservazione
+replanned time in minutes	projectmanager	it	Tempo ripianificato in minuti
 resources	projectmanager	it	Risorse
 role	projectmanager	it	Ruolo
 role deleted	projectmanager	it	Ruolo cancellato
@@ -215,49 +322,76 @@ save the changes made	projectmanager	it	Salva le modifiche fatte
 save this project element	projectmanager	it	Salva questo elemento progetto
 select a project	projectmanager	it	scegli un progetto
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	it	seleziona un'attività se vuoi calcolare i costi per quantità (tempo) e prezzo
+select export options	projectmanager	it	Seleziona opzioni di esportazione
 select multiple projects for a further action	projectmanager	it	Seleziona più progetti per una successiva azione
 select the accounting types visible for users of projectmanager	projectmanager	it	seleziona i tipi contabilità visibili agli utenti di Gestione Progetti
 select this project and show it's elements	projectmanager	it	Seleziona questo progetto e mostra i suoi elementi
 selectbox with %1	projectmanager	it	Selectbox con %1
+set order to show sub-project bars in ganttcharts.	projectmanager	it	Imposta ordine barre sottoprogetti nel Gantt
 share	projectmanager	it	Condividi
 share on the whole project	projectmanager	it	Condividi su tutto il progetto
 share on the whole project in hours or percent, defaults to planned time	projectmanager	it	Condividi su tutto il progetto i ore o percentuale, predefinito a tempo pianificato
+shared time in minutes	projectmanager	it	Tempo condiviso in minuti
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	it	Mostrare le icone dedicate delle schede attività nella lista elementi? Le icone per tipologie personalizzate di schede attività possono essere inserire nel percorso VFS dove icone addizionali e logo possono essere trovati (v. configurazione per tutto il sito). Se icone 32x32 venissero caricate con il suffisso "_element", queste icone più grandi verrebbero caricate nella lista elementi
+should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	it	Gli elementi di progetto dovrebbero mostrare i collegamenti ad altre applicazioni e/o gli allegati nella lista elementi di progetto (solo quando mostrati i dettagli)
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	it	Gestione Progetti deve visualizzare le icone di stato della sorgente dati (es.InfoLog) o solo una barra di progresso con lo stato numerico (più veloce).
 show constraints and milestones	projectmanager	it	Mostra vincoli e traguardi
+show elements in ganttchart by applications	projectmanager	it	Mostra elementi per applicazione nel Gantt
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	it	Mostra elementi nel Gantt in base alle applicazioni di provenienza (nessuno=tutto)
+show infolog type icon in the project elements list	projectmanager	it	Mostra tipo scheda attività nella lista elementi di progetto
+show links in the project elements list	projectmanager	it	Mostra collegamenti nella lista elementi
 show planned times instead of the real times	projectmanager	it	Mostra tempi pianificati invece di quelli reali
 show status icons of the datasources	projectmanager	it	Mostra icone di stato delle sorgenti dati
 show the project selection as	projectmanager	it	Mostra la selezione progetti come
 site configuration saved	projectmanager	it	Configurazione sito salvata
 start after	projectmanager	it	Inizia dopo
+start date, end date	projectmanager	it	Data inizio, Data fine
 start working on %1	projectmanager	it	Ha iniziato a lavorare il %1
 start, end, category, ...	projectmanager	it	Inizio, Fine, Categoria, ...
 start- & enddate	projectmanager	it	Data Inizio e Fine
 startdate	projectmanager	it	Data inizio
 startrecord	projectmanager	it	Record Iniziale
 status filter	projectmanager	it	Filtro di stato
+status set	projectmanager	it	Impostazione stato
+style used for everything but elements. some fonts have only normal style.	projectmanager	it	Stile usato per tutto tranne che per gli elementi. Alcuni font ammetto solo lo stile normale
 subelements	projectmanager	it	Sottoelementi
+subproject	projectmanager	it	Sottoprogetto
 subprojects	projectmanager	it	Sottoprogetti
+synced	projectmanager	it	Sincronizzati
 synchronise all	projectmanager	it	Sincronizza tutto
+table plugins:	projectmanager	it	Plugin tabella:
 tag to mark positions for address labels	projectmanager	it	Tagga per marcare le posizioni per le etichette di indirizzo
 template	projectmanager	it	Template
+template as subproject	projectmanager	it	Template come sottoprogetto
 template including elment-tree saved as new project	projectmanager	it	Template contenente albero-elementi salvato come nuovo progetto
+template name	projectmanager	it	Nome template
+template name - project title	projectmanager	it	Nome template - titolo progetto
 test import (show importable records <u>only</u> in browser)	projectmanager	it	Test importazione (mostra <u>solo</u> record importabili nel browser)
+that action allows to download the specified document with the project and elements data inserted.	projectmanager	it	Quella azione permette di scaricare il documento specificato con i dati di progetto e gli elementi inseriti
+the charset depends on the font you want to use.	projectmanager	it	Il set di caratteri dipende dal font che si desidera usare
 the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	it	Il documento può contenere variabili metasintattiche come {{%3}}, da rimpiazzare con i dati (%1elenco completo delle variabili metasintattiche%2)
 the following document-types are supported:	projectmanager	it	I seguenti tipi di documenti sono supportati:
 time	projectmanager	it	Tempo
 times	projectmanager	it	Tempi
 timezone	projectmanager	it	Fuso orario
+title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	it	Il titolo contiene caratteri non validi. Usare A-Z, numeri, trattino basso o alto
 title must not be empty	projectmanager	it	Il titolo non deve essere vuoto
 titles of any entries linked to the current record, excluding attached files	projectmanager	it	I titoli delle voci collegate a questa, allegati esclusi
 to many might exceed your execution-time-limit	projectmanager	it	troppi potrebbero far superare il tempo-limite-esecuzione
+total completion shares	projectmanager	it	Completamento totale condivisioni
+total shares	projectmanager	it	Condivisioni totali
 translation	projectmanager	it	Traduzione
 tree with %1	projectmanager	it	Albero con %1
+unable to find parent project %1	projectmanager	it	Impossibile trovare il progetto padre %1
 unit	projectmanager	it	Unità
 unitprice	projectmanager	it	Prezzo unitario
 usage	projectmanager	it	Utilizzo
 use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	it	Usa questo tag per le etichette di indirizzo. Posiziona il contenuto da ripetere, tra due tag.
-used	projectmanager	it	usato
-used time	projectmanager	it	tempo effettivo
+used	projectmanager	it	Usato
+used budget	projectmanager	it	Budget usato
+used quantity	projectmanager	it	Quantità usata
+used time	projectmanager	it	Tempo usato
+used time in minutes	projectmanager	it	Tempo usato in minuti
 valid since	projectmanager	it	Valido fino al
 view all subs of this entry	projectmanager	it	Visualizza tutti le sub voci
 view ganttchart of this project	projectmanager	it	Visualizza grafico Gantt di questo progetto
@@ -273,5 +407,6 @@ view this project	projectmanager	it	Vedi questo progetto
 view this project-element	projectmanager	it	Vedi questo elemento-progetto
 working duration on %1	projectmanager	it	Durata lavoro il %1
 you can leave the date of the first price empty	projectmanager	it	puoi lasciare la data del primo prezzo vuota
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	it	Non hai JPGraph nella versione %1 o superiore installato! E' un componente necessario per la generazione del grafico Gantt.
 you need to select a project first	projectmanager	it	Devi prima selezionare un progetto
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	it	Il tuo database NON è aggiornato (%1 contro %2), per favore esegui %3setup%4 per aggiornarlo.
