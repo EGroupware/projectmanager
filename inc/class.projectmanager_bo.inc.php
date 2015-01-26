@@ -634,7 +634,7 @@ class projectmanager_bo extends projectmanager_so
 			$access = (boolean) ($rights & $required);
 		}
 		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message(__METHOD__."($required,pm_id=$pm_id,$no_cache,$user) rights=$rights returning ".array2string($access));
-		error_log(__METHOD__."($required) pm_id=$pm_id, data[pm_access]=".(is_array($data) ? array2string($data['pm_access']) : 'data='.array2string($data))." returning ".array2string($access));
+		//error_log(__METHOD__."($required) pm_id=$pm_id, data[pm_access]=".(is_array($data) ? array2string($data['pm_access']) : 'data='.array2string($data))." returning ".array2string($access));
 		return $access;
 	}
 
