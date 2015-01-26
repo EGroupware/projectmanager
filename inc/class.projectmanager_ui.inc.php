@@ -525,6 +525,14 @@ class projectmanager_ui extends projectmanager_bo
 		$readonlys = array();
 		foreach($rows as &$row)
 		{
+			// Hide as much as possible for users without read access, but still have other permissions
+			if(!$this->check_acl(EGW_ACL_READ,$row['pm_id']))
+			{
+				foreach($row as $key => &$value)
+				{
+					if(!in_array($key, array('pm_id','pm_number','pm_title'))) $value = '';
+				}
+			}
 			if (!$this->check_acl(EGW_ACL_EDIT,$row))
 			{
 				$row['class'] .= ' rowNoEdit';

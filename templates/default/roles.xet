@@ -20,6 +20,7 @@
 					<column/>
 					<column/>
 					<column/>
+					<column/>
 					<column disabled="@view"/>
 				</columns>
 				<rows>
@@ -31,6 +32,7 @@
 						<description value="Edit"/>
 						<description value="Delete"/>
 						<description align="center" value="Add element"/>
+						<description align="center" value="Add timesheet"/>
 						<description value="Budget"/>
 						<description align="center" value="Edit budget"/>
 						<description/>
@@ -43,6 +45,7 @@
 						<checkbox align="center" id="${row}[acl_edit]"/>
 						<checkbox align="center" id="${row}[acl_delete]"/>
 						<checkbox align="center" id="${row}[acl_add]"/>
+						<checkbox align="center" id="${row}[acl_add_timesheet]"/>
 						<checkbox align="center" id="${row}[acl_budget]"/>
 						<checkbox align="center" id="${row}[acl_edit_budget]"/>
 						<description align="right"/>
@@ -55,6 +58,7 @@
 						<checkbox align="center" readonly="true" id="${row}[acl_edit]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_delete]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_add]"/>
+						<checkbox align="center" readonly="true" id="${row}[acl_add_timesheet]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_budget]"/>
 						<checkbox align="center" readonly="true" id="${row}[acl_edit_budget]"/>
 						<hbox>
