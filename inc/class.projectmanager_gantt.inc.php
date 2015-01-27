@@ -477,7 +477,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	/**
 	 * User updated start date or duration from gantt chart
 	 */
-	public static function ajax_update($values, $params)
+	public static function ajax_update($values, $mode, $params)
 	{
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
 
@@ -511,7 +511,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		if(class_exists('stylite_projectmanager_gantt'))
 		{
-			$handled = stylite_projectmanager_gantt::ajax_update($values, $params);
+			$handled = stylite_projectmanager_gantt::ajax_update($values, $mode, $params);
 			if($handled) return;
 		}
 		else if(!$GLOBALS['egw_info']['user']['preferences']['projectmanager']['skip_stylite_warning'])
@@ -539,7 +539,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$update_mask = $update_mask | $pe_bo->data['pe_overwrite'];
 			$keys = array('pe_overwrite' => $update_mask);
 			$keys['pe_completion'] = (int)($values['progress'] * 100).'%';
-			if(array_key_exists('duration', $values))
+			if($mode == 'resize' && array_key_exists('duration', $values))
 			{
 				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'];
 			}
