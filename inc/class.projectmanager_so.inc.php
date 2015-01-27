@@ -348,7 +348,7 @@ class projectmanager_so extends so_sql_cf
 		if ($uid) $where['member_uid'] = $uid;
 
 		$avails = array();
-		foreach($this->db->select($this->members_table,'member_uid,member_availibility',$where,__LINE__,__FILE__,flase,'','projectmanager') as $row)
+		foreach($this->db->select($this->members_table,'member_uid,member_availibility',$where,__LINE__,__FILE__,false,'','projectmanager') as $row)
 		{
 			$avails[$row['member_uid']] = empty($row['member_availibility']) ? 100.0 : $row['member_availibility'];
 		}
