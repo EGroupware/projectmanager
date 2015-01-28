@@ -213,6 +213,39 @@ class projectmanager_so extends so_sql_cf
 	}
 
 	/**
+	 * Overridden from parent to add in extra resources column
+	 *
+	 * @see so_sql_cf->get_rows()
+	 */
+	public function get_rows($query, &$rows, &$readonlys, $join = '', $need_full_no_count = false, $only_keys = false, $extra_cols = array())
+	{
+		$extra_cols[] = $this->db->group_concat('member_uid').' as resources';
+		$join .= ' LEFT JOIN egw_pm_members ON egw_pm_members.pm_id = egw_pm_projects.pm_id ';
+		
+		if($query['col_filter']['resources'])
+		{
+			// Expend to include any qroups selected user(s) are in
+			$members = array();
+			foreach((array)$query['col_filter']['resources'] as $user)
+			{
+				$members = array_merge($members,(array)
+					($user > 0 ? $GLOBALS['egw']->accounts->memberships($user,true) :
+						$GLOBALS['egw']->accounts->members($user,true)));
+				$members[] = $user;
+			}
+			if (is_array($members))
+			{
+				$members = array_unique($members);
+			}
+			$query['col_filter'][] = 'egw_pm_members.member_uid IN ('.implode(', ',$members).' ) ';
+			unset($query['col_filter']['resources']);
+		}
+		
+		$query['order'] = ' GROUP BY egw_pm_projects.pm_id ORDER BY '. $query['order'] ;
+		return parent::get_rows($query, $rows, $readonlys, $join, $need_full_no_count,	$only_keys, $extra_cols);
+	}
+
+	/**
 	 * search projects, re-implemented to include sub-cats and allow to filter for subs and mains
 	 *
 	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
@@ -246,7 +279,7 @@ class projectmanager_so extends so_sql_cf
 			$extra_cols[$key] = "(SELECT COUNT(*) FROM egw_links children WHERE children.link_app1='projectmanager' AND children.link_app2='projectmanager' AND children.link_id1=".
 				$this->db->to_varchar($this->table_name.'.pm_id').") AS children";
 		}
-		if ($join === true)	// add acl-join, to get role_acl of current user
+		if ($join !== false)	// add acl-join, to get role_acl of current user
 		{
 			$join = $this->acl_join;
 

@@ -12,6 +12,7 @@
 				<column width="50"/>
 				<column width="15%"/>
 				<column width="120"/>
+				<column width="120"/>
 				<column width="80" disabled="@no_role0"/>
 				<column width="80" disabled="@no_role1"/>
 				<column width="80" disabled="@no_role2"/>
@@ -33,6 +34,7 @@
 					<nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
 					<nextmatch-sortheader label="categories" id="cat_id"/>
 					<nextmatch-sortheader label="Owner" id="pm_creator"/>
+					<nextmatch-accountfilter empty_label="Resources" id="resources"/>
 					<nextmatch-header label="@roles[0]" id="role0"/>
 					<nextmatch-header label="@roles[1]" id="role1"/>
 					<nextmatch-header label="@roles[2]" id="role2"/>
@@ -73,6 +75,7 @@
 					<menulist>
 						<menupopup type="select-account" id="${row}[pm_creator]" readonly="true"/>
 					</menulist>
+					<listbox class="pm_resources" type="select-account" id="${row}[resources]" readonly="true"/>
 					<listbox type="select-account" id="${row}[role0]" readonly="true"/>
 					<listbox type="select-account" id="${row}[role1]" readonly="true"/>
 					<listbox type="select-account" id="${row}[role2]" readonly="true"/>
@@ -154,6 +157,7 @@
 		</grid>
 		<styles>
 			.check_all_arrow input { margin-right: 10px; }
+			.pm_resources {max-height: 6em; overflow-y: auto;}
 		</styles>
 	</template>
 </overlay>

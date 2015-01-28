@@ -520,7 +520,7 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$query['col_filter']['subs_or_mains'] = $query['filter'];
 
-		$total = parent::get_rows($query,$rows,$readonlys,true,true);
+		$total = parent::get_rows($query,$rows,$readonlys,'',true);
 
 		$readonlys = array();
 		foreach($rows as &$row)
