@@ -479,6 +479,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	 */
 	public static function ajax_update($values, $params)
 	{
+		egw_json_response::get()->call('egw.message',lang('%1 not updated.  Editing coming soon.', lang($values['pe_app'])), 'warning');
+		return;
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
 
 		// Sub project - handle as project, or a tree loop might occur
