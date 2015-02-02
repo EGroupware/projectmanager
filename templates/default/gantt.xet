@@ -52,4 +52,15 @@
 			</gantt>
 		</vbox>
 	</template>
+	<template id="projectmanager.gantt.edit" template="" lang="" group="0" version="1.9.001">
+		<description value="Change entry:"/>
+		<grid id="fields">
+			<columns><column/></columns>
+			<rows>
+				<row>
+					<description id="${row}[label]"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
 </overlay>

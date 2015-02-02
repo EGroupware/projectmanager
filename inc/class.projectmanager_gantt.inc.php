@@ -119,6 +119,12 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
 		
+		// Allow Stylite extensions a chance
+		if(class_exists('stylite_projectmanager_gantt'))
+		{
+			stylite_projectmanager_gantt::chart($template, $data, $sel_options, $readonlys);
+		}
+
 		$template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
 	}
 
@@ -417,7 +423,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$pe['end_date'] = egw_time::to($pe['pe_real_end'], egw_time::DATABASE);
 				$pe['planned_end'] = egw_time::to((int)$pe['pe_planned_end'], egw_time::DATABASE);
 			}
-			$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
+			$pe['progress'] = ((int)substr($pe['pe_completion'],0,-1))/100;
 			$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
 
 			// Set field for filter to filter on
