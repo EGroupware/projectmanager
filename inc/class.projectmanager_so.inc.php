@@ -109,7 +109,7 @@ class projectmanager_so extends so_sql_cf
 		{
 			$member_groups_uid = ','.implode(',', $memberships);
 		}
-		$this->acl_join = "LEFT JOIN $this->members_table ON ($this->table_name.pm_id=$this->members_table.pm_id AND member_uid IN ($this->user $member_groups_uid)) ".
+		$this->acl_join = "LEFT JOIN $this->members_table ON ($this->table_name.pm_id=$this->members_table.pm_id AND {$this->members_table}.member_uid IN ($this->user $member_groups_uid)) ".
 			" LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id";
 
 		if ($pm_id) $this->read($pm_id);
@@ -219,8 +219,8 @@ class projectmanager_so extends so_sql_cf
 	 */
 	public function get_rows($query, &$rows, &$readonlys, $join = '', $need_full_no_count = false, $only_keys = false, $extra_cols = array())
 	{
-		$extra_cols[] = $this->db->group_concat('member_uid').' as resources';
-		$join .= ' LEFT JOIN egw_pm_members ON egw_pm_members.pm_id = egw_pm_projects.pm_id ';
+		$extra_cols[] = $this->db->group_concat('resources.member_uid').' as resources';
+		$join .= ' LEFT JOIN egw_pm_members as resources ON resources.pm_id = egw_pm_projects.pm_id ';
 		
 		if($query['col_filter']['resources'])
 		{
@@ -237,7 +237,7 @@ class projectmanager_so extends so_sql_cf
 			{
 				$members = array_unique($members);
 			}
-			$query['col_filter'][] = 'egw_pm_members.member_uid IN ('.implode(', ',$members).' ) ';
+			$query['col_filter'][] = 'resources.member_uid IN ('.implode(', ',$members).' ) ';
 			unset($query['col_filter']['resources']);
 		}
 		
@@ -281,7 +281,7 @@ class projectmanager_so extends so_sql_cf
 		}
 		if ($join !== false)	// add acl-join, to get role_acl of current user
 		{
-			$join = $this->acl_join;
+			$join = $join === true ? $this->acl_join : $join . $this->acl_join;
 
 			$extra_cols = array_merge($extra_cols,array(
 				$this->table_name.'.pm_id AS pm_id',
