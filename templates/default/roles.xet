@@ -9,7 +9,7 @@
 				</menulist>
 				<description no_lang="1" align="right" id="msg" class="message"/>
 			</hbox>
-			<grid>
+			<grid width="100%">
 				<columns>
 					<column/>
 					<column/>
@@ -20,7 +20,7 @@
 					<column/>
 					<column/>
 					<column/>
-					<column disabled="@view"/>
+					<column width="50px" disabled="@view"/>
 				</columns>
 				<rows>
 					<row class="th">
