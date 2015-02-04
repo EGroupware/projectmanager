@@ -515,7 +515,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			egw_json_response::get()->call('egw.message',lang('Editing timesheets is not supported, edit the entry directly'), 'error');
 			return;
 		}
-		if(class_exists('stylite_projectmanager_gantt'))
+		if(class_exists('stylite_projectmanager_gantt') && $params['datasource_update'])
 		{
 			$handled = stylite_projectmanager_gantt::ajax_update($values, $mode, $params);
 			if($handled) return;
