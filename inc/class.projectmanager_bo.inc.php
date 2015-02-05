@@ -623,10 +623,6 @@ class projectmanager_bo extends projectmanager_so
 		{
 			$access = false;
 		}
-		elseif ($required & EGW_ACL_READ)	// read-rights are implied by all other rights
-		{
-			$access = $rights != 0;
-		}
 		else
 		{
 			if ($required == EGW_ACL_BUDGET) $required |= EGW_ACL_EDIT_BUDGET;	// EDIT_BUDGET implies BUDGET

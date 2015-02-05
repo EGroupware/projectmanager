@@ -457,6 +457,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			return 0;
 		}
+		if(!$this->project->check_acl(EGW_ACL_READ, $this->pm_id))
+		{
+			return 0;
+		}
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
