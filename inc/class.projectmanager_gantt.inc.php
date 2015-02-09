@@ -574,10 +574,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$pm_bo = new projectmanager_bo((int)$values['pm_id']);
 			$keys = array('pm_overwrite' => $update_mask | $pm_bo->data['pm_overwrite']);
 			$keys['pm_completion'] = (int)($values['progress'] * 100).'%';
-			if(array_key_exists('duration', $values))
-			{
-				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'];
-			}
 			if(array_key_exists('start_date', $values))
 			{
 				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = egw_time::to($values['start_date'],'ts');
