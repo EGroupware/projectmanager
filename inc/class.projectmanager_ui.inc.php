@@ -489,7 +489,7 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$query_in['order'] = 'pm_'.substr($query_in['order'], 3);
 		}
-		if (!$this->db->get_column_attribute($query_in['order'], $this->table_name))
+		if (!$this->db->get_column_attribute($query_in['order'], $this->table_name,'projectmanager'))
 		{
 			$query_in['order'] = 'pm_modified';
 		}
