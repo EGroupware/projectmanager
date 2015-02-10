@@ -671,7 +671,15 @@ class projectmanager_bo extends projectmanager_so
 	{
 		if (!is_array($entry))
 		{
+			$pm_id = $entry;
 			$entry = $this->read( $entry );
+
+			// Even though ADD_TIMESHEET means no read, we let them
+			// see the title
+			if(!$entry && $this->check_acl(EGW_ACL_ADD_TIMESHEET, $pm_id))
+			{
+				$entry = $this->data;
+			}
 		}
 		if (!$entry)
 		{
@@ -691,8 +699,10 @@ class projectmanager_bo extends projectmanager_so
 	function link_titles( array $ids )
 	{
 		$titles = array();
+			error_log(__METHOD__);
 		if (($projects = $this->search(array('pm_id' => $ids),'pm_number,pm_title')))
 		{
+			error_log(array2string($projects));
 			foreach($projects as $project)
 			{
 				$titles[$project['pm_id']] = $this->link_title($project);
