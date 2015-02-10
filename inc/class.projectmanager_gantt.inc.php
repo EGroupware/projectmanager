@@ -119,6 +119,12 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
 		
+		// Allow Stylite extensions a chance
+		if(class_exists('stylite_projectmanager_gantt'))
+		{
+			stylite_projectmanager_gantt::chart($template, $data, $sel_options, $readonlys);
+		}
+
 		$template->exec('projectmanager.projectmanager_gantt.chart', $data, $sel_options, $readonlys);
 	}
 
@@ -417,7 +423,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$pe['end_date'] = egw_time::to($pe['pe_real_end'], egw_time::DATABASE);
 				$pe['planned_end'] = egw_time::to((int)$pe['pe_planned_end'], egw_time::DATABASE);
 			}
-			$pe['progress'] = ((int)substr($this->project->data['pe_completion'],0,-1))/100;
+			$pe['progress'] = ((int)substr($pe['pe_completion'],0,-1))/100;
 			$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
 
 			// Set field for filter to filter on
@@ -477,10 +483,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	/**
 	 * User updated start date or duration from gantt chart
 	 */
-	public static function ajax_update($values, $params)
+	public static function ajax_update($values, $mode, $params)
 	{
-		egw_json_response::get()->call('egw.message',lang('%1 not updated.  Editing coming soon.', lang($values['pe_app'])), 'warning');
-		return;
 		if($params['planned_times'] == 'false') $params['planned_times'] = false;
 
 		// Sub project - handle as project, or a tree loop might occur
@@ -511,9 +515,9 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			egw_json_response::get()->call('egw.message',lang('Editing timesheets is not supported, edit the entry directly'), 'error');
 			return;
 		}
-		if(class_exists('stylite_projectmanager_gantt'))
+		if(class_exists('stylite_projectmanager_gantt') && $params['datasource_update'])
 		{
-			$handled = stylite_projectmanager_gantt::ajax_update($values, $params);
+			$handled = stylite_projectmanager_gantt::ajax_update($values, $mode, $params);
 			if($handled) return;
 		}
 		else if(!$GLOBALS['egw_info']['user']['preferences']['projectmanager']['skip_stylite_warning'])
@@ -541,7 +545,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$update_mask = $update_mask | $pe_bo->data['pe_overwrite'];
 			$keys = array('pe_overwrite' => $update_mask);
 			$keys['pe_completion'] = (int)($values['progress'] * 100).'%';
-			if(array_key_exists('duration', $values))
+			if($mode == 'resize' && array_key_exists('duration', $values))
 			{
 				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'];
 			}
@@ -570,10 +574,6 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$pm_bo = new projectmanager_bo((int)$values['pm_id']);
 			$keys = array('pm_overwrite' => $update_mask | $pm_bo->data['pm_overwrite']);
 			$keys['pm_completion'] = (int)($values['progress'] * 100).'%';
-			if(array_key_exists('duration', $values))
-			{
-				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'used') .'_time'] = $values['duration'];
-			}
 			if(array_key_exists('start_date', $values))
 			{
 				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = egw_time::to($values['start_date'],'ts');

@@ -52,4 +52,18 @@
 			</gantt>
 		</vbox>
 	</template>
+	<template id="projectmanager.gantt.edit" template="" lang="" group="0" version="1.9.001">
+		<textbox readonly="true" label="Change the following details of '%s'" id="pe_title"/>
+		<grid id="fields" width="100%">
+			<columns><column/><column/><column/><column/></columns>
+			<rows>
+				<row>
+					<description id="${row}[label]"/>
+					<description id="${row}[old_value]"/>
+					<description value="=>" no_lang="true"/>
+					<description id="${row}[new_value]"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
 </overlay>
