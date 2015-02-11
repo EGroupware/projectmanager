@@ -32,6 +32,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 		'add'    => EGW_ACL_ADD,
 		'budget' => EGW_ACL_BUDGET,
 		'edit_budget' => EGW_ACL_EDIT_BUDGET,
+		'add_timesheet' => EGW_ACL_ADD_TIMESHEET
 	);
 	/**
 	 * Instance of the boprojectmanger class

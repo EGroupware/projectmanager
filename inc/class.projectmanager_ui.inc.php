@@ -79,16 +79,39 @@ class projectmanager_ui extends projectmanager_bo
 	 */
 	public function index(array $content = null)
 	{
-		$this->pm_list();
+		// Check ACL first, no read access will trigger redirects
+		if ((int) $_REQUEST['pm_id'])
+		{
+			$pm_id = (int) $_REQUEST['pm_id'];
+			// store the current project (only for index, as popups may be called by other parent-projects)
+		}
+		else if ($_GET['pm_id'])
+		{
+			// AJAX requests have pm_id only in GET, not REQUEST
+			$pm_id = (int)$_GET['pm_id'];
+		}
+		else
+		{
+			$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
+		}
+		if(!$this->check_acl(EGW_ACL_READ,$pm_id))
+		{
+			$pm_id = $_GET['pm_id'] = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = 0;
 
-		$element_list = new projectmanager_elements_ui();
-		$element_list->index();
+		}
+		if($this->check_acl(EGW_ACL_READ, $pm_id))
+		{
+			$this->pm_list();
 
-		$gantt = new projectmanager_gantt();
-		$gantt->chart();
+			$element_list = new projectmanager_elements_ui();
+			$element_list->index();
 
-		$prices = new projectmanager_pricelist_ui();
-		$prices->index();
+			$gantt = new projectmanager_gantt();
+			$gantt->chart();
+
+			$prices = new projectmanager_pricelist_ui();
+			$prices->index();
+		}
 	}
 
 	/**
@@ -525,6 +548,14 @@ class projectmanager_ui extends projectmanager_bo
 		$readonlys = array();
 		foreach($rows as &$row)
 		{
+			// Hide as much as possible for users without read access, but still have other permissions
+			if(!$this->check_acl(EGW_ACL_READ,$row['pm_id']))
+			{
+				foreach($row as $key => &$value)
+				{
+					if(!in_array($key, array('pm_id','pm_number','pm_title'))) $value = '';
+				}
+			}
 			if (!$this->check_acl(EGW_ACL_EDIT,$row))
 			{
 				$row['class'] .= ' rowNoEdit';

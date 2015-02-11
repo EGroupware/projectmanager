@@ -245,7 +245,9 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				$this->data['pe_status']= 'new';
 			}
 			// if user linking has no ADD rights, the entry is set to ignored
-			if (!$this->check_acl(EGW_ACL_ADD,array('pm_id'=>$pm_id)))
+			if (!$this->check_acl(EGW_ACL_ADD,array('pm_id'=>$pm_id)) && !
+				($this->check_acl(EGW_ACL_ADD_TIMESHEET, array('pm_id'=>$pm_id)) && $app == 'timesheet')
+			)
 			{
 				$this->data['pe_status']= 'ignore';
 			}

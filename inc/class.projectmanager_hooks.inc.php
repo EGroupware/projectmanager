@@ -151,22 +151,27 @@ class projectmanager_hooks
 				'Projectlist' => egw::link('/index.php',array(
 					'menuaction' => 'projectmanager.projectmanager_ui.index',
 					'ajax' => 'true',
-				)),
-				array(
-					'text' => 'Elementlist',
-					'link' =>  egw::link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_ui.index',
-						'ajax' => 'true',
-					)),
-				),
-				array(
-					'text' => 'Gantt chart',
-					'link' =>  egw::link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_ui.index',
-						'ajax' => 'true',
-					)),
-				)
+				))
 			);
+			if($GLOBALS['projectmanager_bo']->check_acl(EGW_ACL_READ))
+			{
+				$file += array(
+					array(
+						'text' => 'Elementlist',
+						'link' =>  egw::link('/index.php',array(
+							'menuaction' => 'projectmanager.projectmanager_ui.index',
+							'ajax' => 'true',
+						)),
+					),
+					array(
+						'text' => 'Gantt chart',
+						'link' =>  egw::link('/index.php',array(
+							'menuaction' => 'projectmanager.projectmanager_ui.index',
+							'ajax' => 'true',
+						)),
+					)
+				);
+			}
 			// show pricelist menuitem only if we use pricelists
 			if (!self::$config['accounting_types'] || in_array('pricelist',(is_array(self::$config['accounting_types'])?self::$config['accounting_types']:explode(',',self::$config['accounting_types']))))
 			{

@@ -12,6 +12,7 @@
 
 define('EGW_ACL_BUDGET',EGW_ACL_CUSTOM_1);
 define('EGW_ACL_EDIT_BUDGET',EGW_ACL_CUSTOM_2);
+define('EGW_ACL_ADD_TIMESHEET', EGW_ACL_CUSTOM_3);
 
 /**
  * General business object of the projectmanager
@@ -552,7 +553,7 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * Rights are given via owner grants or role based acl
 	 *
-	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE, EGW_ACL_BUDGET, EGW_ACL_EDIT_BUDGET
+	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_ADD_TIMESHEET, EGW_ACL_DELETE, EGW_ACL_BUDGET, EGW_ACL_EDIT_BUDGET
 	 * @param array|int $data=null project or project-id to use, default the project in $this->data
 	 * @param boolean $no_cache=false should a cached value be used, if availible, or not
 	 * @param int $user=null for which user to check, default current user
@@ -622,9 +623,9 @@ class projectmanager_bo extends projectmanager_so
 		{
 			$access = false;
 		}
-		elseif ($required & EGW_ACL_READ)	// read-rights are implied by all other rights
+		elseif ($required & EGW_ACL_READ)       // read-rights are implied by all other rights, but EGW_ACL_ADD_TIMESHEET
 		{
-			$access = $rights != 0;
+			$access = (boolean) ($rights & ~EGW_ACL_ADD_TIMESHEET);
 		}
 		else
 		{
@@ -633,7 +634,7 @@ class projectmanager_bo extends projectmanager_so
 			$access = (boolean) ($rights & $required);
 		}
 		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message(__METHOD__."($required,pm_id=$pm_id,$no_cache,$user) rights=$rights returning ".array2string($access));
-		//error_log(__METHOD__."($required) pm_id=$pm_id, data[pm_access]=".(is_array($data) ? array2string($data['pm_access']) : 'data='.array2string($data))." returning ".array2string($access));
+		error_log(__METHOD__."($required) pm_id=$pm_id, data[pm_access]=".(is_array($data) ? array2string($data['pm_access']) : 'data='.array2string($data))." returning ".array2string($access));
 		return $access;
 	}
 
