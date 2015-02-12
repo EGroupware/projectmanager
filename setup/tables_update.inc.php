@@ -435,3 +435,19 @@ function projectmanager_upgrade1_9_004()
 {
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '14.1';
 }
+
+/**
+ * Add "External" role with ADD_TIMESHEET ACL
+ *
+ * @return type
+ */
+function projectmanager_upgrade14_1()
+{
+	$GLOBALS['egw_setup']->oProc->insert('egw_pm_roles',array(
+		'role_title'       => 'External',
+		'role_description' => 'Add timesheet only',
+		'role_acl'         => 256,
+	), false, __LINE__, __FILE__, 'projectmanager');
+
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '14.2';
+}
