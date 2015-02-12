@@ -28,6 +28,7 @@ add price	projectmanager	en	Add price
 add project	projectmanager	en	Add project
 add project-elements	projectmanager	en	Add project elements
 add this role	projectmanager	en	Add this role
+add timesheet only	projectmanager	en	Add timesheet only
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	en	Address book elements of a project can be used to define individual serial letter recipients. Available fields are
 addressbook fields	projectmanager	en	Address book fields
 all roles	projectmanager	en	All roles
@@ -162,6 +163,7 @@ export definition to use for nextmatch export (elements)	projectmanager	en	Expor
 export definition to use for nextmatch export (projects)	projectmanager	en	Export definition to use for nextmatch export (Projects)
 exports a list of project elements to a csv file.	projectmanager	en	Exports a list of project elements to a CSV file.
 exports a list of projects to a csv file.	projectmanager	en	Exports a list of projects to a CSV file.
+external	projectmanager	en	External
 favorites	projectmanager	en	Favorites
 fields for element roles:	projectmanager	en	Fields for element roles:
 fieldseparator	projectmanager	en	Field separator

@@ -28,6 +28,7 @@ add price	projectmanager	de	Preis hinzufügen
 add project	projectmanager	de	Projekt hinzufügen
 add project-elements	projectmanager	de	Projektelemente hinzufügen
 add this role	projectmanager	de	Diese Rolle hinzufügen
+add timesheet only	projectmanager	de	Nur Stundenzettel hinzufügen
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	de	Adressen, die einem Projekt zugewiesen sind, können als Empfänger eines individuellen Serienbriefs definiert werden
 addressbook fields	projectmanager	de	Felder der Adressverwaltung
 all roles	projectmanager	de	Rolle hinzufügen
@@ -160,6 +161,7 @@ exists	projectmanager	de	besteht bereits
 exit without saving	projectmanager	de	Abbrechen ohne zu Speichern
 exports a list of project elements to a csv file.	projectmanager	de	Exportiert eine Liste von Projekt Elementen als CSV-Datei.
 exports a list of projects to a csv file.	projectmanager	de	Exportiert eine Liste von Projekte als CSV-Datei.
+external	projectmanager	de	Externer Mitarbeiter
 favorites	projectmanager	de	Favoriten
 fields for element roles:	projectmanager	de	Platzhalter für Element-Rollen
 fieldseparator	projectmanager	de	Feldtrenner
