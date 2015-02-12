@@ -221,7 +221,7 @@ class projectmanager_so extends so_sql_cf
 	{
 		$extra_cols[] = $this->db->group_concat('resources.member_uid').' as resources';
 		$join .= ' LEFT JOIN egw_pm_members as resources ON resources.pm_id = egw_pm_projects.pm_id ';
-		
+
 		if($query['col_filter']['resources'])
 		{
 			// Expend to include any qroups selected user(s) are in
@@ -240,7 +240,7 @@ class projectmanager_so extends so_sql_cf
 			$query['col_filter'][] = 'resources.member_uid IN ('.implode(', ',$members).' ) ';
 			unset($query['col_filter']['resources']);
 		}
-		
+
 		$query['order'] = ' GROUP BY egw_pm_projects.pm_id ORDER BY '. $query['order'] ;
 		return parent::get_rows($query, $rows, $readonlys, $join, $need_full_no_count,	$only_keys, $extra_cols);
 	}
@@ -301,7 +301,7 @@ class projectmanager_so extends so_sql_cf
 			// include an ACL filter for read-access
 			$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
 				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
-				($join == $this->acl_join ? ' OR '.$this->acl_extracol.'!=0' : '').')';
+				' OR '.$this->acl_extracol.'!=0)';
 
 			// only add role-acl column if we NOT already group by something (eg. stylite.links for PM groups by it's hash)
 			if (stripos($order_by, 'GROUP BY') === false)
