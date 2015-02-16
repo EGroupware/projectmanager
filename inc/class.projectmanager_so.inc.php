@@ -219,8 +219,8 @@ class projectmanager_so extends so_sql_cf
 	 */
 	public function get_rows($query, &$rows, &$readonlys, $join = '', $need_full_no_count = false, $only_keys = false, $extra_cols = array())
 	{
-		$extra_cols[] = $this->db->group_concat('resources.member_uid').' as resources';
-		$join .= ' LEFT JOIN egw_pm_members as resources ON resources.pm_id = egw_pm_projects.pm_id ';
+		$extra_cols[] = $this->db->group_concat('resources.member_uid').' AS resources';
+		$join .= ' LEFT JOIN egw_pm_members AS resources ON resources.pm_id = egw_pm_projects.pm_id ';
 
 		if($query['col_filter']['resources'])
 		{
