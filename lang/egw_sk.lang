@@ -41,6 +41,7 @@ apply the changes	projectmanager	sk	Uplatniť zmeny
 archive	projectmanager	sk	Archív
 assistant	projectmanager	sk	Pomocník
 at which time do you start working on the given day.	projectmanager	sk	Kedy začína Váš pracovný čas v daný deň?
+availability settings	projectmanager	sk	Nastavenia dostupnosti
 available fields for this plugin:	projectmanager	sk	Dostupné polia pre tento zásuvný modul:
 availible	projectmanager	sk	Dostupné
 billable	projectmanager	sk	účtovateľné
@@ -77,6 +78,7 @@ csv-import	common	sk	CSV-Import
 cumulated elements too	projectmanager	sk	Taktiež aj kumulované prvky
 custom fields	projectmanager	sk	Vlastné polia
 customer title	projectmanager	sk	Meno klienta
+data exchange settings	projectmanager	sk	Nastavenia pre výmenu údajov
 datasource	projectmanager	sk	Zdroj dát
 datasources too	projectmanager	sk	Vrátane zdrojov dát
 dates	projectmanager	sk	Dátumy
@@ -119,6 +121,7 @@ element role title	projectmanager	sk	Názov úlohy v prvku
 element roles	projectmanager	sk	Úlohy v prvku
 element roles defined as "mutliple" can be used here.	projectmanager	sk	Dajú sa použiť úlohy v prvku označené ako "viacero".
 element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	sk	Funkcia úloh v prvku v súčasnosti nie je zapnutá v globálnom nastavení Projektovníka.
+element roles:	projectmanager	sk	Role prvku:
 element status	projectmanager	sk	Stav prvku
 element title	projectmanager	sk	Názov prvku
 elementlist	projectmanager	sk	Zoznam prvkov
@@ -155,6 +158,8 @@ existing data will be overwrited if checked	projectmanager	sk	Ak to označíte, 
 existing links	projectmanager	sk	Existujúce odkazy
 exists	projectmanager	sk	Existuje.
 exit without saving	projectmanager	sk	Skončiť bez uloženia
+export definition to use for nextmatch export (elements)	projectmanager	sk	Exportná definícia (Prvky)
+export definition to use for nextmatch export (projects)	projectmanager	sk	Exportná definícia (Projekty)
 exports a list of project elements to a csv file.	projectmanager	sk	Exportuje zoznam prvkov projektu do súboru CSV.
 exports a list of projects to a csv file.	projectmanager	sk	Exportuje zoznam projektov do súboru CSV.
 favorites	projectmanager	sk	Obľúbené
@@ -175,6 +180,7 @@ ganttchart parameter	projectmanager	sk	Parameter postupového diagramu
 general availibility	projectmanager	sk	Všeobecná dostupnosť
 general fields:	projectmanager	sk	Všeobecné polia:
 general pricelist	projectmanager	sk	Všeobecný cenník
+general settings	projectmanager	sk	Všeobecné nastavenia
 global categories	projectmanager	sk	Globálne kategórie
 h	projectmanager	sk	h
 health	projectmanager	sk	Zdravie
@@ -182,6 +188,7 @@ hours	projectmanager	sk	hodín
 hours per workday	projectmanager	sk	Hodín pracovného dňa
 how long do you work on the given day.	projectmanager	sk	Koľko hodín pracujete v daný deň.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke: Strom ponúka lepší prehľad, výberové okno zase lepší výkon.
+html link to the current record	projectmanager	sk	HTML odkaz na aktuálny záznam
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) sa tiež odstránia.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
@@ -196,6 +203,7 @@ last sync date and time	projectmanager	sk	Dátum a čas poslednej synchronizáci
 leave it empty if you dont need a different customer title	projectmanager	sk	Ponechajte prázdne, ak nepotrebujete odlišné meno klienta
 leave it empty to have one generated	projectmanager	sk	ponechajte prázdne, ak chcete aby sa automaticky pridelilo
 leave it empty, if identitcal to the time	projectmanager	sk	ponechajte prázdne, ak je totožné s týmto časom
+limit number of characters in ganttchart element title (0 for no limit)	projectmanager	sk	Obmedziť počet znakov v nadpise priebehového diagramu (0 = bez obmedzení)
 linked elements	projectmanager	sk	Odkazované prvky
 links	projectmanager	sk	Odkazy
 links and attached files	projectmanager	sk	Odkazy a priložené súbory
@@ -226,13 +234,16 @@ no accounting, only status	projectmanager	sk	Bez účtovania, iba stav
 no accounting, only times and status	projectmanager	sk	Bez účtovania, iba časy a stav
 no details	projectmanager	sk	bez podrobností
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	sk	Nemáte prístup na ČÍTANIE zo zdroja dát: odstránenie prepísaných hodnôt ich len vyprázdni!!!
+no rights to export more then %1 entries!	projectmanager	sk	Nemáte oprávnenie exportovať viac než %1 položiek!
 no save necessary	projectmanager	sk	uloženie nie je nevyhnutné
 nonactive	projectmanager	sk	Neaktívne
 not available	projectmanager	sk	Nedostupné
 not started (0%)	projectmanager	sk	Nezačaté (0%)
 not working	projectmanager	sk	nepracuje sa
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	sk	Počet znakov na ktorý sa má skrátiť nadpis priebehového diagramu.
 number of records to read (%1)	projectmanager	sk	Počet záznamov, ktoré sa majú načítať (%1)
 only this project	projectmanager	sk	Iba tento projekt
+order of sub-project bars in ganttcharts	projectmanager	sk	Poradie podprojektov v priebehových diagramoch
 overwrite the datasource	projectmanager	sk	Prepísať zdroj dát
 percentage the member is availible for projects	projectmanager	sk	Na koľko percent je člen dostupný pre projekty
 percentage the member is availible for this project	projectmanager	sk	Na koľko percent je člen dostupný pre tento projekt
@@ -255,6 +266,7 @@ price deleted	projectmanager	sk	Cena bola odstránená
 price per unit	projectmanager	sk	Cena za jednotku
 price saved	projectmanager	sk	Cena bola uložená
 pricelist	projectmanager	sk	Cenník
+project	common	sk	Projekt
 project access (e.g. public)	projectmanager	sk	Prístup k projektu, napr. verejný
 project availibility	projectmanager	sk	Dostupnosť pre projekt
 project category	projectmanager	sk	Kategória projektu
@@ -315,17 +327,25 @@ select multiple projects for a further action	projectmanager	sk	Vyberte viacero 
 select the accounting types visible for users of projectmanager	projectmanager	sk	vyberte typy účtovania viditeľné pre používateľov Projektovníka
 select this project and show it's elements	projectmanager	sk	Vybrať tento projekt a zobraziť jeho prvky
 selectbox with %1	projectmanager	sk	Výberové okno s %1
+set order to show sub-project bars in ganttcharts.	projectmanager	sk	Nastavenie poradia zobrazenia riadkov podprojektov v priebehových diagramoch.
 share	projectmanager	sk	Podiel
 share on the whole project	projectmanager	sk	Podiel na celom projekte
 share on the whole project in hours or percent, defaults to planned time	projectmanager	sk	Podiel na celom projekte v hodinách alebo percentách, predvolene je to plánovaný čas
 shared time in minutes	projectmanager	sk	Zdieľaný čas v minútach
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	sk	Zobrazovať v zozname prvkov projektu vyhradené ikony pre typy Záznamníka? Ikony pre používateľské typy Záznamníka sa dajú pridať na tej ceste VFS, kde sa nachádzajú ďalšie obrázky, ikony alebo logá (pozrite Konfiguráciu stránky). Keď sa ikony s rozmerom 32x32 pixelov odovzdajú s názvom súboru obsahujúcim '_element', táto väčšia ikona sa použije v zozname prvkov.
+should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	sk	Zobrazovať v zozname prvkov projektu odkazy na iné aplikácie a/alebo prílohy? (len pri zobrazení s podrobnosťami)
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	sk	Zobrazovať v Projektovníku ikonu stavu zdroja dát (napr. Záznamníka) alebo len ukazovateľ stavu s číselným vyjadrením (toto je rýchlejšie).
-show constraints and milestones	projectmanager	sk	Zobraziť obmedzenia a medzníky
-show planned times instead of the real times	projectmanager	sk	Zobraziť plánované časy namiesto skutočných
-show status icons of the datasources	projectmanager	sk	Zobraziť ikonu stavu zdrojov údajov
-show the project selection as	projectmanager	sk	Zobraziť výber projektov ako
+show constraints and milestones	projectmanager	sk	Zobrazovať obmedzenia a medzníky
+show elements in ganttchart by applications	projectmanager	sk	Zobrazovať prvky v priebehovom diagrame podľa aplikácií
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	sk	Zobrazovať prvky v priebehovom diagrame podľa aplikácií z ktorých pochádzajú (prázdne = všetky)
+show infolog type icon in the project elements list	projectmanager	sk	Zobrazovať v zozname prvkov projektu ikony typu Záznamníka
+show links in the project elements list	projectmanager	sk	Zobrazovať v zozname prvkov projektu odkazy
+show planned times instead of the real times	projectmanager	sk	Zobrazovať plánované časy namiesto skutočných
+show status icons of the datasources	projectmanager	sk	Zobrazovať ikonu stavu zdrojov údajov
+show the project selection as	projectmanager	sk	Zobrazovať výber projektov ako
 site configuration saved	projectmanager	sk	Nastavenia stránky boli uložené
 start after	projectmanager	sk	Začať po
+start date, end date	projectmanager	sk	Dátum začiatku, konca
 start working on %1	projectmanager	sk	Začať prácu na %1
 start, end, category, ...	projectmanager	sk	Začiatok, koniec, kategória, ...
 start- & enddate	projectmanager	sk	Dátumy začiatku a konca
@@ -358,9 +378,11 @@ title contains invalid characters (use a-z, numbers, dash and underscore)	projec
 title must not be empty	projectmanager	sk	Názov nesmie byť prázdny
 titles of any entries linked to the current record, excluding attached files	projectmanager	sk	Názvy akýchkoľvek položiek pripojených na súčasný záznam, okrem priložených súborov
 to many might exceed your execution-time-limit	projectmanager	sk	Príliš veľa záznamov môže spôsobiť prekročenie povoleného časového limitu
+total completion shares	projectmanager	sk	Podiel hotových celkovo
 total shares	projectmanager	sk	Podielov celkovo
 translation	projectmanager	sk	Preklad
 tree with %1	projectmanager	sk	Strom s %1
+unable to find parent project %1	projectmanager	sk	Rodičovský projekt %1 sa nenašiel
 unit	projectmanager	sk	Jednotka
 unitprice	projectmanager	sk	Cena za jednotku
 usage	projectmanager	sk	Využitie
