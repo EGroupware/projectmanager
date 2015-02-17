@@ -26,6 +26,8 @@ add price	projectmanager	fr	Ajouter un prix
 add project	projectmanager	fr	Ajouter un projet
 add project-elements	projectmanager	fr	Ajouter des éléments de projet
 add this role	projectmanager	fr	Ajouter ce rôle
+addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	fr	Les éléments de carnet d'adresses d'un projet peuvent être utilisés pour définir des destinataires de publipostage. Les champs disponibles sont
+addressbook fields	projectmanager	fr	Champs du carnet d'adresses
 all roles	projectmanager	fr	Tous les rôles
 all_roles	projectmanager	fr	Tous les rôles
 allow users to change their working times	projectmanager	fr	Autoriser les utilisateurs à changer leurs horaires de travail
@@ -47,13 +49,16 @@ budget (no pricelist)	projectmanager	fr	Budget (sans liste de prix)
 budget and pricelist	projectmanager	fr	Budget et liste de prix
 by	projectmanager	fr	par
 calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le budget par quantité (p.ex. temps) et prix
+category in %1 project-element(s) updated.	projectmanager	fr	Catégorie mise à jour dans %1 élément(s)
 category set	projectmanager	fr	Catégorie définie
 change category	projectmanager	fr	Changer la catégorie
 charset of file	projectmanager	fr	Jeu de caractères du fichier
 charset of the above selected font	projectmanager	fr	Jeu de caractères de la police sélectionnée ci-dessus
 check all	projectmanager	fr	Tout cocher
 close the window, discard the changes made	projectmanager	fr	Fermer la fenêtre en ignorant les modifications
+completion	projectmanager	fr	Autocomplétion
 constraints	projectmanager	fr	Contraintes
+contact fields for serial letters	projectmanager	fr	Champs du contacts puor le publipostage
 conversation between days and hours, default 8	projectmanager	fr	conversion entre jours et heures, par défaut 8
 coordinator	projectmanager	fr	Coordinateur
 cost per time	projectmanager	fr	Coût Temporel
@@ -71,6 +76,7 @@ custom fields	projectmanager	fr	Champs personnalisés
 customer title	projectmanager	fr	Titre client
 data exchange settings	projectmanager	fr	Paramètres d'échange de données
 datasource	projectmanager	fr	Source de données
+datasources too	projectmanager	fr	Les sources de données aussi
 dates	projectmanager	fr	Dates
 days	projectmanager	fr	jours
 default all and a selectbox to choose	projectmanager	fr	par défaut tous et une boîte de sélection pour choisir
@@ -99,6 +105,18 @@ edit this price	projectmanager	fr	Modifier ce prix
 edit this project	projectmanager	fr	Modifier ce projet
 edit this project-element	projectmanager	fr	Modifier cet élément de projet
 edit this role	projectmanager	fr	Modifier ce rôle
+element category	projectmanager	fr	Catégorie de l'élément
+element details	projectmanager	fr	Détails de l'élément
+element id	projectmanager	fr	ID de l'élément
+element list	projectmanager	fr	Liste d'éléments
+element modifier	projectmanager	fr	Modifié par
+element role deleted	projectmanager	fr	Rôle supprimé.
+element role saved	projectmanager	fr	Rôle sauvegardé.
+element role title	projectmanager	fr	Titre du rôle
+element roles	projectmanager	fr	Rôles
+element roles:	projectmanager	fr	Rôles
+element status	projectmanager	fr	Statut de l'élément
+element title	projectmanager	fr	Titre de l'élément
 elementlist	projectmanager	fr	Liste d'éléments
 elements	projectmanager	fr	Eléments
 elements of elements	projectmanager	fr	Eléments d'éléments
@@ -106,6 +124,7 @@ elements that can't start before this one is finished	projectmanager	fr	Elément
 elements which have to be finished before this can start	projectmanager	fr	Eléments ne pouvant être terminés avant que celui-ci ne commence
 empty	projectmanager	fr	Vide
 empty for all	projectmanager	fr	vide pour tous
+encode non-ascii	projectmanager	fr	Encodage non-ascii
 end before	projectmanager	fr	Fin avant
 enddate	projectmanager	fr	Date de fin
 error: deleting price !!!	projectmanager	fr	Erreur: suppression du prix !!!
@@ -119,10 +138,17 @@ error: saving the price (%1) !!!	projectmanager	fr	Erreur: enregistrement du rô
 error: saving the project (%1) !!!	projectmanager	fr	Erreur: enregistrement du projet (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	fr	Erreur: enregistrement de l'élément de projet (%1) !!!
 everything recursive	projectmanager	fr	Tout récursif
+example:	projectmanager	fr	Exemple :
+examples:	projectmanager	fr	Exemples :
+existing data will be overwrited if checked	projectmanager	fr	Les données existantes seront écrasées si coché.
 existing links	projectmanager	fr	Liens existants
 exists	projectmanager	fr	Existe
 exit without saving	projectmanager	fr	Quitter sans enregistrer
+favorites	projectmanager	fr	Favoris
 fieldseparator	projectmanager	fr	Séparateur de champs
+font	projectmanager	fr	Police
+font charset	projectmanager	fr	Charset de police
+font style	projectmanager	fr	Style de police
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	fr	Pour les lettres en série utiliser cette balise. Placer le contenu que vous voulez répéter entre deux balises.
 free descriptiv text	projectmanager	fr	Descriptif libre
 from %1 to %2	projectmanager	fr	de %1 à %2
@@ -172,12 +198,14 @@ name of current user, all other contact fields are valid too	projectmanager	fr	N
 necessary for project-elements doing that not automatic	projectmanager	fr	nécessaire pour les éléments de projet ne le faisant pas automatiquement
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fr	Les extensions PHP nécessaires %1 ne sont pas chargées et ne peuvent pas l'être !!!
 new	projectmanager	fr	Nouveau
+new project submitted by %1 at %2	projectmanager	fr	Nouveau projet soumis par %1 à %2
 no accounting, only status	projectmanager	fr	Pas de comptabilité, statut uniquement
 no accounting, only times and status	projectmanager	fr	Pas de comptabilité, temps et statut uniquement
 no details	projectmanager	fr	Pas de détail
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	fr	Aucun droit en LECTURE à la source des données: enlever les valeurs écrasées va juste les vider !!!
 no save necessary	projectmanager	fr	Aucun enregistrement nécessaire
 nonactive	projectmanager	fr	Inactif
+not available	projectmanager	fr	Indisponible
 not started (0%)	projectmanager	fr	Non commencé (0%)
 not working	projectmanager	fr	ne fonctionne pas
 number of records to read (%1)	projectmanager	fr	Nombre d'enregistrements à lire (%1)
@@ -187,14 +215,23 @@ percentage the member is availible for projects	projectmanager	fr	Pourcentage de
 percentage the member is availible for this project	projectmanager	fr	Pourcentage de disponibilité pour ce projet
 permission denied !!!	projectmanager	fr	Permission refusée !!!
 planned	projectmanager	fr	prévu
+planned budget	projectmanager	fr	Budget planifié
+planned end	projectmanager	fr	Fin planifiée
+planned end date and time	projectmanager	fr	Date et heure de fin planifiée
+planned quantitiy	projectmanager	fr	Quantité planifiée
+planned quantity	projectmanager	fr	Quantité planifiée
+planned start	projectmanager	fr	Début planifié
+planned start date and time	projectmanager	fr	Date et heure de début planifié
 planned time	projectmanager	fr	Temps prévu
 planned times	projectmanager	fr	Temps prévus
 please download a recent version from %1 and install it in %2.	projectmanager	fr	Téléchargez une version récente sur %1 et installez-la dans %2.
 price	projectmanager	fr	Prix
 price / unit	projectmanager	fr	Prix / Unité
 price deleted	projectmanager	fr	Prix supprimé
+price per unit	projectmanager	fr	Prix par unité
 price saved	projectmanager	fr	Prix enregistré
 pricelist	projectmanager	fr	Liste de prix
+project	common	fr	Projet
 project availibility	projectmanager	fr	Disponibilité du projet
 project deleted	projectmanager	fr	Projet supprimé
 project id	projectmanager	fr	ID de projet
