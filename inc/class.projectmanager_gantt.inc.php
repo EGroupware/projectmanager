@@ -192,9 +192,9 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'width'=> 300
 			),
 			array(
-				'name' => 'pe_status',
+				'name' => 'pe_completion',
 				'label'=>lang('Status'),
-				'width' => 120,
+				'width' => 60,
 				'hide'=> true
 			),
 			array(
