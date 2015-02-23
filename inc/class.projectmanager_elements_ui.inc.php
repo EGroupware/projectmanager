@@ -461,6 +461,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			return 0;
 		}
+		// Check for filter change, need to get totals
+		$session = egw_cache::getSession('projectmanager', 'projectelements_list');
+		$get_totals = ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
+		
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
@@ -657,9 +661,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$query_in['options-selectcols']['pm_used_budget'] = $query_in['options-selectcols']['pm_planned_budget'] = false;
 		}
 		if ($query['cat_id']) $rows['no_cat_id'] = true;
-		// calculate the filter-specific summary if we have a filter, beside the default pe_status=used=array(new,regular)
-		unset($query['col_filter']['pe_app']); //pe_app should not change summary
-		if (array_diff(array_keys($query['col_filter']),array(0,'pe_status','pm_id')) || !is_array($query['col_filter']['pe_status']))
+		// calculate the filter-specific summary if we have a filter change
+		if ($get_totals)
 		{
 			$totals = $this->summary(null,$query['col_filter']);
 			foreach($totals as $field => $value)
