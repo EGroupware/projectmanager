@@ -247,6 +247,19 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'widget'=>'select-account'
 			)
 		);
+
+		// Apply preferences
+		$pref = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_columns_gantt'];
+		if($pref)
+		{
+			foreach($columns as &$col)
+			{
+				if(in_array($col['name'], $pref))
+				{
+					$col['hide'] = false;
+				}
+			}
+		}
 		return $columns;
 	}
 
