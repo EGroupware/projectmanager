@@ -212,16 +212,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit.history" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%">
-			<columns>
-				<column/>
-			</columns>
-			<rows>
-				<row valign="top">
-					<historylog id="history"/>
-				</row>
-			</rows>
-		</grid>
+		<historylog id="history"/>
 	</template>
 	<template id="projectmanager.edit" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
