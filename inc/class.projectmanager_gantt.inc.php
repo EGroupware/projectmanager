@@ -118,6 +118,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		$template->read('projectmanager.gantt');
 
 		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
+		$template->setElementAttribute('gantt','columns', $this->get_gantt_columns());
 		
 		// Allow Stylite extensions a chance
 		if(class_exists('stylite_projectmanager_gantt'))
@@ -167,6 +168,99 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		unset($actions['documents']);
 
 		return $actions;
+	}
+
+	/**
+	 * Get a list of fields to be offered as options for display in the
+	 * left side of the gantt chart.
+	 * name and label are required.  tree is only for the first column.
+	 * Additionally, width (numeric), hide (boolean), and widget(et2_widget name)
+	 * can be specified to indicate desired width, start hidden, and to try
+	 * to use the specified et2_widget to render the value.
+	 *
+	 * @see http://docs.dhtmlx.com/gantt/api__gantt_columns_config.html
+	 *
+	 * @return array
+	 */
+	protected function get_gantt_columns()
+	{
+		$columns = array(
+			array(
+				'name' => 'text',
+				'label'=> lang('Title'),
+				'tree'=> true,
+				'width'=> 300
+			),
+			array(
+				'name' => 'pe_completion',
+				'label'=>lang('Status'),
+				'width' => 60,
+				'hide'=> true
+			),
+			array(
+				'name' => 'pe_planned_time',
+				'label'=>lang('Planned time'),
+				'width' => 80,
+				'hide'=> true,
+				'widget'=>'date-duration'
+			),
+			array(
+				'name' => 'pe_used_time',
+				'label'=>lang('Used time'),
+				'width' => 80,
+				'hide'=> true,
+				'widget'=>'date-duration'
+			),
+			array(
+				'name' => 'pe_planned_budget',
+				'label'=>lang('Planned budget'),
+				'width' => 80,
+				'align' => 'right',
+				'hide'=> true
+			),
+			array(
+				'name' => 'pe_used_budget',
+				'label'=>lang('Used budget'),
+				'width' => 80,
+				'align' => 'right',
+				'hide'=> true
+			),
+			array(
+				'name' => 'start_date',
+				'label' => lang('Start date'),
+				'width' => 120,
+				'hide'=> true,
+				'widget'=>'date-time'
+			),
+			array(
+				'name' => 'end_date',
+				'label' => lang('End date'),
+				'width' => 120,
+				'hide'=> true,
+				'widget'=>'date-time'
+			),
+			array(
+				'name' => 'pe_resources',
+				'label' => lang('Resources'),
+				'width' => 150,
+				'hide'=> true,
+				'widget'=>'select-account'
+			)
+		);
+
+		// Apply preferences
+		$pref = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_columns_gantt'];
+		if($pref)
+		{
+			foreach($columns as &$col)
+			{
+				if(in_array($col['name'], $pref))
+				{
+					$col['hide'] = false;
+				}
+			}
+		}
+		return $columns;
 	}
 
 	/**
