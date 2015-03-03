@@ -117,7 +117,8 @@ app.classes.projectmanager = AppJS.extend(
 					return false;
 				});
 				// First load, framework could not use our link handler since it wasn't loaded
-				if(!app.projectmanager.linkHandler(egw_getFramework().getApplicationByName('projectmanager').browser.currentLocation))
+				var fw = egw_getFramework();
+				if(fw && !app.projectmanager.linkHandler(fw.getApplicationByName('projectmanager').browser.currentLocation))
 				{
 					this.show('list');
 				}

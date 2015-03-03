@@ -9,8 +9,25 @@
 	overflow-y: auto;
 }
 
-#projectmanager-list .et2_nextmatch .egwGridView_outer tr > td:first-of-type div.innerContainer{ margin-left: 14px;}
-#projectmanager-elements-list .et2_nextmatch .egwGridView_outer tr > td:first-of-type div.innerContainer{ margin-left: 14px;}
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr > td:first-child > div.innerContainer
+{
+	padding-left: 14px;
+	margin-right:-13px;
+}
+
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_1,
+{
+	margin-right:-24px;
+}
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_2,
+{
+	margin-right:-35px;
+}
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_3
+{
+	margin-right:-46px;
+}
+
 
 .planned { font-style: italic; font-size: 95%; }
 #projectmanager-elements-list_link_to {position:relative;width:auto;}
