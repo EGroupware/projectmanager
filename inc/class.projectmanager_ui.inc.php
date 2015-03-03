@@ -517,7 +517,10 @@ class projectmanager_ui extends projectmanager_bo
 			$query_in['order'] = 'pm_modified';
 		}
 
-		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query=$query_in);
+		$query = $query_in;
+		// Don't keep pm_id filter in seesion
+		unset($query_in['col_filter']['pm_id']);
+		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query_in);
 
 		//echo "<p>projectmanager_ui::get_rows(".print_r($query,true).")</p>\n";
 		// save the state of the index in the user prefs
@@ -534,7 +537,6 @@ class projectmanager_ui extends projectmanager_bo
 			// save prefs, but do NOT invalid the cache (unnecessary)
 			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
 		}
-
 		// handle nextmatch filters like col_filters
 		foreach(array('cat_id' => 'cat_id','filter2' => 'pm_status') as $nm_name => $pm_name)
 		{
@@ -542,8 +544,14 @@ class projectmanager_ui extends projectmanager_bo
 			if ($query[$nm_name]) $query['col_filter'][$pm_name] = $query[$nm_name];
 		}
 		$query['col_filter']['subs_or_mains'] = $query['filter'];
+		// Sub-projects
+		if($query['col_filter']['pm_id'])
+		{
+			$query['col_filter']['subs_or_mains'] = $query['col_filter']['pm_id'];
+		}
+		unset($query['col_filter']['pm_id']);
 
-		$total = parent::get_rows($query,$rows,$readonlys,'',true);
+		$total = parent::get_rows($query,$rows,$readonlys,'',true, false, array('children'));
 
 		$readonlys = array();
 		foreach($rows as &$row)
@@ -718,7 +726,9 @@ class projectmanager_ui extends projectmanager_bo
 				'header_row'     => 'projectmanager.list.right',
 				'row_id'         => 'pm_id',
 				'favorites'		=> true,
-				'row_modified'	=> 'pm_modified'
+				'row_modified'	=> 'pm_modified',
+				'is_parent'		=> 'children',
+				'parent_id'		=> 'pm_id'
 			);
 			// use the state of the last session stored in the user prefs
 			if (($state = @unserialize($this->prefs['pm_index_state'])))

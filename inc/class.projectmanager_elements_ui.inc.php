@@ -464,8 +464,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// Check for filter change, need to get totals
 		$session = egw_cache::getSession('projectmanager', 'projectelements_list');
 		$get_totals = ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
-		
-		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
+		$query=$query_in;
+		unset($query_in['col_filter']['parent_id']);
+		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query_in);
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
 		// save the state of the index in the user prefs
@@ -516,25 +517,36 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// dont show the sub-projects
 			$query['col_filter'][] = "link_app1!='projectmanager'";
 		}
+		// Sub-grid queries
+		if($query['col_filter']['parent_id'])
+		{
+			list(,$query['col_filter']['pm_id']) = explode(':',$query['col_filter']['parent_id']);
+			$sub_query = true;
+		}
+		unset($query['col_filter']['parent_id']);
+		
 		// cumulate eg. timesheets in also included infologs
 		$query['col_filter']['cumulate'] = !($query['filter2'] & 4);
 		$total = parent::get_rows($query,$rows,$readonlys,true);
 		unset($query['col_filter']['cumulate']);
 
-		// adding the project itself always as first line
-		$self = $this->update('projectmanager',$this->pm_id);
-		$self['pe_app']    = 'projectmanager';
-		$self['pe_app_id'] = $this->pm_id;
-		$self['pe_icon']   = 'projectmanager/navbar';
-		$self['pe_modified'] = $this->project->data['pm_modified'];
-		$self['pe_modifier'] = $this->project->data['pm_modifier'];
-		$self['link'] = array(
-			'app'=>'projectmanager',
-			'id' => $this->pm_id
-		);
-		$self['class'] = 'th rowNoDelete';
-		$rows = array_merge(array($self),$rows);
-		$total++;
+		// adding the project itself as first line
+		if(!$sub_query)
+		{
+			$self = $this->update('projectmanager',$this->pm_id);
+			$self['pe_app']    = 'projectmanager';
+			$self['pe_app_id'] = $this->pm_id;
+			$self['pe_icon']   = 'projectmanager/navbar';
+			$self['pe_modified'] = $this->project->data['pm_modified'];
+			$self['pe_modifier'] = $this->project->data['pm_modifier'];
+			$self['link'] = array(
+				'app'=>'projectmanager',
+				'id' => $this->pm_id
+			);
+			$self['class'] = 'th rowNoDelete';
+			$rows = array_merge(array($self),$rows);
+			$total++;
+		}
 
 		$readonlys = array();
 		$budget_rights = $this->project->check_acl(EGW_ACL_BUDGET);
@@ -548,12 +560,15 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			{
 				$row['class'] .= ' rowNoDelete';
 			}
+			// Don't show sub triangle for first project (self)
+			$row['is_parent'] = ($row['pe_app'] == 'projectmanager') && ($sub_query ? true: $n );
+			
 			if (!$budget_rights)
 			{
 				unset($row['pe_used_budget']);
 				unset($row['pe_planned_budget']);
 			}
-			if ($n)
+			if ($n || $sub_query)
 			{
 				$row['link'] = array(
 					'app'  => $row['pe_app'],
@@ -907,6 +922,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time,legacy_actions',
 				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
 				'dataStorePrefix' => 'projectmanager_elements',
+				'parent_id'      => 'parent_id',
+				'is_parent'		 => 'is_parent'
 			);
 			// use the state of the last session stored in the user prefs
 			if ($state = @unserialize($this->prefs['pe_index_state']))

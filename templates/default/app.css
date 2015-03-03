@@ -9,6 +9,9 @@
 	overflow-y: auto;
 }
 
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr > td:first-of-type div.innerContainer{ margin-left: 14px;}
+#projectmanager-elements-list .et2_nextmatch .egwGridView_outer tr > td:first-of-type div.innerContainer{ margin-left: 14px;}
+
 .planned { font-style: italic; font-size: 95%; }
 #projectmanager-elements-list_link_to {position:relative;width:auto;}
 #projectmanager-elements-list .nextmatch_header .nm_header {

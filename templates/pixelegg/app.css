@@ -21,6 +21,9 @@
   overflow: hidden;
   overflow-y: auto;
 }
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr > td:first-of-type div.innerContainer {
+  margin-left: 14px;
+}
 .planned {
   font-style: italic;
   font-size: 95%;
