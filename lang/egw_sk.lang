@@ -12,7 +12,7 @@
 - re-planned	projectmanager	sk	-pre-plánované
 0ngoing (0 < % < 100)	projectmanager	sk	Vybavuje sa (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	sk	Opisný názov projektu, nesmie byť prázdny
-accounting	projectmanager	sk	Účtovanie
+accounting	projectmanager	sk	Účtovník
 accounting options	projectmanager	sk	Možnosti účtovania
 accounting type	projectmanager	sk	Typ účtovania
 actions	projectmanager	sk	Akcie
@@ -28,6 +28,7 @@ add price	projectmanager	sk	Pridať cenu
 add project	projectmanager	sk	Pridať projekt
 add project-elements	projectmanager	sk	Pridať prvok projektu
 add this role	projectmanager	sk	Pridať túto úlohu
+add timesheet only	projectmanager	sk	Pridaťlen harmonogram
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	sk	Adresárové prvky projektu sa dajú použiť na určenie adresátov hromadných listov. Dostupné sú polia
 addressbook fields	projectmanager	sk	Polia Adresára
 all roles	projectmanager	sk	Všetky úlohy
@@ -44,8 +45,8 @@ at which time do you start working on the given day.	projectmanager	sk	Kedy zač
 availability settings	projectmanager	sk	Nastavenia dostupnosti
 available fields for this plugin:	projectmanager	sk	Dostupné polia pre tento zásuvný modul:
 availible	projectmanager	sk	Dostupné
-billable	projectmanager	sk	účtovateľné
-bookable	projectmanager	sk	rezervovateľné
+billable	projectmanager	sk	Účtovateľné
+bookable	projectmanager	sk	Rezervovateľné
 budget	projectmanager	sk	Rozpočet
 budget (no pricelist)	projectmanager	sk	Rozpočet (bez cenníka)
 budget and pricelist	projectmanager	sk	Rozpočet a cenník
@@ -63,12 +64,12 @@ close the window, discard the changes made	projectmanager	sk	Zavrieť okno, zaho
 completion	projectmanager	sk	Dokončenosť
 constraints	projectmanager	sk	Obmedzenia
 contact fields for serial letters	projectmanager	sk	Polia kontaktov pre hromadné listy
-conversation between days and hours, default 8	projectmanager	sk	vzťah medzi dňami a hodinami, predvolené: 8
+conversation between days and hours, default 8	projectmanager	sk	Vzťah medzi dňami a hodinami, predvolené: 8
 coordinator	projectmanager	sk	Koordinátor
 cost per time	projectmanager	sk	Cena za čas
 create a new empty project or use a template	projectmanager	sk	Vytvoriť nový prázdny projekt alebo použiť šablónu
 create new links	projectmanager	sk	Vytvoriť nové odkazy
-created	projectmanager	sk	vytvorené
+created	projectmanager	sk	Vytvorené
 created a ganttchart from the checked projects	projectmanager	sk	Vytvorený postupový diagram pre označené projekty
 creation date and time	projectmanager	sk	Dátum a čas vytvorenia
 creator	projectmanager	sk	Tvorca
@@ -83,7 +84,7 @@ datasource	projectmanager	sk	Zdroj dát
 datasources too	projectmanager	sk	Vrátane zdrojov dát
 dates	projectmanager	sk	Dátumy
 days	projectmanager	sk	Dní
-default all and a selectbox to choose	projectmanager	sk	predvolene všetko a výber pomocou ponuky
+default all and a selectbox to choose	projectmanager	sk	Predvolene všetko a výber pomocou ponuky
 delete all checked projects	projectmanager	sk	Odstrániť všetky označené projekty
 delete this milestone	projectmanager	sk	Odstrániť tento medzník
 delete this price	projectmanager	sk	Odstrániť túto cenu
@@ -162,6 +163,7 @@ export definition to use for nextmatch export (elements)	projectmanager	sk	Expor
 export definition to use for nextmatch export (projects)	projectmanager	sk	Exportná definícia (Projekty)
 exports a list of project elements to a csv file.	projectmanager	sk	Exportuje zoznam prvkov projektu do súboru CSV.
 exports a list of projects to a csv file.	projectmanager	sk	Exportuje zoznam projektov do súboru CSV.
+external	projectmanager	sk	Externý
 favorites	projectmanager	sk	Obľúbené
 fields for element roles:	projectmanager	sk	Polia pre role prvku:
 fieldseparator	projectmanager	sk	Oddeľovač polí
@@ -171,9 +173,9 @@ font style	projectmanager	sk	Štýl písma
 font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	sk	Písmo, ktoré sa má použiť v postupovom diagrame. V Projektovníku sú zahrnuté iba písma Vera.
 fontfile '%1' not found!!!	projectmanager	sk	Súbor písma '%1' sa nenašiel!!!
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	sk	Pre hromadnú správu použite túto značku. Obsah, ktorý sa má opakovať, vložte medzi dve takéto značky.
-free descriptiv text	projectmanager	sk	voľný opisný text
-from %1 to %2	projectmanager	sk	od %1 do %2
-full access	projectmanager	sk	plný prístup
+free descriptiv text	projectmanager	sk	Voľný opisný text
+from %1 to %2	projectmanager	sk	Od %1 do %2
+full access	projectmanager	sk	Plný prístup
 furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	sk	Individuálne adresáti hromadnej správy sa dajú definovať výberom prvkov Adresára v zozname prvkov Projektovníka.
 ganttchart	projectmanager	sk	Postupový diagram
 ganttchart parameter	projectmanager	sk	Parameter postupového diagramu
@@ -184,7 +186,7 @@ general settings	projectmanager	sk	Všeobecné nastavenia
 global categories	projectmanager	sk	Globálne kategórie
 h	projectmanager	sk	h
 health	projectmanager	sk	Zdravie
-hours	projectmanager	sk	hodín
+hours	projectmanager	sk	Hodín
 hours per workday	projectmanager	sk	Hodín pracovného dňa
 how long do you work on the given day.	projectmanager	sk	Koľko hodín pracujete v daný deň.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke: Strom ponúka lepší prehľad, výberové okno zase lepší výkon.
@@ -193,7 +195,7 @@ if checked the datasources of the elements (eg. infolog entries) are deleted too
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
 if you specify an export definition, it will be used when you export	projectmanager	sk	Ak zadáte exportnú definíciu, bude sa používať pri exportoch.
-ignore that entry	projectmanager	sk	ignorovať túto položku
+ignore that entry	projectmanager	sk	Ignorovať túto položku
 ignored	projectmanager	sk	Ignorované
 import	projectmanager	sk	Import
 imports a list of projects from a csv file.  does not include project elements.	projectmanager	sk	Naimportuje zoznam projektov zo súboru CSV. Neobsahuje prvky projektu.
@@ -201,8 +203,8 @@ insert	projectmanager	sk	Vložiť
 last modified	projectmanager	sk	Naposledy zmenené
 last sync date and time	projectmanager	sk	Dátum a čas poslednej synchronizácie
 leave it empty if you dont need a different customer title	projectmanager	sk	Ponechajte prázdne, ak nepotrebujete odlišné meno klienta
-leave it empty to have one generated	projectmanager	sk	ponechajte prázdne, ak chcete aby sa automaticky pridelilo
-leave it empty, if identitcal to the time	projectmanager	sk	ponechajte prázdne, ak je totožné s týmto časom
+leave it empty to have one generated	projectmanager	sk	Ponechajte prázdne, ak chcete aby sa automaticky pridelilo
+leave it empty, if identitcal to the time	projectmanager	sk	Ponechajte prázdne, ak je totožné s týmto časom
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	sk	Obmedziť počet znakov v nadpise priebehového diagramu (0 = bez obmedzení)
 linked elements	projectmanager	sk	Odkazované prvky
 links	projectmanager	sk	Odkazy
@@ -226,20 +228,20 @@ modifier	projectmanager	sk	Upravil
 modify status	projectmanager	sk	Upraviť stav
 multi assignments	projectmanager	sk	Viacnásobné priradenia
 name of current user, all other contact fields are valid too	projectmanager	sk	Meno súčasného používateľa, všetky ostatné polia kontaktu sú tiež platné
-necessary for project-elements doing that not automatic	projectmanager	sk	nevyhnutné pre prvky projektu, ktoré to nerobia automaticky
+necessary for project-elements doing that not automatic	projectmanager	sk	Nevyhnutné pre prvky projektu, ktoré to nerobia automaticky
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	sk	Nevyhnutné PHP rozšírenia %1 neboli načítané a nedajú sa načítať!!!
 new	projectmanager	sk	Nové
 new project submitted by %1 at %2	projectmanager	sk	Nový projekt odovzdal %1 ku %2
 no accounting, only status	projectmanager	sk	Bez účtovania, iba stav
 no accounting, only times and status	projectmanager	sk	Bez účtovania, iba časy a stav
-no details	projectmanager	sk	bez podrobností
+no details	projectmanager	sk	Bez podrobností
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	sk	Nemáte prístup na ČÍTANIE zo zdroja dát: odstránenie prepísaných hodnôt ich len vyprázdni!!!
 no rights to export more then %1 entries!	projectmanager	sk	Nemáte oprávnenie exportovať viac než %1 položiek!
-no save necessary	projectmanager	sk	uloženie nie je nevyhnutné
+no save necessary	projectmanager	sk	Uloženie nie je nevyhnutné
 nonactive	projectmanager	sk	Neaktívne
 not available	projectmanager	sk	Nedostupné
 not started (0%)	projectmanager	sk	Nezačaté (0%)
-not working	projectmanager	sk	nepracuje sa
+not working	projectmanager	sk	Nepracuje sa
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	sk	Počet znakov na ktorý sa má skrátiť nadpis priebehového diagramu.
 number of records to read (%1)	projectmanager	sk	Počet záznamov, ktoré sa majú načítať (%1)
 only this project	projectmanager	sk	Iba tento projekt
@@ -248,7 +250,7 @@ overwrite the datasource	projectmanager	sk	Prepísať zdroj dát
 percentage the member is availible for projects	projectmanager	sk	Na koľko percent je člen dostupný pre projekty
 percentage the member is availible for this project	projectmanager	sk	Na koľko percent je člen dostupný pre tento projekt
 permission denied !!!	projectmanager	sk	Prístup bol odmietnutý!!!
-planned	projectmanager	sk	plánované
+planned	projectmanager	sk	Plánované
 planned budget	projectmanager	sk	Plánovaný rozpočet
 planned end	projectmanager	sk	Plánovaný koniec
 planned end date and time	projectmanager	sk	Plánovaný dátum a čas konca
@@ -305,8 +307,8 @@ projects	common	sk	Projekty
 quantity	projectmanager	sk	Množstvo
 re-planned	projectmanager	sk	Pre-plánované
 re-planned time	projectmanager	sk	Pre-plánovaný čas
-read access, incl. budget and adding elements	projectmanager	sk	prístup na čítanie, vrátane rozpočtu a pridávania prvkov
-read access, no budget	projectmanager	sk	prístup na čítanie, bez rozpočtu
+read access, incl. budget and adding elements	projectmanager	sk	Prístup na čítanie, vrátane rozpočtu a pridávania prvkov
+read access, no budget	projectmanager	sk	Prístup na čítanie, bez rozpočtu
 real end	projectmanager	sk	Skutočný koniec
 real end date and time	projectmanager	sk	Skutočný dátum a čas konca
 real start	projectmanager	sk	Skutočný začiatok
