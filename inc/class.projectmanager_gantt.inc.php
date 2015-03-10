@@ -309,7 +309,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	protected function &add_project(&$data, $pm_id, $params) {
 		if(!$pm_id || !$this->project->check_acl(EGW_ACL_READ, $pm_id))
 		{
-			return;
+			return array();
 		}
 		if ($pm_id != $this->project->data['pm_id'])
 		{
