@@ -184,6 +184,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	 */
 	protected function get_gantt_columns()
 	{
+		$time_attributes = array();
+		list($time_attributes['display_format'],$time_attributes['hours_per_day']) = explode(',',$this->config['duration_format']);
 		$columns = array(
 			array(
 				'name' => 'text',
@@ -202,14 +204,16 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'label'=>lang('Planned time'),
 				'width' => 80,
 				'hide'=> true,
-				'widget'=>'date-duration'
+				'widget'=>'date-duration',
+				'widget_attributes' => $time_attributes
 			),
 			array(
 				'name' => 'pe_used_time',
 				'label'=>lang('Used time'),
 				'width' => 80,
 				'hide'=> true,
-				'widget'=>'date-duration'
+				'widget'=>'date-duration',
+				'widget_attributes' => $time_attributes
 			),
 			array(
 				'name' => 'pe_planned_budget',
