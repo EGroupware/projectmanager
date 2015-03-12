@@ -600,10 +600,10 @@ app.classes.projectmanager = AppJS.extend(
 	 * Limits constraint target link-entry widget to current project
 	 *
 	 * @param {object} request
-	 * @param {object} response
+	 * @param {et2_widget_entry} widget
 	 * @returns {boolean} true to do the search
 	 */
-	element_constraint_pre_query: function(request,response)
+	element_constraint_pre_query: function(request,widget)
 	{
 		if(!request.options) request.options = {};
 		request.options.pm_id = this.et2.getInstanceManager().widgetContainer.getArrayMgr('content').getEntry('pm_id');
