@@ -95,9 +95,7 @@ deleted	projectmanager	de	gelöscht
 depth of display	projectmanager	de	Tiefe der Anzeige
 details of cumulated	projectmanager	de	Details der zusammengefassten
 details of subelements	projectmanager	de	Details der Unterelemente
-direct update from gantt chart requires <a href="http://www.egroupware.org/products">stylite egroupware enterprise line (epl)</a>.	projectmanager	de	Änderungen im Ganttchart werden nur in der <a href="http://www.egroupware.org/products">Stylite EGroupware Enterprise Line (EPL)</a> an die Anwendung (z.B. Infolog) weiter gegeben.
 directory with documents to insert project data	projectmanager	de	Verzeichnis mit  Vorlagendokumenten, die die die Projektverwaltung verfügbar sind.
-discard changes?	projectmanager	de	Änderungen verwerfe
 do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
 document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung, oder ist für Sie nicht lesbar!
 document download filename	projectmanager	de	Name des heruntergeladenen Dokuments.
@@ -113,7 +111,6 @@ edit this price	projectmanager	de	Diesen Preis bearbeiten
 edit this project	projectmanager	de	Dieses Projekt bearbeiten
 edit this project-element	projectmanager	de	Dieses Projektelement bearbeiten
 edit this role	projectmanager	de	Diese Rolle bearbeiten
-editing timesheets is not supported, edit the entry directly	projectmanager	de	Verschieben von Stundenzettel ist nicht unterstützt, bitte Stundenzettel direkt bearbeiten.
 element category	projectmanager	de	Element Kategorie
 element details	projectmanager	de	Element Detail
 element id	projectmanager	de	Element ID
@@ -192,13 +189,11 @@ health	projectmanager	de	Gesundheit
 hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag.
-how should the project selection in the menu be displayed	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
 html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintrag
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Element (z.B. InfoLog Einträge) mit gelöscht.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Element (z.B. InfoLog Einträge) mit geändert.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
-if you specify a directory (full vfs path) here, %1 displays an action for each document. that action allows to download the specified document with the data inserted.	projectmanager	de	Geben sie das Verzeichnis für Vorlagen-Dokumente im Dateimanager an. Alle Dokumente aus dem Verzeichnis %1, werden im Kontext-Menü bei 'einfügen in Dokument' angezeigt.
 if you specify an export definition, it will be used when you export	projectmanager	de	Wählen Sie eine Export Definition für den Export.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
@@ -212,7 +207,6 @@ leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine 
 leave it empty, if identitcal to the time	projectmanager	de	Feld leer lassen, wenn identisch mit der Zeit
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	de	Anzahl Zeichen des Elementtitels im Ganttchart limitieren
 linked elements	projectmanager	de	Verknüpfte Elemente
-linked to %1	projectmanager	de	Verknüpfung zu %1 erstellt
 links	projectmanager	de	Verknüpfungen
 links and attached files	projectmanager	de	Verknüpfungen und Anhänge
 links to specified application.  example: {{links/infolog}}	projectmanager	de	Verknüpfungen zu bestimmten Anwendungen. Beispiel: {{links/infolog}}
@@ -250,7 +244,6 @@ not started (0%)	projectmanager	de	nicht gestartet (0%)
 not working	projectmanager	de	nicht arbeiten
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	de	Anzahl der Zeichen auf die die Titel der Gantchartelemente gekürzt werden sollen.
 number of records to read (%1)	projectmanager	de	Anzahl der einzulesenden Datensätze (%1)
-ongoing (0 < % < 100)	projectmanager	de	In Arbeit (0< % < 100)
 only this project	projectmanager	de	Nur dieses Projekt
 order of sub-project bars in ganttcharts	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Ganttchart
 overwrite the datasource	projectmanager	de	Anzeige in der Elementliste überschreiben
@@ -321,7 +314,6 @@ real end date and time	projectmanager	de	Tatsächliches Enddatum und -zeit
 real start	projectmanager	de	Tatsächlicher Start
 real start date and time	projectmanager	de	Tatsächliches Startdatum und -zeit
 remark	projectmanager	de	Bemerkung
-replacements for inserting project data into documents	projectmanager	de	Platzhalter zum 'einfügen in Dokument'
 replanned time in minutes	projectmanager	de	Neu geplante Zeit in Minuten
 resources	projectmanager	de	Ressourcen
 role	projectmanager	de	Rolle
@@ -379,7 +371,6 @@ template name - project title	projectmanager	de	Name der Vorlage - Projekt Titel
 test import (show importable records <u>only</u> in browser)	projectmanager	de	Test Import (zeigt importierte Datensätze <u>nur</b> im Browser an)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	de	Diese Aktion erlaubt den Download von Speziellen Dokumenten mit Daten aus den Projekte und Elementen.
 the charset depends on the font you want to use.	projectmanager	de	Der Zeichensatz hängt vom Font ab den Sie verwenden wollen.
-the document can contain placeholder like {{%1}}, to be replaced with the data.	projectmanager	de	Das Dokument kann Platzhalter wie {{%1}} enthalten, die mit den Daten ersetzt werden.
 the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	de	Das Dokument kann Platzhalter wie {{%3}} enthalten, die mit den Daten ersetzt werden (%1komplette Liste der Platzhalter%2).
 the following document-types are supported:	projectmanager	de	Folgende Dateitypen werden unterstützt:
 time	projectmanager	de	Zeit
