@@ -780,9 +780,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'group' => $group,
 				'allowOnMultiple' => false,
 				'enableId' => '^infolog:',
-				'enableClass' => 'projectmanager_rowHasSubs',
+				'enableClass' => 'infolog_rowHasSubs',
 				'url' => 'menuaction=infolog.infolog_ui.index&action=sp&action_id=$id',
 				'targetapp' => 'infolog',
+				'hideOnDisabled' => true
 			),
 		);
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
