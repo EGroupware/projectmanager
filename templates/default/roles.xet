@@ -21,6 +21,7 @@
 					<column/>
 					<column/>
 					<column/>
+					<column/>
 					<column width="50px" disabled="@view"/>
 				</columns>
 				<rows>
