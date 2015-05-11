@@ -542,7 +542,8 @@ class projectmanager_ui extends projectmanager_bo
 			if ($query[$nm_name]) $query['col_filter'][$pm_name] = $query[$nm_name];
 		}
 		$query['col_filter']['subs_or_mains'] = $query['filter'];
-
+		unset($query['col_filter']['pm_id']);
+		
 		$total = parent::get_rows($query,$rows,$readonlys,'',true);
 
 		$readonlys = array();
