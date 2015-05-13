@@ -682,7 +682,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	{
 		if ((int) $this->debug >= 2 || $this->debug == 'copytree') $this->debug_message("projectmanager_elements_bo::copytree($source) this->pm_id=$this->pm_id");
 
-		$elements =& $this->search(array('pm_id' => $source),false,'pe_planned_start,pe_title');
+		$elements =& $this->search('',false,'pe_planned_start,pe_title','','',false,'AND',false,array('pm_id'=>$source));
 		if (!$elements) return array();
 
 		$copied = $apps_copied = $callbacks = $params = array();
