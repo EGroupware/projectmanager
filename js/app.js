@@ -19,7 +19,7 @@ app.classes.projectmanager = AppJS.extend(
 	appname: 'projectmanager',
 
 	// Variables for having all templates loaded & switching
-	view: null,
+	view: 'list',
 	views: {
 		// Name = key, etemplate is filled in when loaded, sidemenu is untranslated text from hooks
 		list: {name: 'list', etemplate: null, sidemenu: 'Projectlist'},
@@ -390,6 +390,10 @@ app.classes.projectmanager = AppJS.extend(
 			{
 				et2.widgetContainer.iterateOver(function(_widget) {
 					state = _widget.getValue();
+					
+					// These aren't considered for state
+					delete state.link_add;
+					delete state.link_addapp;
 				}, this, et2_nextmatch);
 			}
 		}
