@@ -91,7 +91,7 @@
 			</columns>
 			<rows>
 				<row valign="top">
-					<htmlarea id="pm_description" mode="extended" height="240px" width="100%" toolbar="true"/>
+					<htmlarea id="pm_description" mode="extended" height="240px" width="100%" toolbar="true" imageUpload="link_to"/>
 				</row>
 			</rows>
 		</grid>
