@@ -453,7 +453,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$this->pm_id = (int)$query_in['col_filter']['pm_id'];
 		}
-		else
+		else if (!property_exists ($this, 'pm_id'))
 		{
 			return 0;
 		}

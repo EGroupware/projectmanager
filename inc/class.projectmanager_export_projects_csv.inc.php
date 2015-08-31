@@ -45,11 +45,12 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 
 		// Determine the appropriate list (project or element) to use for query
 		$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
-		if($pm_id)
+		if($pm_id && $options['selection'] == 'project')
 		{
 			// Looking at a certain project
 			$list = 'projectelements_list';
 			$ui = new projectmanager_elements_ui();
+			$options['selection'] = 'all';
 		}
 		else
 		{
@@ -71,6 +72,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		elseif ( $options['selection'] == 'all' ) {
 			$_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
 			$query = array(
+				'filter2' => $list == 'project_list' ? 'active' : '0' ,
+				'col_filter' => $list == 'project_list' ? array() : array('pm_id' => $pm_id),
 				'num_rows' => -1,		// all
 				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
 			);
@@ -208,9 +211,19 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	 *
 	 */
 	public function get_selectors_etpl() {
+
+		// If there's a current project, add it as an option
+		$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
+		if($pm_id)
+		{
+			$project_title = egw_link::title('projectmanager', $pm_id);
+		}
 		return array(
 			'name'	=> 'projectmanager.export_csv_selectors',
-			'content'	=> 'selected'
+			'content'	=> array(
+				'selection' => 'selected',
+				'project_title' => $project_title
+			)
 		);
 	}
 
