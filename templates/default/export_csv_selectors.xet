@@ -14,6 +14,9 @@
 				<row>
 					<radio label="Use search results" id="selection" options="selected"/>
 				</row>
+				<row disabled="!@project_title">
+					<radio label="@project_title" id="selection" options="project"/>
+				</row>
 			</rows>
 		</grid>
 	</template>

@@ -81,7 +81,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			}
 
 			// Clear the PM ID or results will be restricted to that project
-			$ui->pm_id = null;
+			unset($ui->pm_id);
 
 			if($query['num_rows']) $ui->get_rows($query,$selection,$readonlys);
 
@@ -92,7 +92,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		elseif ( $options['selection'] == 'all' ) {
 			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			// Clear the PM ID or results will be restricted
-			$ui->pm_id = null;
+			unset($ui->pm_id);
 
 			$query = array(
 				'num_rows' => -1,		// all
@@ -145,6 +145,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			$this->export_object->export_record($element);
 			unset($element);
 		}
+		return $this->export_object;
 	}
 
 	/**
@@ -208,7 +209,10 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 	public function get_selectors_etpl() {
 		return array(
 			'name'	=> 'projectmanager.export_elements_csv_selectors',
-			'content'	=> 'selected'
+			'content'	=> array(
+				'selection' => 'selected',
+				'pm_id' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project']
+			)
 		);
 	}
 
