@@ -298,7 +298,7 @@ app.classes.projectmanager = AppJS.extend(
 			return egw.open(state.state,undefined,undefined,{},'_self');
 		}
 
-		if(state.state.view)
+		if(state.state && state.state.view)
 		{
 			this.show(state.state.view, state.state.pm_id||false);
 			// Avoid any potential conflicts when setting others, below
