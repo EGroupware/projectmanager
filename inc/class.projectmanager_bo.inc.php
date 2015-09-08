@@ -699,10 +699,8 @@ class projectmanager_bo extends projectmanager_so
 	function link_titles( array $ids )
 	{
 		$titles = array();
-			error_log(__METHOD__);
 		if (($projects = $this->search(array('pm_id' => $ids),'pm_number,pm_title')))
 		{
-			error_log(array2string($projects));
 			foreach($projects as $project)
 			{
 				$titles[$project['pm_id']] = $this->link_title($project);
