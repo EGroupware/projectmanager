@@ -285,10 +285,8 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			}
 			else
 			{
-				$GLOBALS['egw']->redirect_link('/index.php',array(
-					'menuaction' => 'projectmanager.projectmanager_ui.index',
-					'msg' => lang('Permission denied !!!'),
-				));
+				egw_framework::message(lang('Permission denied !!!'), 'error');
+				return;
 			}
 		}
 		$tpl = new etemplate_new('projectmanager.pricelist.list');
