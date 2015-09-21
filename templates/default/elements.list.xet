@@ -3,7 +3,16 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
-		<link-add id="link_add" onchange="return false;"/>
+		<link-add id="link_add" onchange="/* Keep app, but do not trigger a change */
+var nm = widget.getParent();
+while(!nm.instanceOf(et2_nextmatch))
+{
+	nm = nm.getParent();
+}
+if(nm.activeFilters) {
+	nm.activeFilters[widget.getParent().id] = {'app':this.get_value()};
+}
+return false;"/>
 	</template>
 	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
 		<grid width="99%" height="99%">
