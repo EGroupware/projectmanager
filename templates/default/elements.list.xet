@@ -4,13 +4,14 @@
 <overlay>
 	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
 		<link-add id="link_add" onchange="/* Keep app, but do not trigger a change */
+		if(widget.id !== 'link_addapp') return false;
 var nm = widget.getParent();
 while(!nm.instanceOf(et2_nextmatch))
 {
 	nm = nm.getParent();
 }
 if(nm.activeFilters) {
-	nm.activeFilters[widget.getParent().id] = {'app':this.get_value()};
+	nm.activeFilters[widget.id] = widget.get_value();
 }
 return false;"/>
 	</template>
