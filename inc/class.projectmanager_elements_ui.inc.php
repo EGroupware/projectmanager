@@ -70,18 +70,15 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		parent::__construct($pm_id);
 
 
-		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
-		$GLOBALS['egw']->preferences->save_repository();
-
 		// check if we have at least read-access to this project
 		if (!$this->project->check_acl(EGW_ACL_READ))
 		{
-			$this->tpl->location(array(
-				'menuaction' => 'projectmanager.projectmanager_ui.index',
-				'msg'        => lang('Permission denied !!!'),
-				'ajax'       => 'true'
-			));
+			egw_framework::message(lang('Permission denied !!!'),'error');
+			$pm_id = 0;
 		}
+
+		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
+		$GLOBALS['egw']->preferences->save_repository();
 
 		$this->status_labels = array(
 			'all'     => lang('all'),
@@ -453,7 +450,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$this->pm_id = (int)$query_in['col_filter']['pm_id'];
 		}
-		else if (!property_exists ($this, 'pm_id'))
+		else if ( $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'])
+		{
+			$this->pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
+		}
+		if (!property_exists ($this, 'pm_id') || !$this->pm_id)
 		{
 			return 0;
 		}
@@ -461,6 +462,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			return 0;
 		}
+
 		// Check for filter change, need to get totals
 		$session = egw_cache::getSession('projectmanager', 'projectelements_list');
 		$get_totals = ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
