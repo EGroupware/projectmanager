@@ -638,6 +638,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 				}
+				$row['ignored'] = ($row['pe_status'] == 'ignore') ? 'projectmanager/ignored' : '';
 			}
 		}
 		if (!$this->project->check_acl(EGW_ACL_BUDGET))
