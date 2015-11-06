@@ -247,6 +247,15 @@ class projectmanager_ui extends projectmanager_bo
 					if (!$content['pm_id'] && is_array($content['link_to']['to_id']))
 					{
 						egw_link::link('projectmanager',$this->data['pm_id'],$content['link_to']['to_id']);
+
+						// check if we have dragged in images and fix their image urls
+						if (etemplate_widget_vfs::fix_html_dragins('projectmanager', $this->data['pm_id'],
+							$content['link_to']['to_id'], $content['pm_description']))
+						{
+							so_sql::update(array(
+								'pm_description' => $content['pm_description'],
+							));
+						}
 					}
 					if ($content['template'] && $new_id = $this->copy($content['template'],2))
 					{
