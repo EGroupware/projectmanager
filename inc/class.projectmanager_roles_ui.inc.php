@@ -107,7 +107,6 @@ class projectmanager_roles_ui extends projectmanager_bo
 					$msg = lang('Error: saving role !!!');
 				}
 			}
-			error_log(__METHOD__. "content" . array2string($content));
 		}
 		if ($content['delete'] || $content['edit'])
 		{
