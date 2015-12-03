@@ -106,7 +106,7 @@ app.classes.projectmanager = AppJS.extend(
 				$j(et2.DOMContainer).hide();
 			}
 
-			if(this.view == null && view.name == 'list')
+			if(view.name == 'list')
 			{
 				// First load, bind filemanager too
 				var list = view;
