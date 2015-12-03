@@ -71,8 +71,6 @@ class projectmanager_so extends so_sql_cf
 	 */
 	var $user;
 
-	var $columns_to_search = array('pm_number', 'pm_title', 'pm_description', 'pm_priority', 'pm_status', 'pm_used_budget', 'pm_planned_budget');
-
 	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
