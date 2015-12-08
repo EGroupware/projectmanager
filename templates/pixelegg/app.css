@@ -456,3 +456,34 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
 #projectmanager-elements-list_nm #projectmanager-elements-list_link_add button:active {
   background-color: #1aa200 !important;
 }
+/* tablets and smartphones  */
+@media only screen and (max-device-width: 1024px) {
+  #projectmanager-list table.egwGridView_outer tbody span[id^="projectmanager-list"][id$="pm_number]"] {
+    font-size: 8pt;
+  }
+  #projectmanager-list table.egwGridView_outer tbody span[id^="projectmanager-list"][id$="pm_title]"] {
+    font-weight: bold;
+    padding-bottom: 5px;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol1 {
+    float: left;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol1 div {
+    text-align: left;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol2 .priority {
+    float: right;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol2 .startPlanned,
+  #projectmanager-list table.egwGridView_outer tbody .pmCol2 .endPlanned {
+    font-size: 8pt;
+    font-style: italic;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol2 .endPlanned {
+    float: right;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol2 .planned time {
+    font-size: 8pt;
+    float: none;
+  }
+}

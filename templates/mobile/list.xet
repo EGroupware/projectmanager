@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay PUBLIC "-//Stylite AG//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.002">
+		<buttononly statustext="Add a new project" label="Add" id="add" onclick="egw.open('','projectmanager','add');"/>
+	</template>
+	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
+		<grid width="100%">
+			<columns>
+				<column width="100"/>
+				<column width="90%"/>
+			</columns>
+			<rows>
+				<row class="th">
+				</row>
+				<row class="$row_cont[cat_id] $row_cont[class]">
+					<vbox class="pmCol1">
+						<hbox>
+							<label value="time"/>
+							<date-duration id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
+						</hbox>
+						<hbox>
+							<label value="planned"/>
+							<date-duration id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
+						</hbox>
+						<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+					</vbox>
+					<vbox class="pmCol2">
+						<hbox>
+							<description id="${row}[pm_number]" no_lang="1"/>
+							<hbox class="priority">
+								<image src="priority"/>
+								<description align="center" id="${row}[pm_priority]" no_lang="1"/>
+							</hbox>
+						</hbox>
+						
+						<description id="${row}[pm_title]" no_lang="1" />
+						<hbox>
+							<label value="Start" class="startPlanned"/>
+							<date id="${row}[pm_planned_start]" readonly="true" class="planned"/>
+							<hbox class="endPlanned">
+								<label value="End" />
+								<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>	
+							</hbox>
+						</hbox>
+					</vbox>
+					
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
+		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
+		<grid width="100%">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description align="center" id="msg" no_lang="1" class="message"/>
+				</row>
+				<row disabled="1">
+					<template align="right" id="projectmanager.list.right" span="all"/>
+				</row>
+				<row>
+					<nextmatch id="nm" template="projectmanager.list.rows"/>
+				</row>
+				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
+					<hbox>
+						<hbox>
+							<menulist>
+								<menupopup statustext="Create a new empty project or use a template" id="template_id" no_lang="1" options="Empty"/>
+							</menulist>
+							<buttononly class="add" statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
+						</hbox>
+						<hbox align="right">
+							<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
+							<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
+						</hbox>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<styles>
+			.check_all_arrow input { margin-right: 10px; }
+			.pm_resources {max-height: 6em; overflow-y: auto;}
+		</styles>
+	</template>
+</overlay>

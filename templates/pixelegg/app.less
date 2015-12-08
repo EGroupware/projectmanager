@@ -15,6 +15,7 @@
 
 
 @import (reference) "../../../pixelegg/less/definitions.less";
+@import (reference) "../../../pixelegg/less/def_mobile.less";
 @import (less) "../default/app.css";
 
 
@@ -266,4 +267,43 @@ div#projectmanager-pricelist-list{
 
 
 
+}
+
+/* tablets and smartphones  */
+@media only screen and (max-device-width:1024px) {
+	#projectmanager-list {
+		table.egwGridView_outer tbody {
+			span[id^="projectmanager-list"][id$="pm_number]"]{
+				.mob-fontsize-s;
+			}
+			span[id^="projectmanager-list"][id$="pm_title]"]{
+				font-weight: bold;
+				padding-bottom: 5px; 
+			}
+			.pmCol1{
+				float: left;
+				div {
+					text-align: left;
+				}
+			}
+			.pmCol2 {
+				.priority {
+					float:right;
+				}
+				.startPlanned, .endPlanned {
+					.mob-fontsize-s;
+					font-style: italic;
+				}
+				.endPlanned {
+					float: right;
+				}
+				.planned {
+					time {
+						.mob-fontsize-s;
+						float: none;
+					}
+				}
+			}
+		}
+	}
 }
