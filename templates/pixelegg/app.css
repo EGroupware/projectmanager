@@ -520,6 +520,7 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
+    text-align: right;
   }
   #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol1:first-child {
     padding-bottom: 0;
@@ -547,5 +548,19 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
   #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_planned_budget]'] time {
     display: inline-block;
     padding-left: 3px;
+  }
+  #projectmanager-pricelist-list_nm table.egwGridView_outer tbody label[id^="projectmanager-pricelist-list"][id$='pl_title]'] {
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  #projectmanager-pricelist-list_nm table.egwGridView_outer tbody span[id^="projectmanager-pricelist-list"][id$='pm_id]'],
+  #projectmanager-pricelist-list_nm table.egwGridView_outer tbody span[id^="projectmanager-pricelist-list"][id$='pl_customertitle]'] {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
   }
 }

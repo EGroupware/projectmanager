@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay PUBLIC "-//Stylite AG//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%">
+			<columns>
+				<column width="10"/>
+				<column width="90%"/>
+				<column width="100"/>
+			</columns>
+			<rows>
+				<row class="th">
+					
+				</row>
+				<row class="row $row_cont[class]">
+					<vbox></vbox>
+					<vbox>
+						<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
+						<menulist>
+							<menupopup id="${row}[pm_id]" no_lang="1" readonly="true"/>
+						</menulist>
+						<description id="${row}[pl_customertitle]" no_lang="1"/>
+					</vbox>
+					<vbox>
+						<textbox type="float" label="%s / $row_cont[pl_unit]" id="${row}[pl_price]" no_lang="1" readonly="true" max="2"/>
+						<menulist>
+							<menupopup id="${row}[pl_billable]" readonly="true" options="No"/>
+						</menulist>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.pricelist.add-new" template="" lang="" group="0" version="1.9.001">
+		<button align="right" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+	</template>
+	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<nextmatch id="nm" options="projectmanager.pricelist.list.rows"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

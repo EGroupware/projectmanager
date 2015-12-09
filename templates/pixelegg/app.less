@@ -344,6 +344,7 @@ div#projectmanager-pricelist-list{
 						width: 100%;
 						text-overflow: ellipsis;
 						overflow: hidden;
+						text-align: right;
 					}
 				}
 			}
@@ -373,5 +374,24 @@ div#projectmanager-pricelist-list{
 				}
 			}
 		}
+	}
+	#projectmanager-pricelist-list_nm {
+		table.egwGridView_outer tbody {
+			label[id^="projectmanager-pricelist-list"][id$='pl_title]']{
+				font-weight:  bold;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				max-width:100%;
+			}
+			span[id^="projectmanager-pricelist-list"][id$='pm_id]'],
+			span[id^="projectmanager-pricelist-list"][id$='pl_customertitle]']{
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				max-width:100%;
+			}
+		}
+		
 	}
 }
