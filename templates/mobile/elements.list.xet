@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay PUBLIC "-//Stylite AG//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
+<!-- $Id$ -->
+<overlay>
+	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
+		<link-add id="link_add" onchange="/* Keep app, but do not trigger a change */
+		if(widget.id !== 'link_addapp') return false;
+var nm = widget.getParent();
+while(!nm.instanceOf(et2_nextmatch))
+{
+	nm = nm.getParent();
+}
+if(nm.activeFilters) {
+	nm.activeFilters[widget.id] = widget.get_value();
+}
+return false;"/>
+	</template>
+	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
+		<grid width="99%" height="99%">
+			<columns>
+				<column width="90%"/>
+				<column width="9%"/>
+			</columns>
+			<rows>
+				<row>
+					<link-to label="Add existing" id="link_to" no_files="true"/>
+					<!--
+					<image align="right" label="Show more options" src="extra_icons" onclick="app.projectmanager.toggleDiv" readonly="true"/>
+					-->
+				</row>
+			</rows>
+		</grid>
+		<grid class="egwLinkMoreOptions">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<projectmanager-select-erole label="Element roles" id="eroles_add" no_lang="1" options="8,true,width:99%" span="all"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.005">
+		<grid width="100%">
+			<columns>
+				<column width="10"/>
+				<column width="100"/>
+				<column width="90%"/>
+			</columns>
+			<rows>
+				<row class="th">
+				</row>
+				<row class="$row_cont[cat_id] $row_cont[class]">
+					<vbox></vbox>
+					<vbox align="left" class="elementCol1">
+						<hbox>
+							<image label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
+							<image src="${row}[pe_healt_icon]"/>
+							<image src="${row}[pe_completion_icon]" no_lang="1"/>
+							<image src="{$row_cont[ignored]}" no_lang="1"/>
+						</hbox>
+						<progress id="${row}[pe_completion]" no_lang="1"/>
+						<date-duration label="Time" id="${row}[pe_used_time]" readonly="true" options="@@duration_format"/>
+						<date-duration label="Planned" id="${row}[pe_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
+					</vbox>
+					<vbox class="elementCol2">
+						<hbox>
+							<link id="${row}[pm_link]" no_lang="1"/>
+							<link id="${row}[link]" no_lang="1"/>
+							<hbox width="30%" class="elementCat">
+								<menulist>
+									<menupopup type="select-cat" id="${row}[cat_id]" class="et2_ellipsis" readonly="true"/>
+								</menulist>
+							</hbox>
+						</hbox>
+						<hbox>
+							<date label="Start" id="${row}[pe_real_start]" readonly="true"/>
+							<date align="right" label="Planned" id="${row}[pe_planned_start]" no_lang="1" readonly="true" class="planned"/>
+						</hbox>
+						<hbox>
+							<date label="End" id="${row}[pe_real_end]" readonly="true"/>
+							<date align="right" label="Planned" id="${row}[pe_planned_end]" no_lang="1" readonly="true" class="planned"/>
+						</hbox>
+						<hbox disabled="@no_pe_used_budget_pe_planned_budget">
+							<textbox label="Budget" type="float" id="${row}[pe_used_budget]" readonly="true" max="2"/>
+							<textbox align="right" label="Planned" type="float" id="${row}[pe_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
+						</hbox>
+					</vbox>
+					
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
+		<grid width="100%">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row disabled="1">
+					<hbox>
+						<template id="add-new"/>
+						<template id="add"/>
+					</hbox>
+				</row>
+				<row disabled="!@msg">
+					<description align="center" id="msg" no_lang="1" class="message"/>
+				</row>
+				<row>
+					<nextmatch id="nm" options="projectmanager.elements.list.rows"/>
+				</row>
+				<row>
+					<box id="add_existing_popup" class="action_popup prompt">
+							<vbox>
+								<description value="Add / Remove link" class="promptheader"/>
+								<link-entry id="link" class="action_popup-content"/>
+								<hbox>
+									<button label="Add" id="link_action[add]" onclick="nm_submit_popup(this); return false;"/>
+									<buttononly label="Cancel" onclick="nm_hide_popup(this,'link_popup');"/>
+								</hbox>
+							</vbox>
+					</box>
+					<hbox align="right" disabled="!@nm[selectcols]=/legacy_actions/"> 
+						
+						<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
+						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>

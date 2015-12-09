@@ -460,16 +460,31 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
 @media only screen and (max-device-width: 1024px) {
   #projectmanager-list table.egwGridView_outer tbody span[id^="projectmanager-list"][id$="pm_number]"] {
     font-size: 8pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+    overflow: hidden;
   }
   #projectmanager-list table.egwGridView_outer tbody span[id^="projectmanager-list"][id$="pm_title]"] {
     font-weight: bold;
     padding-bottom: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
   }
   #projectmanager-list table.egwGridView_outer tbody .pmCol1 {
     float: left;
   }
   #projectmanager-list table.egwGridView_outer tbody .pmCol1 div {
     text-align: left;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol1 label.et2_label {
+    font-size: 8pt;
+    padding-bottom: 5px;
+  }
+  #projectmanager-list table.egwGridView_outer tbody .pmCol1 label.et2_label span {
+    padding-left: 3px;
   }
   #projectmanager-list table.egwGridView_outer tbody .pmCol2 .priority {
     float: right;
@@ -485,5 +500,52 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
   #projectmanager-list table.egwGridView_outer tbody .pmCol2 .planned time {
     font-size: 8pt;
     float: none;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol2 .et2_hbox > * {
+    padding: 0;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol2 label[id^="projectmanager-elements-list"][id$='pm_link]'],
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol2 label[id^="projectmanager-elements-list"][id$='link]'] {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 70%;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol2 .elementCat {
+    display: inline-block;
+    float: right;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol2 .elementCat span[id^="projectmanager-elements-list"][id$='cat_id]'] {
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol1:first-child {
+    padding-bottom: 0;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol1 label.et2_label {
+    font-size: 8pt;
+    padding-top: 3px;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody .elementCol1 label.et2_label span {
+    padding-left: 3px;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_planned_start]'],
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_real_start]'],
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_real_end]'],
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_planned_end]'],
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_used_budget]'],
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_planned_budget]'] {
+    font-size: 8pt;
+  }
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_planned_start]'] time,
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_real_start]'] time,
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_real_end]'] time,
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_planned_end]'] time,
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_used_budget]'] time,
+  #projectmanager-elements-list_nm table.egwGridView_outer tbody label[id^="projectmanager-elements-list"][id$='pe_planned_budget]'] time {
+    display: inline-block;
+    padding-left: 3px;
   }
 }

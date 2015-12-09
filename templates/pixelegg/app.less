@@ -275,15 +275,30 @@ div#projectmanager-pricelist-list{
 		table.egwGridView_outer tbody {
 			span[id^="projectmanager-list"][id$="pm_number]"]{
 				.mob-fontsize-s;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				max-width:80%;
+				overflow: hidden;
 			}
 			span[id^="projectmanager-list"][id$="pm_title]"]{
 				font-weight: bold;
 				padding-bottom: 5px; 
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				max-width:100%;
+				overflow: hidden;
 			}
 			.pmCol1{
 				float: left;
 				div {
 					text-align: left;
+				}
+				label.et2_label {
+					.mob-fontsize-s;
+					padding-bottom: 5px;
+					span {
+						padding-left: 3px;
+					}
 				}
 			}
 			.pmCol2 {
@@ -302,6 +317,59 @@ div#projectmanager-pricelist-list{
 						.mob-fontsize-s;
 						float: none;
 					}
+				}
+			}
+		}
+	}
+	#projectmanager-elements-list_nm {
+		table.egwGridView_outer tbody {
+			.elementCol2 {
+				.et2_hbox > *{
+					padding: 0;
+				}
+				label[id^="projectmanager-elements-list"][id$='pm_link]'],
+				label[id^="projectmanager-elements-list"][id$='link]' ]{
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					max-width: 70%;
+				}
+				.elementCat {
+					display: inline-block;
+					float: right;
+					
+					span[id^="projectmanager-elements-list"][id$='cat_id]'],
+					{
+						white-space: nowrap;
+						width: 100%;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+				}
+			}
+			.elementCol1{
+				&:first-child {
+					padding-bottom: 0;
+				}
+				label.et2_label {
+					.mob-fontsize-s;
+					padding-top:3px;
+					span {
+						padding-left: 3px;
+					}
+				}
+			}
+			
+			label[id^="projectmanager-elements-list"][id$='pe_planned_start]'],
+			label[id^="projectmanager-elements-list"][id$='pe_real_start]'],
+			label[id^="projectmanager-elements-list"][id$='pe_real_end]'],
+			label[id^="projectmanager-elements-list"][id$='pe_planned_end]'],
+			label[id^="projectmanager-elements-list"][id$='pe_used_budget]'],
+			label[id^="projectmanager-elements-list"][id$='pe_planned_budget]']{
+				.mob-fontsize-s;
+				time {
+					display: inline-block;
+					padding-left: 3px;
 				}
 			}
 		}

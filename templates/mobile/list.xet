@@ -8,6 +8,7 @@
 	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
 			<columns>
+				<column width="10"/>
 				<column width="100"/>
 				<column width="90%"/>
 			</columns>
@@ -15,15 +16,10 @@
 				<row class="th">
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
+					<vbox></vbox>
 					<vbox class="pmCol1">
-						<hbox>
-							<label value="time"/>
-							<date-duration id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
-						</hbox>
-						<hbox>
-							<label value="planned"/>
-							<date-duration id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
-						</hbox>
+						<date-duration label="time" id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
+						<date-duration label="planned" id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
 						<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
 					</vbox>
 					<vbox class="pmCol2">
