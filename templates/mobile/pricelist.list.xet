@@ -5,7 +5,6 @@
 	<template id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
-				<column width="10"/>
 				<column width="90%"/>
 				<column width="100"/>
 			</columns>
@@ -14,7 +13,6 @@
 					
 				</row>
 				<row class="row $row_cont[class]">
-					<vbox></vbox>
 					<vbox>
 						<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
 						<menulist>

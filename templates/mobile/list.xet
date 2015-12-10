@@ -15,8 +15,8 @@
 			<rows>
 				<row class="th">
 				</row>
-				<row class="$row_cont[cat_id] $row_cont[class]">
-					<vbox></vbox>
+				<row class="$row_cont[class]">
+					<description class=" cat_$row_cont[cat_id] mobile_cat_col"/>
 					<vbox class="pmCol1">
 						<date-duration label="time" id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
 						<date-duration label="planned" id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
