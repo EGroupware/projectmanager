@@ -1094,6 +1094,11 @@ class projectmanager_ui extends projectmanager_bo
 			else
 			{
 				$filter = array();
+				if($parent_pm_id)
+				{
+					$project = $GLOBALS['projectmanager_bo']->read($parent_pm_id);
+					$filter['pm_status'] = $project['pm_status'];
+				}
 			}
 			self::_project_tree_leaves($filter,$parent_pm_id?$parent_pm_id : 'mains',$_pm_id ? $_pm_id : $parent_pm_id,$nodes);
 		}
@@ -1120,7 +1125,7 @@ class projectmanager_ui extends projectmanager_bo
 
 	protected static function _project_tree_leaves($filter, $parent_pm_id = 'mains', $_pm_id, &$projects = array())
 	{
-		//error_log(__METHOD__ . "(".array2string($filter).", $parent_pm_id, $_pm_id)");
+		error_log(__METHOD__ . "(".array2string($filter).", $parent_pm_id, $_pm_id)");
 
 		$type = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
 		if (substr($type,-5) == 'title')
