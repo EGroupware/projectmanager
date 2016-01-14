@@ -3,7 +3,7 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.002">
-		<buttononly statustext="Add a new project" label="Add" id="add" onclick="egw.open('','projectmanager','add');"/>
+		<buttononly parent_node="projectmanager-list_plus_button_container" class="plus_button" statustext="Add a new project" id="add_button" onclick="egw.open('','projectmanager','add');"/>
 	</template>
 	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
@@ -58,6 +58,9 @@
 				</row>
 				<row disabled="1">
 					<template align="right" id="projectmanager.list.right" span="all"/>
+				</row>
+				<row>
+					<description id="plus_button_container"/> 
 				</row>
 				<row>
 					<nextmatch id="nm" template="projectmanager.list.rows"/>
