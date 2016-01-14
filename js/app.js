@@ -905,18 +905,28 @@ app.classes.projectmanager = AppJS.extend(
 	add_new: function (action, selected)
 	{
 		var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
+		var pm_id = '';
 		if (tree)
 		{
-			var pm_id = tree.getValue();
+			pm_id = tree.getValue();
 
 			// Gantt chart can have multiple selected
 			if(jQuery.isArray(pm_id)) pm_id = pm_id[0];
 
 			pm_id = pm_id.replace('::',':');
-			if (typeof action != 'undefined')
+		}
+		// No tree, or could not find project there
+		if(!pm_id && selected[0] && egw.dataGetUIDdata(selected[0].id))
+		{
+			var data = egw.dataGetUIDdata(selected[0].id);
+			if(data && data.data && data.data.pm_id)
 			{
-				this.egw.open(pm_id, action.id.replace('act-',''), 'add');
+				pm_id = 'projectmanager:'+data.data.pm_id;
 			}
+		}
+		if (typeof action !== 'undefined')
+		{
+			return this.egw.open(pm_id, action.id.replace('act-',''), 'add');
 		}
 	},
 
