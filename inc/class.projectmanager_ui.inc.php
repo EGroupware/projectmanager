@@ -1125,7 +1125,7 @@ class projectmanager_ui extends projectmanager_bo
 
 	protected static function _project_tree_leaves($filter, $parent_pm_id = 'mains', $_pm_id, &$projects = array())
 	{
-		error_log(__METHOD__ . "(".array2string($filter).", $parent_pm_id, $_pm_id)");
+		//error_log(__METHOD__ . "(".array2string($filter).", $parent_pm_id, $_pm_id)");
 
 		$type = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection'];
 		if (substr($type,-5) == 'title')
