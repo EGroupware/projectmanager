@@ -403,7 +403,6 @@ class projectmanager_bo extends projectmanager_so
 		{
 			if (isset($data[$name]) && $data[$name]) $data[$name] += $this->tz_offset_s;
 		}
-		if (is_numeric($data['pm_completion'])) $data['pm_completion'] .= '%';
 
 		return $data;
 	}

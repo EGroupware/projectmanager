@@ -186,7 +186,7 @@ class projectmanager_so extends so_sql_cf
 	 */
 	function save($keys=null)
 	{
-		//echo "soprojectmanager::save(".print_r($keys,true).") this->data="; _debug_array($this->data);
+		//error_log(__METHOD__ . '('.print_r($keys,true).") this->data="); error_log(array2string($this->data));
 
 		if (is_array($keys) && count($keys))
 		{

@@ -152,7 +152,7 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				//echo "content="; _debug_array($content);
 				$this->data_merge($content);
-				//echo "after data_merge data="; _debug_array($this->data);
+				//error_log("after data_merge data="); error_log(array2string($this->data));
 
 				// set the data of the pe_summary, if the project-value is unset
 				$pe_summary = $this->pe_summary();
@@ -164,7 +164,7 @@ class projectmanager_ui extends projectmanager_bo
 					if (($content[$pm_name] || $pm_name == 'pm_completion' && $content[$pm_name] !== '') &&
 						($content[$pm_name] != $this->data[$pm_name] || !($this->data['pm_overwrite'] & $id)))
 					{
-						//echo "$pm_name set to '".$this->data[$pm_name]."'<br>\n";
+						//error_log( "$pm_name set to '".$this->data[$pm_name]);
 						$this->data['pm_overwrite'] |= $id;
 					}
 					// or check if a field is no longer set, or the datasource changed => set it from the datasource
@@ -399,7 +399,7 @@ class projectmanager_ui extends projectmanager_bo
 					($this->config['accounting_types'] && count($this->config['accounting_types']) == 1 ||
 					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1 ||
 					$coord_from_groups_roles)) ||
-					$this->config['accounting_types'] == 'status' || $this->config['accounting_types'] == 'times',
+					$this->config['accounting_types'] == ['status'] || $this->config['accounting_types'] == ['times'],
 				'custom' => !count($this->customfields),	// only show customfields tab, if there are some
 				'history' => !$this->data['pm_id'],        //suppress history for the first loading without ID
 			),
@@ -482,6 +482,12 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			if (count($sel_options['pm_accounting_type']) == 1)
 			{
+				if(!$content['pm_accounting_type'])
+				{
+					reset($sel_options['pm_accounting_type']);
+					$content['pm_accounting_type'] = $preserv['pm_accounting_type'] =
+						key($sel_options['pm_accounting_type']);
+				}
 				$readonlys['pm_accounting_type'] = true;
 			}
 		}
