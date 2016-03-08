@@ -337,7 +337,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!legacy_actions',
 				'row_id'         => 'pl_id',
-				'header_row'     => 'projectmanager.pricelist.add-new',
 				'dataStorePrefix' => 'pm_prices', // Default would be projectmanager, which would collide with project list
 				'num_rows'       => 0, // No data when first sent
 				'placeholder_actions' => array(),	// we have no "add" action currently

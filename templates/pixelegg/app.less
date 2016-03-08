@@ -58,22 +58,6 @@ table.egwLinkMoreOptions {
 .et2_grid td {border: 0px;}
 
 
-/*Button Add Project*/
-button#projectmanager-list_add {
-            .Complete_Button_add_only_plus;
-            .dimension_height_m;
-
-
-            &:hover {.Complete_Button_add_only_plus_hover;}
-            &:active {background-color: @color_positive_action_active !important;}
-}
-
-// Filter
-#projectmanager-list_favorite_wrapper div.et2_dropdown,
-#projectmanager-list_favorite{
-	top: -6px;
-}
-
 // Export
 #projectmanager-list_export{
     position: relative;
@@ -92,18 +76,6 @@ button#projectmanager-list_add {
     div.et2_hbox {top: -8px;}
     button {position: relative; top: 4px;}
     }
-
-#projectmanager-elements-list .nextmatch_header #projectmanager-elements-list_link_add button.et2_button{
-
-            .Complete_Button_add_only_plus;
-            .dimension_height_m;
-            margin-right: 0px;
-
-            &:hover {.Complete_Button_add_only_plus_hover;}
-            &:active {background-color: @color_positive_action_active !important;}
-
-        }
-
 
 /*Ende iframe*/
 
@@ -244,31 +216,6 @@ div#projectmanager-pricelist-list{
 }
 
 
-// Dialog Elementlist ###################################################
-//
-#projectmanager-elements-list_nm{
-
-    // ADD Button
-    #projectmanager-elements-list_link_add{
-
-        select {}
-
-        button {
-            .Complete_Button_add;
-            .dimension_height_m;
-            margin-right: 0px;
-
-            &:hover {.Complete_Button_add_only_plus_hover;}
-            &:active {background-color: @color_positive_action_active !important;}
-
-        }
-
-    }
-
-
-
-}
-
 /* tablets and smartphones  */
 @media only screen and (max-device-width:1024px) {
 	#projectmanager-list {
@@ -282,7 +229,7 @@ div#projectmanager-pricelist-list{
 			}
 			span[id^="projectmanager-list"][id$="pm_title]"]{
 				font-weight: bold;
-				padding-bottom: 5px; 
+				padding-bottom: 5px;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 				max-width:100%;
@@ -337,7 +284,7 @@ div#projectmanager-pricelist-list{
 				.elementCat {
 					display: inline-block;
 					float: right;
-					
+
 					span[id^="projectmanager-elements-list"][id$='cat_id]'],
 					{
 						white-space: nowrap;
@@ -360,7 +307,7 @@ div#projectmanager-pricelist-list{
 					}
 				}
 			}
-			
+
 			label[id^="projectmanager-elements-list"][id$='pe_planned_start]'],
 			label[id^="projectmanager-elements-list"][id$='pe_real_start]'],
 			label[id^="projectmanager-elements-list"][id$='pe_real_end]'],
@@ -392,6 +339,6 @@ div#projectmanager-pricelist-list{
 				max-width:100%;
 			}
 		}
-		
+
 	}
 }

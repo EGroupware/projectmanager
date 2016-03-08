@@ -1,3 +1,19 @@
+/* $Id$ */
+
+/**
+ * Let button in link_add look like regular [+] / add button, with app behind
+ */
+button#projectmanager-elements-list_link_add_add {
+	width: 24px;
+	text-indent: 100px;
+	overflow: hidden;
+	padding: 0;
+	background-position: 3px;
+	float: left;
+}
+button#projectmanager-elements-list_link_add_add:hover {
+	background-size: 16px 16px;
+}
 
 #projectmanager-tree_target {
 	min-height: 35px;
@@ -15,11 +31,11 @@
 	margin-right:-13px;
 }
 
-#projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_1,
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_1
 {
 	margin-right:-24px;
 }
-#projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_2,
+#projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_2
 {
 	margin-right:-35px;
 }

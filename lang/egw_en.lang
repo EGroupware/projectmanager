@@ -31,6 +31,7 @@ add this role	projectmanager	en	Add this role
 add timesheet only	projectmanager	en	Add timesheet only
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	en	Address book elements of a project can be used to define individual serial letter recipients. Available fields are
 addressbook fields	projectmanager	en	Address book fields
+all projects	projectmanager	en	All projects
 all roles	projectmanager	en	All roles
 all_roles	projectmanager	en	All roles
 allow users to change their working times	projectmanager	en	Allow users to change their working times

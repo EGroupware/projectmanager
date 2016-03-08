@@ -526,7 +526,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$sub_query = true;
 		}
 		unset($query['col_filter']['parent_id']);
-		
+
 		// cumulate eg. timesheets in also included infologs
 		$query['col_filter']['cumulate'] = !($query['filter2'] & 4);
 		$total = parent::get_rows($query,$rows,$readonlys,true);
@@ -564,7 +564,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 			// Don't show sub triangle for first project (self)
 			$row['is_parent'] = ($row['pe_app'] == 'projectmanager') && ($sub_query ? true: $n );
-			
+
 			if (!$budget_rights)
 			{
 				unset($row['pe_used_budget']);
@@ -908,7 +908,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'get_rows'       =>	'projectmanager.projectmanager_elements_ui.get_rows',
 				'num_rows'       => 0, // No data when first sent
 				'filter'         => 'used',// I initial value for the filter
-				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
 				'options-filter' => $this->status_labels,
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
 				'options-filter2' => array(
@@ -919,7 +918,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					4 => 'Cumulated elements too',
 					5 => 'Details of cumulated',
 				),
-				'header_row' => 'projectmanager.elements.list.add-new',
 				'col_filter' => array('pe_resources' => null),	// default value, to suppress loop
 				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
@@ -930,7 +928,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'is_parent'		 => 'is_parent'
 			);
 			// use the state of the last session stored in the user prefs
-			if ($state = @unserialize($this->prefs['pe_index_state']))
+			if (($state = @unserialize($this->prefs['pe_index_state'])))
 			{
 				$content['nm'] = array_merge($content['nm'],$state);
 			}

@@ -170,41 +170,16 @@ return false;"/>
 		</grid>
 	</template>
 	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
-		<grid width="100%">
-			<columns>
-				<column/>
-			</columns>
-			<rows>
-				<row disabled="1">
-					<hbox>
-						<template id="add-new"/>
-						<template id="add"/>
-					</hbox>
-				</row>
-				<row disabled="!@msg">
-					<description align="center" id="msg" no_lang="1" class="message"/>
-				</row>
-				<row>
-					<nextmatch id="nm" options="projectmanager.elements.list.rows"/>
-				</row>
-				<row>
-					<box id="add_existing_popup" class="action_popup prompt">
-							<vbox>
-								<description value="Add / Remove link" class="promptheader"/>
-								<link-entry id="link" class="action_popup-content"/>
-								<hbox>
-									<button label="Add" id="link_action[add]" onclick="nm_submit_popup(this); return false;"/>
-									<buttononly label="Cancel" onclick="nm_hide_popup(this,'link_popup');"/>
-								</hbox>
-							</vbox>
-					</box>
-					<hbox align="right" disabled="!@nm[selectcols]=/legacy_actions/"> 
-						
-						<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
-						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
-					</hbox>
-				</row>
-			</rows>
-		</grid>
+		<nextmatch id="nm" options="projectmanager.elements.list.rows" header_left="projectmanager.elements.list.add-new"/>
+		<box id="add_existing_popup" class="action_popup prompt">
+			<vbox>
+				<description value="Add / Remove link" class="promptheader"/>
+				<link-entry id="link" class="action_popup-content"/>
+				<hbox>
+					<button label="Add" id="link_action[add]" onclick="nm_submit_popup(this); return false;"/>
+					<buttononly label="Cancel" onclick="nm_hide_popup(this,'link_popup');"/>
+				</hbox>
+			</vbox>
+		</box>
 	</template>
 </overlay>

@@ -31,6 +31,7 @@ add this role	projectmanager	de	Diese Rolle hinzufügen
 add timesheet only	projectmanager	de	Nur Stundenzettel hinzufügen
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	de	Adressen, die einem Projekt zugewiesen sind, können als Empfänger eines individuellen Serienbriefs definiert werden
 addressbook fields	projectmanager	de	Felder der Adressverwaltung
+all projects	projectmanager	de	Alle Projekte
 all roles	projectmanager	de	Rolle hinzufügen
 all_roles	projectmanager	de	Alle Rollen
 allow users to change their working times	projectmanager	de	Erlaube Benutzern ihre Arbeitszeiten zu ändern

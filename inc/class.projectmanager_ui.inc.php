@@ -732,13 +732,11 @@ class projectmanager_ui extends projectmanager_bo
 				'options-filter2'=> self::$status_labels,
 				'filter2_no_lang'=> True,// I  set no_lang for filter (=dont translate the options)
 				'filter'         => 'mains',
-				'filter_label'   => lang('Filter'),// I  label for filter    (optional)
-				'options-filter' => $this->filter_labels,
+				'options-filter' => array('' => lang('All projects'))+$this->filter_labels,
 				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
 				'order'          =>	'pm_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
 				'default_cols'   => '!role0,role1,role2,role3,role4,pm_used_time_pm_planned_time_pm_replanned_time,legacy_actions,cat_id',
-				'header_row'     => 'projectmanager.list.right',
 				'row_id'         => 'pm_id',
 				'favorites'		=> true,
 				'row_modified'	=> 'pm_modified',
