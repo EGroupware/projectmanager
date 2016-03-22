@@ -9,6 +9,11 @@
  * @version $Id$
  */
 
+/*egw:uses
+	/etemplate/js/etemplate2.js;
+	/projectmanager/js/et2_widget_gantt.js;
+*/
+
 /**
  * UI for projectmanager
  *

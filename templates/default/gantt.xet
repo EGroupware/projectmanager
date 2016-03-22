@@ -14,7 +14,7 @@
 				<button statustext="Export as PNG" label="PNG" onclick="widget.getRoot().getWidgetById('gantt').exportToPNG();"/>
 				-->
 			</hbox>
-			<gantt id="gantt" class="ganttContent" autoload="projectmanager_gantt::ajax_gantt_project" ajax_update="projectmanager_gantt::ajax_update" span="all">
+			<projectmanager-gantt id="gantt" class="ganttContent" autoload="projectmanager_gantt::ajax_gantt_project" ajax_update="projectmanager_gantt::ajax_update" span="all">
 				<grid>
 					<columns>
 						<column/>
@@ -50,7 +50,7 @@
 						</row>
 					</rows>
 				</grid>
-			</gantt>
+			</projectmanager-gantt>
 		</vbox>
 	</template>
 	<template id="projectmanager.gantt.edit" template="" lang="" group="0" version="1.9.001">
