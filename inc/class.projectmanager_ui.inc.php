@@ -399,7 +399,7 @@ class projectmanager_ui extends projectmanager_bo
 					($this->config['accounting_types'] && count($this->config['accounting_types']) == 1 ||
 					!($this->data['pm_creator'] == $this->user || $this->data['pm_members'][$this->user]['role_id'] == 1 ||
 					$coord_from_groups_roles)) ||
-					$this->config['accounting_types'] == ['status'] || $this->config['accounting_types'] == ['times'],
+					$this->config['accounting_types'] == array('status') || $this->config['accounting_types'] == array('times'),
 				'custom' => !count($this->customfields),	// only show customfields tab, if there are some
 				'history' => !$this->data['pm_id'],        //suppress history for the first loading without ID
 			),
@@ -565,7 +565,7 @@ class projectmanager_ui extends projectmanager_bo
 			$query['col_filter']['subs_or_mains'] = $query['col_filter']['pm_id'];
 		}
 		unset($query['col_filter']['pm_id']);
-
+		
 		$total = parent::get_rows($query,$rows,$readonlys,'',true, false, array('children'));
 
 		$readonlys = array();
