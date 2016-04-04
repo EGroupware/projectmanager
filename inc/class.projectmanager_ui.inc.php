@@ -5,10 +5,12 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-11 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-16 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @version $Id$
  */
+
+use EGroupware\Api;
 
 /**
  * ProjectManager UI: list and edit projects
@@ -565,7 +567,7 @@ class projectmanager_ui extends projectmanager_bo
 			$query['col_filter']['subs_or_mains'] = $query['col_filter']['pm_id'];
 		}
 		unset($query['col_filter']['pm_id']);
-		
+
 		$total = parent::get_rows($query,$rows,$readonlys,'',true, false, array('children'));
 
 		$readonlys = array();
@@ -1124,7 +1126,7 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			return $nodes;
 		}
-		etemplate_widget_tree::send_quote_json($nodes);
+		Api\Etemplate\Widget\Tree::send_quote_json($nodes);
 	}
 
 	protected static function _project_tree_leaves($filter, $parent_pm_id = 'mains', $_pm_id, &$projects = array())
