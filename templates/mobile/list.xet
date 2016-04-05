@@ -9,19 +9,14 @@
 		<grid width="100%">
 			<columns>
 				<column width="10"/>
-				<column width="100"/>
 				<column width="90%"/>
+				<column width="100"/>
 			</columns>
 			<rows>
 				<row class="th">
 				</row>
 				<row class="$row_cont[class]">
 					<description class=" cat_$row_cont[cat_id] mobile_cat_col"/>
-					<vbox class="pmCol1">
-						<date-duration label="time" id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
-						<date-duration label="planned" id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
-						<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
-					</vbox>
 					<vbox class="pmCol2">
 						<hbox>
 							<description id="${row}[pm_number]" no_lang="1"/>
@@ -30,18 +25,22 @@
 								<description align="center" id="${row}[pm_priority]" no_lang="1"/>
 							</hbox>
 						</hbox>
-						
+
 						<description id="${row}[pm_title]" no_lang="1" />
 						<hbox>
 							<label value="Start" class="startPlanned"/>
 							<date id="${row}[pm_planned_start]" readonly="true" class="planned"/>
 							<hbox class="endPlanned">
 								<label value="End" />
-								<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>	
+								<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>
 							</hbox>
 						</hbox>
 					</vbox>
-					
+					<vbox class="pmCol1">
+						<date-duration label="time" id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
+						<date-duration label="planned" id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
+						<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+					</vbox>
 				</row>
 			</rows>
 		</grid>
@@ -60,7 +59,7 @@
 					<template align="right" id="projectmanager.list.right" span="all"/>
 				</row>
 				<row>
-					<description id="plus_button_container"/> 
+					<description id="plus_button_container"/>
 				</row>
 				<row>
 					<nextmatch id="nm" template="projectmanager.list.rows"/>
