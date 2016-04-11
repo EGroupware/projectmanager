@@ -7,6 +7,7 @@
 			<columns>
 				<column width="95"/>
 				<column width="40%"/>
+				<column width="30"/>
 				<column width="8%"/>
 				<column width="40%"/>
 			</columns>
@@ -16,6 +17,7 @@
 					<menulist class="et2_fullWidth">
 						<menupopup type="select-cat" id="cat_id" options="None"/>
 					</menulist>
+					<description/>
 					<description value="Access" for="pm_access"/>
 					<menulist class="et2_fullWidth">
 						<menupopup id="pm_access" no_lang="1"/>
@@ -26,6 +28,7 @@
 					<menulist class="et2_fullWidth">
 						<menupopup type="select-number" id="pm_priority" options=",1,10"/>
 					</menulist>
+					<description/>
 					<description value="Status" for="pm_status"/>
 					<hbox>
 						<menulist>
@@ -34,44 +37,52 @@
 						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" class="projectmanager_leftPad5"/>
 					</hbox>
 				</row>
-				<row class="th">
+				<row class="th" height="20" valign="bottom">
 					<description value="Value"/>
 					<description value="Project"/>
+					<description/>
 					<description value="Elementlist" span="all"/>
 				</row>
 				<row class="row">
 					<description value="Startdate" for="pm_real_start"/>
 					<date-time id="pm_real_start" class="et2_fullWidth"/>
+					<description/>
 					<date-time id="ds[pe_real_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description value="- planned" for="pm_planned_end"/>
 					<date-time id="pm_planned_start" class="et2_fullWidth"/>
+					<description/>
 					<date-time id="ds[pe_planned_start]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description value="Enddate" for="pm_real_end"/>
 					<date-time id="pm_real_end" class="et2_fullWidth"/>
+					<description/>
 					<date-time id="ds[pe_real_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row">
 					<description value="- planned" for="pm_planned_end"/>
 					<date-time id="pm_planned_end" class="et2_fullWidth"/>
+					<description/>
 					<date-time id="ds[pe_planned_end]" readonly="true" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<description value="Times" for="pm_used_time"/>
 					<date-duration id="pm_used_time" options="@duration_format" class="et2_fullWidth"/>
+					<description/>
 					<date-duration id="ds[pe_used_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<description value="- planned" for="pm_planned_time"/>
 					<date-duration id="pm_planned_time" options="@duration_format" class="et2_fullWidth"/>
+					<description/>
 					<date-duration id="ds[pe_planned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<description value="- re-planned" for="pm_replanned_time"/>
 					<date-duration id="pm_replanned_time" options="@duration_format" class="et2_fullWidth"/>
+					<description/>
 					<date-duration id="ds[pe_replanned_time]" readonly="true" options="@duration_format" span="all"/>
 				</row>
 				<row class="row">
@@ -79,6 +90,7 @@
 					<menulist class="et2_fullWidth">
 						<menupopup type="select-percent" id="pm_completion" options="None"/>
 					</menulist>
+					<description/>
 					<description id="ds[pe_completion]" no_lang="1" readonly="true" span="all"/>
 				</row>
 			</rows>
@@ -154,7 +166,7 @@
 						<menupopup id="pm_accounting_type" onchange="1"/>
 					</menulist>
 				</row>
-				<row class="th" height="12" disabled="@no_budget">
+				<row class="th" height="20" disabled="@no_budget" valign="bottom">
 					<description value="Value"/>
 					<description value="Project"/>
 					<description value="Elementlist"/>
@@ -216,18 +228,18 @@
 			<columns>
 				<column width="100"/>
 				<column width="150"/>
-				<column width="10%"/>
-				<column/>
+				<column width="500"/>
+				<column width="50"/>
 			</columns>
 			<rows>
 				<row class="dialogHeader">
 					<description value="Project ID" for="pm_number"/>
 					<textbox statustext="leave it empty to have one generated" id="pm_number" no_lang="1" size="20" maxlength="64"/>
-					<description value="Title" for="pm_title"/>
-					<textbox statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" size="64" maxlength="255" tabindex="1"/>
+					<textbox blur="Title" statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" class="et2_fullWidth" maxlength="255" tabindex="1"/>
+					<appicon src="projectmanager"/>
 				</row>
 				<row>
-					<tabbox id="tabs" span="all" tab_height="260px">
+					<tabbox id="tabs" span="all" tab_height="280px">
 						<tabs>
 							<tab id="general" label="General" statustext="Start, End, Category, ..."/>
 							<tab id="description" label="Description" statustext="free descriptiv text"/>
@@ -264,7 +276,7 @@
 					</hbox>
 				</row>
 				<row class="dialogFooterToolbar">
-					<hbox span="3">
+					<hbox span="2">
 						<button statustext="Edit this project" label="Edit" id="edit" image="edit" background_image="1"/>
 						<button statustext="Save the changes made" label="Save" id="save" image="save" background_image="1"/>
 						<button statustext="Apply the changes" label="Apply" id="apply" image="apply" background_image="1"/>
