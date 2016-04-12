@@ -832,13 +832,14 @@ class projectmanager_ui extends projectmanager_bo
 				'onExecute' => 'javaScript:app.projectmanager.set_project',
 				'target' => '_self',
 				'group' => $group=1,
-				'default' => true,
+				'default' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['pm_list'] != '~edit~',
 			),
 			'open' => array(	// does edit if allowed, otherwise view
 				'caption' => 'Open',
 				'allowOnMultiple' => false,
 				'egw_open' => 'edit-projectmanager',
 				'group' => $group,
+				'default' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['pm_list'] == '~edit~',
 			),
 			'add' => array(
 				'caption' => 'Add',

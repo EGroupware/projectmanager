@@ -376,6 +376,19 @@ class projectmanager_hooks
 				'admin'  => False,
 				'forced'=> False,
 		);
+		$pm_list_options = array(
+			'~edit~'    => lang('Edit project'),
+			'list' => lang('Element list'),
+		);
+		$settings['pm_list'] = array(
+			'type'   => 'select',
+			'label'  => 'Default action on double-click',
+			'name'   => 'pm_list',
+			'values' => $pm_list_options,
+			'xmlrpc' => True,
+			'admin'  => false,
+			'default'=> 'list',
+		);
 		$settings['show_projectselection'] = array(
 			'type'   => 'select',
 			'label'  => 'Show the project selection as',
