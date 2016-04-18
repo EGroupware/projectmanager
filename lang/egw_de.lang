@@ -84,6 +84,7 @@ datasource	projectmanager	de	Datenquelle
 datasources too	projectmanager	de	auch Datenquellen
 dates	projectmanager	de	Datum
 days	projectmanager	de	Tage
+default action on double-click	projectmanager	de	Aktion beim Doppel-Klick in der Projektliste
 default all and a selectbox to choose	projectmanager	de	Vorgabe alle und eine Auswahlbox
 delete all checked projects	projectmanager	de	Ausgewählten Projekte löschen
 delete this milestone	projectmanager	de	Diesen Meilenstein löschen

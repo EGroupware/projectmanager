@@ -84,6 +84,7 @@ datasource	projectmanager	en	Data source
 datasources too	projectmanager	en	Data sources too
 dates	projectmanager	en	Dates
 days	projectmanager	en	Days
+default action on double-click	projectmanager	en	Default action on double-click
 default all and a selectbox to choose	projectmanager	en	Default all and a select box to choose
 delete all checked projects	projectmanager	en	Delete all checked projects
 delete this milestone	projectmanager	en	Delete this milestone
