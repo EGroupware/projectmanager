@@ -140,7 +140,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$project = new projectmanager_egw_record_project();
 			$project->set_record($record);
 			if($options['convert']) {
-				importexport_export_csv::convert($project, self::$types, 'projectmanager', $options['convert']);
+				importexport_export_csv::convert($project, self::$types, 'projectmanager');
 				$this->convert($project, $options);
 			} else {
 				// Implode arrays, so they don't say 'Array'
