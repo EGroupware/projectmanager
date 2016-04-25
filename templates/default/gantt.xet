@@ -54,7 +54,7 @@
 		</vbox>
 	</template>
 	<template id="projectmanager.gantt.edit" template="" lang="" group="0" version="1.9.001">
-		<textbox readonly="true" label="Change the following details of %1" id="pe_title"/>
+		<textbox readonly="true" label="Change the following details of %s" id="pe_title"/>
 		<grid id="fields" width="100%">
 			<columns><column/><column/><column/><column/></columns>
 			<rows>
