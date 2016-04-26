@@ -179,7 +179,7 @@ app.classes.projectmanager = AppJS.extend(
 			{
 				case 'elements':
 					et2.getWidgetById('nm').applyFilters({col_filter:{'pm_id': current_project}});
-					et2.getWidgetById('link_add').options.value.to_id = current_project;
+					if (et2.getWidgetById('link_add')) et2.getWidgetById('link_add').options.value.to_id = current_project;
 					break;
 				case 'gantt':
 					var gantt = et2.getWidgetById('gantt');
@@ -396,7 +396,7 @@ app.classes.projectmanager = AppJS.extend(
 			{
 				et2.widgetContainer.iterateOver(function(_widget) {
 					state = _widget.getValue();
-					
+
 					// These aren't considered for state
 					delete state.link_add;
 					delete state.link_addapp;
@@ -458,7 +458,7 @@ app.classes.projectmanager = AppJS.extend(
 				var itemId = _id != 'undefined'?_app+"::"+_id:0;
 				if (tree && itemId)
 				{
-					var node = tree.getNode(itemId);						
+					var node = tree.getNode(itemId);
 					// Not in tree.  Either parent node not expanded, or a new project
 					if(_type != 'delete' && node == null && typeof _links.projectmanager != 'undefined' && _links.projectmanager.length > 0)
 					{
@@ -949,7 +949,7 @@ app.classes.projectmanager = AppJS.extend(
 		sidebox.off('click.projectmanager');
 		sidebox.on('click.projectmanager', click);
 	},
-	
+
 	/**
 	 * Get title in order to set it as document title
 	 * @returns {string}

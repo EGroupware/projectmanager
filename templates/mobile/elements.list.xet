@@ -2,19 +2,6 @@
 <!DOCTYPE overlay PUBLIC "-//Stylite AG//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
-		<link-add id="link_add" onchange="/* Keep app, but do not trigger a change */
-		if(widget.id !== 'link_addapp') return false;
-var nm = widget.getParent();
-while(!nm.instanceOf(et2_nextmatch))
-{
-	nm = nm.getParent();
-}
-if(nm.activeFilters) {
-	nm.activeFilters[widget.id] = widget.get_value();
-}
-return false;"/>
-	</template>
 	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
 		<grid width="99%" height="99%">
 			<columns>
@@ -87,7 +74,7 @@ return false;"/>
 							<textbox align="right" label="Planned" type="float" id="${row}[pe_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
 						</hbox>
 					</vbox>
-					
+
 				</row>
 			</rows>
 		</grid>
@@ -121,8 +108,8 @@ return false;"/>
 								</hbox>
 							</vbox>
 					</box>
-					<hbox align="right" disabled="!@nm[selectcols]=/legacy_actions/"> 
-						
+					<hbox align="right" disabled="!@nm[selectcols]=/legacy_actions/">
+
 						<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
 						<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
 					</hbox>
