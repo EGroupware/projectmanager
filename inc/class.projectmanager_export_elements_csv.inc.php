@@ -97,6 +97,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			$query = array(
 				'num_rows' => -1,		// all
 				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
+				'col_filter' => array('pm_id' => true)
 			);
 			$ui->get_rows($query,$selection,$readonlys);
 			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
