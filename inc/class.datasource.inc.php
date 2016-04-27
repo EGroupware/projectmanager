@@ -188,7 +188,8 @@ class datasource
 		if ($ds)
 		{
 			// setting a not set planned start from a contrains
-			if ((!$ds['pe_planned_start'] || $ds['ignore_planned_start']) && !is_null($pe_data) && $pe_data['pe_constraints']['start'])
+			if ((!$ds['pe_planned_start'] && isset($ds['pe_planned_start']) || $ds['ignore_planned_start']) &&
+				!is_null($pe_data) && $pe_data['pe_constraints']['start'])
 			{
 				//echo "start-constr."; _debug_array($pe_data['pe_constraints']['start']);
 				$start = 0;
@@ -213,12 +214,12 @@ class datasource
 				}
 			}
 			// setting the planned start from the real-start
-			if (!$ds['pe_planned_start'] && !$ds['ignore_planned_start'] && $ds['pe_real_start'])
+			if (!$ds['pe_planned_start'] && isset($ds['pe_planned_start']) && !$ds['ignore_planned_start'] && $ds['pe_real_start'])
 			{
 				$ds['pe_planned_start'] = $ds['pe_real_start'];
 			}
 			// setting the planned start from the projects start
-			if ((!$ds['pe_planned_start'] || $ds['ignore_planned_start']) && $pe_data['pm_id'])
+			if ((!$ds['pe_planned_start'] && isset($ds['pe_planned_start']) || $ds['ignore_planned_start']) && $pe_data['pm_id'])
 			{
 				if (!is_object($this->bo_pe))
 				{
@@ -255,11 +256,11 @@ class datasource
 				}
 			}
 			// setting real or planned start-date, from each other if not set
-			if ((!isset($ds['pe_real_start']) || $ds['ignore_real_start']) && isset($ds['pe_planned_start']))
+			if ((!$ds['pe_real_start'] || $ds['ignore_real_start']) && isset($ds['pe_planned_start']))
 			{
 				$ds['pe_real_start'] = $ds['pe_planned_start'];
 			}
-			elseif (!isset($ds['pe_planned_start']) && isset($ds['pe_real_start']))
+			elseif (!$ds['pe_planned_start'] && isset($ds['pe_real_start']))
 			{
 				$ds['pe_planned_start'] = $ds['pe_real_start'];
 			}

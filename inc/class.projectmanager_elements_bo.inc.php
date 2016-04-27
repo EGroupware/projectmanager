@@ -232,9 +232,12 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		}
 		$this->init();
 		$need_save_anyway = false;
+		$datasource =& $this->datasource($app);
+
 		// check if entry already exists and set basic values if not
 		if (!$pe_id || ($need_save_anyway = !$this->read(array('pm_id'=>$pm_id,'pe_id'=>$pe_id))))
 		{
+			$this->data = $datasource->read($id);
 			$this->data['pm_id'] = $pm_id;
 			$this->data['pe_id'] = $pe_id;
 			$this->data['pe_overwrite'] = 0;		// none set so far
@@ -256,7 +259,6 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		{
 			$this->data_merge($extra_keys);
 		}
-		$datasource =& $this->datasource($app);
 		$this->updated = 0;
 
 		// mask out not overwritable parts like title and details

@@ -465,7 +465,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		// Check for filter change, need to get totals
 		$session = egw_cache::getSession('projectmanager', 'projectelements_list');
-		$get_totals = ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
+		$get_totals = $query_in['start'] === 0 || ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
 		$query=$query_in;
 		unset($query_in['col_filter']['parent_id']);
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query_in);
@@ -688,6 +688,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				if ($budget_rights || !in_array($field, array('pe_planned_budget', 'pe_used_budget')))
 				{
 					$rows['total_' . $field] = $value;
+				}
+				// etemplate requires unique IDs, these ones are in the second times column
+				if(in_array($field, array('pe_planned_time', 'pe_used_time')))
+				{
+					$rows['total_' . $field . '_2'] = $value;
 				}
 			}
 		}
