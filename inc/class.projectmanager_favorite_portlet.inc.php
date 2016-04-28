@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Egroupware - Infolog - A portlet for displaying a list of portlet entries
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  * @package projectmanager
@@ -9,6 +8,9 @@
  * @author Nathan Gray
  * @version $Id$
  */
+
+use EGroupware\Api;
+use EGroupware\Api\Etemplate;
 
 /**
  * The projectmanager_list_portlet uses a nextmatch / favorite
@@ -24,7 +26,7 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 	public function __construct(Array &$context = array(), &$need_reload = false)
 	{
 		$context['appname'] = 'projectmanager';
-		
+
 		// Let parent handle the basic stuff
 		parent::__construct($context,$need_reload);
 
@@ -44,7 +46,7 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 		);
 	}
 
-	public function exec($id = null, etemplate_new &$etemplate = null)
+	public function exec($id = null, Etemplate &$etemplate = null)
 	{
 		$ui = new projectmanager_ui();
 		$this->nm_settings['options-filter'] = $ui->filter_labels;
@@ -81,33 +83,34 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 	 */
 	public static function process($content = array())
 	{
-		parent::process($values);
+		parent::process($content);
 		$ui = new projectmanager_ui();
 		if ($content['nm']['action'])
 		{
 			if (!count($content['nm']['selected']) && !$content['nm']['select_all'])
 			{
 				$msg = lang('You need to select some entries first!');
-				egw_json_response::get()->apply('egw.message',array($msg,'error'));
+				Api\Json\Response::get()->apply('egw.message',array($msg,'error'));
 			}
 			else
 			{
+				$success = $failed = $action_msg = null;
 				if ($ui->action($content['nm']['action'],$content['nm']['selected'],$content['nm']['select_all'],
 					$success,$failed,$action_msg,'project_list',$msg,$content['nm']['checkboxes']['sources_too']))
 				{
 					$msg .= lang('%1 project(s) %2',$success,$action_msg);
-					egw_json_response::get()->apply('egw.message',array($msg,'success'));
+					Api\Json\Response::get()->apply('egw.message',array($msg,'success'));
 					foreach($content['nm']['selected'] as &$id)
 					{
 						$id = 'projectmanager::'.$id;
 					}
 					// Directly request an update - this will get timesheet tab too
-					egw_json_response::get()->apply('egw.dataRefreshUIDs',array($content['nm']['selected']));
+					Api\Json\Response::get()->apply('egw.dataRefreshUIDs',array($content['nm']['selected']));
 				}
 				elseif(is_null($msg))
 				{
 					$msg .= lang('%1 project(s) %2, %3 failed because of insufficent rights !!!',$success,$action_msg,$failed);
-					egw_json_response::get()->apply('egw.message',array($msg,'error'));
+					Api\Json\Response::get()->apply('egw.message',array($msg,'error'));
 				}
 			}
 		}
