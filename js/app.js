@@ -518,6 +518,13 @@ app.classes.projectmanager = AppJS.extend(
 					nm.refresh(_id,_type);
 				}
 				return false;
+			case 'elements':
+				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null
+				if(nm)
+				{
+					nm.refresh(_id,_type);
+				}
+				return false;
 			case 'gantt':
 				var ids = [];
 				var gantt = this.views.gantt.etemplate.widgetContainer.getWidgetById('gantt');
@@ -871,6 +878,40 @@ app.classes.projectmanager = AppJS.extend(
 		}
 
 		return allowed;
+	},
+
+	/**
+	 * Is the selected entry ignored?
+	 */
+	is_ignored: function(action, selected)
+	{
+		var ignored = false;
+		
+		for(var i = 0; i < selected.length; i++)
+		{
+			var data = egw.dataGetUIDdata(selected[i].id);
+			ignored = ignored || !!(data && data.data && data.data.ignored);
+		}
+
+		return ignored;
+	},
+
+	/**
+	 * Toggle the ignore flag on the selected entries
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 */
+	ignore_action: function(action, selected)
+	{
+		var ids = [];
+		for(var i = 0; i < selected.length; i++)
+		{
+			ids.push(selected[i].id);
+		}
+		egw.json('projectmanager_elements_ui::ajax_action', [action.id, ids, action.checked],
+			false, this, true, this
+		).sendRequest(true);
 	},
 
 	/**
