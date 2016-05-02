@@ -196,7 +196,7 @@ if checked the datasources of the elements (eg. infolog entries) are deleted too
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	en	If checked the data sources of the elements, e.g. InfoLog entries, will change their status too.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	en	If you see entities (eg. {) in the GanttChart, switch this off.
 if you specify an export definition, it will be used when you export	projectmanager	en	If you specify an export definition, it will be used when you export
-ignore that entry	projectmanager	en	Ignore that entry
+ignore that entry	projectmanager	en	Ignore entry
 ignored	projectmanager	en	Ignored.
 import	projectmanager	en	Import
 imports a list of projects from a csv file.  does not include project elements.	projectmanager	en	Imports a list of projects from a CSV file.  Does not include project elements.

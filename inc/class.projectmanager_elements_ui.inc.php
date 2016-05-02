@@ -769,6 +769,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'disableClass' => 'rowNoEdit',
 
 			),
+			'ignore' => array(
+				'caption' => 'Ignore that entry',
+				'group' => $group,
+				'disableClass' => 'rowNoEdit',
+				'checkbox' => true,
+				'isChecked' => 'javaScript:app.projectmanager.is_ignored',
+				'onExecute' => 'javaScript:app.projectmanager.ignore_action'
+			),
 			'timesheet' => array(
 				'icon' => 'timesheet/navbar',
 				'caption' => 'Timesheet',
@@ -1046,6 +1054,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if (substr($action,0,4) == 'cat_') list($action,$cat_id) = explode('_',$action);
 		if (substr($action,0,6) == 'erole_') list($action,$erole) = explode('_',$action);
+		if (substr($action,0,7) == 'ignore_') list($action,$ignore) = explode('_',$action);
 
 		switch($action)
 		{
@@ -1108,6 +1117,23 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						$msg = lang('%1 element(s) updated',count($checked));
 					}
 				}
+				break;
+			case 'ignore':
+				$success = $failed = 0;
+				foreach($checked as $id)
+				{
+					$element = $this->read($id);
+					if(!$this->save(array('pe_status' => $ignore ? 'ignore' : 'new')))
+					{
+						$success++;
+					}
+					else
+					{
+						$failed++;
+					}
+				}
+				$msg = lang('%1 element(s) updated',$success);
+				return $failed==0;
 				break;
 			case 'delete':
 				if (!$this->project->check_acl(EGW_ACL_ADD))
@@ -1201,6 +1227,44 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		return false;
 	}
 
+/**
+	 * Run given action on given path(es) and return array/object with values for keys 'msg', 'errs', 'dirs', 'files'
+	 *
+	 * @param string $action eg. 'delete', ...
+	 * @param array $selected selected path(s)
+	 * @param string $data Action specific data
+	 * @see static::action()
+	 */
+	public static function ajax_action($action, $selected, $data = array())
+	{
+
+		$response = egw_json_response::get();
+
+		switch($action)
+		{
+			case 'ignore':
+				$ui = new projectmanager_elements_ui();
+				$checked = [];
+				foreach($selected as $entry)
+				{
+					list($prefix,$checked[]) = explode('::',$entry);
+				}
+				$msg = '';
+				if($ui->action('ignore_'.(!!$data),$checked,$msg, $add_existing))
+				{
+					// We could just update the selected rows here, but this is easier and gets
+					// the totals too
+					$response->call('egw.refresh',$msg,'projectmanager');
+				}
+				else
+				{
+					$response->error($msg);
+				}
+				break;
+		}
+
+		//error_log(__METHOD__."('$action',".array2string($selected).') returning '.array2string($arr));
+	}
 
 	/**
 	 * Download a document with inserted contact(s)
