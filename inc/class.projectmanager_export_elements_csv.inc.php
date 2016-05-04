@@ -89,7 +89,8 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			unset($query['num_rows']);
 			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $old_query);
 		}
-		elseif ( $options['selection'] == 'all' ) {
+		elseif ( $options['selection'] == 'all' )
+		{
 			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			// Clear the PM ID or results will be restricted
 			unset($ui->pm_id);
@@ -101,7 +102,38 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			);
 			$ui->get_rows($query,$selection,$readonlys);
 			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
-		} else {
+		}
+		elseif ($options['selection'] == 'filter')
+		{
+			$filter = $_definition->filter;
+			$query = array(
+				'num_rows' => -1,
+				'col_filter' => array('pm_id'	=> $options['pm_id']),
+				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
+			);
+
+			// Handle ranges
+			foreach($filter as $field => $value)
+			{
+				if($field == 'cat_id')
+				{
+					$query[$field] = implode(',',$value);
+					continue;
+				}
+
+				$query['col_filter'][$field] = $value;
+				if(!is_array($value) || (!$value['from'] && !$value['to'])) continue;
+
+				// Ranges are inclusive, so should be provided that way (from 2 to 10 includes 2 and 10)
+				if($value['from']) $query['col_filter'][] = "$field >= " . (int)$value['from'];
+				if($value['to']) $query['col_filter'][] = "$field <= " . (int)$value['to'];
+				unset($query['col_filter'][$field]);
+			}
+
+			$ui->get_rows($query,$selection,$readonlys);
+		}
+		else
+		{
 			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
 			$query = array(
 				'num_rows' => -1,
@@ -237,5 +269,18 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				$record->$duration .= $options[$duration];
 			}
 		}
+	}
+
+	public static function get_egw_record_class()
+	{
+		return 'projectmanager_egw_record_element';
+	}
+	
+	/**
+	 * Adjust automatically generated filter fields
+	 */
+	public function get_filter_fields(Array &$filters)
+    {
+		unset($filters['pe_cat_id']);
 	}
 }
