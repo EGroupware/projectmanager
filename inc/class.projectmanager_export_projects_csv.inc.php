@@ -57,7 +57,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$list = 'project_list';
 		}
 
-		if ($options['selection'] == 'selected') {
+		if ($options['selection'] == 'selected')
+		{
 			// Use search results
 			$old_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
 			$query = array_merge($old_query, $query);
@@ -69,7 +70,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			unset($query['num_rows']);
 			$GLOBALS['egw']->session->appsession($list,'projectmanager', $old_query);
 		}
-		elseif ( $options['selection'] == 'all' ) {
+		elseif ( $options['selection'] == 'all' )
+		{
 			$_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
 			$query = array(
 				'filter2' => $list == 'project_list' ? 'active' : '0' ,
@@ -81,7 +83,39 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 
 			// Reset nm params
 			$GLOBALS['egw']->session->appsession($list,'projectmanager', $_query);
-		} else {
+		}
+		elseif ($options['selection'] == 'filter')
+		{
+			$filter = $_definition->filter;
+			$query = array(
+				'filter2' => $list == 'project_list' ? 'active' : '0' ,
+				'col_filter' => $list == 'project_list' ? array() : array('pm_id' => $pm_id),
+				'num_rows' => -1,		// all
+				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
+			);
+
+			// Handle ranges
+			foreach($filter as $field => $value)
+			{
+				if($field == 'cat_id')
+				{
+					$query[$field] = implode(',',$value);
+					continue;
+				}
+
+				$query['col_filter'][$field] = $value;
+				if(!is_array($value) || (!$value['from'] && !$value['to'])) continue;
+
+				// Ranges are inclusive, so should be provided that way (from 2 to 10 includes 2 and 10)
+				if($value['from']) $query['col_filter'][] = "$field >= " . (int)$value['from'];
+				if($value['to']) $query['col_filter'][] = "$field <= " . (int)$value['to'];
+				unset($query['col_filter'][$field]);
+			}
+
+			$ui->get_rows($query,$selection,$readonlys);
+		}
+		else
+		{
 			$selection = explode(',',$options['selection']);
 		}
 		if(get_class($ui) != 'projectmanager_ui')
@@ -251,5 +285,15 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 				}
 			}
 		}
+	}
+
+	/**
+	 * Get the class name for the egw_record to use while exporting
+	 *
+	 * @return string;
+	 */
+	public static function get_egw_record_class()
+	{
+		return 'projectmanager_egw_record_project';
 	}
 }
