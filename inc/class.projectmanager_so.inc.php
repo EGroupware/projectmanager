@@ -240,8 +240,8 @@ class projectmanager_so extends Api\Storage
 				$members = array_unique($members);
 			}
 			$query['col_filter'][] = 'resources.member_uid IN ('.implode(', ',$members).' ) ';
-			unset($query['col_filter']['resources']);
 		}
+		unset($query['col_filter']['resources']);
 
 		$query['order'] = ' GROUP BY egw_pm_projects.pm_id ORDER BY '. $query['order'] ;
 		return parent::get_rows($query, $rows, $readonlys, $join, $need_full_no_count,	$only_keys, $extra_cols);
