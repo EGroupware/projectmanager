@@ -10,12 +10,14 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 /**
  * Roles storage object of the projectmanager
  *
  * Tables: egw_pm_roles
  */
-class projectmanager_roles_so extends so_sql
+class projectmanager_roles_so extends Api\Storage\Base
 {
 	/**
 	 * Constructor, calls the constructor of the extended class

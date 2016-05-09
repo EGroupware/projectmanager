@@ -11,6 +11,9 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+
 /**
  * export projects to CSV
  */
@@ -60,7 +63,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		if ($options['selection'] == 'selected')
 		{
 			// Use search results
-			$old_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
+			$old_query = Api\Cache::getSession('projectmanager', $list);
 			$query = array_merge($old_query, $query);
 			$query['num_rows'] = -1;	// all
 			$query['csv_export'] = true;	// so get_rows method _can_ produce different content or not store state in the session
@@ -68,11 +71,11 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 
 			// Reset nm params
 			unset($query['num_rows']);
-			$GLOBALS['egw']->session->appsession($list,'projectmanager', $old_query);
+			Api\Cache::setSession('projectmanager', $list, $old_query);
 		}
 		elseif ( $options['selection'] == 'all' )
 		{
-			$_query = $GLOBALS['egw']->session->appsession($list,'projectmanager');
+			$_query = Api\Cache::getSession('projectmanager', $list);
 			$query = array(
 				'filter2' => $list == 'project_list' ? 'active' : '0' ,
 				'col_filter' => $list == 'project_list' ? array() : array('pm_id' => $pm_id),
@@ -82,7 +85,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$ui->get_rows($query,$selection,$readonlys);
 
 			// Reset nm params
-			$GLOBALS['egw']->session->appsession($list,'projectmanager', $_query);
+			Api\Cache::setSession('projectmanager', $list, $_query);
 		}
 		elseif ($options['selection'] == 'filter')
 		{
@@ -250,7 +253,7 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 		$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		if($pm_id)
 		{
-			$project_title = egw_link::title('projectmanager', $pm_id);
+			$project_title = Link::title('projectmanager', $pm_id);
 		}
 		return array(
 			'name'	=> 'projectmanager.export_csv_selectors',

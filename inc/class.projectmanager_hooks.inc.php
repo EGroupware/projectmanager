@@ -10,6 +10,12 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Egw;
+use EGroupware\Api\Acl;
+
 /**
  * diverse hooks for ProjectManager: all static functions
  *
@@ -33,7 +39,7 @@ class projectmanager_hooks
 	 */
 	public static function init_static()
 	{
-		self::$config = config::read('projectmanager');
+		self::$config = Api\Config::read('projectmanager');
 	}
 
 	/**
@@ -125,7 +131,7 @@ class projectmanager_hooks
 		if ($location == 'sidebox_menu')
 		{
 			// Magic etemplate2 favorites menu (from nextmatch widget)
-			display_sidebox($appname, lang('Favorites'), egw_framework::favorite_list($appname, 'nextmatch-projectmanager.list.rows-favorite'));
+			display_sidebox($appname, lang('Favorites'), Framework\Favorites::list_favorites($appname, 'nextmatch-projectmanager.list.rows-favorite'));
 
 			// project-dropdown in sidebox menu
 			if (!is_object($GLOBALS['projectmanager_bo']))
@@ -148,24 +154,24 @@ class projectmanager_hooks
 				$pm_id = (int) $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 			}
 			$file = array(
-				'Projectlist' => egw::link('/index.php',array(
+				'Projectlist' => Egw::link('/index.php',array(
 					'menuaction' => 'projectmanager.projectmanager_ui.index',
 					'ajax' => 'true',
 				))
 			);
-			if($GLOBALS['projectmanager_bo']->check_acl(EGW_ACL_READ))
+			if($GLOBALS['projectmanager_bo']->check_acl(Acl::READ))
 			{
 				$file += array(
 					array(
 						'text' => 'Elementlist',
-						'link' =>  egw::link('/index.php',array(
+						'link' =>  Egw::link('/index.php',array(
 							'menuaction' => 'projectmanager.projectmanager_ui.index',
 							'ajax' => 'true',
 						)),
 					),
 					array(
 						'text' => 'Gantt chart',
-						'link' =>  egw::link('/index.php',array(
+						'link' =>  Egw::link('/index.php',array(
 							'menuaction' => 'projectmanager.projectmanager_ui.index',
 							'ajax' => 'true',
 						)),
@@ -176,13 +182,13 @@ class projectmanager_hooks
 			if (!self::$config['accounting_types'] || in_array('pricelist',(is_array(self::$config['accounting_types'])?self::$config['accounting_types']:explode(',',self::$config['accounting_types']))))
 			{
 				// menuitem links to project-spezific priclist only if user has rights and it is used
-				// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(EGW_ACL_READ),
+				// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(Acl::READ),
 				// specialy the always existing READ right for the general pricelist!!!
 				$file[] = array(
 					'text' => 'Pricelist',
 					'icon' => 'pricelist',
 					'app'  => 'projectmanager',
-					'link' =>  egw::link('/index.php',array(
+					'link' =>  Egw::link('/index.php',array(
 						'menuaction' => 'projectmanager.projectmanager_ui.index',
 						'ajax' => 'true',
 					))
@@ -194,7 +200,7 @@ class projectmanager_hooks
 					'text' => 'Filemanager',
 					'icon' => 'navbar',
 					'app'  => 'filemanager',
-					'link' => egw::link('/index.php',array(
+					'link' => Egw::link('/index.php',array(
 						'menuaction' => 'filemanager.filemanager_ui.index',
 						'ajax'       => 'true',
 					),'filemanager'),
@@ -209,7 +215,7 @@ class projectmanager_hooks
 				'icon' => false
 			);
 
-			$file['Placeholders'] = egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
+			$file['Placeholders'] = Egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
 			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 
 			// allways show sidebox
@@ -219,9 +225,9 @@ class projectmanager_hooks
 		if ($GLOBALS['egw_info']['user']['apps']['admin'])
 		{
 			$file = Array(
-				'Site configuration' => egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
-				'Custom fields' => egw::link('/index.php','menuaction=admin.customfields.index&appname=projectmanager&use_private=1'),
-				'Global Categories'  => egw::link('/index.php',array(
+				'Site configuration' => Egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
+				'Custom fields' => Egw::link('/index.php','menuaction=admin.customfields.index&appname=projectmanager&use_private=1'),
+				'Global Categories'  => Egw::link('/index.php',array(
 					'menuaction' => 'admin.admin_categories.index',
 					'appname'    => $appname,
 					'global_cats'=> True)),
@@ -279,9 +285,9 @@ class projectmanager_hooks
 		{
 			return null;
 		}
-		$tree = html::tree($projects,$selected_project,false,'load_project');
+		$tree = Api\Html::tree($projects,$selected_project,false,'load_project');
 		// hack for stupid ie (cant set it as a class!)
-		//if (html::$user_agent == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
+		//if (Api\Header\UserAgent::type() == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
 		// do it all the time, as we want distinct behavior here
 		$tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; max-width:400px; width:100%; max-height:450px;"',$tree);
 		return array(
@@ -321,8 +327,8 @@ class projectmanager_hooks
 			$projects[0] = lang('Select a project');
 		}
 		return array(
-			'text' => html::select('pm_id',$pm_id,$projects,true,' style="width: 100%;"'.
-				' onchange="egw_appWindow(\'projectmanager\').location.href=\''.$select_link.'\'+this.value;" title="'.html::htmlspecialchars(
+			'text' => Api\Html::select('pm_id',$pm_id,$projects,true,' style="width: 100%;"'.
+				' onchange="egw_appWindow(\'projectmanager\').location.href=\''.$select_link.'\'+this.value;" title="'.Api\Html::htmlspecialchars(
 				$pm_id && isset($projects[$pm_id]) ? $projects[$pm_id] : lang('Select a project')).'"'),
 			'no_lang' => True,
 			'link' => False
@@ -336,7 +342,7 @@ class projectmanager_hooks
 	 */
 	static function settings()
 	{
-		$apps = egw_link::app_list('add_app');
+		$apps = Link::app_list('add_app');
 		foreach (array('addressbook', 'bookmarks', 'tracker', 'resources') as $unset_app) // these apps never show as pe since they don't have end date
 		{
 			unset($apps[$unset_app]);
@@ -515,7 +521,7 @@ class projectmanager_hooks
 				'help'   => lang('If you specify a directory (full vfs path) here, %1 displays an action for each document. That action allows to download the specified document with the data inserted.',lang('projectmanager')).' '.
 					lang('the document can contain placeholder like {{%1}}, to be replaced with the data.','pm_title').' '.
 					lang('Furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.').' '.
-					lang('The following document-types are supported:'). implode(',',bo_merge::get_file_extensions()),
+					lang('The following document-types are supported:'). implode(',',Api\Storage\Merge::get_file_extensions()),
 				'run_lang' => false,
 				'xmlrpc' => True,
 				'admin'  => False,
@@ -599,23 +605,23 @@ class projectmanager_hooks
 	/**
 	 * ACL rights and labels used
 	 *
-	 * @param string|array string with location or array with parameters incl. "location", specially "owner" for selected acl owner
+	 * @param string|array string with location or array with parameters incl. "location", specially "owner" for selected Acl owner
 	 */
 	public static function acl_rights($params)
 	{
 		return array(
-			acl::READ    => 'read',
-			acl::EDIT    => 'edit',
-			acl::DELETE  => 'delete',
-			acl::PRIVAT  => 'private',
-			acl::ADD     => 'add element',
-			acl::CUSTOM1 => 'budget',
-			acl::CUSTOM2 => 'edit budget',
+			Acl::READ    => 'read',
+			Acl::EDIT    => 'edit',
+			Acl::DELETE  => 'delete',
+			Acl::PRIVAT  => 'private',
+			Acl::ADD     => 'add element',
+			Acl::CUSTOM1 => 'budget',
+			Acl::CUSTOM2 => 'edit budget',
 		);
 	}
 
 	/**
-	 * Hook to tell framework we use standard categories method
+	 * Hook to tell framework we use standard Api\Categories method
 	 *
 	 * @param string|array $data hook-data or location
 	 * @return boolean

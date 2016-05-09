@@ -10,6 +10,9 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+
 include_once(EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php');
 
 /**
@@ -180,7 +183,7 @@ class projectmanager_datasource extends datasource
 			if ($this->debug > 3 || $this->debug == 'copy') $this->projectmanager_bo->debug_message("projectmanager_datasource::copy() data=".print_r($this->projectmanager_bo->data,true));
 
 			// link the new sub-project with the project
-			$link_id = egw_link::link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
+			$link_id = Link::link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
 		}
 		$this->projectmanager_bo->data = $data_backup;
 

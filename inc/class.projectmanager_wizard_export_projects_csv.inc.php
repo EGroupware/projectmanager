@@ -10,6 +10,8 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 class projectmanager_wizard_export_projects_csv extends importexport_wizard_basic_export_csv
 {
 	public function __construct() {
@@ -44,7 +46,7 @@ class projectmanager_wizard_export_projects_csv extends importexport_wizard_basi
 
 		// Custom fields
 		unset($this->export_fields['customfields']); // Heading, not a real field
-		$custom = config::get_customfields('projectmanager', true);
+		$custom = Api\Storage\Customfields::get('projectmanager', true);
 		foreach($custom as $name => $data) {
 			$this->export_fields['#'.$name] = $data['label'];
 		}
@@ -52,7 +54,7 @@ class projectmanager_wizard_export_projects_csv extends importexport_wizard_basi
 
 	public function wizard_step50(&$content, &$sel_options, &$readonlys, &$preserv) {
 		if($this->debug || true) error_log(get_class($this) . '::wizard_step50->$content '.print_r($content,true));
-		// return 
+		// return
 		if ($content['step'] == 'wizard_step50')
 		{
 			switch (array_search('pressed', $content['button']))

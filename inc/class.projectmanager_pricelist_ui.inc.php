@@ -10,6 +10,11 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Acl;
+use EGroupware\Api\Etemplate;
+
 /**
  * Pricelist user interface of the projectmanager
  */
@@ -59,7 +64,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 
 	function edit($content=null,$view=false,$msg='')
 	{
-		$tpl = new etemplate_new('projectmanager.pricelist.edit');
+		$tpl = new Etemplate('projectmanager.pricelist.edit');
 		if (!is_array($content))
 		{
 			if (($pl_id = (int) $_GET['pl_id']) && $this->read(array(
@@ -80,14 +85,14 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				);
 			}
 			// no READ or EDIT/ADD rights ==> close the popup
-			if (!$this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT) &&
-				!($this->pm_id && $this->check_acl($view ? EGW_ACL_READ : EGW_ACL_EDIT,$this->pm_id)))
+			if (!$this->check_acl($view ? Acl::READ : Acl::EDIT) &&
+				!($this->pm_id && $this->check_acl($view ? Acl::READ : Acl::EDIT,$this->pm_id)))
 			{
-				egw_framework::window_close(lang('Permission denied !!!'));
+				Framework::window_close(lang('Permission denied !!!'));
 
-				common::egw_header();
+				$GLOBALS['egw']->framework->header();
 
-				common::egw_exit();
+				exit();
 			}
 			if (count($this->data['project_prices'])) $content['tabs'] = 'project';	// open project tab
 			$pm_id = count($this->data['project_prices']) ? $this->data['project_prices'][0]['pm_id'] : $this->pm_id;
@@ -132,22 +137,22 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 						$msg = lang('Error: saving the price (%1) !!!',$err);
 						$button = 'apply';	// dont close the window
 					}
-					egw_framework::refresh_opener($msg, 'projectmanager');
+					Framework::refresh_opener($msg, 'projectmanager');
 
 					if ($button == 'apply') break;
 					// fall through
 				case 'cancel':
-					egw_framework::window_close();
-					common::egw_exit();
+					Framework::window_close();
+					exit();
 					break;
 
 				case 'edit':
-					$view = false;	// acl is ensured later, see $view_*prices
+					$view = false;	// Acl is ensured later, see $view_*prices
 					break;
 			}
 		}
-		$view_prices = $view || count($this->data['prices']) && !$this->check_acl(EGW_ACL_EDIT);
-		$view_project_prices = $view || !$this->check_acl(EGW_ACL_EDIT,$this->pm_id);
+		$view_prices = $view || count($this->data['prices']) && !$this->check_acl(Acl::EDIT);
+		$view_project_prices = $view || !$this->check_acl(Acl::EDIT,$this->pm_id);
 		$view = $view || $view_prices && $view_project_prices;	// nothing to edit => no rights
 
 		$content = $this->data + array(
@@ -181,7 +186,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			}
 		}
 		// set general data and price readonly, if $view or price belongs to general pricelist and no edit there
-		if ($view || count($this->data['prices']) && !$this->check_acl(EGW_ACL_EDIT))
+		if ($view || count($this->data['prices']) && !$this->check_acl(Acl::EDIT))
 		{
 			foreach($this->db_cols as $name => $data)
 			{
@@ -194,7 +199,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			}
 		}
 		// set project-spez. prices readonly, if view or no edit-rights there
-		if ($view || !$this->check_acl(EGW_ACL_EDIT,$this->pm_id))
+		if ($view || !$this->check_acl(Acl::EDIT,$this->pm_id))
 		{
 			foreach(array('pl_billable','pl_customertitle') as $name)
 			{
@@ -207,14 +212,14 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			}
 		}
 		$readonlys['button[save]'] = $readonlys['button[apply]'] = $view;
-		$readonlys['button[edit]'] = !$view || !$this->check_acl(EGW_ACL_EDIT) && !$this->check_acl(EGW_ACL_EDIT,$this->pm_id);
+		$readonlys['button[edit]'] = !$view || !$this->check_acl(Acl::EDIT) && !$this->check_acl(Acl::EDIT,$this->pm_id);
 
 		if (!$this->pm_id)	// no project tab for the general pricelist
 		{
 			$readonlys['tabs']['project'] = true;
 		}
 		// no general price tab, if there are none and no rights to edit the general pricelist
-		if (!count($this->data['prices']) && !$this->check_acl(EGW_ACL_EDIT))
+		if (!count($this->data['prices']) && !$this->check_acl(Acl::EDIT))
 		{
 			$readonlys['tabs']['price'] = true;
 		}
@@ -233,21 +238,26 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 	/**
 	 * query pricelist for nextmatch
 	 *
-	 * reimplemented from so_sql to disable action-buttons based on the acl and make some modification on the data
+	 * reimplemented from Api\Storage\Base to disable action-buttons based on the Acl and make some modification on the data
 	 *
 	 * @param array $query
 	 * @param array &$rows returned rows/cups
-	 * @param array &$readonlys eg. to disable buttons based on acl
+	 * @param array &$readonlys eg. to disable buttons based on Acl
 	 */
 	function get_rows(&$query,&$rows,&$readonlys)
 	{
-		$GLOBALS['egw']->session->appsession('pricelist','projectmanager',$query);
+		Api\Cache::setSession('projectmanager', 'pricelist', $query);
 
 		if ($query['cat_id'])
 		{
 			$query['col_filter']['cat_id'] = $query['cat_id'];
 		}
-		if ($query['col_filter']['pm_id'] === '' || !$this->check_acl(EGW_ACL_READ,$query['col_filter']['pm_id']))
+		if (is_array($query['col_filter']['pm_id']))
+		{
+			$query['col_filter']['pm_id'] = array_shift($query['col_filter']['pm_id']);
+		}
+		
+		if ($query['col_filter']['pm_id'] === '' || !$this->check_acl(Acl::READ,$query['col_filter']['pm_id']))
 		{
 			unset($query['col_filter']['pm_id']);
 		}
@@ -256,7 +266,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			$this->__construct($query['col_filter']['pm_id']);
 			$query['actions'] = $this->get_actions();
 		}
-		if ($query['col_filter']['pl_billable'] === '') unset($query['col_filter']['pl_billable']);
+		if (!$query['col_filter']['pl_billable']) unset($query['col_filter']['pl_billable']);
 
 		$total = parent::get_rows($query,$rows,$readonlys,true);
 
@@ -265,7 +275,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		{
 			$row =& $rows[$n];
 			// we only delete prices from the shown pricelist, not inhirited ones or onces from the general list
-			if ($row['pm_id'] != $this->pm_id || !$this->check_acl(EGW_ACL_EDIT,$this->pm_id))
+			if ($row['pm_id'] != $this->pm_id || !$this->check_acl(Acl::EDIT,$this->pm_id))
 			{
 				$readonlys["delete[$row[pm_id]:$row[pl_id]]"] = true;
 				$rows[$n]['class'] .= 'rowNoDelete ';
@@ -276,7 +286,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 
 	function index($content=null,$msg='')
 	{
-		while (!$this->check_acl(EGW_ACL_READ,$this->pm_id))
+		while (!$this->check_acl(Acl::READ,$this->pm_id))
 		{
 			if ($this->pm_id)	// try falling back to the general pricelist
 			{
@@ -285,11 +295,11 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			}
 			else
 			{
-				egw_framework::message(lang('Permission denied !!!'), 'error');
+				Framework::message(lang('Permission denied !!!'), 'error');
 				return;
 			}
 		}
-		$tpl = new etemplate_new('projectmanager.pricelist.list');
+		$tpl = new Etemplate('projectmanager.pricelist.list');
 
 		if (!is_array($content))
 		{
@@ -306,7 +316,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			}
 			else
 			{
-				$nm = $GLOBALS['egw']->session->appsession('pricelist','projectmanager');
+				$nm = Api\Cache::getSession('projectmanager', 'pricelist');
 				$pm_id = $nm['col_filter']['pm_id'];
 			}
 			foreach($content['nm']['selected'] as $pl_id) {
@@ -324,9 +334,9 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		$msg = $msg ? $msg : $_GET['msg'];
 		if($msg)
 		{
-			egw_framework::message($msg);
+			Framework::message($msg);
 		}
-		$content['nm'] = $GLOBALS['egw']->session->appsession('pricelist','projectmanager');
+		$content['nm'] = Api\Cache::getSession('projectmanager', 'pricelist');
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
@@ -366,7 +376,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 
 		$readonlys = array(
 			// show add button only, if user has rights to add a new price
-			'add' => !$this->check_acl(EGW_ACL_EDIT,$this->pm_id),
+			'add' => !$this->check_acl(Acl::EDIT,$this->pm_id),
 		);
 		return $tpl->exec('projectmanager.projectmanager_pricelist_ui.index',$content,$sel_options,$readonlys);
 	}

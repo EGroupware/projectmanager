@@ -10,6 +10,9 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+
 /**
  * Elements storage object of the projectmanager
  *
@@ -17,14 +20,14 @@
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  */
-class projectmanager_elements_so extends so_sql
+class projectmanager_elements_so extends Api\Storage\Base
 {
 	/**
 	 * Table name 'egw_links'
 	 *
 	 * @var string
 	 */
-	var $links_table = solink::TABLE;
+	var $links_table = Link\Storage::TABLE;
 	/**
 	 * Join in the links table
 	 *
@@ -199,7 +202,7 @@ class projectmanager_elements_so extends so_sql
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
 	 * @param int|boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string|boolean $join =true default join with links-table or string as in so_sql
+	 * @param string|boolean $join =true default join with links-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
 	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
@@ -253,7 +256,7 @@ class projectmanager_elements_so extends so_sql
 		{
 			if (!is_object($GLOBALS['egw']->categories))
 			{
-				$GLOBALS['egw']->categories = new categories();
+				$GLOBALS['egw']->categories = new Api\Categories();
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
@@ -268,7 +271,7 @@ class projectmanager_elements_so extends so_sql
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
 	 * @param array|string $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
-	 * @param string|boolean $join =true default join with links-table or string as in so_sql
+	 * @param string|boolean $join =true default join with links-table or string as in Api\Storage\Base
 	 * @return array|boolean data if row could be retrived else False
 	*/
 	function read($keys,$extra_cols='',$join=true)

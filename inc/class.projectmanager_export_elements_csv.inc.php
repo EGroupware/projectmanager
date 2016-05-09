@@ -11,6 +11,9 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+
 /**
  * export project elements to CSV
  */
@@ -49,21 +52,21 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		$selection = array();
 		if ($options['selection'] == 'selected') {
 			// ui selection with 'Use search results'
-			$query = $old_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
+			$query = $old_query = Api\Cache::getSession('projectmanager', 'projectelements_list');
 			$query['num_rows'] = -1;	// all
 			$query['csv_export'] = true;	// so get_rows method _can_ produce different content or not store state in the session
 
 			// Getting elements from the project list, use those search results
 			if($no_project)
 			{
-				$p_query = $old_p_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
+				$p_query = $old_p_query = Api\Cache::getSession('projectmanager', 'project_list');
 				$pm_ui = new projectmanager_ui();
 				$p_query['num_rows'] = -1;        // all
 				$p_query['csv_export'] = true;	// so get_rows method _can_ produce different content or not store state in the session
 				$count = $pm_ui->get_rows($p_query,$selection,$readonlys);
 
 				// Reset nm params
-				$GLOBALS['egw']->session->appsession('project_list','projectmanager', $old_p_query);
+				Api\Cache::setSession('projectmanager', 'project_list', $old_p_query);
 				$query['col_filter']['pm_id'] = array();
 				if($count)
 				{
@@ -87,11 +90,11 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 
 			// Reset nm params
 			unset($query['num_rows']);
-			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $old_query);
+			Api\Cache::setSession('projectmanager', 'projectelements_list', $old_query);
 		}
 		elseif ( $options['selection'] == 'all' )
 		{
-			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
+			$_query = Api\Cache::getSession('projectmanager', 'projectelements_list');
 			// Clear the PM ID or results will be restricted
 			unset($ui->pm_id);
 
@@ -101,7 +104,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				'col_filter' => array('pm_id' => true)
 			);
 			$ui->get_rows($query,$selection,$readonlys);
-			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
+			Api\Cache::setSession('projectmanager', 'projectelements_list', $_query);
 		}
 		elseif ($options['selection'] == 'filter')
 		{
@@ -134,15 +137,15 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 		}
 		else
 		{
-			$_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
+			$_query = Api\Cache::getSession('projectmanager', 'projectelements_list');
 			$query = array(
 				'num_rows' => -1,
 				'col_filter' => array('pm_id'	=> $options['pm_id']),
 				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
 			);
 			$ui->get_rows($query,$selection,$readonlys);
-			$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $_query);
-			$this->project_name = egw_link::title('projectmanager', $options['pm_id']);
+			Api\Cache::setSession('projectmanager', 'projectelements_list', $_query);
+			$this->project_name = Link::title('projectmanager', $options['pm_id']);
 		}
 		if($no_project)
 		{
@@ -160,7 +163,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 			if(is_array($record['pe_resources'])) {
 				$resources = array();
 				foreach($record['pe_resources'] as $resource) {
-					$resources[] = common::grab_owner_name($resource);
+					$resources[] = Api\Accounts::username($resource);
 				}
 				$record['pe_resources'] = implode(',', $resources);
 			}
@@ -228,7 +231,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 	}
 
 	/**
-	 * return html for options.
+	 * return Api\Html for options.
 	 * this way the plugin has all opportunities for options tab
 	 *
 	 */

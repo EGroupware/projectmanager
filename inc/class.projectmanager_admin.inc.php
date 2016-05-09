@@ -10,6 +10,10 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Egw;
+use EGroupware\Api\Etemplate;
+
 /**
  * ProjectManager: Administration
  */
@@ -24,7 +28,7 @@ class projectmanager_admin
 	var $accounting_types;
 	var $duration_units;
 	/**
-	 * Instance of config class for projectmanager
+	 * Instance of Api\Config class for projectmanager
 	 *
 	 * @var config
 	 */
@@ -37,9 +41,9 @@ class projectmanager_admin
 	{
 		if (!$GLOBALS['egw_info']['user']['apps']['admin'])
 		{
-			throw new egw_exception_no_permission_admin();
+			throw new Api\Exception\NoPermission\Admin();
 		}
-		$this->config = new config('projectmanager');
+		$this->config = new Api\Config('projectmanager');
 		$this->config->read_repository();
 
 		$this->accounting_types = array(
@@ -61,7 +65,7 @@ class projectmanager_admin
 	 */
 	function config($content=null)
 	{
-		$tpl = new etemplate_new('projectmanager.config');
+		$tpl = new Etemplate('projectmanager.config');
 
 		if ($content['save'] || $content['apply'])
 		{
@@ -75,7 +79,7 @@ class projectmanager_admin
 		}
 		if ($content['cancel'] || $content['save'])
 		{
-			egw::redirect_link('/index.php', array(
+			Egw::redirect_link('/index.php', array(
 				'menuaction' => 'admin.admin_ui.index',
 				'ajax' => 'true'
 			), 'admin');

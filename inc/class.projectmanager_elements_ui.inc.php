@@ -10,6 +10,14 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Egw;
+use EGroupware\Api\Acl;
+use EGroupware\Api\Vfs;
+use EGroupware\Api\Etemplate;
+
 /**
  * ProjectManage UI: list and edit projects-elements
  */
@@ -51,7 +59,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function __construct()
 	{
-		$this->tpl = new etemplate_new();
+		$this->tpl = new Etemplate();
 
 		if ((int) $_REQUEST['pm_id'])
 		{
@@ -71,9 +79,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 
 		// check if we have at least read-access to this project
-		if (!$this->project->check_acl(EGW_ACL_READ))
+		if (!$this->project->check_acl(Acl::READ))
 		{
-			egw_framework::message(lang('Permission denied !!!'),'error');
+			Framework::message(lang('Permission denied !!!'),'error');
 			$pm_id = 0;
 		}
 
@@ -240,10 +248,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 			//echo "projectmanager_elements_ui::edit(): save_necessary=".(int)$save_necessary.", update_necessary=$update_necessary, data="; _debug_array($this->data);
 
-			$view = $content['view'] && !($content['edit'] && $this->check_acl(EGW_ACL_EDIT));
+			$view = $content['view'] && !($content['edit'] && $this->check_acl(Acl::EDIT));
 
 			if (($content['save'] || $content['apply'] ||
-				$content['pe_constraints']['delete'] || $content['new_constraint']['add_button']) && $this->check_acl(EGW_ACL_EDIT))
+				$content['pe_constraints']['delete'] || $content['new_constraint']['add_button']) && $this->check_acl(Acl::EDIT))
 			{
 				if ($update_necessary || $save_necessary)
 				{
@@ -256,7 +264,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						$msg = lang('Project-Element saved');
 
-						egw_framework::refresh_opener($msg,'projectmanager',$content['pe_id'], 'edit');
+						Framework::refresh_opener($msg,'projectmanager',$content['pe_id'], 'edit');
 					}
 				}
 				else
@@ -267,8 +275,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 			if ($content['save'] || $content['cancel'] || $content['delete'])
 			{
-				egw_framework::window_close();
-				common::egw_exit();
+				Framework::window_close();
+				exit();
 			}
 		}
 		else
@@ -289,14 +297,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 			if ($this->data['pe_id'])
 			{
-				if (!$this->check_acl(EGW_ACL_READ))
+				if (!$this->check_acl(Acl::READ))
 				{
 					$this->tpl->location(array(
 						'menuaction' => 'projectmanager.projectmanager_elements_ui.index',
 						'msg' => lang('Permission denied !!!'),
 					));
 				}
-				if (!$this->check_acl(EGW_ACL_EDIT)) $view = true;
+				if (!$this->check_acl(Acl::EDIT)) $view = true;
 			}
 
 			$datasource = $this->datasource($this->data['pe_app']);
@@ -400,11 +408,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'type' => projectmanager_constraints_so::$constraint_types,
 		);
 		$readonlys = array(
-			'delete' => !$this->data['pe_id'] || !$this->check_acl(EGW_ACL_DELETE),
-			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
+			'delete' => !$this->data['pe_id'] || !$this->check_acl(Acl::DELETE),
+			'edit' => !$view || !$this->check_acl(Acl::EDIT),
 			'eroles_edit' => $view,
 		);
-		// display eroles tab only if it's enabled in config and for supported erole applications
+		// display eroles tab only if it's enabled in Api\Config and for supported erole Egw\Applications
 		$readonlys[$tabs]['eroles'] = (!$this->config['enable_eroles']) || !(in_array($this->data['pe_app'],$this->erole_apps));
 		// disable the times tab, if accounting-type status
 		$readonlys[$tabs]['times'] = $this->project->data['pm_accounting_type'] == 'status';
@@ -438,11 +446,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	/**
 	 * query projects for nextmatch in the projects-list
 	 *
-	 * reimplemented from so_sql to disable action-buttons based on the acl and make some modification on the data
+	 * reimplemented from Api\Storage\Base to disable action-buttons based on the Acl and make some modification on the data
 	 *
 	 * @param array &$query_in
 	 * @param array &$rows returned rows/cups
-	 * @param array &$readonlys eg. to disable buttons based on acl
+	 * @param array &$readonlys eg. to disable buttons based on Acl
 	 */
 	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
@@ -458,17 +466,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			return 0;
 		}
-		if(!$this->project->check_acl(EGW_ACL_READ, $this->pm_id))
+		if(!$this->project->check_acl(Acl::READ, $this->pm_id))
 		{
 			return 0;
 		}
 
 		// Check for filter change, need to get totals
-		$session = egw_cache::getSession('projectmanager', 'projectelements_list');
+		$session = Api\Cache::getSession('projectmanager', 'projectelements_list');
 		$get_totals = $query_in['start'] === 0 || ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
 		$query=$query_in;
 		unset($query_in['col_filter']['parent_id']);
-		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query_in);
+		Api\Cache::setSession('projectmanager', 'projectelements_list', $query_in);
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
 		// save the state of the index in the user prefs
@@ -554,11 +562,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$budget_rights = $this->project->check_acl(EGW_ACL_BUDGET);
 		foreach($rows as $n => &$row)
 		{
-			if ($n && !$this->check_acl(EGW_ACL_EDIT,$row))
+			if ($n && !$this->check_acl(Acl::EDIT,$row))
 			{
 				$row['class'] .= ' rowNoEdit';
 			}
-			if ($n && !$this->check_acl(EGW_ACL_DELETE,$row))
+			if ($n && !$this->check_acl(Acl::DELETE,$row))
 			{
 				$row['class'] .= ' rowNoDelete';
 			}
@@ -602,14 +610,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			if ($query['filter2']&3)
 			{
 				if ($this->prefs['show_links'] &&
-					(isset($row['pe_all_links']) || ($row['pe_all_links'] = egw_link::get_links($row['link']['app'],$row['link']['id'],'',true))))
+					(isset($row['pe_all_links']) || ($row['pe_all_links'] = Link::get_links($row['link']['app'],$row['link']['id'],'',true))))
 				{
 					foreach ($row['pe_all_links'] as $link)
 					{
 						if ($show_links != 'none' &&
 							!($row['pm_link']['id'] == $link['id'] && $link['app'] == 'projectmanager') &&
 							!($row['pm_id'] == $link['id'] && $link['app'] == 'projectmanager') &&
-							($show_links == 'all' || ($show_links == 'links') === ($link['app'] != egw_link::VFS_APPNAME)))
+							($show_links == 'all' || ($show_links == 'links') === ($link['app'] != Link::VFS_APPNAME)))
 						{
 							$row['pe_links'][] = $link;
 						}
@@ -626,7 +634,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if ($this->prefs['show_custom_app_icons'] || $this->prefs['show_infolog_type_icon'])
 		{
 			$custom_app_icons['location'] = 'pm_custom_app_icons';
-			$custom_app_icons = $GLOBALS['egw']->hooks->process($custom_app_icons);
+			$custom_app_icons = Api\Hooks::process($custom_app_icons);
 			foreach($rows as $n => &$row)
 			{
 				$app_info = $custom_app_icons[$row['pe_app']][$row['pe_app_id']];
@@ -777,7 +785,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'hint' => 'necessary for project-elements doing that not automatic',
 				'group' => ++$group,
 			),
-			'cat' => etemplate_widget_nextmatch::category_action(
+			'cat' => Etemplate\Widget\Nextmatch::category_action(
 				'projectmanager',$group,'Change category','cat_'
 				)+array(
 					'disableClass' => 'rowNoEdit',
@@ -857,7 +865,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 
 		//Create app list for "Add new" menu items
-		$app_list = egw_link::app_list('add');
+		$app_list = Link::app_list('add');
 		// Bookmarks doesn't support link via URL this way
 		unset($app_list['bookmarks']);
 		$actions['add']['children'] = array();
@@ -912,7 +920,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$this->action($content['nm']['action'], $content['nm']['selected'], $msg, $content['add_existing_popup']);
 		}
 		$content = array(
-			'nm' => $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager'),
+			'nm' => Api\Cache::getSession('projectmanager', 'projectelements_list'),
 			'msg'      => $msg,
 		);
 		if (!is_array($content['nm']))
@@ -968,7 +976,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$content['nm']['actions'] = $this->get_actions();
 
 		// add "buttons" only with add-rights
-		if ($this->project->check_acl(EGW_ACL_ADD))
+		if ($this->project->check_acl(Acl::ADD))
 		{
 			if(!$this->config['enable_eroles'])
 			{
@@ -996,8 +1004,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
 
 		// fill the sel_options Applications
-		$sel_options ['pe_app'] = egw_link::app_list('add_app');
-		$this->tpl->setElementAttribute('nm[link_add]', 'application', egw_link::app_list('add'));
+		$sel_options ['pe_app'] = Link::app_list('add_app');
+		$this->tpl->setElementAttribute('nm[link_add]', 'application', Link::app_list('add'));
 		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index',$content,$sel_options,$readonlys);
 	}
 
@@ -1010,10 +1018,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	{
 		if (!$this->prefs['document_dir']) return array();
 
-		if (!is_array($actions = egw_session::appsession('document_actions','projectmanager')))
+		if (!is_array($actions = Api\Cache::getSession('projectmanager', 'document_actions')))
 		{
 			$actions = array();
-			if (($files = egw_vfs::find($this->prefs['document_dir'],array('need_mime'=>true),true)))
+			if (($files = Vfs::find($this->prefs['document_dir'],array('need_mime'=>true),true)))
 			{
 				foreach($files as $file)
 				{
@@ -1023,7 +1031,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					$actions['document-'.$file['name']] = $file['name'];
 				}
 			}
-			egw_session::appsession('document_actions','projectmanager',$actions);
+			Api\Cache::setSession('projectmanager', 'document_actions', $actions);
 		}
 		return $actions;
 	}
@@ -1086,12 +1094,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				{
 					break;
 				}
-				$title = egw_link::title($app, $link_id);
+				$title = Link::title($app, $link_id);
 
 				if($btn['add'])
 				{
 					$action_msg = lang('linked to %1', $title);
-					if(egw_link::link('projectmanager', $this->pm_id, $app, $link_id))
+					if(Link::link('projectmanager', $this->pm_id, $app, $link_id))
 					{
 						$success++;
 					}
@@ -1103,7 +1111,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				return $failed == 0;
 
 			case 'cat':
-				if (!$this->project->check_acl(EGW_ACL_ADD) ||
+				if (!$this->project->check_acl(Acl::ADD) ||
 					($num = $this->update_cat($checked, $cat_id)) === false)
 				{
 					$msg = lang('Permission denied !!!');
@@ -1156,7 +1164,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				return $failed==0;
 				break;
 			case 'delete':
-				if (!$this->project->check_acl(EGW_ACL_ADD))
+				if (!$this->project->check_acl(Acl::ADD))
 				{
 					$msg = lang('Permission denied !!!');
 				}
@@ -1169,7 +1177,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				break;
 
 			case 'sync_all':	// does NOT use id's
-				if ($this->project->check_acl(EGW_ACL_ADD))
+				if ($this->project->check_acl(Acl::ADD))
 				{
 					$msg = lang('%1 element(s) updated',$this->sync_all());
 					return true;
@@ -1187,7 +1195,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				if(count($checked) == 0)
 				{
 					// Use all, from merge selectbox in side menu
-					$query = $old_query = $GLOBALS['egw']->session->appsession('projectelements_list','projectmanager');
+					$query = $old_query = Api\Cache::getSession('projectmanager', 'projectelements_list');
 					$query['num_rows'] = -1;        // all
 					$this->get_rows($query,$selection,$readonlys);
 					foreach($selection as $element)
@@ -1196,7 +1204,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					}
 
 					// Reset nm params
-					$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager', $old_query);
+					Api\Cache::setSession('projectmanager', 'projectelements_list', $old_query);
 
 				}
 				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
@@ -1319,7 +1327,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if($ids['elements'])
 		{
 			if($document_merge->export_limit &&
-				!bo_merge::is_export_limit_excepted() && count($ids['elements']) > (int)$document_merge->export_limit)
+				!Api\Storage\Merge::is_export_limit_excepted() && count($ids['elements']) > (int)$document_merge->export_limit)
 			{
 				return lang('No rights to export more then %1 entries!',(int)$document_merge->export_limit);
 			}

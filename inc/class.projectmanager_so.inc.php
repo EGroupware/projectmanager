@@ -10,6 +10,10 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Acl;
+
 /**
  * General storage object of the projectmanager: access the main project data
  *
@@ -17,14 +21,14 @@
  *
  * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  */
-class projectmanager_so extends so_sql_cf
+class projectmanager_so extends Api\Storage
 {
 	/**
 	 * Table name 'egw_links'
 	 *
 	 * @var string
 	 */
-	var $links_table = solink::TABLE;
+	var $links_table = Link\Storage::TABLE;
 	/**
 	 * Configuration data
 	 *
@@ -80,7 +84,7 @@ class projectmanager_so extends so_sql_cf
 	{
 		parent::__construct('projectmanager','egw_pm_projects','egw_pm_extra','','pm_extra_name','pm_extra_value','pm_id');
 
-		$this->config = config::read('projectmanager');
+		$this->config = Api\Config::read('projectmanager');
 		if (!$this->config)
 		{
 			$this->config = array(
@@ -101,7 +105,7 @@ class projectmanager_so extends so_sql_cf
 		{
 			if ($rights) $this->read_grants[] = $owner;		// ANY ACL implies READ!
 
-			if ($rights & EGW_ACL_PRIVATE) $this->private_grants[] = $owner;
+			if ($rights & Acl::PRIVAT) $this->private_grants[] = $owner;
 		}
 		if (($memberships = $GLOBALS['egw']->accounts->memberships($this->user, true)))
 		{
@@ -255,7 +259,7 @@ class projectmanager_so extends so_sql_cf
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
 	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string/boolean $join=true sql to do a join, added as is after the table-name, default true=add join for acl
+	 * @param string/boolean $join=true sql to do a join, added as is after the table-name, default true=add join for Acl
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
 	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
@@ -265,7 +269,7 @@ class projectmanager_so extends so_sql_cf
 		{
 			if (!is_object($GLOBALS['egw']->categories))
 			{
-				$GLOBALS['egw']->categories = new categories();
+				$GLOBALS['egw']->categories = new Api\Categories();
 			}
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}

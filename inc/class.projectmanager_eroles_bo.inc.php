@@ -10,6 +10,9 @@
  * @version $Id: class.projectmanager_eroles_bo.inc.php 26091 2008-10-07 17:57:50Z jaytraxx $
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Etemplate;
+
 /**
  * eRoles business object of the projectmanager
  * eRoles - element roles define the role of an egroupware element when it gets merged with a document
@@ -65,7 +68,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		}
 		elseif(isset($_REQUEST['etemplate_exec_id']))
 		{
-			if($etemplate_request = etemplate_request::read($_REQUEST['etemplate_exec_id']))
+			if($etemplate_request = Etemplate\Request::read($_REQUEST['etemplate_exec_id']))
 			{
 				$this->pm_id = $etemplate_request->content['pm_id'];
 			}
@@ -83,7 +86,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		elseif(isset($_REQUEST['etemplate_exec_id']))
 		{
 			if(is_object($etemplate_request) ||
-				($etemplate_request = etemplate_request::read($_REQUEST['etemplate_exec_id'])))
+				($etemplate_request = Etemplate\Request::read($_REQUEST['etemplate_exec_id'])))
 			{
 				$this->pe_id = $etemplate_request->content['pe_id'];
 			}
@@ -218,7 +221,7 @@ class projectmanager_eroles_bo extends projectmanager_eroles_so
 		// search for global erole
 		$erole = parent::read(array(
 					'role_title' => $role_title,
-					'pm_id' => '0')		// need to be '0' NOT 0, as so_sql only uses it, if != '', but 0 == ''!
+					'pm_id' => '0')		// need to be '0' NOT 0, as Api\Storage\Base only uses it, if != '', but 0 == ''!
 		);
 		if(isset($erole['role_id'])) return $erole['role_id'];
 

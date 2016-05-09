@@ -10,6 +10,9 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Acl;
+
 /**
  * Pricelist buisness object of the projectmanager
  */
@@ -51,7 +54,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	}
 
 	/**
-	 * saves the content of data to the db, also checks acl and deletes not longer set prices!
+	 * saves the content of data to the db, also checks Acl and deletes not longer set prices!
 	 *
 	 * @param array $keys=null if given $keys are copied to data before saveing => allows a save as
 	 * @return int/boolean 0 on success, true on missing acl-rights and errno != 0 else
@@ -91,8 +94,8 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 		}
 		if ($pricelist_need_save)
 		{
-			// check acl
-			if (!$this->check_acl(EGW_ACL_EDIT,$need_general ? 0 : $this->data['pm_id']))
+			// check Acl
+			if (!$this->check_acl(Acl::EDIT,$need_general ? 0 : $this->data['pm_id']))
 			{
 				return lang('permission denied !!!').' need_general='.(int)$need_general;
 			}
@@ -135,10 +138,10 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 			$old_price = $old_prices[(int)$price['pm_id']][date('Y-m-d',(int)$price['pl_validsince'])];
 			if (!$this->prices_equal($price,$old_price))
 			{
-				// price needs saving, checking acl now
-				if (!$this->check_acl(EGW_ACL_EDIT,$price['pm_id']))
+				// price needs saving, checking Acl now
+				if (!$this->check_acl(Acl::EDIT,$price['pm_id']))
 				{
-					return lang('permission denied !!!').' check_acl(EGW_ACL_EDIT(pm_id='.(int)$price[pm_id].')';
+					return lang('permission denied !!!').' check_acl(Acl::EDIT(pm_id='.(int)$price[pm_id].')';
 				}
 				// maintain time of old price, to not create doublets with different times by users operating in different TZ's
 				if ($old_price) $price['pl_validsince'] = $old_price['pl_validsince'];
@@ -155,9 +158,9 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 		{
 			foreach($prices as &$price)
 			{
-				if (!$this->check_acl(EGW_ACL_DELETE,$price['pm_id']))
+				if (!$this->check_acl(Acl::DELETE,$price['pm_id']))
 				{
-					return lang('permission denied !!!').' check_acl(EGW_ACL_DELETE(pm_id='.(int)$price[pm_id].')';
+					return lang('permission denied !!!').' check_acl(Acl::DELETE(pm_id='.(int)$price[pm_id].')';
 				}
 				if (!parent::delete($price))
 				{
@@ -180,12 +183,13 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
 	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string/boolean $join=true default join with prices-table or string as in so_sql
+	 * @param string/boolean $join=true default join with prices-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
 	function search($criteria,$only_keys=false,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
 	{
-		if (!$this->check_acl(EGW_ACL_READ,(int)($criteria['pm_id'] ? $criteria['pm_id'] : $this->pm_id)))
+		error_log(array2string($filter));
+		if (!$this->check_acl(Acl::READ,(int)($criteria['pm_id'] ? $criteria['pm_id'] : $this->pm_id)))
 		{
 			return false;
 		}
@@ -220,7 +224,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
 	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
-	 * @param string/boolean $join=true default join with links-table or string as in so_sql
+	 * @param string/boolean $join=true default join with links-table or string as in Api\Storage\Base
 	 * @return array/boolean data if row could be retrived else False
 	*/
 	function read($keys,$extra_cols='',$join=true)
@@ -229,7 +233,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 		foreach(!is_array($keys) || !isset($keys['pm_id']) ? array($this->pm_id) :
 			(is_array($keys['pm_id']) ? $keys['pm_id'] : array($keys['pm_id'])) as $pm_id)
 		{
-			if (!$this->check_acl(EGW_ACL_READ,(int)$pm_id)) return false;
+			if (!$this->check_acl(Acl::READ,(int)$pm_id)) return false;
 		}
 		return parent::read($keys,$extra_cols,$join);
 	}
@@ -244,7 +248,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 */
 	function delete($keys)
 	{
-		if (!$this->check_acl(EGW_ACL_EDIT,(int)(is_array($keys) ? $keys['pm_id'] : $keys)))
+		if (!$this->check_acl(Acl::EDIT,(int)(is_array($keys) ? $keys['pm_id'] : $keys)))
 		{
 			return false;
 		}
@@ -286,9 +290,9 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 */
 		if (!$pm_id)
 		{
-			return $required == EGW_ACL_READ || $this->project->is_admin;
+			return $required == Acl::READ || $this->project->is_admin;
 		}
-		return $this->project->check_acl($required == EGW_ACL_READ ? EGW_ACL_BUDGET : EGW_ACL_EDIT_BUDGET,$pm_id);
+		return $this->project->check_acl($required == Acl::READ ? EGW_ACL_BUDGET : EGW_ACL_EDIT_BUDGET,$pm_id);
 	}
 
 	/**

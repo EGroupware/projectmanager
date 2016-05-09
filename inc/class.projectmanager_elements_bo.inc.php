@@ -10,13 +10,18 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Egw;
+use EGroupware\Api\Acl;
+
 /**
  * Elements business object of the projectmanager
  */
 class projectmanager_elements_bo extends projectmanager_elements_so
 {
 	/**
-	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. so_sql, or string with function-name to debug
+	 * Debuglevel: 0 = no debug-messages, 1 = main, 2 = more, 3 = all, 4 = all incl. Api\Storage\Base, or string with function-name to debug
 	 *
 	 * @var int/string
 	 */
@@ -162,7 +167,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				// for projectmanager we need to check the direction of the link
 				if ($data['target_app'] == 'projectmanager')
 				{
-					$link = egw_link::get_link($data['link_id']);
+					$link = Link::get_link($data['link_id']);
 					if ($link['link_id2'] == $data['id'])
 					{
 						//error_log(__METHOD__."() --> ignoring notification to child");
@@ -248,7 +253,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				$this->data['pe_status']= 'new';
 			}
 			// if user linking has no ADD rights, the entry is set to ignored
-			if (!$this->check_acl(EGW_ACL_ADD,array('pm_id'=>$pm_id)) && !
+			if (!$this->check_acl(Acl::ADD,array('pm_id'=>$pm_id)) && !
 				($this->check_acl(EGW_ACL_ADD_TIMESHEET, array('pm_id'=>$pm_id)) && $app == 'timesheet')
 			)
 			{
@@ -299,7 +304,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 */
 	function update_cat($pe_ids, $cat_id)
 	{
-		if (!$this->check_acl(EGW_ACL_EDIT, array(
+		if (!$this->check_acl(Acl::EDIT, array(
 			'pm_id' => $this->pm_id,
 			'pe_id' => $pe_ids,
 		)))
@@ -371,7 +376,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 *	- Adding, editing and deleting of elements require the ADD right of the project (deleting requires the element to exist pe_id!=0)
 	 *	- reading or editing of budgets require the concerned rights of the project
 	 *
-	 * @param int $required EGW_ACL_READ, EGW_ACL_WRITE, EGW_ACL_ADD, EGW_ACL_DELETE, EGW_ACL_BUDGET or EGW_ACL_EDIT_BUDGET
+	 * @param int $required Acl::READ, ACL::EDIT, Acl::ADD, Acl::DELETE, EGW_ACL_BUDGET or EGW_ACL_EDIT_BUDGET
 	 * @param array/int $data=null project-element or pe_id to use, default the project-element in $this->data
 	 * @return boolean true if the rights are ok, false if not
 	 */
@@ -380,7 +385,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		$pe_id = is_array($data) ? $data['pe_id'] : ($data ? $data : $this->data['pe_id']);
 		$pm_id = is_array($data) ? $data['pm_id'] : ($data ? 0 : $this->data['pm_id']);
 
-		if (!$pe_id && (!$pm_id || $required == EGW_ACL_DELETE))
+		if (!$pe_id && (!$pm_id || $required == Acl::DELETE))
 		{
 			return false;
 		}
@@ -394,9 +399,9 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 			$pm_id = $data['pm_id'];
 		}
-		if ($required == EGW_ACL_EDIT ||$required ==  EGW_ACL_DELETE)
+		if ($required == Acl::EDIT ||$required ==  Acl::DELETE)
 		{
-			$required = EGW_ACL_ADD;	// edit or delete of elements is handled by the ADD right of the project
+			$required = Acl::ADD;	// edit or delete of elements is handled by the ADD right of the project
 		}
 		return $this->project->check_acl($required,$pm_id);
 	}
@@ -434,7 +439,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * changes the data from the db-format to your work-format
 	 *
 	 * reimplemented to adjust the timezone of the timestamps (adding $this->tz_offset_s to get user-time)
-	 * Please note, we do NOT call the method of the parent or so_sql !!!
+	 * Please note, we do NOT call the method of the parent or Api\Storage\Base !!!
 	 *
 	 * @param array $data if given works on that array and returns result, else works on internal data-array
 	 * @return array with changed data
@@ -460,7 +465,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * changes the data from your work-format to the db-format
 	 *
 	 * reimplemented to adjust the timezone of the timestamps (subtraction $this->tz_offset_s to get server-time)
-	 * Please note, we do NOT call the method of the parent or so_sql !!!
+	 * Please note, we do NOT call the method of the parent or Api\Storage\Base !!!
 	 *
 	 * @param array $data if given works on that array and returns result, else works on internal data-array
 	 * @return array with changed data
@@ -510,7 +515,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		{
 			unset($keys['update_remark']);
 			unset($this->data['update_remark']);
-			egw_link::update_remark($this->data['pe_id'],$this->data['pe_remark']);
+			Link::update_remark($this->data['pe_id'],$this->data['pe_remark']);
 		}
 		if ($keys) $this->data_merge($keys);
 
@@ -572,7 +577,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		if ($pe_id)
 		{
 			// delete one link
-			egw_link::unlink($pe_id);
+			Link::unlink($pe_id);
 			// update the project
 			$this->project->update($pm_id);
 
@@ -581,7 +586,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		elseif ($pm_id)
 		{
 			// delete all links to project $pm_id
-			egw_link::unlink(0,'projectmanager',$pm_id);
+			Link::unlink(0,'projectmanager',$pm_id);
 		}
 		return $ret;
 	}
@@ -707,7 +712,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			{
 				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("linking $element[pe_app]:$element[pe_app_id] $element[pe_title]");
 				$app_id = $element['pe_app_id'];
-				$link_id = egw_link::link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
+				$link_id = Link::link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
 			}
 			if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling update($element[pe_app],$app_id,$link_id,$this->pm_id,false);");
 
@@ -798,7 +803,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
 	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string/boolean $join=true default join with links-table or string as in so_sql
+	 * @param string/boolean $join=true default join with links-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
 	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
@@ -810,7 +815,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		if ($filter['cumulate'])
 		{
 			$cumulate = array();
-			foreach((array)$GLOBALS['egw']->hooks->process(array(
+			foreach((array)Api\Hooks::process(array(
 				'location' => 'pm_cumulate',
 				'pm_id' => $filter['pm_id'],
 			)) as $app => $data)

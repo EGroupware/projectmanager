@@ -10,6 +10,9 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+
 /**
  * constants for the different types of data
  *
@@ -158,7 +161,7 @@ class datasource
 	 */
 	function get($data_id)
 	{
-		if (($title = egw_link::title($this->type,$data_id)))
+		if (($title = Link::title($this->type,$data_id)))
 		{
 			return array(
 				'pe_title'  => $title,

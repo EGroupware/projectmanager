@@ -11,6 +11,11 @@
  */
 
 use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Egw;
+use EGroupware\Api\Acl;
+use EGroupware\Api\Etemplate;
 
 /**
  * ProjectManager UI: list and edit projects
@@ -96,12 +101,12 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
 		}
-		if(!$this->check_acl(EGW_ACL_READ,$pm_id))
+		if(!$this->check_acl(Acl::READ,$pm_id))
 		{
 			$pm_id = $_GET['pm_id'] = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = 0;
 
 		}
-		if($this->check_acl(EGW_ACL_READ, $pm_id))
+		if($this->check_acl(Acl::READ, $pm_id))
 		{
 			$this->pm_list();
 
@@ -134,7 +139,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("projectmanager_ui::edit(,$view) content=".print_r($content,true));
 
-		$tpl = new etemplate_new('projectmanager.edit');
+		$tpl = new Etemplate('projectmanager.edit');
 
 		if (is_array($content))
 		{
@@ -148,7 +153,7 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				$this->init();
 			}
-			$view = $content['view'] && !$content['edit'] || !$this->check_acl(EGW_ACL_EDIT);
+			$view = $content['view'] && !$content['edit'] || !$this->check_acl(Acl::EDIT);
 
 			if (!$content['view'])	// just changed to edit-mode, still counts as view
 			{
@@ -208,7 +213,7 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			//echo "projectmanager_ui::edit(): data="; _debug_array($this->data);
 
-			if (($content['save'] || $content['apply']) && $this->check_acl(EGW_ACL_EDIT))
+			if (($content['save'] || $content['apply']) && $this->check_acl(Acl::EDIT))
 			{
 				// generate project-number, taking into account a given parent-project
 				if (empty($this->data['pm_number']))
@@ -243,18 +248,18 @@ class projectmanager_ui extends projectmanager_bo
 					if ($content['add_link'])
 					{
 						list($app,$app_id) = explode(':',$content['add_link'],2);
-						egw_link::link($app,$app_id,'projectmanager',$this->data['pm_id']);
+						Link::link($app,$app_id,'projectmanager',$this->data['pm_id']);
 					}
 					// writing links for new entry, existing ones are handled by the widget itself
 					if (!$content['pm_id'] && is_array($content['link_to']['to_id']))
 					{
-						egw_link::link('projectmanager',$this->data['pm_id'],$content['link_to']['to_id']);
+						Link::link('projectmanager',$this->data['pm_id'],$content['link_to']['to_id']);
 
 						// check if we have dragged in images and fix their image urls
-						if (etemplate_widget_vfs::fix_html_dragins('projectmanager', $this->data['pm_id'],
+						if (Etemplate\Widget\Vfs::fix_html_dragins('projectmanager', $this->data['pm_id'],
 							$content['link_to']['to_id'], $content['pm_description']))
 						{
-							so_sql::update(array(
+							Api\Storage\Base::update(array(
 								'pm_description' => $content['pm_description'],
 							));
 						}
@@ -271,17 +276,17 @@ class projectmanager_ui extends projectmanager_bo
 							array('pm_id'=>$this->data['pm_id']),$this->data['pm_status']);
 					}
 				}
-				if ($content['apply']) egw_framework::refresh_opener($msg, 'projectmanager', $this->data['pm_id'], 'edit');
+				if ($content['apply']) Framework::refresh_opener($msg, 'projectmanager', $this->data['pm_id'], 'edit');
 			}
-			if ($content['delete'] && $this->check_acl(EGW_ACL_DELETE))
+			if ($content['delete'] && $this->check_acl(Acl::DELETE))
 			{
 				$msg = $this->delete($pm_id,$delete_sources) ? lang('Project deleted') : lang('Error: deleting project !!!');
 			}
 			if ($content['save'] || $content['delete'])	// refresh opener and output message
 			{
-				egw_framework::refresh_opener($msg,'projectmanager', $this->data['pm_id'], $content['save']?'edit':'delete');
-				egw_framework::window_close();
-				common::egw_exit();
+				Framework::refresh_opener($msg,'projectmanager', $this->data['pm_id'], $content['save']?'edit':'delete');
+				Framework::window_close();
+				exit();
 			}
 			$template = $content['template'];
 		}
@@ -296,10 +301,10 @@ class projectmanager_ui extends projectmanager_bo
 			// for a new sub-project set some data from the parent
 			elseif ($_GET['link_app'] == 'projectmanager' && (int) $_GET['link_id'] && $this->read((int) $_GET['link_id']))
 			{
-				if (!$this->check_acl(EGW_ACL_READ))	// no read-rights for the parent, eg. someone edited the url
+				if (!$this->check_acl(Acl::READ))	// no read-rights for the parent, eg. someone edited the url
 				{
 					$GLOBALS['egw']->framework->render(lang('Permission denied !!!'));
-					common::egw_exit();
+					exit();
 				}
 				$this->generate_pm_number(true,$parent_number=$this->data['pm_number']);
 				foreach(array('pm_id','pm_title','pm_description','pm_creator','pm_created','pm_modified','pm_modifier','pm_real_start','pm_real_end','pm_completion','pm_status','pm_used_time','pm_planned_time','pm_replanned_time','pm_used_budget','pm_planned_budget') as $key)
@@ -311,22 +316,22 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			if((int)$_GET['template'] && $this->read((int) $_GET['template']))
 			{
-				if (!$this->check_acl(EGW_ACL_READ))	// no read-rights for the template, eg. someone edited the url
+				if (!$this->check_acl(Acl::READ))	// no read-rights for the template, eg. someone edited the url
 				{
 					$GLOBALS['egw']->framework->render(lang('Permission denied !!!'));
-					common::egw_exit();
+					exit();
 				}
 				// we do only stage 1 of the copy, so if the user hits cancel everythings Ok
 				$this->copy($template = (int) $_GET['template'],1,$parent_number);
 			}
 			if ($this->data['pm_id'])
 			{
-				if (!$this->check_acl(EGW_ACL_READ))
+				if (!$this->check_acl(Acl::READ))
 				{
 					$GLOBALS['egw']->framework->render(lang('Permission denied !!!'));
-					common::egw_exit();
+					exit();
 				}
-				if (!$this->check_acl(EGW_ACL_EDIT)) $view = true;
+				if (!$this->check_acl(Acl::EDIT)) $view = true;
 			}
 			// no pm-number set, generate one
 			if (!$this->data['pm_number']) $this->generate_pm_number(true);
@@ -361,7 +366,7 @@ class projectmanager_ui extends projectmanager_bo
 		if ($add_link && !is_array($content['link_to']['to_id']))
 		{
 			list($app,$app_id) = explode(':',$add_link,2);
-			egw_link::link('projectmanager',$content['link_to']['to_id'],$app,$app_id);
+			Link::link('projectmanager',$content['link_to']['to_id'],$app,$app_id);
 		}
 		$content['links'] = $content['link_to'];
 
@@ -394,8 +399,8 @@ class projectmanager_ui extends projectmanager_bo
 			$this->config['accounting_types'] = explode(',',$this->config['accounting_types']);
 		}
 		$readonlys = array(
-			'delete' => !$this->data['pm_id'] || !$this->check_acl(EGW_ACL_DELETE),
-			'edit' => !$view || !$this->check_acl(EGW_ACL_EDIT),
+			'delete' => !$this->data['pm_id'] || !$this->check_acl(Acl::DELETE),
+			'edit' => !$view || !$this->check_acl(Acl::EDIT),
 			'tabs' => array(
 				'accounting' => !$this->check_acl(EGW_ACL_BUDGET) &&	// disable the tab, if no budget rights and no owner or coordinator
 					($this->config['accounting_types'] && count($this->config['accounting_types']) == 1 ||
@@ -515,11 +520,11 @@ class projectmanager_ui extends projectmanager_bo
 	/**
 	 * query projects for nextmatch in the projects-list
 	 *
-	 * reimplemented from so_sql to disable action-buttons based on the acl and make some modification on the data
+	 * reimplemented from Api\Storage\Base to disable action-buttons based on the Acl and make some modification on the data
 	 *
 	 * @param array $query
 	 * @param array &$rows returned rows/cups
-	 * @param array &$readonlys eg. to disable buttons based on acl
+	 * @param array &$readonlys eg. to disable buttons based on Acl
 	 */
 	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
@@ -537,7 +542,7 @@ class projectmanager_ui extends projectmanager_bo
 		$query = $query_in;
 		// Don't keep pm_id filter in seesion
 		unset($query_in['col_filter']['pm_id']);
-		$GLOBALS['egw']->session->appsession('project_list','projectmanager',$query_in);
+		Api\Cache::setSession('projectmanager', 'project_list', $query_in);
 
 		//echo "<p>projectmanager_ui::get_rows(".print_r($query,true).")</p>\n";
 		// save the state of the index in the user prefs
@@ -574,18 +579,18 @@ class projectmanager_ui extends projectmanager_bo
 		foreach($rows as &$row)
 		{
 			// Hide as much as possible for users without read access, but still have other permissions
-			if(!$this->check_acl(EGW_ACL_READ,$row['pm_id']))
+			if(!$this->check_acl(Acl::READ,$row['pm_id']))
 			{
 				foreach($row as $key => &$value)
 				{
 					if(!in_array($key, array('pm_id','pm_number','pm_title'))) $value = '';
 				}
 			}
-			if (!$this->check_acl(EGW_ACL_EDIT,$row))
+			if (!$this->check_acl(Acl::EDIT,$row))
 			{
 				$row['class'] .= ' rowNoEdit';
 			}
-			if (!$this->check_acl(EGW_ACL_DELETE,$row))
+			if (!$this->check_acl(Acl::DELETE,$row))
 			{
 				$row['class'] .= ' rowNoDelete';
 			}
@@ -659,7 +664,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_ui::index(,$msg) content=".print_r($content,true));
 
-		$tpl = new etemplate_new('projectmanager.list');
+		$tpl = new Etemplate('projectmanager.list');
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 
@@ -706,7 +711,7 @@ class projectmanager_ui extends projectmanager_bo
 					break;
 
 				case 'delete':
-					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_DELETE))
+					if (!$this->read($pm_id) || !$this->check_acl(Acl::DELETE))
 					{
 						$msg = lang('Permission denied !!!');
 					}
@@ -719,12 +724,12 @@ class projectmanager_ui extends projectmanager_bo
 			}
 		}
 		$content = array(
-			'nm' => $GLOBALS['egw']->session->appsession('project_list','projectmanager'),
+			'nm' => Api\Cache::getSession('projectmanager', 'project_list'),
 			'duration_format' => ','.$this->config['duration_format'],
 		);
 		if($msg)
 		{
-			egw_framework::message($msg);
+			Framework::message($msg);
 		}
 		if (!is_array($content['nm']))
 		{
@@ -852,7 +857,7 @@ class projectmanager_ui extends projectmanager_bo
 					'copy' => array(
 						'caption' => 'Copy',
 						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&template=$id',
-						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+						'popup' => Link::get_registry('projectmanager', 'add_popup'),
 					),
 					'template' => array(
 						'caption' => 'Template',
@@ -861,12 +866,12 @@ class projectmanager_ui extends projectmanager_bo
 						// get inherited by children
 						'prefix' => 'template_',
 						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&template=$action',
-						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+						'popup' => Link::get_registry('projectmanager', 'add_popup'),
 					),
 					'sub' => array(
 						'caption' => 'Subproject',
 						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&link_app=projectmanager&link_id=$id',
-						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+						'popup' => Link::get_registry('projectmanager', 'add_popup'),
 						'icon' => 'navbar',
 					),
 					'templatesub' => array(
@@ -876,7 +881,7 @@ class projectmanager_ui extends projectmanager_bo
 						// get inherited by children
 						'prefix' => 'templatesub_',
 						'url' => 'menuaction=projectmanager.projectmanager_ui.edit&template=$action&link_app=projectmanager&link_id=$id',
-						'popup' => egw_link::get_registry('projectmanager', 'add_popup'),
+						'popup' => Link::get_registry('projectmanager', 'add_popup'),
 					),
 				),
 			),
@@ -904,7 +909,7 @@ class projectmanager_ui extends projectmanager_bo
 				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
 				$group, 'Insert in document', 'document_'
 			),
-			'cat' => nextmatch_widget::category_action(
+			'cat' => Etemplate\Widget\Nextmatch::category_action(
 				'projectmanager',$group,'Change category','cat_'
 			)+array(
 				'disableClass' => 'rowNoEdit',
@@ -974,8 +979,8 @@ class projectmanager_ui extends projectmanager_bo
 		if ($use_all)
 		{
 			// get the whole selection
-			$old_query = $GLOBALS['egw']->session->appsession('project_list','projectmanager');
-			$query = is_array($session_name) ? $session_name : $GLOBALS['egw']->session->appsession($session_name,'projectmanager');
+			$old_query = Api\Cache::getSession('projectmanager', 'project_list');
+			$query = is_array($session_name) ? $session_name : Api\Cache::getSession('projectmanager', $session_name);
 
 			@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
 			$query['num_rows'] = -1;	// all
@@ -986,7 +991,7 @@ class projectmanager_ui extends projectmanager_bo
 				if(is_array($project) && $project['pm_id'] && is_numeric($project['pm_id'])) $checked[] = $project['pm_id'];
 			}
 			// Reset query
-			$GLOBALS['egw']->session->appsession('project_list','projectmanager',$old_query);
+			Api\Cache::setSession('projectmanager', 'project_list', $old_query);
 		}
 
 		// Dialogs to get options
@@ -995,7 +1000,7 @@ class projectmanager_ui extends projectmanager_bo
 		switch($action)
 		{
 			case 'gantt':
-				egw::redirect_link('/index.php', array(
+				Egw::redirect_link('/index.php', array(
 					'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
 					'pm_id'      => implode(',',$checked),
 				));
@@ -1004,7 +1009,7 @@ class projectmanager_ui extends projectmanager_bo
 				$action_msg = lang('deleted');
 				foreach($checked as $pm_id)
 				{
-					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_DELETE))
+					if (!$this->read($pm_id) || !$this->check_acl(Acl::DELETE))
 					{
 						$failed++;
 					}
@@ -1019,7 +1024,7 @@ class projectmanager_ui extends projectmanager_bo
 				$action_msg = $action == 'cat' ? lang('category set') : lang('status set');
 				foreach($checked as $pm_id)
 				{
-					if (!$this->read($pm_id) || !$this->check_acl(EGW_ACL_EDIT))
+					if (!$this->read($pm_id) || !$this->check_acl(Acl::EDIT))
 					{
 						$failed++;
 					}
@@ -1127,7 +1132,7 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			return $nodes;
 		}
-		Api\Etemplate\Widget\Tree::send_quote_json($nodes);
+		Etemplate\Widget\Tree::send_quote_json($nodes);
 	}
 
 	protected static function _project_tree_leaves($filter, $parent_pm_id = 'mains', $_pm_id, &$projects = array())
@@ -1211,11 +1216,11 @@ class projectmanager_ui extends projectmanager_bo
 
 		);
 		// show pricelist only if we use pricelists
-		$config = config::read('projectmanager');
+		$config = Api\Config::read('projectmanager');
 		if (!$config['accounting_types'] || in_array('pricelist',(is_array($config['accounting_types'])?$config['accounting_types']:explode(',',$config['accounting_types']))))
 		{
 			// menuitem links to project-spezific priclist only if user has rights and it is used
-			// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(EGW_ACL_READ),
+			// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(Acl::READ),
 			// specialy the always existing READ right for the general pricelist!!!
 			$actions[] = array(
 				'caption' => 'Pricelist',

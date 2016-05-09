@@ -15,10 +15,10 @@
 				<row class="th">
 					<nextmatch-sortheader label="Title" id="pl_title"/>
 					<vbox>
-						<nextmatch-filterheader id="pm_id" no_lang="1" options="Project"/>
+						<nextmatch-filterheader id="pm_id" no_lang="1" options="Project" multiple="false"/>
 						<nextmatch-sortheader label="Customer title" id="pl_customertitle"/>
 					</vbox>
-					<nextmatch-filterheader id="pl_billable" options="Availible"/>
+					<nextmatch-filterheader id="pl_billable" options="Availible" multiple="false"/>
 					<vbox>
 						<nextmatch-sortheader label="Price / Unit" id="pl_price"/>
 						<nextmatch-sortheader label="Valid since" id="pl_validsince"/>

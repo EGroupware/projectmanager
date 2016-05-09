@@ -9,6 +9,12 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Acl;
+use EGroupware\Api\Etemplate;
+
 class projectmanager_gantt extends projectmanager_elements_ui {
 
 	public $public_functions = array(
@@ -53,13 +59,13 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$result = $this->action($data['gantt']['action'], $data['gantt']['selected'], $msg, $add_existing);
 			if($msg)
 			{
-				egw_framework::message($msg, $result ? 'success' : 'error');
+				Framework::message($msg, $result ? 'success' : 'error');
 			}
 		}
 		if ($data['sync_all'])
 		{
 			$this->project = new projectmanager_bo($pm_id);
-			if($this->project->check_acl(EGW_ACL_ADD))
+			if($this->project->check_acl(Acl::ADD))
 			{
 				$data['msg'] = lang('%1 element(s) updated',$this->sync_all());
 			}
@@ -75,17 +81,17 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
 
 			// Save filters in session per project
-			$result = egw_cache::setSession('projectmanager', 'gantt_'.$pm_id[0], $data['gantt']);
+			$result = Api\Cache::setSession('projectmanager', 'gantt_'.$pm_id[0], $data['gantt']);
 		}
 		else
 		{
 			$data = array(
 				'planned_times' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_planned_times'],
 				'constraints' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_constraints'],
-				'gantt' => (array)egw_cache::getSession('projectmanager', 'gantt_'.$pm_id[0])
+				'gantt' => (array)Api\Cache::getSession('projectmanager', 'gantt_'.$pm_id[0])
 			);
 		}
-		egw_framework::includeCSS('projectmanager','gantt');
+		Framework::includeCSS('projectmanager','gantt');
 		$GLOBALS['egw_info']['flags']['app_header'] = '';
 
 		// Yes, we want the link registry
@@ -114,7 +120,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'done'    => lang('Done (100%)'),
 			),
 		);
-		$template = new etemplate_new();
+		$template = new Etemplate();
 		$template->read('projectmanager.gantt');
 
 		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
@@ -178,7 +184,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	 * can be specified to indicate desired width, start hidden, and to try
 	 * to use the specified et2_widget to render the value.
 	 *
-	 * @see http://docs.dhtmlx.com/gantt/api__gantt_columns_config.html
+	 * @see http://docs.dhtmlx.com/gantt/api__gantt_columns_config.Api\Html
 	 *
 	 * @return array
 	 */
@@ -305,28 +311,28 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			}
 			$projects[] = $bo->add_project($data, $pm_id, $params);
 		}
-		$response = egw_json_response::get();
+		$response = Api\Json\Response::get();
 		$response->data($data);
 	}
 
 	// Get the data into required format
 	protected function &add_project(&$data, $pm_id, $params) {
-		if(!$pm_id || !$this->project->check_acl(EGW_ACL_READ, $pm_id))
+		if(!$pm_id || !$this->project->check_acl(Acl::READ, $pm_id))
 		{
 			return array();
 		}
 		if ($pm_id != $this->project->data['pm_id'])
 		{
-			if (!$this->project->read($pm_id) || !$this->project->check_acl(EGW_ACL_READ))
+			if (!$this->project->read($pm_id) || !$this->project->check_acl(Acl::READ))
 			{
 				return array();
 			}
 		}
 		$project = $this->project->data + array(
 			'id'	=>	'projectmanager::'.$this->project->data['pm_id'],
-			'text'	=>	$this->prefs['gantt_element_title_length'] ? substr(egw_link::title('projectmanager', $this->project->data['pm_id']), 0, $this->prefs['gantt_element_title_length']) : egw_link::title('projectmanager', $this->project->data['pm_id']),
-			'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
-			'start_date'	=>	egw_time::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],egw_time::DATABASE),
+			'text'	=>	$this->prefs['gantt_element_title_length'] ? substr(Link::title('projectmanager', $this->project->data['pm_id']), 0, $this->prefs['gantt_element_title_length']) : Link::title('projectmanager', $this->project->data['pm_id']),
+			'edit'	=>	$this->project->check_acl(Acl::EDIT),
+			'start_date'	=>	Api\DateTime::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],Api\DateTime::DATABASE),
 			'open'	=>	$params['level'] < $params['depth'],
 			'progress' => ((int)substr($this->project->data['pm_completion'],0,-1))/100,
 			'parent' => $params['parent'] && $params['parent'] != $this->project->data['pm_id'] ? 'projectmanager::'.$params['parent'] : 0
@@ -344,7 +350,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			// Avoid a 0 length project, that causes display and control problems
 			// Add 1 day - 1 second to go from 0:00 to 23:59
 			if($end == $start) strtotime('+1 day', $end)-1;
-			$project['end_date'] = egw_time::to($end,egw_time::DATABASE);
+			$project['end_date'] = Api\DateTime::to($end,Api\DateTime::DATABASE);
 		}
 		else
 		{
@@ -353,13 +359,13 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		// Add in planned start & end, if different
 		if(!$params['planned_times'])
 		{
-			if($project['pm_planned_start'] && $project['pm_planned_start'] != egw_time::to($project['start_date'],egw_time::DATABASE))
+			if($project['pm_planned_start'] && $project['pm_planned_start'] != Api\DateTime::to($project['start_date'],Api\DateTime::DATABASE))
 			{
-				$project['planned_start'] = egw_time::to((int)$project['pm_planned_start'], egw_time::DATABASE);
+				$project['planned_start'] = Api\DateTime::to((int)$project['pm_planned_start'], Api\DateTime::DATABASE);
 			}
 			if($project['pm_planned_end'] && $project['pm_planned_end'] != $project['pm_real_end'])
 			{
-				$project['planned_end'] = egw_time::to((int)$project['pm_planned_end'], egw_time::DATABASE);
+				$project['planned_end'] = Api\DateTime::to((int)$project['pm_planned_end'], Api\DateTime::DATABASE);
 			}
 		}
 		
@@ -368,7 +374,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 		if(is_array($project['pm_members'])) {
 			foreach($project['pm_members'] as $uid => &$member_data) {
-				$member_data['name'] = common::grab_owner_name($member_data['member_uid']);
+				$member_data['name'] = Api\Accounts::username($member_data['member_uid']);
 			}
 		}
 		$data['data'][] =& $project;
@@ -397,8 +403,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'ms_id' => $milestone['ms_id'],
 				'text'	=>	$milestone['ms_title'],
 				'parent' => 'projectmanager::'.$pm_id,
-				'edit'	=>	$this->project->check_acl(EGW_ACL_EDIT),
-				'start_date'	=>	egw_time::to($milestone['ms_date'],egw_time::DATABASE),
+				'edit'	=>	$this->project->check_acl(Acl::EDIT),
+				'start_date'	=>	Api\DateTime::to($milestone['ms_date'],Api\DateTime::DATABASE),
 				'type' => 'milestone',
 				'pe_icon' => 'projectmanager/milestone'
 			);
@@ -504,25 +510,25 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
 			$pe['text'] = $this->prefs['gantt_element_title_length'] ? substr($pe['pe_title'], 0, $this->prefs['gantt_element_title_length']) : $pe['pe_title'];
 			$pe['parent'] = 'projectmanager::'.$pm_id;
-			$pe['start_date'] = egw_time::to((int)$pe['pe_start'],egw_time::DATABASE);
+			$pe['start_date'] = Api\DateTime::to((int)$pe['pe_start'],Api\DateTime::DATABASE);
 			if($pe['pe_planned_start'] && $pe['pe_planned_start'] != $pe['pe_start'])
 			{
-				$pe['start_date'] = egw_time::to($pe['pe_real_start'], egw_time::DATABASE);
-				$pe['planned_start'] = egw_time::to((int)$pe['pe_planned_start'], egw_time::DATABASE);
+				$pe['start_date'] = Api\DateTime::to($pe['pe_real_start'], Api\DateTime::DATABASE);
+				$pe['planned_start'] = Api\DateTime::to((int)$pe['pe_planned_start'], Api\DateTime::DATABASE);
 			}
 			$pe['duration'] = self::get_duration($data,(float)($params['planned_times'] ? $pe['pe_planned_time'] : $pe['pe_used_time']));
 			if($pe['pe_end'])
 			{
 				// Make sure we don't kill the gantt chart with too large a time span - limit to 10 years
-				$pe['end_date'] = egw_time::to(min($pe['pe_end'],strtotime('+10 years',$pe['pe_start'])),egw_time::DATABASE	);
+				$pe['end_date'] = Api\DateTime::to(min($pe['pe_end'],strtotime('+10 years',$pe['pe_start'])),Api\DateTime::DATABASE	);
 			}
 			if($pe['pe_planned_end'] && $pe['pe_planned_end'] != $pe['pe_end'])
 			{
-				$pe['end_date'] = egw_time::to($pe['pe_real_end'], egw_time::DATABASE);
-				$pe['planned_end'] = egw_time::to((int)$pe['pe_planned_end'], egw_time::DATABASE);
+				$pe['end_date'] = Api\DateTime::to($pe['pe_real_end'], Api\DateTime::DATABASE);
+				$pe['planned_end'] = Api\DateTime::to((int)$pe['pe_planned_end'], Api\DateTime::DATABASE);
 			}
 			$pe['progress'] = ((int)substr($pe['pe_completion'],0,-1))/100;
-			$pe['edit'] = $this->check_acl(EGW_ACL_EDIT, $pe);
+			$pe['edit'] = $this->check_acl(Acl::EDIT, $pe);
 
 			// Set field for filter to filter on
 			$pe['filter'] = $pe['pe_completion'] > 0 ? ($pe['pe_completion'] != 100 ? 'ongoing' : 'done') : 'not';
@@ -610,7 +616,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		// Don't change timesheets
 		if($values['pe_app'] == 'timesheet')
 		{
-			egw_json_response::get()->call('egw.message',lang('Editing timesheets is not supported, edit the entry directly'), 'error');
+			Api\Json\Response::get()->call('egw.message',lang('Editing timesheets is not supported, edit the entry directly'), 'error');
 			return;
 		}
 		if(class_exists('stylite_projectmanager_gantt') && $params['datasource_update'])
@@ -623,7 +629,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			// Only tell them once
 			$GLOBALS['egw']->preferences->add('projectmanager','skip_stylite_warning', true);
 			$GLOBALS['egw']->preferences->save_repository();
-			egw_json_response::get()->apply('egw.message', Array(lang('Direct update from Gantt chart requires <a href="http://www.egroupware.org/products">Stylite EGroupware Enterprise Line (EPL)</a>.'
+			Api\Json\Response::get()->apply('egw.message', Array(lang('Direct update from Gantt chart requires <a href="http://www.egroupware.org/products">Stylite EGroupware Enterprise Line (EPL)</a>.'
 			. '<br />Project elements will be updated but the associated datasource will not.'),'info'));
 		}
 
@@ -649,11 +655,11 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			}
 			if(array_key_exists('start_date', $values))
 			{
-				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = egw_time::to($values['start_date'],'ts');
+				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = Api\DateTime::to($values['start_date'],'ts');
 			}
 			if(array_key_exists('end_date', $values))
 			{
-				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = egw_time::to($values['end_date'],'ts');
+				$keys['pe_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = Api\DateTime::to($values['end_date'],'ts');
 			}
 			if($keys)
 			{
@@ -665,7 +671,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			// Update milestone
 			$pe_bo = new projectmanager_elements_bo((int)$values['pm_id']);
 			$milestone = $pe_bo->milestones->read((int)$values['ms_id']);
-			$pe_bo->milestones->save(array('ms_date' => egw_time::to($values['start_date'],'ts')));
+			$pe_bo->milestones->save(array('ms_date' => Api\DateTime::to($values['start_date'],'ts')));
 		}
 		else if ($values['pm_id'])
 		{
@@ -674,11 +680,11 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$keys['pm_completion'] = (int)($values['progress'] * 100).'%';
 			if(array_key_exists('start_date', $values))
 			{
-				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = egw_time::to($values['start_date'],'ts');
+				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_start'] = Api\DateTime::to($values['start_date'],'ts');
 			}
 			if(array_key_exists('end_date', $values))
 			{
-				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = egw_time::to($values['end_date'],'ts');
+				$keys['pm_' . ($params['planned_times'] ? 'planned' : 'real') . '_end'] = Api\DateTime::to($values['end_date'],'ts');
 			}
 			if($keys)
 			{
@@ -706,7 +712,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$pe_bo->constraints->save($keys);
 
 				// Return the new key so we can tell new from old
-				egw_json_response::get()->data($keys['pm_id'] . ':'.$values['source'].':'.$values['target']);
+				Api\Json\Response::get()->data($keys['pm_id'] . ':'.$values['source'].':'.$values['target']);
 			}
 			else if ($values['id'])
 			{
@@ -726,8 +732,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	 */
 	protected static function get_duration_unit($task)
 	{
-		$start = new egw_time($task['start_date']);
-		$end = new egw_time($task['end_date']);
+		$start = new Api\DateTime($task['start_date']);
+		$end = new Api\DateTime($task['end_date']);
 		$diff = $start->diff($end);
 
 		// Determine a good unit.

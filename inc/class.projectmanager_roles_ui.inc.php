@@ -10,7 +10,12 @@
  * @version $Id$
  */
 
-define('EGW_ACL_ROLES',EGW_ACL_EDIT);	// maybe this gets an own ACL later
+use EGroupware\Api;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Acl;
+use EGroupware\Api\Etemplate;
+
+define('EGW_ACL_ROLES',Acl::EDIT);	// maybe this gets an own ACL later
 
 /**
  * ProjectManager UI: roles
@@ -26,10 +31,10 @@ class projectmanager_roles_ui extends projectmanager_bo
 		'roles' => true,
 	);
 	var $acl2id = array(
-		'read'   => EGW_ACL_READ,
-		'edit'   => EGW_ACL_EDIT,
-		'delete' => EGW_ACL_DELETE,
-		'add'    => EGW_ACL_ADD,
+		'read'   => Acl::READ,
+		'edit'   => Acl::EDIT,
+		'delete' => Acl::DELETE,
+		'add'    => Acl::ADD,
 		'budget' => EGW_ACL_BUDGET,
 		'edit_budget' => EGW_ACL_EDIT_BUDGET,
 		'add_timesheet' => EGW_ACL_ADD_TIMESHEET
@@ -58,7 +63,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 	 */
 	function roles($content=null)
 	{
-		$tpl = new etemplate_new('projectmanager.roles');
+		$tpl = new Etemplate('projectmanager.roles');
 
 		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
 
@@ -100,7 +105,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 				{
 					$msg = lang('Role saved');
 
-					if ($content['save']) egw_framework::window_close();
+					if ($content['save']) Framework::window_close();
 				}
 				else
 				{

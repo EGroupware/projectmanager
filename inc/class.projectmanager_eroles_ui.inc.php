@@ -12,7 +12,12 @@
  * @version $Id: class.projectmanager_eroles_ui.inc.php 27222 2009-06-08 16:21:14Z jaytraxx $
  */
 
-define('EGW_ACL_PROJECT_EROLES',EGW_ACL_EDIT);
+use EGroupware\Api;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Acl;
+use EGroupware\Api\Etemplate;
+
+define('EGW_ACL_PROJECT_EROLES',Acl::EDIT);
 
 /**
  * ProjectManager UI: eRoles
@@ -54,7 +59,7 @@ class projectmanager_eroles_ui extends projectmanager_bo
 	 */
 	function eroles($content=null)
 	{
-		$tpl = new etemplate_new('projectmanager.eroles');
+		$tpl = new Etemplate('projectmanager.eroles');
 
 		$pm_id = is_array($content) ? $content['pm_id'] : (int) $_REQUEST['pm_id'];
 
@@ -98,7 +103,7 @@ class projectmanager_eroles_ui extends projectmanager_bo
 					$msg = lang('Element role saved');
 
 
-					if ($content['save']) egw_framework::window_close();
+					if ($content['save']) Framework::window_close();
 				}
 				else
 				{

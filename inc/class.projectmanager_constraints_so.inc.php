@@ -10,12 +10,14 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 /**
  * Constraints storage object of the projectmanager
  *
  * Tables: egw_pm_constraints
  */
-class projectmanager_constraints_so extends so_sql
+class projectmanager_constraints_so extends Api\Storage\Base
 {
 	// Gantt chart supports 4 constraint types.  The most common is 0,
 	// <start> Ends before <end>.

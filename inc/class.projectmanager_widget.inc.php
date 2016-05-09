@@ -10,6 +10,8 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 /**
  * ProjectManager: eTemplate widgets
  *
@@ -246,7 +248,7 @@ class projectmanager_widget
 			}
 		}
 
-		$response = egw_json_response::get();
+		$response = Api\Json\Response::get();
 		$response->data($options);
 	}
 }

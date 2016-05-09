@@ -10,10 +10,12 @@
  * @version $Id: class.projectmanager_tracking.inc.php 26515 2009-03-24 11:50:16Z leithoff $
  */
 
+use EGroupware\Api;
+
 /**
  * Projectmanager - tracking object for the tracker
  */
-class projectmanager_tracking extends bo_tracking
+class projectmanager_tracking extends Api\Storage\Tracking
 {
 	/**
 	 * Application we are tracking (required!)
@@ -99,7 +101,7 @@ class projectmanager_tracking extends bo_tracking
 	}
 
 	/**
-	 * Get the subject for a given entry, reimplementation for get_subject in bo_tracking
+	 * Get the subject for a given entry, reimplementation for get_subject in Api\Storage\Tracking
 	 *
 	 * Default implementation uses the link-title
 	 *
@@ -124,11 +126,11 @@ class projectmanager_tracking extends bo_tracking
 		if (!$data['pm_modified'] || !$old)
 		{
 			return lang('New Project submitted by %1 at %2',
-				common::grab_owner_name($data['pm_creator']),
+				Api\Accounts::username($data['pm_creator']),
 				$this->datetime($data['pm_created']));
 		}
 		return lang('Project modified by %1 at %2',
-			$data['pm_modifier'] ? common::grab_owner_name($data['pm_modifier']) : lang('Projectmanager'),
+			$data['pm_modifier'] ? Api\Accounts::username($data['pm_modifier']) : lang('Projectmanager'),
 			$this->datetime($data['pm_modified']));
 	}
 }

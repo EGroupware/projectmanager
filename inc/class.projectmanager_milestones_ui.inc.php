@@ -10,6 +10,12 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Framework;
+use EGroupware\Api\Acl;
+use EGroupware\Api\Etemplate;
+
 /**
  * Milestones user interface of the Projectmanager
  */
@@ -29,7 +35,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 	 */
 	function __construct()
 	{
-		$this->tpl = new etemplate_new();
+		$this->tpl = new Etemplate();
 
 		if ((int) $_REQUEST['pm_id'])
 		{
@@ -49,7 +55,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 		parent::__construct($pm_id);
 
 		// check if we have at least read-access to this project
-		if (!$this->check_acl(EGW_ACL_READ))
+		if (!$this->check_acl(Acl::READ))
 		{
 			$this->tpl->location(array(
 				'menuaction' => 'projectmanager.projectmanager_ui.index',
@@ -75,7 +81,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 	 */
 	function edit($content=null,$view=false)
 	{
-		$view = $view || $content['view'] || !$this->check_acl(EGW_ACL_EDIT);
+		$view = $view || $content['view'] || !$this->check_acl(Acl::EDIT);
 
 		if (is_array($content))
 		{
@@ -83,13 +89,13 @@ class projectmanager_milestones_ui extends projectmanager_bo
 			{
 				if($content['ms_id'])
 				{
-					egw_link::unlink(0, 'projectmanager', $this->data['pm_id'],'pm_milestone',$content['ms_id']);
+					Link::unlink(0, 'projectmanager', $this->data['pm_id'],'pm_milestone',$content['ms_id']);
 				}
 				$this->read($content['pm_id']);
 			}
 			$this->milestones->data_merge($content);
 
-			if ($this->check_acl(EGW_ACL_EDIT))
+			if ($this->check_acl(Acl::EDIT))
 			{
 				if ($content['save'] || $content['apply'])
 				{
@@ -101,9 +107,9 @@ class projectmanager_milestones_ui extends projectmanager_bo
 					else
 					{
 						$msg = lang('Milestone saved');
-						egw_link::link('projectmanager', $this->data['pm_id'],'pm_milestone',$this->milestones->data['ms_id']);
+						Link::link('projectmanager', $this->data['pm_id'],'pm_milestone',$this->milestones->data['ms_id']);
 						// Refresh the project via projectmanager, since PM's sub-types don't fit
-						egw_framework::refresh_opener($msg, 'projectmanager', $this->data['pm_id'], 'edit');
+						Framework::refresh_opener($msg, 'projectmanager', $this->data['pm_id'], 'edit');
 
 					}
 				}
@@ -114,22 +120,22 @@ class projectmanager_milestones_ui extends projectmanager_bo
 						'ms_id' => $content['ms_id'],
 					)))
 					{
-						egw_link::unlink(0, 'pm_milestone', $content['ms_id']);
+						Link::unlink(0, 'pm_milestone', $content['ms_id']);
 						$msg = lang('Milestone deleted');
-						egw_framework::refresh_opener($msg, 'projectmanager', 'edit');
+						Framework::refresh_opener($msg, 'projectmanager', 'edit');
 
 					}
 				}
-				if ($content['edit'] && $this->check_acl(EGW_ACL_EDIT))
+				if ($content['edit'] && $this->check_acl(Acl::EDIT))
 				{
 					$view = false;
 				}
 			}
 			if ($content['save'] || $content['cancel'] || $content['delete'])
 			{
-				egw_framework::window_close();
+				Framework::window_close();
 
-				$GLOBALS['egw']->common->egw_exit();
+				exit();
 			}
 		}
 		elseif ($_REQUEST['ms_id'])
@@ -152,7 +158,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 		if ($view)
 		{
 			$readonlys = array(
-				'edit'     => !$this->check_acl(EGW_ACL_EDIT),
+				'edit'     => !$this->check_acl(Acl::EDIT),
 				'save'     => true,
 				'apply'    => true,
 				'delete'   => true,
@@ -169,7 +175,7 @@ class projectmanager_milestones_ui extends projectmanager_bo
 			);
 			$sel_options['pm_id'] += $this->query_list('pm_title','pm_id');
 		}
-		$readonlys['delete'] = !$this->milestones->data['ms_id'] || !$this->check_acl(EGW_ACL_EDIT);
+		$readonlys['delete'] = !$this->milestones->data['ms_id'] || !$this->check_acl(Acl::EDIT);
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.($view ? lang('View milestone') :
 			($this->milestones->data['ms_id'] ? lang('Edit milestone') : lang('Add milestone')));

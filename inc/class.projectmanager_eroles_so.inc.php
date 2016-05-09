@@ -12,13 +12,15 @@
  * @version $Id: class.projectmanager_eroles_so.inc.php 26091 2008-10-07 17:57:50Z jaytraxx $
  */
 
+use EGroupware\Api;
+
 /**
  * eRoles storage object of the projectmanager
  * eRoles - element roles define the role of an egroupware element when it gets merged with a document
  *
  * Tables: egw_pm_eroles
  */
-class projectmanager_eroles_so extends so_sql
+class projectmanager_eroles_so extends Api\Storage\Base
 {	
 	/**
 	 * Constructor, calls the constructor of the extended class

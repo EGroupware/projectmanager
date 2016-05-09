@@ -12,10 +12,14 @@
  * @version $Id: class.projectmanager_merge.inc.php 30377 2010-09-27 19:35:10Z jaytraxx $
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
+use EGroupware\Api\Egw;
+
 /**
  * Projectmanager - document merge object
  */
-class projectmanager_merge extends bo_merge
+class projectmanager_merge extends Api\Storage\Merge
 {
 	/**
 	 * Functions that can be called via menuaction
@@ -353,7 +357,7 @@ class projectmanager_merge extends bo_merge
 		$project = $record->get_record_array();
 		
 		// Set any missing custom fields, or the marker will stay
-		$custom = config::get_customfields('projectmanager');
+		$custom = Api\Storage\Customfields::get('projectmanager');
 		foreach($custom as $name => $field)
 		{
 			$this->projectmanager_fields['#'.$name] = $field['label'];
@@ -368,7 +372,7 @@ class projectmanager_merge extends bo_merge
 		$all_roles = array('Coordinator' => array());
 		$all_roles += array_fill_keys($roles, array());
 		foreach((Array)$project['pm_members'] as $account_id => $info) {
-			$all_roles[$info['role_title']][] = common::grab_owner_name($info['member_uid']);
+			$all_roles[$info['role_title']][] = Api\Accounts::username($info['member_uid']);
 		}
 		foreach($all_roles as $name => $users) {
 			$project[$name] = implode(', ', $users);
@@ -399,10 +403,10 @@ class projectmanager_merge extends bo_merge
 				case 'pm_real_start': case 'pm_real_end':
 				case 'pe_planned_start_total': case 'pe_planned_end_total':
 				case 'pe_real_start_total': case 'pe_real_end_total':
-					if($value) $value = egw_time::to($value);
+					if($value) $value = Api\DateTime::to($value);
 					break;
 				case 'pm_creator': case 'pm_modifier':
-					$value = common::grab_owner_name($value);
+					$value = Api\Accounts::username($value);
 					break;
 				case 'cat_id':
 					if ($value)
@@ -465,10 +469,10 @@ class projectmanager_merge extends bo_merge
 				case 'pe_planned_start': case 'pe_planned_end':
 				case 'pe_real_start': case 'pe_real_end':
 				case 'pe_synced': case 'pe_modified':
-					if($value) $value = egw_time::to($value);
+					if($value) $value = Api\DateTime::to($value);
 					break;
 				case 'pe_modifier':
-					$value = common::grab_owner_name($value);
+					$value = Api\Accounts::username($value);
 					break;
 				case 'cat_id':
 					if ($value)
@@ -490,7 +494,7 @@ class projectmanager_merge extends bo_merge
 					$names = array();
 					foreach($value as $id => $user_id)
 					{
-						$names[] = common::grab_owner_name($user_id);
+						$names[] = Api\Accounts::username($user_id);
 					}
 					$value = implode(', ', $names);
 					break;
@@ -505,11 +509,11 @@ class projectmanager_merge extends bo_merge
 		// Element links
 		if(strpos($content, ($prefix ? $prefix.'/':'').'links') !== false)
 		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], '!'.egw_link::VFS_APPNAME);
+			$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], '!'.Link::VFS_APPNAME);
 		}
 		if(strpos($content, ($prefix ? $prefix.'/':'').'attachments') !== false)
 		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], egw_link::VFS_APPNAME);
+			$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], Link::VFS_APPNAME);
 		}
 		if(strpos($content, ($prefix ? $prefix.'/':'').'links_attachments') !== false)
 		{
@@ -535,14 +539,14 @@ class projectmanager_merge extends bo_merge
 	}
 
 	/**
-	 * Generate table with replacements for the preferences
+	 * Generate table with replacements for the Api\Preferences
 	 *
 	 */
 	public function show_replacements()
 	{
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager').' - '.lang('Replacements for inserting project data into documents');
 		$GLOBALS['egw_info']['flags']['nonavbar'] = false;
-		common::egw_header();
+		$GLOBALS['egw']->framework->header();
 
 		echo "<table width='90%' align='center'>\n";
 		
@@ -563,7 +567,7 @@ class projectmanager_merge extends bo_merge
 
 		// Custom fields
 		echo '<tr><td colspan="4"><h3>'.lang('Custom fields').":</h3></td></tr>";
-		$custom = config::get_customfields('projectmanager');
+		$custom = Api\Storage\Customfields::get('projectmanager');
 		foreach($custom as $name => $field)
 		{
 			echo '<tr><td>{{#'.$name.'}}</td><td colspan="3">'.$field['label']."</td></tr>\n";
@@ -605,9 +609,9 @@ class projectmanager_merge extends bo_merge
 				.'<ul>'
 				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>';
 				foreach(array(
-					'Addressbook fields' 	=> egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
-					'Calendar fields'		=> egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
-					'Infolog fields'		=> egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
+					'Addressbook fields' 	=> Egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
+					'Calendar fields'		=> Egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
+					'Infolog fields'		=> Egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
 				) as $placeholder => $link)
 				{
 					echo '<li><a href="'.$link.'" target="_blank">'.lang($placeholder).'</a></li>';
@@ -655,9 +659,9 @@ class projectmanager_merge extends bo_merge
 				.'<ul>'
 				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>';
 				foreach(array(
-					'Addressbook fields' 	=> egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
-					'Calendar fields'		=> egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
-					'Infolog fields'		=> egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
+					'Addressbook fields' 	=> Egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
+					'Calendar fields'		=> Egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
+					'Infolog fields'		=> Egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
 				) as $placeholder => $link)
 				{
 					echo '<li><a href="'.$link.'" target="_blank">'.lang($placeholder).'</a></li>';
@@ -671,7 +675,7 @@ class projectmanager_merge extends bo_merge
 				.'</tr>'."\n";
 		
 		// Serial letter
-		$link = egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements');
+		$link = Egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements');
 		echo '<tr><td colspan="4">'
 				.'<h3>'.lang('Contact fields for serial letters').'</h3>'
 				.lang('Addressbook elements of a project can be used to define individual serial letter recipients. Available fields are').':'
@@ -705,7 +709,7 @@ class projectmanager_merge extends bo_merge
 		}
 
 		echo "</table>\n";
-		common::egw_footer();
+		$GLOBALS['egw']->framework->footer();
 	}
 	
 	/**
@@ -740,7 +744,7 @@ class projectmanager_merge extends bo_merge
 			else
 			{
 				$limit = array(0,-1);
-				if($this->export_limit && !bo_merge::is_export_limit_excepted()) {
+				if($this->export_limit && !Api\Storage\Merge::is_export_limit_excepted()) {
 					$limit = array(0,(int)$this->export_limit);
 					// Need to do this to give an error
 					$count = count($this->projectmanager_elements_bo->search($query));
@@ -751,7 +755,7 @@ class projectmanager_merge extends bo_merge
 				}
 			}
 			if($count && count($elements) < $count) {
-				throw new egw_exception(lang('No rights to export more then %1 entries!',(int)$this->export_limit));
+				throw new Api\Exception(lang('No rights to export more then %1 entries!',(int)$this->export_limit));
 			}
 		}
 	

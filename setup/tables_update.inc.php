@@ -451,3 +451,9 @@ function projectmanager_upgrade14_1()
 
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '14.2';
 }
+
+
+function projectmanager_upgrade14_2()
+{
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '16.1';
+}

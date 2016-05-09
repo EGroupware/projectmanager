@@ -10,6 +10,8 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 class projectmanager_wizard_import_projects_csv extends importexport_wizard_basic_import_csv
 {
 
@@ -38,7 +40,7 @@ class projectmanager_wizard_import_projects_csv extends importexport_wizard_basi
 		if(count($role_list) > 0) {
 			$this->mapping_fields[lang('Roles')] = $role_list;
 		}
-		$custom = config::get_customfields('projectmanager', true);
+		$custom = Api\Storage\Customfields::get('projectmanager', true);
 		foreach($custom as $name => $data) {
 			$this->mapping_fields['#'.$name] = $data['label'];
 		}

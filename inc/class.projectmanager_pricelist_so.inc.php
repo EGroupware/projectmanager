@@ -10,12 +10,14 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 /**
  * Pricelist storage object of the projectmanager
  *
  * Tables: egw_pm_pricelist, egw_pm_prices
  */
-class projectmanager_pricelist_so extends so_sql
+class projectmanager_pricelist_so extends Api\Storage\Base
 {
 	/**
 	 * Table name of the prices table
@@ -59,7 +61,7 @@ class projectmanager_pricelist_so extends so_sql
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
 	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
-	 * @param string/boolean $join=true default join with links-table or string as in so_sql
+	 * @param string/boolean $join=true default join with links-table or string as in Api\Storage\Base
 	 * @return array/boolean data if row could be retrived else False
 	*/
 	function read($keys,$extra_cols='',$join=true)
@@ -161,7 +163,7 @@ class projectmanager_pricelist_so extends so_sql
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
 	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string/boolean $join=true default join with prices-table or string as in so_sql
+	 * @param string/boolean $join=true default join with prices-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
 	function search($criteria,$only_keys=false,$order_by='pl_title',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)

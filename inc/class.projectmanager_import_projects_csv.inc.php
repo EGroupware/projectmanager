@@ -11,6 +11,8 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+use EGroupware\Api\Link;
 
 /**
  * class to import projects from CSV
@@ -227,13 +229,13 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 						// Process parent, if present
 						if($_data['parent'])
 						{
-							egw_link::link('projectmanager', $_data['parent'], 'projectmanager',$this->bo->data['pm_id'],'Linked by import');
+							Link::link('projectmanager', $_data['parent'], 'projectmanager',$this->bo->data['pm_id'],'Linked by import');
 						}
 						return true;
 					}
 				}
 			default:
-				throw new egw_exception('Unsupported action');
+				throw new Api\Exception('Unsupported action');
 			
 		}
 	}
@@ -255,7 +257,7 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 		$id = $record->get_identifier();
 		if($id && (int)$record->parent)
 		{
-			$link_id = egw_link::link($this->definition->application,$id,'projectmanager',$record->parent);
+			$link_id = Link::link($this->definition->application,$id,'projectmanager',$record->parent);
 		}
 	}
 

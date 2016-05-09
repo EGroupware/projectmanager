@@ -10,12 +10,14 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 /**
  * Milestones storage object of the projectmanager
  *
  * Tables: egw_pm_milestones
  */
-class projectmanager_milestones_so extends so_sql
+class projectmanager_milestones_so extends Api\Storage\Base
 {
 	/**
 	 * pm_id of current project

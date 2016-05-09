@@ -10,6 +10,8 @@
  * @version $Id$
  */
 
+use EGroupware\Api;
+
 $GLOBALS['egw_info'] = array(
 	'flags' => array(
 		'currentapp'	=> 'projectmanager',
@@ -29,12 +31,12 @@ if ($setup_info['projectmanager']['version'] != $GLOBALS['egw_info']['apps']['pr
 	}
 	else
 	{
-		common::egw_header();
+		$GLOBALS['egw']->framework->header();
 		parse_navbar();
 		echo '<p style="text-align: center; color:red; font-weight: bold;">'.lang('Your database is NOT up to date (%1 vs. %2), please run %3setup%4 to update your database.',
 			$setup_info['projectmanager']['version'],$GLOBALS['egw_info']['apps']['projectmanager']['version'],
 			'<a href="../setup/">','</a>')."</p>\n";
-		common::egw_exit();
+		exit();
 	}
 }
 unset($setup_info);
@@ -44,4 +46,4 @@ $pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_
 $GLOBALS['egw']->redirect_link('/index.php',array(
 	'menuaction' => $pm_id ? 'projectmanager.projectmanager_elements_ui.index' : 'projectmanager.projectmanager_ui.index',
 ));
-common::egw_exit();
+exit();
