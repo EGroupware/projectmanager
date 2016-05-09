@@ -11,9 +11,9 @@
  * @version $Id$
  */
 
-use egw_framework;
+use EGroupware\Api\Framework;
 
-egw_framework::includeCSS('/projectmanager/js/dhtmlxGantt/codebase/dhtmlxgantt.css');
+Framework::includeCSS('/projectmanager/js/dhtmlxGantt/codebase/dhtmlxgantt.css');
 
 /**
  * eTemplate Gantt chart widget
