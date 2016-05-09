@@ -14,7 +14,7 @@
 /**
  * eTemplate2 project manager widgets
  */
-class projectmanager_etemplate_widget extends etemplate_widget_transformer
+class projectmanager_etemplate_widget extends \EGroupware\Api\Etemplate\Widget\Transformer
 {
 	protected static $transformation = array(
 		'type' => array(

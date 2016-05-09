@@ -188,7 +188,6 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 */
 	function search($criteria,$only_keys=false,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
 	{
-		error_log(array2string($filter));
 		if (!$this->check_acl(Acl::READ,(int)($criteria['pm_id'] ? $criteria['pm_id'] : $this->pm_id)))
 		{
 			return false;

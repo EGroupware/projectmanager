@@ -780,7 +780,7 @@ class projectmanager_bo extends projectmanager_so
 		static $ancestors_cache = array();	// some caching
 
 		if (!$pm_id && !($pm_id = $this->pm_id)) return false;
-error_log(__METHOD__ . "(".array2string($pm_id)." ancestors cache:" . array2string($ancestors_cache));
+		
 		if (!isset($ancestors_cache[$pm_id]))
 		{
 			$ancestors_cache[$pm_id] = array();
