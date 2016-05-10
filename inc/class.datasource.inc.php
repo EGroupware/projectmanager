@@ -255,11 +255,7 @@ class datasource
 				}
 			}
 			// setting real or planned start-date, from each other if not set
-			if ((!isset($ds['pe_real_start']) || $ds['ignore_real_start']) && isset($ds['pe_planned_start']))
-			{
-				$ds['pe_real_start'] = $ds['pe_planned_start'];
-			}
-			elseif (!isset($ds['pe_planned_start']) && isset($ds['pe_real_start']))
+			if (!$ds['pe_planned_start'] && isset($ds['pe_real_start']))
 			{
 				$ds['pe_planned_start'] = $ds['pe_real_start'];
 			}
@@ -282,11 +278,7 @@ class datasource
 				unset($ds['ignore_real_end']);
 			}
 			// setting real or planned end-date, from each other if not set
-			if ((!isset($ds['pe_real_end']) || $ds['ignore_real_end']) && isset($ds['pe_planned_end']))
-			{
-				$ds['pe_real_end'] = $ds['pe_planned_end'];
-			}
-			elseif (!isset($ds['pe_planned_end']) && isset($ds['pe_real_end']))
+			if (!isset($ds['pe_planned_end']) && isset($ds['pe_real_end']))
 			{
 				$ds['pe_planned_end'] = $ds['pe_real_end'];
 			}
