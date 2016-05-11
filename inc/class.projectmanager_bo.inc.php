@@ -526,7 +526,7 @@ class projectmanager_bo extends projectmanager_so
 		if(!$index && $this->not_unique(array('pm_number' => $pm_format)))	// no index given and not unique
 		{
 			// have to use default
-			$pm_format = $parent === '' ? sprintf('P-%04Y-%04d', date('Y')) : $parent.'/%04d';
+			$pm_format = $parent === '' ? sprintf('P-%04s-%%04d', date('Y')) : $parent.'/%04d';
 		}
 		elseif(!$index)
 		{
