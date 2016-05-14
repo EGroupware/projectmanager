@@ -30,42 +30,42 @@ class projectmanager_merge extends Api\Storage\Merge
 		'download_by_request'	=> true,
 		'show_replacements'		=> true,
 	);
-	
+
 	/**
 	 * Id of current project
 	 *
 	 * @var int
 	 */
 	var $pm_id = null;
-	
+
 	/**
 	 * Instance of the projectmanager_bo class
 	 *
 	 * @var projectmanager_bo
 	 */
 	var $projectmanager_bo;
-	
+
 	/**
 	 * Instance of the projectmanager_elements_bo class
 	 *
 	 * @var projectmanager_elements_bo
 	 */
 	var $projectmanager_elements_bo;
-	
+
 	/**
 	 * Instance of the projectmanager_eroles_bo class
 	 *
 	 * @var projectmanager_eroles_bo
 	 */
 	var $projectmanager_eroles_bo;
-	
+
 	/**
 	 * List of projectmanager fields which can be used for merging
 	 *
 	 * @var array
 	 */
 	var $projectmanager_fields = array();
-	
+
 	/**
 	 * Translate list for merged projectmanager fields
 	 *
@@ -73,21 +73,21 @@ class projectmanager_merge extends Api\Storage\Merge
 	 */
 	var $pm_fields_translate = array();
 
-	
+
 	/**
 	 * List of projectmanager element fields which can be used for merging
 	 *
 	 * @var array
 	 */
 	var $projectmanager_element_fields = array();
-	
+
 	/**
 	 * Translate list for merged element fields
 	 *
 	 * @var array
 	 */
 	var $pe_fields_translate = array();
-	
+
 	/**
 	 * Element roles - array with keys pe_id, app, app_id and erole_id
 	 *
@@ -104,7 +104,7 @@ class projectmanager_merge extends Api\Storage\Merge
 	function __construct($pm_id=null)
 	{
 		parent::__construct();
-		
+
 		if(isset($pm_id) && $pm_id > 0)
 		{
 			$this->change_project($pm_id);
@@ -112,7 +112,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		$this->projectmanager_bo = new projectmanager_bo($pm_id);
 		$this->table_plugins['elements'] = 'table_elements';
 		$this->table_plugins['eroles'] = 'table_eroles';
-		
+
 		$this->projectmanager_fields = array(
 			'pm_id'					=> lang('Project ID'),
 			'pm_number'				=> lang('Project number'),
@@ -138,7 +138,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			'pm_planned_budget'		=> lang('Planned budget'),
 			'pm_accounting_type'	=> lang('Accounting type'),
 			'user_timezone_read'	=> lang('Timezone'),
-			
+
 			'all_roles'		=> lang('All roles'),
 		);
 		$this->role_so = new projectmanager_roles_so();
@@ -154,12 +154,12 @@ class projectmanager_merge extends Api\Storage\Merge
 		// Handle dates as dates in spreadsheets
 		$this->date_fields = projectmanager_egw_record_project::$types['date-time'];
 
-		
+
 		$this->pm_fields_translate = array(
 			'cat_id'				=> 'pm_cat_id',
 			'user_timezone_read'	=> 'pm_user_timezone',
 		);
-		
+
 		$this->projectmanager_element_fields = array(
 			'pe_id'					=> lang('Element ID'),
 			'pe_title'				=> lang('Title'),
@@ -211,7 +211,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		$this->pm_id = $id;
 		if($id) {
 			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo($id);
-			$this->projectmanager_elements_bo = new projectmanager_elements_bo($id);	
+			$this->projectmanager_elements_bo = new projectmanager_elements_bo($id);
 		}
 		$this->projectmanager_bo = new projectmanager_bo($id);
 	}
@@ -226,7 +226,7 @@ class projectmanager_merge extends Api\Storage\Merge
 	protected function get_replacements($id,&$content=null)
 	{
 		$replacements = array();
-	
+
 		// first replacement is always the contacts (if valid)
 		// If this special case is no longer needed, it can be removed & contacts handled as
 		// any other element
@@ -237,18 +237,18 @@ class projectmanager_merge extends Api\Storage\Merge
 				$replacements += $this->contact_replacements($contact_id);
 			}
 		}
-		
+
 		// replace project content
 		if ($id > 0 && $this->pm_id != $id)
 		{
 			$this->change_project($id);
 		}
-		
+
 		$replacements += $this->projectmanager_replacements($this->pm_id, '', $content);
-		
+
 		// further replacements are made by eroles (if given)
 		if(!empty($this->eroles) && is_array($this->eroles))
-		{			
+		{
 			foreach($this->eroles as $erole)
 			{
 				$erole_title = $this->projectmanager_eroles_bo->id2title($erole['erole_id']);
@@ -265,7 +265,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 		return empty($replacements) ? false : $replacements;
 	}
-	
+
 	/**
 	 * Get element replacements
 	 *
@@ -328,7 +328,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		return empty($replacements) ? false : $replacements;
 	}
 
-	
+
 	/**
 	 * Return replacements for a project
 	 *
@@ -355,7 +355,7 @@ class projectmanager_merge extends Api\Storage\Merge
 
 		importexport_export_csv::convert($record, $types, 'projectmanager', $selects);
 		$project = $record->get_record_array();
-		
+
 		// Set any missing custom fields, or the marker will stay
 		$custom = Api\Storage\Customfields::get('projectmanager');
 		foreach($custom as $name => $field)
@@ -363,7 +363,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			$this->projectmanager_fields['#'.$name] = $field['label'];
 			if(!$project['#'.$name]) $project['#'.$name] = '';
 		}
-		
+
 		// Add in roles
 		$roles = $this->role_so->query_list();
 
@@ -394,7 +394,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		foreach(array_keys($project) as $name)
 		{
 			if(!isset($this->projectmanager_fields[$name])) continue; // not a supported field
-			
+
 			$value = $project[$name];
 			switch($name)
 			{
@@ -442,7 +442,7 @@ class projectmanager_merge extends Api\Storage\Merge
 
 		return $replacements;
 	}
-	
+
 	/**
 	 * Return replacements for a given project element
 	 *
@@ -451,10 +451,10 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * @return array
 	 */
 	public function projectmanager_element_replacements($pe_id,$prefix='', $content = '')
-	{	
+	{
 		$replacements = array();
 		if(!is_object($this->projectmanager_elements_bo)) return $replacements;
-		
+
 		// Filter selected elements
 		if($this->elements && !in_array($pe_id, $this->elements)) return $replacements;
 
@@ -462,7 +462,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		foreach(array_keys($element) as $name)
 		{
 			if(!isset($this->projectmanager_element_fields[$name])) continue; // not a supported field
-			
+
 			$value = !is_array($element[$name]) ? strip_tags($element[$name]) : $element[$name];
 			switch($name)
 			{
@@ -505,7 +505,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			}
 			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
 		}
-		
+
 		// Element links
 		if(strpos($content, ($prefix ? $prefix.'/':'').'links') !== false)
 		{
@@ -523,7 +523,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		return $replacements;
 	}
 
-	
+
 	/**
 	 * Set element roles for merging
 	 *
@@ -533,7 +533,7 @@ class projectmanager_merge extends Api\Storage\Merge
 	public function set_eroles($eroles)
 	{
 		if(empty($eroles)) return false;
-		
+
 		$this->eroles = $eroles;
 		return true;
 	}
@@ -546,10 +546,10 @@ class projectmanager_merge extends Api\Storage\Merge
 	{
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager').' - '.lang('Replacements for inserting project data into documents');
 		$GLOBALS['egw_info']['flags']['nonavbar'] = false;
-		$GLOBALS['egw']->framework->header();
+		echo $GLOBALS['egw']->framework->header();
 
 		echo "<table width='90%' align='center'>\n";
-		
+
 		// Projectmanager
 		$n = 0;
 		echo '<tr><td colspan="4"><h3><a name="pm_fields">'.lang('Projectmanager fields:')."</a></h3></td></tr>";
@@ -590,7 +590,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			if ($n&1) echo "</tr>\n";
 			$n++;
 		}
-		
+
 		// Element roles
 		if(!($this->projectmanager_bo->config['enable_eroles']))
 		{
@@ -623,7 +623,7 @@ class projectmanager_merge extends Api\Storage\Merge
 				.'{{erole/myrole/pe_title}}<br />{{erole/myrole/n_fn}}<br />{{erole/myrole/info_subject}}'
 				.'</td>';
 		echo "</tr>\n";
-		
+
 		// Table plugins
 		echo '<tr><td colspan="4">'
 				.'<h3>'.lang('Table plugins:').'</h3>'
@@ -673,7 +673,7 @@ class projectmanager_merge extends Api\Storage\Merge
 				.'<tr><td>{{erole/myrole/pe_title}}</td><td>{{erole/myrole/info_subject}} {{endtable}}</td></tr></table>'
 				.'</td>'
 				.'</tr>'."\n";
-		
+
 		// Serial letter
 		$link = Egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements');
 		echo '<tr><td colspan="4">'
@@ -709,9 +709,9 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 
 		echo "</table>\n";
-		$GLOBALS['egw']->framework->footer();
+		echo $GLOBALS['egw']->framework->footer();
 	}
-	
+
 	/**
 	 * Table plugin for project elements
 	 *
@@ -724,7 +724,7 @@ class projectmanager_merge extends Api\Storage\Merge
 	public function table_elements($plugin,$id,$n,$repeat)
 	{
 		if(!isset($this->pm_id) && !$id) return false;
-		
+
 		static $elements;
 		if($id && $id != $this->pm_id) {
 			$this->change_project($id);
@@ -758,7 +758,7 @@ class projectmanager_merge extends Api\Storage\Merge
 				throw new Api\Exception(lang('No rights to export more then %1 entries!',(int)$this->export_limit));
 			}
 		}
-	
+
 		$element =& $elements[$n];
 		$replacement = false;
 		if(isset($element))
@@ -778,18 +778,18 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * @return array
 	 */
 	public function table_eroles($plugin,$id,$n,$repeat)
-	{	
+	{
 		if(!($this->projectmanager_bo->config['enable_eroles'])) return false; // eroles are disabled
-		
+
 		static $erole_id;
 		static $erole_title;
 		static $elements;
-		
+
 		if (!$n)	// first row inits environment
 		{
 			// get erole_id from repeated line
 			preg_match_all('/\\$\\$erole\\/([A-Za-z0-9_]+)\\//s',$repeat,$matches);
-			
+
 			if(!is_array($matches[1]))
 			{
 				return false; // no erole found
@@ -803,11 +803,11 @@ class projectmanager_merge extends Api\Storage\Merge
 			{
 				return false; // erole_id cannot be determined
 			}
-			
+
 			// get elements assigned to erole
 			$elements = $this->projectmanager_eroles_bo->get_elements($erole_id);
 		}
-		
+
 		$element =& $elements[$n];
 		$replacement = false;
 		if(isset($element))
@@ -821,5 +821,5 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 
 		return $replacement;
-	}	
+	}
 }

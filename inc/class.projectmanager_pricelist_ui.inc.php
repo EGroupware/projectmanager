@@ -90,7 +90,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			{
 				Framework::window_close(lang('Permission denied !!!'));
 
-				$GLOBALS['egw']->framework->header();
+				echo $GLOBALS['egw']->framework->header();
 
 				exit();
 			}
@@ -256,7 +256,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		{
 			$query['col_filter']['pm_id'] = array_shift($query['col_filter']['pm_id']);
 		}
-		
+
 		if ($query['col_filter']['pm_id'] === '' || !$this->check_acl(Acl::READ,$query['col_filter']['pm_id']))
 		{
 			unset($query['col_filter']['pm_id']);
