@@ -73,7 +73,6 @@ class projectmanager_wizard_export_projects_csv extends importexport_wizard_basi
 		else
 		{
 			$content['step'] = 'wizard_step50';
-			$content['msg'] = $this->steps[$content['step']];
 			$preserv = $content;
 			unset ($preserv['button']);
 			$fields = array('pm_used_time', 'pm_planned_time', 'pm_replanned_time');
