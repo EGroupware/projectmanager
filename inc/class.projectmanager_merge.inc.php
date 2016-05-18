@@ -348,7 +348,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		// Convert to human friendly values
 		$types = projectmanager_egw_record_project::$types;
 		$selects = array();
-		if($content && strpos($content, '$$#') !== 0)
+		if($content && strpos($content, '$$#') !== FALSE)
 		{
 			$this->cf_link_to_expand($record->get_record_array(), $content, $replacements);
 		}
