@@ -5,6 +5,9 @@
 /*Media print classes*/
 @media print{
 	/* Gantt chart - extend vertically (browsers truncate horizontal overflow) */
+	.et2_gantt .gantt_container {
+		overflow: visible;
+	}
 	.et2_gantt {
 		position: static;
 		height: auto !important;
@@ -18,8 +21,13 @@
 	}
 	.et2_gantt .gantt_task, .gantt_data_area {
 		height: auto !important;
+		overflow: visible;
 	}
-	
+	/** to rotate gantt chart
+	- make sure all parents are 100% width, 100% height
+    transform: rotate(-90deg) translateX(-19000px);
+    transform-origin: 0% 0
+	*/
 	.gantt_hor_scroll, .gantt_ver_scroll {
 		display: none !important;
 	}
