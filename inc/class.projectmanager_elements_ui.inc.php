@@ -446,21 +446,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function get_rows(&$query_in,&$rows,&$readonlys)
 	{
-		if($query_in['col_filter']['pm_id'])
+		if(!$query_in['csv_export'])
 		{
-			$this->pm_id = (int)$query_in['col_filter']['pm_id'];
-		}
-		else if ( $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'])
-		{
-			$this->pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
-		}
-		if (!property_exists ($this, 'pm_id') || !$this->pm_id)
-		{
-			return 0;
-		}
-		if(!$this->project->check_acl(EGW_ACL_READ, $this->pm_id))
-		{
-			return 0;
+			if($query_in['col_filter']['pm_id'])
+			{
+				$this->pm_id = (int)$query_in['col_filter']['pm_id'];
+			}
+			else if ( $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'])
+			{
+				$this->pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
+			}
+			if (!property_exists ($this, 'pm_id') || !$this->pm_id)
+			{
+				return 0;
+			}
+			if(!$this->project->check_acl(Acl::READ, $this->pm_id))
+			{
+				return 0;
+			}
 		}
 
 		// Check for filter change, need to get totals
