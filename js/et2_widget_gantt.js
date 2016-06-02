@@ -112,10 +112,10 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		this.gantt = null;
 
 		// DOM Nodes
-		this.filters = $j(document.createElement("div"))
+		this.filters = jQuery(document.createElement("div"))
 			.addClass('et2_gantt_header');
-		this.gantt_node = $j('<div style="width:100%;height:100%"></div>');
-		this.htmlNode = $j(document.createElement("div"))
+		this.gantt_node = jQuery('<div style="width:100%;height:100%"></div>');
+		this.htmlNode = jQuery(document.createElement("div"))
 			.css('height', this.options.height)
 			.addClass('et2_gantt');
 
@@ -303,7 +303,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 					if (this.widget)
 					{
 						this.widget.set_value(value);
-						value = $j(this.widget.getDOMNode()).html();
+						value = jQuery(this.widget.getDOMNode()).html();
 					}
 					return '<div class="gantt_column_'+this.name+'">' + value + '</div>';
 				};
@@ -540,7 +540,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		}
 
 		// Trigger an event so app code can act on it
-		$j(this).triggerHandler("refresh",[this,_task_ids,_type]);
+		jQuery(this).triggerHandler("refresh",[this,_task_ids,_type]);
 	},
 
 	/**
@@ -726,15 +726,15 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 
 		// Click on scale to zoom - top zooms out, bottom zooms in
 		this.gantt_node.on('click','.gantt_scale_line', function(e) {
-			var current_position = e.target.offsetLeft / $j(e.target.parentNode).width();
+			var current_position = e.target.offsetLeft / jQuery(e.target.parentNode).width();
 
 			// Some crazy stuff make sure timing is OK to scroll after re-render
 			// TODO: Make this more consistently go to where you click
 			var id = gantt_widget.gantt.attachEvent("onGanttRender", function() {
 				gantt_widget.gantt.detachEvent(id);
-				gantt_widget.gantt.scrollTo(parseInt($j('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
+				gantt_widget.gantt.scrollTo(parseInt(jQuery('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
 				window.setTimeout(function() {
-					gantt_widget.gantt.scrollTo(parseInt($j('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
+					gantt_widget.gantt.scrollTo(parseInt(jQuery('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
 				},100);
 			});
 
@@ -753,7 +753,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			/*
 			window.setTimeout(function() {
 				console.log("Scroll to");
-				gantt_widget.gantt.scrollTo(parseInt($j('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
+				gantt_widget.gantt.scrollTo(parseInt(jQuery('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
 			},50);
 			*/
 		});
@@ -998,7 +998,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				self.selectPopup.toggle();
 				self.selectPopup.remove();
 				self.selectPopup = null;
-				$j('body').off('click.gantt');
+				jQuery('body').off('click.gantt');
 			};
 
 			var cancelButton = et2_createWidget("buttononly", {}, this);
@@ -1007,7 +1007,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				self.selectPopup.toggle();
 				self.selectPopup.remove();
 				self.selectPopup = null;
-				$j('body').off('click.gantt');
+				jQuery('body').off('click.gantt');
 			};
 
 			// Create and add popup
@@ -1018,7 +1018,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				.append(cancelButton.getDOMNode())
 				.appendTo(this.getInstanceManager().DOMContainer);
 			// Bind so if you click elsewhere, it closes
-			window.setTimeout(function() {$j(document).one('mouseup.gantt', function(e){
+			window.setTimeout(function() {jQuery(document).one('mouseup.gantt', function(e){
 				if(!self.selectPopup.is(e.target) && self.selectPopup.has(e.target).length === 0)
 				{
 					cancelButton.onclick();
@@ -1117,11 +1117,11 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		aoi.doTriggerEvent = function(_event) {
 			if (_event == EGW_AI_DRAG_OVER)
 			{
-				$j(this.node).addClass("draggedOver");
+				jQuery(this.node).addClass("draggedOver");
 			}
 			if (_event == EGW_AI_DRAG_OUT)
 			{
-				$j(this.node).removeClass("draggedOver");
+				jQuery(this.node).removeClass("draggedOver");
 			}
 		};
 
@@ -1150,7 +1150,7 @@ et2_register_widget(et2_gantt, ["gantt","projectmanager-gantt"]);
 // Localize to user's language - breaks if file is not there
 //egw.includeJS("/phpgwapi/js/dhtmlxGantt/codebase/locale/locale_" + egw.preference('lang') + ".js");
 
-$j(function()
+jQuery(function()
 {
 	"use strict";
 

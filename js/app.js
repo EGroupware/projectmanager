@@ -97,7 +97,7 @@ app.classes.projectmanager = AppJS.extend(
 			this._bind_sidebox(view.sidemenu, function() {app.projectmanager.show(view.name);return false;});
 
 			// If one template disappears, we want to release it
-			$j(et2.DOMContainer).one('clear',function() {
+			jQuery(et2.DOMContainer).one('clear',function() {
 				if(app.projectmanager && app.projectmanager.sidebox)
 				{
 					app.projectmanager.sidebox.off('.projectmanager');
@@ -106,9 +106,9 @@ app.classes.projectmanager = AppJS.extend(
 			})
 
 			// Start hidden, except for project list
-			if($j(et2.DOMContainer).siblings('.et2_container').length && !et2.widgetContainer.getArrayMgr('content').getEntry('project_tree'))
+			if(jQuery(et2.DOMContainer).siblings('.et2_container').length && !et2.widgetContainer.getArrayMgr('content').getEntry('project_tree'))
 			{
-				$j(et2.DOMContainer).hide();
+				jQuery(et2.DOMContainer).hide();
 			}
 
 			if(view.name == 'list')
@@ -252,7 +252,7 @@ app.classes.projectmanager = AppJS.extend(
 		}
 
 		// Show selected sub-template
-		$j(this.views[what].etemplate.DOMContainer).show();
+		jQuery(this.views[what].etemplate.DOMContainer).show();
 
 		// Set header
 		this.egw.app_header(this.egw.lang(this.views[what].sidemenu),'projectmanager');
@@ -262,7 +262,7 @@ app.classes.projectmanager = AppJS.extend(
 		{
 			if(what != view && this.views[view].etemplate)
 			{
-				$j(this.views[view].etemplate.DOMContainer).hide();
+				jQuery(this.views[view].etemplate.DOMContainer).hide();
 			}
 		}
 	},
@@ -668,14 +668,14 @@ app.classes.projectmanager = AppJS.extend(
 	 */
 	toggleDiv: function(event, widget, target)
 	{
-		var element = $j(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
-		if($j(element).css('display') == 'none')
+		var element = jQuery(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
+		if(jQuery(element).css('display') == 'none')
 		{
-			$j(element).fadeIn('medium');
+			jQuery(element).fadeIn('medium');
 		}
 		else
 		{
-			$j(element).fadeOut('medium');
+			jQuery(element).fadeOut('medium');
 		}
 	},
 
@@ -986,7 +986,7 @@ app.classes.projectmanager = AppJS.extend(
 	_bind_sidebox: function(label, click)
 	{
 		if(!app.projectmanager.sidebox) return false;
-		var sidebox = $j('a:contains("' +app.projectmanager.egw.lang(label)+'")',app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
+		var sidebox = jQuery('a:contains("' +app.projectmanager.egw.lang(label)+'")',app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
 		sidebox.off('click.projectmanager');
 		sidebox.on('click.projectmanager', click);
 	},
