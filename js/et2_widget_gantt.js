@@ -12,7 +12,7 @@
 
 /*egw:uses
 	jsapi.jsapi;
-	jquery.jquery;
+	/vendor/bower-asset/jquery/dist/jquery.js;
 	/phpgwapi/js/dhtmlxtree/codebase/dhtmlxcommon.js; // otherwise gantt breaks
 	/projectmanager/js/dhtmlxGantt/codebase/dhtmlxgantt.js;
 	et2_core_inputWidget;
