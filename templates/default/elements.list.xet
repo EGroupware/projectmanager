@@ -87,11 +87,11 @@ return false;"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-						<date-duration id="total_pe_used_time" readonly="true" options="@@duration_format"/>
+						<date-duration id="total_pe_used_time_2" readonly="true" options="@@duration_format"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-						<date-duration id="total_pe_planned_time" readonly="true" options="@@duration_format" class="planned"/>
+						<date-duration id="total_pe_planned_time_2" readonly="true" options="@@duration_format" class="planned"/>
 						<nextmatch-sortheader label="re-planned" id="pe_replanned_time" class="replanned"/>
-						<date-duration id="total_pe_replanned_time" readonly="true" options="@@duration_format" class="replanned"/>
+						<date-duration id="total_pe_replanned_time_2" readonly="true" options="@@duration_format" class="replanned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Budget" id="pe_used_budget"/>
