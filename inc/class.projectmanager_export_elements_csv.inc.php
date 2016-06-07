@@ -115,6 +115,9 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				'csv_export' => true,	// so get_rows method _can_ produce different content or not store state in the session
 			);
 
+			// Clear the PM ID or results will be restricted to that project
+			unset($ui->pm_id);
+
 			// Handle ranges
 			foreach($filter as $field => $value)
 			{
