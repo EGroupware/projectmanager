@@ -469,7 +469,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// Check for filter change, need to get totals
 		$session = egw_cache::getSession('projectmanager', 'projectelements_list');
 		$get_totals =  $query_in['start'] === 0 || ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
-		
+
 		$GLOBALS['egw']->session->appsession('projectelements_list','projectmanager',$query=$query_in);
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
@@ -1252,7 +1252,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			case 'ignore':
 				$ui = new projectmanager_elements_ui();
-				$checked = [];
+				$checked = array();
 				foreach($selected as $entry)
 				{
 					list($prefix,$checked[]) = explode('::',$entry);
