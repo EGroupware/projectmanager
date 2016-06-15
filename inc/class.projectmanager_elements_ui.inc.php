@@ -1275,7 +1275,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			case 'ignore':
 				$ui = new projectmanager_elements_ui();
-				$checked = [];
+				$checked = array();
 				foreach($selected as $entry)
 				{
 					list($prefix,$checked[]) = explode('::',$entry);
