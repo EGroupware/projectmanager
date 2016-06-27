@@ -479,7 +479,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$get_totals = $query_in['start'] === 0 || ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
 		$query=$query_in;
 		unset($query_in['col_filter']['parent_id']);
-		Api\Cache::setSession('projectmanager', 'projectelements_list', $query_in);
+		if(!$query_in['csv_export'])
+		{
+			Api\Cache::setSession('projectmanager', 'projectelements_list', $query_in);
+		}
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
 		// save the state of the index in the user prefs

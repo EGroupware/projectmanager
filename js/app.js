@@ -103,7 +103,7 @@ app.classes.projectmanager = AppJS.extend(
 					app.projectmanager.sidebox.off('.projectmanager');
 				}
 				view.etemplate = null;
-			})
+			});
 
 			// Start hidden, except for project list
 			if(jQuery(et2.DOMContainer).siblings('.et2_container').length && !et2.widgetContainer.getArrayMgr('content').getEntry('project_tree'))
@@ -166,7 +166,7 @@ app.classes.projectmanager = AppJS.extend(
 		current_project = parseInt(current_project) || '';
 
 		// Store preference
-		if(this.egw.preference('current_project','projectmanger') != current_project)
+		if(this.egw.preference('current_project','projectmanager') != current_project)
 		{
 			this.egw.set_preference('projectmanager', 'current_project', current_project);
 		}
@@ -193,7 +193,7 @@ app.classes.projectmanager = AppJS.extend(
 					// Support multiple projects
 					if(!project_id || !project_id.map)
 					{
-						project_id = [current_project]
+						project_id = [current_project];
 					}
 					project_id = project_id.map(function(id) {return typeof id == 'string' && id.indexOf('projectmanager::') == 0 ? id : 'projectmanager::'+id;});
 
@@ -369,7 +369,7 @@ app.classes.projectmanager = AppJS.extend(
 		var state = {};
 
 		// Try and find a nextmatch widget, and set its filters
-		var et2 = this.views[this.view].etemplate
+		var et2 = this.views[this.view].etemplate;
 		if(et2)
 		{
 			if(this.view == 'gantt')
@@ -489,7 +489,7 @@ app.classes.projectmanager = AppJS.extend(
 				// Fall through to try the element list too
 			default:
 				var appList = egw.link_app_list('query');
-				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null
+				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
 
 				if (typeof appList[_app] != 'undefined')
 				{
@@ -512,14 +512,14 @@ app.classes.projectmanager = AppJS.extend(
 		switch (this.view)
 		{
 			case 'list':
-				var nm = this.views.list.etemplate ? this.views.list.etemplate.widgetContainer.getWidgetById('nm') : null
+				var nm = this.views.list.etemplate ? this.views.list.etemplate.widgetContainer.getWidgetById('nm') : null;
 				if(nm)
 				{
 					nm.refresh(_id,_type);
 				}
 				return false;
 			case 'elements':
-				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null
+				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
 				if(nm)
 				{
 					nm.refresh(_id,_type);
@@ -882,11 +882,15 @@ app.classes.projectmanager = AppJS.extend(
 
 	/**
 	 * Is the selected entry ignored?
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 * @returns {Boolean}
 	 */
 	is_ignored: function(action, selected)
 	{
 		var ignored = false;
-		
+
 		for(var i = 0; i < selected.length; i++)
 		{
 			var data = egw.dataGetUIDdata(selected[i].id);

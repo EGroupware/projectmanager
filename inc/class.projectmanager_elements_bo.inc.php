@@ -213,10 +213,10 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 *
 	 * @param string $app appname
 	 * @param string $id id of $app as used by the link-class and the datasource
-	 * @param int $pe_id=0 element- / link-id or 0 to only read and return the entry, but not save it!
-	 * @param int $pm_id=null project-id, default $this->pm_id
-	 * @param boolean $update_project=true update the data in the project if necessary
-	 * @param array $extra_keys=null key=>value pairs with element extra data to merge on update
+	 * @param int $pe_id =0 element- / link-id or 0 to only read and return the entry, but not save it!
+	 * @param int $pm_id =null project-id, default $this->pm_id
+	 * @param boolean $update_project =true update the data in the project if necessary
+	 * @param array $extra_keys =null key=>value pairs with element extra data to merge on update
 	 * @return array/boolean the updated project-element or false on error (eg. no read access)
 	 */
 	function &update($app,$id,$pe_id=0,$pm_id=null,$update_project=true,$extra_keys=null)
@@ -278,7 +278,8 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		foreach($data as $name => $value)
 		{
 			if (isset($datasource->name2id[$name]) && !($this->data['pe_overwrite'] & $datasource->name2id[$name]) &&
-				$this->data[$name] != $value)
+				// treat new entries / $need_save_anyway as changed
+				($need_save_anyway || $this->data[$name] != $value))
 			{
 				//if ((int) $pe_id) error_log(__METHOD__."($app,$id,$pe_id,$pm_id) $name ({$datasource->name2id[$name]}) updated, pe_overwrite={$this->data['pe_overwrite']}: '{$this->data[$name]}' != '$value'");
 				$this->data[$name] = $value;
@@ -621,7 +622,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	function &titles($keys=array())
 	{
 		$titles = array();
-		
+
 		// Support link titles, which just provides IDs
 		if(!$keys['pe_id'] && !$keys['pm_id'] && !$keys['ms_id'] && count($keys))
 		{
@@ -633,7 +634,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		}
 		return $titles;
 	}
-	
+
 	/**
 	 * query projectmanager elements for entries matching $pattern
 	 *
