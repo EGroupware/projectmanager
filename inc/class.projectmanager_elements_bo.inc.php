@@ -693,6 +693,10 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		$elements =& $this->search('',false,'pe_planned_start,pe_title','','',false,'AND',false,array('pm_id'=>$source));
 		if (!$elements) return array();
 
+		// Calculate the difference in times between original project and new project
+		// we can apply that difference to elements too.
+		$offsets = $this->get_time_offsets($source, $this->pm_id);
+
 		$copied = $apps_copied = $callbacks = $params = array();
 		foreach($elements as $element)
 		{
@@ -702,7 +706,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			{
 				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("copying $element[pe_app]:$element[pe_app_id] $element[pe_title]");
 				$callback = $param = null;
-				list($app_id,$link_id,$callback,$param) = $ds->copy($element,$this->pm_id,$this->project->data);
+				list($app_id,$link_id,$callback,$param) = $ds->copy($element,$this->pm_id,$this->project->data, $offsets);
 				if (!is_null($callback))
 				{
 					$callbacks[] = $callback;
@@ -759,6 +763,47 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		$this->project->update();
 
 		return $copied;
+	}
+
+	/**
+	 * Determine the time offsets between two projects
+	 *
+	 * We'll use the time offsets when copying templates to update the elements
+	 *
+	 * @param int $source Source project ID
+	 * @param int $target Target project ID
+	 *
+	 * @return DateInterval[] Array of DateIntervals, indexed by field name
+	 */
+	protected function get_time_offsets($source, $target)
+	{
+		$offsets = array('planned_start'=>0,'planned_end'=>0,'real_start'=>0,'real_end'=>0);
+
+		if($this->project->data && $target == $this->project->data['pm_id'])
+		{
+			$target_project = $this->project->data;
+			$source_project = $this->project->read($source);
+			$this->project->data = $target_project;
+		}
+		else
+		{
+			$source_project = $this->project->read($source);
+			$target_project = $this->project->read($target);
+		}
+
+		foreach($offsets as $date_field => &$offset)
+		{
+			if($source_project["pm_$date_field"] && $target_project["pm_$date_field"])
+			{
+				$source_date = new Api\DateTime($source_project["pm_$date_field"]);
+				$target_date = new Api\DateTime($target_project["pm_$date_field"]);
+
+				$offset = $source_date->diff($target_date);
+
+				//error_log("$source => $target $date_field " . $source_date . ' => ' . $target_date . ' = ' . (method_exists($offset,'format') ? $offset->format('%R%a days') : $offset));
+			}
+		}
+		return $offsets;
 	}
 
 	/**
