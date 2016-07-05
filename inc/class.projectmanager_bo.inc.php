@@ -675,7 +675,9 @@ class projectmanager_bo extends projectmanager_so
 		if (!is_array($entry))
 		{
 			$pm_id = $entry;
+			$backup = $this->data;
 			$entry = $this->read( $entry );
+			$this->data = $backup;
 
 			// Even though ADD_TIMESHEET means no read, we let them
 			// see the title
