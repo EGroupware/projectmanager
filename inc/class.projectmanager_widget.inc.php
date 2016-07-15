@@ -64,7 +64,7 @@ class projectmanager_widget
 		// check if user has rights to run projectmanager
 		if (!$GLOBALS['egw_info']['user']['apps']['projectmanager'])
 		{
-			$cell = boetemplate::empty_cell();
+			$cell = class_exists('boetemplate') ? boetemplate::empty_cell() : array();
 			$value = '';
 			return false;
 		}
