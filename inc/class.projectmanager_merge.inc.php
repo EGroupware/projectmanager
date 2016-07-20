@@ -214,6 +214,28 @@ class projectmanager_merge extends Api\Storage\Merge
 			$this->projectmanager_elements_bo = new projectmanager_elements_bo($id);
 		}
 		$this->projectmanager_bo = new projectmanager_bo($id);
+
+		// add erole(s)
+		$this->eroles = array();
+		if($this->projectmanager_bo->config['enable_eroles'])
+		{
+			foreach($this->projectmanager_elements_bo->search(array('pm_id' => $id),false) as $element)
+			{
+				if(!empty($element['pe_eroles']))
+				{
+					// one element could have multiple eroles
+					foreach(explode(',',$element['pe_eroles']) as $erole_id)
+					{
+						$this->eroles[] = array(
+							'pe_id'		=> $element['pe_id'],
+							'app' 		=> $element['pe_app'],
+							'app_id' 	=> $element['pe_app_id'],
+							'erole_id'	=> $erole_id,
+						);
+					}
+				}
+			}
+		}
 	}
 
 	/**
