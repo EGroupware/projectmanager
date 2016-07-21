@@ -268,6 +268,23 @@ class projectmanager_merge extends Api\Storage\Merge
 
 		$replacements += $this->projectmanager_replacements($this->pm_id, '', $content);
 
+		$replacements += $this->get_erole_replacements($content);
+		
+		return empty($replacements) ? false : $replacements;
+	}
+
+	/**
+	 * Get erole replacements for the project
+	 *
+	 * Handles normal erole placeholders, not in an erole table
+	 *
+	 * @param string $content Repeating content, used to remove any missing placeholders
+	 *
+	 * @return Array
+	 */
+	protected function get_erole_replacements(&$content)
+	{
+		$replacements = array();
 		// further replacements are made by eroles (if given)
 		if(!empty($this->eroles) && is_array($this->eroles))
 		{
@@ -285,8 +302,21 @@ class projectmanager_merge extends Api\Storage\Merge
 				}
 			}
 		}
-		return empty($replacements) ? false : $replacements;
+		
+		// Strip unassigned erole tags
+		$matches = array();
+		preg_match_all('@\$\$erole/([A-Za-z0-9_]+)(/?(?:[^\$])*)?\$\$@s',$content,$matches);
+		foreach($matches[0] as $missing_erole)
+		{
+			if(!$replacements[$missing_erole])
+			{
+				$replacements[$missing_erole] = '';
+			}
+		}
+		
+		return $replacements;
 	}
+
 
 	/**
 	 * Get element replacements
