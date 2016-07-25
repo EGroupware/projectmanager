@@ -1204,8 +1204,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					$query = $old_query = Api\Cache::getSession('projectmanager', 'projectelements_list');
 					$query['num_rows'] = -1;        // all
 					$this->get_rows($query,$selection,$readonlys);
-					foreach($selection as $element)
+					foreach($selection as $key => $element)
 					{
+						if (!is_int($key)) continue;	// ignore string keys from get_rows
 						if($element['pe_id'] && is_numeric($element['pe_id'])) $checked[] = $element['pe_id'];
 					}
 
