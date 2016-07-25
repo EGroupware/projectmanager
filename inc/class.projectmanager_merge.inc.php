@@ -450,9 +450,6 @@ class projectmanager_merge extends Api\Storage\Merge
 			$value = $project[$name];
 			switch($name)
 			{
-				case 'pm_created': case 'pm_modified':
-				case 'pm_planned_start': case 'pm_planned_end':
-				case 'pm_real_start': case 'pm_real_end':
 				case 'pe_planned_start_total': case 'pe_planned_end_total':
 				case 'pe_real_start_total': case 'pe_real_end_total':
 					if($value) $value = Api\DateTime::to($value);
