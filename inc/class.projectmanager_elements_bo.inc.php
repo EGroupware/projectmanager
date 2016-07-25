@@ -778,6 +778,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	protected function get_time_offsets($source, $target)
 	{
 		$offsets = array('planned_start'=>0,'planned_end'=>0,'real_start'=>0,'real_end'=>0);
+		$offset_count = 0;
 
 		if($this->project->data && $target == $this->project->data['pm_id'])
 		{
@@ -799,9 +800,19 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				$target_date = new Api\DateTime($target_project["pm_$date_field"]);
 
 				$offset = $source_date->diff($target_date);
-
+				$offset_count++;
 				//error_log("$source => $target $date_field " . $source_date . ' => ' . $target_date . ' = ' . (method_exists($offset,'format') ? $offset->format('%R%a days') : $offset));
 			}
+		}
+
+		// Now set any that are missing using the "next-best" information - real
+		// if planned is missing, end if start is missing
+		if($offset_count && $offset_count != count($offsets))
+		{
+			$offsets['planned_start'] = $offsets['planned_start'] ?: $offsets['real_start'] ?: $offsets['planned_end'] ?: $offsets['real_end'];
+			$offsets['planned_end'] = $offsets['planned_end'] ?: $offsets['real_end'] ?: $offsets['planned_start'] ?: $offsets['real_start'];
+			$offsets['real_start'] = $offsets['real_start'] ?: $offsets['planned_start'] ?: $offsets['real_end'] ?: $offsets['planned_end'];
+			$offsets['real_end'] = $offsets['real_end'] ?: $offsets['planned_end'] ?: $offsets['real_start'] ?: $offsets['planned_start'];
 		}
 		return $offsets;
 	}
