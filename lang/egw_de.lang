@@ -71,7 +71,7 @@ cost per time	projectmanager	de	Kosten pro Zeiteinheit
 create a new empty project or use a template	projectmanager	de	Erstellt ein neues leeres Projekt oder benützt eine Vorlage
 create new links	projectmanager	de	Neue Verknüpfung erstellen
 created	projectmanager	de	Erstellt
-created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Ganttchart von den gewählten Projekten
+created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Gantt-Diagramm von den gewählten Projekten
 creation date and time	projectmanager	de	Erstellungsdatum und Uhrzeit
 creator	projectmanager	de	Ersteller
 csv-fieldname	projectmanager	de	CSV-Feldname
@@ -172,15 +172,15 @@ fieldseparator	projectmanager	de	Feldtrenner
 font	projectmanager	de	Font
 font charset	projectmanager	de	Font Zeichensatz
 font style	projectmanager	de	Font Stil
-font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	de	Font für das Ganttchart. Nur der Vera Font ist beim Projektmanager dabei.
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	de	Font für das Gantt-Diagramm. Nur der Vera Font ist beim Projektmanager dabei.
 fontfile '%1' not found!!!	projectmanager	de	Fontdatei '%1' nicht gefunden!!!
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	de	Wenn Sie Serienbriefe erzeugen möchten, dann benutzen Sie dieses 'Markierungszeichen'. Setzen Sie den Inhalt, der wiederholt werden soll (Anschriftstags und Briefinhalt) zwischen zwei 'Seiten-Wiederholungs-Zeichen'.
 free descriptiv text	projectmanager	de	Freier Text
 from %1 to %2	projectmanager	de	von %1 bis %2
 full access	projectmanager	de	unbeschränkter Zugriff
 furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	de	Adressen, die einem Projekt zugewiesen sind, können als Empfänger eines individuellen Serienbriefs definiert werden.
-ganttchart	projectmanager	de	Ganttchart
-ganttchart parameter	projectmanager	de	Ganttchart Parameter
+ganttchart	projectmanager	de	Gantt-Diagramm
+ganttchart parameter	projectmanager	de	Gantt-Diagramm Parameter
 general availibility	projectmanager	de	Allgemeine Verfügbarkeit
 general fields:	projectmanager	de	Allgemeine Felder:
 general pricelist	projectmanager	de	Allgemeine Preisliste
@@ -195,7 +195,7 @@ how should the project selection in the menu be displayed: a tree gives a better
 html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintrag
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Element (z.B. InfoLog Einträge) mit gelöscht.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Element (z.B. InfoLog Einträge) mit geändert.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Ganttchart statt Umlauten komische Zeichen sehen, schalten Sie das ab.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Gantt-Diagramm statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 if you specify an export definition, it will be used when you export	projectmanager	de	Wählen Sie eine Export Definition für den Export.
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
@@ -207,7 +207,7 @@ last sync date and time	projectmanager	de	Letzter Sync, Datum und Zeit
 leave it empty if you dont need a different customer title	projectmanager	de	Feld leer lassen, wenn kein kundenspezifischer Titel benötigt wird
 leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine zu generieren
 leave it empty, if identitcal to the time	projectmanager	de	Feld leer lassen, wenn identisch mit der Zeit
-limit number of characters in ganttchart element title (0 for no limit)	projectmanager	de	Anzahl Zeichen des Elementtitels im Ganttchart limitieren
+limit number of characters in ganttchart element title (0 for no limit)	projectmanager	de	Anzahl Zeichen des Elementtitels im Gantt-Diagramm limitieren
 linked elements	projectmanager	de	Verknüpfte Elemente
 links	projectmanager	de	Verknüpfungen
 links and attached files	projectmanager	de	Verknüpfungen und Anhänge
@@ -247,7 +247,7 @@ not working	projectmanager	de	nicht arbeiten
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	de	Anzahl der Zeichen auf die die Titel der Gantchartelemente gekürzt werden sollen.
 number of records to read (%1)	projectmanager	de	Anzahl der einzulesenden Datensätze (%1)
 only this project	projectmanager	de	Nur dieses Projekt
-order of sub-project bars in ganttcharts	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Ganttchart
+order of sub-project bars in ganttcharts	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Gantt-Diagramm
 overwrite the datasource	projectmanager	de	Anzeige in der Elementliste überschreiben
 percentage the member is availible for projects	projectmanager	de	Prozentsatz den der Mitarbeiter für Projekte verfügbar ist
 percentage the member is availible for this project	projectmanager	de	Prozentsatz den der Mitarbeiter für dieses Projekt verfügbar ist
@@ -331,7 +331,7 @@ select multiple projects for a further action	projectmanager	de	Wählt mehrere P
 select the accounting types visible for users of projectmanager	projectmanager	de	wählen sie die Abrechnungsarten die für Benutzer des Projektmanagers sichtbar sind
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
 selectbox with %1	projectmanager	de	Auswahlbox mit %1
-set order to show sub-project bars in ganttcharts.	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Ganttchart festlegen
+set order to show sub-project bars in ganttcharts.	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Gantt-Diagramm festlegen
 share	projectmanager	de	Anteil
 share on the whole project	projectmanager	de	Anteil am Gesamtprojekt
 share on the whole project in hours or percent, defaults to planned time	projectmanager	de	Anteil am Gesamtprojekt in Stunden oder prozentual, Vorgabe ist geplante Zeit
@@ -340,8 +340,8 @@ should project elements list show the dedicated icons of the infolog types. icon
 should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	de	Soll die Elementliste zusätzlich Verknüpfungen und/oder Anhänge in den Details anzeigen?
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status Icons der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller).
 show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
-show elements in ganttchart by applications	projectmanager	de	Zeige die folgenden Anwendungen im Ganttchart
-show elements in ganttchart depending on applications they come from (none = all)	projectmanager	de	Zeige die folgenden Anwendungen im Ganttchart (nicht selektiert=alle).
+show elements in ganttchart by applications	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm (nicht selektiert=alle).
 show infolog type icon in the project elements list	projectmanager	de	Zeige Infolog Icon in der Projektelementeliste
 show links in the project elements list	projectmanager	de	Zeige Verknüpfungen in der Projektelementeliste
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen anzeigen
@@ -398,7 +398,7 @@ used time	projectmanager	de	Benötigte Zeit
 used time in minutes	projectmanager	de	Benötigte Zeit in Minuten
 valid since	projectmanager	de	Gültig seit
 view all subs of this entry	projectmanager	de	alle Untereinträge dieses Eintrag anzeigen
-view ganttchart of this project	projectmanager	de	Ganttchart dieses Projekts anzeigen
+view ganttchart of this project	projectmanager	de	Gantt-Diagramm dieses Projekts anzeigen
 view milestone	projectmanager	de	Meilenstein anzeigen
 view price	projectmanager	de	Preis anzeigen
 view project	projectmanager	de	Projekt anzeigen
@@ -411,6 +411,6 @@ view this project	projectmanager	de	Dieses Projekt anzeigen
 view this project-element	projectmanager	de	Dieses Projektelement anzeigen
 working duration on %1	projectmanager	de	Arbeitsdauer am %1
 you can leave the date of the first price empty	projectmanager	de	Sie benötigen kein Datum für den ersten Preis
-you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	de	Sie haben keine JPGraph Version %1 oder höher installiert! Diese wird vom Projektmanager für Ganttcharts benötigt.
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	de	Sie haben keine JPGraph Version %1 oder höher installiert! Diese wird vom Projektmanager für Gantt-Diagramms benötigt.
 you need to select a project first	projectmanager	de	Sie müssen zuerst ein Projekt auswählen
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	de	Ihre Datenbank ist NICHT aktuell (%1 vs. %2), bitte rufen Sie %3setup%4 auf um Ihre Datenbank zu aktualisieren.
