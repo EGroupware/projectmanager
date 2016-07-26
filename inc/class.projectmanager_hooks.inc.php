@@ -170,7 +170,7 @@ class projectmanager_hooks
 						)),
 					),
 					array(
-						'text' => 'Gantt chart',
+						'text' => 'Ganttchart',
 						'link' =>  Egw::link('/index.php',array(
 							'menuaction' => 'projectmanager.projectmanager_ui.index',
 							'ajax' => 'true',

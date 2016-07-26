@@ -29,7 +29,7 @@ app.classes.projectmanager = AppJS.extend(
 		// Name = key, etemplate is filled in when loaded, sidemenu is untranslated text from hooks
 		list: {name: 'list', etemplate: null, sidemenu: 'Projectlist'},
 		elements: {name: 'elements', etemplate: null, sidemenu: 'Elementlist'},
-		gantt: {name: 'gantt', etemplate: null, sidemenu: 'Gantt chart'},
+		gantt: {name: 'gantt', etemplate: null, sidemenu: 'Ganttchart'},
 		prices: {name: 'prices', etemplate: null, sidemenu: 'Pricelist'}
 	},
 
