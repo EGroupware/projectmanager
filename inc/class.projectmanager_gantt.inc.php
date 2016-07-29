@@ -334,7 +334,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			'edit'	=>	$this->project->check_acl(Acl::EDIT),
 			'start_date'	=>	Api\DateTime::to($params['planned_times'] ? $this->project->data['pm_planned_start'] : $this->project->data['pm_real_start'],Api\DateTime::DATABASE),
 			'open'	=>	$params['level'] < $params['depth'],
-			'progress' => ((int)substr($this->project->data['pm_completion'],0,-1))/100,
+			'progress' => ((int)substr($this->project->data['pm_completion'],0,-1))/10,
 			'parent' => $params['parent'] && $params['parent'] != $this->project->data['pm_id'] ? 'projectmanager::'.$params['parent'] : 0
 		);
 		// Set field for filter to filter on
