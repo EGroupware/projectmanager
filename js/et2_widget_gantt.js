@@ -138,16 +138,22 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			// Unselect task before removing it, or we get errors later if it is accessed
 			this.gantt.unselectTask();
 			this.gantt.detachAllEvents();
+			this.gantt._onLinkIdChange = null;
+			this.gantt._onTaskIdChange = null;
 			this.gantt.clearAll();
+			this.gantt.$container = null;
 			this.gantt = null;
+		}
 
 		// Destroy dynamic full-height
 		if(this.dynheight) this.dynheight.free();
+		this.dynheight = null;
 
-		this._super.apply(this, arguments);}
+		this._super.apply(this, arguments);
 
 		this.htmlNode.remove();
 		this.htmlNode = null;
+		this.gantt_node = null;
 	},
 
 	doLoadingFinished: function() {
@@ -233,7 +239,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				}
 			}, this);
 		}
-		else
+		else if (this.gantt)
 		{
 			this.gantt.setSizes();
 		}
@@ -617,7 +623,17 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			catch (e)
 			{}
 
-			var difference = (this.gantt.getState().max_date - this.gantt.getState().min_date)/1000; // seconds
+			var max_date = 0;
+			var min_date = Infinity;
+			var tasks = this.gantt.getTaskByTime();
+			for(var i = 0; i < tasks.length; i++)
+			{
+				if(tasks[i].start_date && tasks[i].start_date > max_date) max_date = tasks[i].start_date;
+				if(tasks[i].start_date && tasks[i].start_date < min_date) min_date = tasks[i].start_date;
+				if(tasks[i].end_date && tasks[i].end_date > max_date) max_date = tasks[i].end_date;
+				if(tasks[i].end_date && tasks[i].end_date < min_date) min_date = tasks[i].end_date;
+			}
+			var difference = (max_date - min_date)/1000; // seconds
 			// Spans more than 3 years
 			if(difference > 94608000)
 			{

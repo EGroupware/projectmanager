@@ -1,9 +1,14 @@
 /*
-This software is allowed to use under GPL or you need to obtain Commercial or Enterprise License
- to use it in non-GPL project. Please contact sales@dhtmlx.com for details
+@license
+
+dhtmlxGantt v.4.0.0 Stardard
+This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
+
+(c) Dinamenta, UAB.
 */
 gantt.config.quickinfo_buttons = ["icon_delete","icon_edit"];
 gantt.config.quick_info_detached = true;
+gantt.config.show_quick_info = true;
 
 gantt.attachEvent("onTaskClick", function(id){
 	gantt.showQuickInfo(id);
@@ -25,15 +30,19 @@ gantt.templates.quick_info_content = function(start, end, ev){ return ev.details
 gantt.templates.quick_info_date = function(start, end, ev){
 		return gantt.templates.task_time(start, end, ev);
 };
+gantt.templates.quick_info_class = function(start, end, task){ return ""; };
 
 gantt.showQuickInfo = function(id){
-	if (id == this._quick_info_box_id) return;
+	if (id == this._quick_info_box_id || !this.config.show_quick_info) return;
 	this.hideQuickInfo(true);
 
 	var pos = this._get_event_counter_part(id);
 	
 	if (pos){
-		this._quick_info_box = this._init_quick_info(pos);
+		this._quick_info_box = this._init_quick_info(pos, id);
+
+		this._quick_info_box.className = gantt._prepare_quick_info_classname(id);
+
 		this._fill_quick_data(id);
 		this._show_quick_info(pos);
 	}
@@ -49,6 +58,8 @@ gantt.hideQuickInfo = function(forced){
 		if (gantt.config.quick_info_detached)
 			return qi.parentNode.removeChild(qi);
 
+
+		qi.className += " gantt_qi_hidden";
 		if (qi.style.right == "auto")
 			qi.style.left = "-350px";
 		else
@@ -58,7 +69,7 @@ gantt.hideQuickInfo = function(forced){
 			qi.parentNode.removeChild(qi);
 	}
 };
-dhtmlxEvent(window, "keydown", function(e){
+gantt.event(window, "keydown", function(e){
 	if (e.keyCode == 27)
 		gantt.hideQuickInfo();
 });
@@ -95,36 +106,62 @@ gantt._show_quick_info = function(pos){
 				qi.style.right = "-10px";
 			},1);
 		}
-		qi.className = qi.className.replace("dhx_qi_left","").replace("dhx_qi_left","")+" dhx_qi_"+(pos==1?"left":"right");
+		qi.className += " gantt_qi_"+(pos.dx == 1 ? "left" : "right");
 		gantt._obj.appendChild(qi);
 	}
 };
-gantt._init_quick_info = function(){
+gantt._prepare_quick_info_classname = function(id){
+	var task = gantt.getTask(id);
+
+	var css = "gantt_cal_quick_info",
+		template = this.templates.quick_info_class(task.start_date, task.end_date, task);
+
+	if(template){
+		css += " " + template;
+	}
+	return css;
+};
+
+gantt._init_quick_info = function(pos, id){
+	var task = gantt.getTask(id);
+	if(typeof this._quick_info_readonly == "boolean"){
+		if(this._is_readonly(task) !== this._quick_info_readonly){
+			gantt.hideQuickInfo(true);
+			this._quick_info_box = null;
+		}
+	}
+
+	this._quick_info_readonly = this._is_readonly(task);
+
 	if (!this._quick_info_box){
 		var qi = this._quick_info_box = document.createElement("div");
-		qi.className = "dhx_cal_quick_info";
-		if (gantt.$testmode)
-			qi.className += " dhx_no_animate";
 	//title
-		var html = "<div class=\"dhx_cal_qi_title\">" +
-			"<div class=\"dhx_cal_qi_tcontent\"></div><div  class=\"dhx_cal_qi_tdate\"></div>" +
+		var html = "<div class=\"gantt_cal_qi_title\">" +
+			"<div class=\"gantt_cal_qi_tcontent\"></div><div  class=\"gantt_cal_qi_tdate\"></div>" +
 			"</div>" +
-			"<div class=\"dhx_cal_qi_content\"></div>";
+			"<div class=\"gantt_cal_qi_content\"></div>";
 
 	//buttons
-		html += "<div class=\"dhx_cal_qi_controls\">";
+		html += "<div class=\"gantt_cal_qi_controls\">";
 		var buttons = gantt.config.quickinfo_buttons;
-		for (var i = 0; i < buttons.length; i++)
-			html += "<div class=\"dhx_qi_big_icon "+buttons[i]+"\" title=\""+gantt.locale.labels[buttons[i]]+"\"><div class='dhx_menu_icon " + buttons[i] + "'></div><div>"+gantt.locale.labels[buttons[i]]+"</div></div>";
+
+		var is_editor = {"icon_delete":true,"icon_edit":true};
+
+		for (var i = 0; i < buttons.length; i++){
+			if(this._quick_info_readonly && is_editor[buttons[i]])
+				continue;
+
+			html += "<div class=\"gantt_qi_big_icon "+buttons[i]+"\" title=\""+gantt.locale.labels[buttons[i]]+"\"><div class='gantt_menu_icon " + buttons[i] + "'></div><div>"+gantt.locale.labels[buttons[i]]+"</div></div>";
+		}
 		html += "</div>";
 
 		qi.innerHTML = html;
-		dhtmlxEvent(qi, "click", function(ev){
+		gantt.event(qi, "click", function(ev){
 			ev = ev || event;
 			gantt._qi_button_click(ev.target || ev.srcElement);
 		});
 		if (gantt.config.quick_info_detached)
-			dhtmlxEvent(gantt.$task_data, "scroll", function(){  gantt.hideQuickInfo(); });
+			gantt.event(gantt.$task_data, "scroll", function(){  gantt.hideQuickInfo(); });
 	}
 
 	return this._quick_info_box;
