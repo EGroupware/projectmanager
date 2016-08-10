@@ -28,8 +28,10 @@ add price	projectmanager	it	Aggiungi prezzo
 add project	projectmanager	it	Aggiungi progetto
 add project-elements	projectmanager	it	Aggiungi elementi-progetto
 add this role	projectmanager	it	Aggiungi questo ruolo
+add timesheet only	projectmanager	it	Aggiungi solo foglio ore
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	it	Elementi di rubrica di un progetto possono essere usati per definire destinatari individuali di lettere. I campi disponibili sono
 addressbook fields	projectmanager	it	Campi rubrica
+all projects	projectmanager	it	Tutti i progetti
 all roles	projectmanager	it	Tutti i ruoli
 all_roles	projectmanager	it	Tutti i ruoli
 allow users to change their working times	projectmanager	it	Permetti agli utenti di cambiare i propri orari di lavoro
@@ -83,6 +85,7 @@ datasource	projectmanager	it	Sorgente dati
 datasources too	projectmanager	it	Anche le sorgenti di dati
 dates	projectmanager	it	Date
 days	projectmanager	it	giorni
+default action on double-click	projectmanager	it	Azione predefinita al doppio click
 default all and a selectbox to choose	projectmanager	it	tutto predefinito e una selectbox per scegliere
 delete all checked projects	projectmanager	it	Elimina tutti i progetti selezionati
 delete this milestone	projectmanager	it	Cancella questo traguardo
@@ -162,6 +165,7 @@ export definition to use for nextmatch export (elements)	projectmanager	it	Defin
 export definition to use for nextmatch export (projects)	projectmanager	it	Definizione di esportazione da utilizzare nell'esportazione nextmatch (progetti)
 exports a list of project elements to a csv file.	projectmanager	it	Esporta una lista di elementi di progetti in csv
 exports a list of projects to a csv file.	projectmanager	it	Esporta una lista di progetti in csv
+external	projectmanager	it	Esterno
 favorites	projectmanager	it	Preferiti
 fields for element roles:	projectmanager	it	Campi per ruoli elemento:
 fieldseparator	projectmanager	it	Separatore dei campi

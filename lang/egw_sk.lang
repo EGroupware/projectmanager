@@ -31,6 +31,7 @@ add this role	projectmanager	sk	Pridať túto úlohu
 add timesheet only	projectmanager	sk	Pridaťlen harmonogram
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	sk	Adresárové prvky projektu sa dajú použiť na určenie adresátov hromadných listov. Dostupné sú polia
 addressbook fields	projectmanager	sk	Polia Adresára
+all projects	projectmanager	sk	Všetky projekty
 all roles	projectmanager	sk	Všetky úlohy
 all_roles	projectmanager	sk	Všetky úlohy
 allow users to change their working times	projectmanager	sk	Povoliť používateľom zmenu ich pracovných časov
@@ -84,6 +85,7 @@ datasource	projectmanager	sk	Zdroj dát
 datasources too	projectmanager	sk	Vrátane zdrojov dát
 dates	projectmanager	sk	Dátumy
 days	projectmanager	sk	Dní
+default action on double-click	projectmanager	sk	Predvolená akcia pri dvojitom kliknutí
 default all and a selectbox to choose	projectmanager	sk	Predvolene všetko a výber pomocou ponuky
 delete all checked projects	projectmanager	sk	Odstrániť všetky označené projekty
 delete this milestone	projectmanager	sk	Odstrániť tento medzník
