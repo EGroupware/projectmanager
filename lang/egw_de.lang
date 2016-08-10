@@ -244,7 +244,7 @@ nonactive	projectmanager	de	Nicht aktiv
 not available	projectmanager	de	Nicht verfügbar
 not started (0%)	projectmanager	de	nicht gestartet (0%)
 not working	projectmanager	de	nicht arbeiten
-number of characters to which title of ganttchart elements should be shortened to.	projectmanager	de	Anzahl der Zeichen auf die die Titel der Gantchartelemente gekürzt werden sollen.
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	de	Anzahl der Zeichen auf die die Titel der Gantt-Diagramm-Elemente gekürzt werden sollen.
 number of records to read (%1)	projectmanager	de	Anzahl der einzulesenden Datensätze (%1)
 only this project	projectmanager	de	Nur dieses Projekt
 order of sub-project bars in ganttcharts	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Gantt-Diagramm
@@ -411,6 +411,10 @@ view this project	projectmanager	de	Dieses Projekt anzeigen
 view this project-element	projectmanager	de	Dieses Projektelement anzeigen
 working duration on %1	projectmanager	de	Arbeitsdauer am %1
 you can leave the date of the first price empty	projectmanager	de	Sie benötigen kein Datum für den ersten Preis
+<<<<<<< Updated upstream
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	de	Sie haben keine JPGraph Version %1 oder höher installiert! Diese wird vom Projektmanager für Gantt-Diagramms benötigt.
+=======
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	de	Sie haben keine JPGraph Version %1 oder höher installiert! Diese wird vom Projektmanager für Gantt-Diagramm benötigt.
+>>>>>>> Stashed changes
 you need to select a project first	projectmanager	de	Sie müssen zuerst ein Projekt auswählen
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	de	Ihre Datenbank ist NICHT aktuell (%1 vs. %2), bitte rufen Sie %3setup%4 auf um Ihre Datenbank zu aktualisieren.
