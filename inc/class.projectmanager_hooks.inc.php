@@ -225,12 +225,14 @@ class projectmanager_hooks
 		if ($GLOBALS['egw_info']['user']['apps']['admin'])
 		{
 			$file = Array(
-				'Site configuration' => Egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config'),
-				'Custom fields' => Egw::link('/index.php','menuaction=admin.customfields.index&appname=projectmanager&use_private=1'),
+				'Site configuration' => Egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config&ajax=true'),
+				'Custom fields' => Egw::link('/index.php','menuaction=admin.customfields.index&appname=projectmanager&use_private=1&ajax=true'),
 				'Global Categories'  => Egw::link('/index.php',array(
 					'menuaction' => 'admin.admin_categories.index',
 					'appname'    => $appname,
-					'global_cats'=> True)),
+					'global_cats'=> True,
+					'ajax' => 'true',
+				)),
 			);
 			if ($location == 'admin')
 			{
