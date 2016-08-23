@@ -674,17 +674,20 @@ class projectmanager_bo extends projectmanager_so
 	{
 		if (!is_array($entry))
 		{
-			$pm_id = $entry;
+			// backing up internal data/state
 			$backup = $this->data;
-			$entry = $this->read( $entry );
-			$this->data = $backup;
 
-			// Even though ADD_TIMESHEET means no read, we let them
-			// see the title
+			// reading entry incl. read ACL check, possibly returning false
+			$entry = $this->read($pm_id=$entry);
+
+			// even though ADD_TIMESHEET means no read, we let them see the title
 			if(!$entry && $this->check_acl(EGW_ACL_ADD_TIMESHEET, $pm_id))
 			{
-				$entry = $this->data;
+				// this is archived by calling parent::read() which does NOT implement ACL
+				$entry = parent::read($pm_id);
 			}
+			// restoring after possible parent::read(), so we dont need to read again from db
+			$this->data = $backup;
 		}
 		if (!$entry)
 		{
@@ -698,7 +701,7 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * Is called as hook to participate in the linking
 	 *
-	 * @param int|array $entry int pm_id or array with project entry
+	 * @param array $ids int pm_id or array with project entry
 	 * @return array or titles, see link_title
 	 */
 	function link_titles( array $ids )
@@ -782,7 +785,7 @@ class projectmanager_bo extends projectmanager_so
 		static $ancestors_cache = array();	// some caching
 
 		if (!$pm_id && !($pm_id = $this->pm_id)) return false;
-		
+
 		if (!isset($ancestors_cache[$pm_id]))
 		{
 			$ancestors_cache[$pm_id] = array();
