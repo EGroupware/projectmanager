@@ -28,6 +28,7 @@ add price	projectmanager	en	Add price
 add project	projectmanager	en	Add project
 add project-elements	projectmanager	en	Add project elements
 add this role	projectmanager	en	Add this role
+add timesheet	projectmanager	en	Add timesheet
 add timesheet only	projectmanager	en	Add timesheet only
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	en	Address book elements of a project can be used to define individual serial letter recipients. Available fields are
 addressbook fields	projectmanager	en	Address book fields
@@ -57,9 +58,11 @@ can be used with element roles, "eroles" table plugin and "elements" table plugi
 category in %1 project-element(s) updated.	projectmanager	en	Category in %1 project element(s) updated.
 category set	projectmanager	en	Category set
 change category	projectmanager	en	Change category
+change the following details of %s	projectmanager	en	Change the following details of %s
 charset of file	projectmanager	en	Charset of file
 charset of the above selected font	projectmanager	en	Charset of the above selected font
 check all	projectmanager	en	Check all
+check to make one element role assignable to multiple elements	projectmanager	en	Check to make one element role assignable to multiple elements
 choose the default filename for downloaded documents.	projectmanager	en	Choose the default file name for downloaded documents.
 close the window, discard the changes made	projectmanager	en	Close the window, discard the changes made
 completion	projectmanager	en	Completion
@@ -88,6 +91,7 @@ days	projectmanager	en	Days
 default action on double-click	projectmanager	en	Default action on double-click
 default all and a selectbox to choose	projectmanager	en	Default all and a select box to choose
 delete all checked projects	projectmanager	en	Delete all checked projects
+delete this element role	projectmanager	en	Delete this element role
 delete this milestone	projectmanager	en	Delete this milestone
 delete this price	projectmanager	en	Delete this price
 delete this project	projectmanager	en	Delete this project
@@ -104,10 +108,12 @@ document download filename	projectmanager	en	Document download file name
 done (100%)	projectmanager	en	Done (100%)
 edit access, incl. editing budget and elements	projectmanager	en	Edit access, incl. editing budget and elements
 edit budget	projectmanager	en	Edit budget
+edit element roles	projectmanager	en	Edit element roles
 edit milestone	projectmanager	en	Edit milestone
 edit price	projectmanager	en	Edit price
 edit project	projectmanager	en	Edit project
 edit project-elements	projectmanager	en	Edit project elements
+edit this element role	projectmanager	en	Edit this element role
 edit this milestone	projectmanager	en	Edit this milestone
 edit this price	projectmanager	en	Edit this price
 edit this project	projectmanager	en	Edit this project
@@ -118,6 +124,7 @@ element details	projectmanager	en	Element details
 element id	projectmanager	en	Element ID
 element list	projectmanager	en	Element list
 element modifier	projectmanager	en	Element modifier
+element role	projectmanager	en	Element role
 element role deleted	projectmanager	en	Element role deleted.
 element role saved	projectmanager	en	Element role saved.
 element role title	projectmanager	en	Element role title
@@ -135,7 +142,8 @@ elements which have to be finished before this can start	projectmanager	en	Eleme
 empty	projectmanager	en	Empty
 empty for all	projectmanager	en	Empty for all
 encode non-ascii	projectmanager	en	Encode non-ascii
-end before	projectmanager	en	End before
+ends after	projectmanager	en	Ends after
+ends before	projectmanager	en	Ends before
 enddate	projectmanager	en	End date
 error: deleting element role !!!	projectmanager	en	Error deleting element role!
 error: deleting price !!!	projectmanager	en	Error deleting price!
@@ -219,6 +227,7 @@ mainproject only	projectmanager	en	Main project only
 mainprojects	projectmanager	en	Main projects
 manage mapping	projectmanager	en	Manage mapping
 members	projectmanager	en	Members
+milestone	projectmanager	en	Milestone
 milestone deleted	projectmanager	en	Milestone deleted.
 milestone saved	projectmanager	en	Milestone saved.
 milestones	projectmanager	en	Milestones
@@ -228,6 +237,7 @@ modified by	projectmanager	en	Modified by
 modified date and time	projectmanager	en	Modified date and time
 modifier	projectmanager	en	Modifier
 modify status	projectmanager	en	Modify status
+multi assignable	projectmanager	en	Multi assignable
 multi assignments	projectmanager	en	Multi assignments
 name of current user, all other contact fields are valid too	projectmanager	en	Name of current user, all other contact fields are valid too
 necessary for project-elements doing that not automatic	projectmanager	en	Necessary for project elements doing that not automatic
@@ -264,6 +274,7 @@ planned time	projectmanager	en	Planned time
 planned time in minutes	projectmanager	en	Planned time in minutes
 planned times	projectmanager	en	Planned times
 please download a recent version from %1 and install it in %2.	projectmanager	en	Download a recent version from %1 and install it in %2.
+pm_milestone	projectmanager	en	Milestone
 price	projectmanager	en	Price
 price / unit	projectmanager	en	Price / Unit
 price deleted	projectmanager	en	Price deleted.
@@ -297,6 +308,7 @@ project-element	projectmanager	en	Project element
 project-element deleted	projectmanager	en	Project element deleted.
 project-element saved	projectmanager	en	Project element saved.
 project-elements	projectmanager	en	Project elements
+projectelement	projectmanager	en	Project element
 projectid	projectmanager	en	Project ID
 projectlist	projectmanager	en	Project list
 projectmanager	common	en	Project Manager
@@ -348,7 +360,8 @@ show planned times instead of the real times	projectmanager	en	Show planned time
 show status icons of the datasources	projectmanager	en	Show status icons of the data sources
 show the project selection as	projectmanager	en	Show the project selection as
 site configuration saved	projectmanager	en	Site configuration saved.
-start after	projectmanager	en	Start after
+starts after	projectmanager	en	Starts after
+starts before	projectmanager	en	Starts before
 start date, end date	projectmanager	en	Start Date, End Date
 start working on %1	projectmanager	en	Start working on %1
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
