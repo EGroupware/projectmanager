@@ -743,7 +743,10 @@ class projectmanager_bo extends projectmanager_so
 			$need_count = true;
 		}
 		$result = array();
-		foreach((array) $this->search($pattern,false,'pm_created DESC','','%',false,'OR',$limit,array('pm_status'=>'active'), true, $need_count) as $prj )
+		$order = $this->prefs['link_sort_order'];
+		// Protect against bad preference value
+		$order = $this->field2label[reset(explode(' ',$order))] ? $order : 'pm_created DESC';
+		foreach((array) $this->search($pattern,false,$order,'','%',false,'OR',$limit,array('pm_status'=>'active'), true, $need_count) as $prj )
 		{
 			if ($prj['pm_id']) $result[$prj['pm_id']] = $this->link_title($prj);
 		}
@@ -873,9 +876,13 @@ class projectmanager_bo extends projectmanager_so
 		// if parents given, also return number of (grand-)children
 		if (isset($_parents)) $extra_cols[] = 'children';
 
+		$order = $this->prefs['link_sort_order'];
+		// Protect against bad preference value
+		$order = $this->field2label[reset(explode(' ',$order))] ? $order : 'pm_status,pm_number';
+
 		// get the children
 		while (($children = $this->search($filter,$this->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent,pm_status',
-			'pm_status,pm_number',$extra_cols,'',false,$filter_op,false,array('subs_or_mains' => $parents))))
+			$order,$extra_cols,'',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
 			//error_log(__METHOD__."(".array2string($filter).", '$filter_op, ".array2string($_parents).") parents=".array2string($parents)." --> children=".array2string($children));
 			// sort the children behind the parents
