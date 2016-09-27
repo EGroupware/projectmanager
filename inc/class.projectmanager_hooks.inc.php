@@ -366,23 +366,34 @@ class projectmanager_hooks
 			'admin'  => False,
 			'default'=> true,
 		);
+		$settings['link_sort_order'] = array(
+			'type'     => 'select',
+			'label'    => 'Project sort order',
+			'name'     => 'link_sort_order',
+			'values'   => array(
+				'pm_number DESC' => lang('Project ID'),
+				'pm_title ASC'  => lang('Project title'),
+				'pm_created DESC' => lang('creation date and time')
+			),
+			'default'  => 'pm_created DESC'
+		);
 		$settings['show_links'] = array(
-				'type'   => 'check',
-				'label'  => 'Show links in the Project Elements list',
-				'name'   => 'show_links',
-				'help'   => 'Should Project Elements show the links to other applications and/or the file-attachments in the Project Elements list (only when showing details).',
-				'xmlrpc' => True,
-				'admin'  => False,
-				'default'=> false,
+			'type'   => 'check',
+			'label'  => 'Show links in the Project Elements list',
+			'name'   => 'show_links',
+			'help'   => 'Should Project Elements show the links to other applications and/or the file-attachments in the Project Elements list (only when showing details).',
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> false,
 		);
 		$settings['show_infolog_type_icon'] = array(
-				'type'   => 'check',
-				'label'  => 'Show infolog type icon in the Project Elements list',
-				'name'   => 'show_infolog_type_icon',
-				'help'   => 'Should Project Elements list show the dedicated icons of the infolog types. Icons for infolog custom types can be added at the VFS-Path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with \'_element\', that bigger icon will be loaded in the element list.',
-				'xmlrpc' => True,
-				'admin'  => False,
-				'forced'=> False,
+			'type'   => 'check',
+			'label'  => 'Show infolog type icon in the Project Elements list',
+			'name'   => 'show_infolog_type_icon',
+			'help'   => 'Should Project Elements list show the dedicated icons of the infolog types. Icons for infolog custom types can be added at the VFS-Path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with \'_element\', that bigger icon will be loaded in the element list.',
+			'xmlrpc' => True,
+			'admin'  => False,
+			'forced'=> False,
 		);
 		$pm_list_options = array(
 			'~edit~'    => lang('Edit project'),
