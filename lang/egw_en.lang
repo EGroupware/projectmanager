@@ -341,6 +341,7 @@ select a project	projectmanager	en	Select a project
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	en	Select an activity if you want to calculate costs by quantity (time) and price.
 select export options	projectmanager	en	Select export options
 select multiple projects for a further action	projectmanager	en	Select multiple projects for a further action
+select project sort order for project tree and link search	projectmanager	en	Select project sort order for project tree and link search
 select the accounting types visible for users of projectmanager	projectmanager	en	Select the accounting types visible for users
 select this project and show it's elements	projectmanager	en	Select this project and show it's elements
 selectbox with %1	projectmanager	en	Select box with %1
