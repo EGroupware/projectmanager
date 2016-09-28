@@ -371,10 +371,12 @@ class projectmanager_hooks
 			'label'    => 'Project sort order',
 			'name'     => 'link_sort_order',
 			'values'   => array(
-				'pm_number DESC' => lang('Project ID'),
+				'pm_number DESC' => lang('Project ID') . '▼',
+				'pm_number ASC' => lang('Project ID') . '▲',
 				'pm_title ASC'  => lang('Project title'),
 				'pm_created DESC' => lang('creation date and time')
 			),
+			'help'     => 'Select project sort order for project tree and link search',
 			'default'  => 'pm_created DESC'
 		);
 		$settings['show_links'] = array(

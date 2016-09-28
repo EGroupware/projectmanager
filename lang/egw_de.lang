@@ -342,6 +342,7 @@ select a project	projectmanager	de	Ein Projekt auswählen
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Menge (Zeit) und Preis berechnen wollen
 select export options	projectmanager	de	Wählen Sie die Export Optionen aus
 select multiple projects for a further action	projectmanager	de	Wählt mehrere Projekte für einen weiteren Befehl aus
+select project sort order for project tree and link search	projectmanager	de	Sortierung der Projekte auswählen für Projekt-Baum und Suche in Verknüpfungen
 select the accounting types visible for users of projectmanager	projectmanager	de	wählen sie die Abrechnungsarten die für Benutzer des Projektmanagers sichtbar sind
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
 selectbox with %1	projectmanager	de	Auswahlbox mit %1
