@@ -2,7 +2,7 @@
 <!DOCTYPE overlay PUBLIC "-//Stylite AG//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
 <!-- $Id$ -->
 <overlay>
-	<template id="projectmanager.config" template="" lang="" group="0" version="1.9.001">
+	<template id="projectmanager.config.configuration" template="" lang="" group="0" version="16.0.001">
 		<grid width="80%">
 			<columns>
 				<column width="40%"/>
@@ -68,6 +68,50 @@
 				</row>
 				<row>
 					<description value="You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'." span="all"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.config.notification" template="" lang="" group="0" version="">
+		<grid width="100%">
+			<columns>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<checkbox label="Use custom notification message" id="notification[use_custom]"/>
+				</row>
+				<row>
+					<htmlarea id="notification[message]" height="180px" width="100%" toolbar="false" span="all"/>
+				</row>
+				<row>
+					<description value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extra_link_target="_blank"/>
+					<description/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
+		<grid width="100%">
+			<columns>
+				<column width="100%"/>
+			</columns>
+			<rows>
+				<row>
+					<description id="msg" span="all" class="message"/>
+				</row>
+				<row valign="top" height="350px">
+					<tabbox id="configuration|notification">
+						<tabs>
+							<tab id="configuration" label="Configuration"/>
+							<tab id="notification" label="Notification"/>
+						</tabs>
+						<tabpanels>
+							<template id="projectmanager.config.configuration"/>
+							<template id="projectmanager.config.notification"/>
+						</tabpanels>
+					</tabbox>
 				</row>
 				<row>
 					<hbox span="all">

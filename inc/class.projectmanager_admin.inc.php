@@ -74,6 +74,10 @@ class projectmanager_admin
 			{
 				$this->config->config_data[$name] = $content[$name];
 			}
+
+			// Notifications
+			$this->config->config_data[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'] = $content['notification'];
+			
 			$this->config->save_repository();
 			$msg = lang('Site configuration saved');
 		}
@@ -92,6 +96,8 @@ class projectmanager_admin
 
 		if(!$content['ID_GENERATION_FORMAT']) $content['ID_GENERATION_FORMAT'] = 'P-%Y-%04ix';
 		if(!$content['ID_GENERATION_FORMAT_SUB']) $content['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
+
+		$content['notification'] = $content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'];
 		$content['msg'] = $msg;
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Site configuration');

@@ -40,7 +40,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	 *
 	 * @var string
 	 */
-	var $assigned_field = 'pm_modified';
+	var $assigned_field = '';
 	/**
 	 * Translate field-name to 2-char history status
 	 *
@@ -84,9 +84,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	 * Get a notification-config value
 	 *
 	 * @param string $what
-	 * 	- 'copy' array of email addresses notifications should be copied too, can depend on $data
-	 *  - 'lang' string lang code for copy mail
-	 *  - 'sender' string send email address
+	 *  - 'assigned' Who the project is assigned to
 	 * @param array $data current entry
 	 * @param array $old=null old/last state of the entry or null for a new entry
 	 * @return mixed
@@ -94,9 +92,46 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	function get_config($name,$data,$old=null)
 	{
 		$projectmanager = $data['pm_id'];
+		
+		unset($old);	// not used, but required function signature
+		switch($name)
+		{
+			case 'assigned':
+				// Here we filter assigned to only those who want the notification
+				$config = array();
+				foreach($data['pm_members'] as $member)
+				{
+					$prefs_obj = new Api\Preferences($member['member_uid']);
+					$prefs = $prefs_obj->read();
+					$assigned = $prefs['projectmanager']['notify_assigned'];
+					if(!is_array($assigned))
+					{
+						$assigned = explode(',',$assigned);
+					}
+					
+					if(in_array($member['role_id'], $assigned))
+					{
+						$config[] = $member['member_uid'];
+					}
+				}
+				break;
+			case self::CUSTOM_NOTIFICATION:
+				$config = Api\Config::read('projectmanager');
+				if(!$config[self::CUSTOM_NOTIFICATION])
+				{
+					return '';
+				}
+				// Per-type notification
+				$type_config = array();//$config[self::CUSTOM_NOTIFICATION][$data['info_type']];
+				$global = $config[self::CUSTOM_NOTIFICATION]['~global~'];
 
-		//$config = $this->projectmanager->notification[$projectmanager][$name] ? $this->projectmanager->notification[$projectmanager][$name] : $this->$projectmanager->notification[0][$name];
-		//no nitify configert (ToDo)
+				// Disabled
+				if(!$type_config['use_custom'] && !$global['use_custom']) return '';
+
+				// Type or globabl
+				$config = trim(strip_tags($type_config['message'])) != '' && $type_config['use_custom'] ? $type_config['message'] : $global['message'];
+				break;
+		}
 		return $config;
 	}
 
@@ -111,7 +146,11 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	 */
 	function get_subject($data,$old)
 	{
-		return '#'.$data['pm_id'].' - '.$data['pm_title'];
+		if ($data['prefix'])
+		{
+			$prefix = $data['prefix'];	// async notification
+		}
+		return  ($prefix ? $prefix . ' ' : ''). '#'.$data['pm_id'].' - '.$data['pm_title'];
 	}
 
 	/**
@@ -123,6 +162,8 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	 */
 	function get_message($data,$old)
 	{
+		if ($data['message']) return $data['message'];	// async notification
+		
 		if (!$data['pm_modified'] || !$old)
 		{
 			return lang('New Project submitted by %1 at %2',
@@ -132,5 +173,65 @@ class projectmanager_tracking extends Api\Storage\Tracking
 		return lang('Project modified by %1 at %2',
 			$data['pm_modifier'] ? Api\Accounts::username($data['pm_modifier']) : lang('Projectmanager'),
 			$this->datetime($data['pm_modified']));
+	}
+
+	/**
+	 * Get the details of an entry
+	 *
+	 * @param array|object $data
+	 * @param int|string $receiver nummeric account_id or email address
+	 * @return array of details as array with values for keys 'label','value','type'
+	 */
+	function get_details($data,$receiver=null)
+	{
+		unset($receiver);	// not used, but required function signature
+		
+		$members = array();
+		if ($data['pm_members'])
+		{
+			foreach($data['pm_members'] as $uid => $member)
+			{
+				$members[] = Api\Accounts::username($uid);
+			}
+		}
+
+		// Use export conversion to make human friendly values
+		$entry = new projectmanager_egw_record_project();
+		$entry->set_record($data);
+		importexport_export_csv::convert($entry, projectmanager_egw_record_project::$types, 'projectmanager');
+		$converted = $entry->get_record_array();
+
+		// Format the known fields to what Tracking needs
+		foreach($converted as $name => $value)
+		{
+			if($this->bo->field2label[$name])
+			{
+				$details[$name] = array(
+					'label' => lang($this->bo->field2label[$name]),
+					'value' => $value,
+				);
+			}
+		}
+
+		// Don't want these
+		foreach(array('pm_overwrite') as $remove)
+		{
+			unset($details[$remove]);
+		}
+
+		$details['pm_title']['type'] = 'summary';
+		$details['pm_description'] = array(
+			'value' => $data['pm_description'],
+			'type'  => 'multiline',
+		);
+		$details['pm_members'] = array(
+			'label' => lang('Members'),
+			'value' => implode(', ', $members)
+		);
+
+		// add custom fields
+		$details += $this->get_customfields($data);
+
+		return $details;
 	}
 }

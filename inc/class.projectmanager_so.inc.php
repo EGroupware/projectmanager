@@ -419,4 +419,48 @@ class projectmanager_so extends Api\Storage
 			),__LINE__,__FILE__,'projectmanager');
 		}
 	}
+
+
+	/**
+	 * Query infolog for users with open entries, either own or responsible, with start or end within 4 days
+	 *
+	 * This functions tries to minimize the users really checked with the complete filters, as creating a
+	 * user enviroment and running the specific check costs ...
+	 *
+	 * @return array with acount_id's groups get resolved to their memebers
+	 */
+	function users_with_open_entries()
+	{
+		$users = array();
+
+		foreach($this->db->select($this->table_name,'DISTINCT pm_creator',array(
+			'pm_status' => 'active',
+			'(ABS(pm_real_start-'.time().')<'.(4*24*60*60).' OR '.	// start within 4 days
+			'ABS(pm_planned_start-'.time().')<'.(4*24*60*60).' OR '.	// planned start within 4 days
+			'ABS(pm_real_end-'.time().')<'.(4*24*60*60).' OR '.		// end_day within 4 days
+			'ABS(pm_planned_end-'.time().')<'.(4*24*60*60).')',		// end_day within 4 days
+		),__LINE__,__FILE__) as $row)
+		{
+			$users[] = $row['pm_creator'];
+		}
+		foreach($this->db->select($this->members_table, "DISTINCT $this->members_table.member_uid AS member_uid",
+			array(), __LINE__, __FILE__, false, '', 'projectmanager', 0,
+			"JOIN $this->table_name ON $this->table_name.pm_id=$this->members_table.pm_id AND pm_status = 'active'") as $row)
+		{
+			$responsible = $row['member_uid'];
+
+			if ($GLOBALS['egw']->accounts->get_type($responsible) == 'g')
+			{
+				$responsible = $GLOBALS['egw']->accounts->members($responsible,true);
+			}
+			if ($responsible)
+			{
+				foreach((array)$responsible as $user)
+				{
+					if ($user && !in_array($user,$users)) $users[] = $user;
+				}
+			}
+		}
+		return $users;
+	}
 }

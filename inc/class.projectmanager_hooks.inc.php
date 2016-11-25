@@ -518,6 +518,88 @@ class projectmanager_hooks
 			}
 		}
 
+		$settings[] = array(
+				'type'  => 'section',
+				'title' => lang('Notification settings'),
+				'no_lang'=> true,
+				'xmlrpc' => False,
+				'admin'  => False
+		);
+
+		// notification preferences
+		$settings['notify_creator'] = array(
+			'type'   => 'check',
+			'label'  => 'Receive notifications about own items',
+			'name'   => 'notify_creator',
+			'help'   => 'Do you want a notification, if items you created get updated?',
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> '1',	// Yes
+		);
+		$roles = new projectmanager_roles_so();
+		$settings['notify_assigned'] = array(
+			'type'   => 'multiselect',
+			'label'  => 'Receive notifications about items assigned to you with these roles',
+			'name'   => 'notify_assigned',
+			'help'   => 'Do you want a notification, if items get assigned to you or assigned items get updated?',
+			'values' => array(
+				// Roles
+				'0' => lang('No')
+			) + $roles->query_list(),
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> '0',	// No
+		);
+
+		// to add options for more then 3 days back or in advance, you need to update soinfolog::users_with_open_entries()!
+		$options = array(
+			'0'   => lang('No'),
+			'-1d' => lang('one day after'),
+			'0d'  => lang('same day'),
+			'1d'  => lang('one day in advance'),
+			'2d'  => lang('%1 days in advance',2),
+			'3d'  => lang('%1 days in advance',3),
+		);
+		$settings['notify_due_planned'] = array(
+			'type'   => 'select',
+			'label'  => 'Receive notifications about due entries (planned dates)',
+			'name'   => 'notify_due_planned',
+			'help'   => 'Do you want a notification, if items are due according to their planned dates?',
+			'values' => $options,
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> '0',	// No
+		);
+		$settings['notify_due_real'] = array(
+			'type'   => 'select',
+			'label'  => 'Receive notifications about due entries (real dates)',
+			'name'   => 'notify_due_real',
+			'help'   => 'Do you want a notification, if items are due according to their real dates?',
+			'values' => $options,
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> '0d',	// Same day
+		);
+		$settings['notify_start_planned'] = array(
+			'type'   => 'select',
+			'label'  => 'Receive notifications about starting entries (planned dates)',
+			'name'   => 'notify_start_planned',
+			'help'   => 'Do you want a notification, if items are about to start according to their planned dates?',
+			'values' => $options,
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> '0',	// No
+		);
+		$settings['notify_start_real'] = array(
+			'type'   => 'select',
+			'label'  => 'Receive notifications about starting entries (real dates)',
+			'name'   => 'notify_start_real',
+			'help'   => 'Do you want a notification, if items are about to start according to their real dates?',
+			'values' => $options,
+			'xmlrpc' => True,
+			'admin'  => False,
+			'default'=> '0d',	// Same day
+		);
 
 		$settings[] = array(
 			'type'  => 'section',
@@ -615,6 +697,35 @@ class projectmanager_hooks
 		}
 
 		return $settings;
+	}
+
+	/**
+	 * Verification hook called if settings / preferences get stored
+	 *
+	 * Installs a task to send async infolog notifications at 2h everyday
+	 *
+	 * @param array $data
+	 */
+	static function verify_settings($data)
+	{
+		// If no assigned roles, make sure that's the only thing selected
+		$assigned =& $data['prefs']['notify_assigned'];
+		if(strpos($assigned, '0') !== FALSE)
+		{
+			$assigned = '0';
+		}
+		
+		// Make sure async notification is there
+		if ($data['prefs']['notify_due_planned'] || $data['prefs']['notify_due_real'] ||
+			$data['prefs']['notify_start_planned'] || $data['prefs']['notify_start_real'])
+		{
+			$async = new Api\Asyncservice();
+
+			if (!$async->read('projectmanager-async-notification'))
+			{
+				$async->set_timer(array('hour' => 2),'projectmanager-async-notification','projectmanager.projectmanager_bo.async_notification',null);
+			}
+		}
 	}
 
 	/**

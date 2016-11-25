@@ -1160,4 +1160,106 @@ class projectmanager_bo extends projectmanager_so
 		}
 		return $boelements->pm_id;
 	}
+
+
+	/**
+	 * Send all async projectmanager notification
+	 *
+	 * Called via the async service job 'projectmanager-async-notification'
+	 */
+	function async_notification()
+	{
+		if (!($users = $this->users_with_open_entries()))
+		{
+			return;
+		}
+		//error_log(__METHOD__."() users with open entries: ".implode(', ',$users));
+
+		$save_account_id = $GLOBALS['egw_info']['user']['account_id'];
+		$save_prefs      = $GLOBALS['egw_info']['user']['preferences'];
+		foreach($users as $user)
+		{
+			if (!($email = $GLOBALS['egw']->accounts->id2name($user,'account_email'))) continue;
+			// create the enviroment for $user
+			$this->user = $GLOBALS['egw_info']['user']['account_id'] = $user;
+			$GLOBALS['egw']->preferences->__construct($user);
+			$GLOBALS['egw_info']['user']['preferences'] = $GLOBALS['egw']->preferences->read_repository();
+			$GLOBALS['egw']->acl->__construct($user);
+			$GLOBALS['egw']->acl->read_repository();
+			$this->so = new projectmanager_so();
+
+			$notified_pm_ids = array();
+			foreach(array(
+				'notify_due_planned'   => 'pm_planned_end',
+				'notify_due_real'      => 'pm_real_end',
+				'notify_start_planned' => 'pm_planned_start',
+				'notify_start_real'    => 'pm_real_start',
+			) as $pref => $filter_field)
+			{
+				if (!($pref_value = $GLOBALS['egw_info']['user']['preferences']['projectmanager'][$pref])) continue;
+				if($pref_value === '0') continue;
+
+				$today = time()+24*60*60*(int)$pref_value;
+				$tomorrow = $today + 24*60*60;
+
+				$filter = "$today <= $filter_field AND $filter_field < $tomorrow";
+				
+				//error_log(__METHOD__."() checking with $pref filter '$filter' ($pref_value) for user $user ($email)");
+
+				$params = array('filter' => $filter, 'custom_fields' => true, 'subs' => true);
+				$results = $this->search('',TRUE, '', '', '', FALSE, 'AND', FALSE, Array($filter));
+				if(!$results || !is_array($results))
+				{
+					continue;
+				}
+				foreach($results as $project_id)
+				{
+					// check if we already send a notification for that infolog entry, eg. starting and due on same day
+					if (in_array($project_id,$notified_pm_ids)) continue;
+
+					$project = $this->read($project_id);
+
+					if (is_null($this->tracking) || $this->tracking->user != $user)
+					{
+						$this->tracking = new projectmanager_tracking($this);
+					}
+					$prefix = lang(Api\Link::get_registry('projectmanager','entry'));
+					switch($pref)
+					{
+						case 'notify_due_planned':
+							$project['prefix'] = lang('Due %1',$prefix) . lang('- planned');
+							$project['message'] = lang('%1 you are responsible for is due at %2',$prefix,
+								$this->tracking->datetime($project['pm_planned_end'],false));
+							break;
+						case 'notify_due_real':
+							$project['prefix'] = lang('Due %1',$prefix);
+							$project['message'] = lang('%1 you are responsible for is due at %2',$prefix,
+								$this->tracking->datetime($project['pm_real_end'],false));
+							break;
+						case 'notify_start_planned':
+							$project['prefix'] = lang('Starting %1',$prefix) . lang('- planned');
+							$project['message'] = lang('%1 you are responsible for is starting at %2',$prefix,
+								$this->tracking->datetime($project['pm_planned_start'],null));
+							break;
+						case 'notify_start_real':
+							$project['prefix'] = lang('Starting %1',$prefix);
+							$project['message'] = lang('%1 you are responsible for is starting at %2',$prefix,
+								$this->tracking->datetime($project['pm_real_start'],null));
+							break;
+					}
+					//error_log("notifiying $user($email) about {$project['pm_title']}: {$project['message']}");
+					
+					// Allow notification to have HTML
+					$this->tracking->html_content_allow = true;
+					$this->tracking->send_notification($project,null,$email,$user,$pref);
+
+					$notified_pm_ids[] = $project['pm_id'];
+				}
+			}
+		}
+
+		$GLOBALS['egw_info']['user']['account_id']  = $save_account_id;
+		$GLOBALS['egw_info']['user']['preferences'] = $save_prefs;
+	}
+
 }

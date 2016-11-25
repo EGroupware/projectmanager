@@ -40,6 +40,7 @@ $setup_info['projectmanager']['note'] =
 
 /* The hooks this app includes, needed for hooks registration */
 $setup_info['projectmanager']['hooks']['settings'] = 'projectmanager_hooks::settings';
+$setup_info['projectmanager']['hooks']['verify_settings'] = 'projectmanager_hooks::verify_settings';
 $setup_info['projectmanager']['hooks']['admin'] = 'projectmanager_hooks::all_hooks';
 $setup_info['projectmanager']['hooks']['sidebox_menu'] = 'projectmanager_hooks::all_hooks';
 $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager_hooks::search_link';
