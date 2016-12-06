@@ -510,7 +510,10 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
 			$pe['text'] = $this->prefs['gantt_element_title_length'] ? substr($pe['pe_title'], 0, $this->prefs['gantt_element_title_length']) : $pe['pe_title'];
 			$pe['parent'] = 'projectmanager::'.$pm_id;
-			$pe['start_date'] = Api\DateTime::to((int)$pe['pe_start'],Api\DateTime::DATABASE);
+			if($pe['pe_start'])
+			{
+				$pe['start_date'] = Api\DateTime::to((int)$pe['pe_start'],Api\DateTime::DATABASE);
+			}
 			if($pe['pe_planned_start'] && $pe['pe_planned_start'] != $pe['pe_start'])
 			{
 				$pe['start_date'] = Api\DateTime::to($pe['pe_real_start'], Api\DateTime::DATABASE);
@@ -538,7 +541,10 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			{
 				$pe['end_date'] = $pe['start_date'];
 			}
-			$elements[] = $pe;
+			if($pe['start_date'])
+			{
+				$elements[] = $pe;
+			}
 
 			$element_index[$pe['pe_id']] = $pe;
 		}
