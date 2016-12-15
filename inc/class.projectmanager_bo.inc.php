@@ -1138,23 +1138,6 @@ class projectmanager_bo extends projectmanager_so
 
 			if ($parent_number) $this->generate_pm_number(true,$parent_number);
 
-			// Copy links
-			$this->data['link_to'] = array('to_app' => 'projectmanager', 'to_id' => array());
-			foreach(Link::get_links($this->data['link_to']['to_app'], $source) as $link)
-			{
-				if ($link['app'] != Link::VFS_APPNAME)
-				{
-					Link::link('projectmanager', $this->data['link_to']['to_id'], $link['app'], $link['id'], $link['remark']);
-				}
-				elseif ($link['app'] == Link::VFS_APPNAME)
-				{
-					Link::link('projectmanager', $this->data['link_to']['to_id'], Link::VFS_APPNAME, array(
-						'tmp_name' => Link::vfs_path($link['app2'], $link['id2']).'/'.$link['id'],
-						'name' => $link['id'],
-					), $link['remark']);
-				}
-			}
-
 			if ($only_stage == 1)
 			{
 				return true;
@@ -1175,6 +1158,22 @@ class projectmanager_bo extends projectmanager_so
 			// copying the constrains
 			$this->constraints->copy((int)$source,$elements,$milestones,$boelements->pm_id);
 		}
+
+		// Copy files
+		$dir = '/apps/projectmanager/'.$source;
+		$files = Api\Vfs::scandir($dir);
+		foreach($files as $key => &$file)
+		{
+			if($file == '.' || $file == '..' || Api\Vfs::is_link($dir.'/'.$file))
+			{
+				unset($files[$key]);
+				continue;
+			}
+			$file = $dir . '/' . $file;
+		}
+		$copied = array();
+		Api\Vfs::copy_files($files, "/apps/projectmanager/{$this->data['pm_id']}");
+		
 		return $boelements->pm_id;
 	}
 
