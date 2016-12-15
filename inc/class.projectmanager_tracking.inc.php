@@ -99,6 +99,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 			case 'assigned':
 				// Here we filter assigned to only those who want the notification
 				$config = array();
+				if(!is_array($data['pm_members'])) break;
 				foreach($data['pm_members'] as $member)
 				{
 					$prefs_obj = new Api\Preferences($member['member_uid']);
@@ -108,7 +109,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 					{
 						$assigned = explode(',',$assigned);
 					}
-					
+
 					if(in_array($member['role_id'], $assigned))
 					{
 						$config[] = $member['member_uid'];
