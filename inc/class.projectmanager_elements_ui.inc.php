@@ -126,8 +126,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 			if (!$content['view'])
 			{
-				if ($content['pe_completion'] !== '') $content['pe_completion'] .= '%';
-
 				foreach($datasource->name2id as $name => $id)
 				{
 					if ($id == PM_TITLE || $id == PM_DETAILS) continue;	// title and details can NOT be edited
@@ -195,7 +193,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 				foreach(array('pe_status','pe_remark','pe_constraints','pe_share','pe_eroles') as $name)
 				{
-					if ($name == 'pe_constraints')
+					if ($name == 'pe_constraints' && is_array($content['pe_constraints']))
 					{
 						foreach($content['pe_constraints'] as $type => $data)
 						{
@@ -366,7 +364,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$planned_quantity_blur = $ds['pe_planned_quantity'];
 		}
-
+		if($this->data['pe_completion'])
+		{
+			$this->data['pe_completion'] = (int)$this->data['pe_completion'];
+		}
 		$content = $this->data + array(
 			'ds'  => $ds,
 			'msg' => $msg,
@@ -397,9 +398,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$content['pe_share'] = $content['share_percentage'];
 		}
 		// Set classes on constraints
-		foreach($content['pe_constraints'] as &$constraint)
+		if(is_array($content['pe_constraints']))
 		{
-			$constraint['class'] = $constraint['pe_id_start'] == $this->data['pe_id'] ? 'source' : 'target';
+			foreach($content['pe_constraints'] as &$constraint)
+			{
+				$constraint['class'] = $constraint['pe_id_start'] == $this->data['pe_id'] ? 'source' : 'target';
+			}
 		}
 
 		//_debug_array($content);
