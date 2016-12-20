@@ -890,6 +890,7 @@ class projectmanager_ui extends projectmanager_bo
 				'caption' => 'Ganttchart',
 				'onExecute' => 'javaScript:app.projectmanager.show_gantt',
 				'group' => ++$group,
+				'hideOnMobile' => true
 			),
 			'pricelist' => array(
 				'icon' => 'pricelist',
@@ -897,6 +898,7 @@ class projectmanager_ui extends projectmanager_bo
 				'onExecute' => 'javaScript:app.projectmanager.show_pricelist',
 				'allowOnMultiple' => false,
 				'group' => $group,
+				'hideOnMobile' => true
 			),
 			'filemanager' => array(
 				'icon' => 'filemanager/navbar',
@@ -920,13 +922,15 @@ class projectmanager_ui extends projectmanager_bo
 				'group' => $group,
 				'allowOnMultiple' => true,
 				'url' => 'menuaction=importexport.importexport_export_ui.export_dialog&appname=projectmanager&plugin=projectmanager_export_projects_csv&selection=$id',
-				'popup' => '850x440'
+				'popup' => '850x440',
+				'hideOnMobile' => true
 			),
 			'sources_too' => array(
 				'caption' => 'Datasources too',
 				'checkbox' => true,
 				'hint' => 'If checked the datasources of the elements (eg. InfoLog entries) will change their status too.',
 				'group' => ++$group,
+				'hideOnMobile' => true
 			),
 			'status' => array(
 				'icon' => 'apply',
@@ -935,6 +939,7 @@ class projectmanager_ui extends projectmanager_bo
 				'children' => self::$status_labels,
 				'prefix' => 'status_',
 				'disableClass' => 'rowNoEdit',
+				'hideOnMobile' => true
 			),
 			'delete' => array(
 				'caption' => 'Delete',
@@ -942,6 +947,7 @@ class projectmanager_ui extends projectmanager_bo
 				'confirm_multiple' => 'Delete these entries',
 				'group' => $group,
 				'disableClass' => 'rowNoDelete',
+				'hideOnMobile' => true
 			),
 		);
 

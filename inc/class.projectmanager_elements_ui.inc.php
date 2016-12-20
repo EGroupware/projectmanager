@@ -778,6 +778,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'enableId' => 'projectmanager:',
 				'onExecute' => 'javaScript:app.projectmanager.show_gantt',
 				'enabled' => true,
+				'hideOnMobile' => true
 			),
 			'add' => array (
 				'caption' => 'Add new',
@@ -855,6 +856,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'confirm' => 'Delete this project-element, does NOT remove the linked entry',
 				'group' => ++$group,
 				'disableClass' => 'rowNoDelete',
+				'hideOnMobile' => true
 			),
 		);
 		if(!$this->config['enable_eroles'])
