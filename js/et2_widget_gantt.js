@@ -30,7 +30,7 @@
  * @see http://docs.dhtmlx.com/gantt/index.html
  * @augments et2_valueWidget
  */
-var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IResizeable,et2_IInput],
+var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IResizeable, et2_IInput, et2_IPrint],
 {
 	// Filters are inside gantt namespace
 	createNamespace: true,
@@ -1154,8 +1154,94 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		};
 
 		return aoi;
-	}
+	},
 
+	// Printing
+	/**
+	 * Prepare for printing
+	 *
+	 * Since the gantt chart tends to be large and browsers cannot handle printing
+	 * pages wider than a piece of paper, we rotate the gantt to fit.
+	 * 
+	 */
+	beforePrint: function beforePrint() {
+		// Add the class, if needed
+		this.htmlNode.addClass('print');
+
+		var max_width = Math.max(
+			jQuery(this.gantt.$grid).width() + jQuery(this.gantt.$task_scale).width(),
+			jQuery(this.gantt.$container).width()
+		);
+		var max_height = Math.max(
+			jQuery(this.gantt.$grid).height(),
+			jQuery(this.gantt.$container).height()
+		);
+
+
+		// Make gantt chart "full size"
+		this.gantt_node.width(max_width)
+				.height(max_height);
+		
+		this.gantt.render();
+
+		this.gantt_node.css({
+			width: Math.max(max_width, max_height) + 'px !important',
+			height: Math.max(max_width, max_height) + 'px !important'
+		});
+		// Force layout
+		this.egw().getHiddenDimensions(this.gantt_node);
+
+		// Defer the printing to ask about orientation
+		var defer = jQuery.Deferred();
+		
+		var callback = jQuery.proxy(function(button, value) {
+			if(button === et2_dialog.CANCEL_BUTTON) {
+				// Give dialog a chance to close, or it will be in the print
+				window.setTimeout(function() {defer.reject();}, 0);
+				return;
+			}
+			
+			if(value.orientation === 'vertical')
+			{
+				this.gantt_node.height(max_width);
+				jQuery(this.gantt.$container).css({
+					transform: 'rotate(-90deg) translateX(-'+max_width+'px)',
+					'transform-origin': 'top left'
+				});
+			}
+			// Give dialog a chance to close, or it will be in the print
+			window.setTimeout(function() {defer.resolve();}, 0);
+
+		},this);
+
+		var base_url = this.getInstanceManager().template_base_url;
+		if (base_url.substr(base_url.length - 1) === '/')
+		{
+			base_url = base_url.slice (0, -1);	// otherwise we generate a url //api/templates, which is wrong
+		}
+		var dialog = et2_createWidget("dialog",{
+			// If you use a template, the second parameter will be the value of the template, as if it were submitted.
+			callback: callback,	// return false to prevent dialog closing
+			buttons: et2_dialog.BUTTONS_OK_CANCEL,
+			title: this.egw().lang('Print'),
+			template:this.egw().link(base_url+'/projectmanager/templates/default/gantt_print_dialog.xet')
+		});
+
+		return defer;
+	},
+
+	/**
+	 * Try to clean up the mess we made getting ready for printing
+	 * in beforePrint()
+	 */
+	afterPrint: function() {
+		jQuery(this.gantt.$container).css({
+			transform: '',
+			'transform-origin': '',
+			'margin-left': '',
+		});
+		this.resize();
+	}
 });}).call(this);
 et2_register_widget(et2_gantt, ["gantt","projectmanager-gantt"]);
 

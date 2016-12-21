@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay PUBLIC "-//Stylite AG//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
+<!-- $Id$ -->
+<overlay>
+	<template id="gantt_print_dialog" template="" lang="" group="0" version="16.1">
+		<vbox>
+			<description value="If the gantt chart is wider than the page, it will be trimmed."/>
+			<description value="How would you like to print the chart?"/>
+			<select id="orientation">
+				<option value="">All tasks (horizontal)</option>
+				<option value="vertical">All dates (vertical)</option>
+			</select>
+		</vbox>
+	</template>
+</overlay>
