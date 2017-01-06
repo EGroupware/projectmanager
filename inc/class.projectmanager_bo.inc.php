@@ -37,7 +37,7 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * @var string
 	 */
-	var $logfile='error_log';	// '/tmp/pm.log';
+	static $logfile='error_log';	// '/tmp/pm.log';
 	/**
 	 * Timestaps that need to be adjusted to user-time on reading or saving
 	 *
@@ -123,6 +123,16 @@ class projectmanager_bo extends projectmanager_so
 		//'link_to'        => 'Attachments & Links',
 		'#c'   => 'Custom fields',	// only used to display old history, new cf history is stored field by field
 	);
+
+	/**
+	 * History logging: ''=no, 'history'=history & delete allowed, 'history_admin_delete', 'history_no_delete'
+	 *
+	 * @var string
+	 */
+	var $history = '';
+
+	const DELETED_STATUS = 'deleted';
+	
 	/**
 	 * Names of all config vars
 	 *
@@ -162,6 +172,9 @@ class projectmanager_bo extends projectmanager_so
 		// atm. projectmanager-admins are identical to eGW admins, this might change in the future
 		$this->is_admin = isset($GLOBALS['egw_info']['user']['apps']['admin']);
 
+		// Keep deleted projects?
+		$this->history = $this->config['history'];
+		
 		if ($instanciate) $this->instanciate($instanciate);
 
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("projectmanager_bo::projectmanager_bo($pm_id) finished");
@@ -312,6 +325,11 @@ class projectmanager_bo extends projectmanager_so
 			{
 				$extra[Link::OLD_LINK_TITLE] = $old_title;
 			}
+			// Check for restore of deleted entry, restore held links
+			if($old['pm_status'] == self::DELETED_STATUS && $new['pm_status'] != self::DELETED_STATUS)
+			{
+				Link::restore('projectmanager', $this->data['pm_id']);
+			}
 			// notify the link-class about the update, as other apps may be subscribt to it
 			//error_log(__METHOD__."() calling Link::notify_update('projectmanager', {$this->data['pm_id']}, ".array2string($this->data+$extra).")");
 			Link::notify_update('projectmanager',$this->data['pm_id'],$this->data+$extra);
@@ -348,9 +366,11 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * @param array $keys if given array with col => value pairs to characterise the rows to delete
 	 * @param boolean $delete_sources=false true=delete datasources of the elements too (if supported by the datasource), false dont do it
+	 * @param boolean $skip_notification Do not send notification of delete
+	 * 
 	 * @return int affected rows, should be 1 if ok, 0 if an error
 	 */
-	function delete($keys=null,$delete_sources=false)
+	function delete($keys=null,$delete_sources=false, $skip_notification=False)
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("projectmanager_bo::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
 
@@ -359,31 +379,66 @@ class projectmanager_bo extends projectmanager_so
 			$keys = array('pm_id' => (int) $keys);
 		}
 		$pm_id = is_null($keys) ? $this->data['pm_id'] : $keys['pm_id'];
+		$project = $this->read($pm_id);
 
-		if (($ret = parent::delete($keys)) && $pm_id)
+		$deleted = $project;
+		$deleted['pm_status'] = self::DELETED_STATUS;
+		$deleted['pm_modified'] = time();
+		$deleted['pm_modifier'] = $this->user;
+		
+		// if we have history switched on and not an already deleted item --> set only status deleted
+		if ($this->history && $project['pm_status'] != self::DELETED_STATUS)
 		{
-			// delete the projectmembers
-			parent::delete_members($pm_id);
+			parent::save($deleted);
 
-			ExecMethod2('projectmanager.projectmanager_elements_bo.delete',array('pm_id' => $pm_id),$delete_sources);
+			Link::unlink(0,'projectmanager',$pm_id,'','!file','',true);	// keep the file attachments, hide the rest
 
-			// the following is not really necessary, as it's already one in projectmanager_elements_bo::delete
-			// delete all links to project $pm_id
-			Link::unlink(0,'projectmanager',$pm_id);
+			if($delete_sources)
+			{
+				ExecMethod2('projectmanager.projectmanager_elements_bo.delete',array('pm_id' => $pm_id),$delete_sources);
+			}
+			$ret = true;
+		}
+		else if (!$this->history || $this->history == 'history' || $this->history == 'history_admin_delete' && $this->is_admin)
+		{
+			if (($ret = parent::delete($keys)) && $pm_id)
+			{
+				// delete the projectmembers
+				parent::delete_members($pm_id);
 
-			$this->instanciate('constraints,milestones,pricelist,roles');
+				ExecMethod2('projectmanager.projectmanager_elements_bo.delete',array('pm_id' => $pm_id),$delete_sources);
 
-			// delete all constraints of the project
-			$this->constraints->delete(array('pm_id' => $pm_id));
+				// the following is not really necessary, as it's already one in projectmanager_elements_bo::delete
+				// delete all links to project $pm_id
+				Link::unlink(0,'projectmanager',$pm_id);
 
-			// delete all milestones of the project
-			$this->milestones->delete(array('pm_id' => $pm_id));
+				$this->instanciate('constraints,milestones,pricelist,roles');
 
-			// delete all pricelist items of the project
-			$this->pricelist->delete(array('pm_id' => $pm_id));
+				// delete all constraints of the project
+				$this->constraints->delete(array('pm_id' => $pm_id));
 
-			// delete all project specific roles
-			$this->roles->delete(array('pm_id' => $pm_id));
+				// delete all milestones of the project
+				$this->milestones->delete(array('pm_id' => $pm_id));
+
+				// delete all pricelist items of the project
+				$this->pricelist->delete(array('pm_id' => $pm_id));
+
+				// delete all project specific roles
+				$this->roles->delete(array('pm_id' => $pm_id));
+			}
+		}
+
+		if ($project['pm_status'] != self::DELETED_STATUS)	// dont notify of final purge of already deleted items
+		{
+			// send email notifications and do the history logging
+			if(!$skip_notification)
+			{
+				if (!is_object($this->tracking))
+				{
+					$this->tracking = new projectmanager_tracking($this);
+				}
+				$this->tracking->track($deleted,$project,$this->user,true);
+			}
 		}
 		return $ret;
 	}
@@ -783,11 +838,11 @@ class projectmanager_bo extends projectmanager_so
 	 * @param array $ancestors=array() already identified ancestors, default none
 	 * @return array with ancestors
 	 */
-	function &ancestors($pm_id=0,$ancestors=array())
+	public static function &ancestors($pm_id=0,$ancestors=array())
 	{
 		static $ancestors_cache = array();	// some caching
 
-		if (!$pm_id && !($pm_id = $this->pm_id)) return false;
+		if (!$pm_id) return false;
 
 		if (!isset($ancestors_cache[$pm_id]))
 		{
@@ -807,7 +862,7 @@ class projectmanager_bo extends projectmanager_so
 				{
 					$ancestors_cache[$pm_id][] = $parent;
 					// now we call ourself recursivly to get all parents of the parents
-					$ancestors_cache[$pm_id] =& $this->ancestors($parent,$ancestors_cache[$pm_id]);
+					$ancestors_cache[$pm_id] =& static::ancestors($parent,$ancestors_cache[$pm_id]);
 				}
 			}
 		}
@@ -935,9 +990,9 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * @param string $msg
 	 */
-	function log2file($msg)
+	static function log2file($msg)
 	{
-		if ($this->logfile && ($f = @fopen($this->logfile,'a+')))
+		if (static::$logfile && ($f = @fopen(static::$logfile,'a+')))
 		{
 			fwrite($f,date('Y-m-d H:i:s: ').Api\Accounts::username($GLOBALS['egw_info']['user']['account_id'])."\n");
 			fwrite($f,$msg."\n\n");
@@ -950,21 +1005,21 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * @param string $msg
 	 */
-	function debug_message($msg)
+	public static function debug_message($msg)
 	{
 		//$msg = 'Backtrace: '.function_backtrace(2)."\n".$msg;
 
-		if (!$this->logfile)
+		if (!static::$logfile)
 		{
 			echo '<pre>'.$msg."</pre>\n";
 		}
-		elseif($this->logfile == 'error_log')
+		elseif(static::$logfile == 'error_log')
 		{
 			error_log($msg);
 		}
 		else
 		{
-			$this->log2file($msg);
+			static::log2file($msg);
 		}
 	}
 

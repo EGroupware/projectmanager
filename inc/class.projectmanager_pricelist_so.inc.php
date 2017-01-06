@@ -132,7 +132,7 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 
 		$ancestors = array($pm_id);
 
-		if (!($ancestors = $this->project->ancestors($pm_id,$ancestors)))
+		if (!($ancestors = projectmanager_bo::ancestors($pm_id,$ancestors)))
 		{
 			echo "<p>sql_priority($pm_id,$col,$use_general) ancestory returnd false</p>\n";
 			return false;
@@ -222,7 +222,7 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 			{
 				// ToDo: avoid subqueries (eg. use a join) or do it manual inside php
 				//echo "<p>Pricelist needs a DB capabal of subqueries (eg. MySQL 4.1+) !!!</p>\n";
-				$filter['pm_id'] = $this->project->ancestors($this->pm_id,array(0,(int)$this->pm_id));
+				$filter['pm_id'] = projectmanager_bo::ancestors($this->pm_id,array(0,(int)$this->pm_id));
 				$filter[] = 'pl_validsince <= '.$validsince;
 			}
 			$prices_filter = array();

@@ -484,6 +484,11 @@ app.classes.projectmanager = AppJS.extend(
 							{
 								tree.deleteItem(itemId);
 							}
+							// Currently viewing that project - go back to list
+							if(this.view === 'elements' && this.getState().col_filter.pm_id == _id)
+							{
+								this.show('list');
+							}
 					}
 				}
 				// Fall through to try the element list too

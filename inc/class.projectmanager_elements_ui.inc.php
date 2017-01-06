@@ -113,7 +113,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function edit($content=null,$view=false)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("projectmanager_elements_ui::edit(".print_r($content,true).",$view)");
+		if ((int) static::DEBUG >= 1 || static::DEBUG == 'edit') projectmanager_bo::debug_message("projectmanager_elements_ui::edit(".print_r($content,true).",$view)");
 
 		if (is_array($content))
 		{
@@ -714,9 +714,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 			}
 		}
-		if ((int)$this->debug >= 2 || $this->debug == 'get_rows')
+		if ((int)static::DEBUG >= 2 || static::DEBUG == 'get_rows')
 		{
-			$this->debug_message("projectmanager_elements_ui::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."readonlys=".print_r($readonlys,true));
+			projectmanager_bo::debug_message("projectmanager_elements_ui::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."readonlys=".print_r($readonlys,true));
 		}
 		return $total;
 	}
@@ -908,7 +908,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	function index($content=null,$msg='')
 	{
 
-		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_elements_ui::index(".print_r($content,true).",$msg)");
+		if ((int) static::DEBUG >= 1 || static::DEBUG == 'index') projectmanager_bo::debug_message("projectmanager_elements_ui::index(".print_r($content,true).",$msg)");
 
 		// store the current project (only for index, as popups may be called by other parent-projects)
 		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $this->project->data['pm_id']);

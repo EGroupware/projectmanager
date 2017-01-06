@@ -67,6 +67,10 @@ class projectmanager_ui extends projectmanager_bo
 			'archive'   => lang('Archive'),
 			'template'  => lang('Template'),
 		);
+		if($this->history)
+		{
+			static::$status_labels[self::DELETED_STATUS] = lang('Deleted');
+		}
 		$this->access_labels = array(
 			'public'    => lang('Public'),
 			'anonym'    => lang('Anonymous public'),
@@ -280,7 +284,7 @@ class projectmanager_ui extends projectmanager_bo
 			}
 			if ($content['delete'] && $this->check_acl(Acl::DELETE))
 			{
-				$msg = $this->delete($pm_id,$delete_sources) ? lang('Project deleted') : lang('Error: deleting project !!!');
+				$msg = $this->delete($pm_id,$content['delete_sources']) ? lang('Project deleted') : lang('Error: deleting project !!!');
 			}
 			if ($content['save'] || $content['delete'])	// refresh opener and output message
 			{
@@ -461,6 +465,11 @@ class projectmanager_ui extends projectmanager_bo
 				'pricelist' => 'Budget and pricelist',
 			),
 		);
+		// Can't set deleted as a status
+		if($content['pm_status'] != self::DELETED_STATUS)
+		{
+			unset($sel_options['pm_status'][self::DELETED_STATUS]);
+		}
 		$content['history'] = array(
 				'id'  => $this->data['pm_id'],
 				'app' => 'projectmanager',
@@ -593,6 +602,10 @@ class projectmanager_ui extends projectmanager_bo
 			if (!$this->check_acl(Acl::DELETE,$row))
 			{
 				$row['class'] .= ' rowNoDelete';
+			}
+			if($row['pm_status'] != self::DELETED_STATUS)
+			{
+				$row['class'] .= ' rowNoUndelete ';
 			}
 			$pm_ids[] = $row['pm_id'];
 
@@ -949,8 +962,21 @@ class projectmanager_ui extends projectmanager_bo
 				'disableClass' => 'rowNoDelete',
 				'hideOnMobile' => true
 			),
+			'undelete' => array(
+				'caption' => 'Un-Delete',
+				'confirm' => 'Recover this entry',
+				'confirm_multiple' => 'Recover these entries',
+				'group' => $group,
+				'icon' => 'revert',
+				'disableClass' => 'rowNoUndelete',
+				'hideOnDisabled' => true,
+				'hideOnMobile' => true
+			)
 		);
 
+		// Can't set deleted as a status
+		unset($actions['status']['children'][self::DELETED_STATUS]);
+		
 		if (!$GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			unset($actions['filemanager']);
@@ -1023,6 +1049,24 @@ class projectmanager_ui extends projectmanager_bo
 					{
 						$success++;
 					}
+				}
+				break;
+			case 'undelete':
+				$action_msg =lang('recovered');
+				$elements_bo = new \projectmanager_elements_bo();
+				foreach($checked as $pm_id)
+				{
+					if(!$this->read($pm_id))
+					{
+						$failed++;
+						continue;
+					}
+					$this->save(array('pm_status' => 'active'));
+					if($sources_too)
+					{
+						$elements_bo->run_on_sources('change_status', array('pm_id'=>$pm_id),'active');
+					}
+					$success++;
 				}
 				break;
 			case 'cat':

@@ -25,7 +25,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 *
 	 * @var int/string
 	 */
-	var $debug=false;
+	const DEBUG = false;
 	/**
 	 * Instance of the projectmanager_bo-class
 	 *
@@ -137,9 +137,9 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 		$this->project_summary = $this->summary();
 
-		if ((int)$this->debug >= 3 || $this->debug == 'projectmanager_elements_bo')
+		if ((int)static::DEBUG >= 3 || static::DEBUG == 'projectmanager_elements_bo')
 		{
-			$this->debug_message(function_backtrace()."\nprojectmanager_elements_bo::projectmanager_elements_bo($pm_id,$pe_id) data=".print_r($this->data,true));
+			projectmanager_bo::debug_message(function_backtrace()."\nprojectmanager_elements_bo::projectmanager_elements_bo($pm_id,$pe_id) data=".print_r($this->data,true));
 		}
 		// save us in $GLOBALS['projectmanager_elements_bo'] for ExecMethod used in hooks
 		if (!is_object($GLOBALS['projectmanager_elements_bo']))
@@ -156,9 +156,9 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 *
 	 * @param array $data array with keys type, id, target_app, target_id, link_id, data
 	 */
-	function notify($data)
+	public static function notify($data)
 	{
-		if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify(link_id=$data[link_id], type=$data[type], target=$data[target_app]-$data[target_id])");
+		if ((int) static::DEBUG >= 2 || static::DEBUG == 'notify') projectmanager_bo::debug_message("projectmanager_elements_bo::notify(link_id=$data[link_id], type=$data[type], target=$data[target_app]-$data[target_id])");
 		//error_log(__METHOD__."(".array2string($data).')');
 		switch($data['type'])
 		{
@@ -176,29 +176,39 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 					// for new links we need to make sure the new child is not an ancestor of us
 					if ($data['type'] == 'link')
 					{
-						if (($ancestors = $this->project->ancestors($data['id'])) && in_array($data['target_id'],$ancestors))
+						if (($ancestors = projectmanager_bo::ancestors($data['id'])) && in_array($data['target_id'],$ancestors))
 						{
-							if ((int) $this->debug >= 2 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify: cant use pm_id=$data[target_id] as child as it's one of our (pm_id=$data[id]) ancestors=".print_r($ancestors,true));
+							if ((int) static::DEBUG >= 2 || static::DEBUG == 'notify') projectmanager_bo::debug_message("projectmanager_elements_bo::notify: cant use pm_id=$data[target_id] as child as it's one of our (pm_id=$data[id]) ancestors=".print_r($ancestors,true));
 							//error_log(__METHOD__."() --> ignoring notification as no project-element");
 							return;	// the link is not used as an project-element, thought it's still a regular link
 						}
-						if ((int) $this->debug >= 3 || $this->debug == 'notify') $this->debug_message("projectmanager_elements_bo::notify: ancestors($data[id])=".print_r($ancestors,true));
+						if ((int) static::DEBUG >= 3 || static::DEBUG == 'notify') projectmanager_bo::debug_message("projectmanager_elements_bo::notify: ancestors($data[id])=".print_r($ancestors,true));
 					}
 				}
+				$e_bo = new projectmanager_elements_bo();
 				// add pre-selected eroles to update request if app is supported
-				if($this->config['enable_eroles']
-					&& in_array($data['target_app'],$this->erole_apps)
+				if($e_bo->config['enable_eroles']
+					&& in_array($data['target_app'],$e_bo->erole_apps)
 					&& isset($_POST['exec']['nm']['eroles_add'])
 				)
 				{
 					$extra_keys = array('pe_eroles' => implode(',',$_POST['exec']['nm']['eroles_add']));
 				}
-				$this->update($data['target_app'],$data['target_id'],$data['link_id'],
+				$e_bo->update($data['target_app'],$data['target_id'],$data['link_id'],
 					$data['id'],true,(isset($extra_keys) ? $extra_keys : null));
 				break;
 
 			case 'unlink':
-				$this->delete(array('pm_id' => $data['id'],'pe_id' => $data['link_id']));
+				// Link class caches the object it notifies, so new object to avoid problems
+				// (eg. delete happens on 2 different projects, or unlink a deleted project)
+				$e_bo = new projectmanager_elements_bo();
+				if($e_bo->project->history)
+				{
+					// Might be keeping this...
+					$link = Link::get_link($data['link_id']);
+					if($link['deleted']) return;
+				}
+				$e_bo->delete(array('pm_id' => $data['id'],'pe_id' => $data['link_id']));
 				break;
 
 		}
@@ -223,7 +233,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
 
-		if ((int) $this->debug >= 2 || $this->debug == 'update') $this->debug_message("projectmanager_elements_bo::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
+		if ((int) static::DEBUG >= 2 || static::DEBUG == 'update') projectmanager_bo::debug_message("projectmanager_elements_bo::update(app='$app',id='$id',pe_id=$pe_id,pm_id=$pm_id)");
 		//error_log(__METHOD__."('$app', $id, pe_id=$pe_id, pm_id=$pm_id, update_project=$update_project, extra_keys=".array2string($extra_keys).")");
 
 		// Prevent infinite looping in some nested cases
@@ -337,11 +347,11 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		}
 		if (!$pm_id && !($pm_id = $this->pm_id)) return 0;
 
-		if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("projectmanager_elements_bo::sync_all(pm_id=$pm_id)");
+		if ((int) static::DEBUG >= 2 || static::DEBUG == 'sync_all') projectmanager_bo::debug_message("projectmanager_elements_bo::sync_all(pm_id=$pm_id)");
 
 		if ($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id])	// project already visited
 		{
-			if ((int) $this->debug >= 2 || $this->debug == 'sync_all') $this->debug_message("projectmanager_elements_bo::sync_all(pm_id=$pm_id) stoped recursion, as pm_id in (".implode(',',array_keys($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'])).")");
+			if ((int) static::DEBUG >= 2 || static::DEBUG == 'sync_all') projectmanager_bo::debug_message("projectmanager_elements_bo::sync_all(pm_id=$pm_id) stoped recursion, as pm_id in (".implode(',',array_keys($GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'])).")");
 			return 0;							// no further recursion, might lead to an infinit loop
 		}
 		$GLOBALS['egw_info']['flags']['projectmanager']['sync_all_pm_id_visited'][$pm_id] = true;
@@ -510,7 +520,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 */
 	function save($keys=null,$touch_modified=true,$update_project=-1)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'save') $this->debug_message("projectmanager_elements_bo::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
+		if ((int) static::DEBUG >= 1 || static::DEBUG == 'save') projectmanager_bo::debug_message("projectmanager_elements_bo::save(".print_r($keys,true).','.(int)$touch_modified.",$update_project) data=".print_r($this->data,true));
 
 		if ($keys['update_remark'] || $this->data['update_remark'])
 		{
@@ -553,7 +563,9 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 */
 	function delete($keys=null,$delete_sources=false)
 	{
-		if ((int) $this->debug >= 1 || $this->debug == 'delete') $this->debug_message("projectmanager_elements_bo::delete(".print_r($keys,true).",$delete_sources) this->data[pm_id] = ".$this->data['pm_id']);
+		if ((int) static::DEBUG >= 1 || static::DEBUG === 'delete') {
+			projectmanager_bo::debug_message("projectmanager_elements_bo::delete(" . print_r($keys, true) . ",$delete_sources) this->data[pm_id] = " . $this->data['pm_id']);
+		}
 
 		if (!is_array($keys) && (int) $keys)
 		{
@@ -569,16 +581,28 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			$pe_id = $this->data['pe_id'];
 			$pm_id = $this->data['pm_id'];
 		}
+		// If project was just deleted but kept, its status will now be deleted
+		if($this->project->history && $pm_id)
+		{
+			$project = $this->project->read($pm_id);
+		}
 		if ($delete_sources)
 		{
 			$this->run_on_sources('delete',$keys);
 		}
-		$ret = parent::delete($keys);
+		if($project && $project['pm_status'] == projectmanager_bo::DELETED_STATUS)
+		{
+			$ret = 1;
+		}
+		else
+		{
+			$ret = parent::delete($keys);
+		}
 
 		if ($pe_id)
 		{
 			// delete one link
-			Link::unlink($pe_id);
+			Link::unlink($pe_id,'','',0,'','',(boolean)$this->project->history);
 			// update the project
 			$this->project->update($pm_id);
 
@@ -587,7 +611,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		elseif ($pm_id)
 		{
 			// delete all links to project $pm_id
-			Link::unlink(0,'projectmanager',$pm_id);
+			Link::unlink(0,'projectmanager',$pm_id, '','!file','',(boolean)$this->project->history);
 		}
 		return $ret;
 	}
@@ -667,18 +691,6 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	}
 
 	/**
-	 * echos a (preformatted / no-html) debug-message and evtl. log it to a file
-	 *
-	 * It uses the debug_message method of projectmanager_bo
-	 *
-	 * @param string $msg
-	 */
-	function debug_message($msg)
-	{
-		$this->project->debug_message($msg);
-	}
-
-	/**
 	 * Copies the elementtree from an other project
 	 *
 	 * This is done by calling the copy method of the datasource (if existent) and then calling update with the (new) app_id
@@ -688,7 +700,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 */
 	function copytree($source)
 	{
-		if ((int) $this->debug >= 2 || $this->debug == 'copytree') $this->debug_message("projectmanager_elements_bo::copytree($source) this->pm_id=$this->pm_id");
+		if ((int) static::DEBUG >= 2 || static::DEBUG == 'copytree') projectmanager_bo::debug_message("projectmanager_elements_bo::copytree($source) this->pm_id=$this->pm_id");
 
 		$elements =& $this->search('',false,'pe_planned_start,pe_title','','',false,'AND',false,array('pm_id'=>$source));
 		if (!$elements) return array();
@@ -704,7 +716,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 			if (method_exists($ds,'copy'))
 			{
-				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("copying $element[pe_app]:$element[pe_app_id] $element[pe_title]");
+				if ((int) static::DEBUG >= 3 || static::DEBUG == 'copytree') projectmanager_bo::debug_message("copying $element[pe_app]:$element[pe_app_id] $element[pe_title]");
 				$callback = $param = null;
 				list($app_id,$link_id,$callback,$param) = $ds->copy($element,$this->pm_id,$this->project->data, $offsets);
 				if (!is_null($callback))
@@ -715,11 +727,11 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			}
 			else	// no copy method, we just link again with that entry
 			{
-				if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("linking $element[pe_app]:$element[pe_app_id] $element[pe_title]");
+				if ((int) static::DEBUG >= 3 || static::DEBUG == 'copytree') projectmanager_bo::debug_message("linking $element[pe_app]:$element[pe_app_id] $element[pe_title]");
 				$app_id = $element['pe_app_id'];
 				$link_id = Link::link('projectmanager',$this->pm_id,$element['pe_app'],$app_id,$element['pe_remark'],0,0,1);
 			}
-			if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling update($element[pe_app],$app_id,$link_id,$this->pm_id,false);");
+			if ((int) static::DEBUG >= 3 || static::DEBUG == 'copytree') projectmanager_bo::debug_message("calling update($element[pe_app],$app_id,$link_id,$this->pm_id,false);");
 
 			if (!$app_id || !$link_id) continue;	// something went wrong, eg. element no longer exists
 
@@ -759,7 +771,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			call_user_func($callback,$params[$n],$apps_copied,$copied);
 		}
 		// now we do one update of our project
-		if ((int) $this->debug >= 3 || $this->debug == 'copytree') $this->debug_message("calling project->update() this->pm_id=$this->pm_id");
+		if ((int) static::DEBUG >= 3 || static::DEBUG == 'copytree') projectmanager_bo::debug_message("calling project->update() this->pm_id=$this->pm_id");
 		$this->project->update();
 
 		return $copied;
@@ -827,7 +839,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 */
 	function run_on_sources($method,$keys,$args=null)
 	{
-		if ((int) $this->debug >= 2 || $this->debug == 'run_on_sources') $this->debug_message("projectmanager_elements_bo::run_on_sources($method,".print_r($keys,true).','.print_r($args,true).") this->pm_id=$this->pm_id");
+		if ((int) static::DEBUG >= 2 || static::DEBUG == 'run_on_sources') projectmanager_bo::debug_message("projectmanager_elements_bo::run_on_sources($method,".print_r($keys,true).','.print_r($args,true).") this->pm_id=$this->pm_id");
 
 		$elements =& $this->search($keys,array('pe_id','pe_title'),'pe_planned_start');
 		if (!$elements) return true;
@@ -839,7 +851,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 			if (method_exists($ds,$method))
 			{
-				if ((int) $this->debug >= 3 || $this->debug == 'run_on_sources') $this->debug_message("calling $method for $element[pe_app]:$element[pe_app_id] $element[pe_title]");
+				if ((int) static::DEBUG >= 3 || static::DEBUG == 'run_on_sources') projectmanager_bo::debug_message("calling $method for $element[pe_app]:$element[pe_app_id] $element[pe_title]");
 				if (!$ds->$method($element['pe_app_id'],$args)) $Ok = false;
 			}
 		}

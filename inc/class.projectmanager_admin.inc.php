@@ -70,7 +70,7 @@ class projectmanager_admin
 		if ($content['save'] || $content['apply'])
 		{
 			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
-				'enable_eroles','ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB') as $name)
+				'enable_eroles','ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB', 'history') as $name)
 			{
 				$this->config->config_data[$name] = $content[$name];
 			}
@@ -100,12 +100,20 @@ class projectmanager_admin
 		$content['notification'] = $content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'];
 		$content['msg'] = $msg;
 
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Site configuration');
-		$tpl->exec('projectmanager.projectmanager_admin.config',$content,array(
+		$sel_options = array(
 			'duration_units'   => $this->duration_units,
 			'accounting_types' => $this->accounting_types,
 			'enable_eroles' => array('no','yes'),
 			'allow_change_workingtimes' => array('no','yes'),
-		));
+			'history'     => array(
+				'' => lang('No'),
+				'history' => lang('Yes, with purging of deleted items possible'),
+				'history_admin_delete' => lang('Yes, only admins can purge deleted items'),
+				'history_no_delete' => lang('Yes, noone can purge deleted items'),
+			),
+		);
+
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Site configuration');
+		$tpl->exec('projectmanager.projectmanager_admin.config',$content,$sel_options);
 	}
 }

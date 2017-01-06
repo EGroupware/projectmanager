@@ -43,6 +43,15 @@
 					<listbox statustext="select the accounting types visible for users of projectmanager" id="accounting_types" needed="1" no_lang="1" rows="4"/>
 				</row>
 				<row class="th">
+					<description value="History logging" span="all"/>
+				</row>
+				<row>
+					<description value="History logging and deleting of items"/>
+					<menulist>
+						<menupopup id="history"/>
+					</menulist>
+				</row>
+				<row class="th">
 					<description value="Document merge" span="all"/>
 				</row>
 				<row class="row">
