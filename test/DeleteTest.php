@@ -1,14 +1,14 @@
 <?php
 
 
-namespace EGroupware\Projectmanager\Test;
+namespace EGroupware\Projectmanager;
 
 require_once realpath(__DIR__.'/../../api/src/test/AppTest.php');	// Application test base
 //$GLOBALS['egw_info']['flags']['currentapp'] = 'projectmanager';
 
 use Egroupware\Api;
 
-class DeleteTest extends \EGroupware\Api\Test\AppTest
+class DeleteTest extends \EGroupware\Api\AppTest
 {
 
 	protected $bo;
