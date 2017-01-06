@@ -562,7 +562,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	 */
 	protected function mockTracking()
 	{
-		$this->bo->tracking = $this->getMockBuilder(\projectmanager_tracking::class)
+		$this->bo->tracking = $this->getMockBuilder('projectmanager_tracking')
 			->disableOriginalConstructor()
 			->setMethods(['track'])
 			->getMock($this->bo);
