@@ -18,6 +18,7 @@
 				<row class="$row_cont[class]">
 					<description class=" cat_$row_cont[cat_id] mobile_cat_col"/>
 					<vbox class="pmCol2">
+						<customfields-list id="$row" class="customfields" app="projectmanager" disabled="true"/>
 						<hbox>
 							<description id="${row}[pm_number]" no_lang="1"/>
 							<hbox class="priority">
