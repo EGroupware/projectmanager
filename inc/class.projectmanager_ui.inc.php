@@ -950,7 +950,7 @@ class projectmanager_ui extends projectmanager_bo
 			unset($actions['filemanager']);
 		}
 		// show pricelist only if we use pricelists
-		if ($this->config['accounting_types'] && !in_array('pricelist',$this->config['accounting_types']))
+		if ($this->config['accounting_types'] && !in_array('pricelist',(array)$this->config['accounting_types']))
 		{
 			unset($actions['pricelist']);
 		}
