@@ -976,13 +976,13 @@ class projectmanager_ui extends projectmanager_bo
 
 		// Can't set deleted as a status
 		unset($actions['status']['children'][self::DELETED_STATUS]);
-		
+
 		if (!$GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			unset($actions['filemanager']);
 		}
 		// show pricelist only if we use pricelists
-		if ($this->config['accounting_types'] && !in_array('pricelist',$this->config['accounting_types']))
+		if ($this->config['accounting_types'] && !in_array('pricelist',(array)$this->config['accounting_types']))
 		{
 			unset($actions['pricelist']);
 		}
