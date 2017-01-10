@@ -8,6 +8,7 @@
 	.et2_gantt .gantt_container {
 		overflow: visible;
 		position: absolute;
+		border: none;
 	}
 	.et2_gantt {
 		position: static;

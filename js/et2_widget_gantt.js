@@ -1177,6 +1177,22 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			jQuery(this.gantt.$container).height()
 		);
 
+		var pref = 'gantt_columns_print';
+		var app = this.getInstanceManager().app;
+
+		var columns = [];
+		var columns_selected = [];
+
+		// Column preference exists?  Set it now
+		if(this.egw().preference(pref,app))
+		{
+			var value = jQuery.extend([], this.egw().preference(pref,app));
+			for (var i = 0; i < this.gantt_config.columns.length; i++)
+			{
+				this.gantt_config.columns[i].hide = value.indexOf(this.gantt_config.columns[i].name) < 0 ;
+			}
+			this.set_columns(this.gantt_config.columns);
+		}
 
 		// Make gantt chart "full size"
 		this.gantt_node.width(max_width)
@@ -1191,16 +1207,37 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		// Force layout
 		this.egw().getHiddenDimensions(this.gantt_node);
 
-		// Defer the printing to ask about orientation
+		// Defer the printing to ask about columns and orientation
 		var defer = jQuery.Deferred();
-		
+
+		for (var i = 0; i < this.gantt_config.columns.length; i++)
+		{
+			var col = this.gantt_config.columns[i];
+			columns.push({
+				value: col.name,
+				label: col.label
+			});
+			if(!col.hide)
+			{
+				columns_selected.push(col.name);
+			}
+		}
+
 		var callback = jQuery.proxy(function(button, value) {
 			if(button === et2_dialog.CANCEL_BUTTON) {
 				// Give dialog a chance to close, or it will be in the print
 				window.setTimeout(function() {defer.reject();}, 0);
 				return;
 			}
-			
+
+			// Columns
+			for (var i = 0; i < columns.length; i++)
+			{
+				this.gantt_config.columns[i].hide = value.columns.indexOf(columns[i].value) < 0 ;
+			}
+			this.set_columns(this.gantt_config.columns);
+			this.egw().set_preference(app,pref,value.columns);
+
 			if(value.orientation === 'vertical')
 			{
 				this.gantt_node.height(max_width);
@@ -1224,7 +1261,11 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			callback: callback,	// return false to prevent dialog closing
 			buttons: et2_dialog.BUTTONS_OK_CANCEL,
 			title: this.egw().lang('Print'),
-			template:this.egw().link(base_url+'/projectmanager/templates/default/gantt_print_dialog.xet')
+			template:this.egw().link(base_url+'/projectmanager/templates/default/gantt_print_dialog.xet'),
+			value: {
+				content: {columns: this.egw().preference(pref,app) || columns_selected},
+				sel_options: {columns: columns}
+			}
 		});
 
 		return defer;
@@ -1240,6 +1281,16 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			'transform-origin': '',
 			'margin-left': '',
 		});
+		// Column preference exists?  Set it now
+		var value = jQuery.extend([], this.egw().preference('gantt_columns_gantt',this.getInstanceManager().app));
+		if(value)
+		{
+			for (var i = 0; i < this.gantt_config.columns.length; i++)
+			{
+				this.gantt_config.columns[i].hide = value.indexOf(this.gantt_config.columns[i].name) < 0 ;
+			}
+			this.set_columns(this.gantt_config.columns);
+		}
 		this.resize();
 	}
 });}).call(this);
