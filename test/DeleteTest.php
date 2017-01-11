@@ -143,7 +143,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		// Setup
 		Api\Config::save_value(static::HISTORY_SETTING, 'history', 'projectmanager');
 		$this->bo->history = 'history';
-		$this->bo->tracking->expects($this->once())
+		$this->bo->tracking->expects($this->atLeastOnce())
                  ->method('track');
 
 		// Execute
@@ -245,7 +245,8 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->bo->tracking->expects($this->atLeastOnce())
                 ->method('track')
 				->withConsecutive(
-					[$this->callback(function($subject) { return $subject['pm_status'] == 'deleted';})],
+					[$this->callback(function($subject) { return $subject['pm_status'] == 'deleted';})], // Sub project
+					[$this->callback(function($subject) { return $subject['pm_status'] == 'deleted';})], // Main project
 					[$this->callback(function($subject) { return $subject['pm_status'] == 'active';})]
 				);
 
@@ -300,7 +301,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->bo->history = 'history';
 
 		// Tracker will be called only once, for first deletion
-		$this->bo->tracking->expects($this->once())
+		$this->bo->tracking->expects($this->atLeastOnce())
                 ->method('track')
 				->with($this->callback(function($subject) { return $subject['pm_status'] == 'deleted';}));
 
@@ -344,7 +345,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->bo->history = 'history';
 
 		// Tracker will be called only once, for first deletion
-		$this->bo->tracking->expects($this->once())
+		$this->bo->tracking->expects($this->atLeastOnce())
                 ->method('track')
 				->with($this->callback(function($subject) { return $subject['pm_status'] == 'deleted';}));
 
@@ -472,24 +473,122 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->pm_id = $this->bo->data['pm_id'];
 
 		// Add some elements
-		$info_bo = new \infolog_bo();
-		for($i = 1; $i <= 5; $i++)
+		foreach($GLOBALS['egw_info']['apps'] as $app => $app_vals)
 		{
-			$element = array(
-				'info_subject' => "Test element #{$i}",
-				'info_des'     => 'Test element for as part of the project for test ' . $this->getName(),
-				'info_status'  => 'open',
-				'pm_id'	=> $this->pm_id,
-				'info_contact' => array('app' => 'projectmanager', 'id' => $this->pm_id)
-			);
-			$this->elements[] = $info_bo->write($element, true, true, true, true);
+			// if datasource can not be autoloaded, skip
+			if (!class_exists($class = $app.'_datasource') || !class_exists($bo_class = '\\'.$app.'_bo'))
+			{
+				continue;
+			}
+			if(method_exists($this, "make_$app"))
+			{
+				$this->{"make_$app"}();
+			}
+			else
+			{
+				$this->markTestIncomplete("$app has a datasource, but cannot be tested - add a make_$app() function to ". get_class());
+			}
 		}
+
 		// Force links to run notification now, or we won't get elements since it
 		// usually waits until Egw::on_shutdown();
 		Api\Link::run_notifies();
 
 		$elements = new \projectmanager_elements_bo($this->bo);
 		$elements->sync_all($this->pm_id);
+
+		// Make sure all elements are created
+		$this->checkElements(false, count($this->elements), "Unable to create all project elements");
+	}
+
+	/**
+	 * Make an infolog entry and add it to the project
+	 */
+	protected function make_calendar()
+	{
+		$bo = new \calendar_boupdate();
+		$element = array(
+			'title' => "Test calendar for #{$this->pm_id}",
+			'des'   => 'Test element as part of the project for test ' . $this->getName(),
+			'start' => \time(),
+			'end'   => \time() + 60,
+			'pm_id'	=> $this->pm_id,
+		);
+		$element_id = $bo->save($element);
+		Api\Link::link('calendar',$element_id,'projectmanager',$this->pm_id);
+		$this->elements[] = 'calendar:'.$element_id;
+	}
+
+	/**
+	 * Make an infolog entry and add it to the project
+	 */
+	protected function make_infolog()
+	{
+		$bo = new \infolog_bo();
+		$element = array(
+			'info_subject' => "Test infolog for #{$this->pm_id}",
+			'info_des'     => 'Test element as part of the project for test ' . $this->getName(),
+			'info_status'  => 'open',
+			'pm_id'	=> $this->pm_id,
+			'info_contact' => array('app' => 'projectmanager', 'id' => $this->pm_id)
+		);
+		$element_id = $bo->write($element, true, true, true, true);
+		$this->elements[] = 'infolog:'.$element_id;
+	}
+
+	/**
+	 * Make a projectmanager entry and add it to the project
+	 */
+	protected function make_projectmanager()
+	{
+		$bo = new \projectmanager_bo();
+		$bo->data = array(
+			'pm_number'         =>	'SUB-TEST',
+			'pm_title'          =>	"Test project for  #{$this->pm_id}",
+			'pm_status'         =>	'active',
+			'pm_description'    =>	'Test project for ' . $this->getName()
+		);
+		$bo->save();
+		$element_id = $bo->data['pm_id'];
+		Api\Link::link('projectmanager',$this->pm_id,'projectmanager',$element_id);
+		$this->elements[] = 'projectmanager:'.$element_id;
+	}
+
+	/**
+	 * Make a timesheet entry and add it to the project
+	 */
+	protected function make_timesheet()
+	{
+		$bo = new \timesheet_bo();
+		$bo->data = array(
+			'ts_title'       => "Test timesheet for #{$this->pm_id}",
+			'ts_description' => 'Test element as part of the project for test ' . $this->getName(),
+			'ts_status'      => null,
+			'ts_owner'       => $GLOBALS['egw_info']['user']['account_id'],
+			'ts_start'       => \time()
+		);
+		$bo->save();
+		$element_id = $bo->data['ts_id'];
+		Api\Link::link(TIMESHEET_APP,$element_id,'projectmanager',$this->pm_id);
+		$this->elements[] = 'timesheet:'.$element_id;
+	}
+
+	/**
+	 * Make a tracker entry and add it to the project
+	 */
+	protected function make_tracker()
+	{
+		$bo = new \tracker_bo();
+		$bo->data = array(
+			'tr_summary'     => "Test tracker for #{$this->pm_id}",
+			'tr_description' => 'Test element as part of the project for test ' . $this->getName(),
+			'tr_status'      => \tracker_bo::STATUS_OPEN,
+			'tr_owner'       => $GLOBALS['egw_info']['user']['account_id']
+		);
+		$bo->save();
+		$element_id = $bo->data['tr_id'];
+		Api\Link::link('tracker',$element_id,'projectmanager',$this->pm_id);
+		$this->elements[] = 'tracker:'.$element_id;
 	}
 
 	/**
@@ -503,21 +602,50 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		
 		// Force to ignore setting
 		$this->bo->history = '';
-		$this->bo->delete(null, true);
+		$this->bo->delete($this->pm_id, true);
 
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
 		Api\Link::run_notifies();
 		
 		// Delete all elements
-		$info_bo = new \infolog_bo();
-		$info_bo->history = '';
 		foreach($this->elements as $id)
 		{
-			$info_bo->delete($id, true, false, true);
+			list($app, $id) = explode(':',$id);
 
-			// Delete a second time to make sure it's gone
-			$info_bo->delete($id, true, false, true);
+			$bo_class = "{$app}_bo";
+
+			// Delete each entry twice to make sure it's gone
+			switch($app)
+			{
+				case 'calendar':
+					$bo = new \calendar_boupdate();
+					$bo->delete($id,0,true,true);
+					$bo->delete($id,0,true,true);
+					break;
+				case 'infolog':
+					$bo = new $bo_class();
+					$bo->delete($id, true, false, true);
+					$bo->delete($id, true, false, true);
+					break;
+				case 'projectmanager':
+					$bo = new $bo_class();
+					$bo->delete($id);
+					$bo->delete($id);
+					break;
+				case 'timesheet':
+					$bo = new $bo_class();
+					$bo->delete($id);
+					// Tell Timesheet to ignore ACL to make sure it's gone
+					$bo->delete($id, true);
+					break;
+				case 'tracker':
+					$bo = new $bo_class();
+					// Once is enough for tracker, it doesn't support keeping things
+					// after deleting
+					$bo->delete($id);
+					break;
+			}
 		}
 	}
 
@@ -534,7 +662,10 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		foreach($element_bo->search(array('pm_id' => $this->pm_id), false) as $element)
 		{
 			$element_count++;
-			$this->assertEquals($status, $element['pe_status'], "Project element status was {$element['pe_status']}, expected $status");
+			if ($status)
+			{
+				$this->assertEquals($status, $element['pe_status'], "Project element {$element['pe_title']} status was {$element['pe_status']}, expected $status");
+			}
 		}
 		
 		$this->assertEquals($expected_count, $element_count, "Incorrect number of elements");
@@ -548,12 +679,38 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	 */
 	protected function checkDatasources($status = '')
 	{
-		$info_bo = new \infolog_bo();
+		$element_bo = new \projectmanager_elements_bo();
 		foreach($this->elements as $id)
 		{
-			$info = $info_bo->read($id);
-			$this->assertArraySubset(array('info_id' => $id), $info, false, "Unable to read infolog datasource $id");
-			$this->assertEquals($status, $info['info_status'], "Project datasource status was {$info['info_status']}, expected $status");
+			list($app, $id) = explode(':', $id);
+
+			switch ($app)
+			{
+				case 'calendar':
+					// Calendar doesn't really have a status
+					$check_status = $status != 'deleted' ? '' : $status;
+					break;
+				case 'projectmanager':
+					// PM is active, not open
+					$check_status = $status == 'open' || $status == 'not-started' ? 'active' : $status;
+					break;
+				case 'tracker':
+					$check_status = $status == 'open' || $status == 'not-started' ? 'Open(status)' : $status;
+					break;
+				case 'timesheet':
+					// Timesheet is almost always ignore
+					$check_status = $status != 'deleted' ? 'ignore' : $status;
+					break;
+				default:
+					$check_status = $status;
+					break;
+			}
+			$ds = $element_bo->datasource($app);
+			$element = $ds->read($id);
+
+			$this->assertEquals($check_status, $element['pe_status'],
+				"$app datasource status was {$element['pe_status']}, expected $status" . ($check_status == $status ? '' : " / $check_status")
+			);
 		}
 	}
 
