@@ -226,7 +226,7 @@ class projectmanager_hooks
 		{
 			$file = Array(
 				'Site configuration' => Egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config&ajax=true'),
-				'Custom fields' => Egw::link('/index.php','menuaction=admin.customfields.index&appname=projectmanager&use_private=1&ajax=true'),
+				'Custom fields' => Egw::link('/index.php','menuaction=admin.admin_customfields.index&appname=projectmanager&use_private=1&ajax=true'),
 				'Global Categories'  => Egw::link('/index.php',array(
 					'menuaction' => 'admin.admin_categories.index',
 					'appname'    => $appname,
@@ -714,7 +714,7 @@ class projectmanager_hooks
 		{
 			$assigned = '0';
 		}
-		
+
 		// Make sure async notification is there
 		if ($data['prefs']['notify_due_planned'] || $data['prefs']['notify_due_real'] ||
 			$data['prefs']['notify_start_planned'] || $data['prefs']['notify_start_real'])
