@@ -8,6 +8,12 @@ require_once realpath(__DIR__.'/../../api/src/test/AppTest.php');	// Application
 
 use Egroupware\Api;
 
+/**
+ * Test deleting a project.
+ *
+ * Tests deleting just the project, deleting the project and datasource elements,
+ * and deleting and restoring with delete history setting.
+ */
 class DeleteTest extends \EGroupware\Api\AppTest
 {
 
