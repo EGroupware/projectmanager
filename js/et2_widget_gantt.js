@@ -14,6 +14,7 @@
 	jsapi.jsapi;
 	/vendor/bower-asset/jquery/dist/jquery.js;
 	/projectmanager/js/dhtmlxGantt/codebase/dhtmlxgantt.js;
+	/projectmanager/js/dhtmlxGantt/codebase/ext/dhtmlxgantt_marker.js;
 	et2_core_inputWidget;
 */
 
@@ -457,6 +458,11 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			});
 			// This render re-calculates start/end dates
 			// this.render();
+		});
+		var markerId = this.gantt.addMarker({
+			start_date: new Date(), //a Date object that sets the marker's date
+			css: "today", //a CSS class applied to the marker
+			text: this.egw().lang("Today") //the marker title
 		});
 
 		// This render re-sizes gantt to work at highest zoom
