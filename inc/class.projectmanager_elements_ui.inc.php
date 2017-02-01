@@ -1325,8 +1325,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		if($ids['contacts']) {
 			$document_merge->contact_ids = $ids['contacts'];
-			unset($ids['contacts']);
 		}
+		unset($ids['contacts']);
 
 		if(isset($this->prefs['document_download_name']))
 		{
@@ -1345,8 +1345,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				return lang('No rights to export more then %1 entries!',(int)$document_merge->export_limit);
 			}
 			$document_merge->elements = $ids['elements'];
-			unset($ids['elements']);
 		}
+		unset($ids['elements']);
 
 		return $document_merge->download($document, $ids, isset($name) ? $name : null, $this->prefs['document_dir']);
 	}
