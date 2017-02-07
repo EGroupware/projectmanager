@@ -61,7 +61,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	public function setUp()
 	{
 		$this->bo = new \projectmanager_bo();
-		$this->mockTracking();
+		$this->mockTracking($this->bo, 'projectmanager_tracking');
 
 		$this->makeProject();
 	}
@@ -83,7 +83,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
                  ->method('track');
 
 		// Delete
-		$this->bo->delete($this->pm_id);
+		$this->assertEquals(1, $this->bo->delete($this->pm_id), 'Failure when trying to delete project');
 
 		// Reset, or it'll just return its data instead of reading from DB
 		$this->bo->data = array();
@@ -479,6 +479,9 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->pm_id = $this->bo->data['pm_id'];
 
 		// Add some elements
+		$this->assertGreaterThan(0, count($GLOBALS['egw_info']['apps']),
+			'No apps found to use as projectmanager elements'
+		);
 		foreach($GLOBALS['egw_info']['apps'] as $app => $app_vals)
 		{
 			// if datasource can not be autoloaded, skip
@@ -719,16 +722,4 @@ class DeleteTest extends \EGroupware\Api\AppTest
 			);
 		}
 	}
-
-	/**
-	 * Sets the tracking object to a mock object
-	 */
-	protected function mockTracking()
-	{
-		$this->bo->tracking = $this->getMockBuilder('projectmanager_tracking')
-			->disableOriginalConstructor()
-			->setMethods(['track'])
-			->getMock($this->bo);
-	}
-
 }
