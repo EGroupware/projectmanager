@@ -71,6 +71,10 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->deleteProject();
 
 		$this->bo = null;
+		
+		// Projectmanager sets a lot of global stuff
+		unset($GLOBALS['projectmanager_bo']);
+		unset($GLOBALS['projectmanager_elements_bo']);
 	}
 
 	public function testDelete()
