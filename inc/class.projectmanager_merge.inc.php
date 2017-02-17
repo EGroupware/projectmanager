@@ -219,7 +219,12 @@ class projectmanager_merge extends Api\Storage\Merge
 		$this->eroles = array();
 		if($this->projectmanager_bo->config['enable_eroles'])
 		{
-			foreach($this->projectmanager_elements_bo->search(array('pm_id' => $id),false) as $element)
+			$elements = $this->projectmanager_elements_bo->search(array('pm_id' => $id),false);
+			if(!is_array($elements))
+			{
+				return;
+			}
+			foreach($elements as $element)
 			{
 				if(!empty($element['pe_eroles']))
 				{
