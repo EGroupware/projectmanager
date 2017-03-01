@@ -670,24 +670,22 @@ class projectmanager_bo extends projectmanager_so
 	 * @param int|array $entry int pm_id or array with project entry
 	 * @return string/boolean string with title, null if project not found or false if no perms to view it
 	 */
-	function link_title( $entry )
+	public static function link_title( $entry )
 	{
 		if (!is_array($entry))
 		{
-			// backing up internal data/state
-			$backup = $this->data;
+			$bo = new projectmanager_bo();
 
 			// reading entry incl. read ACL check, possibly returning false
-			$entry = $this->read($pm_id=$entry);
+			$entry = $bo->read($pm_id=$entry);
 
 			// even though ADD_TIMESHEET means no read, we let them see the title
-			if(!$entry && $this->check_acl(EGW_ACL_ADD_TIMESHEET, $pm_id))
+			if(!$entry && $bo->check_acl(EGW_ACL_ADD_TIMESHEET, $pm_id))
 			{
-				// this is archived by calling parent::read() which does NOT implement ACL
-				$entry = parent::read($pm_id);
+				// this is achieved by calling parent::read() which does NOT implement ACL
+				$so = new projectmanager_so();
+				$entry = $so->read($pm_id);
 			}
-			// restoring after possible parent::read(), so we dont need to read again from db
-			$this->data = $backup;
 		}
 		if (!$entry)
 		{
@@ -1173,7 +1171,7 @@ class projectmanager_bo extends projectmanager_so
 		}
 		$copied = array();
 		Api\Vfs::copy_files($files, "/apps/projectmanager/{$this->data['pm_id']}");
-		
+
 		return $boelements->pm_id;
 	}
 }
