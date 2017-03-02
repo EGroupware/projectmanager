@@ -206,7 +206,12 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				{
 					// Might be keeping this...
 					$link = Link::get_link($data['link_id']);
-					if($link['deleted']) return;
+					if($link['deleted'])
+					{
+						// Need to just delete, without changing links
+						$e_bo->delete(array('pm_id' => $data['id'], 'pe_id' => $data['link_id']), false, false);
+						return;
+					}
 				}
 				$e_bo->delete(array('pm_id' => $data['id'],'pe_id' => $data['link_id']));
 				break;
@@ -559,9 +564,10 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 *
 	 * @param array/int $keys if given array with pm_id and/or pe_id or just an integer pe_id
 	 * @param boolean $delete_sources=false true=delete datasources of the elements too (if supported by the datasource), false dont do it
+	 * @param boolean $unlink = false Internal use only, passing false will skip the unlinking steps
 	 * @return int affected rows, should be 1 if ok, 0 if an error
 	 */
-	function delete($keys=null,$delete_sources=false)
+	function delete($keys=null,$delete_sources=false, $unlink = true)
 	{
 		if ((int) static::DEBUG >= 1 || static::DEBUG === 'delete') {
 			projectmanager_bo::debug_message("projectmanager_elements_bo::delete(" . print_r($keys, true) . ",$delete_sources) this->data[pm_id] = " . $this->data['pm_id']);
@@ -601,14 +607,17 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 		if ($pe_id)
 		{
-			// delete one link
-			Link::unlink($pe_id,'','',0,'','',(boolean)$this->project->history);
+			if($unlink)
+			{
+				// delete one link
+				Link::unlink($pe_id,'','',0,'','',(boolean)$this->project->history);
+			}
 			// update the project
 			$this->project->update($pm_id);
 
 			$this->constraints->delete(array('pe_id' => $pe_id));
 		}
-		elseif ($pm_id)
+		elseif ($pm_id && $unlink)
 		{
 			// delete all links to project $pm_id
 			Link::unlink(0,'projectmanager',$pm_id, '','!file','',(boolean)$this->project->history);

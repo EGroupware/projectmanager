@@ -50,10 +50,6 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	 */
 	public static function tearDownAfterClass()
 	{
-		// Restore original settings
-		Api\Config::save_value(static::HISTORY_SETTING, static::$pm_history_setting, 'projectmanager');
-		Api\Config::save_value(static::HISTORY_SETTING, static::$infolog_history_setting, 'infolog');
-
 		// This removes the database and session
 		parent::tearDownAfterClass();
 	}
@@ -71,6 +67,10 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->deleteProject();
 
 		$this->bo = null;
+
+		// Restore original settings
+		Api\Config::save_value(static::HISTORY_SETTING, static::$pm_history_setting, 'projectmanager');
+		Api\Config::save_value(static::HISTORY_SETTING, static::$infolog_history_setting, 'infolog');
 		
 		// Projectmanager sets a lot of global stuff
 		unset($GLOBALS['projectmanager_bo']);
@@ -449,6 +449,22 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	}
 
 	/**
+	 * Test deleting the datasource(s), but leaving the project alone.
+	 * Deleting the datasource should remove the project element, regardless
+	 * of the history setting.
+	 */
+	public function testDeleteDataSource()
+	{
+		$this->deleteElements();
+		
+		// Force links to run notification now, or elements might stay
+		// usually waits until Egw::on_shutdown();
+		Api\Link::run_notifies();
+
+		$this->checkElements('', 0);
+	}
+
+	/**
 	 * Make a project so we can test deleting it
 	 */
 	protected function makeProject()
@@ -615,12 +631,22 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		
 		// Force to ignore setting
 		$this->bo->history = '';
+		Api\Config::save_value(static::HISTORY_SETTING, '', 'projectmanager');
 		$this->bo->delete($this->pm_id, true);
 
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
 		Api\Link::run_notifies();
 		
+		$this->deleteElements();
+	}
+
+
+	/**
+	 * Delete all the elements
+	 */
+	protected function deleteElements()
+	{
 		// Delete all elements
 		foreach($this->elements as $id)
 		{
