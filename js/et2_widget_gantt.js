@@ -319,7 +319,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			if(!columns[col].hide)
 			{
 				displayed_columns.push(columns[col]);
-				width += parseInt(columns[col]._width) || 0;
+				width += parseInt(columns[col]._width) || 300;
 			}
 
 		}

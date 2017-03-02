@@ -192,12 +192,16 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 	{
 		$time_attributes = array();
 		list($time_attributes['display_format'],$time_attributes['hours_per_day']) = explode(',',$this->config['duration_format']);
+		$title_width = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_element_title_length'] ?
+				// Magic numbers based on current gantt styles, since it requires a number
+				65+$GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_element_title_length']*6.3 : '*';
+		
 		$columns = array(
 			array(
 				'name' => 'text',
 				'label'=> lang('Title'),
 				'tree'=> true,
-				'width'=> 300
+				'width'=> $title_width
 			),
 			array(
 				'name' => 'pe_completion',
