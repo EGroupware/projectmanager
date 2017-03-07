@@ -1160,7 +1160,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$success = $failed = 0;
 				foreach($checked as $id)
 				{
-					$element = $this->read($id);
+					$element = $this->read(array('pe_id' => $id));
 					if(!$this->save(array('pe_status' => $ignore ? 'ignore' : 'new')))
 					{
 						$success++;
