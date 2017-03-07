@@ -527,7 +527,9 @@ app.classes.projectmanager = AppJS.extend(
 				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
 				if(nm)
 				{
-					nm.refresh(_id,_type);
+					// Element list has totals that probably need refreshed, so do a
+					// full refresh, not just intelligent by type refresh.
+					nm.refresh(_id);
 				}
 				return false;
 			case 'gantt':
