@@ -132,7 +132,7 @@ class projectmanager_bo extends projectmanager_so
 	var $history = '';
 
 	const DELETED_STATUS = 'deleted';
-	
+
 	/**
 	 * Names of all config vars
 	 *
@@ -174,7 +174,7 @@ class projectmanager_bo extends projectmanager_so
 
 		// Keep deleted projects?
 		$this->history = $this->config['history'];
-		
+
 		if ($instanciate) $this->instanciate($instanciate);
 
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message("projectmanager_bo::projectmanager_bo($pm_id) finished");
@@ -367,7 +367,7 @@ class projectmanager_bo extends projectmanager_so
 	 * @param array $keys if given array with col => value pairs to characterise the rows to delete
 	 * @param boolean $delete_sources=false true=delete datasources of the elements too (if supported by the datasource), false dont do it
 	 * @param boolean $skip_notification Do not send notification of delete
-	 * 
+	 *
 	 * @return int affected rows, should be 1 if ok, 0 if an error
 	 */
 	function delete($keys=null,$delete_sources=false, $skip_notification=False)
@@ -388,7 +388,7 @@ class projectmanager_bo extends projectmanager_so
 		$deleted['pm_status'] = self::DELETED_STATUS;
 		$deleted['pm_modified'] = time();
 		$deleted['pm_modifier'] = $this->user;
-		
+
 		// if we have history switched on and not an already deleted item --> set only status deleted
 		if ($this->history && $project['pm_status'] != self::DELETED_STATUS)
 		{
@@ -1234,7 +1234,7 @@ class projectmanager_bo extends projectmanager_so
 		}
 		$copied = array();
 		Api\Vfs::copy_files($files, "/apps/projectmanager/{$this->data['pm_id']}");
-		
+
 		return $boelements->pm_id;
 	}
 
@@ -1262,7 +1262,6 @@ class projectmanager_bo extends projectmanager_so
 			$GLOBALS['egw']->preferences->__construct($user);
 			$GLOBALS['egw_info']['user']['preferences'] = $GLOBALS['egw']->preferences->read_repository();
 			$GLOBALS['egw']->acl->__construct($user);
-			$GLOBALS['egw']->acl->read_repository();
 			$this->so = new projectmanager_so();
 
 			$notified_pm_ids = array();
@@ -1280,7 +1279,7 @@ class projectmanager_bo extends projectmanager_so
 				$tomorrow = $today + 24*60*60;
 
 				$filter = "$today <= $filter_field AND $filter_field < $tomorrow";
-				
+
 				//error_log(__METHOD__."() checking with $pref filter '$filter' ($pref_value) for user $user ($email)");
 
 				$params = array('filter' => $filter, 'custom_fields' => true, 'subs' => true);
@@ -1325,7 +1324,7 @@ class projectmanager_bo extends projectmanager_so
 							break;
 					}
 					//error_log("notifiying $user($email) about {$project['pm_title']}: {$project['message']}");
-					
+
 					// Allow notification to have HTML
 					$this->tracking->html_content_allow = true;
 					$this->tracking->send_notification($project,null,$email,$user,$pref);
