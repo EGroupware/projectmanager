@@ -392,7 +392,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 				'caption' => 'Open',
 				'allowOnMultiple' => false,
 				'popup' => '600x450',
-				'url' => 'menuaction=projectmanager.projectmanager_pricelist_ui.edit&pm_id='.$this->pm_id.'&pl_id=$id',
+				'onExecute' => 'javaScript:app.projectmanager.edit_price',
 				'group' => $group=1,
 				'default' => true,
 			),

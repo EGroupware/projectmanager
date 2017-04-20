@@ -800,6 +800,29 @@ app.classes.projectmanager = AppJS.extend(
 	},
 
 	/**
+	 * Action callback to edit a price on the price list
+	 *
+	 * @param {egwAction} action
+	 * @param {egwActionObject[]} selected
+	 */
+	edit_price: function(action, selected)
+	{
+		var extra = {
+			menuaction: 'projectmanager.projectmanager_pricelist_ui.edit',
+			pm_id: this.getState().col_filter.pm_id
+		};
+		if(selected[0] && selected[0].id)
+		{
+			var data = this.egw.dataGetUIDdata(selected[0].id);
+			if(data && data.data)
+			{
+				extra.pl_id = data.data.pl_id;
+			}
+		}
+		egw.openPopup(egw.link('/index.php', extra),600,450,'','filemanager');
+	},
+
+	/**
 	 * Action callback to show the filemanager for a selected project
 	 *
 	 * @param {egwAction} action
