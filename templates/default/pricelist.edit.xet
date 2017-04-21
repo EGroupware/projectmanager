@@ -116,9 +116,9 @@
 				<row>
 					<tabbox span="all" id="tabs">
 						<tabs>
-							<tab label="Price" statustext="General pricelist"/>
-							<tab label="Project" statustext="Project specific title, prices, ..."/>
-							<tab label="Description" statustext="Description"/>
+							<tab id="price" label="Price" statustext="General pricelist"/>
+							<tab id="project" label="Project" statustext="Project specific title, prices, ..."/>
+							<tab id="description" label="Description" statustext="Description"/>
 						</tabs>
 						<tabpanels>
 							<template id="projectmanager.pricelist.edit.price"/>
