@@ -826,6 +826,28 @@ app.classes.projectmanager = AppJS.extend(
 		}
 		egw.openPopup(egw.link('/index.php', extra),600,450,'','filemanager');
 	},
+	
+	/**
+	 * Add a new price to a pricelist
+	 * 
+	 * Used by the add button on the pricelist index
+	 * 
+	 * @param {et2_widget} widget
+	 */
+	add_price: function add_price(widget)
+	{
+		var extras = {
+			menuaction: 'projectmanager.projectmanager_pricelist_ui.edit',
+			pm_id: 0
+		}
+		var pm_filter = widget.getRoot().getWidgetById('pm_id');
+		if(pm_filter)
+		{
+			extras.pm_id = pm_filter.get_value();
+		}
+		window.open(this.egw.link('/index.php',extras),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes');
+		return false;
+	},
 
 	/**
 	 * Action callback to show the filemanager for a selected project

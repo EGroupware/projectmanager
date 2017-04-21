@@ -67,6 +67,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		$tpl = new Etemplate('projectmanager.pricelist.edit');
 		if (!is_array($content))
 		{
+			$this->pm_id = (int)$_GET['pm_id'];
 			if (($pl_id = (int) $_GET['pl_id']) && $this->read(array(
 				'pl_id' => $pl_id,
 				'pm_id' => $this->pm_id ? array($this->pm_id,0) : 0,
