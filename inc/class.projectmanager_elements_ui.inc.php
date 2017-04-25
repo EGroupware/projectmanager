@@ -486,7 +486,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if(!$query_in['csv_export'])
 		{
 			Api\Cache::setSession('projectmanager', 'projectelements_list',
-				array_diff_key ($query_in, array_flip('rows','actions','action_links','placeholder_actions')));
+				array_diff_key ($query_in, array_flip(array('rows','actions','action_links','placeholder_actions'))));
 		}
 
 		//echo "<p>project_elements_ui::get_rows(".print_r($query,true).")</p>\n";
