@@ -552,7 +552,7 @@ class projectmanager_ui extends projectmanager_bo
 		// Don't keep pm_id filter in seesion
 		unset($query_in['col_filter']['pm_id']);
 		Api\Cache::setSession('projectmanager', 'project_list',
-			array_diff_key ($query_in, array_flip('rows','actions','action_links','placeholder_actions')));
+			array_diff_key ($query_in, array_flip(array('rows','actions','action_links','placeholder_actions'))));
 
 		//echo "<p>projectmanager_ui::get_rows(".print_r($query,true).")</p>\n";
 		// save the state of the index in the user prefs
