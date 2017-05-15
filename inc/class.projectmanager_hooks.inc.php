@@ -225,7 +225,12 @@ class projectmanager_hooks
 		if ($GLOBALS['egw_info']['user']['apps']['admin'])
 		{
 			$file = Array(
-				'Site configuration' => Egw::link('/index.php','menuaction=projectmanager.projectmanager_admin.config&ajax=true'),
+				'Site configuration' => Egw::link('/index.php',array(
+					'menuaction' => 'projectmanager.projectmanager_admin.config',
+					// As long as CKEditor needs CSP exceptions, this needs to
+					// load in an iframe
+					//'ajax' => 'true',
+				)),
 				'Custom fields' => Egw::link('/index.php','menuaction=admin.admin_customfields.index&appname=projectmanager&use_private=1&ajax=true'),
 				'Global Categories'  => Egw::link('/index.php',array(
 					'menuaction' => 'admin.admin_categories.index',
