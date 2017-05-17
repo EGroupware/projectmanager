@@ -229,7 +229,7 @@ class projectmanager_hooks
 					'menuaction' => 'projectmanager.projectmanager_admin.config',
 					// As long as CKEditor needs CSP exceptions, this needs to
 					// load in an iframe
-					//'ajax' => 'true',
+					'ajax' => 'false',
 				)),
 				'Custom fields' => Egw::link('/index.php','menuaction=admin.admin_customfields.index&appname=projectmanager&use_private=1&ajax=true'),
 				'Global Categories'  => Egw::link('/index.php',array(
