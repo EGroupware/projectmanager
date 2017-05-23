@@ -1,3 +1,4 @@
+%1 days in advance	projectmanager	en	%1 days in advance
 %1 element(s) updated	projectmanager	en	%1 element(s) updated.
 %1 new project-elements imported	projectmanager	en	%1 new project elements imported.
 %1 project(s) %2	projectmanager	en	%1 project(s) %2
@@ -7,6 +8,8 @@
 %1 records imported	projectmanager	en	%1 records imported.
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	en	%1 records read. Not yet imported, go %2back%3 and un-check Test import.
 %1 times permission denied, %2 projects deleted	projectmanager	en	%1 times permission denied, %2 projects deleted.
+%1 you are responsible for is due at %2	projectmanager	en	%1 you are responsible for is due at %2
+%1 you are responsible for is starting at %2	projectmanager	en	%1 you are responsible for is starting at %2
 (project id) project title - template name	projectmanager	en	(Project ID) project title - template name
 - planned	projectmanager	en	- planned
 - re-planned	projectmanager	en	- re-planned
@@ -103,6 +106,12 @@ details of cumulated	projectmanager	en	Details of cumulated
 details of subelements	projectmanager	en	Details of subelements
 directory with documents to insert project data	projectmanager	en	Directory with documents to insert project data
 do not use that entry as project-element	projectmanager	en	Do not use that entry as project element
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	en	Do you want a notification, if items are about to start according to their planned dates?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	en	Do you want a notification, if items are about to start according to their real dates?
+do you want a notification, if items are due according to their planned dates?	projectmanager	en	Do you want a notification, if items are due according to their planned dates?
+do you want a notification, if items are due according to their real dates?	projectmanager	en	Do you want a notification, if items are due according to their real dates?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	en	Do you want a notification, if items get assigned to you or assigned items get updated?
+do you want a notification, if items you created get updated?	projectmanager	en	Do you want a notification, if items you created get updated?
 document '%1' does not exist or is not readable for you!	projectmanager	en	Document '%1' does not exist or is not readable for you!
 document download filename	projectmanager	en	Document download file name
 done (100%)	projectmanager	en	Done (100%)
@@ -142,9 +151,9 @@ elements which have to be finished before this can start	projectmanager	en	Eleme
 empty	projectmanager	en	Empty
 empty for all	projectmanager	en	Empty for all
 encode non-ascii	projectmanager	en	Encode non-ascii
+enddate	projectmanager	en	End date
 ends after	projectmanager	en	Ends after
 ends before	projectmanager	en	Ends before
-enddate	projectmanager	en	End date
 error: deleting element role !!!	projectmanager	en	Error deleting element role!
 error: deleting price !!!	projectmanager	en	Error deleting price!
 error: deleting project !!!	projectmanager	en	Error deleting project!
@@ -171,6 +180,7 @@ exists	projectmanager	en	Exists.
 exit without saving	projectmanager	en	Exit without saving
 export definition to use for nextmatch export (elements)	projectmanager	en	Export definition to use for nextmatch export (Elements)
 export definition to use for nextmatch export (projects)	projectmanager	en	Export definition to use for nextmatch export (Projects)
+export definition to use for nextmatch export (projekte)	projectmanager	en	Export definition to use for nextmatch export (Projekte)
 exports a list of project elements to a csv file.	projectmanager	en	Exports a list of project elements to a CSV file.
 exports a list of projects to a csv file.	projectmanager	en	Exports a list of projects to a CSV file.
 external	projectmanager	en	External
@@ -254,8 +264,11 @@ nonactive	projectmanager	en	Non active
 not available	projectmanager	en	Not available
 not started (0%)	projectmanager	en	Not started (0%)
 not working	projectmanager	en	Not working
+notification settings	projectmanager	en	Notification settings
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	en	Number of characters to which title of Gantt chart elements should be shortened to.
 number of records to read (%1)	projectmanager	en	Number of records to read (%1)
+one day after	projectmanager	en	one day after
+one day in advance	projectmanager	en	one day in advance
 only this project	projectmanager	en	Only this project
 order of sub-project bars in ganttcharts	projectmanager	en	Order of sub-project bars in Gantt charts
 overwrite the datasource	projectmanager	en	Overwrite the data source
@@ -328,6 +341,12 @@ real end	projectmanager	en	Real end
 real end date and time	projectmanager	en	Real end date and time
 real start	projectmanager	en	Real start
 real start date and time	projectmanager	en	Real start date and time
+receive notifications about due entries (planned dates)	projectmanager	en	Receive notifications about due entries (planned dates)
+receive notifications about due entries (real dates)	projectmanager	en	Receive notifications about due entries (real dates)
+receive notifications about items assigned to you with these roles	projectmanager	en	Receive notifications about items assigned to you with these roles
+receive notifications about own items	projectmanager	en	Receive notifications about own items
+receive notifications about starting entries (planned dates)	projectmanager	en	Receive notifications about starting entries (planned dates)
+receive notifications about starting entries (real dates)	projectmanager	en	Receive notifications about starting entries (real dates)
 remark	projectmanager	en	Remark
 replanned time in minutes	projectmanager	en	Re-planned time in minutes
 resources	projectmanager	en	Resources
@@ -335,6 +354,7 @@ role	projectmanager	en	Role
 role deleted	projectmanager	en	Role deleted.
 role saved	projectmanager	en	Role saved.
 roles	projectmanager	en	Roles
+same day	projectmanager	en	same day
 save the changes made	projectmanager	en	Save the changes made
 save this project element	projectmanager	en	Save this project element
 select a project	projectmanager	en	Select a project
@@ -362,14 +382,14 @@ show planned times instead of the real times	projectmanager	en	Show planned time
 show status icons of the datasources	projectmanager	en	Show status icons of the data sources
 show the project selection as	projectmanager	en	Show the project selection as
 site configuration saved	projectmanager	en	Site configuration saved.
-starts after	projectmanager	en	Starts after
-starts before	projectmanager	en	Starts before
 start date, end date	projectmanager	en	Start Date, End Date
 start working on %1	projectmanager	en	Start working on %1
 start, end, category, ...	projectmanager	en	Start, End, Category, ...
 start- & enddate	projectmanager	en	Start & End date
 startdate	projectmanager	en	Start date
 startrecord	projectmanager	en	Start record
+starts after	projectmanager	en	Starts after
+starts before	projectmanager	en	Starts before
 status filter	projectmanager	en	Status filter
 status set	projectmanager	en	Status set
 style used for everything but elements. some fonts have only normal style.	projectmanager	en	Style used for everything but elements. Some fonts have only normal style.

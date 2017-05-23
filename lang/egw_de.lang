@@ -1,3 +1,4 @@
+%1 days in advance	projectmanager	de	%1 Tage im Voraus
 %1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert
 %1 new project-elements imported	projectmanager	de	%1 neue Projektelemente importiert
 %1 project(s) %2	projectmanager	de	%1 Projekt(e) %2
@@ -7,6 +8,8 @@
 %1 records imported	projectmanager	de	%1 Datensätze importiert
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	de	%1 Datensätze gelesen (noch nicht importiert, Sie können %2zurück%3 gehen und Testimport ausschalten)
 %1 times permission denied, %2 projects deleted	projectmanager	de	%1 mal Zugriff verweigert, %2 Projekte gelöscht
+%1 you are responsible for is due at %2	projectmanager	de	%1 für das Sie verantwortlich sind ist fällig am %2
+%1 you are responsible for is starting at %2	projectmanager	de	%1 für das Sie verantwortlich sind startet am %2
 (project id) project title - template name	projectmanager	de	(Projekt ID) Projekt Titel - Name der Vorlage
 - planned	projectmanager	de	- geplant
 - re-planned	projectmanager	de	- umgeplant
@@ -63,7 +66,6 @@ charset of file	projectmanager	de	Zeichensatz der Datei
 charset of the above selected font	projectmanager	de	Zeichensatz des oben ausgewählten Font
 check all	projectmanager	de	Alle auswählen
 check to make one element role assignable to multiple elements	projectmanager	de	Anhaken um Element-Rollen
-mehrfach zuweisen zu können
 choose the default filename for downloaded documents.	projectmanager	de	Wählen Sie den Standard Dateinamen für herunterladbare Dokumente
 close the window, discard the changes made	projectmanager	de	Fenster schließen und Änderungen verwerfen
 completion	projectmanager	de	Komplettierung
@@ -104,6 +106,12 @@ details of cumulated	projectmanager	de	Details der zusammengefassten
 details of subelements	projectmanager	de	Details der Unterelemente
 directory with documents to insert project data	projectmanager	de	Verzeichnis mit Vorlagedokumenten für das Projektmanager-Modul
 do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt started gemäß geplantem Startdatum?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt started gemäß tatsächlichem Startdatum?
+do you want a notification, if items are due according to their planned dates?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt fällig wird gemäß geplantem Enddatum?
+do you want a notification, if items are due according to their real dates?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt fällig wird gemäß tatsächlichem Enddatum?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn Sie einem Projekt zugeordnet werden oder Ihnen zugewiesene Projekte gespeichert werden?
+do you want a notification, if items you created get updated?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt das Sie erstellt haben gespeichert wird?
 document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung, oder ist für Sie nicht lesbar!
 document download filename	projectmanager	de	Name des heruntergeladenen Dokuments
 done (100%)	projectmanager	de	erledigt (100%)
@@ -114,8 +122,8 @@ edit milestone	projectmanager	de	Meilenstein bearbeiten
 edit price	projectmanager	de	Preis bearbeiten
 edit project	projectmanager	de	Projekt bearbeiten
 edit project-elements	projectmanager	de	Projektelemente bearbeiten
-edit this milestone	projectmanager	de	Diesen Meilenstein bearbeiten
 edit this element role	projectmanager	de	Bearbeite diese Element-Rolle
+edit this milestone	projectmanager	de	Diesen Meilenstein bearbeiten
 edit this price	projectmanager	de	Diesen Preis bearbeiten
 edit this project	projectmanager	de	Dieses Projekt bearbeiten
 edit this project-element	projectmanager	de	Dieses Projektelement bearbeiten
@@ -143,9 +151,9 @@ elements which have to be finished before this can start	projectmanager	de	Eleme
 empty	projectmanager	de	Leer
 empty for all	projectmanager	de	leer für alle
 encode non-ascii	projectmanager	de	Nicht ASCII kodieren
+enddate	projectmanager	de	Enddatum
 ends after	projectmanager	de	Endet nach
 ends before	projectmanager	de	Endet vor
-enddate	projectmanager	de	Enddatum
 error: deleting element role !!!	projectmanager	de	Fehler beim Löschen der Element-Rolle
 error: deleting price !!!	projectmanager	de	Fehler: Preis löschen !!!
 error: deleting project !!!	projectmanager	de	Fehler: Projekt löschen !!!
@@ -172,6 +180,7 @@ exists	projectmanager	de	besteht bereits
 exit without saving	projectmanager	de	Abbrechen ohne zu speichern
 export definition to use for nextmatch export (elements)	projectmanager	de	Export Definition für die Elementliste
 export definition to use for nextmatch export (projects)	projectmanager	de	Export definition für die Projektliste
+export definition to use for nextmatch export (projekte)	projectmanager	de	Export Definition für Projekte aus der Projektliste
 exports a list of project elements to a csv file.	projectmanager	de	Exportiert eine Liste von Projekt-Elementen als CSV-Datei
 exports a list of projects to a csv file.	projectmanager	de	Exportiert eine Liste von Projekten als CSV-Datei
 external	projectmanager	de	Externer Mitarbeiter
@@ -255,9 +264,11 @@ nonactive	projectmanager	de	Nicht aktiv
 not available	projectmanager	de	Nicht verfügbar
 not started (0%)	projectmanager	de	nicht gestartet (0%)
 not working	projectmanager	de	nicht arbeiten
+notification settings	projectmanager	de	Einstellungen der Benachrichtigungen
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	de	Anzahl der Zeichen auf die die Titel der Gantt-Diagramm-Elemente gekürzt werden sollen.
 number of records to read (%1)	projectmanager	de	Anzahl der einzulesenden Datensätze (%1)
-ongoing (0 < % < 100)	projectmanager	de	In Arbeit (0 < % < 100)
+one day after	projectmanager	de	am nächsten Tag
+one day in advance	projectmanager	de	am Vortag
 only this project	projectmanager	de	Nur dieses Projekt
 order of sub-project bars in ganttcharts	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Gantt-Diagramm
 overwrite the datasource	projectmanager	de	Anzeige in der Elementliste überschreiben
@@ -330,6 +341,12 @@ real end	projectmanager	de	Tatsächliches Ende
 real end date and time	projectmanager	de	Tatsächliches Enddatum und -zeit
 real start	projectmanager	de	Tatsächlicher Start
 real start date and time	projectmanager	de	Tatsächliches Startdatum und -zeit
+receive notifications about due entries (planned dates)	projectmanager	de	Erhalte Benachrichtigungen über fällige Einträge (geplantes Ende)
+receive notifications about due entries (real dates)	projectmanager	de	Erhalte Benachrichtigungen über fällige Einträge (tatsächliches Ende)
+receive notifications about items assigned to you with these roles	projectmanager	de	Erhalten Benachrichtigungen von Ihren Projekten mit folgenden zugewiesenen Rollen
+receive notifications about own items	projectmanager	de	Erhalte Benachrichtigungen über eigene Projekte
+receive notifications about starting entries (planned dates)	projectmanager	de	Erhalte Benachrichtigungen über startende Einträge (geplanter Start)
+receive notifications about starting entries (real dates)	projectmanager	de	Erhalte Benachrichtigungen über startende Einträge (tatsächlicher Start)
 remark	projectmanager	de	Bemerkung
 replanned time in minutes	projectmanager	de	Neu geplante Zeit in Minuten
 resources	projectmanager	de	Ressourcen
@@ -337,6 +354,7 @@ role	projectmanager	de	Rolle
 role deleted	projectmanager	de	Rolle gelöscht
 role saved	projectmanager	de	Rolle gespeichert
 roles	projectmanager	de	Rollen
+same day	projectmanager	de	gleichen Tag
 save the changes made	projectmanager	de	Änderungen speichern
 save this project element	projectmanager	de	Dieses Projektelement speichern
 select a project	projectmanager	de	Ein Projekt auswählen
@@ -364,14 +382,14 @@ show planned times instead of the real times	projectmanager	de	Geplante Zeiten s
 show status icons of the datasources	projectmanager	de	Status Icons der Datenquellen anzeigen
 show the project selection as	projectmanager	de	Zeige die Projektauswahl als
 site configuration saved	projectmanager	de	Konfiguration gespeichert
-starts after	projectmanager	de	Startet nach
-starts before	projectmanager	de	Startet vor
 start date, end date	projectmanager	de	Startdatum, Enddatum
 start working on %1	projectmanager	de	Arbeitsbeginn am %1
 start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
 start- & enddate	projectmanager	de	Start- und Enddatum
 startdate	projectmanager	de	Startdatum
 startrecord	projectmanager	de	Startdatensatz
+starts after	projectmanager	de	Startet nach
+starts before	projectmanager	de	Startet vor
 status filter	projectmanager	de	Status Filter
 status set	projectmanager	de	Status geändert
 style used for everything but elements. some fonts have only normal style.	projectmanager	de	Stil der für alles außer Elementen verwendet wird. Einige Fonts haben nur den Stil Normal.
