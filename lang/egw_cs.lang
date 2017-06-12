@@ -1,9 +1,13 @@
 %1 element(s) updated	projectmanager	cs	%1 součástí aktualizováno
 %1 new project-elements imported	projectmanager	cs	%1 nových součástí projektu importováno
+%1 project(s) %2	projectmanager	cs	%1 projekt(ů) %2
+%1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	cs	%1 projekt(ů) %2, %3 selhalo kvůli nedostatečnému oprávnění!
+%1 project-element(s) deleted.	projectmanager	cs	%1 součást(í) projektu bylo smazáno.
 %1 projects deleted	projectmanager	cs	%1 projektů smazáno
 %1 records imported	projectmanager	cs	%1 záznamů naimportováno
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	cs	%1 záznamů načteno (zatím nebyly naimportovány, můžete se vrátit %2zpět%3 a odškrtnout Testovat import)
 %1 times permission denied, %2 projects deleted	projectmanager	cs	%1 krát přístup zamítnut, %2 projektů smazáno
+(project id) project title - template name	projectmanager	cs	(Identifikace projektu) název projektu - název šablony
 - planned	projectmanager	cs	- plánované
 - re-planned	projectmanager	cs	- přeplánované
 0ngoing (0 < % < 100)	projectmanager	cs	Pokračující (0 < % < 100)
@@ -18,11 +22,19 @@ add a new project	projectmanager	cs	Přidat nový projekt
 add element	projectmanager	cs	Přidat součást
 add existing	projectmanager	cs	Přidat existující
 add milestone	projectmanager	cs	Přidat milník
+add or edit element roles	projectmanager	cs	Přidat nebo změnit základní role
 add or edit roles and their acl	projectmanager	cs	Přidat nebo editovat role a jejich ACL
 add price	projectmanager	cs	Přidat cenu
 add project	projectmanager	cs	Přidat projekt
 add project-elements	projectmanager	cs	Přidat součásti projektu
 add this role	projectmanager	cs	Přidat roli
+add timesheet	projectmanager	cs	Přidat časovou tabulku
+add timesheet only	projectmanager	cs	Pouze přidat časovou tabulku
+addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	cs	Jednotlivé záznamy adresáře připojené k projektu, mohou být použity jako příjemci pošty. Dostupná pole jsou
+addressbook fields	projectmanager	cs	Pole adresáře
+all projects	projectmanager	cs	Všechny projekty
+all roles	projectmanager	cs	Všechny role
+all_roles	projectmanager	cs	Všechny role
 allow users to change their working times	projectmanager	cs	Povolit uživatelům změnit jejich pracovní časy
 allowed accounting types	projectmanager	cs	Povolené typy účtování
 allowed units	projectmanager	cs	Povolené jednotky
@@ -32,6 +44,8 @@ apply the changes	projectmanager	cs	Použít změny
 archive	projectmanager	cs	Archiv
 assistant	projectmanager	cs	Asistent
 at which time do you start working on the given day.	projectmanager	cs	V kolik hodin začínáte daný den pracovat.
+availability settings	projectmanager	cs	Dostupné nastavení
+available fields for this plugin:	projectmanager	cs	Dostupná pole pro zento zásuvný modul:
 availible	projectmanager	cs	Dostupný
 billable	projectmanager	cs	vyúčtovatelný
 bookable	projectmanager	cs	rezervovatelný
@@ -40,11 +54,20 @@ budget (no pricelist)	projectmanager	cs	Rozpočet (bez ceníku)
 budget and pricelist	projectmanager	cs	Rozpočet a ceník
 by	projectmanager	cs	od
 calculate budget by quantity (eg. time) and price	projectmanager	cs	Spočítat rozpočet na základě množství (např. času) a ceny
+can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	cs	Může být použito se základními rolemi a s tabulkami zásuvných modulů "eRoles" a "elements"
+category in %1 project-element(s) updated.	projectmanager	cs	Byla zaktualizována kategorie v %1 součástech projektu.
+category set	projectmanager	cs	Nastavení kategorie
+change category	projectmanager	cs	Změna kategorie
+change the following details of %s	projectmanager	cs	Změna těchto údajů %s
 charset of file	projectmanager	cs	Znaková sada souboru
 charset of the above selected font	projectmanager	cs	Znaková sada výše vybraného písma
 check all	projectmanager	cs	Vybrat vše
+check to make one element role assignable to multiple elements	projectmanager	cs	Role součásti je přiřaditelná více součástem
+choose the default filename for downloaded documents.	projectmanager	cs	Zvolte přednastavené jméno souboru pro stažené dokumenty.
 close the window, discard the changes made	projectmanager	cs	Zavřít okno, zahodit provedené změny
+completion	projectmanager	cs	Dokončení
 constraints	projectmanager	cs	Omezení
+contact fields for serial letters	projectmanager	cs	Pole s kontakty pro hromadnou poštu
 conversation between days and hours, default 8	projectmanager	cs	převod mezi dny a hodinamy, výchozí 8
 coordinator	projectmanager	cs	Koordinátor
 cost per time	projectmanager	cs	Cena za čas
@@ -52,6 +75,7 @@ create a new empty project or use a template	projectmanager	cs	Vytvořit nový p
 create new links	projectmanager	cs	Vytvořit nové odkazy
 created	projectmanager	cs	vytvořeno
 created a ganttchart from the checked projects	projectmanager	cs	Vytvořen Ganttův diagram z vybraných projektů
+creation date and time	projectmanager	cs	Datum a čas vytvoření
 creator	projectmanager	cs	Tvůrce
 csv-fieldname	projectmanager	cs	CSV-jméno položky
 csv-filename	projectmanager	cs	CSV-jméno souboru
@@ -59,12 +83,15 @@ csv-import	common	cs	CSV-import
 cumulated elements too	projectmanager	cs	Také kumulované prvky
 custom fields	projectmanager	cs	Uživatelsky definované položky
 customer title	projectmanager	cs	Jméno klienta
+data exchange settings	projectmanager	cs	Nastavení výměny dat
 datasource	projectmanager	cs	Datový zdroj
 datasources too	projectmanager	cs	datové zdroje také
 dates	projectmanager	cs	Datumy
 days	projectmanager	cs	dny
+default action on double-click	projectmanager	cs	Přednastavená akce při dvojkliku
 default all and a selectbox to choose	projectmanager	cs	výchozí vše a rozbalovací nabídka pro výběr
 delete all checked projects	projectmanager	cs	Smazat všechny vybrané projekty
+delete this element role	projectmanager	cs	Smazat tuto roli součásti
 delete this milestone	projectmanager	cs	Smazat milník
 delete this price	projectmanager	cs	Smazat cenu
 delete this project	projectmanager	cs	Smazat projekt
@@ -74,128 +101,221 @@ deleted	projectmanager	cs	smazáno
 depth of display	projectmanager	cs	Hloubka zobrazení
 details of cumulated	projectmanager	cs	Detaily kumulovaných
 details of subelements	projectmanager	cs	Detaily dílčích součástí
+directory with documents to insert project data	projectmanager	cs	Složka s dokumenty pro vložení informací o projektu
 do not use that entry as project-element	projectmanager	cs	nepoužívat tento záznam jako součást projektu
 document '%1' does not exist or is not readable for you!	projectmanager	cs	Dokument '%1' neexistuje nebo nemáte oprávnění k jeho čtení!
+document download filename	projectmanager	cs	Jméno pro stažený dokument
 done (100%)	projectmanager	cs	Hotovo (100%)
-edit access, incl. editing budget and elements	projectmanager	cs	oprávnění k editaci, včetně úprav rozpočtu a součástí
-edit budget	projectmanager	cs	Editovat rozpočet
-edit milestone	projectmanager	cs	Editovat milník
-edit price	projectmanager	cs	Editovat cenu
-edit project	projectmanager	cs	Editovat projekt
-edit project-elements	projectmanager	cs	Editovat součásti projektu
-edit this milestone	projectmanager	cs	Editovat tento milník
-edit this price	projectmanager	cs	Editovat tuto cenu
-edit this project	projectmanager	cs	Editovat tento projekt
-edit this project-element	projectmanager	cs	Editovat tuto součást projektu
-edit this role	projectmanager	cs	Editovat tuto roli
+edit access, incl. editing budget and elements	projectmanager	cs	Změnit oprávnění k úpravám, včetně úprav rozpočtu a součástí
+edit budget	projectmanager	cs	Změnit rozpočet
+edit element roles	projectmanager	cs	Změnit role součásti
+edit milestone	projectmanager	cs	Změnit milník
+edit price	projectmanager	cs	Změnit cenu
+edit project	projectmanager	cs	Změnit projekt
+edit project-elements	projectmanager	cs	Změnit součásti projektu
+edit this element role	projectmanager	cs	Změnit roli této součásti
+edit this milestone	projectmanager	cs	Změnit tento milník
+edit this price	projectmanager	cs	Změnit tuto cenu
+edit this project	projectmanager	cs	Změnit tento projekt
+edit this project-element	projectmanager	cs	Změnit tuto součást projektu
+edit this role	projectmanager	cs	Změnit tuto roli
+element category	projectmanager	cs	Kategorie součásti
+element details	projectmanager	cs	Podrobnosti součásti
+element id	projectmanager	cs	Identifikace součásti
+element list	projectmanager	cs	Seznam součástí
+element modifier	projectmanager	cs	Součást změnil
+element role	projectmanager	cs	Role součásti
+element role deleted	projectmanager	cs	Role součásti byla smazána.
+element role saved	projectmanager	cs	Role součásti byla uložena.
+element role title	projectmanager	cs	Název role součásti.
+element roles	projectmanager	cs	Role součásti
+element roles defined as "mutliple" can be used here.	projectmanager	cs	Zde může být použita role součásti, definovaná jako složená.
+element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	cs	Možnost používat role součástí není povolena ve vašem obecném nastavení pro Správce projektů
+element roles:	projectmanager	cs	Role součástí:
+element status	projectmanager	cs	Stav součásti
+element title	projectmanager	cs	Název součásti
 elementlist	projectmanager	cs	Seznam součástí
+elements	projectmanager	cs	Součásti
 elements of elements	projectmanager	cs	Součásti součástí
 elements that can't start before this one is finished	projectmanager	cs	Součásti které nemohou začít dříve, než je tato dokončena
 elements which have to be finished before this can start	projectmanager	cs	Součásti, které musí být ukončeny dříve než tato bude moci začít
 empty	projectmanager	cs	Prázdný
 empty for all	projectmanager	cs	prázdné znamená vše
 encode non-ascii	projectmanager	cs	Kódovat ne-ascii
-end before	projectmanager	cs	Konec před
 enddate	projectmanager	cs	Koncové datum
+ends after	projectmanager	cs	Končí po
+ends before	projectmanager	cs	Končí před
+error: deleting element role !!!	projectmanager	cs	Chyba při mazání role součásti!
 error: deleting price !!!	projectmanager	cs	Chyba: mazání ceny !!!
 error: deleting project !!!	projectmanager	cs	Chyba: mazání projektu !!!
 error: deleting project-element !!!	projectmanager	cs	Chyba: mazání součásti projektu !!!
 error: deleting role !!!	projectmanager	cs	Chyba: mazání role !!!
 error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	cs	Chyba: ID projektu již existuje, vyberte jiné nebo ponechte prázdné pro automatické vygenerování
 error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	cs	Chyba: byla nalezena rekurze - při vytváření stromu bylo id %1 nalezeno v cestě více než jedenkrát:
+error: saving element role !!!	projectmanager	cs	Chyba při ukládání role součásti!
 error: saving milestone	projectmanager	cs	Chyba: ukládání milníku
 error: saving role !!!	projectmanager	cs	Chyba: ukládání role !!!
 error: saving the price (%1) !!!	projectmanager	cs	Chyba: ukládání ceny (%1) !!!
 error: saving the project (%1) !!!	projectmanager	cs	Chyba: ukládání projektu (%1) !!!
 error: saving the project-element (%1) !!!	projectmanager	cs	Chyba: ukládání součásti projektu (%1) !!!
 everything recursive	projectmanager	cs	Vše rekurzivní
+example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	cs	Příklad {{IF n_prefix~Pan~Vážený pane~Vážená paní}} - hledá se výskyt slova "Pan" v poli "n_prefix", pokud je nalezeno, vloží se  text Vážený pane, jinak Vážená paní.
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	cs	Příklad {{LETTERPREFIXCUSTOM n_prefix title n_family}} - Příklad: Mr Dr. James Miller
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	cs	Příklad {{NELF role}} - pokud pole role není prázdné, bude na nový řádek vypsán obsah pole role.
+example {{nelfnv role}} - if field role is not empty, set a lf without any value of the field	projectmanager	cs	Příklad {{NELFNV role}} - pokud pole role není prázdné, nastaví se pozice na nový řádek ale obsah pole role nebude vypsáno.
+example:	projectmanager	cs	Příklad:
+examples:	projectmanager	cs	Příklady:
 existing data will be overwrited if checked	projectmanager	cs	Pokud zaškrtnete, budou stávající data přepsána
 existing links	projectmanager	cs	Stávající odkazy
+exists	projectmanager	cs	Existuje.
 exit without saving	projectmanager	cs	Ukočit bez uložení
+export definition to use for nextmatch export (elements)	projectmanager	cs	Export definic pro použití v dalších exportech (součásti)
+export definition to use for nextmatch export (projects)	projectmanager	cs	Export definic pro použití v dalších exportech (projekty)
+exports a list of project elements to a csv file.	projectmanager	cs	Export seznamu součástí projektu jako soubor CSV
+exports a list of projects to a csv file.	projectmanager	cs	Export seznamu projektů jako soubor CSV
+external	projectmanager	cs	Externí
 favorites	projectmanager	cs	Oblíbené
+fields for element roles:	projectmanager	cs	Pole pro role součástí:
 fieldseparator	projectmanager	cs	Oddělovač položek
 font	projectmanager	cs	Písmo
 font charset	projectmanager	cs	Znaková sada písma
 font style	projectmanager	cs	Styl písma
-font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	cs	Písmo, které má být použito v Ganntově diagramu. Součástí Správce projektů je jen písmo Vera.
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	cs	Písmo, které má být použito v Ganttově diagramu. Součástí Správce projektů je jen písmo Vera.
 fontfile '%1' not found!!!	projectmanager	cs	Soubor písma %1' nebyl nalezen!!!
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	cs	Pro hromadný dopis použijte tento štítek. Obsah, který chcete opakovat vložte mezi dva štítky.
 free descriptiv text	projectmanager	cs	volný popisný text
 from %1 to %2	projectmanager	cs	od %1 do %2
 full access	projectmanager	cs	plný přístup
+furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	cs	Jednotlivé záznamy adresáře připojené k součástem projektu, mohou být použity jako příjemci pošty.
 ganttchart	projectmanager	cs	Ganttův postupový diagram
 ganttchart parameter	projectmanager	cs	parametr Ganttova diagramu
 general availibility	projectmanager	cs	Všeobecná  dostupnost
 general fields:	projectmanager	cs	Obecné položky:
 general pricelist	projectmanager	cs	Hlavní ceník
-global categories	projectmanager	cs	Globální kategorie
+general settings	projectmanager	cs	Obecné nastavení
+global categories	projectmanager	cs	Všeobecné kategorie
 h	projectmanager	cs	h
 health	projectmanager	cs	Zdraví
 hours	projectmanager	cs	hodin
 hours per workday	projectmanager	cs	Hodin za pracovní den
 how long do you work on the given day.	projectmanager	cs	Jak dlouho pracujete daný den.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	cs	Jak se má v menu zobrazovat výběr projektů. Strom bývá přehlednější, rozbalovací nabídka umožňuje rychlejší výběr.
+html link to the current record	projectmanager	cs	HTML odkaz na aktuální záznam
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	cs	Pokud zaškrtnete, datové zdroje jednotlivých součástí (např. záznamů InfoLogu) budou také smazány.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	cs	Pokud zaškrtnete, datové zdroje jednotlivých součástí (např. záznamů InfoLogu) také změní svůj status.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	cs	Pokud uvidíte entity (např. {) v Ganttově diagramu, vypněte tuto volbu.
+if you specify an export definition, it will be used when you export	projectmanager	cs	Pokud specifikujete definici pro export, bude při exportu použita.
 ignore that entry	projectmanager	cs	ignorovat záznam
 ignored	projectmanager	cs	ignorován
 import	projectmanager	cs	Importovat
+imports a list of projects from a csv file.  does not include project elements.	projectmanager	cs	Importuje seznam projektů ze souboru CSV. Nezahrnuje součásti projektu.
+insert	projectmanager	cs	Vložit
 last modified	projectmanager	cs	Naposledy změněno
+last sync date and time	projectmanager	cs	Datum a čas poslední synchronizace
 leave it empty if you dont need a different customer title	projectmanager	cs	ponechte prázdné, pokud nepotřebujete jiné jméno klienta
 leave it empty to have one generated	projectmanager	cs	ponechte prázdné pro automatické vygenerování
 leave it empty, if identitcal to the time	projectmanager	cs	ponechte prázdné shoduje-li se s časem
+limit number of characters in ganttchart element title (0 for no limit)	projectmanager	cs	Omezení počtu znaků názvu součásti v Ganttově grafu (nula je bez omezení)
 linked elements	projectmanager	cs	Odkazované součásti
 links	projectmanager	cs	Odkazy
+links and attached files	projectmanager	cs	Odkazy a připojené soubory
+links to specified application.  example: {{links/infolog}}	projectmanager	cs	Odkazy na specifické aplikace. Příklad: {{links/infolog}}
+list of files linked to the current record	projectmanager	cs	Seznam připojených souborů k aktuálnímu záznamu
+lists all elements assigned to an element role in a table.	projectmanager	cs	Seznam všech součástí, které mají přiřazenou základní roli.
+lists all project elements in a table.	projectmanager	cs	Seznam všech součástí projektu.
 mainproject only	projectmanager	cs	Jen hlavní projekt
 mainprojects	projectmanager	cs	Hlavní projekty
 manage mapping	projectmanager	cs	Spravovat mapování
 members	projectmanager	cs	Členové
+milestone	projectmanager	cs	Milník
 milestone deleted	projectmanager	cs	Milník smazán
 milestone saved	projectmanager	cs	Milník uložen
 milestones	projectmanager	cs	Milníky
 milestones before this element has to be finished	projectmanager	cs	Milníky před touto součástí musí být ukončeny
 modified	projectmanager	cs	Změněno
 modified by	projectmanager	cs	Změnil(a)
+modified date and time	projectmanager	cs	Datum a čas změny
+modifier	projectmanager	cs	Změnil
+modify status	projectmanager	cs	Stav změny
+multi assignable	projectmanager	cs	Vícekrát přiřaditelný
+multi assignments	projectmanager	cs	Vícekrát přiřazené
 name of current user, all other contact fields are valid too	projectmanager	cs	Jméno aktuálního uživatele, všechny ostatní položky kontaktu jsou také platné
 necessary for project-elements doing that not automatic	projectmanager	cs	nezbytné pro součásti projektu, aby se to nedělalo automaticky
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	cs	Potřebné rozšíření PHP %1 není nahráno a nelze nahrát !!!
 new	projectmanager	cs	Nové
+new project submitted by %1 at %2	projectmanager	cs	Nový projekt navržený %1 v %2
 no accounting, only status	projectmanager	cs	Bez účtování, jen stav
 no accounting, only times and status	projectmanager	cs	Bez účtování, jen časy a stav
 no details	projectmanager	cs	bez detailů
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	cs	Chybí oprávnění ke čtení datového zdroje, odstranění přepsaných hodnot je jen vyprázdní !!!
+no rights to export more then %1 entries!	projectmanager	cs	Nemáte oprávnění exportovat více jak %1 záznamů!
 no save necessary	projectmanager	cs	uložení neni potřeba
 nonactive	projectmanager	cs	Neaktivní
-not started (0%)	projectmanager	cs	Nzapočatý (0%)
+not available	projectmanager	cs	Není k dispozici
+not started (0%)	projectmanager	cs	Nezahájeno (0%)
 not working	projectmanager	cs	nepracuje
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	cs	Počet znaků názvu součásti v Ganttově grafu, na který má být název součásti zkrácen.
 number of records to read (%1)	projectmanager	cs	Počet záznamů k načtení (%1)
 only this project	projectmanager	cs	Jen tento projekt
+order of sub-project bars in ganttcharts	projectmanager	cs	Pořadí dílčích projektů zobrazených v Ganttově grafu
 overwrite the datasource	projectmanager	cs	Přepsat datový zdroj
 percentage the member is availible for projects	projectmanager	cs	Na kolik procent je člen dostupný pro projekty
 percentage the member is availible for this project	projectmanager	cs	Na kolik procent je člen dostupný pro tento projekt
 permission denied !!!	projectmanager	cs	Přístup zablokován!!!
 planned	projectmanager	cs	plánované
+planned budget	projectmanager	cs	Plánovaný rozpočet
+planned end	projectmanager	cs	Plánované ukončení
+planned end date and time	projectmanager	cs	Plánované datum a čas konce
+planned quantitiy	projectmanager	cs	Plánované množství
+planned quantity	projectmanager	cs	Plánované množství
+planned start	projectmanager	cs	Plánovaný začátek
+planned start date and time	projectmanager	cs	Plánované datum a čas začátku
 planned time	projectmanager	cs	plánovaný čas
+planned time in minutes	projectmanager	cs	Plánovaný čas v minutách
 planned times	projectmanager	cs	Plánované časy
 please download a recent version from %1 and install it in %2.	projectmanager	cs	Stáhněte si prosím aktuální verzi z %1 a nainstalujte ji do %2.
+pm_milestone	projectmanager	cs	Milník
 price	projectmanager	cs	Cena
 price / unit	projectmanager	cs	Cena na jednotku
 price deleted	projectmanager	cs	Cena smazána
+price per unit	projectmanager	cs	Cena za jednotku
 price saved	projectmanager	cs	Cena uložena
 pricelist	projectmanager	cs	Ceník
+project	common	cs	Projekt
+project access (e.g. public)	projectmanager	cs	Přístup k projektu, např. veřejný
 project availibility	projectmanager	cs	Dostupnost pro projekt
+project category	projectmanager	cs	Kategorie projektu
+project completion (e.g. 100%)	projectmanager	cs	Dokončení projektu, např. 100%
+project creator	projectmanager	cs	Tvůrce projektu
+project csv export	projectmanager	cs	Export projektu do souboru CSV
+project csv import	projectmanager	cs	Import projektu ze souboru CSV
 project deleted	projectmanager	cs	Projekt smazán
-project id	projectmanager	cs	ID projektu
+project element csv export	projectmanager	cs	Export součásti do souboru CSV
+project id	projectmanager	cs	Identifikace projektu
+project id - template name	projectmanager	cs	Identifikace projektu - jméno šablony
 project members and roles	projectmanager	cs	Členové a role projektu
+project modified by %1 at %2	projectmanager	cs	Projekt byl změněn %1 v %2
+project modifier	projectmanager	cs	Projekt změnil
+project number	projectmanager	cs	Číslo projektu
 project overview	projectmanager	cs	přehled projektu
+project priority	projectmanager	cs	Priorita projektu
 project saved	projectmanager	cs	Projekt uložen
+project sort order	projectmanager	cs	Třídění seznamu projektů
 project specific title, prices, ...	projectmanager	cs	Projektově specifický název, ceny, ...
+project status	projectmanager	cs	Stav projektu
+project title	projectmanager	cs	Název projektu
+project title - template name	projectmanager	cs	Název projektu - název šablony
+project-element	projectmanager	cs	Součást projektu
 project-element deleted	projectmanager	cs	Součást projektu smazána
 project-element saved	projectmanager	cs	Součást projektu uložena
 project-elements	projectmanager	cs	Součásti projektu
+projectelement	projectmanager	cs	Součást projektu
+projectid	projectmanager	cs	Identifikace projektu
 projectlist	projectmanager	cs	Seznam projektů
 projectmanager	common	cs	Správce projektů
+projectmanager element fields	projectmanager	cs	Základní pole Správce projektů
+projectmanager element fields:	projectmanager	cs	Základní pole Správce projektů:
+projectmanager fields:	projectmanager	cs	Pole Správce projektů:
 projectmanager-fieldname	projectmanager	cs	Správce projektů - Název položky
 projectmember	projectmanager	cs	Člen projektu
 projects	common	cs	Projekty
@@ -205,8 +325,11 @@ re-planned time	projectmanager	cs	Přeplánovaný čas
 read access, incl. budget and adding elements	projectmanager	cs	oprávnění ke čtení, včetně rozpočtu a přidávání součástí
 read access, no budget	projectmanager	cs	oprávnění ke čtení, bez rozpočtu
 real end	projectmanager	cs	Skutečný konec
+real end date and time	projectmanager	cs	Skutečné datum a čas konce
 real start	projectmanager	cs	Skutečný začátek
+real start date and time	projectmanager	cs	Skutečné datum a čas začátku
 remark	projectmanager	cs	Poznámka
+replanned time in minutes	projectmanager	cs	Přeplánovaný čas v minutách
 resources	projectmanager	cs	Zdroje
 role	projectmanager	cs	Role
 role deleted	projectmanager	cs	Role smazána
@@ -216,48 +339,78 @@ save the changes made	projectmanager	cs	Uložit provedené změny
 save this project element	projectmanager	cs	Uložit tuto součást projektu
 select a project	projectmanager	cs	vybrat projekt
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	cs	vyberte činnost chcete-li spočítat náklady na základě množství (času) a ceny
+select export options	projectmanager	cs	Vyberte možnosti pro export
 select multiple projects for a further action	projectmanager	cs	Vyberte více projektů pro další akci
+select project sort order for project tree and link search	projectmanager	cs	Vyberte třídění seznamu projektů pro stromové zobrazení a hledání odkazů
 select the accounting types visible for users of projectmanager	projectmanager	cs	vyberte typy účtování viditelné pro uživatele Správce projektů
 select this project and show it's elements	projectmanager	cs	Vybrat projekt a zobrazit jeho součásti
 selectbox with %1	projectmanager	cs	Rozbalovací nabídka s %1
+set order to show sub-project bars in ganttcharts.	projectmanager	cs	Vyberte pořadí pro zobrazení dílčích projektů v Ganttově grafu
 share	projectmanager	cs	Podíl
 share on the whole project	projectmanager	cs	Podíl na celém projektu
 share on the whole project in hours or percent, defaults to planned time	projectmanager	cs	Podíl na celém projektu v hodinách nebo procentech, výchozí je plánovaný čas
+shared time in minutes	projectmanager	cs	Podíl času v minutách
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	cs	Zda se mají v seznamu součástí zobrazovat jednotlivé ikony typu úkolů. Je také možné nastavit vlastní ikony přidáním ikon do složky VFS (viz nastavení aplikace). Pokud budou nahrány ikony o velikosti 32x32 s názvem končícím "_element", tak budou větší ikony zobrazeny v seznamu součástí.
+should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	cs	Mají se v seznamu součástí zobrazovat odkazy na jiné aplikace a/nebo připojené soubory součástí projektů (pouze pokud se zobrazují detaily)?
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	cs	Má Správce projektů zobrazovat stavové ikony datových zdrojů (např. InfoLogu) nebo jen ukazatel stavu s číselným vyjádřením (rychlejší).
 show constraints and milestones	projectmanager	cs	Zobrazovat omezení a milníky
+show elements in ganttchart by applications	projectmanager	cs	Zobrazit součásti v Ganttově grafu podle aplikací
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	cs	Zobrazit součásti v Ganttově grafu v závislosti na tom, odkud pocházejí (bez výběru = zobrazit vše)
+show infolog type icon in the project elements list	projectmanager	cs	Zobrazit ikonu typu úkolu v seznamu součástí projektu
+show links in the project elements list	projectmanager	cs	Zobrazit odkazy v seznamu součástí projektu
 show planned times instead of the real times	projectmanager	cs	Zobrazovat plánované časy místo skutečných časů
 show status icons of the datasources	projectmanager	cs	Zobrazovat stavové ikony datových zdrojů
 show the project selection as	projectmanager	cs	Zobrazovat výběr projektů jako
 site configuration saved	projectmanager	cs	Konfigurace webu uložena
-start after	projectmanager	cs	Začít po
+start date, end date	projectmanager	cs	Datum začátku a konce
 start working on %1	projectmanager	cs	Začít práci v %1
 start, end, category, ...	projectmanager	cs	Začátek, Konec, kategorie, ...
 start- & enddate	projectmanager	cs	Počáteční a koncové datum
 startdate	projectmanager	cs	Počáteční datum
 startrecord	projectmanager	cs	První záznam
+starts after	projectmanager	cs	Začíná po
+starts before	projectmanager	cs	Začíná před
 status filter	projectmanager	cs	Filtr stavů
+status set	projectmanager	cs	Nastavení stavu
 style used for everything but elements. some fonts have only normal style.	projectmanager	cs	Styl použitý pro vše kromě součástí. Některá písma mají jen normální styl.
 subelements	projectmanager	cs	Dílčí součásti
+subproject	projectmanager	cs	Dílčí projekt
 subprojects	projectmanager	cs	Dílčí projekty
+synced	projectmanager	cs	Synchronizováno
 synchronise all	projectmanager	cs	Synchronizovat vše
+table plugins:	projectmanager	cs	Zásuvné moduly tabulek:
 tag to mark positions for address labels	projectmanager	cs	Značka pro vyznačení pozic v adresních štítcích
 template	projectmanager	cs	Šablona
+template as subproject	projectmanager	cs	Šablona jako dílčí projekt
 template including elment-tree saved as new project	projectmanager	cs	Šablona včetně stromu součástí uložena jako nový projekt
+template name	projectmanager	cs	Název šablony
+template name - project title	projectmanager	cs	Název šablony - název projektu
 test import (show importable records <u>only</u> in browser)	projectmanager	cs	Testovat import (záznamy, které lze importovat <u>jen zobrazí</u> v prohlížeči)
+that action allows to download the specified document with the project and elements data inserted.	projectmanager	cs	Touto akcí je možné stáhnout specifikovaný dokument s doplněnými údaji o projektu a jeho součástech.
 the charset depends on the font you want to use.	projectmanager	cs	Znaková sada zavisí na písmu, které chcete použít.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	cs	Dokument může obsahovat zástupce jako např. {{%3}}, které budou při zpracování nahrazeny skutečnými odpovídajícími hodnotami. %1 Úplný seznam zástupců %2.
+the following document-types are supported:	projectmanager	cs	Jsou podporovány následující typy souborů:
 time	projectmanager	cs	Čas
 times	projectmanager	cs	Časy
 timezone	projectmanager	cs	Časová zóna
+title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	cs	Název obsahuje neplatné znaky. Použijte písmena A-Z, čísla, pomlčku a podtržítko.
 title must not be empty	projectmanager	cs	Název nesmí být prázdný
+titles of any entries linked to the current record, excluding attached files	projectmanager	cs	Názvy všech záznamů s odkazem na aktuální záznam, mimo připojených souborů
 to many might exceed your execution-time-limit	projectmanager	cs	příliš mnoho může překročit nastavený časový limit spuštění
+total completion shares	projectmanager	cs	Celkový podíl dokončenosti
+total shares	projectmanager	cs	Celkový podíl
 translation	projectmanager	cs	Překlad
 tree with %1	projectmanager	cs	Strom s %1
+unable to find parent project %1	projectmanager	cs	Není možné najít nadřízený projekt %1
 unit	projectmanager	cs	Jednotka
 unitprice	projectmanager	cs	Jednotková cena
 usage	projectmanager	cs	Využití
 use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	cs	Použijte tuto značku pro adresní štítky. Obsah, který chcete opakovat, vložte mezi dvě značky.
-used	projectmanager	cs	použito
-used time	projectmanager	cs	spotřebovaný čas
+used	projectmanager	cs	Spotřebováno
+used budget	projectmanager	cs	Spotřebovaný rozpočet
+used quantity	projectmanager	cs	Spotřebované množství
+used time	projectmanager	cs	Spotřebovaný čas
+used time in minutes	projectmanager	cs	Spotřebovaný čas v minutách
 valid since	projectmanager	cs	Platné od
 view all subs of this entry	projectmanager	cs	Zobrazit všechny podpoložky záznamu
 view ganttchart of this project	projectmanager	cs	Zobrazit Ganttův diagram projektu
