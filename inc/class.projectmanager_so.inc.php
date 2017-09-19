@@ -186,9 +186,10 @@ class projectmanager_so extends Api\Storage
 	 * reimplemented to handle custom fields and set modification and creation data
 	 *
 	 * @param array $keys if given $keys are copied to data before saveing => allows a save as
+	 * @param int $check_modified=0 old modification date to check before update (include in WHERE)
 	 * @return int 0 on success and errno != 0 else
 	 */
-	function save($keys=null)
+	function save($keys=null,$check_modified=0)
 	{
 		//error_log(__METHOD__ . '('.print_r($keys,true).") this->data="); error_log(array2string($this->data));
 
@@ -197,7 +198,13 @@ class projectmanager_so extends Api\Storage
 			$this->data_merge($keys);
 			$keys = null;
 		}
-		if (parent::save($keys) == 0 && $this->data['pm_id'])
+		$where = array();
+		if($check_modified)
+		{
+			$where['pm_modified'] = $check_modified;
+		}
+		$return = parent::save($keys, $where);
+		if ($return == 0 && $this->data['pm_id'])
 		{
 			// project-members: first delete all, then save the (still) assigned ones
 			$this->db->delete($this->members_table,array('pm_id' => $this->data['pm_id']),__LINE__,__FILE__,'projectmanager');
@@ -211,6 +218,11 @@ class projectmanager_so extends Api\Storage
 				),false,__LINE__,__FILE__,'projectmanager');
 			}
 		}
+		else if ($return === TRUE)
+		{
+			return TRUE;
+		}
+
 		return $this->db->Errno;
 	}
 

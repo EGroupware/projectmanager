@@ -291,6 +291,7 @@ class projectmanager_bo extends projectmanager_so
 			$this->data['pm_creator'] = $GLOBALS['egw_info']['user']['account_id'];
 			$this->data['pm_created'] = $this->now_su;
 		}
+		$check_modified = $this->data['pm_modified'] - $this->tz_offset_s;;
 		if ($touch_modified)
 		{
 			$this->data['pm_modifier'] = $GLOBALS['egw_info']['user']['account_id'];
@@ -305,7 +306,7 @@ class projectmanager_bo extends projectmanager_so
 		$this->read($new['pm_id']);
 		$old =& $this->data;
 		$this->data =& $new;
-		if (!($err = parent::save()) && $do_notify)
+		if (!($err = parent::save(null, $check_modified)) && $do_notify)
 		{
 			$extra = array();
 			if ($old && $this->link_title($new) !== ($old_title=$this->link_title($old)))
