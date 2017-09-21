@@ -238,6 +238,10 @@
 					<textbox blur="Title" statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" class="et2_fullWidth" maxlength="255" tabindex="1"/>
 					<appicon src="projectmanager"/>
 				</row>
+				<row class="et2_toolbar">
+					<description id="spacer" span="3"/>
+					<timestamper statustext="Insert timestamp into description field" id="timestamp" target="pm_description" class="projectTimestamp"/>
+				</row>
 				<row>
 					<tabbox id="tabs" span="all" tab_height="280px">
 						<tabs>
