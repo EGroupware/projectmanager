@@ -102,7 +102,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 
 		$data['gantt'] = $data['gantt'] + array('data' => array(), 'links' => array());
-		
+
 		// Only try to load if there is an ID, or we get every task.
 		if($pm_id)
 		{
@@ -125,7 +125,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 
 		$template->setElementAttribute('gantt','actions', $this->get_gantt_actions());
 		$template->setElementAttribute('gantt','columns', $this->get_gantt_columns());
-		
+
 		// Allow Stylite extensions a chance
 		if(class_exists('stylite_projectmanager_gantt'))
 		{
@@ -295,7 +295,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			'planned_times' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_planned_times'],
 			'constraints' => $GLOBALS['egw_info']['user']['preferences']['projectmanager']['gantt_constraints']
 		), $params);
-		
+
 		$params['level'] = 1;
 		if(!$params['depth']) $params['depth'] = 2;
 
@@ -368,7 +368,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$project['planned_end'] = Api\DateTime::to((int)$project['pm_planned_end'], Api\DateTime::DATABASE);
 			}
 		}
-		
+
 		// Not sure how it happens, but it causes problems
 		if($project['start'] && $project['start'] < 10) $project['start'] = 0;
 
@@ -510,8 +510,12 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$pe['id'] = $pe['pe_app'].':'.$pe['pe_app_id'].':'.$pe['pe_id'];
 			$pe['text'] = $this->prefs['gantt_element_title_length'] ? substr($pe['pe_title'], 0, $this->prefs['gantt_element_title_length']) : $pe['pe_title'];
 			$pe['parent'] = 'projectmanager::'.$pm_id;
-			$pe['start_date'] = Api\DateTime::to((int)$pe['pe_start'],Api\DateTime::DATABASE);
-			if($pe['pe_planned_start'] && $pe['pe_planned_start'] != $pe['pe_start'])
+
+			if($pe['pe_start'])
+			{
+				$pe['start_date'] = Api\DateTime::to((int)$pe['pe_start'],Api\DateTime::DATABASE);
+			}
+			if($pe['pe_planned_start'] && $pe['pe_planned_start'] != $pe['pe_start'] && $pe['pe_real_start'])
 			{
 				$pe['start_date'] = Api\DateTime::to($pe['pe_real_start'], Api\DateTime::DATABASE);
 				$pe['planned_start'] = Api\DateTime::to((int)$pe['pe_planned_start'], Api\DateTime::DATABASE);
@@ -522,7 +526,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				// Make sure we don't kill the gantt chart with too large a time span - limit to 10 years
 				$pe['end_date'] = Api\DateTime::to(min($pe['pe_end'],strtotime('+10 years',$pe['pe_start'])),Api\DateTime::DATABASE	);
 			}
-			if($pe['pe_planned_end'] && $pe['pe_planned_end'] != $pe['pe_end'])
+			if($pe['pe_planned_end'] && $pe['pe_planned_end'] != $pe['pe_end'] && $pe['pe_real_end'])
 			{
 				$pe['end_date'] = Api\DateTime::to($pe['pe_real_end'], Api\DateTime::DATABASE);
 				$pe['planned_end'] = Api\DateTime::to((int)$pe['pe_planned_end'], Api\DateTime::DATABASE);
@@ -612,7 +616,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 					$values['duration'] *= 60;
 			}
 		}
-			
+
 		// Don't change timesheets
 		if($values['pe_app'] == 'timesheet')
 		{
@@ -754,7 +758,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			$duration_unit = 'minute';
 		}
-		
+
 		return $duration_unit;
 	}
 
