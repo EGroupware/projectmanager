@@ -3,7 +3,7 @@
 
 namespace EGroupware\Projectmanager;
 
-require_once realpath(__DIR__.'/../../api/src/test/AppTest.php');	// Application test base
+require_once realpath(__DIR__.'/../../api/tests/AppTest.php');	// Application test base
 //$GLOBALS['egw_info']['flags']['currentapp'] = 'projectmanager';
 
 use Egroupware\Api;
@@ -21,7 +21,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 	// Project ID, so we can check if it gets deleted
 	protected $pm_id;
-	
+
 	// List of element IDs so we can check if they get deleted
 	protected $elements = array();
 
@@ -71,7 +71,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		// Restore original settings
 		Api\Config::save_value(static::HISTORY_SETTING, static::$pm_history_setting, 'projectmanager');
 		Api\Config::save_value(static::HISTORY_SETTING, static::$infolog_history_setting, 'infolog');
-		
+
 		// Projectmanager sets a lot of global stuff
 		unset($GLOBALS['projectmanager_bo']);
 		unset($GLOBALS['projectmanager_elements_bo']);
@@ -140,7 +140,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 				'Project status was not set to deleted'
 			);
 		}
-		
+
 		// Check datasources are still there
 		$this->checkDatasources('open');
 	}
@@ -178,7 +178,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 				'Project status was not set to deleted'
 			);
 		}
-		
+
 		// Check datasources are deleted
 		$this->checkDatasources('deleted');
 
@@ -220,7 +220,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		$this->bo->read($this->pm_id);
 		$this->bo->save(array('pm_status' => 'active'));
-		
+
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
 		Api\Link::run_notifies();
@@ -340,7 +340,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		// Check project is gone
 		$project = $this->bo->read($this->pm_id);
 		$this->assertNull($project, 'Project is still there');
-		
+
 		$this->checkElements('', 0);
 	}
 
@@ -386,7 +386,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->assertNull($project, 'Project is still there');
 
 		$this->checkElements('', 0);
-		
+
 		// Check datasources are gone
 		$info_bo = new \infolog_bo();
 		foreach($this->elements as $id)
@@ -456,7 +456,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	public function testDeleteDataSource()
 	{
 		$this->deleteElements();
-		
+
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
 		Api\Link::run_notifies();
@@ -628,7 +628,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
 		Api\Link::run_notifies();
-		
+
 		// Force to ignore setting
 		$this->bo->history = '';
 		Api\Config::save_value(static::HISTORY_SETTING, '', 'projectmanager');
@@ -637,7 +637,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
 		Api\Link::run_notifies();
-		
+
 		$this->deleteElements();
 	}
 
@@ -706,7 +706,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 				$this->assertEquals($status, $element['pe_status'], "Project element {$element['pe_title']} status was {$element['pe_status']}, expected $status");
 			}
 		}
-		
+
 		$this->assertEquals($expected_count, $element_count, "Incorrect number of elements");
 	}
 
