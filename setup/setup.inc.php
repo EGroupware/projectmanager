@@ -6,9 +6,8 @@
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
  * @subpackage setup
- * @copyright (c) 2005-15 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-17 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$
  */
 
 $setup_info['projectmanager']['name']      = 'projectmanager';
@@ -17,10 +16,13 @@ $setup_info['projectmanager']['app_order'] = 5;
 $setup_info['projectmanager']['tables']    = array('egw_pm_projects','egw_pm_extra','egw_pm_elements','egw_pm_constraints','egw_pm_milestones','egw_pm_roles','egw_pm_members','egw_pm_pricelist','egw_pm_prices','egw_pm_eroles');
 $setup_info['projectmanager']['enable']    = 1;
 $setup_info['projectmanager']['index']    = 'projectmanager.projectmanager_ui.index&ajax=true';
-$setup_info['projectmanager']['author'] =
-$setup_info['projectmanager']['maintainer'] = array(
+$setup_info['projectmanager']['author'] = array(
 	'name'  => 'Ralf Becker',
 	'email' => 'RalfBecker@outdoor-training.de'
+);
+$setup_info['projectmanager']['maintainer'] = array(
+	'name'  => 'EGroupware GmbH',
+	'email' => 'info@egroupware.org'
 );
 $setup_info['projectmanager']['license']  = 'GPL';
 $setup_info['projectmanager']['description'] =
@@ -31,7 +33,7 @@ For more information see the <a href="http://outdoor-training.de/pdf/projects-re
 target="_blank">concept of the rewrite</a> (<a href="http://outdoor-training.de/pdf/Neuprogrammierung-Projektmanagement.pdf"
 target="_blank">german version</a>).';
 $setup_info['projectmanager']['note'] =
-'It is sponsored by:<ul>
+'It was sponsored by:<ul>
 <li> <a href="http://www.blanke-textil.de" target="_blank">Fritz Blanke GmbH & Co.KG</a></li>
 <li> <a href="http://www.digitask.de" target="_blank">DigiTask GmbH</a></li>
 <li> <a href="http://www.stylite.de" target="_blank">Stylite GmbH</a></li>
@@ -51,5 +53,5 @@ $setup_info['projectmanager']['hooks']['timesheet_set'] = 'projectmanager_hooks:
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(
 	 'appname' => 'api',
-	 'versions' => Array('16.1')
+	 'versions' => Array('17.1')
 );

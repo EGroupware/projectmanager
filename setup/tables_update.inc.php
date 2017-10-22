@@ -6,9 +6,8 @@
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
  * @subpackage setup
- * @copyright (c) 2005-10 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-17 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$
  */
 
 function projectmanager_upgrade0_1_008()
@@ -456,4 +455,10 @@ function projectmanager_upgrade14_1()
 function projectmanager_upgrade14_2()
 {
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '16.1';
+}
+
+
+function projectmanager_upgrade16_1()
+{
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '17.1';
 }
