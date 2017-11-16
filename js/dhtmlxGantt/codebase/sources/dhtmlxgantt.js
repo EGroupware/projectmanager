@@ -135,7 +135,7 @@ gantt.defined = function(obj) {
 gantt.uid = function() {
     if (!this._seed)
         this._seed = (new Date()).valueOf();
-    
+
     this._seed++;
     return this._seed;
 };
@@ -2607,11 +2607,11 @@ gantt._delete_link_handler = function(id, e){
 
 		var title = "";
 		var question = gantt.locale.labels.link + " " +this.templates.link_description(this.getLink(id)) + " " + gantt.locale.labels.confirm_link_deleting;
-		
+
 		window.setTimeout(function(){
 			gantt._dhtmlx_confirm(question, title, function(){
 				gantt.deleteLink(id);
-			});		
+			});
 		},(gantt.config.touch ? 300 : 1));
 	}
 };
@@ -4017,7 +4017,7 @@ gantt.xml = {
 		for(var i= 0, len = json.links.length; i < len; i++){
 			links.push(this._copyLink(json.links[i]));
 		}
-		return "<data>"+tasks.join("")+"<coll_options for='links'>"+links.join("")+"</coll_options></data>";			
+		return "<data>"+tasks.join("")+"<coll_options for='links'>"+links.join("")+"</coll_options></data>";
 	}
 };
 
@@ -4797,7 +4797,7 @@ gantt._get_duration_unit = function(){
 };
 
 gantt._get_safe_type = function(type){
-	return "task";
+	return gantt._get_type_name(type);
 };
 gantt._get_type_name = function(type_value){
 	for(var i in this.config.types){
@@ -6735,30 +6735,30 @@ gantt._extend_to_optional = function(lightbox_block){
 gantt.form_blocks.duration_optional = gantt._extend_to_optional(gantt.form_blocks.duration);
 gantt.form_blocks.time_optional = gantt._extend_to_optional(gantt.form_blocks.time);
 /**
-	* 	@desc: constructor, data processor object 
+	* 	@desc: constructor, data processor object
 	*	@param: serverProcessorURL - url used for update
 	*	@type: public
 	*/
 gantt.dataProcessor = function(serverProcessorURL){
     this.serverProcessor = serverProcessorURL;
     this.action_param="!nativeeditor_status";
-    
+
 	this.object = null;
 	this.updatedRows = []; //ids of updated rows
-	
+
 	this.autoUpdate = true;
 	this.updateMode = "cell";
-	this._tMode="GET"; 
+	this._tMode="GET";
 	this._headers = null;
 	this._payload = null;
 	this.post_delim = "_";
-	
+
     this._waitMode=0;
     this._in_progress={};//?
     this._invalid={};
     this.mandatoryFields=[];
     this.messages=[];
-    
+
     this.styles={
     	updated:"font-weight:bold;",
     	inserted:"font-weight:bold;",
@@ -6768,7 +6768,7 @@ gantt.dataProcessor = function(serverProcessorURL){
     	error:"color:red;",
     	clear:"font-weight:normal;text-decoration:none;"
     };
-    
+
     this.enableUTFencoding(true);
     gantt._eventable(this);
 
@@ -6801,7 +6801,7 @@ gantt.dataProcessor.prototype={
 	* 	@desc: allows to set escaping mode
 	*	@param: true - utf based escaping, simple - use current page encoding
 	*	@type: public
-	*/	
+	*/
 	enableUTFencoding:function(mode){
         this._utf=!!mode;
     },
@@ -6862,7 +6862,7 @@ gantt.dataProcessor.prototype={
 	setUpdated:function(rowId,state,mode){
 		if (this._silent_mode) return;
 		var ind=this.findRow(rowId);
-		
+
 		mode=mode||"updated";
 		var existing = this.obj.getUserData(rowId,this.action_param);
 		if (existing && mode == "updated") mode=existing;
@@ -6870,7 +6870,7 @@ gantt.dataProcessor.prototype={
 			this.set_invalid(rowId,false); //clear previous error flag
 			this.updatedRows[ind]=rowId;
 			this.obj.setUserData(rowId,this.action_param,mode);
-			if (this._in_progress[rowId]) 
+			if (this._in_progress[rowId])
 				this._in_progress[rowId]="wait";
 		} else{
 			if (!this.is_invalid(rowId)){
@@ -6882,12 +6882,12 @@ gantt.dataProcessor.prototype={
 		//clear changed flag
 		if (!state)
 			this._clearUpdateFlag(rowId);
-     			
+
 		this.markRow(rowId,state,mode);
 		if (state && this.autoUpdate) this.sendData(rowId);
 	},
 	_clearUpdateFlag:function(id){},
-	markRow:function(id,state,mode){ 
+	markRow:function(id,state,mode){
 		var str="";
 		var invalid=this.is_invalid(id);
 		if (invalid){
@@ -6897,7 +6897,7 @@ gantt.dataProcessor.prototype={
 		if (this.callEvent("onRowMark",[id,state,mode,invalid])){
 			//default logic
 			str=this.styles[state?mode:"clear"]+str;
-			
+
         	this.obj[this._methods[0]](id,str);
 
 			if (invalid && invalid.details){
@@ -6914,7 +6914,7 @@ gantt.dataProcessor.prototype={
 	is_invalid:function(id){
 		return this._invalid[id];
 	},
-	set_invalid:function(id,mode,details){ 
+	set_invalid:function(id,mode,details){
 		if (details) mode={value:mode, details:details, toString:function(){ return this.value.toString(); }};
 		this._invalid[id]=mode;
 	},
@@ -6923,7 +6923,7 @@ gantt.dataProcessor.prototype={
 	*	@param: rowId - id of row to set update-status for
 	*	@type: public
 	*/
-	checkBeforeUpdate:function(rowId){ 
+	checkBeforeUpdate:function(rowId){
 		return true;
 	},
 	/**
@@ -6934,17 +6934,17 @@ gantt.dataProcessor.prototype={
 	sendData:function(rowId){
 		if (this._waitMode && (this.obj.mytype=="tree" || this.obj._h2)) return;
 		if (this.obj.editStop) this.obj.editStop();
-	
-		
+
+
 		if(typeof rowId == "undefined" || this._tSend) return this.sendAllData();
 		if (this._in_progress[rowId]) return false;
-		
+
 		this.messages=[];
 		if (!this.checkBeforeUpdate(rowId) && this.callEvent("onValidationError",[rowId,this.messages])) return false;
 		this._beforeSendData(this._getRowData(rowId),rowId);
     },
     _beforeSendData:function(data,rowId){
-    	if (!this.callEvent("onBeforeUpdate",[rowId,this.getState(rowId),data])) return false;	
+    	if (!this.callEvent("onBeforeUpdate",[rowId,this.getState(rowId),data])) return false;
 		this._sendData(data,rowId);
     },
     serialize:function(data, id){
@@ -6979,8 +6979,8 @@ gantt.dataProcessor.prototype={
     },
     _sendData:function(a1,rowId){
     	if (!a1) return; //nothing to send
-		if (!this.callEvent("onBeforeDataSending",rowId?[rowId,this.getState(rowId),a1]:[null, null, a1])) return false;				
-		
+		if (!this.callEvent("onBeforeDataSending",rowId?[rowId,this.getState(rowId),a1]:[null, null, a1])) return false;
+
     	if (rowId)
 			this._in_progress[rowId]=(new Date()).valueOf();
 
@@ -6995,7 +6995,7 @@ gantt.dataProcessor.prototype={
 
 			return that.afterUpdate(that,xml,ids);
 		};
-		
+
 		var a3 = this.serverProcessor+(this._user?(gantt._urlSeparator(this.serverProcessor)+["dhx_user="+this._user,"dhx_version="+this.obj.getUserData(0,"version")].join("&")):"");
 
 		if (this._tMode=="GET")
@@ -7036,14 +7036,14 @@ gantt.dataProcessor.prototype={
 		this._waitMode++;
     },
 	sendAllData:function(){
-		if (!this.updatedRows.length) return;			
+		if (!this.updatedRows.length) return;
 
 		this.messages=[]; var valid=true;
 		for (var i=0; i<this.updatedRows.length; i++)
 			valid&=this.checkBeforeUpdate(this.updatedRows[i]);
 		if (!valid && !this.callEvent("onValidationError",["",this.messages])) return false;
-	
-		if (this._tSend) 
+
+		if (this._tSend)
 			this._sendData(this._getAllData());
 		else
 			for (var i=0; i<this.updatedRows.length; i++)
@@ -7053,14 +7053,14 @@ gantt.dataProcessor.prototype={
 					if (this._waitMode && (this.obj.mytype=="tree" || this.obj._h2)) return; //block send all for tree
 				}
 	},
-    
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 	_getAllData:function(rowId){
 		var out={};
 		var has_one = false;
@@ -7074,8 +7074,8 @@ gantt.dataProcessor.prototype={
 		}
 		return has_one?out:null;
 	},
-	
-	
+
+
 	/**
 	* 	@desc: specify column which value should be varified before sending to server
 	*	@param: ind - column index (0 based)
@@ -7093,11 +7093,11 @@ gantt.dataProcessor.prototype={
 	clearVerificator:function(ind){
 		this.mandatoryFields[ind] = false;
 	},
-	
-	
-	
-	
-	
+
+
+
+
+
 	findRow:function(pattern){
 		var i=0;
     	for(i=0;i<this.updatedRows.length;i++)
@@ -7105,11 +7105,11 @@ gantt.dataProcessor.prototype={
 	    return i;
     },
 
-   
-	
 
 
-    
+
+
+
 
 
 
@@ -7141,14 +7141,14 @@ gantt.dataProcessor.prototype={
 		var marker = sid;
 		var correct=(action!="error" && action!="invalid");
 		if (!correct) this.set_invalid(sid,action);
-		if ((this._uActions)&&(this._uActions[action])&&(!this._uActions[action](btag))) 
+		if ((this._uActions)&&(this._uActions[action])&&(!this._uActions[action](btag)))
 			return (delete this._in_progress[marker]);
-			
+
 		if (this._in_progress[marker]!="wait")
 	    	this.setUpdated(sid, false);
-	    	
+
 	    var soid = sid;
-	
+
 	    switch (action) {
 	    case "inserted":
 	    case "insert":
@@ -7164,7 +7164,7 @@ gantt.dataProcessor.prototype={
 	        delete this._in_progress[marker];
 	        return this.callEvent("onAfterUpdate", [sid, action, tid, btag]);
 	    }
-	    
+
 	    if (this._in_progress[marker]!="wait"){
 	    	if (correct) this.obj.setUserData(sid, this.action_param,'');
 	    	delete this._in_progress[marker];
@@ -7172,7 +7172,7 @@ gantt.dataProcessor.prototype={
     		delete this._in_progress[marker];
     		this.setUpdated(tid,true,this.obj.getUserData(sid,this.action_param));
 		}
-	    
+
 	    this.callEvent("onAfterUpdate", [soid, action, tid, btag]);
 	},
 
@@ -7206,7 +7206,7 @@ gantt.dataProcessor.prototype={
 			var action = btag.getAttribute("type");
 			var sid = btag.getAttribute("sid");
 			var tid = btag.getAttribute("tid");
-			
+
 			that.afterUpdateCallback(sid,tid,action,btag);
 		}
 		that.finalizeUpdate();
@@ -7218,8 +7218,8 @@ gantt.dataProcessor.prototype={
 	},
 	finalizeUpdate:function(){
 		if (this._waitMode) this._waitMode--;
-		
-		if ((this.obj.mytype=="tree" || this.obj._h2) && this.updatedRows.length) 
+
+		if ((this.obj.mytype=="tree" || this.obj._h2) && this.updatedRows.length)
 			this.sendData();
 		this.callEvent("onAfterUpdateFinish",[]);
 		if (!this.updatedRows.length)
@@ -7229,7 +7229,7 @@ gantt.dataProcessor.prototype={
 
 
 
-	
+
 	/**
 	* 	@desc: initializes data-processor
 	*	@param: anObj - dhtmlxGrid object to attach this data-processor to
@@ -7237,17 +7237,17 @@ gantt.dataProcessor.prototype={
 	*/
 	init:function(anObj){
 		this.obj = anObj;
-		if (this.obj._dp_init) 
+		if (this.obj._dp_init)
 			this.obj._dp_init(this);
 	},
-	
-	
+
+
 	setOnAfterUpdate:function(ev){
 		this.attachEvent("onAfterUpdate",ev);
 	},
 	enableDebug:function(mode){
 	},
-	setOnBeforeUpdateHandler:function(func){  
+	setOnBeforeUpdateHandler:function(func){
 		this.attachEvent("onBeforeDataSending",func);
 	},
 
@@ -7259,19 +7259,19 @@ gantt.dataProcessor.prototype={
 	*/
 	setAutoUpdate: function(interval, user) {
 		interval = interval || 2000;
-		
+
 		this._user = user || (new Date()).valueOf();
 		this._need_update = false;
 		//this._loader = null;
 		this._update_busy = false;
-		
+
 		this.attachEvent("onAfterUpdate",function(sid,action,tid,xml_node){
 			this.afterAutoUpdate(sid, action, tid, xml_node);
 		});
 		this.attachEvent("onFullSync",function(){
 			this.fullSync();
 		});
-		
+
 		var self = this;
 		window.setInterval(function(){
 			self.loadUpdate();
@@ -7308,13 +7308,13 @@ gantt.dataProcessor.prototype={
 	/* sends query to the server and call callback function
 	*/
 	getUpdates: function(url,callback){
-		if (this._update_busy) 
+		if (this._update_busy)
 			return false;
 		else
 			this._update_busy = true;
-		
+
 		//this._loader = this._loader || new dtmlXMLLoaderObject(true);
-		
+
 		//this._loader.async=true;
 		//this._loader.waitCall=callback;
 		//this._loader.loadXML(url);
@@ -7356,11 +7356,11 @@ gantt.dataProcessor.prototype={
 		this.getUpdates(url, function(xml){
 			var vers = gantt.ajax.xpath("//userdata", xml);
 			self.obj.setUserData(0,"version",self._v(vers[0]));
-			
+
 			var upds = gantt.ajax.xpath("//update", xml);
 			if (upds.length){
 				self._silent_mode = true;
-				
+
 				for (var i=0; i<upds.length; i++) {
 					var status = upds[i].getAttribute('status');
 					var id = upds[i].getAttribute('id');
@@ -7377,10 +7377,10 @@ gantt.dataProcessor.prototype={
 							break;
 					}
 				}
-				
+
 				self._silent_mode = false;
 			}
-			
+
 			self._update_busy = false;
 			self = null;
 		});
@@ -7518,7 +7518,7 @@ gantt._reinit = function(node){
 gantt._init_html_area = function(node){
 	if (typeof node == "string")
 		this._obj = document.getElementById(node);
-	else 
+	else
 		this._obj = node;
 	this.assert(this._obj, "Invalid html container: "+node);
     var html = "<div class='gantt_container'><div class='gantt_grid'></div><div class='gantt_task'></div>";
@@ -7832,7 +7832,7 @@ gantt._set_scroll_events = function(){
 	this.event(this.$scroll_hor, "scroll", function() {
     	//in safari we can catch previous onscroll after setting new value from mouse-wheel event
     	//set delay to prevent value drifiting
-    	if ((new Date()) - ( gantt._wheel_time || 0 ) < 100) return true; 
+    	if ((new Date()) - ( gantt._wheel_time || 0 ) < 100) return true;
         if (gantt._touch_scroll_active) return;
         var left = gantt.$scroll_hor.scrollLeft;
         gantt.scrollTo(left);
@@ -8046,7 +8046,7 @@ gantt._locate_css = function(e, classname, strict){
 					return trg;
 			}
 		}
-		
+
 		trg=trg.parentNode;
 	}
 	return null;
@@ -8436,7 +8436,7 @@ gantt._urlSeparator = function(str){
 		document.attachEvent("onkeydown", modal_key);
 	else
 		document.addEventListener("keydown", modal_key, true);
-		
+
 	function modality(mode){
 		if(!modality.cover){
 			modality.cover = document.createElement("DIV");
@@ -8475,7 +8475,7 @@ gantt._urlSeparator = function(str){
 			t.area.insertBefore(message,t.area.firstChild);
 		else
 			t.area.appendChild(message);
-		
+
 		if (text.expire > 0)
 			t.timers[text.id]=window.setTimeout(function(){
 				t.hide(text.id);
@@ -8490,7 +8490,7 @@ gantt._urlSeparator = function(str){
 		var box = document.createElement("DIV");
 		box.className = " gantt_modal_box dhtmlx_modal_box gantt-"+config.type + " dhtmlx-"+config.type;
 		box.setAttribute("dhxbox", 1);
-			
+
 		var inner = '';
 
 		if (config.width)
@@ -8513,7 +8513,7 @@ gantt._urlSeparator = function(str){
 
 		if (config.content){
 			var node = config.content;
-			if (typeof node == "string") 
+			if (typeof node == "string")
 				node = document.getElementById(node);
 			if (node.style.display == 'none')
 				node.style.display = "";
@@ -8538,7 +8538,7 @@ gantt._urlSeparator = function(str){
 	}
 	function _createBox(config, ok, cancel){
 		var box = config.tagName ? config : _boxStructure(config, ok, cancel);
-		
+
 		if (!config.hidden)
 			modality(true);
 		document.body.appendChild(box);
@@ -8645,7 +8645,7 @@ gantt._urlSeparator = function(str){
 				obj = null;
 			},2000);
 			obj.className+=" hidden";
-			
+
 			if(t.timers[id])
 				window.clearTimeout(t.timers[id]);
 			delete t.pull[id];
@@ -8770,7 +8770,7 @@ gantt.date={
 				case "%m": return "\"+gantt.date.to_fixed((date.getMonth()+1))+\"";
 				case "%j": return "\"+date.getDate()+\"";
 				case "%n": return "\"+(date.getMonth()+1)+\"";
-				case "%y": return "\"+gantt.date.to_fixed(date.getFullYear()%100)+\""; 
+				case "%y": return "\"+gantt.date.to_fixed(date.getFullYear()%100)+\"";
 				case "%Y": return "\"+date.getFullYear()+\"";
 				case "%D": return "\"+gantt.locale.date.day_short[date.getDay()]+\"";
 				case "%l": return "\"+gantt.locale.date.day_full[date.getDay()]+\"";
@@ -8806,7 +8806,7 @@ gantt.date={
 					break;
 				case "%g":
 				case "%G":
-				case "%h": 
+				case "%h":
 				case "%H":
 							splt+="set[3]=temp["+i+"]||0;";
 					break;
@@ -8815,9 +8815,9 @@ gantt.date={
 					break;
 				case "%Y": splt+="set[0]=temp["+i+"]||0;";
 					break;
-				case "%a":					
+				case "%a":
 				case "%A": splt+="set[3]=set[3]%12+((temp["+i+"]||'').toLowerCase()=='am'?0:12);";
-					break;					
+					break;
 				case "%s": splt+="set[5]=temp["+i+"]||0;";
 					break;
 				case "%M": splt+="set[1]=gantt.locale.date.month_short_hash[temp["+i+"]]||0;";
@@ -9048,7 +9048,7 @@ gantt.mixin(gantt.config,
 
 	// grid width can be increased after the column has been resized
 	keep_grid_width:false,
-	
+
 	// grid width can be adjusted
 	grid_resize:false,
 
@@ -9224,7 +9224,7 @@ if (window.jQuery){
 				}
 			});
 
-		
+
 			if (views.length === 1) return views[0];
 			return views;
 		}
@@ -9318,7 +9318,7 @@ gantt.skins.terrace = {
 		lightbox_additional_height:75
 	},
 	_second_column_width:90,
-	_third_column_width:70		
+	_third_column_width:70
 };
 gantt.skins.broadway = {
 	config:{
@@ -9380,7 +9380,7 @@ gantt._init_touch_events = function(){
 						clientX:ev.touches[0].clientX,
 						clientY:ev.touches[0].clientY
 					};
-				else 
+				else
 					return ev;
 			}, function(){ return false; });
 	}
@@ -9409,7 +9409,7 @@ gantt._touch_events = function(names, accessor, ignore){
 
 			//ignore common and scrolling moves
 			if (!action_mode) return;
-			
+
 			if (long_tap_timer) clearTimeout(long_tap_timer);
 
 			var source = accessor(e);
@@ -9474,7 +9474,7 @@ gantt._touch_events = function(names, accessor, ignore){
 		} else {
 			dblclicktime = new Date();
 		}
-		
+
 		//long tap
 		long_tap_timer = setTimeout(function(){
 			var taskId = gantt.locate(action_start);
@@ -9492,11 +9492,11 @@ gantt._touch_events = function(names, accessor, ignore){
 				}
 
 			}
-			
+
 			long_tap_timer = null;
 		}, gantt.config.touch_drag);
 	});
-	
+
 	//touch end
 	gantt.event(this.$container, names[2], function(e){
 		if (ignore(e)) return;
@@ -9505,7 +9505,7 @@ gantt._touch_events = function(names, accessor, ignore){
 		action_mode = false;
 		var source = accessor(e);
 		gantt._tasks_dnd.on_mouse_up(source);
-		
+
 		if(current_target) {
 			gantt.refreshTask(gantt.locate(current_target));
 			if(current_target.parentNode){
@@ -9513,7 +9513,7 @@ gantt._touch_events = function(names, accessor, ignore){
 				gantt._touch_feedback();
 			}
 		}
-		
+
 		gantt._touch_scroll_active = action_mode = scroll_mode = false;
 		current_target = null;
 	});
@@ -9526,7 +9526,7 @@ gantt._touch_events = function(names, accessor, ignore){
 		(e||event).cancelBubble = true;
 		return false;
 	}
-	
+
 	function cloneTaskRendered(taskId) {
 		var renders = gantt._task_area_pulls;
 		var task = gantt.getTask(taskId);
