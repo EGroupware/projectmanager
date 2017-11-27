@@ -737,8 +737,8 @@ class DeleteTest extends \EGroupware\Api\AppTest
 					$check_status = $status == 'open' || $status == 'not-started' ? 'Open(status)' : $status;
 					break;
 				case 'timesheet':
-					// Timesheet is almost always ignore
-					$check_status = $status != 'deleted' ? 'ignore' : $status;
+					// Timesheet is almost always active
+					$check_status = $status != 'deleted' ? 'active' : $status;
 					break;
 				default:
 					$check_status = $status;
