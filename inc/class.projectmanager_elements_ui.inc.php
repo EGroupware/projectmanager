@@ -816,15 +816,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'checkbox' => true,
 				'isChecked' => 'javaScript:app.projectmanager.is_ignored',
 				'onExecute' => 'javaScript:app.projectmanager.ignore_action'
-			),
-			'timesheet' => array(
+			)
+		);
+		$group++;
+		if ($GLOBALS['egw_info']['user']['apps']['timesheet'])
+		{
+			$actions['timesheet'] = array(
 				'icon' => 'timesheet/navbar',
 				'caption' => 'Timesheet',
 				'egw_open' => 'add-timesheet',
 				'allowOnMultiple' => false,
-				'group' => ++$group,
-			),
-			'infolog-subs' => array(
+				'group' => $group,
+			);
+		}
+		if ($GLOBALS['egw_info']['user']['apps']['infolog'])
+		{
+			$actions['infolog-subs'] = array(
 				'icon' => 'infolog/navbar',
 				'caption' => 'View subs',
 				'hint' => 'View all subs of this entry',
@@ -835,8 +842,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'url' => 'menuaction=infolog.infolog_ui.index&action=sp&action_id=$id',
 				'targetapp' => 'infolog',
 				'hideOnDisabled' => true
-			),
-		);
+			);
+		}
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			$actions['filemanager'] = array(
