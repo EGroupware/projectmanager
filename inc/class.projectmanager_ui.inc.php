@@ -53,14 +53,25 @@ class projectmanager_ui extends projectmanager_bo
 	var $filter_labels;
 
 	/**
+	 * Etemplate
+	 */
+	var $template;
+
+	/**
 	 * Constructor, calls the constructor of the extended class
 	 *
 	 * @return projectmanager_ui
 	 */
-	function __construct()
+	function __construct(Etemplate $etemplate = null)
 	{
 		parent::__construct();
 
+		if($etemplate === null)
+		{
+			$etemplate = new Etemplate();
+		}
+		$this->template = $etemplate;
+		
 		static::$status_labels = array(
 			'active'    => lang('Active'),
 			'nonactive' => lang('Nonactive'),
@@ -143,7 +154,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'edit') $this->debug_message("projectmanager_ui::edit(,$view) content=".print_r($content,true));
 
-		$tpl = new Etemplate('projectmanager.edit');
+		$this->template->read('projectmanager.edit');
 
 		if (is_array($content))
 		{
@@ -424,7 +435,7 @@ class projectmanager_ui extends projectmanager_bo
 			'customfields' => $view,
 			'general_avail[1]' => !$GLOBALS['egw_info']['user']['apps']['admin'],
 		);
-		if ($readonlys['delete']) $tpl->disable_cells('delete_sources');
+		if ($readonlys['delete']) $this->template->disable_cells('delete_sources');
 
 		if (!$this->check_acl(EGW_ACL_EDIT_BUDGET))
 		{
@@ -530,7 +541,7 @@ class projectmanager_ui extends projectmanager_bo
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project') : lang('Edit project')) : lang('Add project'));
-		$tpl->exec('projectmanager.projectmanager_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
+		$this->template->exec('projectmanager.projectmanager_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
 	}
 
 	/**
@@ -685,7 +696,7 @@ class projectmanager_ui extends projectmanager_bo
 	{
 		if ((int) $this->debug >= 1 || $this->debug == 'index') $this->debug_message("projectmanager_ui::index(,$msg) content=".print_r($content,true));
 
-		$tpl = new Etemplate('projectmanager.list');
+		$this->template->read('projectmanager.list');
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 
@@ -725,7 +736,7 @@ class projectmanager_ui extends projectmanager_bo
 			switch($action)
 			{
 				case 'ganttchart':
-					$tpl->location(array(
+					$this->template->location(array(
 						'menuaction' => 'projectmanager.projectmanager_ganttchart.show',
 						'pm_id'      => $pm_id,
 					));
@@ -805,13 +816,13 @@ class projectmanager_ui extends projectmanager_bo
 		$sel_options = array(
 			'project_tree' => $this->ajax_tree(0, true,$this->prefs['current_project'])
 		);
-		$tpl->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
+		$this->template->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
 		if($this->prefs['current_project'])
 		{
 			$content['project_tree'] = 'projectmanager::'.$this->prefs['current_project'];
 		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
-		$tpl->exec('projectmanager.projectmanager_ui.pm_list',$content,$sel_options);
+		$this->template->exec('projectmanager.projectmanager_ui.pm_list',$content,$sel_options);
 	}
 
 	/**
