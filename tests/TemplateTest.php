@@ -202,7 +202,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			'info_des'     => 'Test element as part of the project for test ' . $this->getName(),
 			'info_status'  => 'open',
 			'pm_id'	=> $this->pm_id,
-			'info_contact' => array('app' => 'projectmanager', 'id' => $this->pm_id)
+			'info_contact' => array('search' => 'Custom contact')
 		);
 		$element_id = $bo->write($element, true, true, true, true);
 		$this->elements[] = 'infolog:'.$element_id;
