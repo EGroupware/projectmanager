@@ -649,7 +649,7 @@ class projectmanager_bo extends projectmanager_so
 				if (!is_array($data))
 				{
 					$data_backup =& $this->data; unset($this->data);
-					$data =& $this->read($data);
+					$data =& parent::read($data);
 					$this->data =& $data_backup; unset($data_backup);
 
 					if (!$data) return null;	// $pm_id not found ==> no rights
@@ -660,7 +660,7 @@ class projectmanager_bo extends projectmanager_so
 				$data =& $this->data;
 			}
 			// rights come from owner grants or role based Acl
-			$memberships = $GLOBALS['egw']->accounts->memberships($this->user);
+			$memberships = $GLOBALS['egw']->accounts->memberships($user);
 			$member_from_groups = array_intersect_key((array)$data['pm_members'], $memberships);
 			$grants_from_groups = 0;
 			foreach ($member_from_groups as $member_from_group => $member_acl) {
