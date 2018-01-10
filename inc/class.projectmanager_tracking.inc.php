@@ -92,7 +92,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	function get_config($name,$data,$old=null)
 	{
 		$projectmanager = $data['pm_id'];
-		
+
 		unset($old);	// not used, but required function signature
 		switch($name)
 		{
@@ -164,7 +164,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	function get_message($data,$old)
 	{
 		if ($data['message']) return $data['message'];	// async notification
-		
+
 		if (!$data['pm_modified'] || !$old)
 		{
 			return lang('New Project submitted by %1 at %2',
@@ -185,8 +185,6 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	 */
 	function get_details($data,$receiver=null)
 	{
-		unset($receiver);	// not used, but required function signature
-		
 		$members = array();
 		if ($data['pm_members'])
 		{
@@ -231,7 +229,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 		);
 
 		// add custom fields
-		$details += $this->get_customfields($data);
+		$details += $this->get_customfields($data, null, $receiver);
 
 		return $details;
 	}
