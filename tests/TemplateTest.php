@@ -145,6 +145,10 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$this->assertGreaterThan(0, count($GLOBALS['egw_info']['apps']),
 			'No apps found to use as projectmanager elements'
 		);
+
+		// Make one with a custom from
+		$this->make_infolog(true);
+
 		foreach($GLOBALS['egw_info']['apps'] as $app => $app_vals)
 		{
 			// if datasource can not be autoloaded, skip
@@ -194,16 +198,25 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	/**
 	 * Make an infolog entry and add it to the project
 	 */
-	protected function make_infolog()
+	protected function make_infolog($custom_from = false)
 	{
 		$bo = new \infolog_bo();
 		$element = array(
 			'info_subject' => "Test infolog for #{$this->pm_id}",
 			'info_des'     => 'Test element as part of the project for test ' . $this->getName(),
 			'info_status'  => 'open',
-			'pm_id'	=> $this->pm_id,
-			'info_contact' => array('app' => 'projectmanager', 'id' => $this->pm_id)
+			'pm_id'	=> $this->pm_id
 		);
+
+		if($custom_from)
+		{
+			$element['info_des'] .= "\nCustom from";
+			$element += array(
+				'info_from' => 'Custom from',
+				'info_contact' => array('search' => 'Custom from')
+			);
+		}
+
 		$element_id = $bo->write($element, true, true, true, true);
 		$this->elements[] = 'infolog:'.$element_id;
 	}
@@ -370,31 +383,61 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$element_bo->pm_id = $clone_id;
 		$element_count = 0;
 		$indexed_elements = array();
+		$unmatched_elements = $this->elements;
+		// First infolog has a custom from
+		$first_infolog = true;
 
 		foreach($element_bo->search(array('pm_id' => $clone_id), false) as $element)
 		{
 			//echo "\tPM:".$element['pm_id'] . ' '.$element['pe_app'] . ':'.$element['pe_app_id'] . "\t".$element['pe_title']."\n";
-			$indexed_elements[$element['pe_app']] = $element;
+			$indexed_elements[$element['pe_app']][] = $element;
 		}
-		foreach($this->elements as $_id)
+		foreach($this->elements as $key => $_id)
 		{
 			list($app, $id) = explode(':', $_id);
+			$copied = array_shift($indexed_elements[$app]);
 
 			switch ($app)
 			{
 				case 'timesheet':
 					// Timesheet does not support copying, so won't be there
-					$this->assertNull($indexed_elements[$app]);
-					$element_count++;
+					$this->assertNull($copied, "$app entry $_id got linked");
+					unset($unmatched_elements[$key]);
+					continue 2;
+				case 'calendar':
+					// Calendar does not copy, but it does link to the original event
+					$this->assertNotNull($copied, "$app entry $_id is missing");
+					unset($unmatched_elements[$key]);
+					continue 2;
+				case 'infolog':
+					$this->assertNotNull($copied, "$app entry $_id did not get cloned");
+					// Also check pm_id & info_from
+					$info_bo = new \infolog_bo();
+					$info = $info_bo->read($copied['pe_app_id']);
+					$this->assertEquals($clone_id, $info['pm_id']);
+
+					if($first_infolog)
+					{
+						$this->assertNotEquals(Link::title('projectmanager', $clone_id), $info['info_from'], 'Custom from got lost');
+						$first_infolog = false;
+					}
+					else
+					{
+						$this->assertEquals(Link::title('projectmanager', $clone_id), $info['info_from']);
+					}
+					// Make sure ID is actually different - copied, not linked
+					$this->assertNotEquals($id, $copied['pe_app_id']);
+
+					unset($unmatched_elements[$key]);
 					break;
 				default:
-					$this->assertNotNull($indexed_elements[$app]);
-					$element_count++;
+					$this->assertNotNull($copied, "$app entry $_id did not get linked");
+					unset($unmatched_elements[$key]);
 					break;
 			}
 		}
 
-		$this->assertEquals(count($this->elements), $element_count, "Incorrect number of elements");
+		$this->assertCount(0, $unmatched_elements, "Incorrect number of elements");
 	}
 
 	/**
