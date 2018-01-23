@@ -5,9 +5,9 @@ namespace EGroupware\Projectmanager;
 
 require_once realpath(__DIR__.'/../../api/tests/AppTest.php');	// Application test base
 
-use Egroupware\Api\Config;
-use Egroupware\Api\Etemplate;
-use Egroupware\Api\Link;
+use EGroupware\Api\Config;
+use EGroupware\Api\Etemplate;
+use EGroupware\Api\Link;
 
 
 /**
@@ -93,6 +93,10 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		// Mock the etemplate call to get ID
 		$this->ui->edit($content);
 
+		// Force links to run notification now, or we won't get elements since it
+		// usually waits until Egw::on_shutdown();
+		Link::run_notifies();
+
 		// Template contains a sub-project, which pushes pm_id up by 1 more
 		$this->cloned_id = ((int)$this->bo->data['pm_id'])-1;
 		$this->assertNotEquals(-1, $this->cloned_id);
@@ -146,9 +150,6 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			'No apps found to use as projectmanager elements'
 		);
 
-		// Make one with a custom from
-		$this->make_infolog(true);
-
 		foreach($GLOBALS['egw_info']['apps'] as $app => $app_vals)
 		{
 			// if datasource can not be autoloaded, skip
@@ -198,7 +199,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	/**
 	 * Make an infolog entry and add it to the project
 	 */
-	protected function make_infolog($custom_from = false)
+	protected function make_infolog()
 	{
 		$bo = new \infolog_bo();
 		$element = array(
@@ -207,15 +208,6 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			'info_status'  => 'open',
 			'pm_id'	=> $this->pm_id
 		);
-
-		if($custom_from)
-		{
-			$element['info_des'] .= "\nCustom from";
-			$element += array(
-				'info_from' => 'Custom from',
-				'info_contact' => array('search' => 'Custom from')
-			);
-		}
 
 		$element_id = $bo->write($element, true, true, true, true);
 		$this->elements[] = 'infolog:'.$element_id;
@@ -381,15 +373,12 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	{
 		$element_bo = new \projectmanager_elements_bo();
 		$element_bo->pm_id = $clone_id;
-		$element_count = 0;
 		$indexed_elements = array();
 		$unmatched_elements = $this->elements;
-		// First infolog has a custom from
-		$first_infolog = true;
 
-		foreach($element_bo->search(array('pm_id' => $clone_id), false) as $element)
+		foreach($element_bo->search(array('pm_id' => $clone_id), false, 'pe_id ASC') as $element)
 		{
-			//echo "\tPM:".$element['pm_id'] . ' '.$element['pe_app'] . ':'.$element['pe_app_id'] . "\t".$element['pe_title']."\n";
+			//echo "\tPM:".$element['pm_id'] . ' '. $element['pe_id']."\t".$element['pe_app'] . ':'.$element['pe_app_id'] . "\t".$element['pe_title']."\n".Link::title($element['pe_app'],$element['pe_app_id'])."\n";
 			$indexed_elements[$element['pe_app']][] = $element;
 		}
 		foreach($this->elements as $key => $_id)
@@ -397,6 +386,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			list($app, $id) = explode(':', $_id);
 			$copied = array_shift($indexed_elements[$app]);
 
+			//echo "$_id:\tCopied element - PM:".$copied['pm_id'] . ' '.$copied['pe_app'] . ':'.$copied['pe_app_id'] . "\t".$copied['pe_title']."\n";
 			switch ($app)
 			{
 				case 'timesheet':
@@ -410,21 +400,12 @@ class TemplateTest extends \EGroupware\Api\AppTest
 					unset($unmatched_elements[$key]);
 					continue 2;
 				case 'infolog':
-					$this->assertNotNull($copied, "$app entry $_id did not get cloned");
+					$this->assertNotNull($copied, "$app entry $_id did not get copied");
 					// Also check pm_id & info_from
 					$info_bo = new \infolog_bo();
-					$info = $info_bo->read($copied['pe_app_id']);
-					$this->assertEquals($clone_id, $info['pm_id']);
+					$entry = $info_bo->read($copied['pe_app_id']);
+					$this->assertEquals($clone_id, $entry['pm_id']);
 
-					if($first_infolog)
-					{
-						$this->assertNotEquals(Link::title('projectmanager', $clone_id), $info['info_from'], 'Custom from got lost');
-						$first_infolog = false;
-					}
-					else
-					{
-						$this->assertEquals(Link::title('projectmanager', $clone_id), $info['info_from']);
-					}
 					// Make sure ID is actually different - copied, not linked
 					$this->assertNotEquals($id, $copied['pe_app_id']);
 
@@ -437,7 +418,8 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			}
 		}
 
-		$this->assertCount(0, $unmatched_elements, "Incorrect number of elements");
+		// Check that we found them all
+		$this->assertEmpty($unmatched_elements, 'Missing copied elements ' . \array2string($unmatched_elements));
 	}
 
 	/**
