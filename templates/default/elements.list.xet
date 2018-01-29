@@ -173,7 +173,7 @@ return false;"/>
 		<nextmatch id="nm" options="projectmanager.elements.list.rows" header_left="projectmanager.elements.list.add-new"/>
 		<box id="add_existing_popup" class="action_popup prompt">
 			<vbox>
-				<description value="Add / Remove link" class="promptheader"/>
+				<description value="Add element" class="promptheader"/>
 				<link-entry id="link" class="action_popup-content"/>
 				<hbox>
 					<button label="Add" id="link_action[add]" onclick="nm_submit_popup(this); return false;"/>
