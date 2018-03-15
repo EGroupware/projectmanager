@@ -268,8 +268,8 @@ class projectmanager_bo extends projectmanager_so
 		}
 		if ($save_necessary)
 		{
-			//error_log(__METHOD__."() calling save");
-			$this->save(null,false);	// dont touch modification date
+			$this->save(null, false,	// dont touch modification date
+				true, true);	// do not send notification emails, they wont work in shutdown callback and NOT wanted for PE updates
 		}
 		// restore $this->data
 		if (is_array($save_data) && $save_data['pm_id'])
@@ -284,11 +284,12 @@ class projectmanager_bo extends projectmanager_so
 	 * reimplemented to automatic create a project-ID / pm_number, if empty
 	 *
 	 * @param array $keys if given $keys are copied to data before saveing => allows a save as
-	 * @param boolean $touch_modified=true should modification date+user be set, default yes
-	 * @param boolean $do_notify=true should link::notify be called, default yes
+	 * @param boolean $touch_modified =true should modification date+user be set, default yes
+	 * @param boolean $do_notify =true should link::notify be called, default yes
+	 * @param boolean $skip_notification =false should notification(-email) be skiped
 	 * @return int 0 on success and errno != 0 else
 	 */
-	function save($keys=null,$touch_modified=true,$do_notify=true)
+	function save($keys=null, $touch_modified=true, $do_notify=true, $skip_notification=false)
 	{
 		//error_log(__METHOD__."(".array2string($keys).", touch_modified=$touch_modified, do_notify=$do_notify)");
 		if ($keys) $this->data_merge($keys);
@@ -355,7 +356,7 @@ class projectmanager_bo extends projectmanager_so
 			$this->tracking = new projectmanager_tracking($this);
 			$this->tracking->html_content_allow = true;
 		}
-		if (!$this->tracking->track($this->data,$old,$this->user))
+		if (!$this->tracking->track($this->data, $old, $this->user, null, null, $skip_notification))
 		{
 			return implode(', ',$this->tracking->errors);
 		}
