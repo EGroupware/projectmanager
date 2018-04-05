@@ -1,115 +1,451 @@
+%1 days in advance	projectmanager	sl	%1 dni vnaprej
 %1 element(s) updated	projectmanager	sl	%1 element(-a/-i/-ov) posodobljen(-a/-i/-ih)
 %1 new project-elements imported	projectmanager	sl	%1 novih elementov projekta je bilo uvoženih
+%1 project(s) %2	projectmanager	sl	%1 projekt (i) %2
+%1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	sl	%1 projektov %2, %3 ni uspel zaradi nezadostnih pravic!
+%1 project-element(s) deleted.	projectmanager	sl	%1 element (i) projekta je bil izbrisan.
 %1 projects deleted	projectmanager	sl	%1 projektov je bilo zbrisanih
 %1 records imported	projectmanager	sl	%1 zapisov uvoženih
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	sl	1% zapisov prebranih (niso še uvoženi, lahko greste %2nazaj%3 in odznačite preizkus uvoza)
 %1 times permission denied, %2 projects deleted	projectmanager	sl	%1 krat je bil dostop zavrnjen, %2 projektov zbrisanih
+%1 you are responsible for is due at %2	projectmanager	sl	%1, za katerega ste odgovorni, je dolžan pri %2
+%1 you are responsible for is starting at %2	projectmanager	sl	%1, za katerega ste odgovorni, se začne pri %2
+(project id) project title - template name	projectmanager	sl	(ID projekta) naslov projekta - ime predloge
 - planned	projectmanager	sl	- planirano
+- re-planned	projectmanager	sl	- ponovno načrtovano
 0ngoing (0 < % < 100)	projectmanager	sl	V teku (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	sl	Opisni naslov projekta ne sme bit prazen
 accounting	projectmanager	sl	Računovodstvo
 accounting options	projectmanager	sl	Možnosti računovodstva
 accounting type	projectmanager	sl	Vrsta računovodstva
 actions	projectmanager	sl	Dejanja
-activity	projectmanager	sl	Aktivnost
+activity	projectmanager	sl	Dejavnosti
 add a new milestone	projectmanager	sl	Dodaj nov milestone
 add a new project	projectmanager	sl	Dodaj nov projekt
 add element	projectmanager	sl	Dodaj element
 add existing	projectmanager	sl	Dodaj obstoječega
 add milestone	projectmanager	sl	Dodaj milestone
+add or edit element roles	projectmanager	sl	Dodajanje ali urejanje pravil
+add or edit roles and their acl	projectmanager	sl	Add or edit roles and their ACL
 add price	projectmanager	sl	Dodaj ceno
 add project	projectmanager	sl	Dodaj projekt
 add project-elements	projectmanager	sl	Dodaj elemente projekta
+add this role	projectmanager	sl	Dodaj to pravilo
+add timesheet	projectmanager	sl	Dodaj časovni list
+add timesheet only	projectmanager	sl	Dodaj smao časovni list
+addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	sl	Elemente adresarja projekta lahko uporabite za definiranje posameznih prejemnikov serijskih črk. Razpoložljiva polja so
+addressbook fields	projectmanager	sl	Polja adresarjev
+all projects	projectmanager	sl	Vsi projekti
+all roles	projectmanager	sl	Vsa pravila
+all_roles	projectmanager	sl	Vsa pravila
 allow users to change their working times	projectmanager	sl	Dovoli uporabnikom spreminjanje svojega delovnega časa
 allowed accounting types	projectmanager	sl	Dovoljene vrste računovodstva
 allowed units	projectmanager	sl	Dovoljene enote
-app.	projectmanager	sl	Apl.
+anonymous public	projectmanager	sl	Anonimna javnost
+app.	projectmanager	sl	Prg.
 apply the changes	projectmanager	sl	Uveljavi spremenbe
 archive	projectmanager	sl	Arhiv
 assistant	projectmanager	sl	Pomočnik
 at which time do you start working on the given day.	projectmanager	sl	Ob kateri uri začnete delati na določen dan.
+availability settings	projectmanager	sl	Nastavitve razpoložljivosti
+available fields for this plugin:	projectmanager	sl	Razpoložljiva polja za ta vtičnik:
 availible	projectmanager	sl	Na voljo
+billable	projectmanager	sl	Predračun
 bookable	projectmanager	sl	Se lahko rezervira
 budget	projectmanager	sl	Proračun
 budget (no pricelist)	projectmanager	sl	Proračun (brez stroškovnika)
 budget and pricelist	projectmanager	sl	Proračun s stroškovnikom
 by	projectmanager	sl	od
+calculate budget by quantity (eg. time) and price	projectmanager	sl	Izračunajte proračun po količini (npr. Času) in ceni
+can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	sl	Uporablja se lahko pri pravilih elementa, vtičnici »eRoles« in vtičniku »elementi«.
+category in %1 project-element(s) updated.	projectmanager	sl	Kategorija je posodobljena v elementih projekta %1.
+category set	projectmanager	sl	Skupina kategorij
+change category	projectmanager	sl	Spremeni kategorijo
+change the following details of %s	projectmanager	sl	Spremenite naslednje podrobnosti o %s
 charset of file	projectmanager	sl	Kodna tabela datoteke
+charset of the above selected font	projectmanager	sl	Kodna tabela zgoraj izbrane pisave
 check all	projectmanager	sl	Izberi vse
+check to make one element role assignable to multiple elements	projectmanager	sl	Preverite, ali je ena elementna pravilo dodeljena več elementom
+choose the default filename for downloaded documents.	projectmanager	sl	Izberite privzeto ime datoteke za prenesene dokumente.
+close the window, discard the changes made	projectmanager	sl	Zaprite okno, zavrnite izvedene spremembe
+completion	projectmanager	sl	Dokončanje
+constraints	projectmanager	sl	Omejitve
+contact fields for serial letters	projectmanager	sl	Preveri polja za serijske črke
+conversation between days and hours, default 8	projectmanager	sl	Razmerje med dnevi in ​​urami, privzeto 8
 coordinator	projectmanager	sl	Koordinator
 cost per time	projectmanager	sl	Strošek na uro
+create a new empty project or use a template	projectmanager	sl	Ustvarite nov prazen projekt ali uporabite predlogo
 create new links	projectmanager	sl	Ustvari nove povezave
 created	projectmanager	sl	ustvarjeno
+created a ganttchart from the checked projects	projectmanager	sl	Iz pregledanih projektov je ustvaril grafikon Gantt
+creation date and time	projectmanager	sl	Datum ustvarjanja in čas
+creator	projectmanager	sl	Stvarnik
 csv-fieldname	projectmanager	sl	CSV-Ime polja
 csv-filename	projectmanager	sl	CSV-Ime datoteke
 csv-import	common	sl	CSV-Uvoz
+cumulated elements too	projectmanager	sl	Tudi seštevek elementov
 custom fields	projectmanager	sl	Lastna polja
+customer title	projectmanager	sl	Naslov stranke
+data exchange settings	projectmanager	sl	Nastavitve za izmenjavo podatkov
 datasource	projectmanager	sl	Vir podatkov
+datasources too	projectmanager	sl	Tudi viri podatkov
 dates	projectmanager	sl	Datumi
 days	projectmanager	sl	Dni
+default action on double-click	projectmanager	sl	Privzeto dejanje za dvokliknite
+default all and a selectbox to choose	projectmanager	sl	Privzeto vse in izberite polje za izbiro
 delete all checked projects	projectmanager	sl	Zbriši vse izbrane projekte
+delete this element role	projectmanager	sl	Izbriši to vlogo elementa
+delete this milestone	projectmanager	sl	Izbriši to vlogo elementa
 delete this price	projectmanager	sl	Zbriši to ceno
 delete this project	projectmanager	sl	Zbriši ta projekt
+delete this project-element, does not remove the linked entry	projectmanager	sl	Izbrišite ta element projekta, NE odstranite povezanega vnosa.
+delete this role	projectmanager	sl	Izbriši to pravilo
 deleted	projectmanager	sl	Zbrisano
 depth of display	projectmanager	sl	Globina prikaza
+details of cumulated	projectmanager	sl	Podrobnosti seštevka
+details of subelements	projectmanager	sl	Podrobnosti podelementov
+directory with documents to insert project data	projectmanager	sl	Imenik z dokumenti za vstavljanje podatkov projekta
+do not use that entry as project-element	projectmanager	sl	Ta vnos ne uporabljajte kot element projekta
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	sl	Želite obvestilo, če se bodo elementi začeli v skladu z načrtovanimi datumi?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	sl	Želite obvestilo, če se bodo elementi začeli v skladu z njihovimi dejanskimi datumi?
+do you want a notification, if items are due according to their planned dates?	projectmanager	sl	Želite obvestilo, če so predmeti zapadli v skladu z načrtovanimi datumi?
+do you want a notification, if items are due according to their real dates?	projectmanager	sl	Želite obvestilo, če so predmeti zapadli glede na njihove dejanske datume?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	sl	Želite obvestilo, če vam bodo predmeti dodeljeni ali bodo dodeljeni predmeti posodobljeni?
+do you want a notification, if items you created get updated?	projectmanager	sl	Želite obvestilo, če so elementi, ki ste jih ustvarili, posodobljeni?
 document '%1' does not exist or is not readable for you!	projectmanager	sl	Dokument '%1' ne obstaja ali pa nimate pravice branja!
+document download filename	projectmanager	sl	Ime datoteke za prenos dokumenta
 done (100%)	projectmanager	sl	Narejeno (100%)
+edit access, incl. editing budget and elements	projectmanager	sl	Uredi dostop, vklj. urejanje proračuna in elementov
 edit budget	projectmanager	sl	Uredi proračun
+edit element roles	projectmanager	sl	Uredite pravila elementov
+edit milestone	projectmanager	sl	Uredite mejnik
 edit price	projectmanager	sl	Uredi ceno
 edit project	projectmanager	sl	Uredi projekt
 edit project-elements	projectmanager	sl	Uredi elemente projekta
+edit this element role	projectmanager	sl	Uredite to pravilo elementa
+edit this milestone	projectmanager	sl	Uredite ta mejnik
 edit this price	projectmanager	sl	Uredi to ceno
 edit this project	projectmanager	sl	Uredi ta projekt
 edit this project-element	projectmanager	sl	Uredi ta element projekta
+edit this role	projectmanager	sl	Uredi to pravilo
+element category	projectmanager	sl	Kategorija elementov
+element details	projectmanager	sl	Podrobnosti elementa
+element id	projectmanager	sl	ID elementa
+element list	projectmanager	sl	Seznam elementov
+element modifier	projectmanager	sl	Popravek elementa
+element role	projectmanager	sl	Pravilo elementa
+element role deleted	projectmanager	sl	pravilo elementa je izbrisano
+element role saved	projectmanager	sl	Pravilo elementa je shranjeno
+element role title	projectmanager	sl	Naslov pravila elementa
+element roles	projectmanager	sl	Pravilo elementa
+element roles defined as "mutliple" can be used here.	projectmanager	sl	Tu lahko uporabimo pravila elementov, ki so opredeljeni kot "večkratni".
+element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	sl	Funkcija elementov trenutno ni omogočena v vaši globalni konfiguraciji programa ProjectManager.
+element roles:	projectmanager	sl	Pravila elementov
+element status	projectmanager	sl	Stanje elementov
+element title	projectmanager	sl	Naslov elementov
 elementlist	projectmanager	sl	Seznam elementov
+elements	projectmanager	sl	Elementi
+elements of elements	projectmanager	sl	Elementi elementov
+elements that can't start before this one is finished	projectmanager	sl	Elementi, ki se ne morejo zagnati pred tem, je končan.
+elements which have to be finished before this can start	projectmanager	sl	Elementi, ki jih je treba dokončati, se lahko začnejo.
 empty	projectmanager	sl	Prazno
 empty for all	projectmanager	sl	Izprazni za vse
-end before	projectmanager	sl	Konec pred
+encode non-ascii	projectmanager	sl	Kodiraj ne-ascii
 enddate	projectmanager	sl	Končni datum
+ends after	projectmanager	sl	Konča po
+ends before	projectmanager	sl	Konča pred
+error: deleting element role !!!	projectmanager	sl	Napaka pri brisanju pravila elementa!
+error: deleting price !!!	projectmanager	sl	Napaka pri brisanju cene!
+error: deleting project !!!	projectmanager	sl	Napaka pri brisanju projekta!
+error: deleting project-element !!!	projectmanager	sl	Napaka pri brisanju elementa projekta!
+error: deleting role !!!	projectmanager	sl	Napaka pri brisanju pravila!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	sl	Napaka: ID projekta že obstaja, izberite drugo ali jo ustvarite, tako da ga pustite prazen!
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	sl	NAPAKA: Najdena recurza, ID %1 več kot enkrat na projektni poti, pri gradnji projektnega drevesa:
+error: saving element role !!!	projectmanager	sl	Napaka pri shranjevanju elementa!
+error: saving milestone	projectmanager	sl	Napaka pri shranjevanju mejnika!
+error: saving role !!!	projectmanager	sl	Napaka pri shranjevanju pravila!
+error: saving the price (%1) !!!	projectmanager	sl	Napaka pri shranjevanju cene (%1)!
+error: saving the project (%1) !!!	projectmanager	sl	Napaka pri shranjevanju projekta (%1)!
+error: saving the project-element (%1) !!!	projectmanager	sl	Napaka pri shranjevanju elementa projekta (%1)!
+everything recursive	projectmanager	sl	Vse rekurzivno
+example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	sl	Primer {{IF n_prefix ~ Mr ~ Pozdravljeni g. ~ Pozdravljeni gospa}} - poiščite polje »n_prefix«, za »gospod«, če najdete, pišite Hello Hello, drugače pišite Hello Ms.
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	sl	Primer {{LETTERPREFIXCUSTOM n_prefix naslov n_family}} - Primer: g. Dr. James Miller
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	sl	Primer {{NELF role}} - če pravilo v polju ni prazno, boste dobili novo vrstico z vrednostjo pravila na poljubnem mestu
+example {{nenvlf role}} - if field role is not empty, set a lf without any value of the field	projectmanager	sl	Primer {{nenvlf role}} - če pravilo v polju ni prazna, nastavite LF brez poljubne vrednosti polja
+example:	projectmanager	sl	Primer:
+examples:	projectmanager	sl	Primeri:
+existing data will be overwrited if checked	projectmanager	sl	Če se preveri obstoječe podatke, bodo prepisani.
 existing links	projectmanager	sl	Obstoječe povezave
 exists	projectmanager	sl	Obstaja
+exit without saving	projectmanager	sl	Izhod brez shranjevanja
+export definition to use for nextmatch export (elements)	projectmanager	sl	Izvozna definicija, ki jo je treba uporabiti za izvoz naslednjega računa (elementi)
+export definition to use for nextmatch export (projects)	projectmanager	sl	Izvozna definicija, ki jo je treba uporabiti za prihodnji izvoz (projekti)
+export definition to use for nextmatch export (projekte)	projectmanager	sl	Izvozna definicija, ki jo je treba uporabiti za prihodnji izvoz (Projekte)
+exports a list of project elements to a csv file.	projectmanager	sl	Izvozi seznam elementov projekta v datoteko CSV.
+exports a list of projects to a csv file.	projectmanager	sl	Izvozi seznam projektov v datoteko CSV.
+external	projectmanager	sl	Zunanji
 favorites	projectmanager	sl	Priljubljene
+fields for element roles:	projectmanager	sl	Polja za pravila elementov:
 fieldseparator	projectmanager	sl	Ločilo polj
+font	projectmanager	sl	Pisava
+font charset	projectmanager	sl	Nabor pisave
+font style	projectmanager	sl	Slog pisave
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	sl	Pisava, ki se uporablja v grafikonu Gantt, so v vodniku projekta vključene samo pisave Vera.
+fontfile '%1' not found!!!	projectmanager	sl	Datoteka s pisavi "%1" ni bila najdena!
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	sl	Za tipska pisma uporabite značko. Vsebino, ki jo želite imeti v vseh dokumentih, vnesite med značke.
+free descriptiv text	projectmanager	sl	Brez opisnega besedila
+from %1 to %2	projectmanager	sl	Od %1 do %2
 full access	projectmanager	sl	poln dostop
+furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	sl	Elemente adresarja na seznamu elementov upravitelja projektov lahko izberete, da določite posamezne prejemnike serijske črke.
+ganttchart	projectmanager	sl	Ganttogram
+ganttchart parameter	projectmanager	sl	Parametri Ganttograma
+general availibility	projectmanager	sl	Splošna razpoložljivost
 general fields:	projectmanager	sl	Splošna polja:
+general pricelist	projectmanager	sl	Splošni cenik
+general settings	projectmanager	sl	Splošne nastavitve
 global categories	projectmanager	sl	Globalne kategorije
 h	projectmanager	sl	h
+health	projectmanager	sl	Popravi
 hours	projectmanager	sl	ure
+hours per workday	projectmanager	sl	Hours per work day
+how long do you work on the given day.	projectmanager	sl	Kako dolgo delate na dan?
+how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sl	Kako naj se prikaže izbor projekta v meniju: drevo daje boljši pregled, izbirno okence lahko bolje deluje.
+html link to the current record	projectmanager	sl	Povezava HTML s trenutnim zapisom
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sl	Če ste preverili podatkovne vire elementov, npr. Tudi zapisi InfoLog se izbrišejo.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sl	Če ste preverili podatkovne vire elementov, npr. Točke vnosa InfoLog bodo spremenile tudi njihovo stanje.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sl	Če vidite elemente (npr. {) V gantogramu, to izključite.
+if you specify an export definition, it will be used when you export	projectmanager	sl	Če določite definicijo izvoza, se bo uporabil, ko boste izvozili
+ignore that entry	projectmanager	sl	Prezri vnos
+ignored	projectmanager	sl	Prezrti.
 import	projectmanager	sl	Uvoz
+imports a list of projects from a csv file.  does not include project elements.	projectmanager	sl	Uvozi seznam projektov iz datoteke CSV. Ne vključuje elementov projekta.
 insert	projectmanager	sl	Vstavi
 last modified	projectmanager	sl	nazadnje spremenjeno
+last sync date and time	projectmanager	sl	Zadnji datum in čas sinhronizacije
+leave it empty if you dont need a different customer title	projectmanager	sl	Pustite prazno, če ne potrebujete drugega naslova stranke.
+leave it empty to have one generated	projectmanager	sl	Pustite, da je prazna, da jo ustvarite
+leave it empty, if identitcal to the time	projectmanager	sl	Pustite, da je prazna, če je enaka času
+limit number of characters in ganttchart element title (0 for no limit)	projectmanager	sl	Omeji število znakov v naslovu elementa gantograma (0 brez omejitve)
+linked elements	projectmanager	sl	Povezani elementi
 links	projectmanager	sl	Povezave
+links and attached files	projectmanager	sl	Povezave in priložene datoteke
+links to specified application.  example: {{links/infolog}}	projectmanager	sl	Povezave do določene aplikacije. Primer: {{links / infolog}}
+list of files linked to the current record	projectmanager	sl	Seznam datotek, povezanih s trenutnim zapisom
+lists all elements assigned to an element role in a table.	projectmanager	sl	Lists all elements assigned to an element role in a table.
+lists all project elements in a table.	projectmanager	sl	Navede vse elemente projekta v tabeli.
+mainproject only	projectmanager	sl	Samo glavni projekt
+mainprojects	projectmanager	sl	Glavni projekti
 manage mapping	projectmanager	sl	Upravljaj mapiranje
 members	projectmanager	sl	Člani
+milestone	projectmanager	sl	Mejnik
+milestone deleted	projectmanager	sl	Zbrisani mejniki
+milestone saved	projectmanager	sl	Shranjeni mejniki
+milestones	projectmanager	sl	Mejniki
+milestones before this element has to be finished	projectmanager	sl	Mejnike pred tem elementom je treba končati
 modified	projectmanager	sl	Spremenjeno
+modified by	projectmanager	sl	Spremenjeno z
+modified date and time	projectmanager	sl	Spremenjen datum in čas
+modifier	projectmanager	sl	Spremenil
+modify status	projectmanager	sl	Stanje spremembe
+multi assignable	projectmanager	sl	Večnamensko
+multi assignments	projectmanager	sl	Več nalog
 name of current user, all other contact fields are valid too	projectmanager	sl	Ime trenutnega uporabnika, veljavna so tudi vsa druga polja stika
+necessary for project-elements doing that not automatic	projectmanager	sl	Nujno za elemente projekta, ki niso avtomatski
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	sl	Potrebne PHP razširitve %1 niso naložene in jih ni mogoče naložiti!
 new	projectmanager	sl	nov
+new project submitted by %1 at %2	projectmanager	sl	Nov projekt, ki ga je predložil %1 pri %2
+no accounting, only status	projectmanager	sl	Brez računovodstva, samo stanje
+no accounting, only times and status	projectmanager	sl	Brez računovodstva, samo čas in stanje
 no details	projectmanager	sl	Brez podrobnosti
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	sl	Ne READ dostop do vira podatkov: odstranjevanje prepisanih vrednosti jih bo le izpraznilo!
+no rights to export more then %1 entries!	projectmanager	sl	Ni pravic za izvoz več kot %1 vnosov!
+no save necessary	projectmanager	sl	Brez prihranka
 nonactive	projectmanager	sl	Neaktivno
+not available	projectmanager	sl	Ni na voljo
+not started (0%)	projectmanager	sl	Ni začelo (0%)
+not working	projectmanager	sl	Ne deluje
+notification settings	projectmanager	sl	Nastavitve obvestil
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	sl	Število znakov, na katere je treba skrajšati naslov elementov gantograma.
 number of records to read (%1)	projectmanager	sl	Število zapisov za branje (%1)
+one day after	projectmanager	sl	dan kasneje
+one day in advance	projectmanager	sl	en dan vnaprej
+only this project	projectmanager	sl	Samo ta projekt
+order of sub-project bars in ganttcharts	projectmanager	sl	Vrstni red podprojektnih Stolpcev gantograma
+overwrite the datasource	projectmanager	sl	Prepiši vir podatkov
+percentage the member is availible for projects	projectmanager	sl	Odstotek članov ki je na voljo za projekte
+percentage the member is availible for this project	projectmanager	sl	Odstotek članov ki je na voljo za ta projekte
 permission denied !!!	projectmanager	sl	Dostop zavrnjen!
 planned	projectmanager	sl	Planirano
+planned budget	projectmanager	sl	Načrtovani proračun
+planned end	projectmanager	sl	Načrtovani konec
+planned end date and time	projectmanager	sl	Načrtovani datum in čas zaključka
+planned quantitiy	projectmanager	sl	Predvidena količina
+planned quantity	projectmanager	sl	Predvidena količina
+planned start	projectmanager	sl	Načrtovani začetek
+planned start date and time	projectmanager	sl	Načrtovani datum in čas začetka
 planned time	projectmanager	sl	Planirani čas
+planned time in minutes	projectmanager	sl	Predviden čas v minutah
+planned times	projectmanager	sl	Načrtovani časi
+please download a recent version from %1 and install it in %2.	projectmanager	sl	Prenesite najnovejšo različico iz %1 in jo namestite v %2.
+pm_milestone	projectmanager	sl	Mejnik
 price	projectmanager	sl	Cena
+price / unit	projectmanager	sl	Cena / enota
+price deleted	projectmanager	sl	Cena je izbrisana.
+price per unit	projectmanager	sl	Cena na enoto
+price saved	projectmanager	sl	Cena je shranjena
 pricelist	projectmanager	sl	Cenik
+project	common	sl	Project
+project access (e.g. public)	projectmanager	sl	Dostop do projekta, npr. javnost
+project availibility	projectmanager	sl	Razpoložljivost projekta
+project category	projectmanager	sl	Kategorija projekta
+project completion (e.g. 100%)	projectmanager	sl	Zaključek projekta, npr. 100%
+project creator	projectmanager	sl	Projektni ustvarjalec
+project csv export	projectmanager	sl	Izvoz CSV projekta
+project csv import	projectmanager	sl	Uvoz CSV projekta
+project deleted	projectmanager	sl	Projekt je izbrisan.
+project element csv export	projectmanager	sl	Izvozni element CSV projekta
+project id	projectmanager	sl	ID projekta
+project id - template name	projectmanager	sl	ID projekta - ime predloge
+project members and roles	projectmanager	sl	Člani projekta in vloge
+project modified by %1 at %2	projectmanager	sl	Projekt je spremenil %1 na %2
+project modifier	projectmanager	sl	Projekt spremenil
+project number	projectmanager	sl	Številka projekta
+project overview	projectmanager	sl	Pregled projekta
+project priority	projectmanager	sl	Prednost projekta
+project saved	projectmanager	sl	Projekt je shranjen.
+project sort order	projectmanager	sl	Razvrstitev projekta
+project specific title, prices, ...	projectmanager	sl	Naslov specifičnega projekta, cene, ...
+project status	projectmanager	sl	Stanje projekta
+project title	projectmanager	sl	Naslov projekta
+project title - template name	projectmanager	sl	Naslov projekta - ime predloge
+project-element	projectmanager	sl	Element projekta
+project-element deleted	projectmanager	sl	Element projekta je izbrisan.
+project-element saved	projectmanager	sl	Element projekta je shranjen.
+project-elements	projectmanager	sl	Elementi projekta
+projectelement	projectmanager	sl	Element projekta
+projectid	projectmanager	sl	ID projekta
+projectlist	projectmanager	sl	Seznam projektov
 projectmanager	common	sl	Upravljalec projektov
+projectmanager element fields	projectmanager	sl	Elementi polja upravitelja projektov
+projectmanager element fields:	projectmanager	sl	Elementi polja upravitelja projektov:
+projectmanager fields:	projectmanager	sl	Področja vodij projektov:
+projectmanager-fieldname	projectmanager	sl	Ime vodnika projekta
+projectmember	projectmanager	sl	Projektni član
+projects	common	sl	Projekti
 quantity	projectmanager	sl	Količina
+re-planned	projectmanager	sl	Ponovno načrtovana
+re-planned time	projectmanager	sl	Ponovno načrtovani čas
+read access, incl. budget and adding elements	projectmanager	sl	Dostop za branje, vklj. proračun in dodajanje elementov
+read access, no budget	projectmanager	sl	Dostop za branje, brez proračuna
+real end	projectmanager	sl	Pravi konec
+real end date and time	projectmanager	sl	Dejanski končni datum in čas
+real start	projectmanager	sl	Realni začetek
+real start date and time	projectmanager	sl	Realni začetni datum in čas
+receive notifications about due entries (planned dates)	projectmanager	sl	Prejemanje obvestil o zapadlih vnosih (načrtovani datumi)
+receive notifications about due entries (real dates)	projectmanager	sl	Prejemanje obvestil o zapadlih vnosih (pravi datumi)
+receive notifications about items assigned to you with these roles	projectmanager	sl	Prejemajte obvestila o elementih, ki so vam dodeljeni s temi pravili
+receive notifications about own items	projectmanager	sl	Prejmite obvestila o lastnih predmetih
+receive notifications about starting entries (planned dates)	projectmanager	sl	Prejemanje obvestil o začetnih vnosih (načrtovani datumi)
+receive notifications about starting entries (real dates)	projectmanager	sl	Prejem obvestil o začetnih vnosih (pravi datumi)
 remark	projectmanager	sl	Opazka
+replanned time in minutes	projectmanager	sl	Ponovno načrtovani čas v minutah
 resources	projectmanager	sl	Sredstva
 role	projectmanager	sl	Vloga
+role deleted	projectmanager	sl	Pravilo zbrisano
+role saved	projectmanager	sl	Pravilo shranjeno
+roles	projectmanager	sl	Pravila
+same day	projectmanager	sl	Isti dan
+save the changes made	projectmanager	sl	Shranite izvedene spremembe
+save this project element	projectmanager	sl	Shrani ta element projekta
 select a project	projectmanager	sl	Izberite projekt
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	sl	Izberite dejavnost, če želite izračunati stroške glede na količino (čas) in ceno.
+select export options	projectmanager	sl	Izberite možnosti izvoza
+select multiple projects for a further action	projectmanager	sl	Za nadaljnje ukrepe izberite več projektov
+select project sort order for project tree and link search	projectmanager	sl	Select project sort order for project tree and link search
+select the accounting types visible for users of projectmanager	projectmanager	sl	Izberite vrste računovodskih izkazov, ki so vidni za uporabnike
+select this project and show it's elements	projectmanager	sl	Izberite ta projekt in pokažite njegove elemente
+selectbox with %1	projectmanager	sl	Izberite polje z %1
+set order to show sub-project bars in ganttcharts.	projectmanager	sl	Nastavite vrstni red prikaza stolpcev podprojekta v gantogramu
+share	projectmanager	sl	Deliti
+share on the whole project	projectmanager	sl	Delite na celoten projekt
+share on the whole project in hours or percent, defaults to planned time	projectmanager	sl	Delite celoten projekt v urah ali odstotkih, privzeto načrtujete čas
+shared time in minutes	projectmanager	sl	Skupni čas v minutah
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	sl	Če seznami elementov projektov kažejo posebne ikone infolog tipov. Ikone za infologne tipe po meri se lahko dodajo na poti VFS, kjer so na voljo dodatne slike, ikone ali logotipi (glejte Konfiguracija strani). Če naložite ikone 32x32 pik z imenom datoteke, ki se konča z '_element', bo ta večja ikona naložena na seznam elementov.
+should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	sl	Če bi elementi projekta prikazali povezave do drugih aplikacij in / ali priloge datotek na seznamu Elementi projekta (samo pri prikazu podrobnosti).
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	sl	Če vodja projektov prikaže ikone stanja vira podatkov, npr. InfoLog ali le vrstica napredka z numeričnim statusom.
+show constraints and milestones	projectmanager	sl	Pokaži omejitve in mejnike
+show elements in ganttchart by applications	projectmanager	sl	Pokažite elemente v gantogramu po aplikacijah
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	sl	Pokaži elemente v gantogramu glede na aplikacije, iz katerih prihajajo (none = all)
+show infolog type icon in the project elements list	projectmanager	sl	Na seznamu Elementi projekta prikažite ikono vrste infologije
+show links in the project elements list	projectmanager	sl	Prikaži povezave na seznamu Elementi projekta
+show planned times instead of the real times	projectmanager	sl	Prikažite načrtovane čase namesto dejanskih časov
+show status icons of the datasources	projectmanager	sl	Prikažite ikone stanja v podatkovnih virih
+show the project selection as	projectmanager	sl	Prikaži izbor projekta kot
+site configuration saved	projectmanager	sl	Konfiguracija strani je shranjena.
+start date, end date	projectmanager	sl	Začetni datum, končni datum
+start working on %1	projectmanager	sl	Začnite delati na %1
+start, end, category, ...	projectmanager	sl	Začetek, konec, kategorija, ...
+start- & enddate	projectmanager	sl	Datum začetka in konca
 startdate	projectmanager	sl	Začetni datum
 startrecord	projectmanager	sl	Začetni zapis
+starts after	projectmanager	sl	Začne za
+starts before	projectmanager	sl	Začne prej
+status filter	projectmanager	sl	Filter stanja
+status set	projectmanager	sl	Stanje nastavljeno
+style used for everything but elements. some fonts have only normal style.	projectmanager	sl	Slog za vse, razen za elemente. Nekatere pisave imajo le običajni slog.
+subelements	projectmanager	sl	Podelementi
+subproject	projectmanager	sl	Podprojekt
+subprojects	projectmanager	sl	Podprojekti
+synced	projectmanager	sl	Posodobljeno
+synchronise all	projectmanager	sl	Vse posodobljeno
+table plugins:	projectmanager	sl	Vtičniki za tabele:
 tag to mark positions for address labels	projectmanager	sl	Oznaka za označitev položajev oznak adresarja
 template	projectmanager	sl	Predloga
+template as subproject	projectmanager	sl	Predloga kot podprojekt
+template including elment-tree saved as new project	projectmanager	sl	Predloga, ki vsebuje drevo elementa, je shranjena kot nov projekt
+template name	projectmanager	sl	Ime predloge
+template name - project title	projectmanager	sl	Ime predloge - naslov projekta
 test import (show importable records <u>only</u> in browser)	projectmanager	sl	Preizkus uvoza (Pokaže uvožene zapise<u>samo</u> v brskalniku).
+that action allows to download the specified document with the project and elements data inserted.	projectmanager	sl	To dejanje omogoča prenos določenega dokumenta z vstavljenimi podatki projekta in elementov.
+the charset depends on the font you want to use.	projectmanager	sl	Koda je odvisna od pisave, ki jo želite uporabiti.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	sl	dokument lahko vsebuje vsebnik kot {{%3}}, ki ga je treba zamenjati s podatki (%1 popoln seznam imen imenika %2).
+the following document-types are supported:	projectmanager	sl	Podprte so naslednje vrste dokumentov:
+time	projectmanager	sl	Čas
 times	projectmanager	sl	Časi
 timezone	projectmanager	sl	Časovni pas
+title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	sl	Naslov vsebuje neveljavne znake. Uporabite A-Z, številke, pomišljaj in podčrtaj.
+title must not be empty	projectmanager	sl	Naslov ne sme biti prazen
+titles of any entries linked to the current record, excluding attached files	projectmanager	sl	Naslovi vseh vnosov, povezanih s trenutnim zapisom, brez priloženih datotek
 to many might exceed your execution-time-limit	projectmanager	sl	Preveč lahko preseže čas izvajanja
+total completion shares	projectmanager	sl	Skupni dokončani deleži
+total shares	projectmanager	sl	Skupaj deleži
 translation	projectmanager	sl	Prevod
+tree with %1	projectmanager	sl	Drevo z %1
+unable to find parent project %1	projectmanager	sl	Projekta staršev %1 ni mogoče najti
+unit	projectmanager	sl	Enota
+unitprice	projectmanager	sl	Cena na enoto
+usage	projectmanager	sl	Uporaba
 use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	sl	Uporabi to značko za naslov nalepk. Stik, ki ga želite ponoviti, dajte med dve znački.
+used	projectmanager	sl	Uporabljeno
+used budget	projectmanager	sl	Uporabljen proračun
+used quantity	projectmanager	sl	Uporabljena količina
 used time	projectmanager	sl	Porabljen čas
+used time in minutes	projectmanager	sl	Uporabljen čas v nekaj minutah
+valid since	projectmanager	sl	Velja od
 view all subs of this entry	projectmanager	sl	Poglej vse podrejene zapise
+view ganttchart of this project	projectmanager	sl	Oglejte si gantogram tega projekta
+view milestone	projectmanager	sl	Pogled mejnika
+view price	projectmanager	sl	Pogled cene
+view project	projectmanager	sl	Pogled projekta
+view project-elements	projectmanager	sl	Pogled elementov projekta
 view subs	projectmanager	sl	Pogled podrejenih zapisov
+view this element in %1	projectmanager	sl	Ogled tega elementa v %1
+view this milestone	projectmanager	sl	Oglejte si ta mejnik
+view this price	projectmanager	sl	Oglejte si to ceno
+view this project	projectmanager	sl	Oglejte si ta projekt
+view this project-element	projectmanager	sl	Oglejte si ta element projekta
+working duration on %1	projectmanager	sl	Delovno trajanje na %1
+you can leave the date of the first price empty	projectmanager	sl	Datum prve cene lahko pustite prazen
+you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	sl	Nimate nameščene različice JPGraph %1 ali novejše! Potreben je od vodje projekta za grafikone Gantt.
+you need to select a project first	projectmanager	sl	Najprej morate izbrati projekt
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sl	Vaša podatkovna baza NI obnovljena (%1 vs. %2), prosimo poženite %3 nastavitev%4 za prenovo vaše podatkovne baze.
