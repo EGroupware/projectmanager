@@ -96,7 +96,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 */
 	var $status_filter = array(
 		'all'     => false,
-		'used'    => array('new','regular'),
+		'used'    => '!ignore',
 		'new'     => 'new',
 		'ignored' => 'ignore',
 	);
@@ -261,12 +261,8 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			$this->data['pm_id'] = $pm_id;
 			$this->data['pe_id'] = $pe_id;
 			$this->data['pe_overwrite'] = 0;		// none set so far
+			$this->data['pe_status']= 'new';
 
-			// only set status if it's not set by the datasource
-			if (!isset($this->data['pe_status']))
-			{
-				$this->data['pe_status']= 'new';
-			}
 			// if user linking has no ADD rights, the entry is set to ignored
 			if (!$this->check_acl(Acl::ADD,array('pm_id'=>$pm_id)) && !
 				($this->check_acl(EGW_ACL_ADD_TIMESHEET, array('pm_id'=>$pm_id)) && $app == 'timesheet')
@@ -563,11 +559,11 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * deletes a project-element or all project-elements of a project, reimplemented to remove the link too
 	 *
 	 * @param array/int $keys if given array with pm_id and/or pe_id or just an integer pe_id
-	 * @param boolean $delete_sources=false true=delete datasources of the elements too (if supported by the datasource), false dont do it
-	 * @param boolean $unlink = false Internal use only, passing false will skip the unlinking steps
+	 * @param boolean $delete_sources =false true=delete datasources of the elements too (if supported by the datasource), false dont do it
+	 * @param boolean $unlink =true Internal use only, passing false will skip the unlinking steps
 	 * @return int affected rows, should be 1 if ok, 0 if an error
 	 */
-	function delete($keys=null,$delete_sources=false, $unlink = true)
+	function delete($keys=null,$delete_sources=false, $unlink=true)
 	{
 		if ((int) static::DEBUG >= 1 || static::DEBUG === 'delete') {
 			projectmanager_bo::debug_message("projectmanager_elements_bo::delete(" . print_r($keys, true) . ",$delete_sources) this->data[pm_id] = " . $this->data['pm_id']);

@@ -508,6 +508,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if ($this->status_filter[$query['filter']])
 		{
 			$query['col_filter']['pe_status'] = $this->status_filter[$query['filter']];
+
+			if ($query['col_filter']['pe_status'][0] === '!')
+			{
+				$query['col_filter'][] = 'pe_status != '.$this->db->quote(substr($query['col_filter']['pe_status'], 1));
+				unset($query['col_filter']['pe_status']);
+			}
 		}
 		else
 		{

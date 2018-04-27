@@ -458,7 +458,16 @@ function projectmanager_upgrade14_2()
 }
 
 
+/**
+ * Fix pe_status to be (again) only "new", "used" or "ignore"
+ *
+ * @return string
+ */
 function projectmanager_upgrade16_1()
 {
+	$GLOBALS['egw_setup']->db->update('egw_pm_elements', array(
+		'pe_status' => 'used',
+	), "pe_status NOT IN ('new','used','ignore')", __LINE__, __FILE__, 'projectmanager');
+
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '17.1';
 }
