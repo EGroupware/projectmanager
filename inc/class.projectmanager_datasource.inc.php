@@ -140,7 +140,6 @@ class projectmanager_datasource extends datasource
 		// return the projectmembers as resources
 		$ds['pe_resources'] = $data['pm_members'] ? array_keys($data['pm_members']) : array($data['pm_creator']);
 		$ds['pe_details'] = $data['pm_description'];
-		$ds['pe_status'] = $data['pm_status'];
 
 		// use completition calculated by times, if completion is only set from the elements
 		// if re is set, use this
