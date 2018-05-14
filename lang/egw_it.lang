@@ -1,3 +1,4 @@
+%1 days in advance	projectmanager	it	%1 giorni in anticipo
 %1 element(s) updated	projectmanager	it	%1 elemento/i aggiornato/i
 %1 new project-elements imported	projectmanager	it	%1 nuovi elementi-progetto importati
 %1 project(s) %2	projectmanager	it	%1 progetti %2
@@ -7,6 +8,8 @@
 %1 records imported	projectmanager	it	%1 record importati
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	it	%1 record letti (non ancora importati, è possibile tornare %2indietro%3 e deselezionare Test Importazione)
 %1 times permission denied, %2 projects deleted	projectmanager	it	%1 permessi tempi negati, %2 progetti eliminati
+%1 you are responsible for is due at %2	projectmanager	it	%1 per il quale sei responsabile, scade il %2
+%1 you are responsible for is starting at %2	projectmanager	it	%1 per il quale sei responsabile, comincia il %2
 (project id) project title - template name	projectmanager	it	(ID Progetto) titolo progetto - nome template
 - planned	projectmanager	it	- pianificato
 - re-planned	projectmanager	it	- ri-pianificato
@@ -28,6 +31,7 @@ add price	projectmanager	it	Aggiungi prezzo
 add project	projectmanager	it	Aggiungi progetto
 add project-elements	projectmanager	it	Aggiungi elementi-progetto
 add this role	projectmanager	it	Aggiungi questo ruolo
+add timesheet	projectmanager	it	Aggiungi foglio ore
 add timesheet only	projectmanager	it	Aggiungi solo foglio ore
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	it	Elementi di rubrica di un progetto possono essere usati per definire destinatari individuali di lettere. I campi disponibili sono
 addressbook fields	projectmanager	it	Campi rubrica
@@ -57,9 +61,11 @@ can be used with element roles, "eroles" table plugin and "elements" table plugi
 category in %1 project-element(s) updated.	projectmanager	it	Categoria aggiornata per %1 elementi di progetto
 category set	projectmanager	it	Categoria impostata
 change category	projectmanager	it	Modifica categoria
+change the following details of %s	projectmanager	it	Modifica i seguenti dati di %s
 charset of file	projectmanager	it	Set di caratteri del file
 charset of the above selected font	projectmanager	it	Set di caratteri del font selezionato sopra
 check all	projectmanager	it	Seleziona tutto
+check to make one element role assignable to multiple elements	projectmanager	it	Seleziona per rendere un ruolo di elemento assegnabile a più elementi
 choose the default filename for downloaded documents.	projectmanager	it	Seleziona il nome predefinito di file per i documenti scaricati
 close the window, discard the changes made	projectmanager	it	Chiudi la finestra, annulla le modifiche fatte
 completion	projectmanager	it	Completamento
@@ -88,6 +94,7 @@ days	projectmanager	it	giorni
 default action on double-click	projectmanager	it	Azione predefinita al doppio click
 default all and a selectbox to choose	projectmanager	it	tutto predefinito e una selectbox per scegliere
 delete all checked projects	projectmanager	it	Elimina tutti i progetti selezionati
+delete this element role	projectmanager	it	Elimina questo ruolo di elemento
 delete this milestone	projectmanager	it	Cancella questo traguardo
 delete this price	projectmanager	it	Cancella questo prezzo
 delete this project	projectmanager	it	Cancella questo progetto
@@ -99,15 +106,23 @@ details of cumulated	projectmanager	it	Dettagli dei cumulati
 details of subelements	projectmanager	it	Dettagli dei sottoelementi
 directory with documents to insert project data	projectmanager	it	Cartella con documenti per l'inserimento di dati progetto
 do not use that entry as project-element	projectmanager	it	non usare quella voce come elemento-progetto
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	it	Hai bisogno di una notifica quando alcune voci stanno per essere avviate in base alle loro date pianificate?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	it	Hai bisogno di una notifica quando alcune voci stanno per essere avviate in base alle loro date reali?
+do you want a notification, if items are due according to their planned dates?	projectmanager	it	Hai bisogno di una notifica quando alcune voci stanno per scadere in base alle loro date pianificate?
+do you want a notification, if items are due according to their real dates?	projectmanager	it	Hai bisogno di una notifica quando alcune voci stanno per scadere in base alle loro date reali?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	it	Hai bisogno di una notifica quando alcune voci a te assegnate vengono modificate?
+do you want a notification, if items you created get updated?	projectmanager	it	Hai bisogno di una notifica quando voci che hai creato tu vengono modificate?
 document '%1' does not exist or is not readable for you!	projectmanager	it	Il documento '%1' non esiste o non è leggibile da te!
 document download filename	projectmanager	it	Nom file documento scaricato
 done (100%)	projectmanager	it	Completato (100%)
 edit access, incl. editing budget and elements	projectmanager	it	modifica accesso, incl. modifica budget ed elementi
 edit budget	projectmanager	it	Modifica budget
+edit element roles	projectmanager	it	Modifica ruoli di elemento
 edit milestone	projectmanager	it	Modifica traguardo
 edit price	projectmanager	it	Modifica prezzo
 edit project	projectmanager	it	Modifica Progetto
 edit project-elements	projectmanager	it	Modifica elementi-progetto
+edit this element role	projectmanager	it	Modifica questo ruolo di elemento
 edit this milestone	projectmanager	it	Modifica questo traguardo
 edit this price	projectmanager	it	Modifica questo prezzo
 edit this project	projectmanager	it	Modifica questo progetto
@@ -118,6 +133,7 @@ element details	projectmanager	it	Dettagli elemento
 element id	projectmanager	it	ID elemento
 element list	projectmanager	it	Elenco elementi
 element modifier	projectmanager	it	Elemento modificato da
+element role	projectmanager	it	Ruolo di elemento
 element role deleted	projectmanager	it	Ruolo elemento eliminato
 element role saved	projectmanager	it	Ruolo elemento salvato
 element role title	projectmanager	it	Titolo ruolo elemento
@@ -135,8 +151,9 @@ elements which have to be finished before this can start	projectmanager	it	Eleme
 empty	projectmanager	it	Vuoto
 empty for all	projectmanager	it	per tutti vuoto
 encode non-ascii	projectmanager	it	Codifica non-ascii
-end before	projectmanager	it	Fine prima di
 enddate	projectmanager	it	Data fine
+ends after	projectmanager	it	Finisce dopo
+ends before	projectmanager	it	Finisce prima
 error: deleting element role !!!	projectmanager	it	Errore di eliminazione ruolo elemento!
 error: deleting price !!!	projectmanager	it	Errore: cancellando prezzo!
 error: deleting project !!!	projectmanager	it	Errore: cancellando progetto!
@@ -163,6 +180,7 @@ exists	projectmanager	it	Esiste
 exit without saving	projectmanager	it	Esci senza salvare
 export definition to use for nextmatch export (elements)	projectmanager	it	Definizione di esportazione da utilizzare nell'esportazione nextmatch (elementi)
 export definition to use for nextmatch export (projects)	projectmanager	it	Definizione di esportazione da utilizzare nell'esportazione nextmatch (progetti)
+export definition to use for nextmatch export (projekte)	projectmanager	it	Esporta definizione da utilizzare per l'esportazione nextmatch
 exports a list of project elements to a csv file.	projectmanager	it	Esporta una lista di elementi di progetti in csv
 exports a list of projects to a csv file.	projectmanager	it	Esporta una lista di progetti in csv
 external	projectmanager	it	Esterno
@@ -219,6 +237,7 @@ mainproject only	projectmanager	it	Solo progetto principale
 mainprojects	projectmanager	it	Progetti principali
 manage mapping	projectmanager	it	Gestisci la mappatura
 members	projectmanager	it	Membri
+milestone	projectmanager	it	Milestone
 milestone deleted	projectmanager	it	Traguardo cancellato
 milestone saved	projectmanager	it	Traguardo salvato
 milestones	projectmanager	it	Traguardi
@@ -228,6 +247,7 @@ modified by	projectmanager	it	Modificato da
 modified date and time	projectmanager	it	Data e ora modifica
 modifier	projectmanager	it	Modificatore
 modify status	projectmanager	it	Modifica stato
+multi assignable	projectmanager	it	Multi assegnabile
 multi assignments	projectmanager	it	Assegnazioni multiple
 name of current user, all other contact fields are valid too	projectmanager	it	Nome dell'utente corrente, tutti gli altri campi di contatto sono validi pure.
 necessary for project-elements doing that not automatic	projectmanager	it	necessario per gli elementi-progetto che non lo fanno in automatico
@@ -244,8 +264,11 @@ nonactive	projectmanager	it	Non attivo
 not available	projectmanager	it	Non disponibile
 not started (0%)	projectmanager	it	Non iniziato (0%)
 not working	projectmanager	it	non funzionante
+notification settings	projectmanager	it	Impostazioni di notifica
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	it	Numero di caratteri a cui accorciare i titoli degli elementi nel Gantt
 number of records to read (%1)	projectmanager	it	Numero di record da leggere (%1)
+one day after	projectmanager	it	il giorno dopo
+one day in advance	projectmanager	it	un giorno in anticipo
 only this project	projectmanager	it	Solo questo progetto
 order of sub-project bars in ganttcharts	projectmanager	it	Ordine delle barre di sottoprogetto nel Gantt
 overwrite the datasource	projectmanager	it	Sovrascrivi sorgente dati
@@ -264,6 +287,7 @@ planned time	projectmanager	it	Tempo pianificato
 planned time in minutes	projectmanager	it	Tempo pianificato in minuti
 planned times	projectmanager	it	Ore pianificate
 please download a recent version from %1 and install it in %2.	projectmanager	it	Per favore scarica una versione recente da %1 e installala in %2.
+pm_milestone	projectmanager	it	MIlestone
 price	projectmanager	it	Prezzo
 price / unit	projectmanager	it	Prezzo / Unità
 price deleted	projectmanager	it	Prezzo cancellato
@@ -289,14 +313,16 @@ project number	projectmanager	it	Numero progetto
 project overview	projectmanager	it	Panoramica progetto
 project priority	projectmanager	it	Priorità progetto
 project saved	projectmanager	it	Progetto salvato
+project sort order	projectmanager	it	Ordinamento progetti
 project specific title, prices, ...	projectmanager	it	Progetto specificato: titolo, prezzi, ...
 project status	projectmanager	it	Stato progetto
 project title	projectmanager	it	Titolo progetto
 project title - template name	projectmanager	it	Titolo progetto - nome template
-project-element	projectmanager	it	Elemento progetto
-project-element deleted	projectmanager	it	Elemento-progetto cancellato
-project-element saved	projectmanager	it	Elemento-progetto salvato
-project-elements	projectmanager	it	Elementi-Progetto
+project-element	projectmanager	it	Elemento di progetto
+project-element deleted	projectmanager	it	Elemento di progetto eliminato
+project-element saved	projectmanager	it	Elemento di progetto salvato
+project-elements	projectmanager	it	Elementi di rogetto
+projectelement	projectmanager	it	Elemento di progetto
 projectid	projectmanager	it	ID progetto
 projectlist	projectmanager	it	Elenco progetti
 projectmanager	common	it	Gestione Progetti
@@ -315,6 +341,12 @@ real end	projectmanager	it	Fine reale
 real end date and time	projectmanager	it	Data e ora fine reali
 real start	projectmanager	it	Inizio reale
 real start date and time	projectmanager	it	Data e ora inizio reali
+receive notifications about due entries (planned dates)	projectmanager	it	Ricevere notifiche per voci in scadenza (date pianificate)
+receive notifications about due entries (real dates)	projectmanager	it	Ricevere notifiche per voci in scadenza (date reali)
+receive notifications about items assigned to you with these roles	projectmanager	it	Ricevere notifiche per voci a te assegnate con questi ruoli
+receive notifications about own items	projectmanager	it	Ricevere notifiche per le proprie voci
+receive notifications about starting entries (planned dates)	projectmanager	it	Ricevere notifiche per voci in avvio (date pianificate)
+receive notifications about starting entries (real dates)	projectmanager	it	Ricevere notifiche per voci in avvio (date reali)
 remark	projectmanager	it	Osservazione
 replanned time in minutes	projectmanager	it	Tempo ripianificato in minuti
 resources	projectmanager	it	Risorse
@@ -322,12 +354,14 @@ role	projectmanager	it	Ruolo
 role deleted	projectmanager	it	Ruolo cancellato
 role saved	projectmanager	it	Ruolo salvato
 roles	projectmanager	it	Ruoli
+same day	projectmanager	it	stesso giorno
 save the changes made	projectmanager	it	Salva le modifiche fatte
 save this project element	projectmanager	it	Salva questo elemento progetto
 select a project	projectmanager	it	scegli un progetto
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	it	seleziona un'attività se vuoi calcolare i costi per quantità (tempo) e prezzo
 select export options	projectmanager	it	Seleziona opzioni di esportazione
 select multiple projects for a further action	projectmanager	it	Seleziona più progetti per una successiva azione
+select project sort order for project tree and link search	projectmanager	it	Seleziona l'ordinamento dei progetti nell'albero di classificazione e per la ricerca dei collegamenti
 select the accounting types visible for users of projectmanager	projectmanager	it	seleziona i tipi contabilità visibili agli utenti di Gestione Progetti
 select this project and show it's elements	projectmanager	it	Seleziona questo progetto e mostra i suoi elementi
 selectbox with %1	projectmanager	it	Selectbox con %1
@@ -348,13 +382,14 @@ show planned times instead of the real times	projectmanager	it	Mostra tempi pian
 show status icons of the datasources	projectmanager	it	Mostra icone di stato delle sorgenti dati
 show the project selection as	projectmanager	it	Mostra la selezione progetti come
 site configuration saved	projectmanager	it	Configurazione sito salvata
-start after	projectmanager	it	Inizia dopo
 start date, end date	projectmanager	it	Data inizio, Data fine
 start working on %1	projectmanager	it	Ha iniziato a lavorare il %1
 start, end, category, ...	projectmanager	it	Inizio, Fine, Categoria, ...
 start- & enddate	projectmanager	it	Data Inizio e Fine
 startdate	projectmanager	it	Data inizio
 startrecord	projectmanager	it	Record Iniziale
+starts after	projectmanager	it	Comincia dopo
+starts before	projectmanager	it	Comincia prima
 status filter	projectmanager	it	Filtro di stato
 status set	projectmanager	it	Impostazione stato
 style used for everything but elements. some fonts have only normal style.	projectmanager	it	Stile usato per tutto tranne che per gli elementi. Alcuni font ammetto solo lo stile normale
