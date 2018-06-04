@@ -91,6 +91,10 @@ class projectmanager_widget
 				list($rows,$pm_id_var,$price_var) = explode(',',$cell['size']);
 				if (!$pm_id_var) $pm_id_var = 'pm_id';	// where are the pm_id(s) storered
 				$pm_ids = $tmpl->content[$pm_id_var];
+				if(is_null($pm_ids))
+				{
+					$pm_ids = false;
+				}
 				$cell['sel_options'] = array();
 				foreach((array) $pm_ids as $pm_id)
 				{
