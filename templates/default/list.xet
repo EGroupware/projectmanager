@@ -65,7 +65,7 @@
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
 					<description id="${row}[pm_number]" no_lang="1"/>
-					<description id="${row}[pm_title]" no_lang="1" />
+					<description id="${row}[pm_title]" no_lang="1" class="et2_link" onclick="javaScript:app.projectmanager.show('elements',$row_cont[pm_id]);"/>
 					<description align="center" id="${row}[pm_priority]" no_lang="1"/>
 					<menulist>
 						<menupopup type="select-cat" id="${row}[cat_id]" no_lang="1" readonly="true"/>
