@@ -274,7 +274,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		$replacements += $this->projectmanager_replacements($this->pm_id, '', $content);
 
 		$replacements += $this->get_erole_replacements($content);
-		
+
 		return empty($replacements) ? false : $replacements;
 	}
 
@@ -307,7 +307,7 @@ class projectmanager_merge extends Api\Storage\Merge
 				}
 			}
 		}
-		
+
 		// Strip unassigned erole tags
 		$matches = array();
 		preg_match_all('@\$\$erole/([A-Za-z0-9_]+)(/?(?:[^\$])*)?\$\$@s',$content,$matches);
@@ -318,7 +318,7 @@ class projectmanager_merge extends Api\Storage\Merge
 				$replacements[$missing_erole] = '';
 			}
 		}
-		
+
 		return $replacements;
 	}
 
@@ -487,11 +487,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
 		}
 		// Project links - check content first, finding all the links is expensive
-		$links = $this->get_all_links('projectmanager', $project['pm_id'], $prefix, $content);
-		foreach($links as $placeholder => $replacement)
-		{
-			$replacements['$$'.$placeholder.'$$'] = $replacement;
-		}
+		$replacements += $this->get_all_links('projectmanager', $project['pm_id'], $prefix, $content);
 
 
 		return $replacements;
