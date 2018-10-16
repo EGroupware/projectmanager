@@ -286,13 +286,6 @@ class projectmanager_so extends Api\Storage
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
 		if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
-		// should we return (number or) children
-		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
-		{
-			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
-			$extra_cols[$key] = "(SELECT COUNT(*) FROM egw_links children WHERE children.link_app1='projectmanager' AND children.link_app2='projectmanager' AND children.link_id1=".
-				$this->db->to_varchar($this->table_name.'.pm_id').") AS children";
-		}
 		if ($join !== false)	// add acl-join, to get role_acl of current user
 		{
 			$join = $join === true ? $this->acl_join : $join . $this->acl_join;
@@ -324,6 +317,16 @@ class projectmanager_so extends Api\Storage
 				$extra_cols[] = 'BIT_OR('.$this->acl_extracol.') AS '.$this->acl_extracol;
 			}
 		}
+		// should we return (number or) children
+
+		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
+		{
+			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
+			$extra_cols[$key] = 'count(children.link_id2) AS children';
+			$join .=' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
+				AND children.link_app2="projectmanager"
+				AND children.link_id1=egw_pm_projects.pm_id)';
+		}
 		if ($filter['subs_or_mains'])
 		{
 /* old code using a sub-query
@@ -348,16 +351,16 @@ class projectmanager_so extends Api\Storage
 			// new code using a JOIN
 			if ($filter['subs_or_mains'] == 'mains')
 			{
-				$filter[] = 'link_id2 IS NULL';
+				$filter[] = $this->links_table.'.link_id2 IS NULL';
 				$join .= ' LEFT';
 			}
 			// PostgreSQL requires cast as link_idx is varchar and pm_id an integer
 			$pm_id = $this->db->to_varchar($this->table_name.'.pm_id');
-			$join .= " JOIN $this->links_table ON link_app2='projectmanager' AND link_app1='projectmanager' AND link_id2=$pm_id";
+			$join .= " JOIN $this->links_table ON {$this->links_table}.link_app2='projectmanager' AND {$this->links_table}.link_app1='projectmanager' AND {$this->links_table}.link_id2=$pm_id";
 
 			if (is_array($filter['subs_or_mains']) || is_numeric($filter['subs_or_mains']))	// sub-projects of given parent-projects
 			{
-				$join .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
+				$join .= ' AND '.$this->db->expression($this->links_table,array($this->links_table.'.link_id1' => $filter['subs_or_mains']));
 			}
 		}
 		unset($filter['subs_or_mains']);

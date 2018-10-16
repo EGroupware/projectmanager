@@ -944,7 +944,7 @@ class projectmanager_bo extends projectmanager_so
 		$order = $this->field2label[reset(explode(' ',$order))] ? $order : 'pm_status,pm_number';
 
 		// get the children
-		while (($children = $this->search($filter,$this->table_name.'.pm_id AS pm_id,pm_number,pm_title,link_id1 AS pm_parent,pm_status',
+		while (($children = $this->search($filter,$this->table_name.'.pm_id AS pm_id,pm_number,pm_title,'.$this->links_table.'.link_id1 AS pm_parent,pm_status',
 			$order,$extra_cols,'',false,$filter_op,false,array('subs_or_mains' => $parents))))
 		{
 			//error_log(__METHOD__."(".array2string($filter).", '$filter_op, ".array2string($_parents).") parents=".array2string($parents)." --> children=".array2string($children));
