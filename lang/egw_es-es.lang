@@ -28,8 +28,10 @@ add price	projectmanager	es-es	Añadir precio
 add project	projectmanager	es-es	Añadir proyecto
 add project-elements	projectmanager	es-es	Añadir elementos de proyecto
 add this role	projectmanager	es-es	Añadir este rol
+add timesheet	projectmanager	es-es	Añadir hoja de tiempos
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	es-es	Los elementos de la libreta de direcciones de un proyecto pueden usarse para definir destinatarios individuales de las cartas. Los campos disponibles son
 addressbook fields	projectmanager	es-es	Campos de la libreta de direcciones
+all projects	projectmanager	es-es	Todos los proyectos
 all roles	projectmanager	es-es	Todos los roles
 all_roles	projectmanager	es-es	Todos los roles
 allow users to change their working times	projectmanager	es-es	Permitir a los usuarios cambiar sus horas de trabajo
@@ -115,6 +117,7 @@ element details	projectmanager	es-es	Detalles del elemento
 element id	projectmanager	es-es	ID del elemento
 element list	projectmanager	es-es	Lista de elementos
 element modifier	projectmanager	es-es	Modificador del elemento
+element role	projectmanager	es-es	Rol del elemento
 element role deleted	projectmanager	es-es	Se ha borrado el rol del elemento.
 element role saved	projectmanager	es-es	Se ha guardado el rol del elemento.
 element role title	projectmanager	es-es	Título del rol del elemento
@@ -132,7 +135,6 @@ elements which have to be finished before this can start	projectmanager	es-es	El
 empty	projectmanager	es-es	Vacío
 empty for all	projectmanager	es-es	vacío para todo
 encode non-ascii	projectmanager	es-es	No codificar en ascii
-end before	projectmanager	es-es	Finalizar antes
 enddate	projectmanager	es-es	Fecha de finalización
 error: deleting element role !!!	projectmanager	es-es	¡Error al borrar el rol del elemento!
 error: deleting price !!!	projectmanager	es-es	¡¡Error al borrar el precio!!
@@ -292,6 +294,7 @@ project-element	projectmanager	es-es	Elemento del proyecto
 project-element deleted	projectmanager	es-es	Se ha borrado el elmento del proyecto
 project-element saved	projectmanager	es-es	Se ha guardado el elemento del proyecto
 project-elements	projectmanager	es-es	Elementos del proyecto
+projectelement	projectmanager	es-es	Elemento del proyecto
 projectid	projectmanager	es-es	ID del proyecto
 projectlist	projectmanager	es-es	Lista de proyectos
 projectmanager	common	es-es	Administrador de proyectos
@@ -317,6 +320,7 @@ role	projectmanager	es-es	Rol
 role deleted	projectmanager	es-es	Se ha borrado el rol
 role saved	projectmanager	es-es	Se ha guardado el rol
 roles	projectmanager	es-es	Roles
+same day	projectmanager	es-es	mismo día
 save the changes made	projectmanager	es-es	Guardar los cambios hechos
 save this project element	projectmanager	es-es	Guardar este elemento del proyecto
 select a project	projectmanager	es-es	Seleccionar un proyecto
@@ -343,13 +347,14 @@ show planned times instead of the real times	projectmanager	es-es	Mostrar tiempo
 show status icons of the datasources	projectmanager	es-es	Mostrar iconos de estado de las fuentes de datos
 show the project selection as	projectmanager	es-es	Mostrar la selección del proyecto como
 site configuration saved	projectmanager	es-es	Se ha guardado la configuración del sitio
-start after	projectmanager	es-es	Comenzar después de
 start date, end date	projectmanager	es-es	Fecha de inicio, fecha de fin
 start working on %1	projectmanager	es-es	Comenzar a trabajar en %1
 start, end, category, ...	projectmanager	es-es	Inicio, fin, categoría...
 start- & enddate	projectmanager	es-es	Fecha de inicio y fin
 startdate	projectmanager	es-es	Fecha de inicio
 startrecord	projectmanager	es-es	Registro de inicio
+starts after	projectmanager	es-es	Inicia después
+starts before	projectmanager	es-es	Inicia antes
 status filter	projectmanager	es-es	Filtro de estados
 status set	projectmanager	es-es	Se ha establecido el estado
 style used for everything but elements. some fonts have only normal style.	projectmanager	es-es	Estilo utilizado para todo excepto los elementos. Algunos tipos de letra sólo tienen estilo normal.
