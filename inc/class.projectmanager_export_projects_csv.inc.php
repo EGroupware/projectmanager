@@ -17,7 +17,8 @@ use EGroupware\Api\Link;
 /**
  * export projects to CSV
  */
-class projectmanager_export_projects_csv implements importexport_iface_export_plugin {
+class projectmanager_export_projects_csv implements importexport_iface_export_plugin
+{
 
 	// Used in conversions
 	static $types = array(
@@ -34,7 +35,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	 *
 	 * @param egw_record $_definition
 	 */
-	public function export( $_stream, importexport_definition $_definition) {
+	public function export( $_stream, importexport_definition $_definition)
+	{
 		$options = $_definition->plugin_options;
 
 		$ui = new projectmanager_ui();
@@ -143,10 +145,12 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 			$selection = $ui->search(array('pm_id'=>$projects), false);
 		}
 
-		if($options['mapping']['roles']) {
+		if($options['mapping']['roles'])
+		{
 			$roles = new projectmanager_roles_so();
 			$this->roles = $roles->query_list();
-			foreach($this->roles as $id => $name) {
+			foreach($this->roles as $id => $name)
+			{
 				$options['mapping'][$name] = $name;
 				self::$types['select-account'][] = $name;
 			}
@@ -156,32 +160,40 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 
 		// $options['selection'] is array of identifiers as this plugin doesn't
 		// support other selectors atm.
-		foreach ($selection as $record) {
+		foreach ($selection as $record)
+		{
 			if((int)$record) $record = $ui->read($record);
 			if(!is_array($record) || !$record['pm_id']) continue;
 
 			// Add in roles
-			if($options['mapping']['roles']) {
+			if($options['mapping']['roles'])
+			{
 				$roles = $ui->read_members($record['pm_id']);
-				foreach((array)$roles as $person) {
+				foreach((array)$roles as $person)
+				{
 					$role_name = $this->roles[$person['role_id']];
 					$record[$role_name][] = $person['member_uid'];
 				}
 			}
 
 			// Add in element summary
-			if(true || $options['mapping']['element_summary']) {
+			if(true || $options['mapping']['element_summary'])
+			{
 				$record += ExecMethod('projectmanager.projectmanager_elements_bo.summary',$record['pm_id']);
 			}
 
 			$project = new projectmanager_egw_record_project();
 			$project->set_record($record);
-			if($options['convert']) {
+			if($options['convert'])
+			{
 				importexport_export_csv::convert($project, self::$types, 'projectmanager');
 				$this->convert($project, $options);
-			} else {
+			}
+			else
+			{
 				// Implode arrays, so they don't say 'Array'
-				foreach($project->get_record_array() as $key => $value) {
+				foreach($project->get_record_array() as $key => $value)
+				{
 					if(is_array($value)) $project->$key = implode(',', $value);
 				}
 			}
@@ -196,7 +208,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	 *
 	 * @return string name
 	 */
-	public static function get_name() {
+	public static function get_name()
+	{
 		return lang('Project CSV export');
 	}
 
@@ -205,7 +218,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	 *
 	 * @return string descriprion
 	 */
-	public static function get_description() {
+	public static function get_description()
+	{
 		return lang("Exports a list of projects to a CSV File.");
 	}
 
@@ -214,11 +228,13 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	 *
 	 * @return string suffix
 	 */
-	public static function get_filesuffix() {
+	public static function get_filesuffix()
+	{
 		return 'csv';
 	}
 
-	public static function get_mimetype() {
+	public static function get_mimetype()
+	{
 		return 'text/csv';
 	}
 
@@ -236,18 +252,29 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	}
 
 	/**
-	 * return html for options.
-	 * this way the plugin has all opportunities for options tab
+	 * Return array of settings for export dialog
 	 *
+	 * @param $definition Specific definition
+	 *
+	 * @return array (
+	 * 		name 		=> string,
+	 * 		content		=> array,
+	 * 		sel_options	=> array,
+	 * 		readonlys	=> array,
+	 * 		preserv		=> array,
+	 * )
 	 */
-	public function get_options_etpl() {
+	public function get_options_etpl(importexport_definition &$definition = NULL)
+	{
+		return false;
 	}
 
 	/**
 	 * returns selectors information
 	 *
 	 */
-	public function get_selectors_etpl() {
+	public function get_selectors_etpl()
+	{
 
 		// If there's a current project, add it as an option
 		$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
@@ -270,12 +297,16 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	 *
 	 * @param projectmanager_egw_record_project $record Record to be converted
 	 */
-	protected static function convert(projectmanager_egw_record_project &$record, array $options = array()) {
+	protected static function convert(projectmanager_egw_record_project &$record, array $options = array())
+	{
 		$record->pm_description = strip_tags($record->pm_description);
-		foreach(array('pm_', 'pe_') as $prefix) {
-			foreach(array('used_time', 'planned_time', 'replanned_time') as $_duration) {
+		foreach(array('pm_', 'pe_') as $prefix)
+		{
+			foreach(array('used_time', 'planned_time', 'replanned_time') as $_duration)
+			{
 				$duration = $prefix . $_duration;
-				switch($options['pm_'.$_duration]) {
+				switch($options['pm_'.$_duration])
+				{
 					case 'd':
 						$record->$duration = round($record->$duration / 480, 2);
 						break;
@@ -283,7 +314,8 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 						$record->$duration = round($record->$duration / 60, 2);
 						break;
 				}
-				if($options['include_duration_unit']) {
+				if($options['include_duration_unit'])
+				{
 					$record->$duration = $record->$duration.($options[$duration] ? $options[$duration] : $options['pm_'.$_duration]);
 				}
 			}
