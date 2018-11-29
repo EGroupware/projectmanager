@@ -26,7 +26,7 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 	 * @var string
 	 */
 	static $record_class = 'projectmanager_egw_record_project';
-	
+
 	public static $special_fields = array(
 		'parent'  => 'Parent project, use Project-ID or Title',
 	);
@@ -54,7 +54,7 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 
 		// Get the tracker for changes
 		$this->tracking = new projectmanager_tracking($this->bo);
-		
+
 		// List roles as account type
 		$roles = new projectmanager_roles_so();
 		$role_list = $roles->query_list();
@@ -202,7 +202,7 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 				if(count($changed) == 0) {
 					return true;
 				}
-				
+
 				// Fall through
 			case 'insert' :
 				if($_action == 'insert') {
@@ -216,7 +216,7 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 				} else {
 					// Members needs special setting, from projectmanager_ui:173
 					$this->bo->data['pm_members'] = $_data['pm_members'];
-					
+
 					$result = $this->bo->save( $_data, true, false );
 					if($result) {
 						$this->errors[$record_num] = $result;
@@ -236,7 +236,7 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 				}
 			default:
 				throw new Api\Exception('Unsupported action');
-			
+
 		}
 	}
 
@@ -300,7 +300,8 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 	 * 		preserv		=> array,
 	 * )
 	 */
-	public function get_options_etpl() {
+	public function get_options_etpl(importexport_definition &$definition=null)
+	{
 		// lets do it!
 	}
 
