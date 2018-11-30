@@ -236,11 +236,21 @@ class projectmanager_export_projects_csv implements importexport_iface_export_pl
 	}
 
 	/**
-	 * return html for options.
-	 * this way the plugin has all opportunities for options tab
+	 * Return array of settings for export dialog
 	 *
+	 * @param $definition Specific definition
+	 *
+	 * @return array (
+	 * 		name 		=> string,
+	 * 		content		=> array,
+	 * 		sel_options	=> array,
+	 * 		readonlys	=> array,
+	 * 		preserv		=> array,
+	 * )
 	 */
-	public function get_options_etpl() {
+	public function get_options_etpl(importexport_definition &$definition = NULL)
+	{
+		return false;
 	}
 
 	/**
