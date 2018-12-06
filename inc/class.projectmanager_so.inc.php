@@ -122,7 +122,7 @@ class projectmanager_so extends Api\Storage
 	 *
 	 * reimplemented to handle custom fields
 	 */
-	function read($keys)
+	function read($keys, $extra_cols = '', $join = '')
 	{
 		//echo "<p>soprojectmanager::read(".print_r($keys,true).")</p>\n";
 
@@ -131,7 +131,7 @@ class projectmanager_so extends Api\Storage
 		{
 			return $this->data;
 		}
-		if (!parent::read($keys))
+		if (!parent::read($keys, $extra_cols, $join))
 		{
 			return false;
 		}
@@ -274,7 +274,7 @@ class projectmanager_so extends Api\Storage
 	 * @param string/boolean $join=true sql to do a join, added as is after the table-name, default true=add join for Acl
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
-	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
+	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
 	{
 		// include sub-categories in the search
 		if ($filter['cat_id'])
@@ -376,7 +376,7 @@ class projectmanager_so extends Api\Storage
 	 * @param array $filter=array() to filter the entries
 	 * @return array with key_col => value_col pairs, ordered by value_col
 	 */
-	function query_list($value_col='pm_title',$key_col='pm_id',$filter=array('pm_status'=>'active'))
+	function query_list($value_col='pm_title',$key_col='pm_id',$filter=array('pm_status'=>'active'), $order = '')
 	{
 		if ($key_col == 'pm_id') $key_col = $this->table_name.'.pm_id AS pm_id';
 

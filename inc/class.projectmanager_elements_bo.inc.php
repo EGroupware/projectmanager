@@ -234,7 +234,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * @param array $extra_keys =null key=>value pairs with element extra data to merge on update
 	 * @return array/boolean the updated project-element or false on error (eg. no read access)
 	 */
-	function &update($app,$id,$pe_id=0,$pm_id=null,$update_project=true,$extra_keys=null)
+	function update($app,$id,$pe_id=0,$pm_id=null,$update_project=true,$extra_keys=null)
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
 

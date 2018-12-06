@@ -58,9 +58,10 @@ class projectmanager_constraints_so extends Api\Storage\Base
 	 * @param array $filter=null if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
 	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or
 	 *	"LEFT JOIN table2 ON (x=y)", Note: there's no quoting done on $join!
+	 * @param boolean $need_full_no_count =false If true an unlimited query is run to determine the total number of rows, default false
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
-	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join='')
+	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join='', $need_full_no_count = false)
 	{
 		if ($this->pm_id && !isset($criteria['pm_id']) && !isset($filter['pm_id']))
 		{
@@ -83,7 +84,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 			if ($extra_cols && !is_array($extra_cols)) $extra_cols = explode(',',$extra_cols);
 			if (!$order_by) $order_by = 'pe_id_start';
 		}
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join, $need_full_no_count);
 	}
 
 	/**
@@ -144,7 +145,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 	 *	for the constraints of a milestone the keys ms_id, pe_id (pm_id can be given or is taken from $this->pm_id)
 	 * @return int 0 on success and errno != 0 else
 	 */
-	function save($data=null)
+	function save($data=null, $extra_where = NULL)
 	{
 		if ($this->debug) { echo "<p>soconstraints::save:"; _debug_array($data); }
 
@@ -192,7 +193,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 			}
 			return 0;
 		}
-		return parent::save($data);
+		return parent::save($data, $extra_where);
 	}
 
 	/**
@@ -201,7 +202,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 	 * @param array/int $keys if given array with col => value pairs to characterise the rows to delete or pe_id
 	 * @return int affected rows, should be 1 if ok, 0 if an error
 	 */
-	function delete($keys=null)
+	function delete($keys=null, $only_return_query = false)
 	{
 		if ($this->debug) echo "<p>soconstraints::delete(".print_r($keys,true).")</p>\n";
 
@@ -220,7 +221,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 			$keys[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";
 			return $this->db->delete($this->table_name,$keys,__LINE__,__FILE__);
 		}
-		return parent::delete($keys);
+		return parent::delete($keys, $only_return_query);
 	}
 
 	/**

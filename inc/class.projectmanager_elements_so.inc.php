@@ -205,7 +205,7 @@ class projectmanager_elements_so extends Api\Storage\Base
 	 * @param string|boolean $join =true default join with links-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
-	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
+	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
 	{
 		if ($join === true)	// add join with links-table and extra-columns
 		{
@@ -231,7 +231,7 @@ class projectmanager_elements_so extends Api\Storage\Base
 		// fix some special filters: resources, cats
 		$fixed_filter = $this->_fix_filter($filter);
 
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$fixed_filter,$join);
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$fixed_filter,$join,$need_full_no_count);
 	}
 
 	/**
