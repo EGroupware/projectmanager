@@ -71,7 +71,7 @@ class projectmanager_ui extends projectmanager_bo
 			$etemplate = new Etemplate();
 		}
 		$this->template = $etemplate;
-		
+
 		static::$status_labels = array(
 			'active'    => lang('Active'),
 			'nonactive' => lang('Nonactive'),
@@ -587,6 +587,7 @@ class projectmanager_ui extends projectmanager_bo
 			// save prefs, but do NOT invalid the cache (unnecessary)
 			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
 		}
+		$GLOBALS['egw']->session->commit_session();
 		// handle nextmatch filters like col_filters
 		foreach(array('cat_id' => 'cat_id','filter2' => 'pm_status') as $nm_name => $pm_name)
 		{

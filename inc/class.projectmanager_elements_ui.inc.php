@@ -504,6 +504,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// save prefs, but do NOT invalid the cache (unnecessary)
 			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
 		}
+		$GLOBALS['egw']->session->commit_session();
 
 		if ($this->status_filter[$query['filter']])
 		{
