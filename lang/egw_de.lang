@@ -205,12 +205,16 @@ general pricelist	projectmanager	de	Allgemeine Preisliste
 general settings	projectmanager	de	Allgemeine Einstellungen:
 global categories	projectmanager	de	Globale Kategorien
 h	projectmanager	de	h
+has been moved to settings to allow eg. group-specific ids	projectmanager	de	Wurde zu Einstellungen verschoben um z.b. gruppen-spezifische Nummern zu ermöglichen.
 health	projectmanager	de	Gesundheit
 hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag
+how should ids for new projects be generated?	projectmanager	de	Wie sollen Projektnummern für neue Projekte generiert werden?
+how should ids for new subprojects be generated?	projectmanager	de	Wie sollen Nummern für neue Unterprojekte generiert werden?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
 html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintrag
+id generation	projectmanager	de	Generierung Projektnummern
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Element (z.B. InfoLog Einträge) mit gelöscht
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Element (z.B. InfoLog Einträge) mit geändert
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Gantt-Diagramm statt Umlauten komische Zeichen sehen, schalten Sie das ab

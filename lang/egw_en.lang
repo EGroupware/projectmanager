@@ -205,12 +205,16 @@ general pricelist	projectmanager	en	General price list
 general settings	projectmanager	en	General settings
 global categories	projectmanager	en	Global categories
 h	projectmanager	en	h
+has been moved to settings to allow eg. group-specific ids	projectmanager	en	Has been moved to settings to allow eg. group-specific IDs
 health	projectmanager	en	Health
 hours	projectmanager	en	Hours
 hours per workday	projectmanager	en	Hours per work day
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day
+how should ids for new projects be generated?	projectmanager	en	How should IDs for new projects be generated?
+how should ids for new subprojects be generated?	projectmanager	en	How should IDs for new subprojects be generated?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a select box might perform better.
 html link to the current record	projectmanager	en	HTML link to the current record
+id generation	projectmanager	en	ID generation
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	en	If checked the data sources of the elements, e.g. InfoLog entries, are deleted too.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	en	If checked the data sources of the elements, e.g. InfoLog entries, will change their status too.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	en	If you see entities (eg. {) in the Gantt chart, switch this off.
@@ -446,6 +450,7 @@ view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project element
 working duration on %1	projectmanager	en	Working duration on %1
 you can leave the date of the first price empty	projectmanager	en	You can leave the date of the first price empty
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	en	You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	en	You don't have JPGraph version %1 or higher installed! It is needed from Project Manager for Gantt charts.
 you need to select a project first	projectmanager	en	You need to select a project first
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	en	Your database is NOT up to date (%1 vs. %2), please run %3setup%4 to update your database.

@@ -5,9 +5,8 @@
  * @link http://www.egroupware.org
  * @author Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @package projectmanager
- * @copyright (c) 2005-13 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
+ * @copyright (c) 2005-19 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id$
  */
 
 use EGroupware\Api;
@@ -50,6 +49,8 @@ class projectmanager_hooks
 	 */
 	static function search_link($location)
 	{
+		unset($location);	// not used, but required by function signature
+
 		return array(
 			'query'      => 'projectmanager.projectmanager_bo.link_query',
 			'title'      => 'projectmanager.projectmanager_bo.link_title',
@@ -292,11 +293,12 @@ class projectmanager_hooks
 		{
 			return null;
 		}
-		$tree = Api\Html::tree($projects,$selected_project,false,'load_project');
 		// hack for stupid ie (cant set it as a class!)
 		//if (Api\Header\UserAgent::type() == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
 		// do it all the time, as we want distinct behavior here
-		$tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; max-width:400px; width:100%; max-height:450px;"',$tree);
+		$tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; max-width:400px; width:100%; max-height:450px;"',
+			Api\Html::tree($projects,$selected_project,false,'load_project'));
+
 		return array(
 			'text' => "<script>function load_project(_nodeId) { egw_appWindow('projectmanager').location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".$tree,
 			'no_lang' => True,
@@ -317,6 +319,7 @@ class projectmanager_hooks
 	 */
 	static private function &_project_selectbox($pm_id,$filter,$select_link,$label,$title)
 	{
+		unset($filter);	// not used anymore
 		$projects = array();
 		foreach((array)$GLOBALS['projectmanager_bo']->search(array(
 			'pm_status' => 'active',
@@ -666,10 +669,11 @@ class projectmanager_hooks
 				}
 				catch (Exception $e)
 				{
+					unset($e);
 					// permission error
 					continue;
 				}
-				if ($title = $definition->get_title())
+				if (($title = $definition->get_title()))
 				{
 					$options[$title] = $title;
 				}
@@ -687,7 +691,7 @@ class projectmanager_hooks
 				'admin'  => False,
 				'default'=> isset($options[$default_def]) ? $default_def : false,
 			);
-			$default_def = 'export-projectmanager-elements';
+			$default_defe = 'export-projectmanager-elements';
 			$settings['nextmatch-export-definition-element'] = array(
 				'type'   => 'select',
 				'values' => $options,
@@ -697,9 +701,36 @@ class projectmanager_hooks
 				'run_lang' => false,
 				'xmlrpc' => True,
 				'admin'  => False,
-				'default'=> isset($options[$default_def]) ? $default_def : false,
+				'default'=> isset($options[$default_defe]) ? $default_defe : false,
 			);
 		}
+		$settings[] = array(
+			'type'  => 'section',
+			'title' => lang('ID generation'),
+			'no_lang'=> true,
+			'xmlrpc' => False,
+			'admin'  => False
+		);
+		$settings['id-generation-format'] = array(
+			'type'   => 'input',
+			'size'   => 20,
+			'label'  => 'How should IDs for new projects be generated?',
+			'name'   => 'id-generation-format',
+			'help'   => "You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.",
+			'xmlrpc' => true,
+			'admin'  => false,
+			'default' => 'P-%Y-%04ix',
+		);
+		$settings['id-generation-format-sub'] = array(
+			'type'   => 'input',
+			'size'   => 20,
+			'label'  => 'How should IDs for new subprojects be generated?',
+			'name'   => 'id-generation-format-sub',
+			'help'   => "You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.",
+			'xmlrpc' => true,
+			'admin'  => false,
+			'default' => '%px/%04ix',
+		);
 
 		return $settings;
 	}
@@ -740,6 +771,8 @@ class projectmanager_hooks
 	 */
 	public static function acl_rights($params)
 	{
+		unset($params);	// not used, but required by function signature
+
 		return array(
 			Acl::READ    => 'read',
 			Acl::EDIT    => 'edit',
@@ -759,6 +792,8 @@ class projectmanager_hooks
 	 */
 	public static function categories($data)
 	{
+		unset($data);	// not used, but required by function signature
+
 		return true;
 	}
 
