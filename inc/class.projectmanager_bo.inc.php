@@ -508,7 +508,7 @@ class projectmanager_bo extends projectmanager_so
 	function generate_pm_number($set_data=true,$parent='')
 	{
 		// migrate evtl. set config to new forced preference (once)
-		static $forced_prefs = null;
+		static $prefs = null;
 		foreach(array(
 			'ID_GENERATION_FORMAT' => 'id-generation-format',
 			'ID_GENERATION_FORMAT_SUB' => 'id-generation-format-sub'
@@ -516,16 +516,16 @@ class projectmanager_bo extends projectmanager_so
 		{
 			if (!empty($this->config[$config]))
 			{
-				if (!isset($forced_prefs)) $forced_prefs = new Api\Preferences('forced');
-				$forced_prefs->add('projectmanager', $pref, $this->config[$config], 'forced');
+				if (!isset($prefs)) $prefs = new Api\Preferences('default');
+				$prefs->add('projectmanager', $pref, $this->config[$config], 'default');
 				Api\Config::save_value($config, null, 'projectmanager');
 				$this->prefs[$pref] = $this->config[$config];
 				unset($this->config[$config]);
 			}
 		}
-		if (isset($forced_prefs))
+		if (isset($prefs))
 		{
-			$forced_prefs->save_repository(false, 'forced');
+			$prefs->save_repository(false, 'default');
 		}
 
 		if ($parent === '')
