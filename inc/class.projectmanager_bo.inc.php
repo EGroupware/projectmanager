@@ -663,7 +663,10 @@ class projectmanager_bo extends projectmanager_so
 		if ($user == $this->user)
 		{
 			$grants = $this->grants;
-			$rights =& $cache[$pm_id];
+			$cached =& $cache[$pm_id];
+			$rights =& $cached['rights'];
+			$private =& $cached['private'];
+			$grants_from_groups =& $cached['group'];
 		}
 		else	// user other then current one, do NO caching at all
 		{
@@ -691,6 +694,7 @@ class projectmanager_bo extends projectmanager_so
 			{
 				$data =& $this->data;
 			}
+			$private = $data['pm_access'] === 'private';
 			// rights come from owner grants or role based Acl
 			$memberships = $GLOBALS['egw']->accounts->memberships($user);
 			$member_from_groups = array_intersect_key((array)$data['pm_members'], $memberships);
@@ -713,7 +717,8 @@ class projectmanager_bo extends projectmanager_so
 			}
 		}
 		// private project need either a private grant or a role ACL
-		if (is_array($data) && $data['pm_access'] === 'private' && !($rights & Acl::PRIVAT) && !$data['pm_members'][$user]['role_acl'])
+		if ($private && !($rights & Acl::PRIVAT) && !(($data['pm_members'][$user]['role_acl'] & $required) ||
+				$grants_from_groups & $required))
 		{
 			$access = false;
 		}
