@@ -729,7 +729,7 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				if ($content[$action])
 				{
-					list($pm_id) = each($content[$action]);
+					$pm_id = key($content[$action]);
 					break;
 				}
 			}

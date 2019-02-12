@@ -931,12 +931,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		if ($_GET['msg']) $msg = $_GET['msg'];
 
-		if ($content['nm']['rows']['delete'])
-		{
-			list($pe_id) = each($content['nm']['rows']['delete']);
-			$content['nm']['selected'] = array($pe_id);
-			$content['nm']['action'] = 'delete';
-		}
 		if ((int)$_GET['delete'])
 		{
 			$content['nm']['selected'] = array((int)$_GET['delete']);

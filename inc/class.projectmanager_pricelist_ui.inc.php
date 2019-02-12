@@ -124,7 +124,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 			}
 			if (!$this->data['pl_unit']) $this->data['pl_unit'] = lang('h');
 
-			list($button) = @each($content['button']);
+			$button = @key($content['button']);
 			switch($button)
 			{
 				case 'save':
@@ -305,32 +305,6 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		if (!is_array($content))
 		{
 			$content = array();
-		}
-		elseif($content['nm']['action'] == 'delete' || $content['nm']['rows']['delete'])
-		{
-			// Need project_id
-			if($content['nm']['rows']['delete'])
-			{
-				list($id) = @each($content['nm']['rows']['delete']);
-				list($pm_id,$pl_id) = explode(':',$id);
-				$content['nm']['selected'] = array($pl_id);
-			}
-			else
-			{
-				$nm = Api\Cache::getSession('projectmanager', 'pricelist');
-				$pm_id = $nm['col_filter']['pm_id'];
-			}
-			foreach($content['nm']['selected'] as $pl_id) {
-				if ($pl_id && $this->delete(array('pm_id' => $pm_id,'pl_id' => $pl_id)))
-				{
-					$msg = lang('Price deleted');
-				}
-				else
-				{
-					$msg = lang('Permission denied !!!');
-					break;
-				}
-			}
 		}
 		$msg = $msg ? $msg : $_GET['msg'];
 		if($msg)

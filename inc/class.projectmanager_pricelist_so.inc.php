@@ -93,7 +93,7 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 			{
 				return false;
 			}
-			list(,$this->data) = each($prices);
+			$this->data = current($prices);
 			$this->data['prices'] = $this->data['project_prices'] = array();
 
 			foreach($prices as $price)

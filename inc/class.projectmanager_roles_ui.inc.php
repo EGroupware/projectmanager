@@ -115,7 +115,7 @@ class projectmanager_roles_ui extends projectmanager_bo
 		}
 		if ($content['delete'] || $content['edit'])
 		{
-			list($role) = $content['delete'] ? each($content['delete']) : each($content['edit']);
+			$role = $content['delete'] ? key($content['delete']) : key($content['edit']);
 			if(!($role = $this->roles->read($role)) ||
 				$role['pm_id'] && !$this->check_acl(EGW_ACL_ROLES,$role['pm_id']) ||
 				!$role['pm_id'] && !$this->is_admin)
