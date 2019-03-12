@@ -710,7 +710,8 @@ class projectmanager_ui extends projectmanager_bo
 			else
 			{
 				if ($this->action($content['nm']['action'],$content['nm']['selected'],$content['nm']['select_all'],
-					$success,$failed,$action_msg,'project_list',$msg,$content['nm']['checkboxes']['sources_too']))
+					$success,$failed,$action_msg,'project_list',$msg,$content['nm']['checkboxes']['sources_too'],
+					$content['nm']['checkboxes']['no_notifications']))
 				{
 					$msg .= lang('%1 project(s) %2',$success,$action_msg);
 				}
@@ -918,6 +919,13 @@ class projectmanager_ui extends projectmanager_bo
 					),
 				),
 			),
+			'no_notifications' => array(
+				'caption' => 'Do not notify',
+				'checkbox' => true,
+				'hint' => 'Do not notify of these changes',
+				'confirm_mass_selection' => "You are going to change %1 entries: Are you sure you want to send notifications about this change?",
+				'group' => $group,
+			),
 			'ganttchart' => array(
 				'icon' => 'projectmanager/navbar',
 				'caption' => 'Ganttchart',
@@ -948,6 +956,7 @@ class projectmanager_ui extends projectmanager_bo
 				'projectmanager',$group,'Change category','cat_'
 			)+array(
 				'disableClass' => 'rowNoEdit',
+				'confirm_mass_selection' => true,
 			),
 			'export' => array(
 				'caption' => 'Export',
@@ -972,7 +981,8 @@ class projectmanager_ui extends projectmanager_bo
 				'children' => self::$status_labels,
 				'prefix' => 'status_',
 				'disableClass' => 'rowNoEdit',
-				'hideOnMobile' => true
+				'hideOnMobile' => true,
+				'confirm_mass_selection' => true,
 			),
 			'delete' => array(
 				'caption' => 'Delete',
@@ -980,7 +990,8 @@ class projectmanager_ui extends projectmanager_bo
 				'confirm_multiple' => 'Delete these entries',
 				'group' => $group,
 				'disableClass' => 'rowNoDelete',
-				'hideOnMobile' => true
+				'hideOnMobile' => true,
+				'confirm_mass_selection' => true,
 			),
 			'undelete' => array(
 				'caption' => 'Un-Delete',
@@ -990,7 +1001,8 @@ class projectmanager_ui extends projectmanager_bo
 				'icon' => 'revert',
 				'disableClass' => 'rowNoUndelete',
 				'hideOnDisabled' => true,
-				'hideOnMobile' => true
+				'hideOnMobile' => true,
+				'confirm_mass_selection' => true,
 			)
 		);
 
@@ -1024,7 +1036,7 @@ class projectmanager_ui extends projectmanager_bo
 	 * @param booelan $sources_too=false should delete or status be changed in resources too
 	 * @return boolean true if all actions succeded, false otherwise
 	 */
-	function action($action,$checked,$use_all,&$success,&$failed,&$action_msg,$session_name,&$msg,$sources_too=false)
+	function action($action,$checked,$use_all,&$success,&$failed,&$action_msg,$session_name,&$msg,$sources_too=false, $no_notification = false)
 	{
 		//echo "<p>projects_ui::action('$action',".print_r($checked,true).','.(int)$use_all.",...)</p>\n";
 		$success = $failed = 0;
@@ -1065,7 +1077,7 @@ class projectmanager_ui extends projectmanager_bo
 					{
 						$failed++;
 					}
-					elseif ($this->delete($pm_id,$settings||$sources_too))
+					elseif ($this->delete($pm_id,$settings||$sources_too, $no_notification))
 					{
 						$success++;
 					}
@@ -1081,7 +1093,7 @@ class projectmanager_ui extends projectmanager_bo
 						$failed++;
 						continue;
 					}
-					$this->save(array('pm_status' => 'active'));
+					$this->save(array('pm_status' => 'active'),true, true, $no_notification);
 					if($sources_too)
 					{
 						$elements_bo->run_on_sources('change_status', array('pm_id'=>$pm_id),'active');
@@ -1102,7 +1114,7 @@ class projectmanager_ui extends projectmanager_bo
 					{
 						$old_status = $this->data['pm_status'];
 						$this->data[$action == 'cat' ? 'cat_id' : 'pm_status'] = $settings;
-						if (!$this->save())
+						if (!$this->save(null, true, true, $no_notification))
 						{
 							if ($action == 'status' && $sources_too && $old_status == $this->data['pm_status'])
 							{
