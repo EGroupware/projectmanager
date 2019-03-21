@@ -137,6 +137,7 @@ td.projectTimestamp {
 #projectmanager-edit_timestamp {
   position: absolute;
   top: 15px;
+  right: 0px;
 }
 .et2_gantt .gantt_cell .gantt_column_pe_resources:hover {
   overflow: visible;
@@ -327,7 +328,7 @@ table.egwLinkMoreOptions {
   outline: 0;
   border-width: 1px;
   border-style: solid;
-  border-color: #b4b4b4;
+  border-color: #B4B4B4;
   -webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
@@ -337,7 +338,7 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add {
   margin: 6px 2px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   padding: -0.5em;
-  background-color: #e6e6e6 !important;
+  background-color: #E6E6E6 !important;
   background-size: 16px 16px;
   -webkit-border-radius: 3px;
   -webkit-border-top-left-radius: 10px;
@@ -355,16 +356,16 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add {
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:before {
   content: "";
   font-size: 2em;
-  color: #0c5da5;
+  color: #0C5DA5;
   line-height: 0.6em;
   padding-left: 0.1em;
   padding-right: 100em;
 }
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
-  background-color: #1aa200;
+  background-color: #b3e4a6;
 }
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:hover {
-  background-color: #189800 !important;
+  background-color: #ace29e !important;
   color: #ffc200;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
@@ -377,7 +378,7 @@ div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:hover {
   border-top-left-radius: 10px;
 }
 div#projectmanager-pricelist-list #projectmanager-pricelist-list_add:active {
-  background-color: #1aa200 !important;
+  background-color: #b3e4a6 !important;
 }
 /* tablets and smartphones  */
 @media only screen and (max-device-width: 1024px) {
