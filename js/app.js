@@ -252,7 +252,10 @@ app.classes.projectmanager = AppJS.extend(
 		}
 
 		// Show selected sub-template
-		jQuery(this.views[what].etemplate.DOMContainer).show();
+		if(this.views[what].etemplate)
+		{
+			jQuery(this.views[what].etemplate.DOMContainer).show();
+		}
 
 		// Set header
 		this.egw.app_header(this.egw.lang(this.views[what].sidemenu),'projectmanager');
@@ -826,12 +829,12 @@ app.classes.projectmanager = AppJS.extend(
 		}
 		egw.openPopup(egw.link('/index.php', extra),600,450,'','filemanager');
 	},
-	
+
 	/**
 	 * Add a new price to a pricelist
-	 * 
+	 *
 	 * Used by the add button on the pricelist index
-	 * 
+	 *
 	 * @param {et2_widget} widget
 	 */
 	add_price: function add_price(widget)
