@@ -121,19 +121,20 @@ class projectmanager_ui extends projectmanager_bo
 			$pm_id = $_GET['pm_id'] = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = 0;
 
 		}
-		if($this->check_acl(Acl::READ, $pm_id))
+		if(!$this->check_acl(Acl::READ, $pm_id))
 		{
-			$this->pm_list();
-
-			$element_list = new projectmanager_elements_ui();
-			$element_list->index();
-
-			$gantt = new projectmanager_gantt();
-			$gantt->chart();
-
-			$prices = new projectmanager_pricelist_ui();
-			$prices->index();
+			$this->data = array();
 		}
+		$this->pm_list();
+
+		$element_list = new projectmanager_elements_ui();
+		$element_list->index();
+
+		$gantt = new projectmanager_gantt();
+		$gantt->chart();
+
+		$prices = new projectmanager_pricelist_ui();
+		$prices->index();
 	}
 
 	/**
