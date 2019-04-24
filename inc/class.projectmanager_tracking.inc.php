@@ -145,7 +145,7 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	 * @param array $old
 	 * @return string
 	 */
-	function get_subject($data,$old)
+	function get_subject($data,$old, $deleted = NULL, $receiver = NULL)
 	{
 		if ($data['prefix'])
 		{
