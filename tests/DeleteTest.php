@@ -59,6 +59,20 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->bo = new \projectmanager_bo();
 		$this->mockTracking($this->bo, 'projectmanager_tracking');
 
+		// Make sure projects are not there first
+		$pm_numbers = array(
+			'TEST',
+			'SUB-TEST'
+		);
+		foreach($pm_numbers as $number)
+		{
+			$project = $this->bo->read(Array('pm_number' => $number));
+			if($project && $project['pm_id'])
+			{
+				$this->bo->delete($project);
+			}
+		}
+
 		$this->makeProject();
 	}
 
@@ -490,7 +504,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		$this->assertFalse((boolean)$result, 'Error making test project');
 		$this->assertArrayHasKey('pm_id', $this->bo->data, 'Could not make test project');
-		$this->assertThat($this->bo->data['pm_id'],
+		$this->assertThat((int)$this->bo->data['pm_id'],
 			$this->logicalAnd(
 				$this->isType('integer'),
 				$this->greaterThan(0)
