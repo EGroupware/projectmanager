@@ -923,7 +923,12 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			}
 			if ($cumulate_in)	// do we have something (timesheets) to cumulate
 			{
-				foreach(parent::search(array('pe_id' => array_keys($cumulate_in)),false) as $to_cumulate)
+				foreach(parent::search(
+						array('pe_id' => array_keys($cumulate_in))
+						,false,'','','',False, 'AND',false,array(
+							 'pe_status != "ignore"'
+						)
+				) as $to_cumulate)
 				{
 					// get the row, where the entry cumulates
 					if (($k = array_search($cumulate_in[$to_cumulate['pe_id']],$row_pe_ids)) !== false)
