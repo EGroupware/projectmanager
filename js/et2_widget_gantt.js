@@ -849,7 +849,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				var value = gantt_widget.getInstanceManager().getValues(gantt_widget.getInstanceManager().widgetContainer);
 
 				var request = gantt_widget.egw().json(gantt_widget.options.ajax_update,
-					[link,value], function(new_id) {
+					[link,'link',value], function(new_id) {
 						if(new_id)
 						{
 							link.id = new_id;
@@ -1168,7 +1168,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 	 *
 	 * Since the gantt chart tends to be large and browsers cannot handle printing
 	 * pages wider than a piece of paper, we rotate the gantt to fit.
-	 * 
+	 *
 	 */
 	beforePrint: function beforePrint() {
 		// Add the class, if needed
@@ -1203,7 +1203,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		// Make gantt chart "full size"
 		this.gantt_node.width(max_width)
 				.height(max_height);
-		
+
 		this.gantt.render();
 
 		this.gantt_node.css({
