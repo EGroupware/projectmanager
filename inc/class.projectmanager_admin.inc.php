@@ -77,7 +77,7 @@ class projectmanager_admin
 
 			// Notifications
 			$this->config->config_data[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'] = $content['notification'];
-			
+
 			$this->config->save_repository();
 			$msg = lang('Site configuration saved');
 		}
@@ -112,6 +112,7 @@ class projectmanager_admin
 				'history_no_delete' => lang('Yes, noone can purge deleted items'),
 			),
 		);
+		Api\Translation::add_app('projectmanager');
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Site configuration');
 		$tpl->exec('projectmanager.projectmanager_admin.config',$content,$sel_options);
