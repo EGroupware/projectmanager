@@ -215,8 +215,8 @@ how should ids for new subprojects be generated?	projectmanager	de	Wie sollen Nu
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
 html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintrag
 id generation	projectmanager	de	Generierung Projektnummern
-if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Element (z.B. InfoLog Einträge) mit gelöscht
-if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Element (z.B. InfoLog Einträge) mit geändert
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Elemente (z. B. InfoLog-Einträge) mit gelöscht
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Elemente (z.B. InfoLog-Einträge) mit geändert
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Gantt-Diagramm statt Umlauten komische Zeichen sehen, schalten Sie das ab
 if you specify an export definition, it will be used when you export	projectmanager	de	Wählen Sie eine Export-Definition für den Export
 ignore that entry	projectmanager	de	Eintrag ignorieren
@@ -374,16 +374,16 @@ share	projectmanager	de	Anteil
 share on the whole project	projectmanager	de	Anteil am Gesamtprojekt
 share on the whole project in hours or percent, defaults to planned time	projectmanager	de	Anteil am Gesamtprojekt in Stunden oder prozentual, Vorgabe ist geplante Zeit
 shared time in minutes	projectmanager	de	Anteilige Zeit in Minuten
-should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	de	Soll die Elementliste die Infolog-Typ Symbole pro Typ anzeigen? Symbole für benutzerdef. Infolog-Typen können im Dateimanager hinterlegt werden. Der Ordner wird in der Konfiguration der Anwendung festgelegt. Wenn Sie größere Symbole für die Elementliste hinterlegen wollen (32x32pixel), benötigen diese die Namensergänzung '_element'.
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	de	Soll die Elementliste die InfoLog-Typ Symbole pro Typ anzeigen? Symbole für benutzerdefinierte InfoLog-Typen können im Dateimanager hinterlegt werden. Der Ordner wird in der Konfiguration der Anwendung festgelegt. Wenn Sie größere Symbole für die Elementliste hinterlegen wollen (32x32pixel), benötigen diese die Namensergänzung '_element'.
 should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	de	Soll die Elementliste zusätzlich Verknüpfungen und/oder Anhänge in den Details anzeigen?
-should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status Icons der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller)
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status-Symbol der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller)
 show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
 show elements in ganttchart by applications	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm
 show elements in ganttchart depending on applications they come from (none = all)	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm (nicht selektiert=alle)
-show infolog type icon in the project elements list	projectmanager	de	Zeige Infolog Icon in der Projektelementeliste
-show links in the project elements list	projectmanager	de	Zeige Verknüpfungen in der Projektelementeliste
+show infolog type icon in the project elements list	projectmanager	de	Zeige InfoLog-Symbol in der Projekt-Elementliste
+show links in the project elements list	projectmanager	de	Zeige Verknüpfungen in der Projektelementliste
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen Zeiten anzeigen
-show status icons of the datasources	projectmanager	de	Status Icons der Datenquellen anzeigen
+show status icons of the datasources	projectmanager	de	Status-Symbol der Datenquellen anzeigen
 show the project selection as	projectmanager	de	Zeige die Projektauswahl als
 site configuration saved	projectmanager	de	Konfiguration gespeichert
 start date, end date	projectmanager	de	Startdatum, Enddatum
