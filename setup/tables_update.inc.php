@@ -480,5 +480,5 @@ function projectmanager_upgrade16_1()
  */
 function projectmanager_upgrade17_1()
 {
-	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '17.1';
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '19.1';
 }
