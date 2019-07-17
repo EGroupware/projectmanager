@@ -254,7 +254,7 @@ modify status	projectmanager	de	Status ändern
 multi assignable	projectmanager	de	Mehrfach zuweisbar
 multi assignments	projectmanager	de	Mehrfachzuweisung
 name of current user, all other contact fields are valid too	projectmanager	de	Name des aktuellen Benutzers, auch alle anderen Kontaktfelder sind erlaubt
-necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement(e) die nicht automatisch syncronisieren
+necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projektelement(e), die nicht automatisch synchronisieren
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht geladen und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
 new project submitted by %1 at %2	projectmanager	de	Neues Projekt übertragen von %1 am %2
@@ -273,6 +273,7 @@ number of characters to which title of ganttchart elements should be shortened t
 number of records to read (%1)	projectmanager	de	Anzahl der einzulesenden Datensätze (%1)
 one day after	projectmanager	de	am nächsten Tag
 one day in advance	projectmanager	de	am Vortag
+ongoing (0 < % < 100)	projectmanager	de	In Arbeit (0 < % < 100)
 only this project	projectmanager	de	Nur dieses Projekt
 order of sub-project bars in ganttcharts	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Gantt-Diagramm
 overwrite the datasource	projectmanager	de	Anzeige in der Elementliste überschreiben
@@ -377,7 +378,7 @@ shared time in minutes	projectmanager	de	Anteilige Zeit in Minuten
 should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	de	Soll die Elementliste die InfoLog-Typ Symbole pro Typ anzeigen? Symbole für benutzerdefinierte InfoLog-Typen können im Dateimanager hinterlegt werden. Der Ordner wird in der Konfiguration der Anwendung festgelegt. Wenn Sie größere Symbole für die Elementliste hinterlegen wollen (32x32pixel), benötigen diese die Namensergänzung '_element'.
 should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	de	Soll die Elementliste zusätzlich Verknüpfungen und/oder Anhänge in den Details anzeigen?
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status-Symbol der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller)
-show constraints and milestones	projectmanager	de	Bedingungen und Meilensteine anzeigen
+show constraints and milestones	projectmanager	de	Bedingungen anzeigen
 show elements in ganttchart by applications	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm
 show elements in ganttchart depending on applications they come from (none = all)	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm (nicht selektiert=alle)
 show infolog type icon in the project elements list	projectmanager	de	Zeige InfoLog-Symbol in der Projekt-Elementliste

@@ -273,6 +273,7 @@ number of characters to which title of ganttchart elements should be shortened t
 number of records to read (%1)	projectmanager	en	Number of records to read (%1)
 one day after	projectmanager	en	one day after
 one day in advance	projectmanager	en	one day in advance
+ongoing (0 < % < 100)	projectmanager	en	Ongoing (0 < % < 100)
 only this project	projectmanager	en	Only this project
 order of sub-project bars in ganttcharts	projectmanager	en	Order of sub-project bars in Gantt charts
 overwrite the datasource	projectmanager	en	Overwrite the data source
@@ -377,7 +378,7 @@ shared time in minutes	projectmanager	en	Shared time in minutes
 should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	en	Should Project Elements list show the dedicated icons of the infolog types. Icons for infolog custom types can be added at the VFS-Path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.
 should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	en	Should Project Elements show the links to other applications and/or the file-attachments in the Project Elements list (only when showing details).
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	en	Should Project Manager display the status icons of the data source, eg. InfoLog or just a progress bar with the numerical status.
-show constraints and milestones	projectmanager	en	Show constraints and milestones
+show constraints and milestones	projectmanager	en	Show constraints
 show elements in ganttchart by applications	projectmanager	en	Show elements in Gantt chart by applications
 show elements in ganttchart depending on applications they come from (none = all)	projectmanager	en	Show elements in Gantt chart depending on applications they come from (none = all)
 show infolog type icon in the project elements list	projectmanager	en	Show infolog type icon in the Project Elements list
