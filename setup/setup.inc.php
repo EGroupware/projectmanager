@@ -49,7 +49,7 @@ $setup_info['projectmanager']['hooks']['search_link'] = 'projectmanager_hooks::s
 $setup_info['projectmanager']['hooks']['acl_rights'] = 'projectmanager_hooks::acl_rights';
 $setup_info['projectmanager']['hooks']['categories'] = 'projectmanager_hooks::categories';
 $setup_info['projectmanager']['hooks']['timesheet_set'] = 'projectmanager_hooks::timesheet_set';
-$setup_info['projectmanager']['hooks']['deleteaccount'] = 'projectmanager.projectmanager_so.change_delete_owner';
+$setup_info['projectmanager']['hooks']['deleteaccount'] = 'projectmanager.projectmanager_bo.change_delete_owner';
 
 /* Dependencies for this app to work */
 $setup_info['projectmanager']['depends'][] = array(

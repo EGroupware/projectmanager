@@ -449,6 +449,34 @@ class projectmanager_bo extends projectmanager_so
 	}
 
 	/**
+	 * Changes or deletes entries with a specified owner (for deleteaccount hook)
+	 *
+	 * @param array $args hook arguments
+	 * @param int $args['account_id'] account to delete
+	 * @param int $args['new_owner']=0 new owner
+	 * @todo test deleting an owner with replace and without
+	 */
+	public function  change_delete_owner(array $args)  // new_owner=0 means delete
+	{
+		if (!(int) $args['new_owner'])
+		{
+			$projects = $this->search(array('pm_creator'=>$args['account_id']));
+			foreach($projects as $project)
+			{
+				$this->delete($project['pm_id']);
+			}
+		}
+		else
+		{
+			$this->db->update(
+				'egw_pm_projects',
+				array('pm_creator'=>$args['new_owner']),
+				array('pm_creator'=>$args['account_id']),
+				__LINE__,__FILE__, 'projectmanager'
+			);
+		}
+	}
+	/**
 	 * changes the data from the db-format to your work-format
 	 *
 	 * reimplemented to adjust the timezone of the timestamps (adding $this->tz_offset_s to get user-time)
