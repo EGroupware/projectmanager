@@ -894,7 +894,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		//Create app list for "Add new" menu items
 		$app_list = Link::app_list('add');
 		// Bookmarks doesn't support link via URL this way
-		unset($app_list['bookmarks']);
+		unset($app_list['bookmarks'], $app_list['rocketchat'], $app_list['status']);
 		$actions['add']['children'] = array();
 		foreach ($app_list as $inx => $val)
 		{
