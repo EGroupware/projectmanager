@@ -124,7 +124,7 @@ td.projectTimestamp {
 }
 #projectmanager-edit_timestamp {
 	position: absolute;
-	top: 15px;
+	top: 13px;
 	right: 0px;
 }
 
@@ -142,4 +142,13 @@ td.projectTimestamp {
 
 .et2_gantt .gantt_cell .gantt_column_pe_resources:hover li {
 	display: block;
+}
+#projectmanager-edit_member\[1\] {
+	width:85%;
+}
+#projectmanager-milestone-edit .dialogHeader .et2_appicon {
+	width: 32px;
+}
+#projectmanager-elements-edit_target input.ui-autocomplete-input {
+	width:auto;
 }

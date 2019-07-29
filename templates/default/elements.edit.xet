@@ -131,9 +131,9 @@
 	<template id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.4.001">
 		<grid width="100%" overflow="auto" id="pe_constraints" disabled="!@pe_constraints">
 			<columns>
-				<column width=" 95"/>
+				<column width="95"/>
 				<column/>
-				<column width=" 95"/>
+				<column width="95"/>
 				<column width="22"/>
 			</columns>
 			<rows>
@@ -151,15 +151,15 @@
 				</row>
 			</rows>
 		</grid>
-		<grid id="new_constraint">
+		<grid id="new_constraint" width="100%" height="100%" resize_ratio="0">
 			<columns>
-				<column width=" 95"/>
-				<column/>
-				<column width=" 95"/>
+				<column width="95"/>
+				<column width="70"/>
+				<column width="95"/>
 				<column width="22"/>
 			</columns>
 			<rows>
-				<row valign="top">
+				<row class="row">
 					<link readonly="true" only_app="projectelement" value="$cont[pe_id]"/>
 					<listbox id="type"/>
 					<link-entry id="target" application_list="projectelement,pm_milestone" query="app.projectmanager.element_constraint_pre_query"/>
@@ -178,8 +178,8 @@
 			<rows>
 				<row class="row" valign="top">
 					<description value="Resources"/>
-					<listbox type="select-account" id="pe_resources" rows="12"/>
-					<listbox type="select-account" id="ds[pe_resources]" readonly="true" rows="8"/>
+					<listbox type="select-account" id="pe_resources" rows="6"/>
+					<listbox type="select-account" id="ds[pe_resources]" readonly="true" rows="6"/>
 				</row>
 			</rows>
 		</grid>
