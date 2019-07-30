@@ -464,6 +464,10 @@ class projectmanager_bo extends projectmanager_so
 			foreach($projects as $project)
 			{
 				$this->delete($project['pm_id']);
+				if($this->history && $project['pm_status'] != self::DELETED_STATUS)
+				{
+					$this->delete($project['pm_id']);
+				}
 			}
 		}
 		else
