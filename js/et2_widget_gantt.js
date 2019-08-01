@@ -1306,7 +1306,7 @@ et2_register_widget(et2_gantt, ["gantt","projectmanager-gantt"]);
  * Common look, feel & settings for all Gantt charts
  */
 // Localize to user's language - breaks if file is not there
-//egw.includeJS("/phpgwapi/js/dhtmlxGantt/codebase/locale/locale_" + egw.preference('lang') + ".js");
+egw.includeJS(egw.webserverUrl+"/projectmanager/js/dhtmlxGantt/codebase/locale/locale_" + egw.preference('lang') + ".js");
 
 jQuery(function()
 {
