@@ -649,59 +649,6 @@ class projectmanager_hooks
 			'default'=> '%document%',
 		);
 		}
-		// Import / Export for nextmatch
-		if ($GLOBALS['egw_info']['user']['apps']['importexport'])
-		{
-			$definitions = new importexport_definitions_bo(array(
-				'type' => 'export',
-				'application' => 'projectmanager'
-			));
-			$options = array(
-				'~nextmatch~'	=>	lang('Old fixed definition')
-			);
-			foreach ((array)$definitions->get_definitions() as $identifier)
-			{
-				try
-				{
-					$definition = new importexport_definition($identifier);
-				}
-				catch (Exception $e)
-				{
-					unset($e);
-					// permission error
-					continue;
-				}
-				if (($title = $definition->get_title()))
-				{
-					$options[$title] = $title;
-				}
-				unset($definition);
-			}
-			$default_def = 'export-projectmanager';
-			$settings['nextmatch-export-definition-project'] = array(
-				'type'   => 'select',
-				'values' => $options,
-				'label'  => 'Export definition to use for nextmatch export' . ' (' . lang('Projects') . ')',
-				'name'   => 'nextmatch-export-definition-project',
-				'help'   => lang('If you specify an export definition, it will be used when you export'),
-				'run_lang' => false,
-				'xmlrpc' => True,
-				'admin'  => False,
-				'default'=> isset($options[$default_def]) ? $default_def : false,
-			);
-			$default_defe = 'export-projectmanager-elements';
-			$settings['nextmatch-export-definition-element'] = array(
-				'type'   => 'select',
-				'values' => $options,
-				'label'  => 'Export definition to use for nextmatch export' . ' (' . lang('Elements') . ')',
-				'name'   => 'nextmatch-export-definition-element',
-				'help'   => lang('If you specify an export definition, it will be used when you export'),
-				'run_lang' => false,
-				'xmlrpc' => True,
-				'admin'  => False,
-				'default'=> isset($options[$default_defe]) ? $default_defe : false,
-			);
-		}
 		$settings[] = array(
 			'type'  => 'section',
 			'title' => lang('ID generation'),
