@@ -269,6 +269,7 @@ number of characters to which title of ganttchart elements should be shortened t
 number of records to read (%1)	projectmanager	it	Numero di record da leggere (%1)
 one day after	projectmanager	it	il giorno dopo
 one day in advance	projectmanager	it	un giorno in anticipo
+ongoing (0 < % < 100)	projectmanager	it	In corso < % < 100
 only this project	projectmanager	it	Solo questo progetto
 order of sub-project bars in ganttcharts	projectmanager	it	Ordine delle barre di sottoprogetto nel Gantt
 overwrite the datasource	projectmanager	it	Sovrascrivi sorgente dati
@@ -446,6 +447,7 @@ view this project	projectmanager	it	Vedi questo progetto
 view this project-element	projectmanager	it	Vedi questo elemento-progetto
 working duration on %1	projectmanager	it	Durata lavoro il %1
 you can leave the date of the first price empty	projectmanager	it	puoi lasciare la data del primo prezzo vuota
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	it	Puoi usare% Ymd per inserire la data di creazione. Utilizza la stessa sintassi della funzione "data" di PHP (). Altri segnaposto sono% px per inserire l'ID padre (solo nella generazione dei sottoprogetti) oppure % ix per inserire un indice. Gli indici verranno aumentati automaticamente per evitare ID duplicati. Ogni formato di generazione dovrebbe contenere esattamente un indice! A meno che non si voglia che la data identifichi il progetto. Puoi anche usare ad es. % 04ix. Questo indice verrà riempito da "0" a 4 cifre (ad es. 0001). Se si omette il carattere di riempimento (ad esempio %5ix), l'indice verrà riempito con '0'.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	it	Non hai JPGraph nella versione %1 o superiore installato! E' un componente necessario per la generazione del grafico Gantt.
 you need to select a project first	projectmanager	it	Devi prima selezionare un progetto
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	it	Il tuo database NON è aggiornato (%1 contro %2), per favore esegui %3setup%4 per aggiornarlo.
