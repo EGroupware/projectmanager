@@ -460,7 +460,14 @@ class projectmanager_bo extends projectmanager_so
 	{
 		if (!(int) $args['new_owner'])
 		{
-			$projects = $this->search(array('pm_creator'=>$args['account_id']));
+			// Direct query to skip ACL check
+			$projects = $this->db->select(
+				'egw_pm_projects',
+				array('pm_id', 'pm_status'),
+				array('pm_creator'=>$args['account_id']),
+				__LINE__,__FILE__, 'projectmanager'
+			);
+
 			foreach($projects as $project)
 			{
 				$this->delete($project['pm_id']);
