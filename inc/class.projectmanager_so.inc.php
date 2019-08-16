@@ -322,10 +322,10 @@ class projectmanager_so extends Api\Storage
 		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
 		{
 			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
-			$extra_cols[$key] = 'count(children.link_id2) AS children';
-			$join .=' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
-				AND children.link_app2="projectmanager"
-				AND children.link_id1=egw_pm_projects.pm_id)';
+			$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
+			$join .= " LEFT JOIN egw_links AS children ON (children.link_app1='projectmanager'
+				AND children.link_app2='projectmanager'
+				AND children.link_id1=".$this->db->to_varchar('egw_pm_projects.pm_id').')';
 		}
 		if ($filter['subs_or_mains'])
 		{
