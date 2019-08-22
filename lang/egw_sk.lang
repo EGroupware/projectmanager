@@ -1,3 +1,4 @@
+%1 days in advance	projectmanager	sk	%1 dní vopred
 %1 element(s) updated	projectmanager	sk	%1 prvkov bolo aktualizovaných
 %1 new project-elements imported	projectmanager	sk	%1 nových projektových prvkovov bolo naimportovaných
 %1 project(s) %2	projectmanager	sk	%1 projekt(ov) %2
@@ -7,6 +8,8 @@
 %1 records imported	projectmanager	sk	%1 záznamov bolo naimportovaných
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	sk	%1 záznamov bolo prečítaných (ešte neboli naimportované; ak ich chcete naimportovať, vraťte sa %2späť%3 a odznačte Test importu)
 %1 times permission denied, %2 projects deleted	projectmanager	sk	%1 -krát odopretý prístup, %2 projektov bolo odstránených
+%1 you are responsible for is due at %2	projectmanager	sk	%1 vaša zodpovednosť má termín do %2
+%1 you are responsible for is starting at %2	projectmanager	sk	%1 vaša zodpovednosť začína %2
 (project id) project title - template name	projectmanager	sk	(ID projektu) názov projektu - názov šablóny
 - planned	projectmanager	sk	- plánované
 - re-planned	projectmanager	sk	-pre-plánované
@@ -28,7 +31,8 @@ add price	projectmanager	sk	Pridať cenu
 add project	projectmanager	sk	Pridať projekt
 add project-elements	projectmanager	sk	Pridať prvok projektu
 add this role	projectmanager	sk	Pridať túto úlohu
-add timesheet only	projectmanager	sk	Pridaťlen harmonogram
+add timesheet	projectmanager	sk	Pridať harmonogram
+add timesheet only	projectmanager	sk	Pridať len harmonogram
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	sk	Adresárové prvky projektu sa dajú použiť na určenie adresátov hromadných listov. Dostupné sú polia
 addressbook fields	projectmanager	sk	Polia Adresára
 all projects	projectmanager	sk	Všetky projekty
@@ -57,9 +61,11 @@ can be used with element roles, "eroles" table plugin and "elements" table plugi
 category in %1 project-element(s) updated.	projectmanager	sk	Kategória v %1 prvkoch projektu bola aktualizovaná.
 category set	projectmanager	sk	Kategória bola nastavená
 change category	projectmanager	sk	Zmeniť kategóriu
+change the following details of %s	projectmanager	sk	Zmeniť nasledovné podrobnosti pre %s
 charset of file	projectmanager	sk	Znaková sada súboru
 charset of the above selected font	projectmanager	sk	Znaková sada vybraného písma
 check all	projectmanager	sk	Označiť všetko
+check to make one element role assignable to multiple elements	projectmanager	sk	Ak zaškrtnete, jedna rola prvku sa bude dať priradiť viacerým prvkom
 choose the default filename for downloaded documents.	projectmanager	sk	Vyberte predvolený názov súboru pre stiahnuté dokumenty.
 close the window, discard the changes made	projectmanager	sk	Zavrieť okno, zahodiť vykonané zmeny
 completion	projectmanager	sk	Dokončenosť
@@ -88,6 +94,7 @@ days	projectmanager	sk	Dní
 default action on double-click	projectmanager	sk	Predvolená akcia pri dvojitom kliknutí
 default all and a selectbox to choose	projectmanager	sk	Predvolene všetko a výber pomocou ponuky
 delete all checked projects	projectmanager	sk	Odstrániť všetky označené projekty
+delete this element role	projectmanager	sk	Odstrániť túto rolu prvku
 delete this milestone	projectmanager	sk	Odstrániť tento medzník
 delete this price	projectmanager	sk	Odstrániť túto cenu
 delete this project	projectmanager	sk	Odstrániť tento projekt
@@ -99,15 +106,23 @@ details of cumulated	projectmanager	sk	Podrobnosti kumulovaných
 details of subelements	projectmanager	sk	Podrobnosti pod-prvkov
 directory with documents to insert project data	projectmanager	sk	Priečinok s dokumentami pre vloženie projektových dát
 do not use that entry as project-element	projectmanager	sk	Nepoužívať túto položku ako prvok projektu
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	sk	Želáte si dostať upozornenie, ak sa budú mať začínať položky podľa ich plánovaných dátumov?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	sk	Želáte si dostať upozornenie, ak sa budú mať začínať položky podľa ich skutočných dátumov?
+do you want a notification, if items are due according to their planned dates?	projectmanager	sk	Želáte si dostať upozornenie, ak sa budú mať končiť položky podľa ich plánovaných dátumov?
+do you want a notification, if items are due according to their real dates?	projectmanager	sk	Želáte si dostať upozornenie, ak sa budú mať končiť položky podľa ich skutočných dátumov?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	sk	Želáte si dostať upozornenie, ak budú položky priradené vám alebo sa priradené položky zmenia?
+do you want a notification, if items you created get updated?	projectmanager	sk	Želáte si dostať upozornenie, ak sa zmenia položky ktoré ste vytvorili?
 document '%1' does not exist or is not readable for you!	projectmanager	sk	Dokument '%1' neexistuje alebo nemáte právo ho čítať!
 document download filename	projectmanager	sk	Názov súboru stiahnutého dokumentu
 done (100%)	projectmanager	sk	Hotovo (100%)
 edit access, incl. editing budget and elements	projectmanager	sk	Oprávnenia k úpravám, vrátane rozpočtu a prvkov
 edit budget	projectmanager	sk	Upraviť rozpočet
+edit element roles	projectmanager	sk	Upraviť role prvku
 edit milestone	projectmanager	sk	Upraviť medzník
 edit price	projectmanager	sk	Upraviť cenu
 edit project	projectmanager	sk	Upraviť projekt
 edit project-elements	projectmanager	sk	Upraviť prvky projektu
+edit this element role	projectmanager	sk	Upraviť túto rolu prvku
 edit this milestone	projectmanager	sk	Upraviť tento medzník
 edit this price	projectmanager	sk	Upraviť túto cenu
 edit this project	projectmanager	sk	Upraviť tento projekt
@@ -118,6 +133,7 @@ element details	projectmanager	sk	Podrobnosti o prvku
 element id	projectmanager	sk	ID prvku
 element list	projectmanager	sk	Zoznam prvkov
 element modifier	projectmanager	sk	Kto upravil prvok
+element role	projectmanager	sk	Rola prvku
 element role deleted	projectmanager	sk	Úloha v prvku odstránená.
 element role saved	projectmanager	sk	Úloha v prvku uložená.
 element role title	projectmanager	sk	Názov úlohy v prvku
@@ -135,8 +151,9 @@ elements which have to be finished before this can start	projectmanager	sk	Prvky
 empty	projectmanager	sk	Prázdne
 empty for all	projectmanager	sk	Prázdne znamená: všetko
 encode non-ascii	projectmanager	sk	Ne-ASCII kódovanie
-end before	projectmanager	sk	Skončiť pred
 enddate	projectmanager	sk	Dátum ukončenie
+ends after	projectmanager	sk	Končí po
+ends before	projectmanager	sk	Končí pred
 error: deleting element role !!!	projectmanager	sk	Chyba pri odstraňovaní úlohy v prvku!
 error: deleting price !!!	projectmanager	sk	Chyba: odstraňovanie ceny !!!
 error: deleting project !!!	projectmanager	sk	Chyba: odstraňovanie projektu !!!
@@ -187,12 +204,16 @@ general pricelist	projectmanager	sk	Všeobecný cenník
 general settings	projectmanager	sk	Všeobecné nastavenia
 global categories	projectmanager	sk	Globálne kategórie
 h	projectmanager	sk	h
+has been moved to settings to allow eg. group-specific ids	projectmanager	sk	Presunulo sa do Nastavení kvôli umožneniu napr. skupinovo špecifických ID
 health	projectmanager	sk	Zdravie
 hours	projectmanager	sk	Hodín
 hours per workday	projectmanager	sk	Hodín pracovného dňa
 how long do you work on the given day.	projectmanager	sk	Koľko hodín pracujete v daný deň.
+how should ids for new projects be generated?	projectmanager	sk	Ako sa budú vytvárať ID pre nové projekty?
+how should ids for new subprojects be generated?	projectmanager	sk	Ako sa budú vytvárať ID pre nové podprojekty?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke: Strom ponúka lepší prehľad, výberové okno zase lepší výkon.
 html link to the current record	projectmanager	sk	HTML odkaz na aktuálny záznam
+id generation	projectmanager	sk	Vytváranie ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) sa tiež odstránia.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
@@ -219,6 +240,7 @@ mainproject only	projectmanager	sk	Iba hlavný projekt
 mainprojects	projectmanager	sk	Hlavné projekty
 manage mapping	projectmanager	sk	Správa mapovania
 members	projectmanager	sk	Členovia
+milestone	projectmanager	sk	Medzník
 milestone deleted	projectmanager	sk	Medzník bol odstránený
 milestone saved	projectmanager	sk	Medzník bol uložený
 milestones	projectmanager	sk	Medzníky
@@ -228,6 +250,7 @@ modified by	projectmanager	sk	Zmeny vykonal
 modified date and time	projectmanager	sk	Upravený dátum a čas
 modifier	projectmanager	sk	Upravil
 modify status	projectmanager	sk	Upraviť stav
+multi assignable	projectmanager	sk	Viacnásobne priraditeľné
 multi assignments	projectmanager	sk	Viacnásobné priradenia
 name of current user, all other contact fields are valid too	projectmanager	sk	Meno súčasného používateľa, všetky ostatné polia kontaktu sú tiež platné
 necessary for project-elements doing that not automatic	projectmanager	sk	Nevyhnutné pre prvky projektu, ktoré to nerobia automaticky
@@ -244,8 +267,12 @@ nonactive	projectmanager	sk	Neaktívne
 not available	projectmanager	sk	Nedostupné
 not started (0%)	projectmanager	sk	Nezačaté (0%)
 not working	projectmanager	sk	Nepracuje sa
+notification settings	projectmanager	sk	Nastavenia upozornení
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	sk	Počet znakov na ktorý sa má skrátiť nadpis priebehového diagramu.
 number of records to read (%1)	projectmanager	sk	Počet záznamov, ktoré sa majú načítať (%1)
+one day after	projectmanager	sk	jeden deň po
+one day in advance	projectmanager	sk	jeden deň vopred
+ongoing (0 < % < 100)	projectmanager	sk	Prebieha (0 < % < 100)
 only this project	projectmanager	sk	Iba tento projekt
 order of sub-project bars in ganttcharts	projectmanager	sk	Poradie podprojektov v priebehových diagramoch
 overwrite the datasource	projectmanager	sk	Prepísať zdroj dát
@@ -264,6 +291,7 @@ planned time	projectmanager	sk	Plánovaný čas
 planned time in minutes	projectmanager	sk	Plánovaný čas v minútach
 planned times	projectmanager	sk	Plánované časy
 please download a recent version from %1 and install it in %2.	projectmanager	sk	Prosím stiahnite aktuálnu verziu z %1 a nainštalujte ju na %2.
+pm_milestone	projectmanager	sk	Medzník
 price	projectmanager	sk	Cena
 price / unit	projectmanager	sk	Cena / jednotku
 price deleted	projectmanager	sk	Cena bola odstránená
@@ -289,6 +317,7 @@ project number	projectmanager	sk	Číslo projektu
 project overview	projectmanager	sk	Prehľad projektu
 project priority	projectmanager	sk	Priorita projektu
 project saved	projectmanager	sk	Projekt uložený
+project sort order	projectmanager	sk	Zoradenie projektov
 project specific title, prices, ...	projectmanager	sk	Projektovo špecifický názov, ceny, ...
 project status	projectmanager	sk	Stav projektu
 project title	projectmanager	sk	Názov projektu
@@ -297,6 +326,7 @@ project-element	projectmanager	sk	Prvok projektu
 project-element deleted	projectmanager	sk	Prvok projektu bol odstránený
 project-element saved	projectmanager	sk	Prvok projektu bol uložený
 project-elements	projectmanager	sk	Prvky projektu
+projectelement	projectmanager	sk	Prvok projektu
 projectid	projectmanager	sk	ID projektu
 projectlist	projectmanager	sk	Zoznam projektov
 projectmanager	common	sk	Projektovník
@@ -315,6 +345,12 @@ real end	projectmanager	sk	Skutočný koniec
 real end date and time	projectmanager	sk	Skutočný dátum a čas konca
 real start	projectmanager	sk	Skutočný začiatok
 real start date and time	projectmanager	sk	Skutočný dátum a čas začiatku
+receive notifications about due entries (planned dates)	projectmanager	sk	Dostávať upozornenia pre končiace položky (plánované dátumy)
+receive notifications about due entries (real dates)	projectmanager	sk	Dostávať upozornenia pre končiace položky (skutočné dátumy)
+receive notifications about items assigned to you with these roles	projectmanager	sk	Dostávať upozornenia pre položky priradené vám s týmito rolami
+receive notifications about own items	projectmanager	sk	Dostávať upozornenia pre vlastné položky
+receive notifications about starting entries (planned dates)	projectmanager	sk	Dostávať upozornenia pre začínajúce položky (plánované dátumy)
+receive notifications about starting entries (real dates)	projectmanager	sk	Dostávať upozornenia pre začínajúce položky (skutočné dátumy)
 remark	projectmanager	sk	Poznámka
 replanned time in minutes	projectmanager	sk	Pre-plánovaný čas v minútach
 resources	projectmanager	sk	Zdroje
@@ -322,12 +358,14 @@ role	projectmanager	sk	Rola
 role deleted	projectmanager	sk	Rola bola odstránená
 role saved	projectmanager	sk	Rola bola uložená
 roles	projectmanager	sk	Role
+same day	projectmanager	sk	rovnaký deň
 save the changes made	projectmanager	sk	Uložiť vykonané zmeny
 save this project element	projectmanager	sk	Uložiť tento prvok projektu
 select a project	projectmanager	sk	Vyberte projekt
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	sk	Vyberte aktivitu, ak chcete vypočítať náklady podľa množstva (času) a ceny
 select export options	projectmanager	sk	Vyberte možnosti exportu
 select multiple projects for a further action	projectmanager	sk	Vyberte viacero projektov pre ďalšie akcie
+select project sort order for project tree and link search	projectmanager	sk	Vyberte spôsob zoradenia v projektovom strome a vyhľadávaní odkazov
 select the accounting types visible for users of projectmanager	projectmanager	sk	vyberte typy účtovania viditeľné pre používateľov Projektovníka
 select this project and show it's elements	projectmanager	sk	Vybrať tento projekt a zobraziť jeho prvky
 selectbox with %1	projectmanager	sk	Výberové okno s %1
@@ -348,13 +386,14 @@ show planned times instead of the real times	projectmanager	sk	Zobrazovať plán
 show status icons of the datasources	projectmanager	sk	Zobrazovať ikonu stavu zdrojov údajov
 show the project selection as	projectmanager	sk	Zobrazovať výber projektov ako
 site configuration saved	projectmanager	sk	Nastavenia stránky boli uložené
-start after	projectmanager	sk	Začať po
 start date, end date	projectmanager	sk	Dátum začiatku, konca
 start working on %1	projectmanager	sk	Začať prácu na %1
 start, end, category, ...	projectmanager	sk	Začiatok, koniec, kategória, ...
 start- & enddate	projectmanager	sk	Dátumy začiatku a konca
 startdate	projectmanager	sk	Dátum začatia
 startrecord	projectmanager	sk	Prvý záznam
+starts after	projectmanager	sk	Začína po
+starts before	projectmanager	sk	Začína pred
 status filter	projectmanager	sk	Filter stavov
 status set	projectmanager	sk	Stav nastavený
 style used for everything but elements. some fonts have only normal style.	projectmanager	sk	Štýl použitý pre čokoľvek okrem prvkov. Niektoré písma majú len normálny štýl.
