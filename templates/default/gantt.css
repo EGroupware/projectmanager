@@ -5,3 +5,33 @@
 	display: none;
 	visibility: hidden;
 }
+
+
+.gantt_task_line.milestone {
+	width: 25px !important;
+	background: none;
+	border: none;
+}
+
+.gantt_task_line.milestone .gantt_task_content {
+    background: inherit;
+	background-color: #ffc200;
+    border-color: #bf9d30;
+    border: inherit;
+    border-width: 1px;
+    border-radius: inherit;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.gantt_task_line.milestone .gantt_task_progress_drag {
+	visibility: hidden;
+}
+.gantt_task_line.milestone .gantt_task_progress_wrapper {
+	display: none;
+}

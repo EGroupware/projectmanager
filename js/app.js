@@ -547,7 +547,7 @@ app.classes.projectmanager = AppJS.extend(
 					}
 					_type == 'update';
 				}
-				else
+				else if (_id)
 				{
 					ids.push(_app+"::"+_id);
 				}

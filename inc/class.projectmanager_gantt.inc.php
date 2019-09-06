@@ -410,7 +410,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'edit'	=>	$this->project->check_acl(Acl::EDIT),
 				'start_date'	=>	Api\DateTime::to($milestone['ms_date'],Api\DateTime::DATABASE),
 				'type' => 'milestone',
-				'pe_icon' => 'projectmanager/milestone'
+				'pe_icon' => 'projectmanager/milestone',
+				'duration' => 8
 			);
 		}
 
@@ -575,21 +576,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		// adding the constraints for found elements
 		if($params['constraints'] && count($element_index) > 0)
 		{
-			foreach((array)$this->constraints->search(array('pm_id'=>$pm_id, 'pe_id'=>array_keys($element_index)),false) as $constraint)
-			{
-				// IDs have to match what we give the gantt chart
-				$start = $element_index[$constraint['pe_id_start']];
-				$end = $element_index[$constraint['pe_id_end']];
-				$constraint['pe_id_start'] = $start ? $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'] : 'pm_milestone:'.$constraint['ms_id'];
-				$constraint['pe_id_end'] = $end ? $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'] : 'pm_milestone:'.$constraint['ms_id'];
-				$data['links'][] = array(
-					'id' => $constraint['pm_id'] . ':'.$constraint['pe_id_start'].':'.$constraint['pe_id_end'],
-					'source' => $constraint['pe_id_start'],
-					'target' => $constraint['pe_id_end'],
-					// TODO: Get proper type
-					'type' => $constraint['type']
-				);
-			}
+			$this->get_constraints($data, $pm_id, $element_index);
 		}
 		return $elements;
 	}
@@ -634,7 +621,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			$handled = stylite_projectmanager_gantt::ajax_update($values, $mode, $params);
 			if($handled) return;
 		}
-		else if(!$GLOBALS['egw_info']['user']['preferences']['projectmanager']['skip_stylite_warning'])
+		else if(!$GLOBALS['egw_info']['user']['preferences']['projectmanager']['skip_stylite_warning'] && !$GLOBALS['egw_info']['user']['apps']['stylite'])
 		{
 			// Only tell them once
 			$GLOBALS['egw']->preferences->add('projectmanager','skip_stylite_warning', true);
@@ -736,6 +723,55 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		//error_log(__METHOD__ .' Save ' . array2string($keys) . '= ' .$result);
 	}
 
+	protected function get_constraints(&$data, $pm_id, $elements = array())
+	{
+		$query = array(
+			'pm_id' => $pm_id
+		);
+		if($elements)
+		{
+			$query['pe_id'] = array_keys($elements);
+		}
+		foreach((array)$this->constraints->search($query,false) as $constraint)
+		{
+			// IDs have to match what we give the gantt chart
+			$start = $elements[$constraint['pe_id_start']];
+			$end = $elements[$constraint['pe_id_end']];
+			if($start['pe_app'] == 'projectmanager')
+			{
+				$constraint['pe_id_start'] = $start['pe_app'].'::'.$start['pe_app_id'];
+			}
+			else if (!$start)
+			{
+				$constraint['pe_id_start'] = 'pm_milestone:'.$constraint['ms_id'];
+			}
+			else
+			{
+				$constraint['pe_id_start'] = $start['pe_app'].':'.$start['pe_app_id'].':'.$start['pe_id'];
+			}
+			if($end['pe_app'] == 'projectmanager')
+			{
+				$constraint['pe_id_end'] = $start['pe_app'].'::'.$end['pe_app_id'];
+			}
+			else if (!$end)
+			{
+				$constraint['pe_id_end'] = 'pm_milestone:'.$constraint['ms_id'];
+			}
+			else
+			{
+				$constraint['pe_id_end'] = $end['pe_app'].':'.$end['pe_app_id'].':'.$end['pe_id'];
+			}
+
+			$data['links'][] = array(
+				'id' => $constraint['pm_id'] . ':'.$constraint['pe_id_start'].':'.$constraint['pe_id_end'],
+				'source' => $constraint['pe_id_start'],
+				'target' => $constraint['pe_id_end'],
+				// TODO: Get proper type
+				'type' => $constraint['type']
+			);
+		}
+
+	}
 	/**
 	 * Set an appropriate duration unit based on start/end dates
 	 *
