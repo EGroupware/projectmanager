@@ -13,8 +13,8 @@
 /*egw:uses
 	jsapi.jsapi;
 	/vendor/bower-asset/jquery/dist/jquery.js;
-	/projectmanager/js/dhtmlxGantt/codebase/dhtmlxgantt.js;
-	/projectmanager/js/dhtmlxGantt/codebase/ext/dhtmlxgantt_marker.js;
+	/vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.js;
+	/vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js;
 	et2_core_inputWidget;
 */
 
@@ -503,14 +503,33 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		if (typeof _task_ids == "undefined" || _task_ids === null)
 		{
 			// Use the root
-			_task_ids = this.gantt._branches[0];
+			_task_ids = this.gantt.$data.tasksStore._branches[0];
 		}
 
 		id_loop:
 		for(var i = 0; i < _task_ids.length; i++)
 		{
-			var task = this.gantt.getTask(_task_ids[i]);
-			if(!task) _type = null;
+			var update_id = _task_ids[i];
+			var task = this.gantt.getTask(update_id);
+			if(!task)
+			{
+				task = this.gantt.getTaskBy(function(task) {
+					var app_id = update_id.split('::');
+					return task.pe_app === app_id[0] && task.pe_app_id === app_id[1];
+				});
+				if(task.length)
+				{
+					// Get the parent project, not the actual element since we can
+					// only update projects with autoload
+					task = task[0];
+					update_id = task.parent;
+				}
+				debugger;
+			}
+			if(!task)
+			{
+				_type = null;
+			}
 			switch(_type)
 			{
 				case "edit":
@@ -518,7 +537,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 					var value = this.getInstanceManager().getValues(this.getInstanceManager().widgetContainer);
 					this.gantt.showCover();
 					this.egw().json(this.options.autoload,
-						[_task_ids[i],value,task.parent||false],
+						[update_id,value,task.parent||false],
 						function(data) {
 							this.gantt.parse(data);
 							this._apply_sort();
@@ -528,10 +547,10 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 					).sendRequest();
 					break;
 				case "delete":
-					this.gantt.deleteTask(_task_ids[i]);
+					this.gantt.deleteTask(update_id);
 					break;
 				case "add":
-					var data = this.egw().dataGetUIDdata(_task_ids[i]) && data.data;
+					var data = this.egw().dataGetUIDdata(update_id) && data.data;
 					if(data)
 					{
 						this.gantt.parse(data.data);
@@ -737,14 +756,6 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 	_bindGanttEvents: function() {
 		var gantt_widget = this;
 
-		// After the chart renders, resize to make sure it's all showing
-		this.gantt.attachEvent("onGanttRender", function() {
-			// Timeout gets around delayed rendering
-			window.setTimeout(function() {
-				gantt_widget.resize();
-			},100);
-		});
-
 		// Click on scale to zoom - top zooms out, bottom zooms in
 		this.gantt_node.on('click','.gantt_scale_line', function(e) {
 			var current_position = e.target.offsetLeft / jQuery(e.target.parentNode).width();
@@ -793,7 +804,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			}
 			else if (linkId)
 			{
-				this._delete_link_handler(linkId,e);
+				gantt_widget.delete_link_handler(linkId,e);
 				e.stopPropagation();
 			}
 			return false;
@@ -845,14 +856,28 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			if(gantt_widget.options.readonly) return false;
 			if(gantt_widget.options.ajax_update)
 			{
-				link.parent = this.getTask(link.source).parent;
+				var send_values = jQuery.extend({}, link);
+				send_values.parent = this.getTask(link.source).parent;
+
+				// Make sure we send the element ID, sub-projects don't have that in their ID
+				var source = this.getTask(link.source);
+				if(source.pe_app === "projectmanager")
+				{
+					send_values.source = source.pe_app + ":" + source.pe_app_id + ':'+source.pe_id;
+				}
+				var target = this.getTask(link.target);
+				if(target.pe_app === "projectmanager")
+				{
+					send_values.target = target.pe_app + ":" + target.pe_app_id + ':'+target.pe_id;
+				}
+
 				var value = gantt_widget.getInstanceManager().getValues(gantt_widget.getInstanceManager().widgetContainer);
 
 				var request = gantt_widget.egw().json(gantt_widget.options.ajax_update,
-					[link,'link',value], function(new_id) {
+					[send_values,'link',value], function(new_id) {
 						if(new_id)
 						{
-							link.id = new_id;
+							gantt_widget.gantt.changeLinkId(link.id, new_id);
 						}
 					}
 				).sendRequest(true);
@@ -918,6 +943,23 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			},gantt_widget, et2_inputWidget);
 			return display;
 		});
+	},
+
+	/**
+	 * Confirm & delete link
+	 */
+	delete_link_handler: function(link_id, event)
+	{
+		var gantt_widget = this;
+		var dialog = et2_dialog.show_dialog(function(button) {
+				if(button == et2_dialog.YES_BUTTON)
+				{
+					gantt_widget.gantt.deleteLink(link_id);
+				}
+			},
+			this.egw().lang('delete link?'),
+			this.egw().lang('delete')
+		);
 	},
 
 	/**
@@ -1330,6 +1372,17 @@ jQuery(function()
 		return scale.class;
 	};
 
+	// Label for task bar
+	gantt.templates.task_text = function(start, end, task) {
+		switch(task.type)
+		{
+			case 'milestone':
+				return '';
+			default:
+				return task.text;
+		}
+	}
+
 	// Include progress text in the bar
 	gantt.templates.progress_text = function(start, end, task) {
 		return "<span>"+Math.round(task.progress*100)+ "% </span>";
@@ -1341,7 +1394,7 @@ jQuery(function()
 			return "weekend";
 		}
 	};
-	gantt.templates.task_cell_class = function(item,date){
+	gantt.templates.timeline_cell_class = function(item,date){
 		if(date.getDay()==0||date.getDay()==6){
 			return "weekend";
 		}
@@ -1372,6 +1425,15 @@ jQuery(function()
 		return text;
 	};
 
+	// Task styling
+	gantt.templates.task_class = function(start, end, task) {
+		var classes = [];
+		if(task.type)
+		{
+			classes.push(task.type);
+		}
+		return classes.join(" ");
+	};
 	// Link styling
 	gantt.templates.link_class = function(link) {
 		var link_class = '';
