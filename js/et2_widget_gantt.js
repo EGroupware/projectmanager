@@ -73,7 +73,8 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 	gantt_config: {
 		// Gantt takes a different format of date format, all the placeholders are prefixed with '%'
 		api_date: '%Y-%n-%d %H:%i:%s',
-		xml_date: '%Y-%n-%d %H:%i:%s',
+		date_format: '%Y-%n-%d %H:%i:%s',
+		time_picker: '%Y-%n-%d %H:%i:%s',
 
 		// Duration is a unitless field.  This is the unit.
 		duration_unit: 'minute',
@@ -83,9 +84,10 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		order_branch: false,
 		min_column_width: 30,
 		min_grid_column_width: 30,
+		grid_width: 300,
 		task_height: 25,
-		fit_tasks: true,
-		autosize: '',
+//		fit_tasks: true,
+//		autosize: '',
 		// Date rounding happens either way, but this way it rounds to the displayed grid resolution
 		// Also avoids a potential infinite loop thanks to how the dates are rounded with false
 		round_dnd_dates: false,
@@ -93,15 +95,76 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		time_step: parseInt(this.egw().preference('interval','calendar') || 15),
 		min_duration: 1 * 60 * 1000, // 1 minute in ms
 
-		scale_unit: 'day',
-		date_scale: '%d',
-		subscales: [
-			{unit:"month", step:1, date:"%F, %Y"}
-			//{unit:"hour", step:1, date:"%G"}
-		],
 		columns: [
 			{name: "text", label: egw.lang('Title'), tree: true, width: '*'}
 		]
+	},
+
+	// Gantt will handle most zooming, here we configure the zoom levels & headings
+	zoomConfig: {
+		levels: [
+		{
+			name: "minutes",
+			min_column_width: 50,
+			scales: [
+				{unit: "day", step: 1, format: "%F %d"},
+				{
+					unit: "minute",
+					step: parseInt(this.egw().preference('interval','calendar') || 15),
+					format: this.egw().preference('timeformat') == '24' ? "%G:%i" : "%g:%i"
+				}
+			]
+		},
+		{
+			name: "day",
+			min_column_width:50,
+			scales: [
+				{unit: "day", step: 1, format: "%F %d"},
+				{unit: "hour", format: this.egw().preference('timeformat') == '24' ? "%G:%i" : "%g:%i"}
+			]
+		},
+		{
+		  name:"week",
+		  min_column_width:80,
+		  scales:[
+			  {unit: "month", format: "%M"},
+			  {unit: "day", step: 1, format: "%d"}
+		  ]
+		},
+		{
+		   name:"month",
+		   scale_height: 50,
+		   min_column_width:120,
+		   scales:[
+			  {unit: "month", format: "%F, %Y"},
+			  {unit: "week", format: "#%W"}
+		   ]
+		},
+		{
+		   name:"quarter",
+		   height: 50,
+		   min_column_width:60,
+		   scales:[
+				{unit: "year", step: 1, format: "%Y"},
+				{unit: "month", step: 1, format: "%M"},
+			]
+		},
+		{
+			name:"year",
+			scale_height: 50,
+			min_column_width: 30,
+			scales:[
+				{unit: "year", step: 1, format: "%Y"},
+				{
+				 unit: "quarter", step: 1, format: function (date) {
+				  var dateToStr = gantt.date.date_to_str("%M");
+				  var endDate = gantt.date.add(gantt.date.add(date, 3, "month"), -1, "day");
+				  return dateToStr(date) + " - " + dateToStr(endDate);
+				 }
+			   }
+			]
+		}
+	  ]
 	},
 
 	init: function(_parent, _attrs) {
@@ -114,7 +177,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		// DOM Nodes
 		this.filters = jQuery(document.createElement("div"))
 			.addClass('et2_gantt_header');
-		this.gantt_node = jQuery('<div style="width:100%;height:100%"></div>');
+		this.gantt_node = jQuery('<div style="width:100%;height:100%" id="gantt_here"></div>');
 		this.htmlNode = jQuery(document.createElement("div"))
 			.css('height', this.options.height)
 			.addClass('et2_gantt');
@@ -160,7 +223,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		this._super.apply(this, arguments);
 		if(this.gantt != null) return false;
 
-		var config = jQuery.extend({}, this.gantt_config);
+		var config = jQuery.extend({}, gantt.config, this.gantt_config);
 
 		// Set initial values for start and end, if those filters exist
 		var start_date = this.getWidgetById('start_date');
@@ -178,22 +241,17 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			config.duration_unit = this.options.duration_unit;
 		}
 
-		// Initialize chart
-		this.gantt = this.gantt_node.dhx_gantt(config);
-
-		if(this.options.zoom)
-		{
-			this.set_zoom(this.options.zoom);
-		}
-
-		if(this.options.value)
-		{
-			this.set_value(this.options.value);
-		}
 		if(this.options.columns)
 		{
 			this.set_columns(this.options.columns);
 		}
+
+		// Initialize chart
+		//this.gantt = this.gantt_node.dhx_gantt(config);
+		this.gantt = gantt;
+		this.gantt.config = config;
+		this.gantt.ext.zoom.init(this.zoomConfig);
+		this.gantt.init("gantt_here");
 
 		// Update start & end dates with chart values for consistency
 		if(start_date && this.options.value.data && this.options.value.data.length)
@@ -209,7 +267,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		this._bindGanttEvents();
 
 		// Bind filters
-		this._bindChildren();
+	//	this._bindChildren();
 
 		return true;
 	},
@@ -235,7 +293,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			this.dynheight.update(function(w,h) {
 				if(this.gantt)
 				{
-					this.gantt.setSizes();
+	//				this.gantt.setSizes();
 				}
 			}, this);
 		}
@@ -382,12 +440,10 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 
 		this.gantt.showCover();
 
-		// Set zoom to max, in case data spans a large time
-		this.set_zoom(value.zoom || 5);
 
 		// Wait until zoom is done before continuing so timescales are done
 		var gantt_widget = this;
-		var zoom_wait = this.gantt.attachEvent('onGanttRender', function() {
+		var zoom_wait = this.gantt.ext.zoom.attachEvent('onAfterZoom', function() {
 			this.detachEvent(zoom_wait);
 
 			// Ensure proper format, no extras
@@ -395,70 +451,36 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				data: value.data || [],
 				links: value.links || []
 			};
-			this.config.start_date = value.start_date || null;
-			this.config.end_date = value.end_date || null;
-			this.parse(safe_value);
+			gantt.config.start_date = value.start_date || null;
+			gantt.config.end_date = value.end_date || null;
+			gantt.parse(safe_value);
 
 			gantt_widget._apply_sort();
 			gantt_widget.gantt_loading = false;
+
 			// Once we force the start / end date (below), gantt won't recalculate
 			// them if the user clears the date, so we store them and use them
 			// if the user clears the date.
-			//gantt_widget.stored_state = jQuery.extend({},this.getState());
+			gantt_widget.stored_state = jQuery.extend({},gantt.getState());
 
 			// Doing this again here forces the gantt chart to trim the tasks
 			// to fit the date range, rather than drawing all the dates out
 			// to the start date.
 			// No speed improvement, but it makes a lot more sense in the UI
-			var range = this.attachEvent('onGanttRender', function() {
+
+			var range = gantt.attachEvent('onGanttRender', function() {
 				this.detachEvent(range);
-				if(value.start_date  || value.end_date)
-				{
-					// TODO: Some weirdness in this when changing dates
-					// If this is done, gantt does not respond when user clears the start date
-					/*
-					this.refreshData();
-					debugger;
-					if(gantt_widget.getWidgetById('start_date') && new Date(value.start_date) > this._min_date)
-					{
-						gantt_widget.getWidgetById('start_date').set_value(value.start_date || null);
-					}
-					if(gantt_widget.getWidgetById('end_date') && new Date(value.end_date) < this._max_date)
-					{
-						gantt_widget.getWidgetById('end_date').set_value(value.end_date || null);
-					}
-					this.refreshData();
-					this.render();
-					*/
 
-					this.scrollTo(this.posFromDate(new Date(value.end_date || value.start_date )),0);
-				}
-
-				// Zoom to specified or auto level
-				var auto_zoom = this.attachEvent('onGanttRender', function() {
-					this.detachEvent(auto_zoom);
-
-					var old_zoom;
-
-					// Zooming out re-scales the gantt start & end dates and
-					// changes what values they can have,
-					// so to zoom in we have to do it step by step
-					do
-					{
-						this.render();
-						old_zoom = gantt_widget.options.zoom;
-						gantt_widget.set_zoom(value.zoom || false);
-					} while(gantt_widget.options.zoom != old_zoom)
-					this.hideCover();
-
-					if(console.timeEnd) console.timeEnd("Gantt set_value");
-					if(console.groupEnd) console.groupEnd();
-					if(console.profile) console.profileEnd();
-				});
+				// Auto-zoom
+				gantt_widget.set_zoom();
+				gantt.hideCover();
 			});
-			// This render re-calculates start/end dates
-			// this.render();
+
 		});
+
+		// Set zoom to max, in case data spans a large time
+		this.set_zoom(value.zoom || 5);
+		
 		var markerId = this.gantt.addMarker({
 			start_date: new Date(), //a Date object that sets the marker's date
 			css: "today", //a CSS class applied to the marker
@@ -629,15 +651,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 	 */
 	set_zoom: function(level) {
 
-		var subscales = [];
-		var scale_unit = 'day';
-		var date_scale = '%d';
-		var step = 1;
-		var time_step = this.gantt_config.time_step;
-		var min_column_width = this.gantt_config.min_column_width;
-
 		// No level?  Auto calculate.
-		if(level > 5) level = 5;
 		if(!level || level < 1) {
 			// Make sure we have the most up to date info for the calculations
 			// There may be a more efficient way to trigger this though
@@ -681,50 +695,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		}
 
 		// Adjust Gantt settings for specified level
-		switch(level)
-		{
-			case 5:
-				// Several years
-				//subscales.push({unit: "year", step: 1, date: '%Y'});
-				scale_unit = 'year';
-				date_scale = '%Y';
-				break;
-			case 4:
-				// A year or more, scale in weeks
-				subscales.push({unit: "month", step: 1, date: '%F %Y'});
-				scale_unit = 'week';
-				date_scale= '#%W';
-				break;
-			case 3:
-				// Less than a year, several months
-				subscales.push({unit: "month", step: 1, date: '%F %Y', class: 'et2_clickable'});
-				break;
-			case 2:
-			default:
-				// About a month
-				subscales.push({unit: "day", step: 1, date: '%F %d'});
-				scale_unit = 'hour';
-				date_scale = this.egw().preference('timeformat') == '24' ? "%G" : "%g";
-				break;
-			case 1: // A day or two, scale in Minutes
-				subscales.push({unit: "day", step: 1, date: '%F %d'});
-				date_scale = this.egw().preference('timeformat') == '24' ? "%G:%i" : "%g:%i";
-				step = parseInt(this.egw().preference('interval','calendar') || 15);
-				time_step = 1;
-				scale_unit = 'minute';
-				min_column_width = 50;
-				break;
-		}
-
-		// Apply settings
-		this.gantt.config.subscales = subscales;
-		this.gantt.config.scale_unit = scale_unit;
-		this.gantt.config.date_scale = date_scale;
-		this.gantt.config.step = step;
-		this.gantt.config.time_step = time_step;
-		this.gantt.config.min_column_width = min_column_width;
-
-		this.options.zoom = level;
+		gantt.ext.zoom.setLevel(level);
 
 		this.gantt.refreshData();
 		return level;
@@ -759,35 +730,25 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		// Click on scale to zoom - top zooms out, bottom zooms in
 		this.gantt_node.on('click','.gantt_scale_line', function(e) {
 			var current_position = e.target.offsetLeft / jQuery(e.target.parentNode).width();
+			var date = new Date(gantt_widget.gantt.getState().min_date.getTime() + (gantt_widget.gantt.getState().max_date.getTime() - gantt_widget.gantt.getState().min_date.getTime()) * current_position);
 
-			// Some crazy stuff make sure timing is OK to scroll after re-render
-			// TODO: Make this more consistently go to where you click
-			var id = gantt_widget.gantt.attachEvent("onGanttRender", function() {
+			// Make it more consistently go to where you click, instead of the middle
+			// of the range
+			var id = gantt_widget.gantt.ext.zoom.attachEvent("onAfterZoom", function() {
 				gantt_widget.gantt.detachEvent(id);
-				gantt_widget.gantt.scrollTo(parseInt(jQuery('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
-				window.setTimeout(function() {
-					gantt_widget.gantt.scrollTo(parseInt(jQuery('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
-				},100);
+				gantt_widget.gantt.showDate(date);
 			});
 
-			if(this.parentNode && this.parentNode.firstChild == this && this.parentNode.childElementCount > 1)
+			if(this.parentNode && this.parentNode.firstChild === this && this.parentNode.childElementCount > 1)
 			{
 				// Zoom out
-				gantt_widget.set_zoom(gantt_widget.options.zoom + 1);
-				gantt_widget.gantt.render();
+				gantt.ext.zoom.zoomOut();
 			}
-			else if (gantt_widget.options.zoom > 1)
+			else // if (gantt_widget.options.zoom > 1)
 			{
 				// Zoom in
-				gantt_widget.set_zoom(gantt_widget.options.zoom - 1);
-				gantt_widget.gantt.render();
+				gantt.ext.zoom.zoomIn();
 			}
-			/*
-			window.setTimeout(function() {
-				console.log("Scroll to");
-				gantt_widget.gantt.scrollTo(parseInt(jQuery('.gantt_task_scale',gantt_widget.gantt_node).width() *current_position),0);
-			},50);
-			*/
 		});
 
 		this.gantt.attachEvent("onGridHeaderClick", function(column_name, e) {
@@ -1356,6 +1317,8 @@ jQuery.get(egw.webserverUrl+"/projectmanager/js/dhtmlxGantt/codebase/locale/loca
 jQuery(function()
 {
 	"use strict";
+
+	gantt.templates.api_date = gantt.date.date_to_str(gantt.config.api_date|| '%Y-%n-%d %H:%i:%s');
 
 	// Set icon to match application
 	gantt.templates.grid_file = function(item) {
