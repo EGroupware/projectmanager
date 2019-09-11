@@ -13,7 +13,7 @@
 
 use EGroupware\Api\Framework;
 
-Framework::includeCSS('/projectmanager/js/dhtmlxGantt/codebase/dhtmlxgantt.css');
+Framework::includeCSS('/vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.css');
 
 /**
  * eTemplate Gantt chart widget
@@ -36,7 +36,7 @@ class projectmanager_gantt_etemplate_widget extends \EGroupware\Api\Etemplate\Wi
 	public function validate($cname, array $expand, array $content, &$validated=array())
 	{
 		unset($expand);	// not used, but required by function signature
-		
+
 		$value = self::get_array($content, $cname);
 		$validated[$cname] = array(
 			'action' => $value['action'],
