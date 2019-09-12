@@ -201,7 +201,8 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'name' => 'text',
 				'label'=> lang('Title'),
 				'tree'=> true,
-				'width'=> $title_width
+				'width'=> $title_width,
+				'min_width' => 120
 			),
 			array(
 				'name' => 'pe_completion',
@@ -243,6 +244,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'name' => 'start_date',
 				'label' => lang('Start date'),
 				'width' => 120,
+				'max_width' => 120,
 				'hide'=> true,
 				'widget'=>'date-time'
 			),
@@ -250,6 +252,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'name' => 'end_date',
 				'label' => lang('End date'),
 				'width' => 120,
+				'max_width' => 120,
 				'hide'=> true,
 				'widget'=>'date-time'
 			),
