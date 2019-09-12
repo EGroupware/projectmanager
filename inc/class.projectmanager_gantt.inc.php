@@ -374,6 +374,14 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 			{
 				$project['planned_end'] = Api\DateTime::to((int)$project['pm_planned_end'], Api\DateTime::DATABASE);
 			}
+			if(!$project['pm_real_start'] && $project['pm_planned_start'])
+			{
+				$project['start_date'] = Api\DateTime::to((int)$project['pm_planned_start'], Api\DateTime::DATABASE);
+			}
+			if(!$project['pm_real_end'] && $project['pm_planned_end'])
+			{
+				$project['end_date'] = Api\DateTime::to((int)$project['pm_planned_end'], Api\DateTime::DATABASE);
+			}
 		}
 
 		// Not sure how it happens, but it causes problems
