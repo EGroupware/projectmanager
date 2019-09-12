@@ -97,7 +97,8 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 
 		columns: [
 			{name: "text", label: egw.lang('Title'), tree: true, width: '*'}
-		]
+		],
+		autofit: true
 	},
 
 	// Gantt will handle most zooming, here we configure the zoom levels & headings
@@ -261,7 +262,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		this._bindGanttEvents();
 
 		// Bind filters
-	//	this._bindChildren();
+		this._bindChildren();
 
 		return true;
 	},
@@ -526,7 +527,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		{
 			var update_id = _task_ids[i];
 			var task = this.gantt.getTask(update_id);
-			if(!task)
+			if(!task && update_id)
 			{
 				task = this.gantt.getTaskBy(function(task) {
 					var app_id = update_id.split('::');
@@ -539,7 +540,6 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 					task = task[0];
 					update_id = task.parent;
 				}
-				debugger;
 			}
 			if(!task)
 			{
@@ -935,14 +935,15 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 					// Update dirty
 					_widget._oldValue = _widget.getValue();
 
+					gantt_widget.gantt.refreshData();
 					// Start date & end date change the display
 					if(_widget.id == 'start_date' || _widget.id == 'end_date')
 					{
 						var start = this.getWidgetById('start_date');
 						var end = this.getWidgetById('end_date');
-						gantt_widget.gantt.config.start_date = start && start.getValue() ? new Date(start.getValue()) : gantt_widget.gantt.getState().min_date;
+						gantt_widget.gantt.config.start_date = start && start.getValue() ? new Date(start.getValue()) : null;
 						// End date is inclusive
-						gantt_widget.gantt.config.end_date = end && end.getValue() ? new Date(new Date(end.getValue()).valueOf()+86400000) : gantt_widget.gantt.getState().max_date;
+						gantt_widget.gantt.config.end_date = end && end.getValue() ? new Date(new Date(end.getValue()).valueOf()+86400000) : null;
 						if(gantt_widget.gantt.config.end_date <= gantt_widget.gantt.config.start_date)
 						{
 							gantt_widget.gantt.config.end_date = null;
@@ -952,7 +953,6 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 						gantt_widget.gantt.render();
 					}
 
-					gantt_widget.gantt.refreshData();
 				}
 				// In case this gets bound twice, it's important to return
 				return true;
