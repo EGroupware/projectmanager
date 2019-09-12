@@ -241,13 +241,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			config.duration_unit = this.options.duration_unit;
 		}
 
-		if(this.options.columns)
-		{
-			this.set_columns(this.options.columns);
-		}
-
 		// Initialize chart
-		//this.gantt = this.gantt_node.dhx_gantt(config);
 		this.gantt = gantt;
 		this.gantt.config = config;
 		this.gantt.ext.zoom.init(this.zoomConfig);
@@ -331,7 +325,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 	 */
 	set_columns: function(columns)
 	{
-		this.gantt_config.columns = columns;
+		this.options.columns = columns;
 
 		var displayed_columns = [];
 		var gantt_widget = this;
@@ -382,17 +376,16 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 
 		}
 		// Add in add column
-		displayed_columns.push({name: 'add', width: 26});
+		displayed_columns.push({name: 'add', width: 26, _width:26});
 		width += 26;
 
-		if(width != this.gantt_config.grid_width || typeof this.gantt_config.grid_width == 'undefined')
-		{
-			this.gantt_config.grid_width = Math.min(Math.max(200, width), this.htmlNode.width());
-		}
+		this._set_grid_width(width);
+
+		this.gantt_config.columns = displayed_columns;
 
 		if(this.gantt == null) return;
 		this.gantt.config.columns = displayed_columns;
-		this.gantt.config.grid_width = this.gantt_config.grid_width;
+
 		this.gantt.render();
 	},
 
@@ -480,7 +473,7 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 
 		// Set zoom to max, in case data spans a large time
 		this.set_zoom(value.zoom || 5);
-		
+
 		var markerId = this.gantt.addMarker({
 			start_date: new Date(), //a Date object that sets the marker's date
 			css: "today", //a CSS class applied to the marker
@@ -672,8 +665,8 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				if(tasks[i].end_date && tasks[i].end_date < min_date) min_date = tasks[i].end_date;
 			}
 			var difference = (max_date - min_date)/1000; // seconds
-			// Spans more than 3 years
-			if(difference > 94608000)
+			// Spans more than 2 years
+			if(difference > 63113904)
 			{
 				level = 5;
 			}
@@ -979,9 +972,9 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		var self = this;
 		var columns = [];
 		var columns_selected = [];
-		for (var i = 0; i < this.gantt_config.columns.length; i++)
+		for (var i = 0; i < this.options.columns.length; i++)
 		{
-			var col = this.gantt_config.columns[i];
+			var col = this.options.columns[i];
 			columns.push({
 				value: col.name,
 				label: col.label
@@ -1011,9 +1004,9 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 				var value = select.getValue() || [];
 				for (var i = 0; i < columns.length; i++)
 				{
-					self.gantt_config.columns[i].hide = value.indexOf(columns[i].value) < 0 ;
+					self.options.columns[i].hide = value.indexOf(columns[i].value) < 0 ;
 				}
-				self.set_columns(self.gantt_config.columns);
+				self.set_columns(self.options.columns);
 
 				// Update Implicit preference
 				this.egw().set_preference(self.getInstanceManager().app, 'gantt_columns_' + self.id, value);
@@ -1163,6 +1156,32 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		};
 
 		return aoi;
+	},
+
+	_set_grid_width: function(width)
+	{
+		if(typeof width === "undefined")
+		{
+			width = 0;
+
+			for(var col in this.gantt_config.columns)
+			{
+				width += parseInt(this.gantt_config.columns[col]._width) || 300;
+			}
+		}
+
+		if(width != this.gantt_config.grid_width || typeof this.gantt_config.grid_width == 'undefined')
+		{
+			this.gantt_config.grid_width = Math.min(Math.max(200, width), Math.max(300,this.htmlNode.width()));
+		}
+
+		if(this.gantt == null) return;
+		this.gantt.config.grid_width = this.gantt_config.grid_width;
+	},
+
+	resize: function() {
+		// Update column size
+		this._set_grid_width();
 	},
 
 	// Printing
