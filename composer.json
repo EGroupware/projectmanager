@@ -19,6 +19,7 @@
         }
     ],
 	"require": {
-		"egroupware/egroupware": "self.version"
+		"fxp/composer-asset-plugin": "^1.2.2",
+		"npm-asset/dhtmlx-gantt": "~6.2"
 	}
 }
