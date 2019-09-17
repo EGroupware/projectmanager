@@ -13,7 +13,7 @@
 
 use EGroupware\Api\Framework;
 
-Framework::includeCSS('/vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.css');
+Framework::includeCSS('/projectmanager/vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.css');
 
 /**
  * eTemplate Gantt chart widget

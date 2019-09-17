@@ -12,9 +12,9 @@
 
 /*egw:uses
 	jsapi.jsapi;
-	/vendor/bower-asset/jquery/dist/jquery.js;
-	/vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.js;
-	/vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js;
+	/projectmanager/vendor/bower-asset/jquery/dist/jquery.js;
+	/projectmanager/vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.js;
+	/projectmanager/vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js;
 	et2_core_inputWidget;
 */
 
