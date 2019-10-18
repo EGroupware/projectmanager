@@ -288,7 +288,8 @@ class projectmanager_so extends Api\Storage
 		if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 		if ($join !== false)	// add acl-join, to get role_acl of current user
 		{
-			$join = $join === true ? $this->acl_join : $join . $this->acl_join;
+			$original_join = $join === true ? $this->acl_join : $join;
+			$join = $join === true ? $this->acl_join : '' . $this->acl_join;
 
 			$extra_cols = array_merge($extra_cols,array(
 				$this->table_name.'.pm_id AS pm_id',
@@ -317,55 +318,84 @@ class projectmanager_so extends Api\Storage
 				$extra_cols[] = 'BIT_OR('.$this->acl_extracol.') AS '.$this->acl_extracol;
 			}
 		}
-		// should we return (number or) children
 
-		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
-		{
-			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
-			$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
-			$join .= " LEFT JOIN egw_links AS children ON (children.link_app1='projectmanager'
-				AND children.link_app2='projectmanager'
-				AND children.link_id1=".$this->db->to_varchar('egw_pm_projects.pm_id').')';
-		}
 		if ($filter['subs_or_mains'])
 		{
-/* old code using a sub-query
-			$ids = "SELECT link_id2 FROM $this->links_table WHERE link_app2='projectmanager' AND link_app1='projectmanager'";
-
-			if (is_array($filter['subs_or_mains']))		// sub-projects of given parent-projects
-			{
-				$ids .= ' AND '.$this->db->expression($this->links_table,array('link_id1' => $filter['subs_or_mains']));
-				$filter['subs_or_mains'] = 'subs';
-			}
-			if (!$this->db->capabilities['sub_queries'])
-			{
-				$ids = array();
-				foreach($this->db->query($ids,__LINE__,__FILE__) as $row)
-				{
-					$ids[] = $row[0];
-				}
-				$ids = count($ids) ? implode(',',$ids) : 0;
-			}
-			$filter[] = $this->table_name.'.pm_id '.($filter['subs_or_mains'] == 'mains' ? 'NOT ' : '').'IN ('.$ids.')';
-*/
-			// new code using a JOIN
+			$subs_mains_join = '';
 			if ($filter['subs_or_mains'] == 'mains')
 			{
 				$filter[] = $this->links_table.'.link_id2 IS NULL';
-				$join .= ' LEFT';
+				$subs_mains_join .= ' LEFT';
 			}
 			// PostgreSQL requires cast as link_idx is varchar and pm_id an integer
 			$pm_id = $this->db->to_varchar($this->table_name.'.pm_id');
-			$join .= " JOIN $this->links_table ON {$this->links_table}.link_app2='projectmanager' AND {$this->links_table}.link_app1='projectmanager' AND {$this->links_table}.link_id2=$pm_id";
+			$subs_mains_join .= " JOIN $this->links_table ON {$this->links_table}.link_app2='projectmanager' AND {$this->links_table}.link_app1='projectmanager' AND {$this->links_table}.link_id2=$pm_id";
 
 			if (is_array($filter['subs_or_mains']) || is_numeric($filter['subs_or_mains']))	// sub-projects of given parent-projects
 			{
-				$join .= ' AND '.$this->db->expression($this->links_table,array($this->links_table.'.link_id1' => $filter['subs_or_mains']));
+				$subs_mains_join .= ' AND '.$this->db->expression($this->links_table,array($this->links_table.'.link_id1' => $filter['subs_or_mains']));
 			}
+			$join .= $subs_mains_join;
 		}
 		unset($filter['subs_or_mains']);
 
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+		// if extending class or instanciator set columns to search, convert string criteria to array
+		if ($criteria && !is_array($criteria))
+		{
+			$search = $this->search2criteria($criteria,$wildcard,$op);
+			$criteria = array($search);
+		}
+		if (!is_array($criteria))
+		{
+			$filter[] = $criteria;
+		}
+		else
+		{
+			$query = $this->parse_search($criteria, $wildcard, $empty, $op);
+			if(is_string($query))
+			{
+				$filter[] = $query;
+			}
+			else if (is_array($query))
+			{
+				$filter += $query;
+			}
+		}
+
+		// Use this sub-query to speed things up
+		$sub = "SELECT DISTINCT {$this->table_name}.pm_id "
+				. "FROM {$this->table_name} "
+				. $join
+				. " WHERE " . $this->db->column_data_implode(' AND ',$filter,True,False) . ' '
+				. $this->fix_group_by_columns($order_by, $colums, $this->table_name, $this->autoinc_id);
+
+		// Nesting and limiting the subquery prevents us getting the total in the normal way
+		$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
+
+		$num_rows = 50;
+		$offset = 0;
+		if (is_array($start)) list($offset,$num_rows) = $start;
+		$filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+		$join = $original_join;
+
+		// Need subs for something
+		if($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
+		{
+			$join .= $subs_mains_join;
+		}
+
+		// should we return (number or) children
+		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
+		{
+			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
+			$extra_cols[$key] = 'count(children.link_id2) AS children';
+			$join .=' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
+				AND children.link_app2="projectmanager"
+				AND children.link_id1=egw_pm_projects.pm_id)';
+		}
+		$result = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+		$this->total = $total;
+		return $result;
 	}
 
 	/**
