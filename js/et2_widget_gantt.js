@@ -1328,7 +1328,7 @@ et2_register_widget(et2_gantt, ["gantt","projectmanager-gantt"]);
  * Common look, feel & settings for all Gantt charts
  */
 // Make sure the locale js file exists before including it otherwise it breaks the loading
-jQuery.get(egw.webserverUrl+"/projectmanager/js/dhtmlxGantt/codebase/locale/locale" + (egw.preference('lang') != "en" ? "_" +egw.preference('lang') : "") + ".js", '', function(){
+jQuery.get(egw.webserverUrl+"/vendor/npm-asset/dhtmlx-gantt/codebase/locale/locale" + (egw.preference('lang') != "en" ? "_" +egw.preference('lang') : "") + ".js", '', function(){
 	// Localize to user's language
 	egw.includeJS(this.url);
 }).fail(function(e){console.log(e)});
