@@ -158,6 +158,7 @@ class projectmanager_so extends Api\Storage
 	function read_members($pm_id)
 	{
 		$members_table_def = $this->db->get_table_definitions('projectmanager',$this->members_table);
+		$members = [];
 		foreach($this->db->select($this->members_table,'*,'.$this->members_table.'.pm_id AS pm_id',
 			$this->db->expression($members_table_def,$this->members_table.'.',array('pm_id'=>$pm_id)),__LINE__,__FILE__,
 			False,'','projectmanager',0,"LEFT JOIN $this->roles_table ON $this->members_table.role_id=$this->roles_table.role_id") as $row)
@@ -186,7 +187,7 @@ class projectmanager_so extends Api\Storage
 	 * reimplemented to handle custom fields and set modification and creation data
 	 *
 	 * @param array $keys if given $keys are copied to data before saveing => allows a save as
-	 * @param int $check_modified=0 old modification date to check before update (include in WHERE)
+	 * @param int $check_modified =0 old modification date to check before update (include in WHERE)
 	 * @return int 0 on success and errno != 0 else
 	 */
 	function save($keys=null,$check_modified=0)
@@ -362,12 +363,17 @@ class projectmanager_so extends Api\Storage
 			}
 		}
 
+		// run parent search logic on parameters to generate correct $filter and $join values to use in our sub-query
+		$this->process_search($criteria, $only_keys, $order_by, $extra_cols, $wildcard, $op, $filter, $join);
+
 		// Use this sub-query to speed things up
-		$sub = "SELECT DISTINCT {$this->table_name}.pm_id "
-				. "FROM {$this->table_name} "
+		$columns = [$this->table_name.'.pm_id'];
+		$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
+		$sub = "SELECT DISTINCT ".implode(',', $columns)
+				. " FROM {$this->table_name} "
 				. $join
-				. " WHERE " . $this->db->column_data_implode(' AND ',$filter,True,False) . ' '
-				. $this->fix_group_by_columns($order_by, $colums, $this->table_name, $this->autoinc_id);
+				. " WHERE " . $this->db->column_data_implode(' AND ', $filter, True, False) . ' '
+				. $order;
 
 		// Nesting and limiting the subquery prevents us getting the total in the normal way
 		$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
@@ -375,25 +381,24 @@ class projectmanager_so extends Api\Storage
 		$num_rows = 50;
 		$offset = 0;
 		if (is_array($start)) list($offset,$num_rows) = $start;
-		$filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
-		$join = $original_join;
+		$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
 
 		// Need subs for something
-		if($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
+		if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
 		{
-			$join .= $subs_mains_join;
+			$original_join .= $subs_mains_join;
 		}
 
 		// should we return (number or) children
 		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
 		{
 			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
-			$extra_cols[$key] = 'count(children.link_id2) AS children';
-			$join .=' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
+			$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
+			$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
 				AND children.link_app2="projectmanager"
 				AND children.link_id1=egw_pm_projects.pm_id)';
 		}
-		$result = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+		$result = Api\Storage\Base::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
 		$this->total = $total;
 		return $result;
 	}
@@ -410,7 +415,7 @@ class projectmanager_so extends Api\Storage
 	{
 		if ($key_col == 'pm_id') $key_col = $this->table_name.'.pm_id AS pm_id';
 
-		return parent::query_list($value_col,$key_col,$filter);
+		return parent::query_list($value_col,$key_col,$filter,$order);
 	}
 
 	/**
@@ -441,7 +446,7 @@ class projectmanager_so extends Api\Storage
 	 * A not set availibility is by default 100%
 	 *
 	 * @param int $uid user-id
-	 * @param float $availiblity=null percentage to set or nothing to delete the avail. for the user
+	 * @param float $availibility =null percentage to set or nothing to delete the avail. for the user
 	 */
 	function set_availibility($uid,$availibility=null)
 	{
