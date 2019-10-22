@@ -234,25 +234,31 @@ class projectmanager_so extends Api\Storage
 	 */
 	public function get_rows($query, &$rows, &$readonlys, $join = '', $need_full_no_count = false, $only_keys = false, $extra_cols = array())
 	{
-		$extra_cols[] = $this->db->group_concat('resources.member_uid').' AS resources';
-		$join .= ' LEFT JOIN egw_pm_members AS resources ON resources.pm_id = egw_pm_projects.pm_id ';
-
-		if($query['col_filter']['resources'])
+		// Only deal with resources if that column is selected
+		$columsel = $this->prefs['nextmatch-projectmanager.list.rows'];
+		$columselection = $columsel ? explode(',',$columsel) : array();
+		if(in_array('resources', $columselection) || $query['col_filter']['resources'])
 		{
-			// Expend to include any qroups selected user(s) are in
-			$members = array();
-			foreach((array)$query['col_filter']['resources'] as $user)
+			$extra_cols[] = $this->db->group_concat('resources.member_uid').' AS resources';
+			$join .= ' LEFT JOIN egw_pm_members AS resources ON resources.pm_id = egw_pm_projects.pm_id ';
+
+			if($query['col_filter']['resources'])
 			{
-				$members = array_merge($members,(array)
-					($user > 0 ? $GLOBALS['egw']->accounts->memberships($user,true) :
-						$GLOBALS['egw']->accounts->members($user,true)));
-				$members[] = $user;
+				// Expend to include any qroups selected user(s) are in
+				$members = array();
+				foreach((array)$query['col_filter']['resources'] as $user)
+				{
+					$members = array_merge($members,(array)
+						($user > 0 ? $GLOBALS['egw']->accounts->memberships($user,true) :
+							$GLOBALS['egw']->accounts->members($user,true)));
+					$members[] = $user;
+				}
+				if (is_array($members))
+				{
+					$members = array_unique($members);
+				}
+				$query['col_filter'][] = 'resources.member_uid IN ('.implode(', ',$members).' ) ';
 			}
-			if (is_array($members))
-			{
-				$members = array_unique($members);
-			}
-			$query['col_filter'][] = 'resources.member_uid IN ('.implode(', ',$members).' ) ';
 		}
 		unset($query['col_filter']['resources']);
 
@@ -366,40 +372,58 @@ class projectmanager_so extends Api\Storage
 		// run parent search logic on parameters to generate correct $filter and $join values to use in our sub-query
 		$this->process_search($criteria, $only_keys, $order_by, $extra_cols, $wildcard, $op, $filter, $join);
 
-		// Use this sub-query to speed things up
-		$columns = [$this->table_name.'.pm_id'];
-		$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
-		$sub = "SELECT DISTINCT ".implode(',', $columns)
-				. " FROM {$this->table_name} "
-				. $join
-				. " WHERE " . $this->db->column_data_implode(' AND ', $filter, True, False) . ' '
-				. $order;
-
-		// Nesting and limiting the subquery prevents us getting the total in the normal way
-		$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
-
-		$num_rows = 50;
-		$offset = 0;
-		if (is_array($start)) list($offset,$num_rows) = $start;
-		$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
-
-		// Need subs for something
-		if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
+		// Use this sub-query to speed things up, but only if needed
+		if(!$this->config['always_show_subproject_icon'])
 		{
-			$original_join .= $subs_mains_join;
-		}
+			$columns = [$this->table_name.'.pm_id'];
+			$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
+			$sub = "SELECT DISTINCT ".implode(',', $columns)
+					. " FROM {$this->table_name} "
+					. $join
+					. " WHERE " . $this->db->column_data_implode(' AND ', $filter, True, False) . ' '
+					. $order;
 
+			// Nesting and limiting the subquery prevents us getting the total in the normal way
+			$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
+
+			$num_rows = 50;
+			$offset = 0;
+			if (is_array($start)) list($offset,$num_rows) = $start;
+			$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+
+			// Need subs for something
+			if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
+			{
+				$original_join .= $subs_mains_join;
+			}
+		}
+		else if ($subs_mains_join)
+		{
+			$original_join .= $join;
+			$sql_filter = $filter;
+		}
 		// should we return (number or) children
 		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
 		{
-			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
-			$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
-			$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
-				AND children.link_app2="projectmanager"
-				AND children.link_id1=egw_pm_projects.pm_id)';
+			if(!$this->config['always_show_subproject_icon'])
+			{
+				// for performance reasons we dont check ACL here, as tree deals well with no children returned later
+				$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
+				$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
+					AND children.link_app2="projectmanager"
+					AND children.link_id1=egw_pm_projects.pm_id)';
+			}
+			else
+			{
+				$extra_cols[$key] = '1 AS children';
+			}
 		}
+
 		$result = Api\Storage\Base::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
-		$this->total = $total;
+		if(!$this->config['always_show_subproject_icon'])
+		{
+			$this->total = $total;
+		}
 		return $result;
 	}
 
