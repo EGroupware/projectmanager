@@ -365,7 +365,7 @@ class projectmanager_so extends Api\Storage
 			}
 			else if (is_array($query))
 			{
-				$filter += $query;
+				$filter = array_merge($filter, $query);
 			}
 		}
 
@@ -389,6 +389,8 @@ class projectmanager_so extends Api\Storage
 			$num_rows = 50;
 			$offset = 0;
 			if (is_array($start)) list($offset,$num_rows) = $start;
+			$offset = (int)$offset;
+			$num_rows = $num_rows ? (int)$num_rows : 50;
 			$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
 
 			// Need subs for something
@@ -399,7 +401,7 @@ class projectmanager_so extends Api\Storage
 		}
 		else if ($subs_mains_join)
 		{
-			$original_join .= $join;
+			$original_join = $join;
 			$sql_filter = $filter;
 		}
 		// should we return (number or) children
