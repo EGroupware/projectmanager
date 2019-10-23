@@ -58,6 +58,7 @@ button#projectmanager-elements-list_link_add_add:hover {
 {
 	padding-left: 14px;
 	margin-right:-13px;
+	margin-left: 0px;
 }
 
 #projectmanager-list .et2_nextmatch .egwGridView_outer tr.subentry > td:first-child > div.innerContainer.level_1
