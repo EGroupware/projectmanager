@@ -69,7 +69,7 @@ class projectmanager_admin
 
 		if ($content['save'] || $content['apply'])
 		{
-			foreach(array('always_show_subproject_icon','duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
+			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
 				'enable_eroles','ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB', 'history') as $name)
 			{
 				$this->config->config_data[$name] = $content[$name];

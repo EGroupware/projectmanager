@@ -372,8 +372,25 @@ class projectmanager_so extends Api\Storage
 		// run parent search logic on parameters to generate correct $filter and $join values to use in our sub-query
 		$this->process_search($criteria, $only_keys, $order_by, $extra_cols, $wildcard, $op, $filter, $join);
 
-		// Use this sub-query to speed things up, but only if needed
-		if(!$this->config['always_show_subproject_icon'])
+		// Use this sub-query to speed things up
+		$columns = [$this->table_name.'.pm_id'];
+		$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
+		$sub = "SELECT DISTINCT ".implode(',', $columns)
+				. " FROM {$this->table_name} "
+				. $join
+				. " WHERE " . $this->db->column_data_implode(' AND ', $filter, True, False) . ' '
+				. $order;
+
+		// Nesting and limiting the subquery prevents us getting the total in the normal way
+		$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
+
+		$num_rows = 50;
+		$offset = 0;
+		if (is_array($start)) list($offset,$num_rows) = $start;
+		$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+
+		// Need subs for something
+		if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
 		{
 			$columns = [$this->table_name.'.pm_id'];
 			$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
@@ -407,25 +424,14 @@ class projectmanager_so extends Api\Storage
 		// should we return (number or) children
 		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
 		{
-			if(!$this->config['always_show_subproject_icon'])
-			{
-				// for performance reasons we dont check ACL here, as tree deals well with no children returned later
-				$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
-				$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
-					AND children.link_app2="projectmanager"
-					AND children.link_id1=egw_pm_projects.pm_id)';
-			}
-			else
-			{
-				$extra_cols[$key] = '1 AS children';
-			}
+			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
+			$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
+			$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
+				AND children.link_app2="projectmanager"
+				AND children.link_id1=egw_pm_projects.pm_id)';
 		}
-
 		$result = Api\Storage\Base::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
-		if(!$this->config['always_show_subproject_icon'])
-		{
-			$this->total = $total;
-		}
+		$this->total = $total;
 		return $result;
 	}
 
