@@ -876,8 +876,9 @@ class projectmanager_bo extends projectmanager_so
 	{
 		$limit = false;
 		$need_count = false;
-		if($options['start'] || $options['num_rows']) {
-			$limit = array($options['start'], $options['num_rows']);
+		if($options['start'] || $options['num_rows'])
+		{
+			$limit = array((int)$options['start'], (int)$options['num_rows']);
 			$need_count = true;
 		}
 		$result = array();
