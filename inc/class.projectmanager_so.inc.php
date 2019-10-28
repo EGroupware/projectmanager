@@ -296,7 +296,7 @@ class projectmanager_so extends Api\Storage
 		if ($join !== false)	// add acl-join, to get role_acl of current user
 		{
 			$original_join = $join === true ? $this->acl_join : $join;
-			$join = $join === true ? $this->acl_join : '' . $this->acl_join;
+			$join = $join === true ? $this->acl_join : $join . ' ' . $this->acl_join;
 
 			$extra_cols = array_merge($extra_cols,array(
 				$this->table_name.'.pm_id AS pm_id',
