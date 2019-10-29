@@ -237,7 +237,7 @@ class projectmanager_so extends Api\Storage
 		// Only deal with resources if that column is selected
 		$columsel = $this->prefs['nextmatch-projectmanager.list.rows'];
 		$columselection = $columsel ? explode(',',$columsel) : array();
-		if(in_array('resources', $columselection) || $query['col_filter']['resources'])
+		if(!$columnselection || in_array('resources', $columselection) || $query['col_filter']['resources'])
 		{
 			$extra_cols[] = $this->db->group_concat('resources.member_uid').' AS resources';
 			$join .= ' LEFT JOIN egw_pm_members AS resources ON resources.pm_id = egw_pm_projects.pm_id ';
@@ -432,7 +432,7 @@ class projectmanager_so extends Api\Storage
 				AND children.link_app2="projectmanager"
 				AND children.link_id1=egw_pm_projects.pm_id)';
 		}
-		$result = Api\Storage\Base::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
+		$result = Api\Storage\Base::search(array(),$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
 		$this->total = $total;
 		return $result;
 	}
