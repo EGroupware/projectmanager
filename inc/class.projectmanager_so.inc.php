@@ -410,7 +410,17 @@ class projectmanager_so extends Api\Storage
 			if (is_array($start)) list($offset,$num_rows) = $start;
 			$offset = (int)$offset;
 			$num_rows = $num_rows ? (int)$num_rows : 50;
-			$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+
+			// MariaDB guys say this works after v10.3.20
+			if(stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3') >= 0)
+			{
+				$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+			}
+			// and this works before
+			else
+			{
+				$sql_filter = ["{$this->table_name}.pm_id IN ($sub )"];
+			}
 
 			// Need subs for something
 			if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
