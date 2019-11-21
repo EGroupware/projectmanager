@@ -140,6 +140,10 @@ td.projectTimestamp {
   top: 13px;
   right: 0px;
 }
+.et2_gantt .gantt_grid_scale .gantt_grid_head_add {
+	background-image: url(../../../pixelegg/images/selectcols.svg);
+	background-size: 10px;
+}
 .et2_gantt .gantt_cell .gantt_column_pe_resources:hover {
   overflow: visible;
   z-index: 10;
