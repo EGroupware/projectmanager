@@ -1215,11 +1215,11 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		if(this.egw().preference(pref,app))
 		{
 			var value = jQuery.extend([], this.egw().preference(pref,app));
-			for (var i = 0; i < this.gantt_config.columns.length; i++)
+			for (var i = 0; i < this.options.columns.length; i++)
 			{
-				this.gantt_config.columns[i].hide = value.indexOf(this.gantt_config.columns[i].name) < 0 ;
+				this.options.columns[i].hide = value.indexOf(this.options.columns[i].name) < 0 ;
 			}
-			this.set_columns(this.gantt_config.columns);
+			this.set_columns(this.options.columns);
 		}
 
 		// Make gantt chart "full size"
@@ -1238,9 +1238,9 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		// Defer the printing to ask about columns and orientation
 		var defer = jQuery.Deferred();
 
-		for (var i = 0; i < this.gantt_config.columns.length; i++)
+		for (var i = 0; i < this.options.columns.length; i++)
 		{
-			var col = this.gantt_config.columns[i];
+			var col = this.options.columns[i];
 			columns.push({
 				value: col.name,
 				label: col.label
@@ -1261,9 +1261,9 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 			// Columns
 			for (var i = 0; i < columns.length; i++)
 			{
-				this.gantt_config.columns[i].hide = value.columns.indexOf(columns[i].value) < 0 ;
+				this.options.columns[i].hide = value.columns.indexOf(columns[i].value) < 0 ;
 			}
-			this.set_columns(this.gantt_config.columns);
+			this.set_columns(this.options.columns);
 			this.egw().set_preference(app,pref,value.columns);
 
 			if(value.orientation === 'vertical')
@@ -1313,11 +1313,11 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		var value = jQuery.extend([], this.egw().preference('gantt_columns_gantt',this.getInstanceManager().app));
 		if(value)
 		{
-			for (var i = 0; i < this.gantt_config.columns.length; i++)
+			for (var i = 0; i < this.options.columns.length; i++)
 			{
-				this.gantt_config.columns[i].hide = value.indexOf(this.gantt_config.columns[i].name) < 0 ;
+				this.options.columns[i].hide = value.indexOf(this.options.columns[i].name) < 0 ;
 			}
-			this.set_columns(this.gantt_config.columns);
+			this.set_columns(this.options.columns);
 		}
 		this.resize();
 	}
