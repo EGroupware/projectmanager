@@ -392,7 +392,7 @@ class projectmanager_so extends Api\Storage
 			$num_rows = $num_rows ? (int)$num_rows : 50;
 
 			// MariaDB guys say this works after v10.3.20
-			if(stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3') >= 0)
+			if(stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3.20') >= 0)
 			{
 				$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
 			}
