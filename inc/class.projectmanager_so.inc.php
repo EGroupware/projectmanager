@@ -371,8 +371,28 @@ class projectmanager_so extends Api\Storage
 		// run parent search logic on parameters to generate correct $filter and $join values to use in our sub-query
 		$this->process_search($criteria, $only_keys, $order_by, $extra_cols, $wildcard, $op, $filter, $join);
 
-		// Use this sub-query to speed things up, but only if needed
-		if(!$this->config['always_show_subproject_icon'])
+		// Use this sub-query to speed things up
+		$columns = [$this->table_name.'.pm_id'];
+		$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
+		$sub = "SELECT DISTINCT ".implode(',', $columns)
+				. " FROM {$this->table_name} "
+				. $join
+				. " WHERE " . $this->db->column_data_implode(' AND ', $filter, True, False) . ' '
+				. $order;
+
+		// Nesting and limiting the subquery prevents us getting the total in the normal way
+		$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
+
+		$num_rows = 50;
+		$offset = 0;
+		if (is_array($start)) list($offset,$num_rows) = $start;
+		if (!is_int($offset)) $offset = (int)$offset;
+		if (!is_int($num_rows)) $num_rows = (int)$num_rows;
+		$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+		$start = false;
+
+		// Need subs for something
+		if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
 		{
 			$columns = [$this->table_name.'.pm_id'];
 			$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
