@@ -390,6 +390,7 @@ class projectmanager_so extends Api\Storage
 		if (!is_int($offset)) $offset = (int)$offset;
 		if (!is_int($num_rows)) $num_rows = (int)$num_rows;
 		$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+		$start = false;
 
 		// Need subs for something
 		if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
