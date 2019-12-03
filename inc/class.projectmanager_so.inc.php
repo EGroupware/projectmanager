@@ -436,18 +436,11 @@ class projectmanager_so extends Api\Storage
 		// should we return (number or) children
 		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
 		{
-			if(!$this->config['always_show_subproject_icon'])
-			{
-				// for performance reasons we dont check ACL here, as tree deals well with no children returned later
-				$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
-				$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
-					AND children.link_app2="projectmanager"
-					AND children.link_id1=egw_pm_projects.pm_id)';
-			}
-			else
-			{
-				$extra_cols[$key] = '1 AS children';
-			}
+			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
+			$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
+			$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
+				AND children.link_app2="projectmanager"
+				AND children.link_id1=egw_pm_projects.pm_id)';
 		}
 		$result = Api\Storage\Base::search(array(),$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
 		$this->total = $total;
