@@ -412,14 +412,17 @@ class projectmanager_so extends Api\Storage
 
 			$num_rows = 50;
 			$offset = 0;
+			$limit = '';
 			if (is_array($start)) list($offset,$num_rows) = $start;
-			$offset = (int)$offset;
-			$num_rows = $num_rows ? (int)$num_rows : 50;
+			if($start !== FALSE)
+			{
+				$limit = " LIMIT {$offset}, {$num_rows}";
+			}
 
 			// MariaDB guys say this works after v10.3.20
 			if(stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3.20') >= 0)
 			{
-				$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub LIMIT {$offset}, {$num_rows}) AS something)"];
+				$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub $limit) AS something)"];
 			}
 			// and this works before
 			else
