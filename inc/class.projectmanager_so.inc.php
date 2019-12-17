@@ -420,7 +420,10 @@ class projectmanager_so extends Api\Storage
 			}
 
 			// MariaDB guys say this works after v10.3.20
-			if(stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3.20') >= 0)
+			if(stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3.20') >= 0 &&
+					// 10.4.11 has a bug
+					version_compare($this->db->ServerInfo['version'], '10.4.11', '<')
+			)
 			{
 				$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub $limit) AS something)"];
 			}
