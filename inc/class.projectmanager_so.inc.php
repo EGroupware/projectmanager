@@ -396,6 +396,19 @@ class projectmanager_so extends Api\Storage
 		$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub $limit) AS something)"];
 		$start = false;
 
+		// workaround for a bug in MariaDB 10.4.11 (and further versions until it's fixed)
+		// https://jira.mariadb.org/browse/MDEV-21328
+		if (stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.4.11', '>='))
+		{
+			try {
+				$this->db->query("SET optimizer_switch='split_materialized=off';");
+			}
+			catch(Api\Exception\Db $e) {
+				// ignore exception
+				_egw_log_exception($e);
+			}
+		}
+
 		// Need subs for something
 		if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
 		{
@@ -420,10 +433,7 @@ class projectmanager_so extends Api\Storage
 			}
 
 			// MariaDB guys say this works after v10.3.20
-			if(stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3.20') >= 0 &&
-					// 10.4.11 has a bug
-					version_compare($this->db->ServerInfo['version'], '10.4.11', '<')
-			)
+			if (stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3.20') >= 0)
 			{
 				$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub $limit) AS something)"];
 			}
