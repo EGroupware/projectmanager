@@ -236,7 +236,7 @@ class projectmanager_so extends Api\Storage
 		// Only deal with resources if that column is selected
 		$columsel = $this->prefs['nextmatch-projectmanager.list.rows'];
 		$columselection = $columsel ? explode(',',$columsel) : array();
-		if(!$columnselection || in_array('resources', $columselection) || $query['col_filter']['resources'])
+		if(!$columselection || in_array('resources', $columselection) || $query['col_filter']['resources'])
 		{
 			$extra_cols[] = $this->db->group_concat('resources.member_uid').' AS resources';
 			$join .= ' LEFT JOIN egw_pm_members AS resources ON resources.pm_id = egw_pm_projects.pm_id ';
@@ -368,6 +368,17 @@ class projectmanager_so extends Api\Storage
 			}
 		}
 
+		// for non-mysql (specially PostgreSQL) use regular Api\Storage::search(), no further optimisation
+		if (stripos($this->db->Type, 'mysql') === false)
+		{
+			// should we return (number or) children
+			$join .= $this->check_add_children_join($extra_cols);
+
+			return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+		}
+
+		// from here on we use special optimisation for MariaDB/MySQL
+
 		// run parent search logic on parameters to generate correct $filter and $join values to use in our sub-query
 		$this->process_search($criteria, $only_keys, $order_by, $extra_cols, $wildcard, $op, $filter, $join);
 
@@ -397,7 +408,7 @@ class projectmanager_so extends Api\Storage
 
 		// workaround for a bug in MariaDB 10.4.11 (and further versions until it's fixed)
 		// https://jira.mariadb.org/browse/MDEV-21328
-		if (stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.4.11', '>='))
+		if (version_compare($this->db->ServerInfo['version'], '10.4.11', '>='))
 		{
 			try {
 				$this->db->query("SET optimizer_switch='split_materialized=off';");
@@ -454,17 +465,32 @@ class projectmanager_so extends Api\Storage
 			$sql_filter = $filter;
 		}
 		// should we return (number or) children
+		$original_join .= $this->check_add_children_join($extra_cols);
+
+		$result = Api\Storage\Base::search(array(),$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
+		$this->total = $total;
+		return $result;
+	}
+
+	/**
+	 * Get join for children colums, if necessary
+	 *
+	 * @param array& $extra_cols
+	 * @return string
+	 */
+	private function check_add_children_join(&$extra_cols)
+	{
+		// should we return (number or) children
 		if ($extra_cols && ($key=array_search('children', $extra_cols)) !== false)
 		{
 			// for performance reasons we dont check ACL here, as tree deals well with no children returned later
 			$extra_cols[$key] = 'COUNT(children.link_id2) AS children';
-			$original_join .= ' LEFT JOIN egw_links AS children ON (children.link_app1="projectmanager"
-				AND children.link_app2="projectmanager"
-				AND children.link_id1=egw_pm_projects.pm_id)';
+
+			return " LEFT JOIN egw_links AS children ON (children.link_app1='projectmanager'
+				AND children.link_app2='projectmanager'
+				AND children.link_id1=".$this->db->to_varchar('egw_pm_projects.pm_id').')';
 		}
-		$result = Api\Storage\Base::search(array(),$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
-		$this->total = $total;
-		return $result;
+		return '';
 	}
 
 	/**
