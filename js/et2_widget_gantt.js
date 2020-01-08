@@ -98,7 +98,8 @@ var et2_gantt = (function(){ "use strict"; return et2_inputWidget.extend([et2_IR
 		columns: [
 			{name: "text", label: egw.lang('Title'), tree: true, width: '*'}
 		],
-		autofit: true
+		autofit: true,
+		autosize: "y"
 	},
 
 	// Gantt will handle most zooming, here we configure the zoom levels & headings
