@@ -295,7 +295,6 @@ class projectmanager_so extends Api\Storage
 		if (!is_array($extra_cols)) $extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 		if ($join !== false)	// add acl-join, to get role_acl of current user
 		{
-			$original_join = $join === true ? $this->acl_join : $join;
 			$join = $join === true ? $this->acl_join : $join . ' ' . $this->acl_join;
 
 			$extra_cols = array_merge($extra_cols,array(
@@ -369,108 +368,10 @@ class projectmanager_so extends Api\Storage
 			}
 		}
 
-		// for non-mysql (specially PostgreSQL) use regular Api\Storage::search(), no further optimisation
-		if (stripos($this->db->Type, 'mysql') === false)
-		{
-			// should we return (number or) children
-			$join .= $this->check_add_children_join($extra_cols);
-
-			return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
-		}
-
-		// from here on we use special optimisation for MariaDB/MySQL
-
-		// run parent search logic on parameters to generate correct $filter and $join values to use in our sub-query
-		$this->process_search($criteria, $only_keys, $order_by, $extra_cols, $wildcard, $op, $filter, $join);
-
-		// Use this sub-query to speed things up
-		$columns = [$this->table_name.'.pm_id'];
-		$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
-		$sub = "SELECT DISTINCT ".implode(',', $columns)
-				. " FROM {$this->table_name} "
-				. $join
-				. " WHERE " . $this->db->column_data_implode(' AND ', $filter, True, False) . ' '
-				. $order;
-
-		// Nesting and limiting the subquery prevents us getting the total in the normal way
-		$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
-
-		$num_rows = 50;
-		$offset = 0;
-		if (is_array($start)) list($offset,$num_rows) = $start;
-		if (!is_int($offset)) $offset = (int)$offset;
-		if (!is_int($num_rows)) $num_rows = (int)$num_rows;
-		if($start !== FALSE)
-		{
-			$limit = " LIMIT {$offset}, {$num_rows}";
-		}
-		$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub $limit) AS something)"];
-		$start = false;
-
-		// workaround for a bug in MariaDB 10.4.11 (and further versions until it's fixed)
-		// https://jira.mariadb.org/browse/MDEV-21328
-		if (version_compare($this->db->ServerInfo['version'], '10.4.11', '>='))
-		{
-			try {
-				$this->db->query("SET optimizer_switch='split_materialized=off';");
-			}
-			catch(Api\Exception\Db $e) {
-				// ignore exception
-				_egw_log_exception($e);
-			}
-		}
-
-		// Need subs for something
-		if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
-		{
-			$columns = [$this->table_name.'.pm_id'];
-			$order = $this->fix_group_by_columns($order_by, $columns, $this->table_name, $this->autoinc_id);
-			$sub = "SELECT DISTINCT ".implode(',', $columns)
-					. " FROM {$this->table_name} "
-					. $join
-					. " WHERE " . $this->db->column_data_implode(' AND ', $filter, True, False) . ' '
-					. $order;
-
-			// Nesting and limiting the subquery prevents us getting the total in the normal way
-			$total = $this->db->select($this->table_name,'COUNT(*)',array("pm_id IN ($sub)"),__LINE__,__FILE__,false,'',$this->app,0)->fetchColumn();
-
-			$num_rows = 50;
-			$offset = 0;
-			$limit = '';
-			if (is_array($start)) list($offset,$num_rows) = $start;
-			if($start !== FALSE)
-			{
-				$limit = " LIMIT {$offset}, {$num_rows}";
-			}
-
-			// MariaDB guys say this works after v10.3.20
-			if (stripos($this->db->Type, 'mysql') !== FALSE && version_compare($this->db->ServerInfo['version'], '10.3.20') >= 0)
-			{
-				$sql_filter = ["{$this->table_name}.pm_id IN (SELECT * FROM ($sub $limit) AS something)"];
-			}
-			// and this works before
-			else
-			{
-				$sql_filter = ["{$this->table_name}.pm_id IN ($sub )"];
-			}
-
-			// Need subs for something
-			if ($subs_mains_join && stripos($only_keys, 'egw_links') !== false)
-			{
-				$original_join .= $subs_mains_join;
-			}
-		}
-		else if ($subs_mains_join)
-		{
-			$original_join = $join;
-			$sql_filter = $filter;
-		}
 		// should we return (number or) children
-		$original_join .= $this->check_add_children_join($extra_cols);
+		$join .= $this->check_add_children_join($extra_cols);
 
-		$result = Api\Storage\Base::search(array(),$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$sql_filter,$original_join,$need_full_no_count);
-		$this->total = $total;
-		return $result;
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 
 	/**
