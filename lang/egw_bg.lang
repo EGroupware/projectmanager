@@ -1,37 +1,266 @@
+%1 days in advance	projectmanager	bg	%1 дни предварително
+%1 element(s) updated	projectmanager	bg	Актуализиран(и) е(са) %1 елемент(и).
+%1 new project-elements imported	projectmanager	bg	Импортирани са %1 нови елементи на проекта.
+%1 project(s) %2	projectmanager	bg	%1 проект(и) %2
+%1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	bg	%1 проект(и) %2, %3 се провали(ха) поради недостатъчни права!
+%1 project-element(s) deleted.	projectmanager	bg	%1 проект или елемент(и) са изтрити.
+%1 projects deleted	projectmanager	bg	Изтрити %1 проекти
 %1 records imported	projectmanager	bg	Импортирани са %1 записа
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	bg	%1 записа прочетени (все още не импортирани, може да се %2върнете%3 и да размаркирате Тест Импорт)
+%1 times permission denied, %2 projects deleted	projectmanager	bg	%1 проекти са изтрити.
+%1 you are responsible for is due at %2	projectmanager	bg	%1, за който отговаряте, се дължи на %2
+%1 you are responsible for is starting at %2	projectmanager	bg	%1, за който отговаряте, започва от %2
+(project id) project title - template name	projectmanager	bg	(ID номер на проекта) заглавие на проекта - име на темплейт
+- planned	projectmanager	bg	- планиран
+- re-planned	projectmanager	bg	- препланиран
+a describtive title for the project, must not be empty	projectmanager	bg	Описателно заглавие на проекта не трябва да бъде празно
+accounting	projectmanager	bg	Счетоводство
+accounting options	projectmanager	bg	Опции за счетоводство
+accounting type	projectmanager	bg	Тип счетоводство
 actions	projectmanager	bg	Действия
-apply the changes	projectmanager	bg	прилагане на промените
-archive	projectmanager	bg	архив
+activity	projectmanager	bg	Дейност
+add a new milestone	projectmanager	bg	Добавяне на ново важно събитие
+add a new project	projectmanager	bg	Добавете нов проект
+add element	projectmanager	bg	Добавете елемент
+add existing	projectmanager	bg	Добавете съществуващите
+add milestone	projectmanager	bg	Добавете важно събитие
+add or edit element roles	projectmanager	bg	Добавете или редактирайте ролеви елементи
+add or edit roles and their acl	projectmanager	bg	Добавете или редактирайте роли и техните ACL
+add price	projectmanager	bg	Добавете цена
+add project	projectmanager	bg	Добавете проект
+add project-elements	projectmanager	bg	Добавете елементи на проекта
+add this role	projectmanager	bg	Добавете тази роля
+add timesheet	projectmanager	bg	Добавете график
+add timesheet only	projectmanager	bg	Добавете само графика
+addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	bg	Елементите на Адресния указател на проекта могат да се използват за определяне на отделни получатели на серийни писма. Наличните полета са
+addressbook fields	projectmanager	bg	Полета на на Адресния указател
+all projects	projectmanager	bg	Всички проекти
+all roles	projectmanager	bg	Всички роли
+all_roles	projectmanager	bg	Всички роли
+allow users to change their working times	projectmanager	bg	Разрешете на потребителите да променят работното си време
+allowed accounting types	projectmanager	bg	Разрешете видове счетоводство
+allowed units	projectmanager	bg	Разрешени единици
+anonymous public	projectmanager	bg	Анонимна публика
+apply the changes	projectmanager	bg	Прилагане на промените
+archive	projectmanager	bg	Архив
+assistant	projectmanager	bg	Асистент
+at which time do you start working on the given day.	projectmanager	bg	Маркирайте по кое време започвате работа в дадения ден.
+availability settings	projectmanager	bg	Настройки за наличност
+available fields for this plugin:	projectmanager	bg	Налични полета за този плъгин:
+availible	projectmanager	bg	Наличен
+billable	projectmanager	bg	Може да се фактурира
+bookable	projectmanager	bg	Може да се резервира
+budget	projectmanager	bg	Бюджет
+budget (no pricelist)	projectmanager	bg	Бюджет (без ценова листа)
+budget and pricelist	projectmanager	bg	Бюджет и ценова листа
 by	projectmanager	bg	от
+calculate budget by quantity (eg. time) and price	projectmanager	bg	Изчислете бюджета по количество (например: време) и цена
+can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	bg	Може да се използва с елементи на роли, плъгин за таблица "eRoles" и плъгин за таблица "елементи".
+category in %1 project-element(s) updated.	projectmanager	bg	Актуализирана е категорията в %1 елемент(и) на проекта.
+change category	projectmanager	bg	Промяна на категорията
+change the following details of %s	projectmanager	bg	Променете следните подробности за %s
 charset of file	projectmanager	bg	Символен набор на файла
+charset of the above selected font	projectmanager	bg	Символен набор на избрания по- напред шрифт
 check all	projectmanager	bg	Маркира всички
+check to make one element role assignable to multiple elements	projectmanager	bg	Маркирайте, за да направите ролята на един елемент да се присвоява на няколко елемента
+choose the default filename for downloaded documents.	projectmanager	bg	Изберете име на файла по подразбиране за изтеглените документи.
+close the window, discard the changes made	projectmanager	bg	Затворете прозореца, отхвърлете направените промени
+completion	projectmanager	bg	Завършване
+constraints	projectmanager	bg	Ограничения
+contact fields for serial letters	projectmanager	bg	Полета за контакт за серийни писма
+conversation between days and hours, default 8	projectmanager	bg	Общуване между дни и часове, по подразбиране 8
+coordinator	projectmanager	bg	Координатор
+cost per time	projectmanager	bg	Цена за час
+create a new empty project or use a template	projectmanager	bg	Създайте нов празен проект или използвайте темплейт
 create new links	projectmanager	bg	Създаване на нови връзки
 created	projectmanager	bg	Създаден
+created a ganttchart from the checked projects	projectmanager	bg	Създадена е Gantt  диаграма от проверените проекти
+creation date and time	projectmanager	bg	Дата и час на създаване
+creator	projectmanager	bg	Създател
 csv-fieldname	projectmanager	bg	Име на поле в CSV
 csv-filename	projectmanager	bg	Име на CSV файл
 csv-import	common	bg	Импорт на CSV
+cumulated elements too	projectmanager	bg	Заедно със събраните елементи
 custom fields	projectmanager	bg	Полета по избор
-days	projectmanager	bg	дни
-deleted	projectmanager	bg	изтрит
+data exchange settings	projectmanager	bg	Настройки за обмен на данни
+datasource	projectmanager	bg	Източник на данни
+datasources too	projectmanager	bg	Включително източници на данни
+dates	projectmanager	bg	Дати
+days	projectmanager	bg	Дни
+default action on double-click	projectmanager	bg	Действие по подразбиране при двойно кликване
+default all and a selectbox to choose	projectmanager	bg	Всички по подразбиране и поле за избор, което да изберете
+delete all checked projects	projectmanager	bg	Изтрийте всички проверени проекти
+delete this element role	projectmanager	bg	Изтрийте тази роля на елемента
+delete this milestone	projectmanager	bg	Изтрийте това важно събитие
+delete this price	projectmanager	bg	Изтрийте тази цена
+delete this project	projectmanager	bg	Изтрийте този проект
+delete this project-element, does not remove the linked entry	projectmanager	bg	Изтрийте този елемент на проекта, свързания запис към него НЕ се премахва.
+delete this role	projectmanager	bg	Изтрийте тази роля
+deleted	projectmanager	bg	Изтрит
+depth of display	projectmanager	bg	Дълбочина на излагане
+details of subelements	projectmanager	bg	Подробности за субелементи
+directory with documents to insert project data	projectmanager	bg	Директория с документи за вмъкване на данни за проекта
+do not use that entry as project-element	projectmanager	bg	Не използвайте записа като елемент на проекта
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	bg	Искате ли известие, когато елементите започнат според датите, за които са планирани?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	bg	Искате ли известие, когато елементите започнат, според техните действителни дати?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	bg	Искате ли известие, ако ви бъдат зададени елементи или назначените ви елементи се актуализират?
+do you want a notification, if items you created get updated?	projectmanager	bg	Искате ли известие, когато елементите създадените от вас се актуализират?
 document '%1' does not exist or is not readable for you!	projectmanager	bg	Документът '%1' не съществува или нямате право на достъп до него!
-empty for all	projectmanager	bg	празен за всички
+document download filename	projectmanager	bg	Име на файла за изтегляне на документ
+done (100%)	projectmanager	bg	Готово (100%)
+edit access, incl. editing budget and elements	projectmanager	bg	Редактиране на достъп, включващ бюджет и елементи
+edit budget	projectmanager	bg	Редактиране на бюджета
+edit element roles	projectmanager	bg	Редактиране на ролите на елемента
+edit milestone	projectmanager	bg	Редактиране на важно събитие
+edit price	projectmanager	bg	Редактиране на цената
+edit project	projectmanager	bg	Редактиране на проект
+edit project-elements	projectmanager	bg	Редактиране на елементи на проекта
+edit this element role	projectmanager	bg	Редактирай тази роля на елемента
+edit this milestone	projectmanager	bg	Редактирай това важно събитие
+edit this price	projectmanager	bg	Редактирай тази цена
+edit this project	projectmanager	bg	Редактирай този проект
+edit this project-element	projectmanager	bg	Редактирай този елемент от проекта
+edit this role	projectmanager	bg	Редактирай тази роля на елемента
+element category	projectmanager	bg	Категория на елемента
+element details	projectmanager	bg	Детайли на елемента
+element id	projectmanager	bg	Идентификационен номер(ID) на елемент
+element list	projectmanager	bg	Списък с елементи
+element modifier	projectmanager	bg	Модификатор на елемент
+element role	projectmanager	bg	Роля на елемента
+element role deleted	projectmanager	bg	Ролята на елемента е изтрита.
+element role saved	projectmanager	bg	Ролята на елемента е запазена.
+element role title	projectmanager	bg	Заглавие на ролевия елемент
+element roles	projectmanager	bg	Роли на елемента
+element roles defined as "mutliple" can be used here.	projectmanager	bg	Тук могат да се използват ролеви елементи, определени като "множество".
+element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	bg	Понастоящем функцията "Роли на елемента" не е активирана във вашата глобална ProjectManager конфигурация.
+element roles:	projectmanager	bg	Роли на елемента:
+element status	projectmanager	bg	Статус на елемента
+element title	projectmanager	bg	Заглавие на елемента
+elementlist	projectmanager	bg	Списък с елементи
+elements	projectmanager	bg	Елементи
+elements that can't start before this one is finished	projectmanager	bg	Елементи, които не могат да стартират, преди този да бъде завършен.
+elements which have to be finished before this can start	projectmanager	bg	Елементи, които трябва да бъдат завършени, преди този да започне.
+empty	projectmanager	bg	Празен
+empty for all	projectmanager	bg	Празен за всички
 enddate	projectmanager	bg	Крайна дата
+ends after	projectmanager	bg	Завършва след
+ends before	projectmanager	bg	Завършва преди
+error: deleting element role !!!	projectmanager	bg	Грешка при изтриването на ролята на елемента!
+error: deleting price !!!	projectmanager	bg	Грешка при изтриването на цената!
+error: deleting project !!!	projectmanager	bg	Грешка при изтриването на проекта!
+error: deleting project-element !!!	projectmanager	bg	Грешка при изтриването на елемента на проекта!
+error: deleting role !!!	projectmanager	bg	Грешка при изтриване на роля!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	bg	Грешка: Идентификационният номер (ID) на проекта вече съществува, изберете друг или го генерирайте автоматично, като оставите полето празно!
+error: saving element role !!!	projectmanager	bg	Грешка при запазването на ролята на елемента!
+error: saving milestone	projectmanager	bg	Грешка при запазването на основното събитие!
+error: saving role !!!	projectmanager	bg	Грешка при запазването на ролята!
+error: saving the price (%1) !!!	projectmanager	bg	Грешка при запазването на цената (%1)!
+error: saving the project (%1) !!!	projectmanager	bg	Грешка при запазването на проекта (%1)!
+error: saving the project-element (%1) !!!	projectmanager	bg	Грешка при запазването на елемента на проекта (%1)!
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	bg	Пример {{LETTERPREFIXCUSTOM n_prefix title n_family}} - Пример: г-н д-р Джеймс Милър
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	bg	Например {{NELF role}} - ако ролята на полето не е празна, ще получите нов ред със стойността на ролята му
+example {{nenvlf role}} - if field role is not empty, set a lf without any value of the field	projectmanager	bg	Например {{nenvlf role}} - ако ролята на полето не е празна, задайте LF без никаква стойност на полето
+example:	projectmanager	bg	Пример:
+examples:	projectmanager	bg	Примери:
+existing data will be overwrited if checked	projectmanager	bg	Съществуващите данни ще бъдат презаписани, ако са поставени отметки.
 existing links	projectmanager	bg	Съществуващи връзки
+exists	projectmanager	bg	Съществува.
+exit without saving	projectmanager	bg	Излезте, без да запазите
+export definition to use for nextmatch export (elements)	projectmanager	bg	Дефиниция за експортиране, която да се използва за експорт на следващо съвпадение (Elements)
+export definition to use for nextmatch export (projects)	projectmanager	bg	Дефиниция за експортиране, която да се използва за експорт на следващо съвпадение (Projects)
+export definition to use for nextmatch export (projekte)	projectmanager	bg	Дефиниция за експорт, която да се използва за експорт на следващо съвпадение (Projekte)
+exports a list of project elements to a csv file.	projectmanager	bg	Експортира списък с елементи на проект в CSV файл.
+exports a list of projects to a csv file.	projectmanager	bg	Експортира списък с проекти в CSV файл.
+external	projectmanager	bg	Външен
+favorites	projectmanager	bg	Любими
+fields for element roles:	projectmanager	bg	Полета за ролите на елемента:
 fieldseparator	projectmanager	bg	Разделител на полета
+font	projectmanager	bg	Шрифт
+font charset	projectmanager	bg	Шрифтов символен набор
+font style	projectmanager	bg	Вид на шрифта
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	bg	Шрифт, който да се използва в диаграмата на Гант (Gantt chart), само шрифтовете "Vera" са включени в Project Manager.
+fontfile '%1' not found!!!	projectmanager	bg	Файлът на шрифта '%1' не е намерен!
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	bg	За серийно писмо използвайте този маркер. Поставете съдържанието, което искате да повторите, в рамките на двата тага(маркировъчни етикети).
+free descriptiv text	projectmanager	bg	Свободен описателен текст
+from %1 to %2	projectmanager	bg	От %1 до %2
+full access	projectmanager	bg	Пълен достъп
+furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	bg	Изберете елементите на Адр. указател, в списъка с елементи на ProjectManager, за да определите отделните получатели на серийно писмо.
+ganttchart	projectmanager	bg	Диаграма на Гант (Gantt chart)
+ganttchart parameter	projectmanager	bg	Параметър на диаграма на Гант
+general availibility	projectmanager	bg	Основна наличност
 general fields:	projectmanager	bg	Общи полета:
+general pricelist	projectmanager	bg	Обща ценова листа
+general settings	projectmanager	bg	Основни настройки
 global categories	projectmanager	bg	Глобални категории
+h	projectmanager	bg	час
+has been moved to settings to allow eg. group-specific ids	projectmanager	bg	Преместен е в Настройки, за да позволи например: специфични за групата идентификационни номера
+health	projectmanager	bg	Здраве
 hours	projectmanager	bg	часа
+hours per workday	projectmanager	bg	Часове за един работен ден
+how long do you work on the given day.	projectmanager	bg	Колко време работите в дадения ден
+how should ids for new projects be generated?	projectmanager	bg	Как трябва да се генерират идентификационни номера (IDs) за нови проекти?
+how should ids for new subprojects be generated?	projectmanager	bg	Как трябва да се генерират идентификационни номера (IDs) за нови подпроекти?
+html link to the current record	projectmanager	bg	HTML връзка (препратка) към текущия запис
+id generation	projectmanager	bg	Генериране на идентификационен номер (ID)
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	bg	Записите в InfoLog се изтриват, ако са проверени източниците на данни за елементите.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	bg	Записите в InfoLog ще променят положението си, ако са проверени източниците на данни за елементите.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	bg	Изключете това, ако видите записи (напр. {) в диаграмата на Гант (Gantt chart).
+if you specify an export definition, it will be used when you export	projectmanager	bg	Ако посочите дефиниция за експортиране, тя ще се използва, когато експортирате
+ignore that entry	projectmanager	bg	Игнориране на запис
+ignored	projectmanager	bg	Игнориран
 import	projectmanager	bg	Импорт
+imports a list of projects from a csv file.  does not include project elements.	projectmanager	bg	Импортира списък на проекти от CSV файл. Без да включва елементите на проекта.
+insert	projectmanager	bg	Вмъкни
 last modified	projectmanager	bg	Последно модифициран
+last sync date and time	projectmanager	bg	Дата и час на последното синхронизиране
+leave it empty if you dont need a different customer title	projectmanager	bg	Оставете полето празно, ако не се нуждаете от различно заглавие.
+leave it empty to have one generated	projectmanager	bg	Оставете полето празно, за да бъде генерирано автоматично
+leave it empty, if identitcal to the time	projectmanager	bg	Оставете полето празно, ако е идентично с настоящия час
+limit number of characters in ganttchart element title (0 for no limit)	projectmanager	bg	Ограничете броя на знаците в заглавието на елемента в диаграма на Гант (0 за без ограничение)
+linked elements	projectmanager	bg	Свързани елементи
 links	projectmanager	bg	Връзки
+links and attached files	projectmanager	bg	Връзки и прикачени файлове
+links to specified application.  example: {{links/infolog}}	projectmanager	bg	Връзки към посоченото приложение. Например: {{links/infolog}}
+list of files linked to the current record	projectmanager	bg	Списък с файлове, свързани с текущия запис
+lists all elements assigned to an element role in a table.	projectmanager	bg	Списък на всички елементи, зададени на ролята на елемента в таблица.
+lists all project elements in a table.	projectmanager	bg	Списък на всички елементи на проекта в таблица.
+mainproject only	projectmanager	bg	Само основен проект
+mainprojects	projectmanager	bg	Основни проекти
 manage mapping	projectmanager	bg	Управление на съответствията
+members	projectmanager	bg	Членове
+milestone	projectmanager	bg	Важно събитие
+milestone deleted	projectmanager	bg	Изтрито важно събитие
+milestone saved	projectmanager	bg	Запазено важно събитие
+milestones	projectmanager	bg	Важни събития
+milestones before this element has to be finished	projectmanager	bg	Важните етапи, трябва да бъде завършени преди този елемент
 modified	projectmanager	bg	Редактирано
+modified by	projectmanager	bg	Редактирано от
+modified date and time	projectmanager	bg	Дата и час на редактиране
+modifier	projectmanager	bg	Модификатор
+modify status	projectmanager	bg	Статус на редакцията
+multi assignable	projectmanager	bg	Приписани много задания
+multi assignments	projectmanager	bg	Множество задания
 name of current user, all other contact fields are valid too	projectmanager	bg	Име на текущия потребител, останалите полета на контакта също са валидни
-new	projectmanager	bg	Нова
-no details	projectmanager	bg	без детайли
-nonactive	projectmanager	bg	неактивен
+necessary for project-elements doing that not automatic	projectmanager	bg	Необходимо е за елементите на проекта, които не правят това автоматично
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	bg	Необходимите PHP разширения %1 не се зареждат и не могат да бъдат заредени!
+new	projectmanager	bg	Нов(а)
+new project submitted by %1 at %2	projectmanager	bg	Нов проект, изпратен от %1 при %2
+no accounting, only status	projectmanager	bg	Без счетоводство, само статус
+no accounting, only times and status	projectmanager	bg	Без счетоводство, само време и статус
+no details	projectmanager	bg	Без детайли
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	bg	Няма ДОСТЪП до източника на данни: премахването на презаписани стойности ще ги изпразни!
+no rights to export more then %1 entries!	projectmanager	bg	Нямате права да експортирате повече от %1 записа!
+no save necessary	projectmanager	bg	Не е необходимо запазване
+nonactive	projectmanager	bg	Неактивен
+not available	projectmanager	bg	Не е наличен
+not started (0%)	projectmanager	bg	Не е стартиран (0%)
+not working	projectmanager	bg	Не работи
+notification settings	projectmanager	bg	Настройки на известията
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	bg	Брой знаци, до които Заглавието на елементите на Диаграмата на Гант, трябва да бъдат съкратени.
 number of records to read (%1)	projectmanager	bg	Брой записи за четене (%1)
+one day after	projectmanager	bg	един ден след това
+one day in advance	projectmanager	bg	един ден предварително
+only this project	projectmanager	bg	Само за този проект
 permission denied !!!	projectmanager	bg	Достъпът отказан !!!
 planned	projectmanager	bg	планиран
 planned time	projectmanager	bg	планирано време
