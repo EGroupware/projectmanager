@@ -33,7 +33,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	/**
 	 * Start session once before tests
 	 */
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		parent::setUpBeforeClass();
 
@@ -48,13 +48,13 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	/**
 	 * End session when done - restore original history setting
 	 */
-	public static function tearDownAfterClass()
+	public static function tearDownAfterClass() : void
 	{
 		// This removes the database and session
 		parent::tearDownAfterClass();
 	}
 
-	public function setUp()
+	protected function setUp() : void
 	{
 		$this->bo = new \projectmanager_bo();
 		$this->mockTracking($this->bo, 'projectmanager_tracking');
@@ -76,7 +76,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->makeProject();
 	}
 
-	public function tearDown()
+	protected function tearDown() : void
 	{
 		$this->deleteProject();
 
