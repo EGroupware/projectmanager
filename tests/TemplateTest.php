@@ -28,7 +28,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	protected $elements = array();
 
 
-	public function setUp()
+	protected function setUp() : void
 	{
 		$this->ui = new \projectmanager_ui();
 		// I have no idea why this has to be after the call to new \projectmanager_ui(),
@@ -42,7 +42,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$this->makeProject('template');
 	}
 
-	public function tearDown()
+	protected function tearDown() : void
 	{
 		$this->bo = new \projectmanager_bo();
 
