@@ -97,11 +97,11 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		Link::run_notifies();
 
 		// Template contains a sub-project, which pushes pm_id up by 1 more
-		$this->cloned_id = ((int)$this->bo->data['pm_id'])-1;
+		$this->cloned_id = ((int)$this->bo->data['pm_id']) - 1;
 		$this->assertNotEquals(-1, $this->cloned_id);
 		$this->assertNotEquals($this->pm_id, $this->cloned_id);
 
-		//echo "Original ID: {$this->pm_id} Cloned ID: {$this->cloned_id}\n";
+		echo "Original ID: {$this->pm_id} Cloned ID: {$this->cloned_id}\n";
 
 		// Check that elements are there
 		$this->checkClonedElements($this->cloned_id);

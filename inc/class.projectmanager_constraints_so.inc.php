@@ -254,7 +254,10 @@ class projectmanager_constraints_so extends Api\Storage\Base
 				}
 				if ($constrain['ms_id'])
 				{
-					if (!isset($milestones[$constrain['ms_id']])) continue;
+					if (!isset($milestones[$constrain['ms_id']]))
+					{
+						continue;
+					}
 					$constrain['ms_id'] = $milestones[$constrain['ms_id']];
 				}
 				$constrain['pm_id'] = $pm_id;
@@ -264,7 +267,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 				$copied++;
 			}
 		}
-		return $copied == count($constrains);
+		return $this->total ? $copied == count($constrains) : true;
 
 	}
 }
