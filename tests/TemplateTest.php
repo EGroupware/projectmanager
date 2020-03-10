@@ -97,7 +97,11 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		Link::run_notifies();
 
 		// Template contains a sub-project, which pushes pm_id up by 1 more
-		$this->cloned_id = ((int)$this->bo->data['pm_id']) - 1;
+		$this->cloned_id = $this->pm_id + 2;
+		if (in_array("projectmanager:{$this->cloned_id}", $this->elements))
+		{
+			$this->fail("Could not find clone ID.  Got sub-project's ID instead.");
+		}
 		$this->assertNotEquals(-1, $this->cloned_id);
 		$this->assertNotEquals($this->pm_id, $this->cloned_id);
 
@@ -158,15 +162,20 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			{
 				continue;
 			}
-			if(method_exists($this, "make_$app"))
+			if (method_exists($this, "make_$app"))
 			{
 				$this->{"make_$app"}();
 			}
 			else
 			{
-				$this->markTestIncomplete("$app has a datasource, but cannot be tested - add a make_$app() function to ". get_class());
+				$this->markTestIncomplete("$app has a datasource, but cannot be tested - add a make_$app() function to " . get_class());
 			}
 		}
+
+		// We got this far, there should be elements
+		$this->assertGreaterThan(0, count($this->elements), "No project elements created");
+		echo __METHOD__ . " Created test elements: \n";
+		print_r($this->elements);
 
 		// Force links to run notification now, or we won't get elements since it
 		// usually waits until Egw::on_shutdown();
