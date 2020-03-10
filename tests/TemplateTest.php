@@ -102,6 +102,8 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$this->assertNotEquals($this->pm_id, $this->cloned_id);
 
 		echo "Original ID: {$this->pm_id} Cloned ID: {$this->cloned_id}\n";
+		echo "Original Project: " . Link::title("projectmanager", $this->pm_id) . "\n";
+		echo "Copy project: " . Link::title("projectmanager", $this->cloned_id) . "\n";
 
 		// Check that elements are there
 		$this->checkClonedElements($this->cloned_id);
