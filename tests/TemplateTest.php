@@ -15,6 +15,7 @@ use EGroupware\Api\Link;
  */
 class TemplateTest extends \EGroupware\Api\AppTest
 {
+	protected $debug = false;
 
 	protected $ui;
 	protected $bo;
@@ -61,7 +62,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	public function testCreateFromTemplate()
 	{
 		$this->bo->tracking->expects($this->any())
-                 ->method('track');
+				->method('track');
 
 
 		// Force links to run notification now so we get valid testing - it
@@ -71,9 +72,10 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		// Mock the etemplate call
 		// First time so UI can set up the content array
 		$this->etemplate->expects($this->exactly(2))
-			->method('exec')
-			->will($this->returnCallback(function($method, $content) {
-				$_content = $content;
+				->method('exec')
+				->will($this->returnCallback(function ($method, $content)
+				{
+					$_content = $content;
 					return is_array($content) && count($content) > 0;
 				}));
 
@@ -105,9 +107,12 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$this->assertNotEquals(-1, $this->cloned_id);
 		$this->assertNotEquals($this->pm_id, $this->cloned_id);
 
-		echo "Original ID: {$this->pm_id} Cloned ID: {$this->cloned_id}\n";
-		echo "Original Project: " . Link::title("projectmanager", $this->pm_id) . "\n";
-		echo "Copy project: " . Link::title("projectmanager", $this->cloned_id) . "\n";
+		if ($this->debug)
+		{
+			echo "Original ID: {$this->pm_id} Cloned ID: {$this->cloned_id}\n";
+			echo "Original Project: " . Link::title("projectmanager", $this->pm_id) . "\n";
+			echo "Copy project: " . Link::title("projectmanager", $this->cloned_id) . "\n";
+		}
 
 		// Check that elements are there
 		$this->checkClonedElements($this->cloned_id);
@@ -174,8 +179,12 @@ class TemplateTest extends \EGroupware\Api\AppTest
 
 		// We got this far, there should be elements
 		$this->assertGreaterThan(0, count($this->elements), "No project elements created");
-		echo __METHOD__ . " Created test elements: \n";
-		print_r($this->elements);
+
+		if ($this->debug)
+		{
+			echo __METHOD__ . " Created test elements: \n";
+			print_r($this->elements);
+		}
 
 		// Force links to run notification now, or we won't get elements since it
 		// usually waits until Egw::on_shutdown();
@@ -388,7 +397,10 @@ class TemplateTest extends \EGroupware\Api\AppTest
 
 		foreach($element_bo->search(array('pm_id' => $clone_id), false, 'pe_id ASC') as $element)
 		{
-			//echo "\tPM:".$element['pm_id'] . ' '. $element['pe_id']."\t".$element['pe_app'] . ':'.$element['pe_app_id'] . "\t".$element['pe_title']."\n".Link::title($element['pe_app'],$element['pe_app_id'])."\n";
+			if ($this->debug)
+			{
+				echo "\tPM:" . $element['pm_id'] . ' ' . $element['pe_id'] . "\t" . $element['pe_app'] . ':' . $element['pe_app_id'] . "\t" . $element['pe_title'] . "\n" . Link::title($element['pe_app'], $element['pe_app_id']) . "\n";
+			}
 			$indexed_elements[$element['pe_app']][] = $element;
 		}
 		foreach($this->elements as $key => $_id)
@@ -396,7 +408,10 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			list($app, $id) = explode(':', $_id);
 			$copied = array_shift($indexed_elements[$app]);
 
-			//echo "$_id:\tCopied element - PM:".$copied['pm_id'] . ' '.$copied['pe_app'] . ':'.$copied['pe_app_id'] . "\t".$copied['pe_title']."\n";
+			if ($this->debug)
+			{
+				echo "$_id:\tCopied element - PM:" . $copied['pm_id'] . ' ' . $copied['pe_app'] . ':' . $copied['pe_app_id'] . "\t" . $copied['pe_title'] . "\n";
+			}
 			switch ($app)
 			{
 				case 'timesheet':

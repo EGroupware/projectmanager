@@ -147,12 +147,11 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->assertNotNull($project, 'Project is not there');
 		if($project)
 		{
-			$this->assertArraySubset(
-				array('pm_id' => $this->pm_id, 'pm_status' => 'deleted'),
-				$this->bo->read($this->pm_id),
-				false,
-				'Project status was not set to deleted'
-			);
+			foreach (array('pm_id' => $this->pm_id, 'pm_status' => 'deleted') as $check_key => $check_value)
+			{
+				$this->assertArrayHasKey($check_key, $project, 'Project status was not set to deleted');
+				$this->assertEquals($project[$check_key], $check_value, 'Project status was not set to deleted');
+			}
 		}
 
 		// Check datasources are still there
@@ -185,12 +184,11 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->assertNotNull($project, 'Project is not there');
 		if($project)
 		{
-			$this->assertArraySubset(
-				array('pm_id' => $this->pm_id, 'pm_status' => 'deleted'),
-				$this->bo->read($this->pm_id),
-				false,
-				'Project status was not set to deleted'
-			);
+			foreach (array('pm_id' => $this->pm_id, 'pm_status' => 'deleted') as $check_key => $check_value)
+			{
+				$this->assertArrayHasKey($check_key, $project, 'Project status was not set to deleted');
+				$this->assertEquals($project[$check_key], $check_value, 'Project status was not set to deleted');
+			}
 		}
 
 		// Check datasources are deleted
@@ -244,12 +242,11 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->assertNotNull($project, 'Project is not there');
 		if($project)
 		{
-			$this->assertArraySubset(
-				array('pm_id' => $this->pm_id, 'pm_status' => 'active'),
-				$this->bo->read($this->pm_id),
-				false,
-				'Project status was not set to deleted'
-			);
+			foreach (array('pm_id' => $this->pm_id, 'pm_status' => 'active') as $check_key => $check_value)
+			{
+				$this->assertArrayHasKey($check_key, $project, 'Project status was not set to active');
+				$this->assertEquals($project[$check_key], $check_value, 'Project status was not set to active');
+			}
 		}
 	}
 
@@ -302,12 +299,11 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->assertNotNull($project, 'Project is not there');
 		if($project)
 		{
-			$this->assertArraySubset(
-				array('pm_id' => $this->pm_id, 'pm_status' => 'active'),
-				$this->bo->read($this->pm_id),
-				false,
-				'Project status was not set to deleted'
-			);
+			foreach (array('pm_id' => $this->pm_id, 'pm_status' => 'active') as $check_key => $check_value)
+			{
+				$this->assertArrayHasKey($check_key, $project, 'Project status was not set to active');
+				$this->assertEquals($project[$check_key], $check_value, 'Project status was not set to active');
+			}
 		}
 
 		// Check datasources are back - this depends on datasource settings
@@ -453,12 +449,11 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->assertNotNull($project, 'Project is not there');
 		if($project)
 		{
-			$this->assertArraySubset(
-				array('pm_id' => $this->pm_id, 'pm_status' => 'deleted'),
-				$this->bo->read($this->pm_id),
-				false,
-				'Project status was not set to deleted'
-			);
+			foreach (array('pm_id' => $this->pm_id, 'pm_status' => 'deleted') as $check_key => $check_value)
+			{
+				$this->assertArrayHasKey($check_key, $project, 'Project status was not set to deleted');
+				$this->assertEquals($project[$check_key], $check_value, 'Project status was not set to deleted');
+			}
 		}
 	}
 
