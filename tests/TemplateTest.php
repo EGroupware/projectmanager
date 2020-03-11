@@ -395,7 +395,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$indexed_elements = array();
 		$unmatched_elements = $this->elements;
 
-		foreach($element_bo->search(array('pm_id' => $clone_id), false, 'pe_id ASC') as $element)
+		foreach ((array)$element_bo->search(array('pm_id' => $clone_id), false, 'pe_id ASC') as $element)
 		{
 			if ($this->debug)
 			{
@@ -403,7 +403,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			}
 			$indexed_elements[$element['pe_app']][] = $element;
 		}
-		foreach($this->elements as $key => $_id)
+		foreach ($this->elements as $key => $_id)
 		{
 			list($app, $id) = explode(':', $_id);
 			$copied = array_shift($indexed_elements[$app]);

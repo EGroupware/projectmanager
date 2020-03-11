@@ -707,7 +707,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$element_bo = new \projectmanager_elements_bo();
 		$element_count = 0;
 
-		foreach($element_bo->search(array('pm_id' => $this->pm_id), false) as $element)
+		foreach ((array)$element_bo->search(array('pm_id' => $this->pm_id), false) as $element)
 		{
 			$element_count++;
 			if ($status)
