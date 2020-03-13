@@ -11,8 +11,8 @@
  */
 
 use EGroupware\Api;
-use EGroupware\Api\Link;
 use EGroupware\Api\Acl;
+use EGroupware\Api\Link;
 
 /**
  * General storage object of the projectmanager: access the main project data
@@ -239,17 +239,17 @@ class projectmanager_so extends Api\Storage
 		$columselection = $columsel ? explode(',',$columsel) : array();
 		if(!$columselection || in_array('resources', $columselection) || $query['col_filter']['resources'])
 		{
-			$extra_cols[] = $this->db->group_concat('resources.member_uid').' AS resources';
+			$extra_cols[] = $this->db->group_concat('DISTINCT resources.member_uid') . ' AS resources';
 			$join .= ' LEFT JOIN egw_pm_members AS resources ON resources.pm_id = egw_pm_projects.pm_id ';
 
-			if($query['col_filter']['resources'])
+			if ($query['col_filter']['resources'])
 			{
 				// Expend to include any qroups selected user(s) are in
 				$members = array();
-				foreach((array)$query['col_filter']['resources'] as $user)
+				foreach ((array)$query['col_filter']['resources'] as $user)
 				{
-					$members = array_merge($members,(array)
-						($user > 0 ? $GLOBALS['egw']->accounts->memberships($user,true) :
+					$members = array_merge($members, (array)
+					($user > 0 ? $GLOBALS['egw']->accounts->memberships($user, true) :
 							$GLOBALS['egw']->accounts->members($user,true)));
 					$members[] = $user;
 				}
