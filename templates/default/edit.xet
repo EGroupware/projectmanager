@@ -19,9 +19,7 @@
 					</menulist>
 					<description/>
 					<description value="Access" for="pm_access"/>
-					<menulist class="et2_fullWidth">
-						<menupopup id="pm_access" no_lang="1"/>
-					</menulist>
+					<select id="pm_access" no_lang="1" class="et2_fullWidth"/>
 				</row>
 				<row class="row">
 					<description value="Priority" for="pm_priority"/>
@@ -31,10 +29,10 @@
 					<description/>
 					<description value="Status" for="pm_status"/>
 					<hbox>
-						<menulist>
-							<menupopup id="pm_status" no_lang="1"/>
-						</menulist>
-						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" class="projectmanager_leftPad5"/>
+						<select id="pm_status" no_lang="1"/>
+						<checkbox
+								statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too."
+								label="datasources too" id="status_sources" class="projectmanager_leftPad5"/>
 					</hbox>
 				</row>
 				<row class="th" height="20" valign="bottom">
@@ -118,11 +116,11 @@
 					</hbox>
 				</row>
 				<row class="row" height="12" disabled="@view">
-					<menulist class="et2_fullWidth">
-						<menupopup type="select-account" id="member[1]" options="select one,both"/>
-					</menulist>
-					<textbox type="float" statustext="Percentage the member is availible for projects" id="general_avail[1]"/>
-					<textbox type="float" statustext="Percentage the member is availible for this project" id="availibility[1]"/>
+					<select-account id="member[1]" empty_label="select one" account_type="both" class="et2_fullWidth"/>
+					<textbox type="float" statustext="Percentage the member is availible for projects"
+							 id="general_avail[1]"/>
+					<textbox type="float" statustext="Percentage the member is availible for this project"
+							 id="availibility[1]"/>
 					<hbox orient=",0,0" options="0,0">
 						<menulist>
 							<menupopup id="role[1]"/>
@@ -131,14 +129,12 @@
 					</hbox>
 				</row>
 				<row class="row" valign="top" disabled="!@member">
-					<menulist>
-						<menupopup type="select-account" id="member[$row]" readonly="true"/>
-					</menulist>
-					<textbox type="float" statustext="Percentage the member is availible for projects" id="general_avail[$row]"/>
-					<textbox type="float" statustext="Percentage the member is availible for this project" id="availibility[$row]"/>
-					<menulist>
-						<menupopup id="role[$row]" options="None"/>
-					</menulist>
+					<select-account id="member[$row]" readonly="true"/>
+					<textbox type="float" statustext="Percentage the member is availible for projects"
+							 id="general_avail[$row]"/>
+					<textbox type="float" statustext="Percentage the member is availible for this project"
+							 id="availibility[$row]"/>
+					<select id="role[$row]" options="None"/>
 				</row>
 			</rows>
 		</grid>
@@ -259,15 +255,11 @@
 					<hbox span="2">
 						<description value="Modified"/>
 						<date-time id="pm_modified" readonly="true"/>
-						<menulist>
-							<menupopup type="select-account" label="by" id="pm_modifier" readonly="true"/>
-						</menulist>
+						<select-account label="by" id="pm_modifier" readonly="true"/>
 					</hbox>
 					<hbox align="right" span="2">
 						<date-time label="created" id="pm_created" no_lang="1" readonly="true"/>
-						<menulist>
-							<menupopup type="select-account" label="by" id="pm_creator" readonly="true"/>
-						</menulist>
+						<select-account label="by" id="pm_creator" readonly="true"/>
 					</hbox>
 				</row>
 				<row class="dialogFooterToolbar">
