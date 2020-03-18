@@ -348,7 +348,7 @@ real start	projectmanager	de	Tatsächlicher Start
 real start date and time	projectmanager	de	Tatsächliches Startdatum und -zeit
 receive notifications about due entries (planned dates)	projectmanager	de	Erhalte Benachrichtigungen über fällige Einträge (geplantes Ende)
 receive notifications about due entries (real dates)	projectmanager	de	Erhalte Benachrichtigungen über fällige Einträge (tatsächliches Ende)
-receive notifications about items assigned to you with these roles	projectmanager	de	Erhalten Benachrichtigungen von Ihren Projekten mit folgenden zugewiesenen Rollen
+receive notifications about items assigned to you with these roles	projectmanager	de	Erhalten Sie Benachrichtigungen über Projekte, die Ihnen mit diesen Rollen zugewiesen wurden
 receive notifications about own items	projectmanager	de	Erhalte Benachrichtigungen über eigene Projekte
 receive notifications about starting entries (planned dates)	projectmanager	de	Erhalte Benachrichtigungen über startende Einträge (geplanter Start)
 receive notifications about starting entries (real dates)	projectmanager	de	Erhalte Benachrichtigungen über startende Einträge (tatsächlicher Start)
