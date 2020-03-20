@@ -13,7 +13,7 @@
 	/etemplate/js/etemplate2.js;
 	/projectmanager/js/et2_widget_gantt.js;
 */
-import '../jsapi/egw_global';
+import "../../api/js/jsapi/egw_global";
 import {EgwApp} from "../../api/js/jsapi/egw_app";
 import {et2_gantt} from "./et2_widget_gantt";
 
@@ -22,7 +22,6 @@ import {et2_gantt} from "./et2_widget_gantt";
  */
 export class ProjectmanagerApp extends EgwApp
 {
-	readonly appname = 'projectmanager';
 
 	// Variables for having all templates loaded & switching
 	view = 'list';
@@ -49,9 +48,9 @@ export class ProjectmanagerApp extends EgwApp
 	constructor()
 	{
 		// call parent
-		super();
+		super('projectmanager');
 
-		register_app_refresh(this.appname,jQuery.proxy(this.linkHandler,this));
+		register_app_refresh(this.appname, jQuery.proxy(this.linkHandler, this));
 	}
 
 	/**
