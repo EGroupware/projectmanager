@@ -47,6 +47,7 @@ apply the changes	projectmanager	en	Apply the changes
 archive	projectmanager	en	Archive
 assistant	projectmanager	en	Assistant
 at which time do you start working on the given day.	projectmanager	en	At what time do you start working on the given day.
+automatic	projectmanager	en	Automatic
 availability settings	projectmanager	en	Availability settings
 available fields for this plugin:	projectmanager	en	Available fields for this plugin:
 availible	projectmanager	en	Available
@@ -80,6 +81,7 @@ created	projectmanager	en	Created
 created a ganttchart from the checked projects	projectmanager	en	Created a Gantt chart from the checked projects
 creation date and time	projectmanager	en	Creation date and time
 creator	projectmanager	en	Creator
+criteria to break into subdirectories	projectmanager	en	Criteria to break into subdirectories
 csv-fieldname	projectmanager	en	CSV field name
 csv-filename	projectmanager	en	CSV file name
 csv-import	common	en	CSV import
@@ -114,6 +116,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	en	Do you want a notification, if items you created get updated?
 document '%1' does not exist or is not readable for you!	projectmanager	en	Document '%1' does not exist or is not readable for you!
 document download filename	projectmanager	en	Document download file name
+don't break into subdirectories	projectmanager	en	Don't break into subdirectories
 done (100%)	projectmanager	en	Done (100%)
 edit access, incl. editing budget and elements	projectmanager	en	Edit access, incl. editing budget and elements
 edit budget	projectmanager	en	Edit budget
@@ -187,6 +190,9 @@ external	projectmanager	en	External
 favorites	projectmanager	en	Favorites
 fields for element roles:	projectmanager	en	Fields for element roles:
 fieldseparator	projectmanager	en	Field separator
+filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	en	Filemanager shows a virtual structure for the projects e.g. by year or year & month. By default, pagination is done automatically based on the number of projects. You can choose also a fixed criteria for this structure.
+filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	en	Filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. You can select a different criteria for that structure e.g. Startdate or Projectnumber.
+filemanager subdirectories	projectmanager	en	Filemanager subdirectories
 font	projectmanager	en	Font
 font charset	projectmanager	en	Font charset
 font style	projectmanager	en	Font style
@@ -450,6 +456,8 @@ view this price	projectmanager	en	View this price
 view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project element
 working duration on %1	projectmanager	en	Working duration on %1
+year & month	projectmanager	en	Year & month
+year only	projectmanager	en	year only
 you can leave the date of the first price empty	projectmanager	en	You can leave the date of the first price empty
 you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	en	You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	en	You don't have JPGraph version %1 or higher installed! It is needed from Project Manager for Gantt charts.

@@ -1,12 +1,15 @@
+%1 days in advance	projectmanager	es-es	%1 días de anticipación
 %1 element(s) updated	projectmanager	es-es	Se han actualizado %1 elementos
 %1 new project-elements imported	projectmanager	es-es	Se han importado %1 elementos nuevos al proyecto
 %1 project(s) %2	projectmanager	es-es	%1 proyectos %2
 %1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	es-es	¡%1 proyectos %2, %3 fallaron por permisos insuficientes!
-%1 project-element(s) deleted.	projectmanager	es-es	Se han borrado %1 elementos del proyecto.
-%1 projects deleted	projectmanager	es-es	Se han borrado %1 proyectos
+%1 project-element(s) deleted.	projectmanager	es-es	Se han suprimido %1 elementos del proyecto.
+%1 projects deleted	projectmanager	es-es	Se han suprimido %1 proyectos
 %1 records imported	projectmanager	es-es	Se han importado %1 registros
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	es-es	Se han leído %1 registros (todavía no se han importado, así que puede %2volver%2 y desmarcar "Prueba de importar")
 %1 times permission denied, %2 projects deleted	projectmanager	es-es	Se ha denegado el acceso %1 veces, se han borrado %2 proyectos
+%1 you are responsible for is due at %2	projectmanager	es-es	%1 del que es responsable vence en %2
+%1 you are responsible for is starting at %2	projectmanager	es-es	%1 del que es responsable comienza en %2
 (project id) project title - template name	projectmanager	es-es	(ID del proyecto) título del proyecto - nombre de la plantilla
 - planned	projectmanager	es-es	- planificado
 - re-planned	projectmanager	es-es	- replanificado
@@ -29,6 +32,7 @@ add project	projectmanager	es-es	Añadir proyecto
 add project-elements	projectmanager	es-es	Añadir elementos de proyecto
 add this role	projectmanager	es-es	Añadir este rol
 add timesheet	projectmanager	es-es	Añadir hoja de tiempos
+add timesheet only	projectmanager	es-es	Solo añadir hoja de tiempos
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	es-es	Los elementos de la libreta de direcciones de un proyecto pueden usarse para definir destinatarios individuales de las cartas. Los campos disponibles son
 addressbook fields	projectmanager	es-es	Campos de la libreta de direcciones
 all projects	projectmanager	es-es	Todos los proyectos
@@ -43,6 +47,7 @@ apply the changes	projectmanager	es-es	Aplicar los cambios
 archive	projectmanager	es-es	Archivar
 assistant	projectmanager	es-es	Asistente
 at which time do you start working on the given day.	projectmanager	es-es	La hora a la que se empieza a trabajar en el día indicado.
+automatic	projectmanager	es-es	Automático
 availability settings	projectmanager	es-es	Opciones disponibles
 available fields for this plugin:	projectmanager	es-es	Campos disponibles para este plugin:
 availible	projectmanager	es-es	Disponible
@@ -57,9 +62,11 @@ can be used with element roles, "eroles" table plugin and "elements" table plugi
 category in %1 project-element(s) updated.	projectmanager	es-es	Se ha actualizado la categoría en %1 elementos de proyecto
 category set	projectmanager	es-es	Se ha establecido la categoría
 change category	projectmanager	es-es	Cambiar categoría
+change the following details of %s	projectmanager	es-es	Cambiar los detalles siguientes de %s
 charset of file	projectmanager	es-es	Juego de caracteres del fichero
 charset of the above selected font	projectmanager	es-es	Juego de caracteres del tipo de letra seleccionado arriba
 check all	projectmanager	es-es	Comprobar todo
+check to make one element role assignable to multiple elements	projectmanager	es-es	Marque para hacer que un rol de elemento sea asignable a múltiples elementos
 choose the default filename for downloaded documents.	projectmanager	es-es	Elegir el nombre predeterminado para los documentos descargados.
 close the window, discard the changes made	projectmanager	es-es	Cerrar la ventana, descartar los cambios
 completion	projectmanager	es-es	Completado
@@ -74,6 +81,7 @@ created	projectmanager	es-es	creado
 created a ganttchart from the checked projects	projectmanager	es-es	Se ha creado un gráfico Gantt a partir de los proyectos seleccionados
 creation date and time	projectmanager	es-es	Fecha y hora de creación
 creator	projectmanager	es-es	Creador
+criteria to break into subdirectories	projectmanager	es-es	Criterio para dividir en subdirectorios
 csv-fieldname	projectmanager	es-es	Nombre de campo CSV
 csv-filename	projectmanager	es-es	Nombre de fichero CSV
 csv-import	common	es-es	Importar fichero CSV
@@ -85,28 +93,39 @@ datasource	projectmanager	es-es	Fuente de datos
 datasources too	projectmanager	es-es	también las fuentes de datos
 dates	projectmanager	es-es	Fechas
 days	projectmanager	es-es	Días
+default action on double-click	projectmanager	es-es	Acción predeterminada al hacer doble clic
 default all and a selectbox to choose	projectmanager	es-es	predeterminar todo y una lista desplegable para elegir
-delete all checked projects	projectmanager	es-es	Borrar todos los proyectos seleccionados
-delete this milestone	projectmanager	es-es	Borrar este hito
-delete this price	projectmanager	es-es	Borrar este precio
-delete this project	projectmanager	es-es	Borrar este proyecto
-delete this project-element, does not remove the linked entry	projectmanager	es-es	Borrar este elemento de proyecto NO borra la entrada vinculada
-delete this role	projectmanager	es-es	Borrar este rol
-deleted	projectmanager	es-es	borradas
+delete all checked projects	projectmanager	es-es	Suprimir todos los proyectos seleccionados
+delete this element role	projectmanager	es-es	Suprimir este rol de elemento
+delete this milestone	projectmanager	es-es	Suprimir este hito
+delete this price	projectmanager	es-es	Suprimir este precio
+delete this project	projectmanager	es-es	Suprimir este proyecto
+delete this project-element, does not remove the linked entry	projectmanager	es-es	Suprimir este elemento de proyecto NO borra la entrada vinculada
+delete this role	projectmanager	es-es	Suprimir este rol
+deleted	projectmanager	es-es	Suprimido
 depth of display	projectmanager	es-es	Profundidad de visualización
 details of cumulated	projectmanager	es-es	Detalles de los acumulados
 details of subelements	projectmanager	es-es	Detalles de los subelementos
 directory with documents to insert project data	projectmanager	es-es	Directorio con documentos para insertar datos del proyecto
 do not use that entry as project-element	projectmanager	es-es	no usar esa entrada como elemento de proyecto
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	es-es	¿Desea una notificación si los rubros están a punto de comenzar según sus fechas planificadas?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	es-es	¿Desea una notificación si los rubros están a punto de comenzar según sus fechas reales?
+do you want a notification, if items are due according to their planned dates?	projectmanager	es-es	¿Desea una notificación, si los rubros están vencidos según sus fechas planificadas?
+do you want a notification, if items are due according to their real dates?	projectmanager	es-es	¿Desea una notificación, si los rubros están vencidos según sus fechas reales?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	es-es	¿Desea una notificación si los rubros le son asignados o estos son actualizados?
+do you want a notification, if items you created get updated?	projectmanager	es-es	¿Desea una notificación si los rubros que creó son actualizados?
 document '%1' does not exist or is not readable for you!	projectmanager	es-es	¡El documento '%1' no existe o no tiene permiso para leerlo!
 document download filename	projectmanager	es-es	Nombre del archivo a descargar
+don't break into subdirectories	projectmanager	es-es	No dividir en subdirectorios
 done (100%)	projectmanager	es-es	Finalizado (100%)
 edit access, incl. editing budget and elements	projectmanager	es-es	editar acceso, incluyendo edición de presupuesto y elementos
 edit budget	projectmanager	es-es	Editar presupuesto
+edit element roles	projectmanager	es-es	Editar roles de elemento
 edit milestone	projectmanager	es-es	Editar hito
 edit price	projectmanager	es-es	Editar precio
 edit project	projectmanager	es-es	Editar proyecto
 edit project-elements	projectmanager	es-es	Editar elementos del proyecto
+edit this element role	projectmanager	es-es	Editar este role de elemento
 edit this milestone	projectmanager	es-es	Editar este hito
 edit this price	projectmanager	es-es	Editar este precio
 edit this project	projectmanager	es-es	Editar este proyecto
@@ -135,7 +154,9 @@ elements which have to be finished before this can start	projectmanager	es-es	El
 empty	projectmanager	es-es	Vacío
 empty for all	projectmanager	es-es	vacío para todo
 encode non-ascii	projectmanager	es-es	No codificar en ascii
-enddate	projectmanager	es-es	Fecha de finalización
+enddate	projectmanager	es-es	Fecha de término
+ends after	projectmanager	es-es	Termina después
+ends before	projectmanager	es-es	Termina antes
 error: deleting element role !!!	projectmanager	es-es	¡Error al borrar el rol del elemento!
 error: deleting price !!!	projectmanager	es-es	¡¡Error al borrar el precio!!
 error: deleting project !!!	projectmanager	es-es	¡¡Error: borrando proyecto!!
@@ -162,11 +183,16 @@ exists	projectmanager	es-es	Existe
 exit without saving	projectmanager	es-es	Salir sin guardar
 export definition to use for nextmatch export (elements)	projectmanager	es-es	Exportar la definición para exportarla con nextmatch (elementos)
 export definition to use for nextmatch export (projects)	projectmanager	es-es	Exportar la definición para exportarla con nextmatch (proyectos)
+export definition to use for nextmatch export (projekte)	projectmanager	es-es	Definición de exportación para usar para la exportación de nextmatch (Proyecto)
 exports a list of project elements to a csv file.	projectmanager	es-es	Exporta una lista de elementos de proyecto a un fichero CSV.
 exports a list of projects to a csv file.	projectmanager	es-es	Exporta una lista de proyectos a un fichero CSV.
+external	projectmanager	es-es	Externo
 favorites	projectmanager	es-es	Favoritos
 fields for element roles:	projectmanager	es-es	Campos para roles de elemento:
 fieldseparator	projectmanager	es-es	Separador de campos
+filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	es-es	El Administrador de archivos muestra una estructura virtual para los proyectos, e.g. por año o por año y mes. Por defecto, la paginación se realiza automáticamente basada en el número de proyectos. También, puede elegir un criterio fijo para esta estructura.
+filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	es-es	El Administrador de archivos muestra una estructura virtual para los proyectos, e.g. por año, según la fecha de creación del proyecto. Puede seleccionar un criterio diferente para esa estructura, e.g. Fecha de inicio o número de proyecto.
+filemanager subdirectories	projectmanager	es-es	Subdirectorios del administrador de archivos
 font	projectmanager	es-es	Tipo de letra
 font charset	projectmanager	es-es	Juego de caracteres del tipo de letra
 font style	projectmanager	es-es	Estilo del tipo de letra
@@ -185,12 +211,16 @@ general pricelist	projectmanager	es-es	Lista de precios general
 general settings	projectmanager	es-es	Opciones generales
 global categories	projectmanager	es-es	Categorías globales
 h	projectmanager	es-es	h
+has been moved to settings to allow eg. group-specific ids	projectmanager	es-es	Se ha movido a la configuración para permitir, por ejemplo, ID específicos de grupo
 health	projectmanager	es-es	Salud
 hours	projectmanager	es-es	horas
 hours per workday	projectmanager	es-es	Horas por día de trabajo
 how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
+how should ids for new projects be generated?	projectmanager	es-es	¿Cómo deben generarse los ID para nuevos proyectos?
+how should ids for new subprojects be generated?	projectmanager	es-es	¿Cómo deben generarse los ID para nuevos subproyectos?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
 html link to the current record	projectmanager	es-es	Enlace HTML al registro actual
+id generation	projectmanager	es-es	Generación de ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	es-es	Si se selecciona, también se borran los elementos de origen (p. ej, entradas InfoLog).
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	es-es	Si se selecciona, también se cambiará el estado de los elementos de origen (p. ej, entradas InfoLog).
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	es-es	Si ve entidades (p. ej. {) en el diagrama de Gantt, desactive esta opción.
@@ -217,6 +247,7 @@ mainproject only	projectmanager	es-es	Sólo proyecto principal
 mainprojects	projectmanager	es-es	Proyectos principales
 manage mapping	projectmanager	es-es	Gestionar mapeos
 members	projectmanager	es-es	Miembros
+milestone	projectmanager	es-es	Hito
 milestone deleted	projectmanager	es-es	Se ha borrado el hito
 milestone saved	projectmanager	es-es	Se ha guardado el hito
 milestones	projectmanager	es-es	Hitos
@@ -226,6 +257,7 @@ modified by	projectmanager	es-es	Modificado por
 modified date and time	projectmanager	es-es	Fecha y hora de modificación
 modifier	projectmanager	es-es	Modificador
 modify status	projectmanager	es-es	Estado de modificación
+multi assignable	projectmanager	es-es	Multiasignable
 multi assignments	projectmanager	es-es	Múltiples asignaciones
 name of current user, all other contact fields are valid too	projectmanager	es-es	Nombre del usuario actual, el resto de los campos del contacto también son válidos
 necessary for project-elements doing that not automatic	projectmanager	es-es	necesario para elementos de proyecto que no hacen eso automáticamente
@@ -242,8 +274,12 @@ nonactive	projectmanager	es-es	No activo
 not available	projectmanager	es-es	No está disponible
 not started (0%)	projectmanager	es-es	Sin iniciar (0%)
 not working	projectmanager	es-es	no está trabajando
+notification settings	projectmanager	es-es	Configuración de las notificaciones
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	es-es	El número de caracteres al que se reducirá el título de los elementos de la gráfica Gantt.
 number of records to read (%1)	projectmanager	es-es	Número de registros a leer (%1)
+one day after	projectmanager	es-es	un día después
+one day in advance	projectmanager	es-es	un día de antemano
+ongoing (0 < % < 100)	projectmanager	es-es	En curso (0 < % < 100)
 only this project	projectmanager	es-es	Sólo este proyecto
 order of sub-project bars in ganttcharts	projectmanager	es-es	El orden de las barras del subproyecto en la gráfica Gantt
 overwrite the datasource	projectmanager	es-es	Sobreescribir la fuente de datos
@@ -262,12 +298,14 @@ planned time	projectmanager	es-es	Hora plantificada
 planned time in minutes	projectmanager	es-es	Tiempo planificado en minutos
 planned times	projectmanager	es-es	Tiempos planificados
 please download a recent version from %1 and install it in %2.	projectmanager	es-es	Por favor, descargue una versión reciente desde %1 e instálela en %2.
+pm_milestone	projectmanager	es-es	Hito
 price	projectmanager	es-es	Precio
 price / unit	projectmanager	es-es	Precio / unidad
 price deleted	projectmanager	es-es	Precio borrado
 price per unit	projectmanager	es-es	Precio por unidad
 price saved	projectmanager	es-es	Precio guardado
 pricelist	projectmanager	es-es	Lista de precios
+project	common	es-es	Proyecto
 project access (e.g. public)	projectmanager	es-es	Acceso del proyecto, p. ej. público
 project availibility	projectmanager	es-es	Disponibilidad del proyecto
 project category	projectmanager	es-es	Categoría del proyecto
@@ -286,6 +324,7 @@ project number	projectmanager	es-es	Número del proyecto
 project overview	projectmanager	es-es	Descripción del proyecto
 project priority	projectmanager	es-es	Prioridad del proyecto
 project saved	projectmanager	es-es	Proyecto guardado
+project sort order	projectmanager	es-es	Orden de clasificación del proyecto
 project specific title, prices, ...	projectmanager	es-es	Precios, título, etc específicos del proyecto
 project status	projectmanager	es-es	Estado del proyecto
 project title	projectmanager	es-es	Título del proyecto
@@ -313,6 +352,12 @@ real end	projectmanager	es-es	Fin real
 real end date and time	projectmanager	es-es	Fecha y hora real de finalización
 real start	projectmanager	es-es	Comienzo real
 real start date and time	projectmanager	es-es	Fecha y hora real de inicio
+receive notifications about due entries (planned dates)	projectmanager	es-es	Recibir notificaciones sobre entradas vencidas (fechas planificadas)
+receive notifications about due entries (real dates)	projectmanager	es-es	Recibir notificaciones sobre entradas vencidas (fechas reales)
+receive notifications about items assigned to you with these roles	projectmanager	es-es	Recibir notificaciones sobre rubros asignados a usted con estos roles
+receive notifications about own items	projectmanager	es-es	Recibir notificaciones sobre sus rubros
+receive notifications about starting entries (planned dates)	projectmanager	es-es	Recibir notificaciones sobre entradas iniciales (fechas planificadas)
+receive notifications about starting entries (real dates)	projectmanager	es-es	Recibir notificaciones sobre entradas iniciales (fechas reales)
 remark	projectmanager	es-es	Remarcar
 replanned time in minutes	projectmanager	es-es	Tiempo replanificado en minutos
 resources	projectmanager	es-es	Recursos
@@ -327,6 +372,7 @@ select a project	projectmanager	es-es	Seleccionar un proyecto
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	es-es	seleccionar una actividad si desea calcular el coste por cantidad (tiempo) y precio
 select export options	projectmanager	es-es	Seleccionar opciones de exportación
 select multiple projects for a further action	projectmanager	es-es	Seleccionar múltiples proyectos para una acción posterior
+select project sort order for project tree and link search	projectmanager	es-es	Seleccione el orden de clasificación del proyecto para el árbol del proyecto y enlazar la búsqueda
 select the accounting types visible for users of projectmanager	projectmanager	es-es	seleccionar los tipos de cuentas visibles para los usuarios del administrador de proyectos
 select this project and show it's elements	projectmanager	es-es	Seleccionar este proyecto y mostrar sus elementos
 selectbox with %1	projectmanager	es-es	Lista con %1
@@ -410,7 +456,10 @@ view this price	projectmanager	es-es	Ver este precio
 view this project	projectmanager	es-es	Ver este proyecto
 view this project-element	projectmanager	es-es	Ver este elemento del proyecto
 working duration on %1	projectmanager	es-es	Duración del trabajo en %1
+year & month	projectmanager	es-es	Año y mes
+year only	projectmanager	es-es	solo año
 you can leave the date of the first price empty	projectmanager	es-es	puede dejar la fecha del primer precio en blanco
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	es-es	Puede usar %Ymd para insertar la fecha de creación. Utiliza la misma sintaxis de función fecha() de PHP. Otros marcadores de posición son %px para insertar la ID de los padres (solo en la generación de subproyectos) o %ix para insertar un índice. Los índices se aumentarán automáticamente para evitar IDs duplicadas. ¡Cada formato de generación debe contener exactamente un índice! (Excepto que usted esté seguro de que la fecha identificará el proyecto). También puede usar e.g. %04ix. Este índice se completará con '0' a 4 dígitos (e.g. 0001). Si omite el carácter de relleno (e.g. %5ix), el índice se rellenará con '0'.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	es-es	¡No tiene la versión %1 de JPGraph o superior instalada! Se necesita desde el Administador de proyectos para gráficas Gantt.
 you need to select a project first	projectmanager	es-es	Necesita seleccionar un proyecto antes
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	es-es	La base de datos NO está actualizada (%1 en vez de %2). Por favor, ejecute %3setup%4 para actualizar la base de datos.
