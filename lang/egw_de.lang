@@ -47,6 +47,7 @@ apply the changes	projectmanager	de	Änderungen übernehmen
 archive	projectmanager	de	Archiviert
 assistant	projectmanager	de	Assistent
 at which time do you start working on the given day.	projectmanager	de	Um welche Uhrzeit beginnen Sie an dem angegebenen Tag zu arbeiten.
+automatic	projectmanager	de	Automatisch
 availability settings	projectmanager	de	Einstellungen der Verfügbarkeit
 available fields for this plugin:	projectmanager	de	Verfügbare Felder für diese Schnittstelle
 availible	projectmanager	de	Verfügbar
@@ -80,6 +81,7 @@ created	projectmanager	de	Erstellt
 created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Gantt-Diagramm von den gewählten Projekten
 creation date and time	projectmanager	de	Erstellungsdatum und Uhrzeit
 creator	projectmanager	de	Ersteller
+criteria to break into subdirectories	projectmanager	de	Kriterien für die Aufteilung der virtuellen Unterverzeichnisse
 csv-fieldname	projectmanager	de	CSV-Feldname
 csv-filename	projectmanager	de	CSV-Dateiname
 csv-import	common	de	CSV-Import
@@ -114,6 +116,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt das Sie erstellt haben gespeichert wird?
 document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung, oder ist für Sie nicht lesbar!
 document download filename	projectmanager	de	Name des heruntergeladenen Dokuments
+don't break into subdirectories	projectmanager	de	Nie in Unterverzeichnisse aufsplitten
 done (100%)	projectmanager	de	erledigt (100%)
 edit access, incl. editing budget and elements	projectmanager	de	Zugriff zum Bearbeiten, einschl. Budget und Element bearbeiten
 edit budget	projectmanager	de	Budget bearbeiten
@@ -187,6 +190,9 @@ external	projectmanager	de	Externer Mitarbeiter
 favorites	projectmanager	de	Favoriten
 fields for element roles:	projectmanager	de	Platzhalter für Element-Rollen
 fieldseparator	projectmanager	de	Feldtrenner
+filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	de	Filemanager zeigt eine virtuelle Struktur für die Projekte z.B. nach Jahr oder Jahr & Monat. Standardmäßig erfolgt die Paginierung automatisch auf der Grundlage der Anzahl der Projekte. Sie können auch ein festes Kriterium für diese Struktur wählen.
+filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	de	Filemanager zeigt eine virtuelle Struktur für die Projekte z.B. nach Jahren, basierend auf dem Erstellungsdatum des Projektes. Sie können ein anderes Kriterium für diese Struktur wählen, z.B. Startdatum oder Projektnummer.
+filemanager subdirectories	projectmanager	de	Virtuelle Dateimanager Unterverzeichnisse
 font	projectmanager	de	Font
 font charset	projectmanager	de	Font Zeichensatz
 font style	projectmanager	de	Font Stil
@@ -450,6 +456,8 @@ view this price	projectmanager	de	Diesen Preis anzeigen
 view this project	projectmanager	de	Dieses Projekt anzeigen
 view this project-element	projectmanager	de	Dieses Projektelement anzeigen
 working duration on %1	projectmanager	de	Arbeitsdauer am %1
+year & month	projectmanager	de	Jahr & Monat
+year only	projectmanager	de	Nur Jahreszahlen
 you can leave the date of the first price empty	projectmanager	de	Sie benötigen kein Datum für den ersten Preis
 you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	de	Sie können %Ymd verwenden, um das Erstellungsdatum einzugeben. Es verwendet die gleiche Syntax wie die PHP-Funktion date().<br>Weitere Platzhalter sind %px zum Einfügen der Eltern-ID (nur bei der Generierung von Teilprojekten) oder %ix zum Einfügen eines Index. Die Indizes werden automatisch erhöht, um doppelte IDs zu vermeiden. Jedes Generierungsformat sollte genau einen Index enthalten! (Außer, dass Sie sicher sind, dass das Datum das Projekt identifiziert).<br>Sie können auch z.B. %04ix verwenden. Dieser Index wird mit '0' bis 4 Ziffern (z.B. 0001) gefüllt. Wenn Sie das Füllzeichen weglassen (z.B. %5ix), wird der Index mit'0' gefüllt.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	de	Sie haben keine JPGraph Version %1 oder höher installiert! Diese wird vom Projektmanager für Gantt-Diagramm benötigt.
