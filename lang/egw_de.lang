@@ -401,6 +401,7 @@ startdate	projectmanager	de	Startdatum
 startrecord	projectmanager	de	Startdatensatz
 starts after	projectmanager	de	Startet nach
 starts before	projectmanager	de	Startet vor
+status	projectmanager	de	Status
 status filter	projectmanager	de	Status Filter
 status set	projectmanager	de	Status geändert
 style used for everything but elements. some fonts have only normal style.	projectmanager	de	Stil der für alles außer Elementen verwendet wird. Einige Fonts haben nur den Stil Normal.

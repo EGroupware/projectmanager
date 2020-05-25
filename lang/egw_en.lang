@@ -401,6 +401,7 @@ startdate	projectmanager	en	Start date
 startrecord	projectmanager	en	Start record
 starts after	projectmanager	en	Starts after
 starts before	projectmanager	en	Starts before
+status	projectmanager	en	Status
 status filter	projectmanager	en	Status filter
 status set	projectmanager	en	Status set
 style used for everything but elements. some fonts have only normal style.	projectmanager	en	Style used for everything but elements. Some fonts have only normal style.
