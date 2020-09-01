@@ -367,6 +367,7 @@ class projectmanager_so extends Api\Storage
 				$filter = array_merge($filter, $query);
 			}
 		}
+		$criteria = [];	// added to filter now, no need to add again by parent
 
 		// should we return (number or) children
 		$join .= $this->check_add_children_join($extra_cols);
