@@ -194,7 +194,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				{
 					$extra_keys = array('pe_eroles' => implode(',',$_POST['exec']['nm']['eroles_add']));
 				}
-				$e_bo->update($data['target_app'],$data['target_id'],$data['link_id'],
+				$update_data = $e_bo->update($data['target_app'],$data['target_id'],$data['link_id'],
 					$data['id'],true,(isset($extra_keys) ? $extra_keys : null));
 				break;
 
@@ -216,6 +216,18 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				$e_bo->delete(array('pm_id' => $data['id'],'pe_id' => $data['link_id']));
 				break;
 
+		}
+
+		if($update_data && $update_data['pe_id'])
+		{
+				// Something changed with an entry.  Trigger update in place to update times.
+				Api\Hooks::process([
+						'location' => 'notify-all',
+						'type'     => 'update-in-place',
+						'app'      => 'projectelement',
+						'id'       => $update_data['pe_id'],
+						'data'     => $update_data,
+				], null, true);
 		}
 	}
 
