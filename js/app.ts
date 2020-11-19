@@ -418,7 +418,7 @@ export class ProjectmanagerApp extends EgwApp
 	 */
 	linkHandler(url)
 	{
-		const match = url.match(/projectmanager(?:_elements)?_ui\.index&(pm_id)=(\d+)/);
+		const match = url.match(/projectmanager(?:_elements)?_ui\.index.*&(pm_id)=(\d+)/);
 		if(match && match.length > 2 && match[1] == 'pm_id')
 		{
 			if(this.views.elements.etemplate)
