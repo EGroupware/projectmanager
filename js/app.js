@@ -356,7 +356,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      * @returns {boolean} True if PM could handle the link internally, false to let framework handle it
      */
     ProjectmanagerApp.prototype.linkHandler = function (url) {
-        var match = url.match(/projectmanager(?:_elements)?_ui\.index&(pm_id)=(\d+)/);
+        var match = url.match(/projectmanager(?:_elements)?_ui\.index.*&(pm_id)=(\d+)/);
         if (match && match.length > 2 && match[1] == 'pm_id') {
             if (this.views.elements.etemplate) {
                 this.show('elements', match[2]);
