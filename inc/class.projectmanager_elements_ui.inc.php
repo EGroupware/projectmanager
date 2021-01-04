@@ -576,6 +576,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$total++;
 		}
 
+		// Re-init user preference, $this->update() changes it indirectly
+		Api\DateTime::init();
+
 		$readonlys = array();
 		$budget_rights = $this->project->check_acl(EGW_ACL_BUDGET);
 		foreach($rows as $n => &$row)
@@ -646,6 +649,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			if ($row['pe_app'] === 'pm_milestone')
 			{
 				$row['pe_icon'] = 'projectmanager/milestone';
+			}
+			foreach(['pe_modified'] as $date_field)
+			{
+				$row[$date_field] = Api\DateTime::server2user($row[$date_field]);
 			}
 		}
 
