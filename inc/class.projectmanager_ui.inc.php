@@ -392,10 +392,6 @@ class projectmanager_ui extends projectmanager_bo
 			Link::link('projectmanager',$content['link_to']['to_id'],$app,$app_id);
 		}
 		$content['links'] = $content['link_to'];
-		foreach(['pm_modified','pm_created'] as $date_field)
-		{
-			$content[$date_field] = Api\DateTime::server2user($content[$date_field]);
-		}
 
 		$preserv = $this->data;
 		// empty not explicitly in the project set values
@@ -638,10 +634,6 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				unset($row['pm_used_budget']);
 				unset($row['pm_planned_budget']);
-			}
-			foreach(['pm_modified'] as $date_field)
-			{
-				$row[$date_field] = Api\DateTime::server2user($row[$date_field]);
 			}
 		}
 

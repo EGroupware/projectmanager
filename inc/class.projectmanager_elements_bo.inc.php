@@ -122,7 +122,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	function __construct($pm_id=null,$pe_id=null)
 	{
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
-		$this->now_su = time() + $this->tz_offset_s;
+		$this->now_su = Api\DateTime::server2user('now','ts');
 
 		parent::__construct($pm_id,$pe_id);
 
