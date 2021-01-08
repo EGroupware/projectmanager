@@ -157,7 +157,7 @@ class projectmanager_bo extends projectmanager_so
 		if ((int) $this->debug >= 3 || $this->debug == 'projectmanager') $this->debug_message(function_backtrace()."\nprojectmanager_bo::projectmanager_bo($pm_id) started");
 
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
-		$this->now_su = time() + $this->tz_offset_s;
+		$this->now_su = Api\DateTime::server2user('now','ts');
 
 		$this->prefs =& $GLOBALS['egw_info']['user']['preferences']['projectmanager'];
 

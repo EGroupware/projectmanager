@@ -650,10 +650,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			{
 				$row['pe_icon'] = 'projectmanager/milestone';
 			}
-			foreach(['pe_modified'] as $date_field)
-			{
-				$row[$date_field] = Api\DateTime::server2user($row[$date_field]);
-			}
 		}
 
 		if ($this->prefs['show_custom_app_icons'] || $this->prefs['show_infolog_type_icon'])
