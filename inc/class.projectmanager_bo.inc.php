@@ -1343,6 +1343,12 @@ class projectmanager_bo extends projectmanager_so
 			$GLOBALS['egw']->acl->__construct($user);
 			$this->so = new projectmanager_so();
 
+			// Only get projects this user is involved in
+			$filter = ['('.$this->db->column_data_implode(' OR ',Array(
+					$this->table_name.'.pm_creator = ' . $user,
+				$this->members_table.'.member_uid = ' . $user
+			)).')'];
+
 			$notified_pm_ids = array();
 			foreach(array(
 				'notify_due_planned'   => 'pm_planned_end',
@@ -1357,21 +1363,29 @@ class projectmanager_bo extends projectmanager_so
 				$today = time()+24*60*60*(int)$pref_value;
 				$tomorrow = $today + 24*60*60;
 
-				$filter = "$today <= $filter_field AND $filter_field < $tomorrow";
+				// Filter date
+				$filter[1] = "$today <= $filter_field AND $filter_field < $tomorrow";
 
-				//error_log(__METHOD__."() checking with $pref filter '$filter' ($pref_value) for user $user ($email)");
+				//error_log(__METHOD__."() checking with $pref filter '".print_r($filter,true)."' ($pref_value) for user $user ($email)");
 
-				$results = $this->search('',TRUE, '', '', '', FALSE, 'AND', FALSE, Array($filter));
+				$results = $this->search('',TRUE, '', '', '', FALSE, 'AND', FALSE, $filter	);
+				//error_log(__METHOD__.  "  which gives these projects: " . print_r($results ? array_column($results,'pm_id') : '',true));
 				if(!$results || !is_array($results))
 				{
 					continue;
 				}
-				foreach($results as $project_id)
+				foreach($results as $_project)
 				{
-					// check if we already send a notification for that infolog entry, eg. starting and due on same day
-					if (in_array($project_id,$notified_pm_ids)) continue;
+					// check if we already send a notification for that project, eg. starting and due on same day
+					if (in_array($_project['pm_id'],$notified_pm_ids)) continue;
 
-					$project = $this->read($project_id);
+					$project = $this->read($_project['pm_id']);
+
+					if(!$project)
+					{
+						$notified_pm_ids[] = $_project['pm_id'];
+						continue;
+					}
 
 					if (is_null($this->tracking) || $this->tracking->user != $user)
 					{
