@@ -1329,7 +1329,7 @@ class projectmanager_bo extends projectmanager_so
 		{
 			return;
 		}
-		//error_log(__METHOD__."() users with open entries: ".implode(', ',$users));
+		error_log(__METHOD__."() users with open entries: ".implode(', ',$users));
 
 		$save_account_id = $GLOBALS['egw_info']['user']['account_id'];
 		$save_prefs      = $GLOBALS['egw_info']['user']['preferences'];
@@ -1366,10 +1366,10 @@ class projectmanager_bo extends projectmanager_so
 				// Filter date
 				$filter[1] = "$today <= $filter_field AND $filter_field < $tomorrow";
 
-				//error_log(__METHOD__."() checking with $pref filter '".print_r($filter,true)."' ($pref_value) for user $user ($email)");
+				error_log(__METHOD__."() checking with $pref filter '".print_r($filter,true)."' ($pref_value) for user $user ($email)");
 
 				$results = $this->search('',TRUE, '', '', '', FALSE, 'AND', FALSE, $filter	);
-				//error_log(__METHOD__.  "  which gives these projects: " . print_r($results ? array_column($results,'pm_id') : '',true));
+				error_log(__METHOD__.  "  which gives these projects: " . print_r($results ? array_column($results,'pm_id') : '',true));
 				if(!$results || !is_array($results))
 				{
 					continue;
@@ -1415,7 +1415,7 @@ class projectmanager_bo extends projectmanager_so
 								$this->tracking->datetime($project['pm_real_start'],null));
 							break;
 					}
-					//error_log("notifiying $user($email) about {$project['pm_title']}: {$project['message']}");
+					error_log("notifiying $user($email) about {$project['pm_title']}: {$project['message']}");
 
 					// Allow notification to have HTML
 					$this->tracking->html_content_allow = true;
