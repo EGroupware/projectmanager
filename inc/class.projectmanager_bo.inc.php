@@ -1339,7 +1339,7 @@ class projectmanager_bo extends projectmanager_so
 			// create the environment for $user
 			$this->user = $GLOBALS['egw_info']['user']['account_id'] = $user;
 			$GLOBALS['egw']->preferences->__construct($user);
-			$GLOBALS['egw_info']['user']['preferences'] = $GLOBALS['egw']->preferences->read_repository();
+			$GLOBALS['egw_info']['user']['preferences'] = $GLOBALS['egw']->preferences->read_repository(false);
 			$GLOBALS['egw']->acl->__construct($user);
 			$this->so = new projectmanager_so();
 
