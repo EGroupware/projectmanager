@@ -1345,6 +1345,7 @@ class projectmanager_bo extends projectmanager_so
 
 			// Check notification preferences
 			$assigned = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['notify_assigned'];
+			error_log(__METHOD__."() User $user PM preferences: " . print_r($GLOBALS['egw_info']['user']['preferences']['projectmanager'],true));
 			if($assigned == '0')
 			{
 				// User does not want notifications
