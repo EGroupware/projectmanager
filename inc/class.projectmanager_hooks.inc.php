@@ -695,6 +695,11 @@ class projectmanager_hooks
 		{
 			$assigned = '0';
 		}
+		if(empty($assigned) && $assigned !== '0')
+		{
+			// Don't let an actual empty stay
+			unset($data['prefs']['notify_assigned']);
+		}
 
 		// Make sure async notification is there
 		if ($data['prefs']['notify_due_planned'] || $data['prefs']['notify_due_real'] ||
