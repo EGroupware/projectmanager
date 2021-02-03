@@ -116,6 +116,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	en	Do you want a notification, if items you created get updated?
 document '%1' does not exist or is not readable for you!	projectmanager	en	Document '%1' does not exist or is not readable for you!
 document download filename	projectmanager	en	Document download file name
+document merge	projectmanager	en	Document merge
 don't break into subdirectories	projectmanager	en	Don't break into subdirectories
 done (100%)	projectmanager	en	Done (100%)
 edit access, incl. editing budget and elements	projectmanager	en	Edit access, incl. editing budget and elements
@@ -153,6 +154,8 @@ elements that can't start before this one is finished	projectmanager	en	Elements
 elements which have to be finished before this can start	projectmanager	en	Elements which have to be finished before this can start.
 empty	projectmanager	en	Empty
 empty for all	projectmanager	en	Empty for all
+enable element roles	projectmanager	en	Enable element roles
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	en	Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.
 encode non-ascii	projectmanager	en	Encode non-ascii
 enddate	projectmanager	en	End date
 ends after	projectmanager	en	Ends after
@@ -213,6 +216,7 @@ global categories	projectmanager	en	Global categories
 h	projectmanager	en	h
 has been moved to settings to allow eg. group-specific ids	projectmanager	en	Has been moved to settings to allow eg. group-specific IDs
 health	projectmanager	en	Health
+history logging and deleting of items	projectmanager	en	History logging and deleting of items
 hours	projectmanager	en	Hours
 hours per workday	projectmanager	en	Hours per work day
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day
@@ -459,6 +463,9 @@ view this project-element	projectmanager	en	View this project element
 working duration on %1	projectmanager	en	Working duration on %1
 year & month	projectmanager	en	Year & month
 year only	projectmanager	en	year only
+yes, noone can purge deleted items	projectmanager	en	Yes, no one can purge deleted items
+yes, only admins can purge deleted items	projectmanager	en	Yes, only admins can purge deleted items
+yes, with purging of deleted items possible	projectmanager	en	Yes, with purging of deleted items possible
 you can leave the date of the first price empty	projectmanager	en	You can leave the date of the first price empty
 you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	en	You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	en	You don't have JPGraph version %1 or higher installed! It is needed from Project Manager for Gantt charts.

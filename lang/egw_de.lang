@@ -153,6 +153,7 @@ elements that can't start before this one is finished	projectmanager	de	Elemente
 elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
 empty	projectmanager	de	Leer
 empty for all	projectmanager	de	leer für alle
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	de	Aktivieren Sie diese Funktion für eine anspruchsvollere Verwendung der Dokumentzusammenführung. Mit aktivierter Elementrollen-Funktion ist es möglich, Projektelementen eine bestimmte Rolle in einem Dokument zuzuweisen. Für alle diese Elemente, für die Elementrollen definiert wurden, kann der Projektmanager sehr detaillierte Informationen bis zu einem gewissen Grad der Anwendungsebene bereitstellen, die verwendet werden können, um ein einzelnes Dokument oder sogar einen Serienbrief in einem Durchgang zu erstellen
 encode non-ascii	projectmanager	de	Nicht ASCII kodieren
 enddate	projectmanager	de	Enddatum
 ends after	projectmanager	de	Endet nach
@@ -213,6 +214,7 @@ global categories	projectmanager	de	Globale Kategorien
 h	projectmanager	de	h
 has been moved to settings to allow eg. group-specific ids	projectmanager	de	Wurde zu Einstellungen verschoben um z. B. gruppen-spezifische Nummern zu ermöglichen.
 health	projectmanager	de	Gesundheit
+history logging and deleting of items	projectmanager	de	Protokollierung der Historie und Löschen von Objekten
 hours	projectmanager	de	Stunden
 hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag
@@ -373,7 +375,7 @@ select an activity if you want to calculate costs by quantity (time) and price	p
 select export options	projectmanager	de	Wählen Sie die Export Optionen aus
 select multiple projects for a further action	projectmanager	de	Wählt mehrere Projekte für einen weiteren Befehl aus
 select project sort order for project tree and link search	projectmanager	de	Sortierung der Projekte auswählen für Projekt-Baum und Suche in Verknüpfungen
-select the accounting types visible for users of projectmanager	projectmanager	de	wählen sie die Abrechnungsarten die für Benutzer des Projektmanagers sichtbar sind
+select the accounting types visible for users of projectmanager	projectmanager	de	Wählen sie die Abrechnungsarten, die für Benutzer des Projektmanagers sichtbar sind
 select this project and show it's elements	projectmanager	de	Dieses Projekt auswählen und seine Elemente anzeigen
 selectbox with %1	projectmanager	de	Auswahlbox mit %1
 set order to show sub-project bars in ganttcharts.	projectmanager	de	Sortierung der Unterprojekte oder Elemente im Gantt-Diagramm festlegen
