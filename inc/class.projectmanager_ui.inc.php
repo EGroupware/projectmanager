@@ -597,11 +597,14 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$query['col_filter']['subs_or_mains'] = $query['filter'];
 		// Sub-projects
-		if($query['col_filter']['pm_id'])
+		if($query_in['csv_export'] !== 'refresh')
 		{
-			$query['col_filter']['subs_or_mains'] = $query['col_filter']['pm_id'];
+			if ($query['col_filter']['pm_id'])
+			{
+				$query['col_filter']['subs_or_mains'] = $query['col_filter']['pm_id'];
+			}
+			unset($query['col_filter']['pm_id']);
 		}
-		unset($query['col_filter']['pm_id']);
 
 		$total = parent::get_rows($query,$rows,$readonlys,'',true, false, array('children'));
 
