@@ -24,6 +24,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.et2_gantt = void 0;
 /*egw:uses
     jsapi.jsapi;
     /vendor/bower-asset/jquery/dist/jquery.js;
@@ -139,7 +140,8 @@ var et2_gantt = /** @class */ (function (_super) {
                     scales: [
                         { unit: "year", step: 1, format: "%Y" },
                         {
-                            unit: "quarter", step: 1, format: function (date) {
+                            unit: "quarter", step: 1,
+                            format: function (date) {
                                 var dateToStr = gantt.date.date_to_str("%M");
                                 var endDate = gantt.date.add(gantt.date.add(date, 3, "month"), -1, "day");
                                 return dateToStr(date) + " - " + dateToStr(endDate);

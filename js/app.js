@@ -22,6 +22,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProjectmanagerApp = void 0;
 /*egw:uses
     /api/js/jsapi/egw_app.js;
     /etemplate/js/etemplate2.js;
