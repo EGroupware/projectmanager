@@ -554,7 +554,7 @@ class projectmanager_ui extends projectmanager_bo
 	 * @param array &$rows returned rows/cups
 	 * @param array &$readonlys eg. to disable buttons based on Acl
 	 */
-	function get_rows(&$query_in,&$rows,&$readonlys)
+	function get_rrows(&$query_in,&$rows,&$readonlys)
 	{
 		// for unknown reason, order is sometimes set to an element column, eg. pe_modified
 		// need to fix that, as it gives a sql error otherwise
@@ -644,7 +644,7 @@ class projectmanager_ui extends projectmanager_bo
 		// query the project-members only, if user choose to display them
 		if ($pm_ids && (@strstr($GLOBALS['egw_info']['user']['preferences']['projectmanager']['nextmatch-projectmanager.list.rows'],',role') !== false ||
 			// Current value, if user just changed column selection
-			@strstr(implode(',', $query['selectcols']),',role') !== false ))
+			@strstr(implode(',', (array)$query['selectcols']),',role') !== false ))
 		{
 			$this->instanciate('roles');
 			$roles = $this->roles->query_list();
@@ -772,7 +772,7 @@ class projectmanager_ui extends projectmanager_bo
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
-				'get_rows'       =>	'projectmanager.projectmanager_ui.get_rows',
+				'get_rows'       =>	'projectmanager.projectmanager_ui.get_rrows',
 				'filter2'        => 'active',// I initial value for the filter
 				'options-filter2'=> self::$status_labels,
 				'filter2_no_lang'=> True,// I  set no_lang for filter (=dont translate the options)
@@ -1052,7 +1052,7 @@ class projectmanager_ui extends projectmanager_bo
 
 			@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
 			$query['num_rows'] = -1;	// all
-			$this->get_rows($query,$projects,$readonlys);
+			$this->get_rrows($query,$projects,$readonlys);
 			// only use the ids
 			foreach($projects as $project)
 			{

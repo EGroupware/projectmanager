@@ -789,9 +789,9 @@ class projectmanager_bo extends projectmanager_so
 	 * @param array $keys
 	 * @return array|boolean array with project, null if project not found or false if no perms to view it
 	 */
-	function read($keys)
+	function read($keys, $extra_cols = '', $join = '')
 	{
-		if (!parent::read($keys))
+		if (!parent::read($keys, $extra_cols, $join))
 		{
 			return null;
 		}

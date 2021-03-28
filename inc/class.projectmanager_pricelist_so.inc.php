@@ -164,9 +164,10 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
 	 * @param string/boolean $join=true default join with prices-table or string as in Api\Storage\Base
-	 * @return array of matching rows (the row is an array of the cols) or False
+	 * @param boolean $need_full_no_count =false If true an unlimited query is run to determine the total number of rows, default false
+	 * @return array|NULL|true array of matching rows (the row is an array of the cols), NULL (nothing matched) or true (multiple union queries)
 	 */
-	function search($criteria,$only_keys=false,$order_by='pl_title',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
+	function &search($criteria, $only_keys=false, $order_by='pl_title', $extra_cols='', $wildcard='', $empty=False, $op='AND', $start=false, $filter=null, $join=true, $need_full_no_count=false)
 	{
 		if ($join === true)	// add join with prices-table
 		{
@@ -253,7 +254,7 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 		{
 			$filter['cat_id'] = $GLOBALS['egw']->categories->return_all_children($filter['cat_id']);
 		}
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 
 	/**
@@ -289,10 +290,11 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 	 *
 	 * If the last price of a pricelist-entry gets deleted, the pricelist entry is automatic deleted too!
 	 *
-	 * @param array/int $keys array with keys pm_id, pl_id and/or pl_validsince to delete or integer pm_id
-	 * @return int number of deleted prices
+	 * @param array|int $keys =null if given array with col => value pairs to characterise the rows to delete, or integer autoinc id
+	 * @param boolean $only_return_query *NOT SUPPORTED*
+	 * @return int|array affected rows, should be 1 if ok, 0 if an error or array with id's if $only_return_ids
 	 */
-	function delete($keys)
+	function delete($keys=null,$only_return_query=false)
 	{
 		//echo "<p>sopricelist::delete(".print_r($keys,true).",$touch_modified)</p>\n";
 		if (!is_array($keys) && (int) $keys) $keys = array('pm_id' => (int) $keys);

@@ -36,7 +36,7 @@ class projectmanager_etemplate_widget extends \EGroupware\Api\Etemplate\Widget\T
 	 *
 	 * @param string $cname
 	 */
-	public function beforeSendToClient($cname)
+	public function beforeSendToClient($cname, array $expand=[])
 	{
 		$form_name = self::form_name($cname, $this->id);
 		if (!is_array(self::$request->sel_options[$form_name])) self::$request->sel_options[$form_name] = array();
@@ -75,7 +75,7 @@ class projectmanager_etemplate_widget extends \EGroupware\Api\Etemplate\Widget\T
 			}
 		}
 
-		parent::beforeSendToClient($cname);
+		parent::beforeSendToClient($cname, $expand);
 	}
 
 	/**

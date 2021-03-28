@@ -57,9 +57,10 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 * saves the content of data to the db, also checks Acl and deletes not longer set prices!
 	 *
 	 * @param array $keys=null if given $keys are copied to data before saveing => allows a save as
-	 * @return int/boolean 0 on success, true on missing acl-rights and errno != 0 else
+	 * @param string|array $extra_where *UNSUPPORTED*
+	 * @return int|boolean 0 on success, or errno != 0 on error, or true if $extra_where is given and no rows affected
 	 */
-	function save($keys=null)
+	function save($keys=null,$extra_where=null)
 	{
 		if (is_array($keys) && count($keys)) $this->data_merge($keys);
 
@@ -113,7 +114,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 			if (count($this->data['prices']) == 1) $price['pl_validsince'] = 0;	// no date for first price
 			$prices[] =& $price;
 		}
-		foreach($this->data['project_prices'] as $key => &$price)
+		foreach($this->data['project_prices'] as &$price)
 		{
 			foreach(array('pm_id','pl_billable','pl_customertitle') as $key)
 			{
@@ -186,13 +187,14 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 * @param string/boolean $join=true default join with prices-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
-	function search($criteria,$only_keys=false,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
+	function &search($criteria,$only_keys=false,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
 	{
 		if (!$this->check_acl(Acl::READ,(int)($criteria['pm_id'] ? $criteria['pm_id'] : $this->pm_id)))
 		{
-			return false;
+			$ret = false;
+			return $ret;
 		}
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 
 	/**
@@ -242,10 +244,11 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 *
 	 * If the last price of a pricelist-entry gets deleted, the pricelist entry is automatic deleted too!
 	 *
-	 * @param array/int $keys array with keys pm_id, pl_id and/or pl_validsince to delete or integer pm_id
-	 * @return int/boolean number of deleted prices or false if permission denied
+	 * @param array|int $keys array with keys pm_id, pl_id and/or pl_validsince to delete or integer pm_id
+	 * @param boolean $only_return_query *NOT SUPPORTED*
+	 * @return int|array affected rows, should be 1 if ok, 0 if an error or array with id's if $only_return_ids
 	 */
-	function delete($keys)
+	function delete($keys=null,$only_return_query=false)
 	{
 		if (!$this->check_acl(Acl::EDIT,(int)(is_array($keys) ? $keys['pm_id'] : $keys)))
 		{

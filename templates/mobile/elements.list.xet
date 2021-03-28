@@ -45,7 +45,7 @@
 							<image label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
 							<image src="${row}[pe_healt_icon]"/>
 							<image src="${row}[pe_completion_icon]" no_lang="1"/>
-							<image src="{$row_cont[ignored]}" no_lang="1"/>
+							<image src="$row_cont[ignored]" no_lang="1"/>
 						</hbox>
 						<progress id="${row}[pe_completion]" no_lang="1"/>
 						<date-duration label="Time" id="${row}[pe_used_time]" readonly="true" options="@@duration_format"/>

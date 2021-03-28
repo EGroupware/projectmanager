@@ -245,7 +245,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 	 * @param array &$rows returned rows/cups
 	 * @param array &$readonlys eg. to disable buttons based on Acl
 	 */
-	function get_rows(&$query,&$rows,&$readonlys)
+	function get_rrows(&$query,&$rows,&$readonlys)
 	{
 		Api\Cache::setSession('projectmanager', 'pricelist', $query);
 
@@ -315,7 +315,7 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
-				'get_rows'       =>	'projectmanager.projectmanager_pricelist_ui.get_rows',
+				'get_rows'       =>	'projectmanager.projectmanager_pricelist_ui.get_rrows',
 				'no_filter'      => true,
 				'no_filter2'     => true,
 				'order'          =>	'pl_title',// IO name of the column to sort after (optional for the sortheaders)

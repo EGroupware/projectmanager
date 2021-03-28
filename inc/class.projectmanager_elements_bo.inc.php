@@ -194,7 +194,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				{
 					$extra_keys = array('pe_eroles' => implode(',',$_POST['exec']['nm']['eroles_add']));
 				}
-				$update_data = $e_bo->update($data['target_app'],$data['target_id'],$data['link_id'],
+				$update_data = $e_bo->updateElement($data['target_app'],$data['target_id'],$data['link_id'],
 					$data['id'],true,(isset($extra_keys) ? $extra_keys : null));
 				break;
 
@@ -246,7 +246,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * @param array $extra_keys =null key=>value pairs with element extra data to merge on update
 	 * @return array/boolean the updated project-element or false on error (eg. no read access)
 	 */
-	function update($app,$id,$pe_id=0,$pm_id=null,$update_project=true,$extra_keys=null)
+	function updateElement($app, $id, $pe_id=0, $pm_id=null, $update_project=true, $extra_keys=null)
 	{
 		if (!$pm_id) $pm_id = $this->pm_id;
 
@@ -375,7 +375,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		++$GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'];
 		foreach((array) $this->search(array('pm_id'=>$pm_id,"pe_status != 'ignore'"),false,'pe_planned_start') as $data)
 		{
-			$this->update($data['pe_app'],$data['pe_app_id'],$data['pe_id'],$pm_id,false);
+			$this->updateElement($data['pe_app'],$data['pe_app_id'],$data['pe_id'],$pm_id,false);
 
 			$update_project |= $this->updated & ~PM_TITLE;
 			if ($this->updated) $updated++;
@@ -752,7 +752,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 			if (!$app_id || !$link_id) continue;	// something went wrong, eg. element no longer exists
 
-			$this->update($element['pe_app'],$app_id,$link_id,$this->pm_id,false);	// false=no update of project itself => done once at the end
+			$this->updateElement($element['pe_app'],$app_id,$link_id,$this->pm_id,false);	// false=no update of project itself => done once at the end
 
 			// copy evtl. overwriten content from the element
 			if (($need_save = $element['pe_overwrite'] != 0))
@@ -892,7 +892,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * @param string/boolean $join=true default join with links-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
-	function search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true)
+	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
 	{
 		if ($this->pm_id && (!isset($filter['pm_id']) || !$filter['pm_id']))
 		{
@@ -914,7 +914,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				$filter[] = $this->db->expression($this->table_name,'NOT (',array('pe_id' => array_keys($cumulate)),')');
 			}
 		}
-		$rows = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join);
+		$rows = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 
 		if ($rows && $cumulate)
 		{

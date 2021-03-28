@@ -456,7 +456,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 * @param array &$rows returned rows/cups
 	 * @param array &$readonlys eg. to disable buttons based on Acl
 	 */
-	function get_rows(&$query_in,&$rows,&$readonlys)
+	function get_rrows(&$query_in,&$rows,&$readonlys)
 	{
 		if(!$query_in['csv_export'])
 		{
@@ -561,7 +561,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// adding the project itself as first line
 		if(!$sub_query)
 		{
-			$self = $this->update('projectmanager',$this->pm_id);
+			$self = $this->updateElement('projectmanager',$this->pm_id);
 			$self['pe_app']    = 'projectmanager';
 			$self['pe_app_id'] = $this->pm_id;
 			$self['pe_icon']   = 'projectmanager/navbar';
@@ -950,7 +950,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
-				'get_rows'       =>	'projectmanager.projectmanager_elements_ui.get_rows',
+				'get_rows'       =>	'projectmanager.projectmanager_elements_ui.get_rrows',
 				'num_rows'       => 0, // No data when first sent
 				'filter'         => 'used',// I initial value for the filter
 				'options-filter' => $this->status_labels,
