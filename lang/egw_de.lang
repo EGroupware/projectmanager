@@ -307,6 +307,7 @@ price deleted	projectmanager	de	Preis gelöscht
 price per unit	projectmanager	de	Preis pro Einheit
 price saved	projectmanager	de	Preis gespeichert
 pricelist	projectmanager	de	Preisliste
+progress	projectmanager	de	Erledigt
 project	common	de	Projekt
 project access (e.g. public)	projectmanager	de	Projekt Zugriffsrechte bspw. öffentlich
 project availibility	projectmanager	de	Projekt- Verfügbarkeit
@@ -362,6 +363,7 @@ receive notifications about starting entries (planned dates)	projectmanager	de	E
 receive notifications about starting entries (real dates)	projectmanager	de	Erhalte Benachrichtigungen über startende Einträge (tatsächlicher Start)
 remark	projectmanager	de	Bemerkung
 replanned time in minutes	projectmanager	de	Neu geplante Zeit in Minuten
+resize	projectmanager	de	Daueränderung
 resources	projectmanager	de	Ressourcen
 role	projectmanager	de	Rolle
 role deleted	projectmanager	de	Rolle gelöscht

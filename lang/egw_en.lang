@@ -309,6 +309,7 @@ price deleted	projectmanager	en	Price deleted.
 price per unit	projectmanager	en	Price per unit
 price saved	projectmanager	en	Price saved.
 pricelist	projectmanager	en	Price list
+progress	projectmanager	en	Progress
 project	common	en	Project
 project access (e.g. public)	projectmanager	en	Project access, e.g. public
 project availibility	projectmanager	en	Project availability
@@ -364,6 +365,7 @@ receive notifications about starting entries (planned dates)	projectmanager	en	R
 receive notifications about starting entries (real dates)	projectmanager	en	Receive notifications about starting entries (real dates)
 remark	projectmanager	en	Remark
 replanned time in minutes	projectmanager	en	Re-planned time in minutes
+resize	projectmanager	en	Resize
 resources	projectmanager	en	Resources
 role	projectmanager	en	Role
 role deleted	projectmanager	en	Role deleted.
