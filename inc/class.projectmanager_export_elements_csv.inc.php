@@ -22,6 +22,7 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 
 	// Used in conversions
 	static $types = array(
+		'float' => array('pe_planned_quantity','pe_used_quantity','pe_planned_budget','pe_used_budget','pe_unitprice'),
 		'select-account' => array('pe_creator','pe_modifier'),
 		'date-time' => array('pe_modified','pe_created','pe_synced'),
 		'date' => array('pe_planned_start','pe_planned_end', 'pe_real_start', 'pe_real_end'),
