@@ -63,10 +63,6 @@
 				<row>
 					<description value="Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go. " span="all"/>
 				</row>
-				<row class="th">
-					<description value="ID generation"/>
-					<description value="Has been moved to settings to allow eg. group-specific IDs"/>
-				</row>
 			</rows>
 		</grid>
 	</template>
