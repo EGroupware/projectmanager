@@ -208,6 +208,7 @@ class projectmanager_hooks
 				);
 			}
 
+			$file[] = ['text'=>'--'];
 			// Target for project tree
 			$file[] = array(
 				'no_lang' => true,
@@ -216,6 +217,7 @@ class projectmanager_hooks
 				'icon' => false
 			);
 
+			$file[] = ['text'=>'--'];
 			$file['Placeholders'] = Egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
 			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
 
