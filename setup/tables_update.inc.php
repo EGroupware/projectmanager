@@ -492,3 +492,13 @@ function projectmanager_upgrade19_1()
 {
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '20.1';
 }
+
+/**
+ * Bump version to 21.1
+ *
+ * @return string
+ */
+function projectmanager_upgrade20_1()
+{
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '21.1';
+}
