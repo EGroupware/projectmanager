@@ -723,7 +723,7 @@ class projectmanager_bo extends projectmanager_so
 				if (!is_array($data))
 				{
 					$data_backup =& $this->data; unset($this->data);
-					$data =& parent::read($data);
+					$data = parent::read($data);
 					$this->data =& $data_backup; unset($data_backup);
 
 					if (!$data) return null;	// $pm_id not found ==> no rights
@@ -884,7 +884,7 @@ class projectmanager_bo extends projectmanager_so
 		$result = array();
 		$sort_order = $this->prefs['link_sort_order'];
 		// Protect against bad preference value
-		$order = $this->field2label[reset(explode(' ', $sort_order))] ? $sort_order : 'pm_created DESC';
+		$order = isset($this->field2label[explode(' ', $sort_order)[0]]) ? $sort_order : 'pm_created DESC';
 		foreach((array) $this->search($pattern,false,$order,'','%',false,'OR',$limit,array('pm_status'=>'active'), true, $need_count) as $prj )
 		{
 			if ($prj['pm_id']) $result[$prj['pm_id']] = $this->link_title($prj);
@@ -915,16 +915,16 @@ class projectmanager_bo extends projectmanager_so
 	}
 
 	/**
-	 * gets all ancestors of a given project (calls itself recursivly)
+	 * gets all ancestors of a given project (calls itself recursively)
 	 *
-	 * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
+	 * A project P is the parent of another project C, if link_id1=P.pm_id and link_id2=C.pm_id !
 	 * To get all parents of a project C, we use all links to the project, which link_id2=C.pm_id.
 	 *
 	 * @param int $pm_id =0 id or 0 to use $this->pm_id
 	 * @param array $ancestors =array() already identified ancestors, default none
 	 * @return array with ancestors
 	 */
-	public static function &ancestors($pm_id=0,$ancestors=array())
+	public static function ancestors($pm_id=0,$ancestors=array())
 	{
 		static $ancestors_cache = array();	// some caching
 
@@ -947,8 +947,8 @@ class projectmanager_bo extends projectmanager_so
 				if (!in_array($parent,$ancestors_cache[$pm_id]))
 				{
 					$ancestors_cache[$pm_id][] = $parent;
-					// now we call ourself recursivly to get all parents of the parents
-					$ancestors_cache[$pm_id] =& static::ancestors($parent,$ancestors_cache[$pm_id]);
+					// now we call ourselves recursively to get all parents of the parents
+					$ancestors_cache[$pm_id] = static::ancestors($parent,$ancestors_cache[$pm_id]);
 				}
 			}
 		}
@@ -957,16 +957,16 @@ class projectmanager_bo extends projectmanager_so
 	}
 
 	/**
-	 * gets recursive all children (only projects) of a given project (calls itself recursivly)
+	 * gets recursive all children (only projects) of a given project (calls itself recursively)
 	 *
-	 * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
+	 * A project P is the parent of another project C, if link_id1=P.pm_id and link_id2=C.pm_id !
 	 * To get all children of a project C, we use all links to the project, which link_id1=C.pm_id.
 	 *
 	 * @param int $pm_id =0 id or 0 to use $this->pm_id
 	 * @param array $children =array() already identified ancestors, default none
 	 * @return array with children
 	 */
-	function &children($pm_id=0,$children=array())
+	function children($pm_id=0,$children=array())
 	{
 		static $children_cache = array();	// some caching
 
@@ -989,8 +989,8 @@ class projectmanager_bo extends projectmanager_so
 				if (!in_array($child,$children_cache[$pm_id]))
 				{
 					$children_cache[$pm_id][] = $child;
-					// now we call ourself recursivly to get all parents of the parents
-					$children_cache[$pm_id] =& $this->children($child,$children_cache[$pm_id]);
+					// now we call ourselves recursively to get all parents of the parents
+					$children_cache[$pm_id] = $this->children($child,$children_cache[$pm_id]);
 				}
 			}
 		}
@@ -1019,7 +1019,7 @@ class projectmanager_bo extends projectmanager_so
 
 		$sort_order = $this->prefs['link_sort_order'];
 		// Protect against bad preference value
-		$order = $this->field2label[reset(explode(' ', $sort_order))] ? $sort_order : 'pm_status,pm_number';
+		$order = isset($this->field2label[explode(' ', $sort_order)[0]]) ? $sort_order : 'pm_status,pm_number';
 
 		// get the children
 		while (($children = $this->search($filter,$this->table_name.'.pm_id AS pm_id,pm_number,pm_title,'.$this->links_table.'.link_id1 AS pm_parent,pm_status',
