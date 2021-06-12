@@ -1,4 +1,3 @@
-"use strict";
 /**
  * EGroupware - Projectmanager - Javascript UI
  *
@@ -8,45 +7,31 @@
  * @copyright (c) 2013 by Nathan Gray
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
  */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectmanagerApp = void 0;
 /*egw:uses
     /api/js/jsapi/egw_app.js;
     /etemplate/js/etemplate2.js;
     /projectmanager/js/et2_widget_gantt.js;
 */
-require("../../api/js/jsapi/egw_global");
-var egw_app_1 = require("../../api/js/jsapi/egw_app");
-var et2_widget_gantt_1 = require("./et2_widget_gantt");
+import "../../api/js/jsapi/egw_global";
+import { EgwApp } from "../../api/js/jsapi/egw_app";
+import { et2_gantt } from "./et2_widget_gantt";
+import { egw_getFramework } from "../../api/js/jsapi/egw_global";
+import { et2_nextmatch } from "../../api/js/etemplate/et2_extension_nextmatch";
+import { etemplate2 } from "../../api/js/etemplate/etemplate2";
 /**
  * JS for projectmanager
  */
-var ProjectmanagerApp = /** @class */ (function (_super) {
-    __extends(ProjectmanagerApp, _super);
+export class ProjectmanagerApp extends EgwApp {
     /**
      * Constructor
      *
      */
-    function ProjectmanagerApp() {
-        var _this = 
+    constructor() {
         // call parent
-        _super.call(this, 'projectmanager') || this;
+        super('projectmanager');
         // Variables for having all templates loaded & switching
-        _this.view = 'list';
-        _this.views = {
+        this.view = 'list';
+        this.views = {
             // Name = key, etemplate is filled in when loaded, sidemenu is untranslated text from hooks
             list: { name: 'list', etemplate: null, sidemenu: 'Projectlist' },
             elements: { name: 'elements', etemplate: null, sidemenu: 'Elementlist' },
@@ -54,30 +39,29 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             prices: { name: 'prices', etemplate: null, sidemenu: 'Pricelist' }
         };
         // Reference of all sub-templates
-        _this.etemplates = {
+        this.etemplates = {
             "projectmanager.list": "list",
             "projectmanager.elements.list": "elements",
             "projectmanager.gantt": "gantt",
             "projectmanager.pricelist.list": "prices"
         };
-        register_app_refresh(_this.appname, jQuery.proxy(_this.linkHandler, _this));
-        return _this;
+        register_app_refresh(this.appname, jQuery.proxy(this.linkHandler, this));
     }
     /**
      * Destructor
      */
-    ProjectmanagerApp.prototype.destroy = function (_app) {
+    destroy(_app) {
         // Release sidebox from views
         if (this.sidebox) {
             this.sidebox.parent().parent().find('a').off('.projectmanager');
         }
         // Remove reference to etemplates
-        for (var view in this.views) {
+        for (let view in this.views) {
             this.views[view].etemplate = null;
         }
         // call parent
-        _super.prototype.destroy.call(this, _app);
-    };
+        super.destroy(_app);
+    }
     /**
      * This function is called when the etemplate2 object is loaded
      * and ready.  If you must store a reference to the et2 object,
@@ -86,27 +70,27 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      * @param {etemplate2} et2 Newly ready etemplate2 object
      * @param {string} name template name
      */
-    ProjectmanagerApp.prototype.et2_ready = function (et2, name) {
+    et2_ready(et2, name) {
         // call parent
-        _super.prototype.et2_ready.call(this, et2, name);
+        super.et2_ready(et2, name);
         // Add to list, but only ones we care about (no edit popups)
         if (typeof this.views[this.etemplates[et2.name]] != 'undefined') {
-            var view_1 = this.views[this.etemplates[et2.name]];
-            view_1.etemplate = et2;
+            const view = this.views[this.etemplates[et2.name]];
+            view.etemplate = et2;
             // Take over sidebox menu
-            this._bind_sidebox(view_1.sidemenu, function () { app.projectmanager.show(view_1.name); return false; });
+            this._bind_sidebox(view.sidemenu, function () { app.projectmanager.show(view.name); return false; });
             // If one template disappears, we want to release it
             jQuery(et2.DOMContainer).one('clear', function () {
                 if (app.projectmanager && app.projectmanager.sidebox) {
                     app.projectmanager.sidebox.off('.projectmanager');
                 }
-                view_1.etemplate = null;
+                view.etemplate = null;
             });
             // Start hidden, except for project list
             if (jQuery(et2.DOMContainer).siblings('.et2_container').length && !et2.widgetContainer.getArrayMgr('content').getEntry('project_tree')) {
                 jQuery(et2.DOMContainer).hide();
             }
-            if (view_1.name == 'list') {
+            if (view.name == 'list') {
                 // First load, bind filemanager too
                 this._bind_sidebox('filemanager', function () {
                     app.projectmanager.show_filemanager(null, [{ id: window.app.projectmanager.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue() || 'projectmanager::'
@@ -114,7 +98,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                     return false;
                 });
                 // First load, framework could not use our link handler since it wasn't loaded
-                var fw = egw_getFramework();
+                const fw = egw_getFramework();
                 if (fw && !app.projectmanager.linkHandler(fw.getApplicationByName('projectmanager').browser.currentLocation)) {
                     this.show('list');
                 }
@@ -123,7 +107,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 this.show(this.view);
             }
         }
-    };
+    }
     /**
      * Switch the view
      *
@@ -136,12 +120,12 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      *	it will be pulled from the project tree
      * @returns {undefined}
      */
-    ProjectmanagerApp.prototype.show = function (what, project_id) {
-        var current_project = project_id && isNaN(project_id) ? (project_id[0] ? project_id[0] : null) : project_id;
+    show(what, project_id) {
+        let current_project = project_id && isNaN(project_id) ? (project_id[0] ? project_id[0] : null) : project_id;
         if (!current_project) {
             if (this.views.list.etemplate) {
-                var node_id = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue() || '';
-                var split = node_id.split('::');
+                const node_id = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue() || '';
+                const split = node_id.split('::');
                 if (split.length > 1 && split[1])
                     current_project = split[1];
             }
@@ -156,7 +140,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         }
         // Update with current project
         if (current_project) {
-            var et2 = this.views[what].etemplate.widgetContainer;
+            let et2 = this.views[what].etemplate.widgetContainer;
             switch (what) {
                 case 'elements':
                     et2.getWidgetById('nm').applyFilters({ col_filter: { 'pm_id': current_project } });
@@ -164,10 +148,10 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                         et2.getWidgetById('link_add').options.value.to_id = current_project;
                     break;
                 case 'gantt':
-                    var gantt_1 = et2.getWidgetById('gantt');
-                    gantt_1.gantt.showCover();
+                    const gantt = et2.getWidgetById('gantt');
+                    gantt.gantt.showCover();
                     // Re-set dates for different project
-                    var values = gantt_1.getInstanceManager().getValues(gantt_1)[gantt_1.id];
+                    const values = gantt.getInstanceManager().getValues(gantt)[gantt.id];
                     delete values.start_date;
                     delete values.end_date;
                     delete values.duration_unit;
@@ -185,20 +169,20 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                     this.egw.json('projectmanager_gantt::ajax_gantt_project', [project_id, values], function (data) {
                         if (console.time)
                             console.timeEnd("Gantt fetch");
-                        gantt_1.set_value(data);
+                        gantt.set_value(data);
                     }).sendRequest(true);
                     break;
                 case 'prices':
                     // Pricelist is not valid for all projects.  If we have the data, adjust accordingly
-                    var data = this.egw.dataGetUIDdata('projectmanager::' + current_project);
-                    var pricelist_project = '0';
+                    let data = this.egw.dataGetUIDdata('projectmanager::' + current_project);
+                    let pricelist_project = '0';
                     if (data && data.data && data.data.pm_accounting_type) {
                         pricelist_project = (data.data.pm_accounting_type == 'pricelist' ? current_project : '0');
                     }
                     else if (et2.getWidgetById('pm_id')) {
                         // Unknown project, try the filter options
-                        var options = et2.getWidgetById('pm_id').options.select_options || [];
-                        for (var i = 0; i < options.length; i++) {
+                        const options = et2.getWidgetById('pm_id').options.select_options || [];
+                        for (let i = 0; i < options.length; i++) {
                             if (parseInt(options[i].value) == parseInt(current_project)) {
                                 pricelist_project = current_project;
                                 break;
@@ -210,7 +194,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         }
         else if (what == 'prices') {
             // Price list doesn't need a project
-            var et2 = this.views[what].etemplate.widgetContainer;
+            let et2 = this.views[what].etemplate.widgetContainer;
             et2.getWidgetById('nm').applyFilters({ col_filter: { 'pm_id': '0' } });
         }
         else if (what != 'list') {
@@ -230,12 +214,12 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         // Set header
         this.egw.app_header(this.egw.lang(this.views[what].sidemenu), 'projectmanager');
         // Hide other views
-        for (var view in this.views) {
+        for (let view in this.views) {
             if (what != view && this.views[view].etemplate) {
                 jQuery(this.views[view].etemplate.DOMContainer).hide();
             }
         }
-    };
+    }
     /**
      * Set the application's state to the given state.
      *
@@ -247,7 +231,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      *
      * @return {boolean} false - Returns false to stop event propagation
      */
-    ProjectmanagerApp.prototype.setState = function (state) {
+    setState(state) {
         // State should be an object, not a string, but we'll parse
         if (typeof state == "string") {
             if (state.indexOf('{') != -1 || state == 'null') {
@@ -274,12 +258,12 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             this.show(this.view || 'list');
         }
         // Try and find a nextmatch widget, and set its filters
-        var nextmatched = false;
-        var et2 = this.views[this.view].etemplate;
+        let nextmatched = false;
+        let et2 = this.views[this.view].etemplate;
         switch (this.view) {
             case 'gantt':
-                for (var id in state.state) {
-                    var filter = et2.widgetContainer.getWidgetById(id);
+                for (const id in state.state) {
+                    const filter = et2.widgetContainer.getWidgetById(id);
                     if (filter && filter.set_value) {
                         filter.set_value(state.state[id]);
                     }
@@ -293,7 +277,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 else {
                     et2 = [et2];
                 }
-                for (var i = 0; i < et2.length; i++) {
+                for (let i = 0; i < et2.length; i++) {
                     et2[i].widgetContainer.iterateOver(function (_widget) {
                         // Firefox has trouble with spaces in search
                         if (state.state && state.state.search)
@@ -307,8 +291,8 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                     return false;
         }
         // call parent
-        state = _super.prototype.setState.call(this, state);
-    };
+        state = super.setState(state);
+    }
     /**
      * Retrieve the current state of the application for future restoration
      *
@@ -316,19 +300,19 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      *
      * @return {object} Application specific map representing the current state
      */
-    ProjectmanagerApp.prototype.getState = function () {
-        var state = {};
+    getState() {
+        let state = {};
         // Try and find a nextmatch widget, and set its filters
-        var et2 = this.views[this.view].etemplate;
+        const et2 = this.views[this.view].etemplate;
         if (et2) {
             if (this.view == 'gantt') {
                 et2.widgetContainer.iterateOver(function (gantt) {
                     state = gantt.getInstanceManager().getValues(gantt)[gantt.id];
                     // Gantt also needs the current PM ID stored
-                    var current_project = 0;
+                    let current_project = 0;
                     if (this.views.list.etemplate) {
-                        var node_id = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue() || '';
-                        var split = node_id.split('::');
+                        const node_id = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue() || '';
+                        const split = node_id.split('::');
                         if (split.length > 1 && split[1])
                             current_project = split[1];
                     }
@@ -336,7 +320,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                         current_project = parseInt('' + egw.preference('current_project', 'projectmanager'));
                     }
                     state.pm_id = current_project ? current_project : false;
-                }, this, et2_widget_gantt_1.et2_gantt);
+                }, this, et2_gantt);
             }
             else {
                 et2.widgetContainer.iterateOver(function (_widget) {
@@ -349,15 +333,15 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         }
         state.view = this.view || null;
         return state;
-    };
+    }
     /**
      * Handle links for projectmanager using JS instead of reloading
      *
      * @param {string} url
      * @returns {boolean} True if PM could handle the link internally, false to let framework handle it
      */
-    ProjectmanagerApp.prototype.linkHandler = function (url) {
-        var match = url.match(/projectmanager(?:_elements)?_ui\.index.*&(pm_id)=(\d+)/);
+    linkHandler(url) {
+        const match = url.match(/projectmanager(?:_elements)?_ui\.index.*&(pm_id)=(\d+)/);
         if (match && match.length > 2 && match[1] == 'pm_id') {
             if (this.views.elements.etemplate) {
                 this.show('elements', match[2]);
@@ -369,7 +353,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             return true;
         }
         return false;
-    };
+    }
     /**
      * Observer method receives update notifications from all applications
      *
@@ -386,13 +370,13 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      * @param {object|null} _links app => array of ids of linked entries
      * or null, if not triggered on server-side, which adds that info
      */
-    ProjectmanagerApp.prototype.observer = function (_msg, _app, _id, _type, _msg_type, _links) {
+    observer(_msg, _app, _id, _type, _msg_type, _links) {
         switch (_app) {
             case 'projectmanager':
-                var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
-                var itemId = _id != 'undefined' ? _app + "::" + _id : 0;
+                const tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
+                let itemId = _id != 'undefined' ? _app + "::" + _id : 0;
                 if (tree && itemId) {
-                    var node = tree.getNode(itemId);
+                    let node = tree.getNode(itemId);
                     // Not in tree.  Either parent node not expanded, or a new project
                     if (_type != 'delete' && node == null && typeof _links.projectmanager != 'undefined' && _links.projectmanager.length > 0) {
                         // First one should be parent
@@ -421,7 +405,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 }
             // Fall through to try the element list too
             default:
-                var appList = egw.link_app_list('query');
+                const appList = egw.link_app_list('query');
                 var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
                 if (typeof appList[_app] != 'undefined') {
                     if (typeof _links != 'undefined') {
@@ -430,7 +414,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                                 nm.refresh();
                         }
                         else if (nm) {
-                            var rex = RegExp("projectmanager_elements::" + _app + ":" + _id + ".*");
+                            const rex = RegExp("projectmanager_elements::" + _app + ":" + _id + ".*");
                             egw.dataRefreshUIDs(rex, 'delete');
                         }
                     }
@@ -453,8 +437,8 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 }
                 return false;
             case 'gantt':
-                var ids = [];
-                var gantt = this.views.gantt.etemplate.widgetContainer.getWidgetById('gantt');
+                const ids = [];
+                const gantt = this.views.gantt.etemplate.widgetContainer.getWidgetById('gantt');
                 if (_type == 'add' && _links.projectmanager) {
                     // Refresh the parent(s)
                     for (var i = 0; i < _links.projectmanager.length; i++) {
@@ -468,7 +452,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 gantt.refresh(ids, _type);
                 return false;
         }
-    };
+    }
     /**
      * Change the selected project
      *
@@ -480,17 +464,17 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      * @param {et2_tree|egwActionObject[]} tree_widget Either the tree widget, or the selected leaf.
      * @param {string|egwAction} old_node_id Either the selected leaf, or a context-menu action
      */
-    ProjectmanagerApp.prototype.set_project = function (node_id, tree_widget, old_node_id) {
+    set_project(node_id, tree_widget, old_node_id) {
         if (node_id == old_node_id) {
             return false;
         }
-        var same_view = (this.view != 'list');
+        let same_view = (this.view != 'list');
         if (typeof node_id == 'object' && tree_widget[0]) {
             same_view = false;
             node_id = tree_widget[0].id;
         }
         if (node_id) {
-            var split = node_id.split('::');
+            const split = node_id.split('::');
             if (split.length > 1 && split[1])
                 node_id = split[1];
             if (this.views['elements'].etemplate != null) {
@@ -506,13 +490,13 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         else {
             this.egw.open('', 'projectmanager', 'list', {}, 'projectmanager', 'projectmanager');
         }
-    };
+    }
     /**
      * Handles delete button in edit popup
      *
      */
-    ProjectmanagerApp.prototype.p_element_delete = function () {
-        var template = this.et2._inst;
+    p_element_delete() {
+        const template = this.et2._inst;
         if (template) {
             var content = template.widgetContainer.getArrayMgr('content');
             var id = content.data['pe_id'];
@@ -523,7 +507,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             delete: id
         });
         egw(window).close();
-    };
+    }
     /**
      * Limits constraint target link-entry widget to current project
      *
@@ -531,19 +515,19 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      * @param {et2_widget_entry} widget
      * @returns {boolean} true to do the search
      */
-    ProjectmanagerApp.prototype.element_constraint_pre_query = function (request, widget) {
+    element_constraint_pre_query(request, widget) {
         if (!request.options)
             request.options = {};
         request.options.pm_id = this.et2.getInstanceManager().widgetContainer.getArrayMgr('content').getEntry('pm_id');
         // Return true to proceed with the search
         return true;
-    };
+    }
     /**
      * Refresh the multi select box of eroles list
      *
      * @param {string} action name of action
      */
-    ProjectmanagerApp.prototype.erole_refresh = function (action) {
+    erole_refresh(action) {
         switch (action) {
             case 'delete':
                 return confirm("Delete this role?");
@@ -553,13 +537,13 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 this.et2._inst.submit();
         }
         // Refresh element edit so it knows about the new role
-        var elemEditWind = window.opener;
+        const elemEditWind = window.opener;
         if (elemEditWind) {
             elemEditWind.location.reload();
             // Refresh list so it knows about the new role
             egw(elemEditWind).refresh('', 'projectmanager');
         }
-    };
+    }
     /**
      * Toggles display of a div
      *
@@ -568,29 +552,29 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      *  @param {wiget object} widget
      *  @param {string} target jQuery selector
      */
-    ProjectmanagerApp.prototype.toggleDiv = function (event, widget, target) {
-        var element = jQuery(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
+    toggleDiv(event, widget, target) {
+        const element = jQuery(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
         if (jQuery(element).css('display') == 'none') {
             jQuery(element).fadeIn('medium');
         }
         else {
             jQuery(element).fadeOut('medium');
         }
-    };
+    }
     /**
      * Action callback to show gantt chart for a selected project
      *
      * @param {egwAction object} action
      * @param {object} selected
      */
-    ProjectmanagerApp.prototype.show_gantt = function (action, selected) {
-        var id = [];
-        for (var i = 0; i < selected.length; i++) {
+    show_gantt(action, selected) {
+        const id = [];
+        for (let i = 0; i < selected.length; i++) {
             // IDs look like projectmanager::#, or projectmanager_elements::projectmanager:#:#
             // gantt wants just #
-            var split = selected[i].id.split('::');
+            const split = selected[i].id.split('::');
             if (split.length > 1) {
-                var matches = split[1].match(':([0-9]+):?');
+                const matches = split[1].match(':([0-9]+):?');
                 id.push(matches ? matches[1] : split[1]);
             }
         }
@@ -606,15 +590,15 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 ajax: 'true'
             }), 'projectmanager', '', 'projectmanager');
         }
-    };
+    }
     /**
      * Handler for open action (double click) on the gantt chart
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.gantt_open_action = function (action, selected) {
-        var task = {};
+    gantt_open_action(action, selected) {
+        let task = {};
         if (selected[0].data) {
             task = selected[0].data;
         }
@@ -633,9 +617,9 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         else {
             this.egw.open(task.pm_id, 'projectmanager');
         }
-    };
-    ProjectmanagerApp.prototype.gantt_edit_element = function (action, selected) {
-        var task = {};
+    }
+    gantt_edit_element(action, selected) {
+        let task = {};
         if (selected[0].data) {
             task = selected[0].data;
         }
@@ -643,21 +627,21 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         if (task.pe_id) {
             this.egw.open(task.pe_id, 'projectelement', 'edit', { pm_id: task.pe_app == 'projectmanager' ? task.parent : task.pm_id });
         }
-    };
+    }
     /**
      * Action callback to show the pricelist for a selected project
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.show_pricelist = function (action, selected) {
-        var id = [];
-        for (var i = 0; i < selected.length; i++) {
+    show_pricelist(action, selected) {
+        const id = [];
+        for (let i = 0; i < selected.length; i++) {
             // IDs look like projectmanager::#, or projectmanager_elements::projectmanager:#:#
             // pricelist wants just #
-            var split = selected[i].id.split('::');
+            const split = selected[i].id.split('::');
             if (split.length > 1) {
-                var matches = split[1].match(':([0-9]+):?');
+                const matches = split[1].match(':([0-9]+):?');
                 id.push(matches ? matches[1] : split[1]);
             }
         }
@@ -672,26 +656,26 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
                 ajax: 'true'
             }), 'projectmanager', '', 'projectmanager');
         }
-    };
+    }
     /**
      * Action callback to edit a price on the price list
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.edit_price = function (action, selected) {
-        var extra = {
+    edit_price(action, selected) {
+        const extra = {
             menuaction: 'projectmanager.projectmanager_pricelist_ui.edit',
             pm_id: this.getState().col_filter.pm_id
         };
         if (selected[0] && selected[0].id) {
-            var data = this.egw.dataGetUIDdata(selected[0].id);
+            const data = this.egw.dataGetUIDdata(selected[0].id);
             if (data && data.data) {
                 extra.pl_id = data.data.pl_id;
             }
         }
         egw.openPopup(egw.link('/index.php', extra), 600, 450, '', 'filemanager');
-    };
+    }
     /**
      * Add a new price to a pricelist
      *
@@ -699,28 +683,28 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      *
      * @param {et2_widget} widget
      */
-    ProjectmanagerApp.prototype.add_price = function (widget) {
-        var extras = {
+    add_price(widget) {
+        const extras = {
             menuaction: 'projectmanager.projectmanager_pricelist_ui.edit',
             pm_id: 0
         };
-        var pm_filter = widget.getRoot().getWidgetById('pm_id');
+        const pm_filter = widget.getRoot().getWidgetById('pm_id');
         if (pm_filter) {
             extras.pm_id = pm_filter.get_value();
         }
         window.open(this.egw.link('/index.php', extras), '_blank', 'dependent=yes,width=600,height=450,scrollbars=yes,status=yes');
         return false;
-    };
+    }
     /**
      * Action callback to show the filemanager for a selected project
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.show_filemanager = function (action, selected) {
-        var app = '';
-        var id = '';
-        for (var i = 0; i < selected.length && id == ''; i++) {
+    show_filemanager(action, selected) {
+        let app = '';
+        let id = '';
+        for (let i = 0; i < selected.length && id == ''; i++) {
             // Data was provided, just read from there
             if (selected[i].data && selected[i].data.pe_app) {
                 app = selected[i].data.pe_app;
@@ -728,9 +712,9 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             }
             else {
                 // IDs look like projectmanager::#, or projectelement::app:app_id:element_id
-                var split = selected[i].id.split('::');
+                const split = selected[i].id.split('::');
                 if (split.length > 1) {
-                    var matches = split[1].match('([_a-z]+):([0-9]+):?');
+                    const matches = split[1].match('([_a-z]+):([0-9]+):?');
                     if (matches != null) {
                         app = matches[1];
                         id = matches[2];
@@ -747,24 +731,24 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             path: '/apps/' + app + '/' + id,
             ajax: 'true'
         }), 'filemanager', '', 'filemanager');
-    };
+    }
     /**
      * Enabled check for erole action, used by context menu
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.is_erole_allowed = function (action, selected) {
-        var allowed = true;
+    is_erole_allowed(action, selected) {
+        let allowed = true;
         // Some eroles can only be assigned to a single element.  If already assigned,
         // they won't be an action, but we'll prevent setting multiple elements
         if (action.data && !action.data.role_multi && selected.length > 1) {
             allowed = false;
         }
         // Erole is limited to only these apps, from projectmanager_elements_bo
-        var erole_apps = ['addressbook', 'calendar', 'infolog'];
-        for (var i = 0; i < selected.length && allowed; i++) {
-            var data = selected[i].data || egw.dataGetUIDdata(selected[i].id);
+        const erole_apps = ['addressbook', 'calendar', 'infolog'];
+        for (let i = 0; i < selected.length && allowed; i++) {
+            let data = selected[i].data || egw.dataGetUIDdata(selected[i].id);
             if (data && data.data)
                 data = data.data;
             if (!data) {
@@ -776,7 +760,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             }
         }
         return allowed;
-    };
+    }
     /**
      * Is the selected entry ignored?
      *
@@ -784,37 +768,37 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      * @param {egwActionObject[]} selected
      * @returns {Boolean}
      */
-    ProjectmanagerApp.prototype.is_ignored = function (action, selected) {
-        var ignored = false;
-        for (var i = 0; i < selected.length; i++) {
-            var data = egw.dataGetUIDdata(selected[i].id);
+    is_ignored(action, selected) {
+        let ignored = false;
+        for (let i = 0; i < selected.length; i++) {
+            const data = egw.dataGetUIDdata(selected[i].id);
             ignored = ignored || !!(data && data.data && data.data.ignored);
         }
         return ignored;
-    };
+    }
     /**
      * Toggle the ignore flag on the selected entries
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.ignore_action = function (action, selected) {
-        var ids = [];
-        for (var i = 0; i < selected.length; i++) {
+    ignore_action(action, selected) {
+        const ids = [];
+        for (let i = 0; i < selected.length; i++) {
             ids.push(selected[i].id);
         }
         egw.json('projectmanager_elements_ui::ajax_action', [action.id, ids, action.checked], null, this, true, this).sendRequest(true);
-    };
+    }
     /**
      * Enabled check for project element action, used by context menu
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.gantt_edit_enabled = function (action, selected) {
-        var allowed = true;
-        for (var i = 0; i < selected.length && allowed; i++) {
-            var data = selected[i].data || egw.dataGetUIDdata(selected[i].id);
+    gantt_edit_enabled(action, selected) {
+        let allowed = true;
+        for (let i = 0; i < selected.length && allowed; i++) {
+            let data = selected[i].data || egw.dataGetUIDdata(selected[i].id);
             if (data && data.data)
                 data = data.data;
             if (!data) {
@@ -827,16 +811,16 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
             }
         }
         return allowed;
-    };
+    }
     /**
      * Add new record's apps to a project
      *
      * @param {egwAction} action
      * @param {egwActionObject[]} selected
      */
-    ProjectmanagerApp.prototype.add_new = function (action, selected) {
-        var tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
-        var pm_id = '';
+    add_new(action, selected) {
+        const tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
+        let pm_id = '';
         if (tree) {
             pm_id = tree.getValue();
             // Gantt chart can have multiple selected
@@ -846,7 +830,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         }
         // No tree, or could not find project there
         if (!pm_id && selected[0] && egw.dataGetUIDdata(selected[0].id)) {
-            var data = egw.dataGetUIDdata(selected[0].id);
+            const data = egw.dataGetUIDdata(selected[0].id);
             if (data && data.data && data.data.pm_id) {
                 pm_id = 'projectmanager:' + data.data.pm_id;
             }
@@ -854,7 +838,7 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
         if (typeof action !== 'undefined') {
             return this.egw.open(pm_id, action.id.replace('act-', ''), 'add');
         }
-    };
+    }
     /**
      * Bind the provided click handler to the sidebox menu item that matches
      * the label for fast switching between views
@@ -862,24 +846,22 @@ var ProjectmanagerApp = /** @class */ (function (_super) {
      * @param {string} label
      * @param {function} click
      */
-    ProjectmanagerApp.prototype._bind_sidebox = function (label, click) {
+    _bind_sidebox(label, click) {
         if (!app.projectmanager.sidebox)
             return false;
-        var sidebox = jQuery('a:contains("' + app.projectmanager.egw.lang(label) + '")', app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
+        const sidebox = jQuery('a:contains("' + app.projectmanager.egw.lang(label) + '")', app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
         sidebox.off('click.projectmanager');
         sidebox.on('click.projectmanager', click);
-    };
+    }
     /**
      * Get title in order to set it as document title
      * @returns {string}
      */
-    ProjectmanagerApp.prototype.getWindowTitle = function () {
-        var widget = this.et2.getWidgetById('pm_title');
+    getWindowTitle() {
+        const widget = this.et2.getWidgetById('pm_title');
         if (widget)
             return widget.options.value;
-    };
-    return ProjectmanagerApp;
-}(egw_app_1.EgwApp));
-exports.ProjectmanagerApp = ProjectmanagerApp;
+    }
+}
 app.classes.projectmanager = ProjectmanagerApp;
 //# sourceMappingURL=app.js.map

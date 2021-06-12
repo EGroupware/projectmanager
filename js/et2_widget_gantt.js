@@ -1,30 +1,13 @@
-"use strict";
 /**
  * EGroupware eTemplate2 - JS widget for GANTT chart
  *
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @package etemplate
- * @subpackage api
- * @link http://www.egroupware.org
+ * @package projectmanager
+ * @subpackage etemplate
+ * @link https://www.egroupware.org
  * @author Nathan Gray
- * @copyright Nathan Gray 2014
- * @version $Id$
+ * @copyright Nathan Gray 2014-21
  */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.et2_gantt = void 0;
 /*egw:uses
     jsapi.jsapi;
     /vendor/bower-asset/jquery/dist/jquery.js;
@@ -32,10 +15,16 @@ exports.et2_gantt = void 0;
     /vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js;
     et2_core_inputWidget;
 */
-require("../../node_modules/@types/dhtmlxgantt/index.d.ts");
-var et2_core_inputWidget_1 = require("../../api/js/etemplate/et2_core_inputWidget");
-var et2_core_widget_1 = require("../../api/js/etemplate/et2_core_widget");
-var et2_core_inheritance_1 = require("../../api/js/etemplate/et2_core_inheritance");
+import "../../node_modules/@types/dhtmlxgantt/index.d.ts";
+import { et2_inputWidget } from "../../api/js/etemplate/et2_core_inputWidget";
+import { et2_createWidget, et2_register_widget } from "../../api/js/etemplate/et2_core_widget";
+import { ClassWithAttributes } from "../../api/js/etemplate/et2_core_inheritance";
+import { et2_dynheight } from "../../api/js/etemplate/et2_widget_dynheight";
+import { et2_dialog } from "../../api/js/etemplate/et2_widget_dialog";
+/* import dhtml-gantt, need to use commented out import statement, as egw:uses is not considered, if we have import(s)
+import "../../vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.js";
+import "../../vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js";
+ */
 /**
  * Gantt chart
  *
@@ -49,14 +38,12 @@ var et2_core_inheritance_1 = require("../../api/js/etemplate/et2_core_inheritanc
  * @see http://docs.dhtmlx.com/gantt/index.html
  * @augments et2_valueWidget
  */
-var et2_gantt = /** @class */ (function (_super) {
-    __extends(et2_gantt, _super);
-    function et2_gantt(_parent, _attrs, _child) {
-        var _this = 
+export class et2_gantt extends et2_inputWidget {
+    constructor(_parent, _attrs, _child) {
         // Call the inherited constructor
-        _super.call(this, _parent, _attrs, et2_core_inheritance_1.ClassWithAttributes.extendAttributes(et2_gantt._attributes, _child || {})) || this;
+        super(_parent, _attrs, ClassWithAttributes.extendAttributes(et2_gantt._attributes, _child || {}));
         // Common configuration for Egroupware/eTemplate
-        _this.gantt_config = {
+        this.gantt_config = {
             // Gantt takes a different format of date format, all the placeholders are prefixed with '%'
             api_date: '%Y-%n-%d %H:%i:%s',
             date_format: '%Y-%n-%d %H:%i:%s',
@@ -76,7 +63,7 @@ var et2_gantt = /** @class */ (function (_super) {
             // Also avoids a potential infinite loop thanks to how the dates are rounded with false
             round_dnd_dates: false,
             // Round resolution
-            time_step: parseInt('' + _this.egw().preference('interval', 'calendar')) || 15,
+            time_step: parseInt('' + this.egw().preference('interval', 'calendar')) || 15,
             min_duration: 1 * 60 * 1000,
             columns: [
                 { name: "text", label: egw.lang('Title'), tree: true, width: '*' }
@@ -85,7 +72,7 @@ var et2_gantt = /** @class */ (function (_super) {
             autosize: "y"
         };
         // Gantt will handle most zooming, here we configure the zoom levels & headings
-        _this.zoomConfig = {
+        this.zoomConfig = {
             levels: [
                 {
                     name: "minutes",
@@ -94,8 +81,8 @@ var et2_gantt = /** @class */ (function (_super) {
                         { unit: "day", step: 1, format: "%F %d" },
                         {
                             unit: "minute",
-                            step: parseInt("" + _this.egw().preference('interval', 'calendar')) || 15,
-                            format: _this.egw().preference('timeformat') == '24' ? "%G:%i" : "%g:%i"
+                            step: parseInt("" + this.egw().preference('interval', 'calendar')) || 15,
+                            format: this.egw().preference('timeformat') == '24' ? "%G:%i" : "%g:%i"
                         }
                     ]
                 },
@@ -104,7 +91,7 @@ var et2_gantt = /** @class */ (function (_super) {
                     min_column_width: 50,
                     scales: [
                         { unit: "day", step: 1, format: "%F %d" },
-                        { unit: "hour", format: _this.egw().preference('timeformat') == '24' ? "%G:%i" : "%g:%i" }
+                        { unit: "hour", format: this.egw().preference('timeformat') == '24' ? "%G:%i" : "%g:%i" }
                     ]
                 },
                 {
@@ -140,8 +127,7 @@ var et2_gantt = /** @class */ (function (_super) {
                     scales: [
                         { unit: "year", step: 1, format: "%Y" },
                         {
-                            unit: "quarter", step: 1,
-                            format: function (date) {
+                            unit: "quarter", step: 1, format: function (date) {
                                 var dateToStr = gantt.date.date_to_str("%M");
                                 var endDate = gantt.date.add(gantt.date.add(date, 3, "month"), -1, "day");
                                 return dateToStr(date) + " - " + dateToStr(endDate);
@@ -152,24 +138,23 @@ var et2_gantt = /** @class */ (function (_super) {
             ]
         };
         // Gantt instance, except they changed it to static
-        _this.gantt = null;
-        _this.gantt_loading = false;
+        this.gantt = null;
+        this.gantt_loading = false;
         // DOM Nodes
-        _this.filters = jQuery(document.createElement("div"))
+        this.filters = jQuery(document.createElement("div"))
             .addClass('et2_gantt_header');
-        _this.gantt_node = jQuery('<div style="width:100%;height:100%" id="gantt_here"></div>');
-        _this.htmlNode = jQuery(document.createElement("div"))
-            .css('height', _this.options.height)
+        this.gantt_node = jQuery('<div style="width:100%;height:100%" id="gantt_here"></div>');
+        this.htmlNode = jQuery(document.createElement("div"))
+            .css('height', this.options.height)
             .addClass('et2_gantt');
-        _this.htmlNode.prepend(_this.filters);
-        _this.htmlNode.append(_this.gantt_node);
+        this.htmlNode.prepend(this.filters);
+        this.htmlNode.append(this.gantt_node);
         // Create the dynheight component which dynamically scales the inner
         // container.
-        _this.dynheight = new et2_dynheight(_this.getParent().getDOMNode(_this.getParent()) || _this.getInstanceManager().DOMContainer, _this.gantt_node, 300);
-        _this.setDOMNode(_this.htmlNode[0]);
-        return _this;
+        this.dynheight = new et2_dynheight(this.getParent().getDOMNode(this.getParent()) || this.getInstanceManager().DOMContainer, this.gantt_node, 300);
+        this.setDOMNode(this.htmlNode[0]);
     }
-    et2_gantt.prototype.destroy = function () {
+    destroy() {
         if (this.gantt !== null) {
             // Unselect task before removing it, or we get errors later if it is accessed
             this.gantt.unselectTask();
@@ -184,13 +169,13 @@ var et2_gantt = /** @class */ (function (_super) {
         if (this.dynheight)
             this.dynheight.destroy();
         this.dynheight = null;
-        _super.prototype.destroy.call(this);
+        super.destroy();
         this.htmlNode.remove();
         this.htmlNode = null;
         this.gantt_node = null;
-    };
-    et2_gantt.prototype.doLoadingFinished = function () {
-        _super.prototype.doLoadingFinished.call(this);
+    }
+    doLoadingFinished() {
+        super.doLoadingFinished();
         if (this.gantt != null)
             return false;
         var config = jQuery.extend({}, gantt.config, this.gantt_config);
@@ -223,22 +208,22 @@ var et2_gantt = /** @class */ (function (_super) {
         // Bind filters
         this._bindChildren();
         return true;
-    };
-    et2_gantt.prototype._createNamespace = function () {
+    }
+    _createNamespace() {
         return true;
-    };
-    et2_gantt.prototype.getDOMNode = function (_sender) {
+    }
+    getDOMNode(_sender) {
         // Return filter container for children
         if (_sender != this && this._children.indexOf(_sender) != -1) {
             return this.filters[0];
         }
         // Normally simply return the main div
-        return _super.prototype.getDOMNode.call(this, _sender);
-    };
+        return super.getDOMNode(_sender);
+    }
     /**
      * Implement the et2_IResizable interface to resize
      */
-    et2_gantt.prototype.resize = function () {
+    resize() {
         if (this.dynheight) {
             this.dynheight.update(function (w, h) {
                 if (this.gantt) {
@@ -249,12 +234,12 @@ var et2_gantt = /** @class */ (function (_super) {
         else if (this.gantt) {
             this.gantt.setSizes();
         }
-    };
+    }
     /**
      * Changes the units for duration
      * @param {string} duration_unit One of minute, hour, week, year
      */
-    et2_gantt.prototype.set_duration_unit = function (duration_unit) {
+    set_duration_unit(duration_unit) {
         this.options.duration_unit = duration_unit;
         if (this.gantt && this.gantt.config.duration_unit != duration_unit) {
             this.gantt.config.duration_unit = duration_unit;
@@ -262,7 +247,7 @@ var et2_gantt = /** @class */ (function (_super) {
             this.gantt.config.end_date = null;
             this.gantt.refreshData();
         }
-    };
+    }
     /**
      * Set the columns for the grid (left) portion
      *
@@ -273,7 +258,7 @@ var et2_gantt = /** @class */ (function (_super) {
      *
      * @see http://docs.dhtmlx.com/gantt/api__gantt_columns_config.html for full options
      */
-    et2_gantt.prototype.set_columns = function (columns) {
+    set_columns(columns) {
         this.options.columns = columns;
         var displayed_columns = [];
         var gantt_widget = this;
@@ -321,7 +306,7 @@ var et2_gantt = /** @class */ (function (_super) {
             return;
         this.gantt.config.columns = displayed_columns;
         this.gantt.render();
-    };
+    }
     /**
      * Sets the data to be displayed in the gantt chart.
      *
@@ -347,7 +332,7 @@ var et2_gantt = /** @class */ (function (_super) {
      *
      * @param {type} value
      */
-    et2_gantt.prototype.set_value = function (value) {
+    set_value(value) {
         if (this.gantt == null)
             return false;
         // Unselect task before removing it, or we get errors later if it is accessed
@@ -398,16 +383,16 @@ var et2_gantt = /** @class */ (function (_super) {
         });
         // This render re-sizes gantt to work at highest zoom
         this.gantt.render();
-    };
+    }
     /**
      * getValue has to return the value of the input widget
      */
-    et2_gantt.prototype.getValue = function () {
+    getValue() {
         return jQuery.extend({}, this.value, {
             zoom: this.options.zoom,
             duration_unit: this.gantt.config.duration_unit
         });
-    };
+    }
     /**
      * Refresh given tasks for specified change
      *
@@ -423,7 +408,7 @@ var et2_gantt = /** @class */ (function (_super) {
      * @see jsapi.egw_refresh()
      * @fires refresh from the widget itself
      */
-    et2_gantt.prototype.refresh = function (_task_ids, _type) {
+    refresh(_task_ids, _type) {
         // Framework trying to refresh, but gantt not fully initialized
         if (!this.gantt || !this.gantt_node || !this.options.autoload)
             return;
@@ -487,20 +472,20 @@ var et2_gantt = /** @class */ (function (_super) {
         }
         // Trigger an event so app code can act on it
         jQuery(this).triggerHandler("refresh", [this, _task_ids, _type]);
-    };
+    }
     /**
      * Is dirty returns true if the value of the widget has changed since it
      * was loaded.
      */
-    et2_gantt.prototype.isDirty = function () {
+    isDirty() {
         return this.value != null;
-    };
+    }
     /**
      * Causes the dirty flag to be reseted.
      */
-    et2_gantt.prototype.resetDirty = function () {
+    resetDirty() {
         this.value = null;
-    };
+    }
     /**
      * Checks the data to see if it is valid, as far as the client side can tell.
      * Return true if it's not possible to tell on the client side, because the server
@@ -515,9 +500,9 @@ var et2_gantt = /** @class */ (function (_super) {
      *
      * @return {boolean} True if the value is valid (enough), false to fail
      */
-    et2_gantt.prototype.isValid = function (messages) {
+    isValid(messages) {
         return true;
-    };
+    }
     /**
      * Set a URL to fetch the data from the server.
      * Data must be in the specified format.
@@ -525,12 +510,12 @@ var et2_gantt = /** @class */ (function (_super) {
      *
      * @param {string} url
      */
-    et2_gantt.prototype.set_autoload = function (url) {
+    set_autoload(url) {
         if (this.gantt == null)
             return false;
         this.options.autoloading = url;
         throw new Exception('Not implemented yet - apparently loading segments is not supported automatically');
-    };
+    }
     /**
      * Sets the level of detail for the chart, which adjusts the scale(s) across the
      * top and the granularity of the drag grid.
@@ -540,7 +525,7 @@ var et2_gantt = /** @class */ (function (_super) {
      * @param {int} level Higher levels show more grid, at larger granularity.
      * @return {int} Current level
      */
-    et2_gantt.prototype.set_zoom = function (level) {
+    set_zoom(level) {
         // No level?  Auto calculate.
         if (!level || level < 1) {
             // Make sure we have the most up to date info for the calculations
@@ -584,11 +569,11 @@ var et2_gantt = /** @class */ (function (_super) {
         gantt.ext.zoom.setLevel(level);
         this.gantt.refreshData();
         return level;
-    };
+    }
     /**
      * Apply user's sort preference
      */
-    et2_gantt.prototype._apply_sort = function () {
+    _apply_sort() {
         switch (egw.preference('gantt_pm_elementbars_order', 'projectmanager')) {
             case "pe_start":
             case "pe_start,pe_end":
@@ -601,11 +586,11 @@ var et2_gantt = /** @class */ (function (_super) {
                 this.gantt.sort('pe_title', false);
                 break;
         }
-    };
+    }
     /**
      * Bind all the internal gantt events for nice widget actions
      */
-    et2_gantt.prototype._bindGanttEvents = function () {
+    _bindGanttEvents() {
         var gantt_widget = this;
         // Click on scale to zoom - top zooms out, bottom zooms in
         this.gantt_node.on('click', '.gantt_scale_line', function (e) {
@@ -747,25 +732,25 @@ var et2_gantt = /** @class */ (function (_super) {
                         }
                     }
                 }
-            }, gantt_widget, et2_core_inputWidget_1.et2_inputWidget);
+            }, gantt_widget, et2_inputWidget);
             return display;
         });
-    };
+    }
     /**
      * Confirm & delete link
      */
-    et2_gantt.prototype.delete_link_handler = function (link_id, event) {
+    delete_link_handler(link_id, event) {
         var gantt_widget = this;
         var dialog = et2_dialog.show_dialog(function (button) {
             if (button == et2_dialog.YES_BUTTON) {
                 gantt_widget.gantt.deleteLink(link_id);
             }
         }, this.egw().lang('delete link?'), this.egw().lang('delete'));
-    };
+    }
     /**
      * Bind onchange for any child input widgets
      */
-    et2_gantt.prototype._bindChildren = function () {
+    _bindChildren() {
         var gantt_widget = this;
         this.iterateOver(function (_widget) {
             if (_widget.instanceOf(et2_gantt))
@@ -801,14 +786,14 @@ var et2_gantt = /** @class */ (function (_super) {
             };
             if (_widget.change != change)
                 _widget.change = change;
-        }, this, et2_core_inputWidget_1.et2_inputWidget);
-    };
+        }, this, et2_inputWidget);
+    }
     /**
      * Start UI for selecting among defined columns
      *
      * @param {type} e
      */
-    et2_gantt.prototype._column_selection = function (e) {
+    _column_selection(e) {
         var self = this;
         var columns = [];
         var columns_selected = [];
@@ -877,7 +862,7 @@ var et2_gantt = /** @class */ (function (_super) {
             this.selectPopup.toggle();
         }
         this.selectPopup.position({ my: 'right top', at: 'right bottom', of: e.target });
-    };
+    }
     /**
      * Link the actions to the DOM nodes / widget bits.
      * Overridden to make the gantt chart a container, so it can't be selected.
@@ -886,8 +871,8 @@ var et2_gantt = /** @class */ (function (_super) {
      *
      * @param {object} actions {ID: {attributes..}+} map of egw action information
      */
-    et2_gantt.prototype._link_actions = function (actions) {
-        _super.prototype._link_actions.call(this, actions);
+    _link_actions(actions) {
+        super._link_actions(actions);
         // Submit with most actions
         this._actionManager.setDefaultExecute(jQuery.proxy(function (action, selected) {
             var ids = [];
@@ -910,14 +895,14 @@ var et2_gantt = /** @class */ (function (_super) {
         var objectManager = egw_getAppObjectManager(true);
         var widget_object = objectManager.getObjectById(this.id);
         widget_object.flags = EGW_AO_FLAG_IS_CONTAINER;
-    };
+    }
     /**
      * Bind a single task as needed to the action system.  This is instead of binding
      * every single task at the start.
      *
      * @param {string} taskId
      */
-    et2_gantt.prototype._link_task = function (taskId) {
+    _link_task(taskId) {
         if (!taskId)
             return;
         var objectManager = egw_getObjectManager(this.id, false);
@@ -930,7 +915,7 @@ var et2_gantt = /** @class */ (function (_super) {
         objectManager.setAllSelected(false);
         obj.setSelected(true);
         objectManager.updateSelectedChildren(obj, true);
-    };
+    }
     /**
      * ActionObjectInterface for gantt chart
      *
@@ -938,7 +923,7 @@ var et2_gantt = /** @class */ (function (_super) {
      * @param {type} task_id
      * @returns {egwActionObjectInterface|et2_widget_gantt_L34.et2_widget_ganttAnonym$1.dhtmlxGanttItemAOI.aoi}
      */
-    et2_gantt.prototype.dhtmlxGanttItemAOI = function (gantt, task_id) {
+    dhtmlxGanttItemAOI(gantt, task_id) {
         var aoi = new egwActionObjectInterface();
         // Retrieve the actual node from the chart
         aoi.node = gantt.getTaskNode(task_id);
@@ -965,8 +950,8 @@ var et2_gantt = /** @class */ (function (_super) {
             }
         };
         return aoi;
-    };
-    et2_gantt.prototype._set_grid_width = function (width) {
+    }
+    _set_grid_width(width) {
         if (typeof width === "undefined") {
             width = 0;
             for (var col in this.gantt_config.columns) {
@@ -979,11 +964,11 @@ var et2_gantt = /** @class */ (function (_super) {
         if (this.gantt == null)
             return;
         this.gantt.config.grid_width = this.gantt_config.grid_width;
-    };
-    et2_gantt.prototype.resize = function () {
+    }
+    resize() {
         // Update column size
         this._set_grid_width();
-    };
+    }
     // Printing
     /**
      * Prepare for printing
@@ -992,7 +977,7 @@ var et2_gantt = /** @class */ (function (_super) {
      * pages wider than a piece of paper, we rotate the gantt to fit.
      *
      */
-    et2_gantt.prototype.beforePrint = function () {
+    beforePrint() {
         // Add the class, if needed
         this.htmlNode.addClass('print');
         var max_width = Math.max(jQuery(this.gantt.$grid).width() + jQuery(this.gantt.$task_scale).width(), jQuery(this.gantt.$container).width());
@@ -1069,12 +1054,12 @@ var et2_gantt = /** @class */ (function (_super) {
             }
         });
         return defer;
-    };
+    }
     /**
      * Try to clean up the mess we made getting ready for printing
      * in beforePrint()
      */
-    et2_gantt.prototype.afterPrint = function () {
+    afterPrint() {
         jQuery(this.gantt.$container).css({
             transform: '',
             'transform-origin': '',
@@ -1089,43 +1074,41 @@ var et2_gantt = /** @class */ (function (_super) {
             this.set_columns(this.options.columns);
         }
         this.resize();
-    };
-    et2_gantt._attributes = {
-        "autoload": {
-            "name": "Autoload",
-            "type": "string",
-            "default": "",
-            "description": "JSON URL or menuaction to be called for projects with no, GET parameter selected contains id"
-        },
-        "ajax_update": {
-            "name": "AJAX update method",
-            "type": "string",
-            "default": "",
-            "description": "AJAX menuaction to be called when the user changes a task.  The function should take two parameters: the updated element, and all template values."
-        },
-        "duration_unit": {
-            "name": "Duration unit",
-            "type": "string",
-            "default": "minute",
-            "description": "The unit for task duration values.  One of minute, hour, week, year."
-        },
-        columns: {
-            name: "Columns",
-            type: "any",
-            default: [
-                { name: "text", label: egw.lang('Title'), tree: true, width: '*' }
-            ],
-            description: "Columns for the grid portion of the gantt chart.  An array of objects with keys name, label, etc.  See http://docs.dhtmlx.com/gantt/api__gantt_columns_config.html"
-        },
-        value: { type: 'any' },
-        needed: { ignore: true },
-        onfocus: { ignore: true },
-        tabindex: { ignore: true }
-    };
-    return et2_gantt;
-}(et2_core_inputWidget_1.et2_inputWidget));
-exports.et2_gantt = et2_gantt;
-et2_core_widget_1.et2_register_widget(et2_gantt, ["gantt", "projectmanager-gantt"]);
+    }
+}
+et2_gantt._attributes = {
+    "autoload": {
+        "name": "Autoload",
+        "type": "string",
+        "default": "",
+        "description": "JSON URL or menuaction to be called for projects with no, GET parameter selected contains id"
+    },
+    "ajax_update": {
+        "name": "AJAX update method",
+        "type": "string",
+        "default": "",
+        "description": "AJAX menuaction to be called when the user changes a task.  The function should take two parameters: the updated element, and all template values."
+    },
+    "duration_unit": {
+        "name": "Duration unit",
+        "type": "string",
+        "default": "minute",
+        "description": "The unit for task duration values.  One of minute, hour, week, year."
+    },
+    columns: {
+        name: "Columns",
+        type: "any",
+        default: [
+            { name: "text", label: egw.lang('Title'), tree: true, width: '*' }
+        ],
+        description: "Columns for the grid portion of the gantt chart.  An array of objects with keys name, label, etc.  See http://docs.dhtmlx.com/gantt/api__gantt_columns_config.html"
+    },
+    value: { type: 'any' },
+    needed: { ignore: true },
+    onfocus: { ignore: true },
+    tabindex: { ignore: true }
+};
+et2_register_widget(et2_gantt, ["gantt", "projectmanager-gantt"]);
 /**
  * Common look, feel & settings for all Gantt charts
  */

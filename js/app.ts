@@ -16,6 +16,9 @@
 import "../../api/js/jsapi/egw_global";
 import {EgwApp} from "../../api/js/jsapi/egw_app";
 import {et2_gantt} from "./et2_widget_gantt";
+import {egw_getFramework} from "../../api/js/jsapi/egw_global";
+import {et2_nextmatch} from "../../api/js/etemplate/et2_extension_nextmatch";
+import {etemplate2} from "../../api/js/etemplate/etemplate2";
 
 /**
  * JS for projectmanager

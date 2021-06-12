@@ -2,12 +2,11 @@
  * EGroupware eTemplate2 - JS widget for GANTT chart
  *
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @package etemplate
- * @subpackage api
- * @link http://www.egroupware.org
+ * @package projectmanager
+ * @subpackage etemplate
+ * @link https://www.egroupware.org
  * @author Nathan Gray
- * @copyright Nathan Gray 2014
- * @version $Id$
+ * @copyright Nathan Gray 2014-21
  */
 
 /*egw:uses
@@ -19,9 +18,18 @@
 */
 import "../../node_modules/@types/dhtmlxgantt/index.d.ts";
 import {et2_inputWidget} from "../../api/js/etemplate/et2_core_inputWidget";
-import {et2_register_widget, WidgetConfig} from "../../api/js/etemplate/et2_core_widget";
+import {et2_createWidget, et2_register_widget, WidgetConfig} from "../../api/js/etemplate/et2_core_widget";
 import {ClassWithAttributes} from "../../api/js/etemplate/et2_core_inheritance";
 import {et2_DOMWidget} from "../../api/js/etemplate/et2_core_DOMWidget";
+import {et2_IInput, et2_IPrint, et2_IResizeable} from "../../api/js/etemplate/et2_core_interfaces";
+import {et2_dynheight} from "../../api/js/etemplate/et2_widget_dynheight";
+import {et2_date} from "../../api/js/etemplate/et2_widget_date";
+import {et2_dialog} from "../../api/js/etemplate/et2_widget_dialog";
+
+/* import dhtml-gantt, need to use commented out import statement, as egw:uses is not considered, if we have import(s)
+import "../../vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.js";
+import "../../vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js";
+ */
 
 /**
  * Gantt chart
