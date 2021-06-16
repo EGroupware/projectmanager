@@ -15,12 +15,16 @@
     /vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js;
     et2_core_inputWidget;
 */
-import "../../node_modules/@types/dhtmlxgantt/index.d.ts";
+import "../../vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.js";
+import "../../vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js";
 import { et2_inputWidget } from "../../api/js/etemplate/et2_core_inputWidget";
 import { et2_createWidget, et2_register_widget } from "../../api/js/etemplate/et2_core_widget";
 import { ClassWithAttributes } from "../../api/js/etemplate/et2_core_inheritance";
 import { et2_dynheight } from "../../api/js/etemplate/et2_widget_dynheight";
 import { et2_dialog } from "../../api/js/etemplate/et2_widget_dialog";
+import { egw } from "../../api/js/jsapi/egw_global";
+import { EGW_AO_FLAG_IS_CONTAINER } from "../../api/js/egw_action/egw_action_constants.js";
+import { egw_getAppObjectManager } from "../../api/js/egw_action/egw_action.js";
 /* import dhtml-gantt, need to use commented out import statement, as egw:uses is not considered, if we have import(s)
 import "../../vendor/npm-asset/dhtmlx-gantt/codebase/dhtmlxgantt.js";
 import "../../vendor/npm-asset/dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker.js";

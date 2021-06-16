@@ -12,12 +12,11 @@
     /etemplate/js/etemplate2.js;
     /projectmanager/js/et2_widget_gantt.js;
 */
-import "../../api/js/jsapi/egw_global";
 import { EgwApp } from "../../api/js/jsapi/egw_app";
-import { et2_gantt } from "./et2_widget_gantt";
-import { egw_getFramework } from "../../api/js/jsapi/egw_global";
-import { et2_nextmatch } from "../../api/js/etemplate/et2_extension_nextmatch";
+import { egw, egw_getFramework } from "../../api/js/jsapi/egw_global";
 import { etemplate2 } from "../../api/js/etemplate/etemplate2";
+import { et2_gantt } from "./et2_widget_gantt";
+import { et2_nextmatch } from "../../api/js/etemplate/et2_extension_nextmatch";
 /**
  * JS for projectmanager
  */
@@ -452,6 +451,26 @@ export class ProjectmanagerApp extends EgwApp {
                 gantt.refresh(ids, _type);
                 return false;
         }
+    }
+    /**
+     * Change handler for link_add selection
+     *
+     * Keeps the app, but does not trigger an actual change
+     *
+     * @param event
+     * @param widget
+     */
+    element_add_app_change_handler(event, widget) {
+        if (widget.id !== 'link_addapp')
+            return false;
+        var nm = widget.getParent();
+        while (!nm.instanceOf(et2_nextmatch)) {
+            nm = nm.getParent();
+        }
+        if (nm.activeFilters) {
+            nm.activeFilters[widget.id] = widget.get_value();
+        }
+        return false;
     }
     /**
      * Change the selected project
