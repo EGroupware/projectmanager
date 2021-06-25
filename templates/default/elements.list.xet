@@ -3,7 +3,7 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
-		<link-add id="link_add" onchange="app.projectmanager.element_link_change_handler"/>
+		<link-add id="link_add" onchange="app.projectmanager.element_add_app_change_handler"/>
 	</template>
 	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
 		<grid width="99%" height="99%">
