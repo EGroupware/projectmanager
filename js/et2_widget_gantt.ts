@@ -27,8 +27,9 @@ import {et2_dynheight} from "../../api/js/etemplate/et2_widget_dynheight";
 import {et2_date} from "../../api/js/etemplate/et2_widget_date";
 import {et2_dialog} from "../../api/js/etemplate/et2_widget_dialog";
 import {egw} from "../../api/js/jsapi/egw_global";
-import {EGW_AO_FLAG_IS_CONTAINER} from "../../api/js/egw_action/egw_action_constants.js";
-import {egw_getAppObjectManager, egw_getObjectManager,egwActionObjectInterface,egwBitIsSet} from "../../api/js/egw_action/egw_action.js";
+import {EGW_AO_FLAG_IS_CONTAINER,EGW_AO_STATE_SELECTED} from "../../api/js/egw_action/egw_action_constants.js";
+import {egw_getAppObjectManager, egw_getObjectManager,egwActionObjectInterface} from "../../api/js/egw_action/egw_action.js";
+import {egwBitIsSet} from "../../api/js/egw_action/egw_action_common";
 
 
 /* import dhtml-gantt, need to use commented out import statement, as egw:uses is not considered, if we have import(s)
