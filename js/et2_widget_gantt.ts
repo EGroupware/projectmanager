@@ -1376,7 +1376,7 @@ et2_register_widget(et2_gantt, ["gantt","projectmanager-gantt"]);
 // Make sure the locale js file exists before including it otherwise it breaks the loading
 jQuery.get(egw.webserverUrl+"/vendor/npm-asset/dhtmlx-gantt/codebase/locale/locale" + (egw.preference('lang') != "en" ? "_" +egw.preference('lang') : "") + ".js", '', function(){
 	// Localize to user's language
-	egw.includeJS(this.url);
+	import(this.url);
 }).fail(function(e){console.log(e)});
 
 jQuery(function()
