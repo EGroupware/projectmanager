@@ -15,6 +15,7 @@
 use EGroupware\Api;
 use EGroupware\Api\Link;
 use EGroupware\Api\Egw;
+use EGroupware\Api\Storage\Merge;
 
 /**
  * Projectmanager - document merge object
@@ -203,6 +204,82 @@ class projectmanager_merge extends Api\Storage\Merge
 
 	}
 
+	/**
+	 * Merge the selected IDs into the given document, save it to the VFS, then
+	 * either open it in the editor or have the browser download the file.
+	 *
+	 * @param String[]|null $ids Allows extending classes to process IDs in their own way.  Leave null to pull from request.
+	 * @param Merge|null $document_merge
+	 * @throws Api\Exception
+	 * @throws Api\Exception\AssertionFailed
+	 */
+	public static function merge_entries(array $ids = null, Merge &$document_merge = null)
+	{
+		$document_merge = new projectmanager_merge();
+		if(is_null(($ids)))
+		{
+			$ids = is_string($_REQUEST['id']) && strpos($_REQUEST['id'], '[') === FALSE ? explode(',', $_REQUEST['id']) : json_decode($_REQUEST['id'], true);
+		}
+		if($_REQUEST['select_all'] === 'true')
+		{
+			$ids = self::get_all_ids($document_merge);
+		}
+
+		$document_projects = array();
+
+		// Project list IDs are just PM ID, element action id's are pe_app:pe_app_id:pe_id --> pe_id
+		if (!is_numeric($ids[0]))
+		{
+			foreach ($ids as $key => &$id)
+			{
+				list($app, $app_id, $id) = explode(':', $id);
+				if ($app == 'projectmanager' && $id == 0)
+				{
+					// Special handling for top-level projects - they show in the element list and
+					// can be selected, but can't be retrieved by pe_id
+					$document_projects[] = $app_id;
+					unset($ids[$key]);
+				}
+			}
+			unset($id);
+		}
+
+		// Knowing which project we're using helps with file name & pre-loading
+		if(count($document_projects) > 0)
+		{
+			$document_merge->change_project($document_projects[0]);
+		}
+		else
+		{
+			$pe = $document_merge->projectmanager_elements_bo->read($ids[0]);
+			$document_merge->change_project($pe['pm_id']);
+		}
+
+
+		return parent::merge_entries($ids,$document_merge);
+	}
+
+	/**
+	 * Generate a filename for the merged file
+	 *
+	 * Override the default to include the project name / title
+	 *
+	 * @return string
+	 */
+	protected function get_filename($document) : string
+	{
+		$name = '';
+		if(isset($this->projectmanager_bo->prefs['document_download_name']))
+		{
+			$ext = '.'.pathinfo($document,PATHINFO_EXTENSION);
+			$name = preg_replace(
+				array('/%document%/','/%pm_number%/','/%pm_title%/'),
+				array(basename($document,$ext),$this->projectmanager_bo->data['pm_number'],$this->projectmanager_bo->data['pm_title']),
+				$this->projectmanager_bo->prefs['document_download_name']
+			);
+		}
+		return $name;
+	}
 	/**
 	 * Change the currently merging project
 	 *
