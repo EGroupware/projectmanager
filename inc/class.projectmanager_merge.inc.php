@@ -28,9 +28,9 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * @var array
 	 */
 	var $public_functions = array(
-		'download_by_request'	=> true,
-		'show_replacements'		=> true,
-		'merge_entries'		=> true
+		'download_by_request' => true,
+		'show_replacements'   => true,
+		'merge_entries'       => true
 	);
 
 	/**
@@ -100,10 +100,10 @@ class projectmanager_merge extends Api\Storage\Merge
 	/**
 	 * Constructor
 	 *
-	 * @param int $pm_id=null id of current project
+	 * @param int $pm_id =null id of current project
 	 * @return projectmanager_merge
 	 */
-	function __construct($pm_id=null)
+	function __construct($pm_id = null)
 	{
 		parent::__construct();
 
@@ -116,32 +116,32 @@ class projectmanager_merge extends Api\Storage\Merge
 		$this->table_plugins['eroles'] = 'table_eroles';
 
 		$this->projectmanager_fields = array(
-			'pm_id'					=> lang('Project ID'),
-			'pm_number'				=> lang('Project number'),
-			'pm_title'				=> lang('Title'),
-			'pm_description'		=> lang('Description'),
-			'pm_creator'			=> lang('Creator'),
-			'pm_created'			=> lang('Creation date and time'),
-			'pm_modifier'			=> lang('Modifier'),
-			'pm_modified'			=> lang('Modified date and time'),
-			'pm_planned_start'		=> lang('Planned start date and time'),
-			'pm_planned_end'		=> lang('Planned end date and time'),
-			'pm_real_start'			=> lang('Real start date and time'),
-			'pm_real_end'			=> lang('Real end date and time'),
-			'cat_id'				=> lang('Category'),
-			'pm_access'				=> lang('Access'),
-			'pm_priority'			=> lang('Priority'),
-			'pm_status'				=> lang('Status'),
-			'pm_completion'			=> lang('Completion'),
-			'pm_used_time'			=> lang('Used time'),
-			'pm_planned_time'		=> lang('Planned time'),
-			'pm_replanned_time'		=> lang('Re-planned time'),
-			'pm_used_budget'		=> lang('Used budget'),
-			'pm_planned_budget'		=> lang('Planned budget'),
-			'pm_accounting_type'	=> lang('Accounting type'),
-			'user_timezone_read'	=> lang('Timezone'),
+			'pm_id'              => lang('Project ID'),
+			'pm_number'          => lang('Project number'),
+			'pm_title'           => lang('Title'),
+			'pm_description'     => lang('Description'),
+			'pm_creator'         => lang('Creator'),
+			'pm_created'         => lang('Creation date and time'),
+			'pm_modifier'        => lang('Modifier'),
+			'pm_modified'        => lang('Modified date and time'),
+			'pm_planned_start'   => lang('Planned start date and time'),
+			'pm_planned_end'     => lang('Planned end date and time'),
+			'pm_real_start'      => lang('Real start date and time'),
+			'pm_real_end'        => lang('Real end date and time'),
+			'cat_id'             => lang('Category'),
+			'pm_access'          => lang('Access'),
+			'pm_priority'        => lang('Priority'),
+			'pm_status'          => lang('Status'),
+			'pm_completion'      => lang('Completion'),
+			'pm_used_time'       => lang('Used time'),
+			'pm_planned_time'    => lang('Planned time'),
+			'pm_replanned_time'  => lang('Re-planned time'),
+			'pm_used_budget'     => lang('Used budget'),
+			'pm_planned_budget'  => lang('Planned budget'),
+			'pm_accounting_type' => lang('Accounting type'),
+			'user_timezone_read' => lang('Timezone'),
 
-			'all_roles'		=> lang('All roles'),
+			'all_roles' => lang('All roles'),
 		);
 		$this->role_so = new projectmanager_roles_so();
 		$roles = $this->role_so->query_list();
@@ -158,48 +158,49 @@ class projectmanager_merge extends Api\Storage\Merge
 
 
 		$this->pm_fields_translate = array(
-			'cat_id'				=> 'pm_cat_id',
-			'user_timezone_read'	=> 'pm_user_timezone',
+			'cat_id'             => 'pm_cat_id',
+			'user_timezone_read' => 'pm_user_timezone',
 		);
 
 		$this->projectmanager_element_fields = array(
-			'pe_id'					=> lang('Element ID'),
-			'pe_title'				=> lang('Title'),
-			'pe_details'			=> lang('Description'),
-			'pe_completion'			=> lang('Completion'),
-			'pe_used_time'			=> lang('Used time in minutes'),
-			'pe_planned_time'		=> lang('Planned time in minutes'),
-			'pe_replanned_time'		=> lang('Replanned time in minutes'),
-			'pe_share'				=> lang('Shared time in minutes'),
-			'pe_planned_quantity'	=> lang('Planned quantitiy'),
-			'pe_used_quantity'		=> lang('Used quantity'),
-			'pe_unitprice'			=> lang('Price per unit'),
-			'pe_planned_budget'		=> lang('Planned budget'),
-			'pe_used_budget'		=> lang('Used budget'),
-			'pe_planned_start'		=> lang('Planned start date and time'),
-			'pe_real_start'			=> lang('Real start date and time'),
-			'pe_planned_end'		=> lang('Planned end date and time'),
-			'pe_real_end'			=> lang('Real end date and time'),
-			'pe_synced'				=> lang('Last sync date and time'),
-			'pe_modified'			=> lang('Modified date and time'),
-			'pe_modifier'			=> lang('Modifier'),
-			'pe_status'				=> lang('Status'),
-			'cat_id'				=> lang('Category'),
-			'pe_remark'				=> lang('Remark'),
-			'user_timezone_read'	=> lang('Timezone'),
-			'pe_app'		=> lang('Application'),
-			'pe_resources'		=> lang('Resources')
+			'pe_id'               => lang('Element ID'),
+			'pe_title'            => lang('Title'),
+			'pe_details'          => lang('Description'),
+			'pe_completion'       => lang('Completion'),
+			'pe_used_time'        => lang('Used time in minutes'),
+			'pe_planned_time'     => lang('Planned time in minutes'),
+			'pe_replanned_time'   => lang('Replanned time in minutes'),
+			'pe_share'            => lang('Shared time in minutes'),
+			'pe_planned_quantity' => lang('Planned quantitiy'),
+			'pe_used_quantity'    => lang('Used quantity'),
+			'pe_unitprice'        => lang('Price per unit'),
+			'pe_planned_budget'   => lang('Planned budget'),
+			'pe_used_budget'      => lang('Used budget'),
+			'pe_planned_start'    => lang('Planned start date and time'),
+			'pe_real_start'       => lang('Real start date and time'),
+			'pe_planned_end'      => lang('Planned end date and time'),
+			'pe_real_end'         => lang('Real end date and time'),
+			'pe_synced'           => lang('Last sync date and time'),
+			'pe_modified'         => lang('Modified date and time'),
+			'pe_modifier'         => lang('Modifier'),
+			'pe_status'           => lang('Status'),
+			'cat_id'              => lang('Category'),
+			'pe_remark'           => lang('Remark'),
+			'user_timezone_read'  => lang('Timezone'),
+			'pe_app'              => lang('Application'),
+			'pe_resources'        => lang('Resources')
 		);
 		$this->pe_fields_translate = array(
-			'cat_id'				=> 'pe_cat_id',
-			'user_timezone_read'	=> 'pe_user_timezone',
+			'cat_id'             => 'pe_cat_id',
+			'user_timezone_read' => 'pe_user_timezone',
 		);
 
 		// Add in element summary
 		$this->projectmanager_elements_bo = new projectmanager_elements_bo($pm_id);
 		$summary = $this->projectmanager_elements_bo->summary();
-		foreach($summary as $key => $value) {
-			$this->projectmanager_fields[$key.'_total'] = $this->projectmanager_element_fields[$key] ? $this->projectmanager_element_fields[$key] : $key . ' ' . lang('Total');
+		foreach($summary as $key => $value)
+		{
+			$this->projectmanager_fields[$key . '_total'] = $this->projectmanager_element_fields[$key] ? $this->projectmanager_element_fields[$key] : $key . ' ' . lang('Total');
 		}
 
 	}
@@ -216,7 +217,7 @@ class projectmanager_merge extends Api\Storage\Merge
 	public static function merge_entries(array $ids = null, Merge &$document_merge = null)
 	{
 		$document_merge = new projectmanager_merge();
-		if(is_null(($ids)))
+		if(is_null($ids))
 		{
 			$ids = is_string($_REQUEST['id']) && strpos($_REQUEST['id'], '[') === FALSE ? explode(',', $_REQUEST['id']) : json_decode($_REQUEST['id'], true);
 		}
@@ -225,38 +226,110 @@ class projectmanager_merge extends Api\Storage\Merge
 			$ids = self::get_all_ids($document_merge);
 		}
 
-		$document_projects = array();
-
 		// Project list IDs are just PM ID, element action id's are pe_app:pe_app_id:pe_id --> pe_id
-		if (!is_numeric($ids[0]))
+		if(!is_numeric($ids[0]))
 		{
-			foreach ($ids as $key => &$id)
-			{
-				list($app, $app_id, $id) = explode(':', $id);
-				if ($app == 'projectmanager' && $id == 0)
-				{
-					// Special handling for top-level projects - they show in the element list and
-					// can be selected, but can't be retrieved by pe_id
-					$document_projects[] = $app_id;
-					unset($ids[$key]);
-				}
-			}
-			unset($id);
-		}
-
-		// Knowing which project we're using helps with file name & pre-loading
-		if(count($document_projects) > 0)
-		{
-			$document_merge->change_project($document_projects[0]);
+			$ids = static::merge_element_entries($ids, $document_merge);
 		}
 		else
 		{
-			$pe = $document_merge->projectmanager_elements_bo->read($ids[0]);
-			$document_merge->change_project($pe['pm_id']);
+			if(count($ids) > 0)
+			{
+				$document_merge->change_project($ids[0]);
+			}
 		}
 
+		return parent::merge_entries($ids, $document_merge);
+	}
 
-		return parent::merge_entries($ids,$document_merge);
+	/**
+	 * Setup & deal with merge from element list
+	 *
+	 * @param $ids
+	 * @param Merge $document_merge
+	 */
+	protected function merge_element_entries($ids, projectmanager_merge &$document_merge)
+	{
+		$document_projects = array();
+		$eroles = [];
+		$contacts = [];
+
+		foreach($ids as $key => &$id)
+		{
+			list($app, $app_id, $id) = explode(':', $id);
+			if($app == 'projectmanager' && $id == 0)
+			{
+				// Special handling for top-level projects - they show in the element list and
+				// can be selected, but can't be retrieved by pe_id
+				$document_projects[] = $app_id;
+				unset($ids[$key]);
+			}
+			else
+			{
+				$document_merge->elements[] = $id;
+			}
+		}
+		unset($id);
+
+		$elements_ui = new projectmanager_elements_ui();
+
+		// User selected only projects, so select all elements in that project
+		if(count($ids) == 0 && count($document_projects) > 0)
+		{
+			// Use all elements from project
+			$query = $old_query = Api\Cache::getSession('projectmanager', 'projectelements_list');
+			$query['num_rows'] = -1;        // all
+			$elements_ui->get_rows($query, $selection, $readonlys);
+			foreach($selection as $key => $element)
+			{
+				if(!is_int($key))
+				{
+					continue;
+				}    // ignore string keys from get_rows
+				if($element['pe_id'] && is_numeric($element['pe_id']))
+				{
+					$document_merge->elements[] = $element['pe_id'];
+				}
+			}
+
+			// Reset nm params
+			Api\Cache::setSession('projectmanager', 'projectelements_list', $old_query);
+		}
+
+		// Did not get project in the list, make sure to get it
+		if(count($document_projects) == 0)
+		{
+			$query = Api\Cache::getSession('projectmanager', 'projectelements_list');
+			$document_projects[] = $query['col_filter']['pm_id'];
+		}
+
+		foreach($elements_ui->search(array('pm_id' => $document_projects), false) as $id => $element)
+		{
+			// add contact
+			if($element['pe_app'] == 'addressbook' && in_array($element['pe_id'], $document_merge->elements))
+			{
+				$contacts[] = $element['pe_app_id'];
+			}
+			// add erole(s)
+			if($elements_ui->config['enable_eroles'] && !empty($element['pe_eroles']))
+			{
+				// one element could have multiple eroles
+				foreach(explode(',', $element['pe_eroles']) as $erole_id)
+				{
+					$eroles[] = array(
+						'pe_id'    => $element['pe_id'],
+						'app'      => $element['pe_app'],
+						'app_id'   => $element['pe_app_id'],
+						'erole_id' => $erole_id,
+					);
+				}
+			}
+		}
+
+		$document_merge->eroles = $eroles;
+		$document_merge->contact_ids = array_unique($contacts);
+
+		return $document_projects;
 	}
 
 	/**
@@ -266,28 +339,32 @@ class projectmanager_merge extends Api\Storage\Merge
 	 *
 	 * @return string
 	 */
-	protected function get_filename($document) : string
+	protected function get_filename($document): string
 	{
 		$name = '';
 		if(isset($this->projectmanager_bo->prefs['document_download_name']))
 		{
-			$ext = '.'.pathinfo($document,PATHINFO_EXTENSION);
+			$ext = '.' . pathinfo($document, PATHINFO_EXTENSION);
 			$name = preg_replace(
-				array('/%document%/','/%pm_number%/','/%pm_title%/'),
-				array(basename($document,$ext),$this->projectmanager_bo->data['pm_number'],$this->projectmanager_bo->data['pm_title']),
+				array('/%document%/', '/%pm_number%/', '/%pm_title%/'),
+				array(basename($document, $ext), $this->projectmanager_bo->data['pm_number'],
+					  $this->projectmanager_bo->data['pm_title']),
 				$this->projectmanager_bo->prefs['document_download_name']
 			);
 		}
 		return $name;
 	}
+
 	/**
 	 * Change the currently merging project
 	 *
 	 * @param int $id of the project
 	 */
-	protected function change_project($id) {
+	protected function change_project($id)
+	{
 		$this->pm_id = $id;
-		if($id) {
+		if($id)
+		{
 			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo($id);
 			$this->projectmanager_elements_bo = new projectmanager_elements_bo($id);
 		}
@@ -297,7 +374,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		$this->eroles = array();
 		if($this->projectmanager_bo->config['enable_eroles'])
 		{
-			$elements = $this->projectmanager_elements_bo->search(array('pm_id' => $id),false);
+			$elements = $this->projectmanager_elements_bo->search(array('pm_id' => $id), false);
 			if(!is_array($elements))
 			{
 				return;
@@ -307,13 +384,13 @@ class projectmanager_merge extends Api\Storage\Merge
 				if(!empty($element['pe_eroles']))
 				{
 					// one element could have multiple eroles
-					foreach(explode(',',$element['pe_eroles']) as $erole_id)
+					foreach(explode(',', $element['pe_eroles']) as $erole_id)
 					{
 						$this->eroles[] = array(
-							'pe_id'		=> $element['pe_id'],
-							'app' 		=> $element['pe_app'],
-							'app_id' 	=> $element['pe_app_id'],
-							'erole_id'	=> $erole_id,
+							'pe_id'    => $element['pe_id'],
+							'app'      => $element['pe_app'],
+							'app_id'   => $element['pe_app_id'],
+							'erole_id' => $erole_id,
 						);
 					}
 				}
@@ -325,10 +402,10 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * Get projectmanager replacements
 	 *
 	 * @param int $id id of entry
-	 * @param string &$content=null content to create some replacements only if they are in use
+	 * @param string &$content =null content to create some replacements only if they are in use
 	 * @return array|boolean
 	 */
-	protected function get_replacements($id,&$content=null)
+	protected function get_replacements($id, &$content = null)
 	{
 		$replacements = array();
 
@@ -344,7 +421,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 
 		// replace project content
-		if ($id > 0 && $this->pm_id != $id)
+		if($id > 0 && $this->pm_id != $id)
 		{
 			$this->change_project($id);
 		}
@@ -375,11 +452,12 @@ class projectmanager_merge extends Api\Storage\Merge
 			{
 				$erole_title = $this->projectmanager_eroles_bo->id2title($erole['erole_id']);
 				if(!empty($erole_title) && ($replacement = $this->get_element_replacements(
-									$erole['pe_id'],
-									'erole/'.$erole_title,
-									$erole['app'],
-									$erole['app_id'],
-									$content)))
+						$erole['pe_id'],
+						'erole/' . $erole_title,
+						$erole['app'],
+						$erole['app_id'],
+						$content
+					)))
 				{
 					$replacements += $replacement;
 				}
@@ -388,7 +466,7 @@ class projectmanager_merge extends Api\Storage\Merge
 
 		// Strip unassigned erole tags
 		$matches = array();
-		preg_match_all('@\$\$erole/([A-Za-z0-9_]+)(/?(?:[^\$])*)?\$\$@s',$content,$matches);
+		preg_match_all('@\$\$erole/([A-Za-z0-9_]+)(/?(?:[^\$])*)?\$\$@s', $content, $matches);
 		foreach($matches[0] as $missing_erole)
 		{
 			if(!$replacements[$missing_erole])
@@ -405,16 +483,16 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * Get element replacements
 	 *
 	 * @param int $pe_id element id
-	 * @param string $prefix='' prefix like eg. 'erole'
-	 * @param string $app=null element app name (no app detail will be resolved if omitted)
-	 * @param string $app_id=null element app_id (no app detail will be resolved if omitted)
+	 * @param string $prefix ='' prefix like eg. 'erole'
+	 * @param string $app =null element app name (no app detail will be resolved if omitted)
+	 * @param string $app_id =null element app_id (no app detail will be resolved if omitted)
 	 * @return array|boolean
 	 */
-	protected function get_element_replacements($pe_id,$prefix='',$app=null,$app_id=null, $content='')
+	protected function get_element_replacements($pe_id, $prefix = '', $app = null, $app_id = null, $content = '')
 	{
 		$replacements = array();
 		// resolve project element fields
-		if($replacement = $this->projectmanager_element_replacements($pe_id,$prefix, $content))
+		if($replacement = $this->projectmanager_element_replacements($pe_id, $prefix, $content))
 		{
 			$replacements += $replacement;
 		}
@@ -428,9 +506,10 @@ class projectmanager_merge extends Api\Storage\Merge
 		// resolve app fields of project element
 		if($app && $app_id)
 		{
-			switch($app) {
+			switch($app)
+			{
 				case 'addressbook':
-					if($replacement = $this->contact_replacements($app_id,$prefix))
+					if($replacement = $this->contact_replacements($app_id, $prefix))
 					{
 						$replacements += $replacement;
 					}
@@ -440,7 +519,7 @@ class projectmanager_merge extends Api\Storage\Merge
 					{
 						$calendar_merge = new calendar_merge();
 					}
-					if($replacement = $calendar_merge->calendar_replacements($app_id,$prefix))
+					if($replacement = $calendar_merge->calendar_replacements($app_id, $prefix))
 					{
 						$replacements += $replacement;
 					}
@@ -450,7 +529,7 @@ class projectmanager_merge extends Api\Storage\Merge
 					{
 						$infolog_merge = new infolog_merge();
 					}
-					if($replacement = $infolog_merge->infolog_replacements($app_id,$prefix))
+					if($replacement = $infolog_merge->infolog_replacements($app_id, $prefix))
 					{
 						$replacements += $replacement;
 					}
@@ -468,16 +547,19 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * Return replacements for a project
 	 *
 	 * @param int|array $project project-array or id
-	 * @param string $prefix='' prefix like eg. 'erole'
+	 * @param string $prefix ='' prefix like eg. 'erole'
 	 * @param string $content Used to see if we have to look up all the links, it's expensive
 	 * @return array
 	 */
-	public function projectmanager_replacements($project,$prefix='',&$content='')
+	public function projectmanager_replacements($project, $prefix = '', &$content = '')
 	{
 		$record = new projectmanager_egw_record_project(is_array($project) ? $pm_id : $project);
 		$project = $record->get_record_array();
 
-		if (!is_array($project)) return array();
+		if(!is_array($project))
+		{
+			return array();
+		}
 		$replacements = array();
 
 		// Convert to human friendly values
@@ -495,8 +577,11 @@ class projectmanager_merge extends Api\Storage\Merge
 		$custom = Api\Storage\Customfields::get('projectmanager');
 		foreach($custom as $name => $field)
 		{
-			$this->projectmanager_fields['#'.$name] = $field['label'];
-			if(!$project['#'.$name]) $project['#'.$name] = '';
+			$this->projectmanager_fields['#' . $name] = $field['label'];
+			if(!$project['#' . $name])
+			{
+				$project['#' . $name] = '';
+			}
 		}
 
 		// Add in roles
@@ -506,51 +591,64 @@ class projectmanager_merge extends Api\Storage\Merge
 		sort($roles);
 		$all_roles = array('Coordinator' => array());
 		$all_roles += array_fill_keys($roles, array());
-		foreach((Array)$project['pm_members'] as $account_id => $info) {
+		foreach((array)$project['pm_members'] as $account_id => $info)
+		{
 			$all_roles[$info['role_title']][] = Api\Accounts::username($info['member_uid']);
 		}
-		foreach($all_roles as $name => $users) {
+		foreach($all_roles as $name => $users)
+		{
 			$project[$name] = implode(', ', $users);
 			$project[lang($name)] = $project[$name];
-			if(count($users) == 0) {
+			if(count($users) == 0)
+			{
 				unset($all_roles[$name]);
 				continue;
 			}
 			$project['all_roles'][] = lang($name) . ': ' . $project[$name];
 		}
-		$project['all_roles'] = implode("\n",(Array)$project['all_roles']);
+		$project['all_roles'] = implode("\n", (array)$project['all_roles']);
 
 		// Add in element summary
 		$summary = $this->projectmanager_elements_bo->summary();
-		foreach($summary as $key => $value) {
-			$project[$key.'_total'] = $value;
+		foreach($summary as $key => $value)
+		{
+			$project[$key . '_total'] = $value;
 		}
 
 		foreach(array_keys($project) as $name)
 		{
-			if(!isset($this->projectmanager_fields[$name])) continue; // not a supported field
+			if(!isset($this->projectmanager_fields[$name]))
+			{
+				continue;
+			} // not a supported field
 
 			$value = $project[$name];
 			switch($name)
 			{
-				case 'pe_planned_start_total': case 'pe_planned_end_total':
-				case 'pe_real_start_total': case 'pe_real_end_total':
-					if($value) $value = Api\DateTime::to($value);
+				case 'pe_planned_start_total':
+				case 'pe_planned_end_total':
+				case 'pe_real_start_total':
+				case 'pe_real_end_total':
+					if($value)
+					{
+						$value = Api\DateTime::to($value);
+					}
 					break;
-				case 'pm_creator': case 'pm_modifier':
+				case 'pm_creator':
+				case 'pm_modifier':
 					$value = Api\Accounts::username($value);
 					break;
 				case 'cat_id':
-					if ($value)
+					if($value)
 					{
 						// if cat-tree is displayed, we return a full category path not just the name of the cat
 						$use = $GLOBALS['egw_info']['server']['cat_tab'] == 'Tree' ? 'path' : 'name';
 						$cats = array();
-						foreach(is_array($value) ? $value : explode(',',$value) as $cat_id)
+						foreach(is_array($value) ? $value : explode(',', $value) as $cat_id)
 						{
-							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id,$use);
+							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id, $use);
 						}
-						$value = implode(', ',$cats);
+						$value = implode(', ', $cats);
 					}
 					break;
 				case 'pe_used_time_total':
@@ -562,7 +660,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			{
 				$name = $this->pm_fields_translate[$name];
 			}
-			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
+			$replacements['$$' . ($prefix ? $prefix . '/' : '') . $name . '$$'] = $value;
 		}
 		// Project links - check content first, finding all the links is expensive
 		$replacements += $this->get_all_links('projectmanager', $project['pm_id'], $prefix, $content);
@@ -575,50 +673,70 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * Return replacements for a given project element
 	 *
 	 * @param int $pe_id project element id
-	 * @param string $prefix='' prefix like eg. 'erole'
+	 * @param string $prefix ='' prefix like eg. 'erole'
 	 * @return array
 	 */
-	public function projectmanager_element_replacements($pe_id,$prefix='', $content = '')
+	public function projectmanager_element_replacements($pe_id, $prefix = '', $content = '')
 	{
 		$replacements = array();
-		if(!is_object($this->projectmanager_elements_bo)) return $replacements;
+		if(!is_object($this->projectmanager_elements_bo))
+		{
+			return $replacements;
+		}
 
 		// Filter selected elements
-		if($this->elements && !in_array($pe_id, $this->elements)) return $replacements;
+		if($this->elements && !in_array($pe_id, $this->elements))
+		{
+			return $replacements;
+		}
 
 		$element = $this->projectmanager_elements_bo->read(array('pe_id' => $pe_id));
 		foreach(array_keys($element) as $name)
 		{
-			if(!isset($this->projectmanager_element_fields[$name])) continue; // not a supported field
+			if(!isset($this->projectmanager_element_fields[$name]))
+			{
+				continue;
+			} // not a supported field
 
 			$value = !is_array($element[$name]) ? strip_tags($element[$name]) : $element[$name];
 			switch($name)
 			{
-				case 'pe_planned_start': case 'pe_planned_end':
-				case 'pe_real_start': case 'pe_real_end':
-				case 'pe_synced': case 'pe_modified':
-					if($value) $value = Api\DateTime::to($value);
+				case 'pe_planned_start':
+				case 'pe_planned_end':
+				case 'pe_real_start':
+				case 'pe_real_end':
+				case 'pe_synced':
+				case 'pe_modified':
+					if($value)
+					{
+						$value = Api\DateTime::to($value);
+					}
 					break;
 				case 'pe_modifier':
 					$value = Api\Accounts::username($value);
 					break;
 				case 'cat_id':
-					if ($value)
+					if($value)
 					{
 						// if cat-tree is displayed, we return a full category path not just the name of the cat
 						$use = $GLOBALS['egw_info']['server']['cat_tab'] == 'Tree' ? 'path' : 'name';
 						$cats = array();
-						foreach(is_array($value) ? $value : explode(',',$value) as $cat_id)
+						foreach(is_array($value) ? $value : explode(',', $value) as $cat_id)
 						{
-							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id,$use);
+							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id, $use);
 						}
-						$value = implode(', ',$cats);
-					} else {
+						$value = implode(', ', $cats);
+					}
+					else
+					{
 						$value = '';
 					}
 					break;
 				case 'pe_resources':
-					if(!is_array($value)) $value = explode(',',$value);
+					if(!is_array($value))
+					{
+						$value = explode(',', $value);
+					}
 					$names = array();
 					foreach($value as $id => $user_id)
 					{
@@ -631,21 +749,21 @@ class projectmanager_merge extends Api\Storage\Merge
 			{
 				$name = $this->pe_fields_translate[$name];
 			}
-			$replacements['$$'.($prefix ? $prefix.'/':'').$name.'$$'] = $value;
+			$replacements['$$' . ($prefix ? $prefix . '/' : '') . $name . '$$'] = $value;
 		}
 
 		// Element links
-		if(strpos($content, ($prefix ? $prefix.'/':'').'links') !== false)
+		if(strpos($content, ($prefix ? $prefix . '/' : '') . 'links') !== false)
 		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'links$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], '!'.Link::VFS_APPNAME);
+			$replacements['$$' . ($prefix ? $prefix . '/' : '') . 'links$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], '!' . Link::VFS_APPNAME);
 		}
-		if(strpos($content, ($prefix ? $prefix.'/':'').'attachments') !== false)
+		if(strpos($content, ($prefix ? $prefix . '/' : '') . 'attachments') !== false)
 		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], Link::VFS_APPNAME);
+			$replacements['$$' . ($prefix ? $prefix . '/' : '') . 'attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id'], Link::VFS_APPNAME);
 		}
-		if(strpos($content, ($prefix ? $prefix.'/':'').'links_attachments') !== false)
+		if(strpos($content, ($prefix ? $prefix . '/' : '') . 'links_attachments') !== false)
 		{
-			$replacements['$$'.($prefix ? $prefix.'/':'').'links_attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id']);
+			$replacements['$$' . ($prefix ? $prefix . '/' : '') . 'links_attachments$$'] = $this->get_links($element['pe_app'], $element['pe_app_id']);
 		}
 
 		return $replacements;
@@ -660,7 +778,10 @@ class projectmanager_merge extends Api\Storage\Merge
 	 */
 	public function set_eroles($eroles)
 	{
-		if(empty($eroles)) return false;
+		if(empty($eroles))
+		{
+			return false;
+		}
 
 		$this->eroles = $eroles;
 		return true;
@@ -672,7 +793,7 @@ class projectmanager_merge extends Api\Storage\Merge
 	 */
 	public function show_replacements()
 	{
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager').' - '.lang('Replacements for inserting project data into documents');
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager') . ' - ' . lang('Replacements for inserting project data into documents');
 		$GLOBALS['egw_info']['flags']['nonavbar'] = false;
 		echo $GLOBALS['egw']->framework->header();
 
@@ -680,143 +801,156 @@ class projectmanager_merge extends Api\Storage\Merge
 
 		// Projectmanager
 		$n = 0;
-		echo '<tr><td colspan="4"><h3><a name="pm_fields">'.lang('Projectmanager fields:')."</a></h3></td></tr>";
+		echo '<tr><td colspan="4"><h3><a name="pm_fields">' . lang('Projectmanager fields:') . "</a></h3></td></tr>";
 		foreach($this->projectmanager_fields as $name => $label)
 		{
 			if(isset($this->pm_fields_translate[$name]))
 			{
 				$name = $this->pm_fields_translate[$name];
 			}
-			if (!($n&1)) echo '<tr>';
-			echo '<td>{{'.$name.'}}</td><td>'.$label.'</td>';
-			if ($n&1) echo "</tr>\n";
+			if(!($n & 1))
+			{
+				echo '<tr>';
+			}
+			echo '<td>{{' . $name . '}}</td><td>' . $label . '</td>';
+			if($n & 1)
+			{
+				echo "</tr>\n";
+			}
 			$n++;
 		}
 
 		// Custom fields
-		echo '<tr><td colspan="4"><h3>'.lang('Custom fields').":</h3></td></tr>";
+		echo '<tr><td colspan="4"><h3>' . lang('Custom fields') . ":</h3></td></tr>";
 		$custom = Api\Storage\Customfields::get('projectmanager');
 		foreach($custom as $name => $field)
 		{
-			echo '<tr><td>{{#'.$name.'}}</td><td colspan="3">'.$field['label']."</td></tr>\n";
+			echo '<tr><td>{{#' . $name . '}}</td><td colspan="3">' . $field['label'] . "</td></tr>\n";
 		}
 
 		// Elements
 		$n = 0;
 		echo '<tr><td colspan="4">'
-				.'<h3><a name="pe_fields">'.lang('Projectmanager element fields:').'</a></h3>'
-				.'<p>'.lang('can be used with element roles, "eroles" table plugin and "elements" table plugin').'</p>'
-				.'</td></tr>';
+			. '<h3><a name="pe_fields">' . lang('Projectmanager element fields:') . '</a></h3>'
+			. '<p>' . lang('can be used with element roles, "eroles" table plugin and "elements" table plugin') . '</p>'
+			. '</td></tr>';
 		foreach($this->projectmanager_element_fields as $name => $label)
 		{
 			if(isset($this->pe_fields_translate[$name]))
 			{
 				$name = $this->pe_fields_translate[$name];
 			}
-			if (!($n&1)) echo '<tr>';
-			echo '<td>{{'.$name.'}}</td><td>'.$label.'</td>';
-			if ($n&1) echo "</tr>\n";
+			if(!($n & 1))
+			{
+				echo '<tr>';
+			}
+			echo '<td>{{' . $name . '}}</td><td>' . $label . '</td>';
+			if($n & 1)
+			{
+				echo "</tr>\n";
+			}
 			$n++;
 		}
 
 		// Element roles
 		if(!($this->projectmanager_bo->config['enable_eroles']))
 		{
-			$eroles_enable_hint = '<p style="font-weight: bold;">('.lang('Element roles feature is currently not enabled in your global projectmanager configuration').')</p>';
+			$eroles_enable_hint = '<p style="font-weight: bold;">(' . lang('Element roles feature is currently not enabled in your global projectmanager configuration') . ')</p>';
 		}
 		echo '<tr><td colspan="4">'
-				.'<h3>'.lang('Element roles:').'</h3>'
-				.$eroles_enable_hint
-				.'<p>'.lang('Elements given by {rolename} will be replaced with the element fields;'
-				.' additionally all fields of the elements application are available if the application is supported.').'</p>'
-				.'</td></tr>';
-		echo '<tr><td colspan="4">'.lang('Usage').': {{erole/{rolename}/{fieldname}}}</td></tr>';
+			. '<h3>' . lang('Element roles:') . '</h3>'
+			. $eroles_enable_hint
+			. '<p>' . lang('Elements given by {rolename} will be replaced with the element fields;'
+						   . ' additionally all fields of the elements application are available if the application is supported.'
+			) . '</p>'
+			. '</td></tr>';
+		echo '<tr><td colspan="4">' . lang('Usage') . ': {{erole/{rolename}/{fieldname}}}</td></tr>';
 		echo '<tr>';
 		echo '<td colspan="2">'
-				.'<h4>'.lang('Fields for element roles:').'</h4>'
-				.'<ul>'
-				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>';
-				foreach(array(
-					'Addressbook fields' 	=> Egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
-					'Calendar fields'		=> Egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
-					'Infolog fields'		=> Egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
+			. '<h4>' . lang('Fields for element roles:') . '</h4>'
+			. '<ul>'
+			. '<li><a href="#pe_fields">' . lang('Projectmanager element fields') . '</a></li>';
+		foreach(array(
+					'Addressbook fields' => Egw::link('/index.php', 'menuaction=addressbook.addressbook_merge.show_replacements'),
+					'Calendar fields'    => Egw::link('/index.php', 'menuaction=calendar.calendar_merge.show_replacements'),
+					'Infolog fields'     => Egw::link('/index.php', 'menuaction=infolog.infolog_merge.show_replacements'),
 				) as $placeholder => $link)
-				{
-					echo '<li><a href="'.$link.'" target="_blank">'.lang($placeholder).'</a></li>';
-				}
-				echo '</ul>';
-				echo '</td>';
+		{
+			echo '<li><a href="' . $link . '" target="_blank">' . lang($placeholder) . '</a></li>';
+		}
+		echo '</ul>';
+		echo '</td>';
 		echo '<td colspan="2">'
-				.'<h4>'.lang('Examples:').'</h4>'
-				.'{{erole/myrole/pe_title}}<br />{{erole/myrole/n_fn}}<br />{{erole/myrole/info_subject}}'
-				.'</td>';
+			. '<h4>' . lang('Examples:') . '</h4>'
+			. '{{erole/myrole/pe_title}}<br />{{erole/myrole/n_fn}}<br />{{erole/myrole/info_subject}}'
+			. '</td>';
 		echo "</tr>\n";
 
 		// Table plugins
 		echo '<tr><td colspan="4">'
-				.'<h3>'.lang('Table plugins:').'</h3>'
-				.'</td></tr>'."\n";
+			. '<h3>' . lang('Table plugins:') . '</h3>'
+			. '</td></tr>' . "\n";
 		echo '<tr><td colspan="4">'
-				.'<h4>'.lang('Elements').'</h4>'
-				.lang('Lists all project elements in a table.')
-				.'</td></tr>'."\n";
-		echo '<tr><td colspan="4">'.lang('Usage').': {{table/elements}} ... {{endtable}}</td></tr>';
+			. '<h4>' . lang('Elements') . '</h4>'
+			. lang('Lists all project elements in a table.')
+			. '</td></tr>' . "\n";
+		echo '<tr><td colspan="4">' . lang('Usage') . ': {{table/elements}} ... {{endtable}}</td></tr>';
 		echo '<tr>'
-				.'<td colspan="2">'
-				.lang('Available fields for this plugin:')
-				.'<ul>'
-				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>'
-				.'</ul>'
-				.'</td>'
-				.'<td colspan="2">'
-				.'<h4>'.lang('Example:').'</h4>'
-				.'<table border="1"><tr><td>Title</td><td>Details {{table/elements}}</td></tr>'
-				.'<tr><td>{{element/pe_title}}</td><td>{{element/pe_details}} {{endtable}}</td></tr></table>'
-				.'</td>'
-				.'</tr>'."\n";
+			. '<td colspan="2">'
+			. lang('Available fields for this plugin:')
+			. '<ul>'
+			. '<li><a href="#pe_fields">' . lang('Projectmanager element fields') . '</a></li>'
+			. '</ul>'
+			. '</td>'
+			. '<td colspan="2">'
+			. '<h4>' . lang('Example:') . '</h4>'
+			. '<table border="1"><tr><td>Title</td><td>Details {{table/elements}}</td></tr>'
+			. '<tr><td>{{element/pe_title}}</td><td>{{element/pe_details}} {{endtable}}</td></tr></table>'
+			. '</td>'
+			. '</tr>' . "\n";
 		echo '<tr><td colspan="4">'
-				.'<h4>'.lang('Element roles').'</h4>'
-				.$eroles_enable_hint
-				.lang('Lists all elements assigned to an element role in a table.').' '
-				.lang('Element roles defined as "mutliple" can be used here.')
-				.'</td></tr>'."\n";
-		echo '<tr><td colspan="4">'.lang('Usage').': {{table/eroles}} ... {{endtable}}</td></tr>';
+			. '<h4>' . lang('Element roles') . '</h4>'
+			. $eroles_enable_hint
+			. lang('Lists all elements assigned to an element role in a table.') . ' '
+			. lang('Element roles defined as "mutliple" can be used here.')
+			. '</td></tr>' . "\n";
+		echo '<tr><td colspan="4">' . lang('Usage') . ': {{table/eroles}} ... {{endtable}}</td></tr>';
 		echo '<tr>'
-				.'<td colspan="2">'
-				.lang('Available fields for this plugin:')
-				.'<ul>'
-				.'<li><a href="#pe_fields">'.lang('Projectmanager element fields').'</a></li>';
-				foreach(array(
-					'Addressbook fields' 	=> Egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements'),
-					'Calendar fields'		=> Egw::link('/index.php','menuaction=calendar.calendar_merge.show_replacements'),
-					'Infolog fields'		=> Egw::link('/index.php','menuaction=infolog.infolog_merge.show_replacements'),
+			. '<td colspan="2">'
+			. lang('Available fields for this plugin:')
+			. '<ul>'
+			. '<li><a href="#pe_fields">' . lang('Projectmanager element fields') . '</a></li>';
+		foreach(array(
+					'Addressbook fields' => Egw::link('/index.php', 'menuaction=addressbook.addressbook_merge.show_replacements'),
+					'Calendar fields'    => Egw::link('/index.php', 'menuaction=calendar.calendar_merge.show_replacements'),
+					'Infolog fields'     => Egw::link('/index.php', 'menuaction=infolog.infolog_merge.show_replacements'),
 				) as $placeholder => $link)
-				{
-					echo '<li><a href="'.$link.'" target="_blank">'.lang($placeholder).'</a></li>';
-				}
-		echo '</ul></td>'."\n";
+		{
+			echo '<li><a href="' . $link . '" target="_blank">' . lang($placeholder) . '</a></li>';
+		}
+		echo '</ul></td>' . "\n";
 		echo '<td colspan="2">'
-				.'<h4>'.lang('Example:').'</h4>'
-				.'<table border="1"><tr><td>Title</td><td>Infolog subject {{table/eroles}}</td></tr>'
-				.'<tr><td>{{erole/myrole/pe_title}}</td><td>{{erole/myrole/info_subject}} {{endtable}}</td></tr></table>'
-				.'</td>'
-				.'</tr>'."\n";
+			. '<h4>' . lang('Example:') . '</h4>'
+			. '<table border="1"><tr><td>Title</td><td>Infolog subject {{table/eroles}}</td></tr>'
+			. '<tr><td>{{erole/myrole/pe_title}}</td><td>{{erole/myrole/info_subject}} {{endtable}}</td></tr></table>'
+			. '</td>'
+			. '</tr>' . "\n";
 
 		// Serial letter
-		$link = Egw::link('/index.php','menuaction=addressbook.addressbook_merge.show_replacements');
+		$link = Egw::link('/index.php', 'menuaction=addressbook.addressbook_merge.show_replacements');
 		echo '<tr><td colspan="4">'
-				.'<h3>'.lang('Contact fields for serial letters').'</h3>'
-				.lang('Addressbook elements of a project can be used to define individual serial letter recipients. Available fields are').':'
-				.'<ul>'
-				.'<li><a href="'.$link.'" target="_blank">'.lang('Addressbook fields').'</a></li>'
-				.'</ul>'
-				.'</td></tr>';
+			. '<h3>' . lang('Contact fields for serial letters') . '</h3>'
+			. lang('Addressbook elements of a project can be used to define individual serial letter recipients. Available fields are') . ':'
+			. '<ul>'
+			. '<li><a href="' . $link . '" target="_blank">' . lang('Addressbook fields') . '</a></li>'
+			. '</ul>'
+			. '</td></tr>';
 
 		// General
-		echo '<tr><td colspan="4"><h3>'.lang('General fields:')."</h3></td></tr>";
+		echo '<tr><td colspan="4"><h3>' . lang('General fields:') . "</h3></td></tr>";
 		foreach($this->get_common_replacements() as $name => $label)
 		{
-			echo '<tr><td>{{'.$name.'}}</td><td colspan="3">'.$label."</td></tr>\n";
+			echo '<tr><td>{{' . $name . '}}</td><td colspan="3">' . $label . "</td></tr>\n";
 		}
 
 		echo "</table>\n";
@@ -832,16 +966,20 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * @param string $repeat the line to repeat
 	 * @return array
 	 */
-	public function table_elements($plugin,$id,$n,$repeat)
+	public function table_elements($plugin, $id, $n, $repeat)
 	{
-		if(!isset($this->pm_id) && !$id) return false;
+		if(!isset($this->pm_id) && !$id)
+		{
+			return false;
+		}
 
 		static $elements;
-		if($id && $id != $this->pm_id) {
+		if($id && $id != $this->pm_id)
+		{
 			$this->change_project($id);
 			$elements = array();
 		}
-		if (!$n)	// first row inits environment
+		if(!$n)    // first row inits environment
 		{
 			// get project elements
 			$query = array('pm_id' => $this->pm_id);
@@ -854,19 +992,21 @@ class projectmanager_merge extends Api\Storage\Merge
 			}
 			else
 			{
-				$limit = array(0,-1);
-				if($this->export_limit && !Api\Storage\Merge::is_export_limit_excepted()) {
-					$limit = array(0,(int)$this->export_limit);
+				$limit = array(0, -1);
+				if($this->export_limit && !Api\Storage\Merge::is_export_limit_excepted())
+				{
+					$limit = array(0, (int)$this->export_limit);
 					// Need to do this to give an error
 					$count = count($this->projectmanager_elements_bo->search($query));
 				}
-				if(!($elements = $this->projectmanager_elements_bo->search($query,false,'','','',False,'AND',$limit)))
+				if(!($elements = $this->projectmanager_elements_bo->search($query, false, '', '', '', False, 'AND', $limit)))
 				{
 					return false;
 				}
 			}
-			if($count && count($elements) < $count) {
-				throw new Api\Exception(lang('No rights to export more then %1 entries!',(int)$this->export_limit));
+			if($count && count($elements) < $count)
+			{
+				throw new Api\Exception(lang('No rights to export more then %1 entries!', (int)$this->export_limit));
 			}
 		}
 
@@ -874,7 +1014,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		$replacement = false;
 		if(isset($element))
 		{
-			$replacement = $this->get_element_replacements($element['pe_id'],'element', null,null,$repeat);
+			$replacement = $this->get_element_replacements($element['pe_id'], 'element', null, null, $repeat);
 		}
 		return $replacement;
 	}
@@ -888,18 +1028,21 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * @param string $repeat the line to repeat
 	 * @return array
 	 */
-	public function table_eroles($plugin,$id,$n,$repeat)
+	public function table_eroles($plugin, $id, $n, $repeat)
 	{
-		if(!($this->projectmanager_bo->config['enable_eroles'])) return false; // eroles are disabled
+		if(!($this->projectmanager_bo->config['enable_eroles']))
+		{
+			return false;
+		} // eroles are disabled
 
 		static $erole_id;
 		static $erole_title;
 		static $elements;
 
-		if (!$n)	// first row inits environment
+		if(!$n)    // first row inits environment
 		{
 			// get erole_id from repeated line
-			preg_match_all('/\\$\\$erole\\/([A-Za-z0-9_]+)\\//s',$repeat,$matches);
+			preg_match_all('/\\$\\$erole\\/([A-Za-z0-9_]+)\\//s', $repeat, $matches);
 
 			if(!is_array($matches[1]))
 			{
@@ -924,11 +1067,12 @@ class projectmanager_merge extends Api\Storage\Merge
 		if(isset($element))
 		{
 			$replacement = $this->get_element_replacements(
-								$element['pe_id'],
-								'erole/'.$erole_title,
-								$element['pe_app'],
-								$element['pe_app_id'],
-								$repeat);
+				$element['pe_id'],
+				'erole/' . $erole_title,
+				$element['pe_app'],
+				$element['pe_app_id'],
+				$repeat
+			);
 		}
 
 		return $replacement;

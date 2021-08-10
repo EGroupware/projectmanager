@@ -61,9 +61,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	{
 		$this->tpl = new Etemplate();
 
-		if ((int) $_REQUEST['pm_id'])
+		if((int)$_REQUEST['pm_id'])
 		{
-			$pm_id = (int) $_REQUEST['pm_id'];
+			$pm_id = (int)$_REQUEST['pm_id'];
 			// store the current project (only for index, as popups may be called by other parent-projects)
 		}
 		else if ($_GET['pm_id'])
@@ -79,13 +79,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 
 		// check if we have at least read-access to this project
-		if (!$this->project->check_acl(Acl::READ))
+		if(!$this->project->check_acl(Acl::READ))
 		{
-			Framework::message(lang('Permission denied !!!'),'error');
+			Framework::message(lang('Permission denied !!!'), 'error');
 			$pm_id = 0;
 		}
 
-		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $pm_id);
+		$GLOBALS['egw']->preferences->add('projectmanager', 'current_project', $pm_id);
 		$GLOBALS['egw']->preferences->save_repository();
 
 		$this->status_labels = array(
@@ -102,7 +102,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function view()
 	{
-		$this->edit(null,true);
+		$this->edit(null, true);
 	}
 
 	/**
@@ -111,11 +111,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 * @var array $content content-array if called by process-exec
 	 * @var boolean $view only view project, default false, only used on first call !is_array($content)
 	 */
-	function edit($content=null,$view=false)
+	function edit($content = null, $view = false)
 	{
-		if ((int) static::DEBUG >= 1 || static::DEBUG == 'edit') projectmanager_bo::debug_message("projectmanager_elements_ui::edit(".print_r($content,true).",$view)");
+		if((int)static::DEBUG >= 1 || static::DEBUG == 'edit')
+		{
+			projectmanager_bo::debug_message("projectmanager_elements_ui::edit(" . print_r($content, true) . ",$view)");
+		}
 
-		if (is_array($content))
+		if(is_array($content))
 		{
 			$this->data = $content['data'];
 			$update_necessary = $save_necessary = 0;
@@ -124,7 +127,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			{
 				$ds = $datasource->element_values($this->data);
 			}
-			if (!$content['view'])
+			if(!$content['view'])
 			{
 				foreach($datasource->name2id as $name => $id)
 				{
@@ -141,8 +144,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					}
 					// check if a field is no longer set, or it's not set and datasource changed
 					// => set it from the datasource
-					elseif (($this->data['pe_overwrite'] & $id) && !$content[$name] ||
-						    !($this->data['pe_overwrite'] & $id) && (int)$this->data[$name] != (int)$ds[$name])
+					elseif(($this->data['pe_overwrite'] & $id) && !$content[$name] ||
+						!($this->data['pe_overwrite'] & $id) && (int)$this->data[$name] != (int)$ds[$name])
 					{
 						//echo "need to update $name as content[$name] is unset or datasource changed cont='".$content[$name]."', data='".$this->data[$name]."', ds='".$ds[$name]."'<br>\n";
 						// if we have a change in the datasource, set pe_synced
@@ -155,15 +158,15 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						$update_necessary |= $id;
 					}
 				}
-				$content['cat_id'] = (int) $content['cat_id'];	// as All='' and cat_id column is int
+				$content['cat_id'] = (int)$content['cat_id'];    // as All='' and cat_id column is int
 
 				// calculate the new summary and if a percentage give the share in hours
 				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, old_pe_share={$content['old_pe_share']}, old_default_share=$content[old_default_share], content[pe_share]={$content['pe_share']}</p>\n";
-				if ($this->data['pe_replanned_time'])
+				if($this->data['pe_replanned_time'])
 				{
 					$planned_time = $this->data['pe_replanned_time'];
 				}
-				elseif ($this->data['pe_planned_time'])
+				elseif($this->data['pe_planned_time'])
 				{
 					$planned_time = $this->data['pe_planned_time'];
 				}
@@ -191,7 +194,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$this->project_summary['pe_total_shares'] += round((string) $content['pe_share'] !== '' ? $content['pe_share'] : $default_share);
 				//echo "<p>project_summary[pe_total_shares]={$this->project_summary['pe_total_shares']}, default_share=$default_share, content[pe_share]={$content['pe_share']}</p>\n";
 
-				foreach(array('pe_status','pe_remark','pe_constraints','pe_share','pe_eroles') as $name)
+				foreach(array('pe_status', 'pe_remark', 'pe_constraints', 'pe_share', 'pe_eroles') as $name)
 				{
 					if ($name == 'pe_constraints' && is_array($content['pe_constraints']))
 					{
@@ -215,21 +218,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						$this->data[$name] = $content[$name];
 						$save_necessary = true;
 
-						if ($name == 'pe_remark') $this->data['update_remark'] = true;
+						if($name == 'pe_remark')
+						{
+							$this->data['update_remark'] = true;
+						}
 					}
 				}
 				if($content['new_constraint'])
 				{
-					if($content['new_constraint']['target']['id'] )
+					if($content['new_constraint']['target']['id'])
 					{
 						$save_necessary = true;
 						$new = $content['new_constraint'];
 						$this->data['pe_constraints'][] = array(
-							'pm_id' => $this->data['pm_id'],
+							'pm_id'       => $this->data['pm_id'],
 							'pe_id_start' => $this->data['pe_id'],
-							'pe_id_end' => $new['target']['app'] == 'pm_milestone' ? 0 : $new['target']['id'],
-							'ms_id' => $new['target']['app'] != 'pm_milestone' ? 0 : $new['target']['id'],
-							'type' => $new['type']
+							'pe_id_end'   => $new['target']['app'] == 'pm_milestone' ? 0 : $new['target']['id'],
+							'ms_id'       => $new['target']['app'] != 'pm_milestone' ? 0 : $new['target']['id'],
+							'type'        => $new['type']
 						);
 					}
 					unset($this->data['new_constraint']);
@@ -262,7 +268,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						$msg = lang('Project-Element saved');
 
-						Framework::refresh_opener($msg,'projectmanager',$content['pe_id'], 'edit');
+						Framework::refresh_opener($msg, 'projectmanager', $content['pe_id'], 'edit');
 					}
 				}
 				else
@@ -302,7 +308,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						'msg' => lang('Permission denied !!!'),
 					));
 				}
-				if (!$this->check_acl(Acl::EDIT)) $view = true;
+				if(!$this->check_acl(Acl::EDIT))
+				{
+					$view = true;
+				}
 			}
 
 			$datasource = $this->datasource($this->data['pe_app']);
@@ -312,7 +321,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			}
 			else
 			{
-				$this->data['pe_title'] = $ds['pe_title'];	// updating the title, not all datasources do it automatic
+				$this->data['pe_title'] = $ds['pe_title'];    // updating the title, not all datasources do it automatic
 			}
 		}
 		if ($this->data['pe_replanned_time'])
@@ -335,14 +344,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$msg .= lang('No READ access to the datasource: removing overwritten values will just empty them !!!');
 		}
 		$preserv = $this->data + array(
-			'view' => $view,
-			'data' => $this->data,
-			'caller' => !$content['caller'] && preg_match('/menuaction=([^&]+)/',$_SERVER['HTTP_REFERER'],$matches) ?
-				 $matches[1] : $content['caller'],
-			'old_pe_share' => $this->data['pe_share'],
-			'old_default_share' => $default_share,
-		);
-		unset($preserv['pe_resources']);	// otherwise we cant detect no more resources set
+				'view'              => $view,
+				'data'              => $this->data,
+				'caller'            => !$content['caller'] && preg_match('/menuaction=([^&]+)/', $_SERVER['HTTP_REFERER'], $matches) ?
+					$matches[1] : $content['caller'],
+				'old_pe_share'      => $this->data['pe_share'],
+				'old_default_share' => $default_share,
+			);
+		unset($preserv['pe_resources']);    // otherwise we cant detect no more resources set
 
 		foreach($datasource->name2id as $name => $id)
 		{
@@ -369,16 +378,16 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$this->data['pe_completion'] = (int)$this->data['pe_completion'];
 		}
 		$content = $this->data + array(
-			'ds'  => $ds,
-			'msg' => $msg,
-			'default_share' => $default_share,
-			'duration_format' => $this->config['duration_format'],
-			'no_times' => $this->project->data['pm_accounting_type'] == 'status',
-			$tabs => $content[$tabs],
-			'no_pricelist' => $this->project->data['pm_accounting_type'] != 'pricelist',
-			'planned_quantity_blur' => $planned_quantity_blur,
-			'used_quantity_blur' => $this->data['pe_used_time'] ? $this->data['pe_used_time'] / 60 : $ds['pe_used_quantity'],
-		);
+				'ds'                    => $ds,
+				'msg'                   => $msg,
+				'default_share'         => $default_share,
+				'duration_format'       => $this->config['duration_format'],
+				'no_times'              => $this->project->data['pm_accounting_type'] == 'status',
+				$tabs                   => $content[$tabs],
+				'no_pricelist'          => $this->project->data['pm_accounting_type'] != 'pricelist',
+				'planned_quantity_blur' => $planned_quantity_blur,
+				'used_quantity_blur'    => $this->data['pe_used_time'] ? $this->data['pe_used_time'] / 60 : $ds['pe_used_quantity'],
+			);
 		// calculate percentual shares
 		$content['default_total'] = $content['share_total'] = $this->project_summary['pe_total_shares'];
 		if ((string) $this->data['pe_share'] !== '')
@@ -412,12 +421,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			'type' => projectmanager_constraints_so::$constraint_types,
 		);
 		$readonlys = array(
-			'delete' => !$this->data['pe_id'] || !$this->check_acl(Acl::DELETE),
-			'edit' => !$view || !$this->check_acl(Acl::EDIT),
+			'delete'      => !$this->data['pe_id'] || !$this->check_acl(Acl::DELETE),
+			'edit'        => !$view || !$this->check_acl(Acl::EDIT),
 			'eroles_edit' => $view,
 		);
 		// display eroles tab only if it's enabled in Api\Config and for supported erole Egw\Applications
-		$readonlys[$tabs]['eroles'] = (!$this->config['enable_eroles']) || !(in_array($this->data['pe_app'],$this->erole_apps));
+		$readonlys[$tabs]['eroles'] = (!$this->config['enable_eroles']) || !(in_array($this->data['pe_app'], $this->erole_apps));
 		// disable the times tab, if accounting-type status
 		$readonlys[$tabs]['times'] = $this->project->data['pm_accounting_type'] == 'status';
 		// check if user has the necessary rights to view or edit the budget
@@ -444,7 +453,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' .
 			($this->data['pm_id'] ? ($view ? lang('View project-elements') : lang('Edit project-elements')) : lang('Add project-elements'));
 		$this->tpl->read('projectmanager.elements.edit');
-		$this->tpl->exec('projectmanager.projectmanager_elements_ui.edit',$content,$sel_options,$readonlys,$preserv,2);
+		$this->tpl->exec('projectmanager.projectmanager_elements_ui.edit', $content, $sel_options, $readonlys, $preserv, 2);
 	}
 
 	/**
@@ -456,7 +465,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 * @param array &$rows returned rows/cups
 	 * @param array &$readonlys eg. to disable buttons based on Acl
 	 */
-	function get_rrows(&$query_in,&$rows,&$readonlys)
+	function get_rrows(&$query_in, &$rows, &$readonlys)
 	{
 		if(!$query_in['csv_export'])
 		{
@@ -481,7 +490,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// Check for filter change, need to get totals
 		$session = Api\Cache::getSession('projectmanager', 'projectelements_list');
 		$get_totals = $query_in['start'] === 0 || ($session && $session['filter'] != $query_in['filter']) || !$session && $query_in['filter'];
-		$query=$query_in;
+		$query = $query_in;
 		unset($query_in['col_filter']['parent_id']);
 		if(!$query_in['csv_export'])
 		{
@@ -500,9 +509,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			));
 		if ($state != $this->prefs['pe_index_state'])
 		{
-			$GLOBALS['egw']->preferences->add('projectmanager','pe_index_state',$state);
+			$GLOBALS['egw']->preferences->add('projectmanager', 'pe_index_state', $state);
 			// save prefs, but do NOT invalid the cache (unnecessary)
-			$GLOBALS['egw']->preferences->save_repository(false,'user',false);
+			$GLOBALS['egw']->preferences->save_repository(false, 'user', false);
 		}
 		$GLOBALS['egw']->session->commit_session();
 
@@ -512,7 +521,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 			if ($query['col_filter']['pe_status'][0] === '!')
 			{
-				$query['col_filter'][] = 'pe_status != '.$this->db->quote(substr($query['col_filter']['pe_status'], 1));
+				$query['col_filter'][] = 'pe_status != ' . $this->db->quote(substr($query['col_filter']['pe_status'], 1));
 				unset($query['col_filter']['pe_status']);
 			}
 		}
@@ -540,39 +549,42 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if ($query['filter2'] & 2)	// show sub-elements (elements of sub-projects)
 		{
-			$query['col_filter']['pm_id'] = $this->project->children($this->pm_id,array($this->pm_id));
-			if (count($query['col_filter']['pm_id']) <= 1) $query['col_filter']['pm_id'] = $this->pm_id;
+			$query['col_filter']['pm_id'] = $this->project->children($this->pm_id, array($this->pm_id));
+			if(count($query['col_filter']['pm_id']) <= 1)
+			{
+				$query['col_filter']['pm_id'] = $this->pm_id;
+			}
 			// dont show the sub-projects
 			$query['col_filter'][] = "link_app1!='projectmanager'";
 		}
 		// Sub-grid queries
 		if($query['col_filter']['parent_id'])
 		{
-			list(,$query['col_filter']['pm_id']) = explode(':',$query['col_filter']['parent_id']);
+			list(, $query['col_filter']['pm_id']) = explode(':', $query['col_filter']['parent_id']);
 			$sub_query = true;
 		}
 		unset($query['col_filter']['parent_id']);
 
 		// cumulate eg. timesheets in also included infologs
 		$query['col_filter']['cumulate'] = !($query['filter2'] & 4);
-		$total = parent::get_rows($query,$rows,$readonlys,true);
+		$total = parent::get_rows($query, $rows, $readonlys, true);
 		unset($query['col_filter']['cumulate']);
 
 		// adding the project itself as first line
 		if(!$sub_query)
 		{
-			$self = $this->updateElement('projectmanager',$this->pm_id);
-			$self['pe_app']    = 'projectmanager';
+			$self = $this->updateElement('projectmanager', $this->pm_id);
+			$self['pe_app'] = 'projectmanager';
 			$self['pe_app_id'] = $this->pm_id;
-			$self['pe_icon']   = 'projectmanager/navbar';
+			$self['pe_icon'] = 'projectmanager/navbar';
 			$self['pe_modified'] = $this->project->data['pm_modified'];
 			$self['pe_modifier'] = $this->project->data['pm_modifier'];
 			$self['link'] = array(
-				'app'=>'projectmanager',
-				'id' => $this->pm_id
+				'app' => 'projectmanager',
+				'id'  => $this->pm_id
 			);
 			$self['class'] = 'th rowNoDelete';
-			$rows = array_merge(array($self),$rows);
+			$rows = array_merge(array($self), $rows);
 			$total++;
 		}
 
@@ -592,7 +604,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$row['class'] .= ' rowNoDelete';
 			}
 			// Don't show sub triangle for first project (self)
-			$row['is_parent'] = ($row['pe_app'] == 'projectmanager') && ($sub_query ? true: $n );
+			$row['is_parent'] = ($row['pe_app'] == 'projectmanager') && ($sub_query ? true : $n);
 
 			if (!$budget_rights)
 			{
@@ -602,33 +614,36 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			if ($n || $sub_query)
 			{
 				$row['link'] = array(
-					'app'  => $row['pe_app'],
-					'id'   => $row['pe_app_id'],
-					'title'=> $row['pe_title'],
-					'help' => $row['pe_app'] == 'projectmanager' ? lang("Select this project and show it's elements") :
-						lang('View this element in %1',lang($row['pe_app'])),
+					'app'   => $row['pe_app'],
+					'id'    => $row['pe_app_id'],
+					'title' => $row['pe_title'],
+					'help'  => $row['pe_app'] == 'projectmanager' ? lang("Select this project and show it's elements") :
+						lang('View this element in %1', lang($row['pe_app'])),
 				);
 			}
-			if (!($query['filter2']&1)) unset($row['pe_details']);
+			if(!($query['filter2'] & 1))
+			{
+				unset($row['pe_details']);
+			}
 
 			// add project-title for elements from sub-projects
-			if (($query['filter2']&2) && $row['pm_id'] != $this->pm_id)
+			if(($query['filter2'] & 2) && $row['pm_id'] != $this->pm_id)
 			{
 				$row['pm_title'] = $this->project->link_title($row['pm_id']);
 				$row['pm_link'] = array(
-					'app'  => 'projectmanager',
-					'id'   => $row['pm_id'],
-					'title'=> $this->project->link_title($row['pm_id']),
-					'help' => lang("Select this project and show it's elements"),
+					'app'   => 'projectmanager',
+					'id'    => $row['pm_id'],
+					'title' => $this->project->link_title($row['pm_id']),
+					'help'  => lang("Select this project and show it's elements"),
 				);
 			}
 			$row['pe_completion_icon'] = $row['pe_completion'] == 100 ? 'done' : 'ongoing';
 
 			$custom_app_icons[$row['pe_app']][] = $row['pe_app_id'];
 
-			$row['elem_id'] = $row['pe_app'].':'.$row['pe_app_id'].':'.$row['pe_id'];
+			$row['elem_id'] = $row['pe_app'] . ':' . $row['pe_app_id'] . ':' . $row['pe_id'];
 			// add pe links
-			if ($query['filter2']&3)
+			if($query['filter2'] & 3)
 			{
 				if ($this->prefs['show_links'] &&
 					(isset($row['pe_all_links']) || ($row['pe_all_links'] = Link::get_links($row['link']['app'],$row['link']['id'],'',true))))
@@ -644,7 +659,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 					}
 				}
- 			}
+			}
 			//Set icon for milestone as Milestone is not an application therefore, its icon won't get set like the others
 			if ($row['pe_app'] === 'pm_milestone')
 			{
@@ -666,7 +681,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					{
 						$row['pe_completion_icon'] = $app_info;
 					}
-					else	// new hook returning all three informations
+					else    // new hook returning all three informations
 					{
 						if ($this->prefs['show_custom_app_icons'] && isset($app_info['status']))
 						{
@@ -678,7 +693,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						}
 						if (isset($app_info['class']))
 						{
-							$row['class'] .= ' '.$app_info['class'];
+							$row['class'] .= ' ' . $app_info['class'];
 						}
 					}
 				}
@@ -711,7 +726,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// calculate the filter-specific summary if we have a filter change
 		if ($get_totals)
 		{
-			$totals = $this->summary(null,$query['col_filter']);
+			$totals = $this->summary(null, $query['col_filter']);
 			foreach($totals as $field => $value)
 			{
 				if ($budget_rights || !in_array($field, array('pe_planned_budget', 'pe_used_budget')))
@@ -727,7 +742,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if ((int)static::DEBUG >= 2 || static::DEBUG == 'get_rows')
 		{
-			projectmanager_bo::debug_message("projectmanager_elements_ui::get_rows(".print_r($query,true).") total=$total, rows =".print_r($rows,true)."readonlys=".print_r($readonlys,true));
+			projectmanager_bo::debug_message("projectmanager_elements_ui::get_rows(" . print_r($query, true) . ") total=$total, rows =" . print_r($rows, true) . "readonlys=" . print_r($readonlys, true));
 		}
 		return $total;
 	}
@@ -793,19 +808,19 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			),
 			'add' => array (
 				'caption' => 'Add new',
-				'group' => ++$group,
-				'icon' => 'add',
+				'group'   => ++$group,
+				'icon'    => 'add',
 			),
 			'add_existing' => array(
-				'caption' => 'Add existing',
-				'group' => $group,
+				'caption'   => 'Add existing',
+				'group'     => $group,
 				'nm_action' => 'open_popup',
 			),
 			'sync_all' => array(
 				'caption' => 'Synchronise all',
-				'icon' => 'agt_reload',
-				'hint' => 'necessary for project-elements doing that not automatic',
-				'group' => ++$group,
+				'icon'    => 'agt_reload',
+				'hint'    => 'necessary for project-elements doing that not automatic',
+				'group'   => ++$group,
 			),
 			'cat' => Etemplate\Widget\Nextmatch::category_action(
 				'projectmanager',$group,'Change category','cat_'
@@ -814,54 +829,54 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 			),
 			'erole' => array(
-				'caption' => 'Element roles',
-				'group' => $group,
+				'caption'      => 'Element roles',
+				'group'        => $group,
 				'disableClass' => 'rowNoEdit',
 
 			),
 			'ignore' => array(
-				'caption' => 'Ignore that entry',
-				'group' => $group,
+				'caption'      => 'Ignore that entry',
+				'group'        => $group,
 				'disableClass' => 'rowNoEdit',
-				'checkbox' => true,
-				'isChecked' => 'javaScript:app.projectmanager.is_ignored',
-				'onExecute' => 'javaScript:app.projectmanager.ignore_action'
+				'checkbox'     => true,
+				'isChecked'    => 'javaScript:app.projectmanager.is_ignored',
+				'onExecute'    => 'javaScript:app.projectmanager.ignore_action'
 			)
 		);
 		$group++;
 		if ($GLOBALS['egw_info']['user']['apps']['timesheet'])
 		{
 			$actions['timesheet'] = array(
-				'icon' => 'timesheet/navbar',
-				'caption' => 'Timesheet',
-				'egw_open' => 'add-timesheet',
+				'icon'            => 'timesheet/navbar',
+				'caption'         => 'Timesheet',
+				'egw_open'        => 'add-timesheet',
 				'allowOnMultiple' => false,
-				'group' => $group,
+				'group'           => $group,
 			);
 		}
 		if ($GLOBALS['egw_info']['user']['apps']['infolog'])
 		{
 			$actions['infolog-subs'] = array(
-				'icon' => 'infolog/navbar',
-				'caption' => 'View subs',
-				'hint' => 'View all subs of this entry',
-				'group' => $group,
+				'icon'            => 'infolog/navbar',
+				'caption'         => 'View subs',
+				'hint'            => 'View all subs of this entry',
+				'group'           => $group,
 				'allowOnMultiple' => false,
-				'enableId' => '^infolog:',
-				'enableClass' => 'infolog_rowHasSubs',
-				'url' => 'menuaction=infolog.infolog_ui.index&action=sp&action_id=$id',
-				'targetapp' => 'infolog',
-				'hideOnDisabled' => true
+				'enableId'        => '^infolog:',
+				'enableClass'     => 'infolog_rowHasSubs',
+				'url'             => 'menuaction=infolog.infolog_ui.index&action=sp&action_id=$id',
+				'targetapp'       => 'infolog',
+				'hideOnDisabled'  => true
 			);
 		}
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			$actions['filemanager'] = array(
-				'icon' => 'filemanager/navbar',
-				'caption' => 'Filemanager',
+				'icon'            => 'filemanager/navbar',
+				'caption'         => 'Filemanager',
 				'allowOnMultiple' => false,
-				'group' => $group,
-				'onExecute' => 'javaScript:app.projectmanager.show_filemanager',
+				'group'           => $group,
+				'onExecute'       => 'javaScript:app.projectmanager.show_filemanager',
 			);
 		}
 		$actions += array(
@@ -870,9 +885,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$group, 'Insert in document', 'document_'
 			),
 			'delete' => array(
-				'caption' => 'Delete',
-				'confirm' => 'Delete this project-element, does NOT remove the linked entry',
-				'group' => ++$group,
+				'caption'      => 'Delete',
+				'confirm'      => 'Delete this project-element, does NOT remove the linked entry',
+				'group'        => ++$group,
 				'disableClass' => 'rowNoDelete',
 				'hideOnMobile' => true
 			),
@@ -886,11 +901,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$actions['erole']['children'] = array();
 			foreach($this->eroles->get_free_eroles() as $erole)
 			{
-				$actions['erole']['children']['erole_'.$erole['role_id']] = $erole + array(
-					'caption' => $erole['role_title'],
-					'group' => $actions['erole']['group'],
-					'enabled' => 'javaScript:app.projectmanager.is_erole_allowed'
-				);
+				$actions['erole']['children']['erole_' . $erole['role_id']] = $erole + array(
+						'caption' => $erole['role_title'],
+						'group'   => $actions['erole']['group'],
+						'enabled' => 'javaScript:app.projectmanager.is_erole_allowed'
+					);
 			}
 		}
 
@@ -901,16 +916,16 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$actions['add']['children'] = array();
 		foreach ($app_list as $inx => $val)
 		{
-			$actions['add']['children']['act-'.$inx] = array(
-				'caption' => $val,
-				'icon' => $inx.'/navbar',
+			$actions['add']['children']['act-' . $inx] = array(
+				'caption'   => $val,
+				'icon'      => $inx . '/navbar',
 				'onExecute' => 'javaScript:app.projectmanager.add_new',
 			);
 		}
 		// Milestone isn't an app, so is not returned by app_list()
 		$actions['add']['children']['act-pm_milestone'] = array(
-			'caption' => 'Milestone',
-			'icon' => 'projectmanager/milestone',
+			'caption'   => 'Milestone',
+			'icon'      => 'projectmanager/milestone',
 			'onExecute' => 'javaScript:app.projectmanager.add_new',
 		);
 		//error_log(array2string($actions));
@@ -920,19 +935,25 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	/**
 	 * List existing projects-elements
 	 *
-	 * @param array $content=null
-	 * @param string $msg=''
+	 * @param array $content =null
+	 * @param string $msg =''
 	 */
-	function index($content=null,$msg='')
+	function index($content = null, $msg = '')
 	{
 
-		if ((int) static::DEBUG >= 1 || static::DEBUG == 'index') projectmanager_bo::debug_message("projectmanager_elements_ui::index(".print_r($content,true).",$msg)");
+		if((int)static::DEBUG >= 1 || static::DEBUG == 'index')
+		{
+			projectmanager_bo::debug_message("projectmanager_elements_ui::index(" . print_r($content, true) . ",$msg)");
+		}
 
 		// store the current project (only for index, as popups may be called by other parent-projects)
-		$GLOBALS['egw']->preferences->add('projectmanager','current_project', $this->project->data['pm_id']);
+		$GLOBALS['egw']->preferences->add('projectmanager', 'current_project', $this->project->data['pm_id']);
 		$GLOBALS['egw']->preferences->save_repository();
 
-		if ($_GET['msg']) $msg = $_GET['msg'];
+		if($_GET['msg'])
+		{
+			$msg = $_GET['msg'];
+		}
 
 		if ((int)$_GET['delete'])
 		{
@@ -944,17 +965,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$this->action($content['nm']['action'], $content['nm']['selected'], $msg, $content['add_existing_popup']);
 		}
 		$content = array(
-			'nm' => Api\Cache::getSession('projectmanager', 'projectelements_list'),
-			'msg'      => $msg,
+			'nm'  => Api\Cache::getSession('projectmanager', 'projectelements_list'),
+			'msg' => $msg,
 		);
 		if (!is_array($content['nm']))
 		{
 			$content['nm'] = array(
-				'get_rows'       =>	'projectmanager.projectmanager_elements_ui.get_rrows',
-				'num_rows'       => 0, // No data when first sent
-				'filter'         => 'used',// I initial value for the filter
-				'options-filter' => $this->status_labels,
-				'filter_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
+				'get_rows'        => 'projectmanager.projectmanager_elements_ui.get_rrows',
+				'num_rows'        => 0, // No data when first sent
+				'filter'          => 'used',// I initial value for the filter
+				'options-filter'  => $this->status_labels,
+				'filter_no_lang'  => True,// I  set no_lang for filter (=dont translate the options)
 				'options-filter2' => array(
 					0 => 'No details',
 					1 => 'Details',
@@ -963,19 +984,19 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					4 => 'Cumulated elements too',
 					5 => 'Details of cumulated',
 				),
-				'col_filter' => array('pe_resources' => null),	// default value, to suppress loop
-				'order'          =>	'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
-				'sort'           =>	'DESC',// IO direction of the sort: 'ASC' or 'DESC'
-				'default_cols'   => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time,legacy_actions',
-				'row_id' => 'elem_id',	// pe_app:pe_app_id:pe_id
+				'col_filter'      => array('pe_resources' => null),    // default value, to suppress loop
+				'order'           => 'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
+				'sort'            => 'DESC',// IO direction of the sort: 'ASC' or 'DESC'
+				'default_cols'    => '!cat_id,pe_used_time_pe_planned_time_pe_replanned_time,legacy_actions',
+				'row_id'          => 'elem_id',    // pe_app:pe_app_id:pe_id
 				'dataStorePrefix' => 'projectmanager_elements',
-				'parent_id'      => 'parent_id',
-				'is_parent'		 => 'is_parent'
+				'parent_id'       => 'parent_id',
+				'is_parent'       => 'is_parent'
 			);
 			// use the state of the last session stored in the user prefs
 			if (($state = @unserialize($this->prefs['pe_index_state'])))
 			{
-				$content['nm'] = array_merge($content['nm'],$state);
+				$content['nm'] = array_merge($content['nm'], $state);
 			}
 
 
@@ -986,10 +1007,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$content['nm']['num_rows'] = 0;
 		}
 		// Set duration format once for all
-		$content['duration_format']= ','.$this->config['duration_format'].',,1';
+		$content['duration_format'] = ',' . $this->config['duration_format'] . ',,1';
 
 		// Put totals in the right place for initial load
-		$totals = $this->summary($this->project->data['pm_id'],$content['nm']['col_filter']);
+		$totals = $this->summary($this->project->data['pm_id'], $content['nm']['col_filter']);
 		foreach($totals as $field => $value)
 		{
 			$content['nm']['total_' . $field] = $value;
@@ -1015,22 +1036,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$content['nm']['actions']['sync_all']['enabled'] = false;
 		}
 		$content['nm']['link_add'] = array(
-			'to_id'    => $this->pm_id,
-			'to_app'   => 'projectmanager',
-			'add_app'  => 'infolog',
+			'to_id'   => $this->pm_id,
+			'to_app'  => 'projectmanager',
+			'add_app' => 'infolog',
 		);
 		$this->tpl->read('projectmanager.elements.list');
 
 		// set id for automatic linking via quick add
 		$GLOBALS['egw_info']['flags']['currentid'] = $this->pm_id;
 
-		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Elementlist') .
-			': ' . $this->project->data['pm_number'] . ': ' .$this->project->data['pm_title'] ;
+		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager') . ' - ' . lang('Elementlist') .
+			': ' . $this->project->data['pm_number'] . ': ' . $this->project->data['pm_title'];
 
 		// fill the sel_options Applications
 		$sel_options ['pe_app'] = Link::app_list('add_app');
 		$this->tpl->setElementAttribute('nm[link_add]', 'application', Link::app_list('add'));
-		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index',$content,$sel_options,$readonlys);
+		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index', $content, $sel_options, $readonlys);
 	}
 
 	/**
@@ -1040,7 +1061,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 */
 	function get_document_actions()
 	{
-		if (!$this->prefs['document_dir']) return array();
+		if(!$this->prefs['document_dir'])
+		{
+			return array();
+		}
 
 		if (!is_array($actions = Api\Cache::getSession('projectmanager', 'document_actions')))
 		{
@@ -1052,7 +1076,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					// return only the mime-types we support
 					if (!projectmanager_merge::is_implemented($file['mime'],substr($file['name'],-4))) continue;
 
-					$actions['document-'.$file['name']] = $file['name'];
+					$actions['document-' . $file['name']] = $file['name'];
 				}
 			}
 			Api\Cache::setSession('projectmanager', 'document_actions', $actions);
@@ -1068,7 +1092,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 * @param string $msg to give back for the view or index
 	 * @return boolean true on success, false otherwise
 	 */
-	function action($action,$checked,&$msg, $add_existing)
+	function action($action, $checked, &$msg, $add_existing)
 	{
 		$document_projects = array();
 
@@ -1101,7 +1125,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		if (substr($action,0,9) == 'document_')
 		{
-			$document = substr($action,9);
+			$document = substr($action, 9);
 			$action = 'document';
 		}
 		if (substr($action,0,4) == 'cat_') list($action,$cat_id) = explode('_',$action);
@@ -1142,7 +1166,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				else
 				{
-					$msg = lang('Category in %1 project-element(s) updated.',$num);
+					$msg = lang('Category in %1 project-element(s) updated.', $num);
 					return true;
 				}
 				break;
@@ -1152,7 +1176,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					$element = $this->read($id);
 					if($element['pe_eroles'] && !is_array($element['pe_eroles']))
 					{
-						$element['pe_eroles'] = explode(',',$element['pe_eroles']);
+						$element['pe_eroles'] = explode(',', $element['pe_eroles']);
 					}
 					else
 					{
@@ -1160,13 +1184,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					}
 					$element['pe_eroles'][] = $erole;
 
-					if($this->save(array('pe_eroles' => implode(',',array_unique($element['pe_eroles'])))))
+					if($this->save(array('pe_eroles' => implode(',', array_unique($element['pe_eroles'])))))
 					{
 
 					}
 					else
 					{
-						$msg = lang('%1 element(s) updated',count($checked));
+						$msg = lang('%1 element(s) updated', count($checked));
 					}
 				}
 				break;
@@ -1184,8 +1208,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						$failed++;
 					}
 				}
-				$msg = lang('%1 element(s) updated',$success);
-				return $failed==0;
+				$msg = lang('%1 element(s) updated', $success);
+				return $failed == 0;
 				break;
 			case 'delete':
 				if (!$this->project->check_acl(Acl::ADD))
@@ -1200,10 +1224,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				break;
 
-			case 'sync_all':	// does NOT use id's
-				if ($this->project->check_acl(Acl::ADD))
+			case 'sync_all':    // does NOT use id's
+				if($this->project->check_acl(Acl::ADD))
 				{
-					$msg = lang('%1 element(s) updated',$this->sync_all());
+					$msg = lang('%1 element(s) updated', $this->sync_all());
 					return true;
 				}
 				else
@@ -1211,76 +1235,11 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					$msg = lang('Permission denied !!!');
 				}
 				break;
-
-			case 'document':
-				$document_projects = array();
-				$contacts = array();
-				$eroles = array();
-				if(count($checked) == 0)
-				{
-					// Use all, from merge selectbox in side menu
-					$query = $old_query = Api\Cache::getSession('projectmanager', 'projectelements_list');
-					$query['num_rows'] = -1;        // all
-					$this->get_rows($query,$selection,$readonlys);
-					foreach($selection as $key => $element)
-					{
-						if (!is_int($key)) continue;	// ignore string keys from get_rows
-						if($element['pe_id'] && is_numeric($element['pe_id'])) $checked[] = $element['pe_id'];
-					}
-
-					// Reset nm params
-					Api\Cache::setSession('projectmanager', 'projectelements_list', $old_query);
-
-				}
-				foreach($this->search(array('pm_id' => $this->data['pm_id']),false) as $id => $element)
-				{
-					// add contact
-					if($element['pe_app'] == 'addressbook' && in_array($element['pe_id'],$checked))
-					{
-						$contacts[] = $element['pe_app_id'];
-					}
-					// add erole(s)
-					if($this->config['enable_eroles'] && !empty($element['pe_eroles']))
-					{
-						// one element could have multiple eroles
-						foreach(explode(',',$element['pe_eroles']) as $erole_id)
-						{
-							$eroles[] = array(
-								'pe_id'		=> $element['pe_id'],
-								'app' 		=> $element['pe_app'],
-								'app_id' 	=> $element['pe_app_id'],
-								'erole_id'	=> $erole_id,
-							);
-						}
-					}
-				}
-
-				// Check to see if the user selected an element from another (child) project,
-				// and add that project to the list of IDs so merge won't skip it
-				$current_pm_id = $this->pm_id;
-				$document_projects[] = $current_pm_id;
-				foreach($checked as $key => $id) {
-					// Need to clear pm_id or read won't actually read
-					unset($this->pm_id);
-					$element = $this->read(array('pe_id' => $id));
-					if($element['pm_id'] && $element['pm_id'] != $current_pm_id) $document_projects[] = $element['pm_id'];
-				}
-				$this->pm_id = $current_pm_id;
-
-				if(!empty($contacts))
-				{
-					$document_projects['contacts'] = array_unique($contacts);
-				}
-
-				// Actually send the elements the user selected
-				$document_projects['elements'] = $checked;
-				$msg = $this->download_document($document_projects, $document, $eroles);
-				return true;
 		}
 		return false;
 	}
 
-/**
+	/**
 	 * Run given action on given path(es) and return array/object with values for keys 'msg', 'errs', 'dirs', 'files'
 	 *
 	 * @param string $action eg. 'delete', ...
@@ -1300,14 +1259,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$checked = array();
 				foreach($selected as $entry)
 				{
-					list($prefix,$checked[]) = explode('::',$entry);
+					list($prefix, $checked[]) = explode('::', $entry);
 				}
 				$msg = '';
-				if($ui->action('ignore_'.(!!$data),$checked,$msg, $add_existing))
+				if($ui->action('ignore_' . (!!$data), $checked, $msg, $add_existing))
 				{
 					// We could just update the selected rows here, but this is easier and gets
 					// the totals too
-					$response->call('egw.refresh',$msg,'projectmanager');
+					$response->call('egw.refresh', $msg, 'projectmanager');
 				}
 				else
 				{
@@ -1324,10 +1283,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	 *
 	 * @param array $ids contact-ids
 	 * @param string $document vfs-path of document
-	 * @param array $eroles=null element roles with keys pe_id, app, app_id and erole_id
+	 * @param array $eroles =null element roles with keys pe_id, app, app_id and erole_id
 	 * @return string error-message or error, otherwise the function does NOT return!
 	 */
-	function download_document($ids,$document='',$eroles=null)
+	function download_document($ids, $document = '', $eroles = null)
 	{
 		$document_merge = new projectmanager_merge($this->pm_id);
 		if($this->config['enable_eroles'] && !empty($eroles))
@@ -1335,17 +1294,18 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$document_merge->set_eroles($eroles);
 		}
 
-		if($ids['contacts']) {
+		if($ids['contacts'])
+		{
 			$document_merge->contact_ids = $ids['contacts'];
 		}
 		unset($ids['contacts']);
 
 		if(isset($this->prefs['document_download_name']))
 		{
-			$ext = '.'.pathinfo($document,PATHINFO_EXTENSION);
+			$ext = '.' . pathinfo($document, PATHINFO_EXTENSION);
 			$name = preg_replace(
-				array('/%document%/','/%pm_number%/','/%pm_title%/'),
-				array(basename($document,$ext),$this->project->data['pm_number'],$this->project->data['pm_title']),
+				array('/%document%/', '/%pm_number%/', '/%pm_title%/'),
+				array(basename($document, $ext), $this->project->data['pm_number'], $this->project->data['pm_title']),
 				$this->prefs['document_download_name']
 			);
 		}
@@ -1354,7 +1314,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			if($document_merge->export_limit &&
 				!Api\Storage\Merge::is_export_limit_excepted() && count($ids['elements']) > (int)$document_merge->export_limit)
 			{
-				return lang('No rights to export more then %1 entries!',(int)$document_merge->export_limit);
+				return lang('No rights to export more then %1 entries!', (int)$document_merge->export_limit);
 			}
 			$document_merge->elements = $ids['elements'];
 		}
