@@ -326,7 +326,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			}
 		}
 
-		$document_merge->eroles = $eroles;
+		$document_merge->set_eroles($eroles);
 		$document_merge->contact_ids = array_unique($contacts);
 
 		return $document_projects;
