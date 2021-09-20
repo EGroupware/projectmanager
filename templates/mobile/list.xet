@@ -63,7 +63,7 @@
 					<description id="plus_button_container"/>
 				</row>
 				<row>
-					<nextmatch id="nm" template="projectmanager.list.rows"/>
+					<nextmatch id="nm" template="projectmanager.list.rows"  header_right='projectmanager.list.right'/>
 				</row>
 				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
 					<hbox>
