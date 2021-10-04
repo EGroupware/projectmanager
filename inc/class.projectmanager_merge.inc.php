@@ -209,12 +209,13 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * Merge the selected IDs into the given document, save it to the VFS, then
 	 * either open it in the editor or have the browser download the file.
 	 *
-	 * @param String[]|null $ids Allows extending classes to process IDs in their own way.  Leave null to pull from request.
-	 * @param Merge|null $document_merge
+	 * @param string[]|null $ids Allows extending classes to process IDs in their own way.  Leave null to pull from request.
+	 * @param Merge|null $document_merge Already instantiated Merge object to do the merge.
+	 * @param boolean|null $pdf Convert result to PDF
 	 * @throws Api\Exception
 	 * @throws Api\Exception\AssertionFailed
 	 */
-	public static function merge_entries(array $ids = null, Merge &$document_merge = null)
+	public static function merge_entries(array $ids = null, Merge &$document_merge = null, $pdf = null)
 	{
 		$document_merge = new projectmanager_merge();
 		if(is_null($ids))
