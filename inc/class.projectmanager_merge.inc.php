@@ -240,7 +240,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			}
 		}
 
-		return parent::merge_entries($ids, $document_merge);
+		return parent::merge_entries($ids, $document_merge, $pdf);
 	}
 
 	/**
