@@ -959,6 +959,123 @@ class projectmanager_merge extends Api\Storage\Merge
 	}
 
 	/**
+	 * Get a list of placeholders provided.
+	 *
+	 * Placeholders are grouped logically.  Group key should have a user-friendly translation.
+	 */
+	public function get_placeholder_list($prefix = '')
+	{
+		$placeholders = array(
+				'project'      => [],
+				'element'      => [],
+				'erole'        => [],
+				'customfields' => []
+			) + parent::get_placeholder_list($prefix);
+
+		// Add project placeholders
+		$this->get_project_placeholder_list($prefix, $placeholders);
+
+		// Add element placeholders
+		$this->get_element_placeholder_list($prefix, $placeholders);
+
+		// Add erole placeholders
+		$this->get_erole_placeholder_list($prefix, $placeholders);
+
+		return $placeholders;
+	}
+
+	/**
+	 * Get the list of project placeholders
+	 *
+	 * @param string $prefix
+	 * @param array $placeholders
+	 */
+	protected function get_project_placeholder_list($prefix, &$placeholders)
+	{
+		// Project placeholders
+		$group = 'project';
+		foreach($this->projectmanager_fields as $name => $label)
+		{
+			if(isset($this->pm_fields_translate[$name]))
+			{
+				$name = $this->pm_fields_translate[$name];
+			}
+
+			$marker = $this->prefix($prefix, $name, '{');
+			if(!array_filter($placeholders, function ($a) use ($marker)
+			{
+				return array_key_exists($marker, $a);
+			}))
+			{
+				$placeholders[$group][] = [
+					'value' => $marker,
+					'label' => $label
+				];
+			}
+		}
+	}
+
+	/**
+	 * Get the list of element placeholders.
+	 * These should be wrapped in elements table plugin
+	 *
+	 * @param string $prefix
+	 * @param array $placeholders
+	 */
+	protected function get_element_placeholder_list($prefix, &$placeholders)
+	{
+		$group = 'element';
+		// This isn't used anywhere in the UI, 'label' & 'title' are not allowed for group.  I'm not sure where to stick it.
+		//'help' => lang('can be used with element roles, "eroles" table plugin and "elements" table plugin')
+
+		foreach($this->projectmanager_element_fields as $name => $label)
+		{
+			if(isset($this->pe_fields_translate[$name]))
+			{
+				$name = $this->pe_fields_translate[$name];
+			}
+			$marker = $this->prefix($prefix, $name, '{');
+			if(!array_filter($placeholders, function ($a) use ($marker)
+			{
+				return array_key_exists($marker, $a);
+			}))
+			{
+				$placeholders[$group][] = [
+					'value' => $marker,
+					'label' => $label
+				];
+			}
+		}
+	}
+
+	/**
+	 * Get placeholders for eroles
+	 * We only list the single roles, but these are also available as a table using {{table/eroles}}...{{endtable}}
+	 *
+	 * @param $prefix
+	 * @param $placeholders
+	 */
+	protected function get_erole_placeholder_list($prefix, &$placeholders)
+	{
+		if(!$this->projectmanager_bo->config['enable_eroles'])
+		{
+			return;
+		}
+		if(!$this->projectmanager_eroles_bo)
+		{
+			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo();
+		}
+		foreach((array)$this->projectmanager_eroles_bo->search(array(), ['role_title'], 'role_title ASC', '', '', false, 'AND', false, array()) as $erole)
+		{
+			// TODO: If we knew what app was in the erole, we could list the placeholders...
+			$placeholders['erole'][$erole['role_title']][] = [
+				'value' => $this->prefix($prefix, "erole/{$erole['role_title']}/...", '{'),
+				'label' => $erole['role_title']
+			];
+		}
+	}
+
+	/**
 	 * Table plugin for project elements
 	 *
 	 * @param string $plugin
