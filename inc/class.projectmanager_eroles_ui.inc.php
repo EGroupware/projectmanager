@@ -111,9 +111,9 @@ class projectmanager_eroles_ui extends projectmanager_bo
 				}
 			}
 		}
-		if ($content['delete'] || $content['edit'])
+		if (!empty($content['delete']) || !empty($content['edit']))
 		{
-			$erole = $content['delete'] ? key($content['delete']) : key($content['edit']);
+			$erole = key($content['delete'] ?? $content['edit']);
 			if(!($erole = $this->eroles->read($erole)))
 			{
 				$msg = lang('Permission denied !!!');

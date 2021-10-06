@@ -521,7 +521,7 @@ class projectmanager_ui extends projectmanager_bo
 				{
 					reset($sel_options['pm_accounting_type']);
 					$content['pm_accounting_type'] = $preserv['pm_accounting_type'] =
-						key($sel_options['pm_accounting_type']);
+						key($sel_options['pm_accounting_type'] ?? []);
 				}
 				$readonlys['pm_accounting_type'] = true;
 			}
@@ -728,11 +728,11 @@ class projectmanager_ui extends projectmanager_bo
 		$delete_sources = $content['delete_sources'];
 		$content = $content['nm']['rows'];
 
-		if ($content['delete'] || $content['ganttchart'])
+		if (!empty($content['delete']) || !empty($content['ganttchart']))
 		{
 			foreach(array('delete','ganttchart') as $action)
 			{
-				if ($content[$action])
+				if (!empty($content[$action]))
 				{
 					$pm_id = key($content[$action]);
 					break;
