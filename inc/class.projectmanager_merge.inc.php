@@ -338,9 +338,11 @@ class projectmanager_merge extends Api\Storage\Merge
 	 *
 	 * Override the default to include the project name / title
 	 *
+	 * @param string $document Template filename
+	 * @param string[] $ids List of IDs being merged
 	 * @return string
 	 */
-	protected function get_filename($document): string
+	protected function get_filename($document, $ids = []) : string
 	{
 		$name = '';
 		if(isset($this->projectmanager_bo->prefs['document_download_name']))
@@ -637,7 +639,7 @@ class projectmanager_merge extends Api\Storage\Merge
 					break;
 				case 'pm_creator':
 				case 'pm_modifier':
-					$value = Api\Accounts::username($value);
+				$value = is_numeric($value) ? Api\Accounts::username($value) : $value;
 					break;
 				case 'cat_id':
 					if($value)
