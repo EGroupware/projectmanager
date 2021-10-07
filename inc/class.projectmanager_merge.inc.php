@@ -1197,4 +1197,29 @@ class projectmanager_merge extends Api\Storage\Merge
 
 		return $replacement;
 	}
+
+	/**
+	 * Get preference settings
+	 *
+	 * Merge has some preferences that the same across apps, but can have different values for each app.
+	 * Overridden from parent because projectmanager has different filename generation
+	 */
+	public function merge_preferences()
+	{
+		$settings = parent::merge_preferences();
+		$settings[self::PREF_DOCUMENT_FILENAME] += array(
+			'type'    => 'select',
+			'values'  => array(
+				'%document%'                            => lang('Template name'),
+				'%pm_title%'                            => lang('Project title'),
+				'%pm_title% - %document%'               => lang('Project title - template name'),
+				'%document% - %pm_title%'               => lang('Template name - project title'),
+				'%pm_number% - %document%'              => lang('Project ID - template name'),
+				'(%pm_number%) %pm_title% - %document%' => lang('(Project ID) project title - template name'),
+
+			),
+			'default' => '%document%',
+		);
+		return $settings;
+	}
 }

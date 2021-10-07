@@ -618,38 +618,8 @@ class projectmanager_hooks
 		);
 		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
-			$settings['document_dir'] = array(
-				'type'   => 'vfs_dirs',
-				'size'   => 60,
-				'label'  => 'Directory with documents to insert project data',
-				'name'   => 'document_dir',
-				'help'   => lang('If you specify a directory (full vfs path) here, %1 displays an action for each document. That action allows to download the specified document with the data inserted.',lang('projectmanager')).' '.
-					lang('the document can contain placeholder like {{%1}}, to be replaced with the data.','pm_title').' '.
-					lang('Furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.').' '.
-					lang('The following document-types are supported:'). implode(',',Api\Storage\Merge::get_file_extensions()),
-				'run_lang' => false,
-				'xmlrpc' => True,
-				'admin'  => False,
-				'default' => '/templates/projectmanager',
-			);
-			$settings['document_download_name'] = array(
-			'type'   => 'select',
-			'label'  => 'Document download filename',
-			'name'   => 'document_download_name',
-			'values' => array(
-				'%document%'      						=> lang('Template name'),
-				'%pm_title%'      						=> lang('Project title'),
-				'%pm_title% - %document%'				=> lang('Project title - template name'),
-				'%document% - %pm_title%'				=> lang('Template name - project title'),
-				'%pm_number% - %document%'				=> lang('Project ID - template name'),
-				'(%pm_number%) %pm_title% - %document%'	=> lang('(Project ID) project title - template name'),
-
-			),
-			'help'   => 'Choose the default filename for downloaded documents.',
-			'xmlrpc' => True,
-			'admin'  => False,
-			'default'=> '%document%',
-		);
+			$merge = new projectmanager_merge();
+			$settings += $merge->merge_preferences();
 		}
 		$settings[] = array(
 			'type'  => 'section',
