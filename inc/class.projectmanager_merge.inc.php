@@ -637,7 +637,7 @@ class projectmanager_merge extends Api\Storage\Merge
 					break;
 				case 'pm_creator':
 				case 'pm_modifier':
-					$value = Api\Accounts::username($value);
+					$value = is_numeric($value) ? Api\Accounts::username($value) : $value;
 					break;
 				case 'cat_id':
 					if($value)
