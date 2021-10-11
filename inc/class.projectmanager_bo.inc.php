@@ -688,7 +688,7 @@ class projectmanager_bo extends projectmanager_so
 	 *
 	 * @param int $required Acl::READ, Acl::EDIT, Acl::ADD, EGW_ACL_ADD_TIMESHEET, Acl::DELETE, EGW_ACL_BUDGET, EGW_ACL_EDIT_BUDGET
 	 * @param array|int $data =null project or project-id to use, default the project in $this->data
-	 * @param boolean $no_cache =false should a cached value be used, if availible, or not
+	 * @param boolean $no_cache =false should a cached value be used, if available, or not
 	 * @param int $user =null for which user to check, default current user
 	 * @return boolean true if the rights are ok, false if not or null if entry not found
 	 */
@@ -756,8 +756,8 @@ class projectmanager_bo extends projectmanager_so
 			}
 		}
 		// private project need either a private grant or a role ACL
-		if ($private && !($rights & Acl::PRIVAT) && !(($data['pm_members'][$user]['role_acl'] & $required) ||
-				$grants_from_groups & $required))
+		if ($private && !($rights & Acl::PRIVAT) && is_array($data) && !empty($data['pm_members'][$user]) &&
+			!(((int)$data['pm_members'][$user]['role_acl'] & $required) || $grants_from_groups & $required))
 		{
 			$access = false;
 		}
@@ -774,7 +774,7 @@ class projectmanager_bo extends projectmanager_so
 		if(($required & Acl::DELETE) && $this->config_data['history'] == 'history_admin_delete' &&
 			$data['pm_status'] == self::DELETED_STATUS)
 		{
-			$access = !!($GLOBALS['egw_info']['user']['apps']['admin']);
+			$access = !empty($GLOBALS['egw_info']['user']['apps']['admin']);
 		}
 		if ((int) $this->debug >= 2 || $this->debug == 'check_acl') $this->debug_message(__METHOD__."($required,pm_id=$pm_id,$no_cache,$user) rights=$rights returning ".array2string($access));
 		//error_log(__METHOD__."($required) pm_id=$pm_id, data[pm_access]=".(is_array($data) ? array2string($data['pm_access']) : 'data='.array2string($data))." returning ".array2string($access));
