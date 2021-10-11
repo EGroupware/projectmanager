@@ -159,9 +159,10 @@ class projectmanager_tracking extends Api\Storage\Tracking
 	 *
 	 * @param array $data
 	 * @param array $old
+	 * @param int|string $receiver nummeric account_id or email address
 	 * @return string
 	 */
-	function get_message($data,$old)
+	protected function get_message($data,$old,$receiver=null)
 	{
 		if ($data['message']) return $data['message'];	// async notification
 
