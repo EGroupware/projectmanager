@@ -238,7 +238,7 @@ class projectmanager_widget
 		$pricelist= $pricelist->pricelist($pm_id);
 		$options = array();
 
-		foreach($pricelist as $pl_id => $label)
+		foreach($pricelist ?: [] as $pl_id => $label)
 		{
 			if (!isset($cell['sel_options'][$pl_id]))
 			{
