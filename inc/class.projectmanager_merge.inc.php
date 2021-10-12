@@ -741,9 +741,9 @@ class projectmanager_merge extends Api\Storage\Merge
 						$value = explode(',', $value);
 					}
 					$names = array();
-					foreach($value as $id => $user_id)
+					foreach($value as $user_id)
 					{
-						$names[] = Api\Accounts::username($user_id);
+						$names[] = is_numeric($user_id) ? Api\Accounts::username($user_id) : $user_id;
 					}
 					$value = implode(', ', $names);
 					break;
