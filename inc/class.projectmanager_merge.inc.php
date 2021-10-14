@@ -240,7 +240,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			}
 		}
 
-		return parent::merge_entries($ids, $document_merge);
+		return parent::merge_entries($ids, $document_merge, $pdf);
 	}
 
 	/**
@@ -338,9 +338,11 @@ class projectmanager_merge extends Api\Storage\Merge
 	 *
 	 * Override the default to include the project name / title
 	 *
+	 * @param string $document Template filename
+	 * @param string[] $ids List of IDs being merged
 	 * @return string
 	 */
-	protected function get_filename($document): string
+	protected function get_filename($document, $ids = []) : string
 	{
 		$name = '';
 		if(isset($this->projectmanager_bo->prefs['document_download_name']))
@@ -637,7 +639,7 @@ class projectmanager_merge extends Api\Storage\Merge
 					break;
 				case 'pm_creator':
 				case 'pm_modifier':
-					$value = is_numeric($value) ? Api\Accounts::username($value) : $value;
+				$value = is_numeric($value) ? Api\Accounts::username($value) : $value;
 					break;
 				case 'cat_id':
 					if($value)
@@ -959,6 +961,123 @@ class projectmanager_merge extends Api\Storage\Merge
 	}
 
 	/**
+	 * Get a list of placeholders provided.
+	 *
+	 * Placeholders are grouped logically.  Group key should have a user-friendly translation.
+	 */
+	public function get_placeholder_list($prefix = '')
+	{
+		$placeholders = array(
+				'project'      => [],
+				'element'      => [],
+				'erole'        => [],
+				'customfields' => []
+			) + parent::get_placeholder_list($prefix);
+
+		// Add project placeholders
+		$this->get_project_placeholder_list($prefix, $placeholders);
+
+		// Add element placeholders
+		$this->get_element_placeholder_list($prefix, $placeholders);
+
+		// Add erole placeholders
+		$this->get_erole_placeholder_list($prefix, $placeholders);
+
+		return $placeholders;
+	}
+
+	/**
+	 * Get the list of project placeholders
+	 *
+	 * @param string $prefix
+	 * @param array $placeholders
+	 */
+	protected function get_project_placeholder_list($prefix, &$placeholders)
+	{
+		// Project placeholders
+		$group = 'project';
+		foreach($this->projectmanager_fields as $name => $label)
+		{
+			if(isset($this->pm_fields_translate[$name]))
+			{
+				$name = $this->pm_fields_translate[$name];
+			}
+
+			$marker = $this->prefix($prefix, $name, '{');
+			if(!array_filter($placeholders, function ($a) use ($marker)
+			{
+				return array_key_exists($marker, $a);
+			}))
+			{
+				$placeholders[$group][] = [
+					'value' => $marker,
+					'label' => $label
+				];
+			}
+		}
+	}
+
+	/**
+	 * Get the list of element placeholders.
+	 * These should be wrapped in elements table plugin
+	 *
+	 * @param string $prefix
+	 * @param array $placeholders
+	 */
+	protected function get_element_placeholder_list($prefix, &$placeholders)
+	{
+		$group = 'element';
+		// This isn't used anywhere in the UI, 'label' & 'title' are not allowed for group.  I'm not sure where to stick it.
+		//'help' => lang('can be used with element roles, "eroles" table plugin and "elements" table plugin')
+
+		foreach($this->projectmanager_element_fields as $name => $label)
+		{
+			if(isset($this->pe_fields_translate[$name]))
+			{
+				$name = $this->pe_fields_translate[$name];
+			}
+			$marker = $this->prefix($prefix, $name, '{');
+			if(!array_filter($placeholders, function ($a) use ($marker)
+			{
+				return array_key_exists($marker, $a);
+			}))
+			{
+				$placeholders[$group][] = [
+					'value' => $marker,
+					'label' => $label
+				];
+			}
+		}
+	}
+
+	/**
+	 * Get placeholders for eroles
+	 * We only list the single roles, but these are also available as a table using {{table/eroles}}...{{endtable}}
+	 *
+	 * @param $prefix
+	 * @param $placeholders
+	 */
+	protected function get_erole_placeholder_list($prefix, &$placeholders)
+	{
+		if(!$this->projectmanager_bo->config['enable_eroles'])
+		{
+			return;
+		}
+		if(!$this->projectmanager_eroles_bo)
+		{
+			$this->projectmanager_eroles_bo = new projectmanager_eroles_bo();
+		}
+		foreach((array)$this->projectmanager_eroles_bo->search(array(), ['role_title'], 'role_title ASC', '', '', false, 'AND', false, array()) as $erole)
+		{
+			// TODO: If we knew what app was in the erole, we could list the placeholders...
+			$placeholders['erole'][$erole['role_title']][] = [
+				'value' => $this->prefix($prefix, "erole/{$erole['role_title']}/...", '{'),
+				'label' => $erole['role_title']
+			];
+		}
+	}
+
+	/**
 	 * Table plugin for project elements
 	 *
 	 * @param string $plugin
@@ -1077,5 +1196,30 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 
 		return $replacement;
+	}
+
+	/**
+	 * Get preference settings
+	 *
+	 * Merge has some preferences that the same across apps, but can have different values for each app.
+	 * Overridden from parent because projectmanager has different filename generation
+	 */
+	public function merge_preferences()
+	{
+		$settings = parent::merge_preferences();
+		$settings[self::PREF_DOCUMENT_FILENAME] += array(
+			'type'    => 'select',
+			'values'  => array(
+				'%document%'                            => lang('Template name'),
+				'%pm_title%'                            => lang('Project title'),
+				'%pm_title% - %document%'               => lang('Project title - template name'),
+				'%document% - %pm_title%'               => lang('Template name - project title'),
+				'%pm_number% - %document%'              => lang('Project ID - template name'),
+				'(%pm_number%) %pm_title% - %document%' => lang('(Project ID) project title - template name'),
+
+			),
+			'default' => '%document%',
+		);
+		return $settings;
 	}
 }
