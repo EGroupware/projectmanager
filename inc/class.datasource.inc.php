@@ -340,7 +340,7 @@ class datasource
 			{
 				if (!isset($ds[$quantity]) && isset($ds[$time]))
 				{
-					$ds[$quantity] = $ds[$time] / 60.0;	// time is in min, quantity in h
+					$ds[$quantity] = (float)$ds[$time] / 60.0;	// time is in min, quantity in h
 				}
 			}
 			// setting the budget from unitprice and quantity
