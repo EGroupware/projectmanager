@@ -565,6 +565,17 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		}
 		unset($query['col_filter']['parent_id']);
 
+		// as our row-id is "elem_id" and consists of "pe_app:pe_app_id:pe_id" NM controller can ask for it
+		if (!empty($query['col_filter']['elem_id']))
+		{
+			$query['col_filter']['pe_id'] = array_map(static function($elem_id)
+			{
+				list(,,$pe_id) = explode(':', $elem_id);
+				return $pe_id;
+			}, (array)$query['col_filter']['elem_id']);
+		}
+		unset($query['col_filter']['elem_id']);
+
 		// cumulate eg. timesheets in also included infologs
 		$query['col_filter']['cumulate'] = !($query['filter2'] & 4);
 		$total = parent::get_rows($query, $rows, $readonlys, true);
@@ -645,15 +656,15 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// add pe links
 			if($query['filter2'] & 3)
 			{
-				if ($this->prefs['show_links'] &&
+				if (!empty($this->prefs['show_links']) &&
 					(isset($row['pe_all_links']) || ($row['pe_all_links'] = Link::get_links($row['link']['app'],$row['link']['id'],'',true))))
 				{
 					foreach ($row['pe_all_links'] as $link)
 					{
-						if ($show_links != 'none' &&
+						if ($this->prefs['show_links'] !== 'none' &&
 							!($row['pm_link']['id'] == $link['id'] && $link['app'] == 'projectmanager') &&
 							!($row['pm_id'] == $link['id'] && $link['app'] == 'projectmanager') &&
-							($show_links == 'all' || ($show_links == 'links') === ($link['app'] != Link::VFS_APPNAME)))
+							($this->prefs['show_links'] === 'all' || ($this->prefs['show_links'] === 'links') === ($link['app'] != Link::VFS_APPNAME)))
 						{
 							$row['pe_links'][] = $link;
 						}
@@ -1144,6 +1155,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				}
 				$title = Link::title($app, $link_id);
 
+				$success = $failed = 0;
 				if($btn['add'])
 				{
 					$action_msg = lang('linked to %1', $title);
@@ -1262,7 +1274,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					list($prefix, $checked[]) = explode('::', $entry);
 				}
 				$msg = '';
-				if($ui->action('ignore_' . (!!$data), $checked, $msg, $add_existing))
+				if($ui->action('ignore_' . (!!$data), $checked, $msg, $add_existing=null))
 				{
 					// We could just update the selected rows here, but this is easier and gets
 					// the totals too
