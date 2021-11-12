@@ -249,7 +249,7 @@ class projectmanager_merge extends Api\Storage\Merge
 	 * @param $ids
 	 * @param Merge $document_merge
 	 */
-	protected function merge_element_entries($ids, projectmanager_merge &$document_merge)
+	protected static function merge_element_entries($ids, projectmanager_merge &$document_merge)
 	{
 		$document_projects = array();
 		$eroles = [];
