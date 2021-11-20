@@ -145,7 +145,7 @@
 					<listbox id="${row}[type]" readonly="true"/>
 					<vbox>
 						<link id="${row}[pe_id_end]" readonly="true" only_app="projectelement"/>
-						<link id="${row}[ms_id]" readonly="true" only_app="pm_milestone" disabled="${row_cont[pe_id_end]}"/>
+						<link id="${row}[ms_id]" readonly="true" only_app="pm_milestone" disabled="$row_cont[pe_id_end]"/>
 					</vbox>
 					<button id="delete[${row}]" image="delete"/>
 				</row>
