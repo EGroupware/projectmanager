@@ -648,10 +648,15 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			return false;
 		}
 		$this->data['pe_constraints'] = $this->constraints->read(array(
-			'pm_id' => $this->data['pm_id'],
-			'pe_id' => $this->data['pe_id'],
-		));
+																	 'pm_id' => $this->data['pm_id'],
+																	 'pe_id' => $this->data['pe_id'],
+																 ));
 		return $this->data;
+	}
+
+	function title($id)
+	{
+		return $this->titles([$id])[$id] ?: false;
 	}
 
 	/**
@@ -660,7 +665,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 	 * @param array $keys keys of elements to read, default empty = all of the project the class is instanciated for
 	 * @return array with pe_id => lang(pe_app): pe_title pairs
 	 */
-	function &titles($keys=array())
+	function &titles($keys = array())
 	{
 		$titles = array();
 
