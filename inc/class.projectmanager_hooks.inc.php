@@ -600,56 +600,56 @@ class projectmanager_hooks
 			'default'=> '0',	// No
 		);
 		$settings['notify_start_real'] = array(
-			'type'   => 'select',
-			'label'  => 'Receive notifications about starting entries (real dates)',
-			'name'   => 'notify_start_real',
-			'help'   => 'Do you want a notification, if items are about to start according to their real dates?',
-			'values' => $options,
-			'xmlrpc' => True,
-			'admin'  => False,
-			'default'=> '0d',	// Same day
+			'type'    => 'select',
+			'label'   => 'Receive notifications about starting entries (real dates)',
+			'name'    => 'notify_start_real',
+			'help'    => 'Do you want a notification, if items are about to start according to their real dates?',
+			'values'  => $options,
+			'xmlrpc'  => True,
+			'admin'   => False,
+			'default' => '0d',    // Same day
 		);
 
 		$settings[] = array(
-			'type'  => 'section',
-			'title' => lang('Data exchange settings'),
-			'no_lang'=> true,
-			'xmlrpc' => False,
-			'admin'  => False
+			'type'    => 'section',
+			'title'   => lang('ID generation'),
+			'no_lang' => true,
+			'xmlrpc'  => False,
+			'admin'   => False
 		);
-		if ($GLOBALS['egw_info']['user']['apps']['filemanager'])
+		$settings['id-generation-format'] = array(
+			'type'    => 'input',
+			'size'    => 20,
+			'label'   => 'How should IDs for new projects be generated?',
+			'name'    => 'id-generation-format',
+			'help'    => "You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.",
+			'xmlrpc'  => true,
+			'admin'   => false,
+			'default' => 'P-%Y-%04ix',
+		);
+		$settings['id-generation-format-sub'] = array(
+			'type'    => 'input',
+			'size'    => 20,
+			'label'   => 'How should IDs for new subprojects be generated?',
+			'name'    => 'id-generation-format-sub',
+			'help'    => "You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.",
+			'xmlrpc'  => true,
+			'admin'   => false,
+			'default' => '%px/%04ix',
+		);
+
+		$settings[] = array(
+			'type'    => 'section',
+			'title'   => lang('Data exchange settings'),
+			'no_lang' => true,
+			'xmlrpc'  => False,
+			'admin'   => False
+		);
+		if($GLOBALS['egw_info']['user']['apps']['filemanager'])
 		{
 			$merge = new projectmanager_merge();
 			$settings += $merge->merge_preferences();
 		}
-		$settings[] = array(
-			'type'  => 'section',
-			'title' => lang('ID generation'),
-			'no_lang'=> true,
-			'xmlrpc' => False,
-			'admin'  => False
-		);
-		$settings['id-generation-format'] = array(
-			'type'   => 'input',
-			'size'   => 20,
-			'label'  => 'How should IDs for new projects be generated?',
-			'name'   => 'id-generation-format',
-			'help'   => "You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.",
-			'xmlrpc' => true,
-			'admin'  => false,
-			'default' => 'P-%Y-%04ix',
-		);
-		$settings['id-generation-format-sub'] = array(
-			'type'   => 'input',
-			'size'   => 20,
-			'label'  => 'How should IDs for new subprojects be generated?',
-			'name'   => 'id-generation-format-sub',
-			'help'   => "You can use %Ymd to insert the date of creation. It uses the same syntax like the PHP funktion date(). Other placeholders are %px to insert the parents ID (only at the subprojects generation) or %ix to insert an index. Indices will be increased automatically to avoid duplicated IDs. Every generation format should contain exactly one index! (Exept you are sure that the date will identify the project). You can also use e.g. %04ix. This index will be filled with '0' to 4 digits (e.g. 0001). If you leave out the filling character (e.g. %5ix), the index will be filled with '0'.",
-			'xmlrpc' => true,
-			'admin'  => false,
-			'default' => '%px/%04ix',
-		);
-
 		return $settings;
 	}
 
