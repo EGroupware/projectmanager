@@ -1080,8 +1080,7 @@ export class ProjectmanagerApp extends EgwApp
 	 */
 	getWindowTitle()
 	{
-		const widget = this.et2.getWidgetById('pm_title');
-		if(widget) return widget.options.value;
+		return this.et2.getValueById('pm_title');
 	}
 }
 
