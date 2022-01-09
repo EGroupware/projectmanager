@@ -81,7 +81,7 @@ created	projectmanager	en	Created
 created a ganttchart from the checked projects	projectmanager	en	Created a Gantt chart from the checked projects
 creation date and time	projectmanager	en	Creation date and time
 creator	projectmanager	en	Creator
-criteria to break into subdirectories	projectmanager	en	Criteria to break into subdirectories
+criteria to break into subdirectories	projectmanager	en	Criteria to break into subfolders
 csv-fieldname	projectmanager	en	CSV field name
 csv-filename	projectmanager	en	CSV file name
 csv-import	common	en	CSV import
@@ -106,7 +106,7 @@ deleted	projectmanager	en	Deleted
 depth of display	projectmanager	en	Depth of display
 details of cumulated	projectmanager	en	Details of cumulated
 details of subelements	projectmanager	en	Details of subelements
-directory with documents to insert project data	projectmanager	en	Directory with documents to insert project data
+directory with documents to insert project data	projectmanager	en	Folder with documents to insert project data
 do not use that entry as project-element	projectmanager	en	Do not use that entry as project element
 do you want a notification, if items are about to start according to their planned dates?	projectmanager	en	Do you want a notification, if items are about to start according to their planned dates?
 do you want a notification, if items are about to start according to their real dates?	projectmanager	en	Do you want a notification, if items are about to start according to their real dates?
@@ -117,7 +117,7 @@ do you want a notification, if items you created get updated?	projectmanager	en	
 document '%1' does not exist or is not readable for you!	projectmanager	en	Document '%1' does not exist or is not readable for you!
 document download filename	projectmanager	en	Document download file name
 document merge	projectmanager	en	Document merge
-don't break into subdirectories	projectmanager	en	Don't break into subdirectories
+don't break into subdirectories	projectmanager	en	Don't break into subfolders
 done (100%)	projectmanager	en	Done (100%)
 edit access, incl. editing budget and elements	projectmanager	en	Edit access, incl. editing budget and elements
 edit budget	projectmanager	en	Edit budget
@@ -195,7 +195,7 @@ fields for element roles:	projectmanager	en	Fields for element roles:
 fieldseparator	projectmanager	en	Field separator
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	en	Filemanager shows a virtual structure for the projects e.g. by year or year & month. By default, pagination is done automatically based on the number of projects. You can choose also a fixed criteria for this structure.
 filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	en	Filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. You can select a different criteria for that structure e.g. Startdate or Projectnumber.
-filemanager subdirectories	projectmanager	en	Filemanager subdirectories
+filemanager subdirectories	projectmanager	en	Filemanager subfolders
 font	projectmanager	en	Font
 font charset	projectmanager	en	Font charset
 font style	projectmanager	en	Font style
