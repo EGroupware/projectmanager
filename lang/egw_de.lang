@@ -81,7 +81,7 @@ created	projectmanager	de	Erstellt
 created a ganttchart from the checked projects	projectmanager	de	Erstellt ein Gantt-Diagramm von den gewählten Projekten
 creation date and time	projectmanager	de	Erstellungsdatum und Uhrzeit
 creator	projectmanager	de	Ersteller
-criteria to break into subdirectories	projectmanager	de	Kriterien für die Aufteilung der virtuellen Unterverzeichnisse
+criteria to break into subdirectories	projectmanager	de	Kriterien für die Aufteilung der virtuellen Unterordner
 csv-fieldname	projectmanager	de	CSV-Feldname
 csv-filename	projectmanager	de	CSV-Dateiname
 csv-import	common	de	CSV-Import
@@ -106,7 +106,7 @@ deleted	projectmanager	de	gelöscht
 depth of display	projectmanager	de	Tiefe der Anzeige
 details of cumulated	projectmanager	de	Details der zusammengefassten
 details of subelements	projectmanager	de	Details der Unterelemente
-directory with documents to insert project data	projectmanager	de	Verzeichnis mit Vorlagedokumenten für das Projektmanager-Modul
+directory with documents to insert project data	projectmanager	de	Ordner mit Vorlagedokumenten für das Projektmanager-Modul
 do not use that entry as project-element	projectmanager	de	Diesen Eintrag nicht als Projektelement verwenden
 do you want a notification, if items are about to start according to their planned dates?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt started gemäß geplantem Startdatum?
 do you want a notification, if items are about to start according to their real dates?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt started gemäß tatsächlichem Startdatum?
@@ -116,7 +116,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt das Sie erstellt haben gespeichert wird?
 document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung, oder ist für Sie nicht lesbar!
 document download filename	projectmanager	de	Name des heruntergeladenen Dokuments
-don't break into subdirectories	projectmanager	de	Nie in Unterverzeichnisse aufsplitten
+don't break into subdirectories	projectmanager	de	Nie in Unterordner aufsplitten
 done (100%)	projectmanager	de	erledigt (100%)
 edit access, incl. editing budget and elements	projectmanager	de	Zugriff zum Bearbeiten, einschl. Budget und Element bearbeiten
 edit budget	projectmanager	de	Budget bearbeiten
@@ -194,7 +194,7 @@ fields for element roles:	projectmanager	de	Platzhalter für Element-Rollen
 fieldseparator	projectmanager	de	Feldtrenner
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	de	Dateimanager zeigt eine virtuelle Struktur für die Projekte z.B. nach Jahr oder Jahr & Monat. Standardmäßig erfolgt der Umbruch automatisch auf der Grundlage der Anzahl der Projekte. Sie können auch ein festes Kriterium für diese Struktur wählen.
 filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	de	Dateimanager zeigt eine virtuelle Struktur für die Projekte z.B. nach Jahren, basierend auf dem Erstellungsdatum des Projektes. Sie können ein anderes Kriterium für diese Struktur wählen, z.B. Startdatum oder Projektnummer.
-filemanager subdirectories	projectmanager	de	Dateimanager Unterverzeichnisse
+filemanager subdirectories	projectmanager	de	Dateimanager Unterordner
 font	projectmanager	de	Font
 font charset	projectmanager	de	Font Zeichensatz
 font style	projectmanager	de	Font Stil
