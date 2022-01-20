@@ -166,7 +166,7 @@
 				<description value="Add element" class="promptheader"/>
 				<link-entry id="link" class="action_popup-content" width="330px"/>
 				<hbox>
-					<button label="Add" id="link_action[add]" onclick="nm_submit_popup(this); return false;"/>
+					<button label="Add" id="link_action[add]" image="add" onclick="nm_submit_popup(this); return false;"/>
 					<buttononly label="Cancel" id="link_action[cancel]" onclick="nm_hide_popup(this,'link_popup');"/>
 				</hbox>
 			</vbox>

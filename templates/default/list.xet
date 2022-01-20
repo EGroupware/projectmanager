@@ -122,7 +122,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.list.add" template="" lang="" group="0" version="1.9.002">
-		<buttononly statustext="Add a new project" id="add" onclick="egw.open('','projectmanager','add');"/>
+		<buttononly statustext="Add a new project" image="add" id="add" onclick="egw.open('','projectmanager','add');"/>
 	</template>
 	<template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
 		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
