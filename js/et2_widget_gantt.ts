@@ -25,11 +25,15 @@ import {et2_DOMWidget} from "../../api/js/etemplate/et2_core_DOMWidget";
 import {et2_IInput, et2_IPrint, et2_IResizeable} from "../../api/js/etemplate/et2_core_interfaces";
 import {et2_dynheight} from "../../api/js/etemplate/et2_widget_dynheight";
 import {et2_date} from "../../api/js/etemplate/et2_widget_date";
-import {et2_dialog} from "../../api/js/etemplate/et2_widget_dialog";
 import {egw} from "../../api/js/jsapi/egw_global";
-import {EGW_AO_FLAG_IS_CONTAINER,EGW_AO_STATE_SELECTED} from "../../api/js/egw_action/egw_action_constants.js";
-import {egw_getAppObjectManager, egw_getObjectManager,egwActionObjectInterface} from "../../api/js/egw_action/egw_action.js";
+import {EGW_AO_FLAG_IS_CONTAINER, EGW_AO_STATE_SELECTED} from "../../api/js/egw_action/egw_action_constants.js";
+import {
+	egw_getAppObjectManager,
+	egw_getObjectManager,
+	egwActionObjectInterface
+} from "../../api/js/egw_action/egw_action.js";
 import {egwBitIsSet} from "../../api/js/egw_action/egw_action_common";
+import {Et2Dialog} from "../../api/js/etemplate/Et2Dialog/Et2Dialog";
 
 
 /* import dhtml-gantt, need to use commented out import statement, as egw:uses is not considered, if we have import(s)
@@ -947,15 +951,16 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 	 */
 	delete_link_handler(link_id, event)
 	{
-		var gantt_widget = this;
-		var dialog = et2_dialog.show_dialog(function(button) {
-				if(button == et2_dialog.YES_BUTTON)
+		let gantt_widget = this;
+		let dialog = Et2Dialog.show_dialog(function(button)
+			{
+				if(button == Et2Dialog.YES_BUTTON)
 				{
 					gantt_widget.gantt.deleteLink(link_id);
 				}
 			},
-			this.egw().lang('delete link?'),
-			this.egw().lang('delete')
+			'delete link?',
+			'delete'
 		);
 	}
 
@@ -1297,17 +1302,19 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 			}
 		}
 
-		var callback = jQuery.proxy(function(button, value) {
-			if(button === et2_dialog.CANCEL_BUTTON) {
+		var callback = function(button, value)
+		{
+			if(button === Et2Dialog.CANCEL_BUTTON)
+			{
 				// Give dialog a chance to close, or it will be in the print
 				window.setTimeout(function() {defer.reject();}, 0);
 				return;
 			}
-
+			debugger;
 			// Columns
-			for (var i = 0; i < columns.length; i++)
+			for(var i = 0; i < columns.length; i++)
 			{
-				this.options.columns[i].hide = value.columns.indexOf(columns[i].value) < 0 ;
+				this.options.columns[i].hide = value.columns.indexOf(columns[i].value) < 0;
 			}
 			this.set_columns(this.options.columns);
 			this.egw().set_preference(app,pref,value.columns);
@@ -1316,31 +1323,33 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 			{
 				this.gantt_node.height(max_width);
 				jQuery(this.gantt.$container).css({
-					transform: 'rotate(-90deg) translateX(-'+max_width+'px)',
+					transform: 'rotate(-90deg) translateX(-' + max_width + 'px)',
 					'transform-origin': 'top left'
 				});
 			}
 			// Give dialog a chance to close, or it will be in the print
 			window.setTimeout(function() {defer.resolve();}, 0);
 
-		},this);
+		}.bind(this);
 
 		var base_url = this.getInstanceManager().template_base_url;
-		if (base_url.substr(base_url.length - 1) === '/')
+		if(base_url.substr(base_url.length - 1) === '/')
 		{
-			base_url = base_url.slice (0, -1);	// otherwise we generate a url //api/templates, which is wrong
+			base_url = base_url.slice(0, -1);	// otherwise we generate a url //api/templates, which is wrong
 		}
-		var dialog = et2_createWidget("dialog",{
+		let dialog = new Et2Dialog(this.egw());
+		dialog.transformAttributes({
 			// If you use a template, the second parameter will be the value of the template, as if it were submitted.
 			callback: callback,	// return false to prevent dialog closing
-			buttons: et2_dialog.BUTTONS_OK_CANCEL,
-			title: this.egw().lang('Print'),
-			template:this.egw().link(base_url+'/projectmanager/templates/default/gantt_print_dialog.xet'),
+			buttons: Et2Dialog.BUTTONS_OK_CANCEL,
+			title: 'Print',
+			template: this.egw().link(base_url + '/projectmanager/templates/default/gantt_print_dialog.xet'),
 			value: {
-				content: {columns: this.egw().preference(pref,app) || columns_selected},
+				content: {columns: this.egw().preference(pref, app) || columns_selected},
 				sel_options: {columns: columns}
 			}
 		});
+		document.body.appendChild(<HTMLElement><unknown>dialog);
 
 		return defer;
 	}

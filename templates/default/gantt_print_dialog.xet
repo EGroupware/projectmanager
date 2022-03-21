@@ -5,7 +5,7 @@
 	<template id="gantt_print_dialog" template="" lang="" group="0" version="16.1">
 		<vbox>
 			<description value="Columns to print"/>
-			<select id="columns" rows="8" selected_first="false"/>
+			<select id="columns" multiple="true" selected_first="false"/>
 			<description value="If the gantt chart is wider than the page, it will be trimmed."/>
 			<description value="How would you like to print the chart?"/>
 			<select id="orientation">
