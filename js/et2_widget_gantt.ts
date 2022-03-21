@@ -1310,7 +1310,6 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 				window.setTimeout(function() {defer.reject();}, 0);
 				return;
 			}
-			debugger;
 			// Columns
 			for(var i = 0; i < columns.length; i++)
 			{
