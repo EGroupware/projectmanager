@@ -80,7 +80,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 			$this->data =& $backup;
 			unset($backup);
 		}
-		$need_general = count($old['prices']) > 0 || count($this->data['prices']) > 0;
+		$need_general = !empty($old['prices']) || !empty($this->data['prices']);
 		if (!($pricelist_need_save = !$this->data['pl_id']))
 		{
 			$this->data['cat_id'] = (int) $this->data['cat_id'];
@@ -111,7 +111,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 			$price['pm_id'] = 0;
 			$price['pl_billable'] = $this->data['gen_pl_billable'] === '' ? null : $this->data['gen_pl_billable'];
 			$price['pl_customertitle'] = null;
-			if (count($this->data['prices']) == 1) $price['pl_validsince'] = 0;	// no date for first price
+			if (count($this->data['prices'] ?? []) == 1) $price['pl_validsince'] = 0;	// no date for first price
 			$prices[] =& $price;
 		}
 		foreach($this->data['project_prices'] as &$price)
@@ -120,7 +120,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 			{
 				if (!isset($price[$key])) $price[$key] = $this->data[$key];
 			}
-			if (count($this->data['project_prices']) == 1) $price['pl_validsince'] = 0;	// no date for first price
+			if (count($this->data['project_prices'] ?? []) == 1) $price['pl_validsince'] = 0;	// no date for first price
 			$prices[] =& $price;
 		}
 
