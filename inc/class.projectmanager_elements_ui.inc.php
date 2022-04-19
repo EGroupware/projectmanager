@@ -1061,7 +1061,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		// fill the sel_options Applications
 		$sel_options ['pe_app'] = Link::app_list('add_app');
-		$this->tpl->setElementAttribute('nm[link_add]', 'application', Link::app_list('add'));
+		$this->tpl->setElementAttribute('nm[link_addapp]', 'select_options', Link::app_list('add'));
 		$this->tpl->exec('projectmanager.projectmanager_elements_ui.index', $content, $sel_options, $readonlys);
 	}
 
