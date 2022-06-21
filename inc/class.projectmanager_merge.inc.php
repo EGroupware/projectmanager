@@ -642,14 +642,14 @@ class projectmanager_merge extends Api\Storage\Merge
 				$value = is_numeric($value) ? Api\Accounts::username($value) : $value;
 					break;
 				case 'cat_id':
-					if($value)
+					if($value && $GLOBALS['egw_info']['server']['cat_tab'] == 'Tree')
 					{
 						// if cat-tree is displayed, we return a full category path not just the name of the cat
-						$use = $GLOBALS['egw_info']['server']['cat_tab'] == 'Tree' ? 'path' : 'name';
 						$cats = array();
+						$value = $this->projectmanager_bo->data['cat_id'];
 						foreach(is_array($value) ? $value : explode(',', $value) as $cat_id)
 						{
-							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id, $use);
+							$cats[] = $GLOBALS['egw']->categories->id2name($cat_id, 'path');
 						}
 						$value = implode(', ', $cats);
 					}
