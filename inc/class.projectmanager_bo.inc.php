@@ -756,8 +756,9 @@ class projectmanager_bo extends projectmanager_so
 			}
 		}
 		// private project need either a private grant or a role ACL
-		if ($private && !($rights & Acl::PRIVAT) && is_array($data) && !empty($data['pm_members'][$user]) &&
-			!(((int)$data['pm_members'][$user]['role_acl'] & $required) || $grants_from_groups & $required))
+		if($private && !($rights & Acl::PRIVAT) && is_array($data) && (empty($data['pm_members'][$user]) ||
+				!empty($data['pm_members'][$user]) &&
+				!(((int)$data['pm_members'][$user]['role_acl'] & $required) || $grants_from_groups & $required)))
 		{
 			$access = false;
 		}
