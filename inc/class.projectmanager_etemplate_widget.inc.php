@@ -18,9 +18,9 @@ class projectmanager_etemplate_widget extends \EGroupware\Api\Etemplate\Widget\T
 {
 	protected static $transformation = array(
 		'type' => array(
-			'projectmanager-select' => 'menupopup',
-			'projectmanager-pricelist' => 'menupopup',
-			'projectmanager-select-erole' => 'menupopup',
+			'projectmanager-select' => 'et2-select',
+			'projectmanager-pricelist' => 'et2-select',
+			'projectmanager-select-erole' => 'et2-select',
 		)
 	);
 
