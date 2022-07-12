@@ -921,7 +921,17 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		}
 		$rows = parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 
-		if ($rows && $cumulate)
+		foreach($rows as $n => $row)
+		{
+			// Permission check on sub-project
+			if($row['pe_app'] == 'projectmanager' && !$this->project->check_acl(Acl::READ, $row['pe_app_id']))
+			{
+				unset($rows[$n]);
+				$this->total--;
+			}
+		}
+
+		if($rows && $cumulate)
 		{
 			// get the pe_id of all returned rows
 			$row_pe_ids = array();
