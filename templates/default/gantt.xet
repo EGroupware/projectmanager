@@ -61,7 +61,7 @@
 				<row>
 					<description id="${row}[label]" no_lang="true"/>
 					<description id="${row}[old_value]" no_lang="true"/>
-					<description value="=>" no_lang="true"/>
+					<description value="=&gt;" no_lang="true"/>
 					<description id="${row}[new_value]" no_lang="true"/>
 				</row>
 			</rows>
