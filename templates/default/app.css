@@ -77,17 +77,15 @@ button#projectmanager-elements-list_link_add_add:hover {
 
 .planned { font-style: italic; font-size: 95%; }
 #projectmanager-elements-list_link_to {position:relative;width:auto;}
-#projectmanager-elements-list .nextmatch_header .nm_header {
-	border: 2px solid black;
-}
+
 .projectmanager_leftPad5 { padding-left: 5px; }
 tr.projectmanager_rowHasSubs > td:first-child {
-	background-image: url(../../../phpgwapi/templates/default/images/egw_action/arrow_left.png);
+	background-image: url(../../../api/templates/default/images/arrow_left.svg);
 	background-repeat: no-repeat;
 	background-position: 0px 11px;
 }
 tr.projectmanager_rowHasParent > td:first-child {
-	background-image: url(../../../phpgwapi/templates/default/images/egw_action/arrow_up.png);
+	background-image: url(../../../api/templates/default/images/arrow_up.svg);
 	background-repeat: no-repeat;
 	background-position: 0px 11px;
 }

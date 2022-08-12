@@ -3,7 +3,7 @@
 <!-- $Id$ -->
 <overlay>
 	<template id="projectmanager.pricelist.edit.price" template="" lang="" group="0" version="0.5.001">
-		<grid width="100%" height="200" overflow="auto">
+		<grid width="100%" overflow="auto">
 			<columns>
 				<column width="95"/>
 				<column/>
@@ -32,7 +32,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.pricelist.edit.project" template="" lang="" group="0" version="0.5.001">
-		<grid width="100%" height="200" overflow="auto">
+		<grid width="100%" overflow="auto">
 			<columns>
 				<column width="95"/>
 				<column/>
@@ -71,7 +71,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.pricelist.edit.description" template="" lang="" group="0" version="0.5.001">
-		<grid width="100%" height="200">
+		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
@@ -97,7 +97,7 @@
 				</row>
 				<row class="dialogHeader" height="50">
 					<description options=",,,pl_title" value="Title"/>
-					<textbox size="60" maxlength="255" id="pl_title" needed="1" span="all" class="inputFullWidth"/>
+					<textbox maxlength="255" id="pl_title" needed="1" span="all" class="inputFullWidth"/>
 					<description/>
 				</row>
 				<row class="row dialogHeader2">
@@ -114,7 +114,7 @@
 					</menulist>
 				</row>
 				<row>
-					<tabbox span="all" id="tabs">
+					<tabbox span="all" id="tabs" tab_height="200">
 						<tabs>
 							<tab id="price" label="Price" statustext="General pricelist"/>
 							<tab id="project" label="Project" statustext="Project specific title, prices, ..."/>
