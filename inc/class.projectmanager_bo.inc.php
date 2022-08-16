@@ -783,7 +783,8 @@ class projectmanager_bo extends projectmanager_so
 					$required |= EGW_ACL_EDIT_BUDGET;
 				}    // EDIT_BUDGET implies BUDGET
 
-			$access = (boolean) ($rights & $required);
+				$access = (boolean) ($rights & $required);
+			}
 		}
 		if(($required & Acl::DELETE) && $this->config_data['history'] == 'history_admin_delete' &&
 			$data['pm_status'] == self::DELETED_STATUS)
