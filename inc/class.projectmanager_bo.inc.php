@@ -766,26 +766,24 @@ class projectmanager_bo extends projectmanager_so
 			$access = false;
 		}
 		// Role via group, but not enough access
+		else if($private && !($rights & Acl::PRIVAT) && !empty($member_from_groups) && !($grants_from_groups & $required))
+		{
+			return false;
+		}
+		elseif ($required & Acl::READ)       // read-rights are implied by all other rights, but EGW_ACL_ADD_TIMESHEET
+		{
+			$access = (boolean) ($rights & ~EGW_ACL_ADD_TIMESHEET);
+		}
 		else
 		{
-			if($private && !($rights & Acl::PRIVAT) && !empty($member_from_groups) && !($grants_from_groups & $required))
+			if($required == EGW_ACL_BUDGET)
 			{
-				return false;
-			}
-			elseif ($required & Acl::READ)       // read-rights are implied by all other rights, but EGW_ACL_ADD_TIMESHEET
-			{
-				$access = (boolean) ($rights & ~EGW_ACL_ADD_TIMESHEET);
-			}
-			else
-			{
-				if($required == EGW_ACL_BUDGET)
-				{
-					$required |= EGW_ACL_EDIT_BUDGET;
-				}    // EDIT_BUDGET implies BUDGET
+				$required |= EGW_ACL_EDIT_BUDGET;
+			}    // EDIT_BUDGET implies BUDGET
 
-				$access = (boolean) ($rights & $required);
-			}
+			$access = (boolean) ($rights & $required);
 		}
+
 		if(($required & Acl::DELETE) && $this->config_data['history'] == 'history_admin_delete' &&
 			$data['pm_status'] == self::DELETED_STATUS)
 		{
