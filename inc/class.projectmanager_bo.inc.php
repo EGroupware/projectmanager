@@ -750,25 +750,38 @@ class projectmanager_bo extends projectmanager_so
 				$rights &= ~(EGW_ACL_BUDGET | EGW_ACL_EDIT_BUDGET);
 			}
 			// anonymous access implies read rights for everyone
-			if (is_array($data) && $data['pm_access'] === 'anonym')
+			if(is_array($data) && $data['pm_access'] === 'anonym')
 			{
 				$rights |= Acl::READ;
 			}
 		}
 		// private project need either a private grant or a role ACL
-		if($private && !($rights & Acl::PRIVAT) && is_array($data) && (empty($data['pm_members'][$user]) ||
-				!empty($data['pm_members'][$user]) &&
-				!(((int)$data['pm_members'][$user]['role_acl'] & $required) || $grants_from_groups & $required)))
+		if($private && !($rights & Acl::PRIVAT) && is_array($data) && (
+				// No role
+				empty($data['pm_members'][$user]) ||
+				// Role, but not enough access
+				!empty($data['pm_members'][$user]) && !((int)$data['pm_members'][$user]['role_acl'] & $required)
+			) && empty($member_from_group))
 		{
 			$access = false;
 		}
-		elseif ($required & Acl::READ)       // read-rights are implied by all other rights, but EGW_ACL_ADD_TIMESHEET
-		{
-			$access = (boolean) ($rights & ~EGW_ACL_ADD_TIMESHEET);
-		}
+		// Role via group, but not enough access
 		else
 		{
-			if ($required == EGW_ACL_BUDGET) $required |= EGW_ACL_EDIT_BUDGET;	// EDIT_BUDGET implies BUDGET
+			if($private && !($rights & Acl::PRIVAT) && !empty($member_from_groups) && !($grants_from_groups & $required))
+			{
+				return false;
+			}
+			elseif ($required & Acl::READ)       // read-rights are implied by all other rights, but EGW_ACL_ADD_TIMESHEET
+			{
+				$access = (boolean) ($rights & ~EGW_ACL_ADD_TIMESHEET);
+			}
+			else
+			{
+				if($required == EGW_ACL_BUDGET)
+				{
+					$required |= EGW_ACL_EDIT_BUDGET;
+				}    // EDIT_BUDGET implies BUDGET
 
 			$access = (boolean) ($rights & $required);
 		}
