@@ -740,7 +740,12 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$totals = $this->summary(null, $query['col_filter']);
 			foreach($totals as $field => $value)
 			{
-				if ($budget_rights || !in_array($field, array('pe_planned_budget', 'pe_used_budget')))
+				// Format dates
+				if($value && in_array($field, ['pe_real_start', 'pe_planned_start', 'pe_real_end', 'pe_planned_end']))
+				{
+					$value = Api\DateTime::to($value, Api\DateTime::ET2);
+				}
+				if($budget_rights || !in_array($field, array('pe_planned_budget', 'pe_used_budget')))
 				{
 					$rows['total_' . $field] = $value;
 				}
