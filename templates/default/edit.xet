@@ -230,7 +230,7 @@
 					<timestamper statustext="Insert timestamp into description field" id="timestamp" target="pm_description" class="projectTimestamp"/>
 				</row>
 				<row>
-					<tabbox id="tabs" span="all" tab_height="280px">
+					<tabbox id="tabs" span="all" tab_height="340px">
 						<tabs>
 							<tab id="general" label="General" statustext="Start, End, Category, ..."/>
 							<tab id="description" label="Description" statustext="free descriptiv text"/>
