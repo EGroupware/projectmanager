@@ -381,7 +381,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'ds'                    => $ds,
 				'msg'                   => $msg,
 				'default_share'         => $default_share,
-				'duration_format'       => $this->config['duration_format'],
+				'duration_format'       => preg_split('/,/', $this->config['duration_format'])[0],
+				'hoursPerDay'           => preg_split('/,/', $this->config['duration_format'])[1],
 				'no_times'              => $this->project->data['pm_accounting_type'] == 'status',
 				$tabs                   => $content[$tabs],
 				'no_pricelist'          => $this->project->data['pm_accounting_type'] != 'pricelist',
@@ -1023,7 +1024,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$content['nm']['num_rows'] = 0;
 		}
 		// Set duration format once for all
-		$content['duration_format'] = ',' . $this->config['duration_format'] . ',,1';
+		$content['duration_format'] = preg_split('/,/', $this->config['duration_format'])[0];
+		$content['hoursPerDay'] = preg_split('/,/', $this->config['duration_format'])[1];
 
 		// Put totals in the right place for initial load
 		$totals = $this->summary($this->project->data['pm_id'], $content['nm']['col_filter']);

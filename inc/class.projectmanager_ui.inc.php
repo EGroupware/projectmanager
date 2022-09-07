@@ -373,19 +373,22 @@ class projectmanager_ui extends projectmanager_bo
 			$add_link = $content['add_link'];
 		}
 		$content = $this->data + array(
-			'msg'  => $msg,
-			'tabs' => $content['tabs'],
-			'view' => $view,
-			'ds'   => $pe_summary,
-			'link_to' => array(
-				'to_id' => $content['link_to']['to_id'] ? $content['link_to']['to_id'] : $this->data['pm_id'],
-				'to_app' => 'projectmanager',
-			),
-			'duration_format' => ','.$this->config['duration_format'],
-			'no_budget' => !$this->check_acl(EGW_ACL_BUDGET,0,true) || !$this->data['pm_accounting_type'] || in_array($this->data['pm_accounting_type'],array('status','times')) ||
-				$this->config['accounting_types'] && !array_intersect(!is_array($this->config['accounting_types']) ? explode(',',$this->config['accounting_types']) : $this->config['accounting_types'],array('budget','pricelist')),
-			'status_sources' => $content['status_sources'],
-		);
+				'msg'             => $msg,
+				'tabs'            => $content['tabs'],
+				'view'            => $view,
+				'ds'              => $pe_summary,
+				'link_to'         => array(
+					'to_id'  => $content['link_to']['to_id'] ? $content['link_to']['to_id'] : $this->data['pm_id'],
+					'to_app' => 'projectmanager',
+				),
+				'duration_format' => preg_split('/,/', $this->config['duration_format'])[0],
+				'hoursPerDay'     => preg_split('/,/', $this->config['duration_format'])[1],
+				'no_budget'       => !$this->check_acl(EGW_ACL_BUDGET, 0, true) || !$this->data['pm_accounting_type'] || in_array($this->data['pm_accounting_type'], array('status',
+																																										   'times')) ||
+					$this->config['accounting_types'] && !array_intersect(!is_array($this->config['accounting_types']) ? explode(',', $this->config['accounting_types']) : $this->config['accounting_types'], array('budget',
+																																																					'pricelist')),
+				'status_sources'  => $content['status_sources'],
+			);
 		if ($add_link && !is_array($content['link_to']['to_id']))
 		{
 			list($app,$app_id) = explode(':',$add_link,2);
@@ -762,8 +765,9 @@ class projectmanager_ui extends projectmanager_bo
 			}
 		}
 		$content = array(
-			'nm' => Api\Cache::getSession('projectmanager', 'project_list'),
-			'duration_format' => ','.$this->config['duration_format'],
+			'nm'              => Api\Cache::getSession('projectmanager', 'project_list'),
+			'duration_format' => preg_split('/,/', $this->config['duration_format'])[0],
+			'hoursPerDay'     => preg_split('/,/', $this->config['duration_format'])[1],
 		);
 		if($msg)
 		{

@@ -70,18 +70,23 @@
 						<date id="total_pe_planned_end" readonly="true"/>
 					</vbox>
 					<vbox>
-						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-						<date-duration id="total_pe_used_time" readonly="true" options="@@duration_format"/>
-						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-						<date-duration id="total_pe_planned_time" readonly="true" options="@@duration_format" class="planned"/>
-					</vbox>
+                        <nextmatch-sortheader label="Times" id="pe_used_time"/>
+                        <date-duration id="total_pe_used_time" readonly="true" displayFormat="@@duration_format"
+                                       hoursPerDay="@@hoursPerDay"/>
+                        <nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
+                        <date-duration id="total_pe_planned_time" readonly="true" displayFormat="@@duration_format"
+                                       hoursPerDay="@@hoursPerDay" class="planned"/>
+                    </vbox>
 					<vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-						<date-duration id="total_pe_used_time_2" readonly="true" options="@@duration_format"/>
+                        <date-duration id="total_pe_used_time_2" readonly="true" displayFormat="@@duration_format"
+                                       hoursPerDay="@@hoursPerDay"/>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-						<date-duration id="total_pe_planned_time_2" readonly="true" options="@@duration_format" class="planned"/>
+                        <date-duration id="total_pe_planned_time_2" readonly="true" displayFormat="@@duration_format"
+                                       hoursPerDay="@@hoursPerDay" class="planned"/>
 						<nextmatch-sortheader label="re-planned" id="pe_replanned_time" class="replanned"/>
-						<date-duration id="total_pe_replanned_time" readonly="true" options="@@duration_format" class="replanned"/>
+                        <date-duration id="total_pe_replanned_time" readonly="true" displayFormat="@@duration_format"
+                                       hoursPerDay="@@hoursPerDay" class="replanned"/>
 					</vbox>
 					<vbox>
 						<nextmatch-sortheader label="Budget" id="pe_used_budget"/>
@@ -121,22 +126,29 @@
 						<date id="${row}[pe_real_end]" readonly="true"/>
 						<date id="${row}[pe_planned_end]" no_lang="1" readonly="true" class="planned"/>
 					</vbox>
-					<vbox>
-						<date-duration id="${row}[pe_used_time]" readonly="true" options="@@duration_format"/>
-						<date-duration id="${row}[pe_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
-					</vbox>
+                    <vbox>
+                        <date-duration id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format"
+                                       hoursPerDay="@@hoursPerDay"/>
+                        <date-duration id="${row}[pe_planned_time]" readonly="true" displayFormat="@@duration_format"
+                                       hoursPerDay="@@hoursPerDay" span="all" class="planned"/>
+                    </vbox>
 					<vbox>
 						<hbox id="pe_used_time">
 							<image label="Times" src="timesheet"/>
-							<date-duration id="${row}[pe_used_time]" readonly="true" options="@@duration_format"/>
+                            <date-duration id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format"
+                                           hoursPerDay="@@hoursPerDay"/>
 						</hbox>
 						<hbox id="planified">
 							<image label="planned time" src="k_alarm.png"/>
-							<date-duration id="${row}[pe_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
+                            <date-duration id="${row}[pe_planned_time]" readonly="true"
+                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                           class="planned"/>
 						</hbox>
 						<hbox id="replanified">
 							<image label="Re-planned time" src="agt_reload.png"/>
-							<date-duration id="${row}[pe_replanned_time]" readonly="true" options="@@duration_format" span="all" class="replanned"/>
+                            <date-duration id="${row}[pe_replanned_time]" readonly="true"
+                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                           class="replanned"/>
 						</hbox>
 					</vbox>
 					<vbox readonly="true">
