@@ -76,45 +76,36 @@
 				<row>
 					<checkbox label="Use custom notification message" id="notification[use_custom]"/>
 				</row>
-				<row>
-					<htmlarea id="notification[message]" height="180px" width="100%" toolbar="false" span="all"/>
-				</row>
-				<row>
-					<description value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extra_link_target="_blank"/>
-					<description/>
-				</row>
-			</rows>
-		</grid>
-	</template>
-	<template id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
-		<grid width="100%">
-			<columns>
-				<column width="100%"/>
-			</columns>
-			<rows>
-				<row>
-					<description id="msg" span="all" class="message"/>
-				</row>
-				<row valign="top" height="350px">
-					<tabbox id="configuration|notification">
-						<tabs>
-							<tab id="configuration" label="Configuration"/>
-							<tab id="notification" label="Notification"/>
-						</tabs>
-						<tabpanels>
-							<template id="projectmanager.config.configuration"/>
-							<template id="projectmanager.config.notification"/>
-						</tabpanels>
-					</tabbox>
-				</row>
-				<row>
-					<hbox span="all">
-						<button statustext="Save the changes made" label="Save" id="save"/>
-						<button statustext="apply the changes" label="Apply" id="apply"/>
-						<button statustext="Exit without saving" label="Cancel" id="cancel"/>
-					</hbox>
-				</row>
-			</rows>
-		</grid>
-	</template>
+                <row>
+                    <htmlarea id="notification[message]" height="180px" width="100%" toolbar="false" span="all"/>
+                </row>
+                <row>
+                    <description value="Full list of placeholder names"
+                                 href="projectmanager.projectmanager_merge.show_replacements"
+                                 extra_link_target="_blank"/>
+                    <description/>
+                </row>
+            </rows>
+        </grid>
+    </template>
+    <template id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
+        <vbox>
+            <description id="msg" span="all" class="message"/>
+            <tabbox id="configuration|notification">
+                <tabs>
+                    <tab id="configuration" label="Configuration"/>
+                    <tab id="notification" label="Notification"/>
+                </tabs>
+                <tabpanels>
+                    <template id="projectmanager.config.configuration"/>
+                    <template id="projectmanager.config.notification"/>
+                </tabpanels>
+            </tabbox>
+            <hbox class="dialogFooterToolbar">
+                <button statustext="Save the changes made" label="Save" id="save"/>
+                <button statustext="apply the changes" label="Apply" id="apply"/>
+                <button statustext="Exit without saving" label="Cancel" id="cancel"/>
+            </hbox>
+        </vbox>
+    </template>
 </overlay>
