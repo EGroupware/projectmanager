@@ -180,8 +180,16 @@ export class ProjectmanagerApp extends EgwApp
 			switch(what)
 			{
 				case 'elements':
-					et2.getWidgetById('nm').applyFilters({col_filter:{'pm_id': current_project}});
-					if (et2.getWidgetById('link_add')) et2.getWidgetById('link_add').options.value.to_id = current_project;
+					let elements = et2.getWidgetById('nm');
+					if(elements.getDOMNode().classList.contains("hide"))
+					{
+						elements.getDOMNode().classList.remove("hide");
+					}
+					et2.getWidgetById('nm').applyFilters({col_filter: {'pm_id': current_project}});
+					if(et2.getWidgetById('link_add'))
+					{
+						et2.getWidgetById('link_add').options.value.to_id = current_project;
+					}
 					break;
 				case 'gantt':
 					const gantt = et2.getWidgetById('gantt');
@@ -257,6 +265,7 @@ export class ProjectmanagerApp extends EgwApp
 		if(this.views[what].etemplate)
 		{
 			jQuery(this.views[what].etemplate.DOMContainer).show();
+			this.views[what].etemplate.resize();
 		}
 
 		// Set header

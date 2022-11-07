@@ -172,7 +172,8 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
-		<nextmatch id="nm" options="projectmanager.elements.list.rows" header_left="projectmanager.elements.list.add-new"/>
+		<nextmatch id="nm" options="projectmanager.elements.list.rows"
+                   header_left="projectmanager.elements.list.add-new" class="hide"/>
 		<box id="add_existing_popup" class="action_popup prompt">
 			<vbox>
 				<description value="Add element" class="promptheader"/>
