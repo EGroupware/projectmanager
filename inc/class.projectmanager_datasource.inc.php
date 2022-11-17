@@ -169,27 +169,54 @@ class projectmanager_datasource extends datasource
 	 *
 	 * @param array $element source project element representing an sub-project, $element['pe_app_id'] = pm_id
 	 * @param int $target target project id
-	 * @param array $target_data=null data of target-project, atm only pm_number is used
+	 * @param array $target_data =null data of target-project, atm only pm_number is used
+	 * @param DateInterval[] $date_offsets = Array() - When copying, a list of date fields
+	 *    and the amount to offset them from the original while copying
 	 * @return array/boolean array(pm_id,link_id) on success, false otherwise
 	 */
-	function copy($element,$target,$target_data=null)
+	function copy($element, $target, $target_data = null, array $date_offsets)
 	{
-		if ((int) $this->debug > 1 || $this->debug == 'copy') $this->projectmanager_bo->debug_message("projectmanager_datasource::copy(".print_r($element,true).",$target)");
+		if((int)$this->debug > 1 || $this->debug == 'copy')
+		{
+			$this->projectmanager_bo->debug_message("projectmanager_datasource::copy(" . print_r($element, true) . ",$target)");
+		}
 
 		$data_backup = $this->projectmanager_bo->data;
 
-		if (($pm_id = $this->projectmanager_bo->copy((int) $element['pe_app_id'],0,$target_data['pm_number'])))
+		if(($pm_id = $this->projectmanager_bo->copy((int)$element['pe_app_id'], 0, $target_data['pm_number'])))
 		{
-			if ($this->debug > 3 || $this->debug == 'copy') $this->projectmanager_bo->debug_message("projectmanager_datasource::copy() data=".print_r($this->projectmanager_bo->data,true));
+			if($this->debug > 3 || $this->debug == 'copy')
+			{
+				$this->projectmanager_bo->debug_message("projectmanager_datasource::copy() data=" . print_r($this->projectmanager_bo->data, true));
+			}
 
 			// link the new sub-project with the project
-			$link_id = Link::link('projectmanager',$target,'projectmanager',$pm_id,$element['pe_remark'],0,0,1);
+			$link_id = Link::link('projectmanager', $target, 'projectmanager', $pm_id, $element['pe_remark'], 0, 0, 1);
+
+			// Apply date offsets, if any
+			$map = array(
+				'planned_start' => 'pe_planned_start',
+				'planned_end'   => 'pe_planned_end',
+				'real_start'    => 'pe_real_start',
+				'real_end'      => 'pe_real_end'
+			);
+			foreach($map as $offset_field => $pm_field)
+			{
+				if($date_offsets[$offset_field] && $element[$pm_field])
+				{
+					$this->projectmanager_bo->data[str_replace("pe_", "pm_", $pm_field)] = date_add(new Api\DateTime($element[$pm_field]), $date_offsets[$offset_field])->format('ts');;
+				}
+			}
+			$this->projectmanager_bo->save();
 		}
 		$this->projectmanager_bo->data = $data_backup;
 
-		if ($this->debug > 2 || $this->debug == 'copy') $this->projectmanager_bo->debug_message("projectmanager_datasource::copy() returning pm_id=$pm_id, link_id=$link_id, data=".print_r($this->projectmanager_bo->data,true));
+		if($this->debug > 2 || $this->debug == 'copy')
+		{
+			$this->projectmanager_bo->debug_message("projectmanager_datasource::copy() returning pm_id=$pm_id, link_id=$link_id, data=" . print_r($this->projectmanager_bo->data, true));
+		}
 
-		return $pm_id ? array($pm_id,$link_id) : false;
+		return $pm_id ? array($pm_id, $link_id) : false;
 	}
 
 	/**
