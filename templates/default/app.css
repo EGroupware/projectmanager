@@ -91,7 +91,15 @@ tr.projectmanager_rowHasParent > td:first-child {
 	background-repeat: no-repeat;
 	background-position: 0px 11px;
 }
-#projectmanager-elements-list .nextmatch_header .et2_link_add_span {display: none;}
+
+#projectmanager-elements-list .nextmatch_header .et2_link_add_span {
+    display: none;
+}
+
+#projectmanager-elements-list .egwGridView_grid > tbody > tr.th > td {
+    border-bottom: 1px solid darkgray;
+}
+
 /* Element list hidden eroles */
 table.egwLinkMoreOptions {
 	display: none;
