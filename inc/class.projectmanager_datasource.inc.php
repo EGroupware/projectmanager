@@ -183,12 +183,14 @@ class projectmanager_datasource extends datasource
 
 		$data_backup = $this->projectmanager_bo->data;
 
-		if(($pm_id = $this->projectmanager_bo->copy((int)$element['pe_app_id'], 0, $target_data['pm_number'])))
+		if($this->projectmanager_bo->copy((int)$element['pe_app_id'], 1, $target_data['pm_number']))
 		{
 			if($this->debug > 3 || $this->debug == 'copy')
 			{
 				$this->projectmanager_bo->debug_message("projectmanager_datasource::copy() data=" . print_r($this->projectmanager_bo->data, true));
 			}
+			$this->projectmanager_bo->save();
+			$pm_id = $this->projectmanager_bo->data['pm_id'];
 
 			// link the new sub-project with the project
 			$link_id = Link::link('projectmanager', $target, 'projectmanager', $pm_id, $element['pe_remark'], 0, 0, 1);
@@ -208,6 +210,7 @@ class projectmanager_datasource extends datasource
 				}
 			}
 			$this->projectmanager_bo->save();
+			$this->projectmanager_bo->copy($element['pe_app_id'], 2);
 		}
 		$this->projectmanager_bo->data = $data_backup;
 
