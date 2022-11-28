@@ -174,7 +174,7 @@ class projectmanager_datasource extends datasource
 	 *    and the amount to offset them from the original while copying
 	 * @return array/boolean array(pm_id,link_id) on success, false otherwise
 	 */
-	function copy($element, $target, $target_data = null, array $date_offsets)
+	function copy($element, $target, $target_data = null, array $date_offsets = [])
 	{
 		if((int)$this->debug > 1 || $this->debug == 'copy')
 		{
