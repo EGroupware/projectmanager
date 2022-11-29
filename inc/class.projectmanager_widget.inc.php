@@ -136,7 +136,8 @@ class projectmanager_widget
 			case 'projectmanager-select-erole': // rows, short_label (true or false),type2: extraStyleMultiselect
 				list($rows,$short_label,$type2) = explode(',',$cell['size']);
 				$eroles = new projectmanager_eroles_bo();
-				if ($readonly)
+				$config = Api\Config::read('projectmanager');
+				if ($readonly || !$config['enable_eroles']) // do NOT query eroles, if not enabled
 				{
 					$cell['no_lang'] = True;
 					if ($value)
