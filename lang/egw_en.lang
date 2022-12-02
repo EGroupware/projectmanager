@@ -222,6 +222,7 @@ hours per workday	projectmanager	en	Hours per work day
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day
 how should ids for new projects be generated?	projectmanager	en	How should IDs for new projects be generated?
 how should ids for new subprojects be generated?	projectmanager	en	How should IDs for new subprojects be generated?
+how should the project selection in the menu be displayed	projectmanager	en	How should the project selection in the menu be displayed
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a select box might perform better.
 html link to the current record	projectmanager	en	HTML link to the current record
 id generation	projectmanager	en	ID generation
