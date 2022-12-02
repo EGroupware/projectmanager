@@ -116,6 +116,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt das Sie erstellt haben gespeichert wird?
 document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung, oder ist für Sie nicht lesbar!
 document download filename	projectmanager	de	Name des heruntergeladenen Dokuments
+document merge	projectmanager	de	Dokument füllen
 don't break into subdirectories	projectmanager	de	Nie in Unterordner aufsplitten
 done (100%)	projectmanager	de	erledigt (100%)
 edit access, incl. editing budget and elements	projectmanager	de	Zugriff zum Bearbeiten, einschl. Budget und Element bearbeiten
@@ -221,6 +222,7 @@ hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag
 how should ids for new projects be generated?	projectmanager	de	Wie sollen Projektnummern für neue Projekte generiert werden?
 how should ids for new subprojects be generated?	projectmanager	de	Wie sollen Nummern für neue Unterprojekte generiert werden?
+how should the project selection in the menu be displayed	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
 html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintrag
 id generation	projectmanager	de	Generierung Projektnummern
@@ -464,6 +466,8 @@ view this project-element	projectmanager	de	Dieses Projektelement anzeigen
 working duration on %1	projectmanager	de	Arbeitsdauer am %1
 year & month	projectmanager	de	Jahr & Monat
 year only	projectmanager	de	Nur Jahreszahlen
+yes, noone can purge deleted items	projectmanager	de	Ja, niemand kann gelöschte Objekte bereinigen
+yes, only admins can purge deleted items	projectmanager	de	Ja, nur Admins können gelöschte Objekte bereinigen
 yes, with purging of deleted items possible	projectmanager	de	Ja, mit der Möglichkeit, gelöschte Elemente zu bereinigen
 you can leave the date of the first price empty	projectmanager	de	Sie benötigen kein Datum für den ersten Preis
 you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	de	Sie können %Ymd verwenden, um das Erstellungsdatum einzugeben. Es verwendet die gleiche Syntax wie die PHP-Funktion date().<br>Weitere Platzhalter sind %px zum Einfügen der Eltern-ID (nur bei der Generierung von Teilprojekten) oder %ix zum Einfügen eines Index. Die Indizes werden automatisch erhöht, um doppelte IDs zu vermeiden. Jedes Generierungsformat sollte genau einen Index enthalten! (Außer, dass Sie sicher sind, dass das Datum das Projekt identifiziert).<br>Sie können auch z.B. %04ix verwenden. Dieser Index wird mit '0' bis 4 Ziffern (z.B. 0001) gefüllt. Wenn Sie das Füllzeichen weglassen (z.B. %5ix), wird der Index mit'0' gefüllt.
