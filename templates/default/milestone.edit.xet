@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.milestone.edit" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%">
@@ -11,36 +10,34 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description span="all" class="message" align="center" id="msg" no_lang="1"/>
-					<description/>
-					<description/>
+					<et2-description  span="all" class="message" align="center" id="msg" noLang="1"></et2-description>
+					<et2-description></et2-description>
+					<et2-description></et2-description>
 				</row>
 				<row class="dialogHeader">
-					<description options=",,,ms_title" value="Title"/>
-					<textbox size="64" maxlength="255" id="ms_title" class="et2_fullWidth" needed="1"/>
-					<appicon src="projectmanager/milestone"/>
+					<et2-description  value="Title" labelFor="ms_title"></et2-description>
+					<et2-textbox  maxlength="255" id="ms_title" required="1"></et2-textbox>
+					<et2-appicon  src="projectmanager/milestone"></et2-appicon>
 				</row>
 				<row class="row dialogHeader2">
-					<description options=",,,pm_id" value="Project"/>
-					<menulist span="all">
-						<menupopup id="pm_id" no_lang="1"/>
-					</menulist>
+					<et2-description  value="Project" labelFor="pm_id"></et2-description>
+					<et2-select  span="all" id="pm_id" noLang="1"></et2-select>
 				</row>
 				<row class="row dialogHeader3">
-					<description options=",,,ms_date" value="Date"/>
-					<date id="ms_date" needed="1"/>
+					<et2-description  value="Date" labelFor="ms_date"></et2-description>
+					<et2-date  id="ms_date" required="1"></et2-date>
 				</row>
 				<row class="row">
 					<htmlarea span="all" id="ms_description" mode="extended" height="300px" width="100%" toolbar="true"/>
 				</row>
 				<row class="dialogFooterToolbar">
-					<hbox span="2">
-						<button label="Edit" id="edit" statustext="Edit this milestone" image="edit" background_image="1"/>
-						<button id="save" label="Save" statustext="Save the changes made" image="save" background_image="1"/>
-						<button id="apply" label="Apply" statustext="Apply the changes" image="apply" background_image="1"/>
-						<button id="cancel" label="Cancel" statustext="Close the window, discard the changes made" onclick="window.close();" image="cancel" background_image="1"/>
-					</hbox>
-					<button label="Delete" align="right" id="delete" statustext="Delete this milestone" onclick="return confirm('Delete this milestone');"/>
+					<et2-hbox  span="2">
+						<et2-button  label="Edit" id="edit" statustext="Edit this milestone" image="edit"></et2-button>
+						<et2-button  id="save" label="Save" statustext="Save the changes made" image="save"></et2-button>
+						<et2-button  id="apply" label="Apply" statustext="Apply the changes" image="apply"></et2-button>
+						<et2-button  id="cancel" label="Cancel" statustext="Close the window, discard the changes made" onclick="window.close();" image="cancel"></et2-button>
+					</et2-hbox>
+					<et2-button  label="Delete" align="right" id="delete" statustext="Delete this milestone" onclick="return confirm('Delete this milestone');"></et2-button>
 				</row>
 			</rows>
 		</grid>

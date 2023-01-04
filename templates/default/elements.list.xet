@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
-		<link-add id="link_add" onchange="app.projectmanager.element_add_app_change_handler"/>
+		<et2-link-add  id="link_add" onchange="app.projectmanager.element_add_app_change_handler"></et2-link-add>
 	</template>
 	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
 		<grid width="99%" height="99%">
@@ -13,9 +12,9 @@
 			</columns>
 			<rows>
 				<row>
-					<link-to label="Add existing" id="link_to" no_files="true"/>
+					<et2-link-to  label="Add existing" id="link_to" noFiles="true"></et2-link-to>
 					<!--
-					<image align="right" label="Show more options" src="extra_icons" onclick="app.projectmanager.toggleDiv" readonly="true"/>
+					<et2-image  align="right" label="Show more options" src="extra_icons" onclick="app.projectmanager.toggleDiv" readonly="true"></et2-image>
 					-->
 				</row>
 			</rows>
@@ -49,124 +48,108 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<nextmatch-filterheader align="center" id="pe_app" options="Application"/>
-					<vbox>
+					<et2-nextmatch-header-filter  align="center" id="pe_app" emptyLabel="Application"/>
+					<et2-vbox>
 						<nextmatch-sortheader label="Title" id="pe_title"/>
 						<nextmatch-sortheader label="Comment" id="pe_remark"/>
-					</vbox>
+					</et2-vbox>
 					<nextmatch-header label="Category" id="cat_id"/>
 					<nextmatch-sortheader label="Element role" id="pe_eroles"/>
-					<nextmatch-accountfilter id="pe_resources" options="Resources"/>
-					<vbox>
+					<et2-nextmatch-header-account  id="pe_resources" emptyLabel="Resources"/>
+					<et2-vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
-						<date id="total_pe_real_start" readonly="true"/>
+						<et2-date  id="total_pe_real_start" readonly="true"></et2-date>
 						<nextmatch-sortheader label="planned" id="pe_planned_start" class="planned"/>
-						<date id="total_pe_planned_start" readonly="true"/>
-					</vbox>
-					<vbox>
+						<et2-date  id="total_pe_planned_start" readonly="true"></et2-date>
+					</et2-vbox>
+					<et2-vbox>
 						<nextmatch-sortheader label="Enddate" id="pe_real_end"/>
-						<date id="total_pe_real_end" readonly="true"/>
+						<et2-date  id="total_pe_real_end" readonly="true"></et2-date>
 						<nextmatch-sortheader label="planned" id="pe_planned_end" class="planned"/>
-						<date id="total_pe_planned_end" readonly="true"/>
-					</vbox>
-					<vbox>
+						<et2-date  id="total_pe_planned_end" readonly="true"></et2-date>
+					</et2-vbox>
+					<et2-vbox>
                         <nextmatch-sortheader label="Times" id="pe_used_time"/>
-                        <date-duration id="total_pe_used_time" readonly="true" displayFormat="@@duration_format"
-                                       hoursPerDay="@@hoursPerDay"/>
+                        <et2-date-duration  id="total_pe_used_time" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
                         <nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-                        <date-duration id="total_pe_planned_time" readonly="true" displayFormat="@@duration_format"
-                                       hoursPerDay="@@hoursPerDay" class="planned"/>
-                    </vbox>
-					<vbox>
+                        <et2-date-duration  id="total_pe_planned_time" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" class="planned"></et2-date-duration>
+                    </et2-vbox>
+					<et2-vbox>
 						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-                        <date-duration id="total_pe_used_time_2" readonly="true" displayFormat="@@duration_format"
-                                       hoursPerDay="@@hoursPerDay"/>
+                        <et2-date-duration  id="total_pe_used_time_2" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
 						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-                        <date-duration id="total_pe_planned_time_2" readonly="true" displayFormat="@@duration_format"
-                                       hoursPerDay="@@hoursPerDay" class="planned"/>
+                        <et2-date-duration  id="total_pe_planned_time_2" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" class="planned"></et2-date-duration>
 						<nextmatch-sortheader label="re-planned" id="pe_replanned_time" class="replanned"/>
-                        <date-duration id="total_pe_replanned_time" readonly="true" displayFormat="@@duration_format"
-                                       hoursPerDay="@@hoursPerDay" class="replanned"/>
-					</vbox>
-					<vbox>
+                        <et2-date-duration  id="total_pe_replanned_time" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" class="replanned"></et2-date-duration>
+					</et2-vbox>
+					<et2-vbox>
 						<nextmatch-sortheader label="Budget" id="pe_used_budget"/>
-						<description id="total_pe_used_budget" no_lang="1"/>
+						<et2-description  id="total_pe_used_budget" noLang="1"></et2-description>
 						<nextmatch-sortheader label="planned" id="pe_planned_budget" class="planned"/>
-						<description id="total_pe_planned_budget" no_lang="1"/>
-					</vbox>
-					<vbox align="center">
+						<et2-description  id="total_pe_planned_budget" noLang="1"></et2-description>
+					</et2-vbox>
+					<et2-vbox  align="center">
 						<nextmatch-sortheader align="center" disabled="true" label="Health" id="pe_health"/>
 						<nextmatch-sortheader align="center" label="Status" id="pe_completion"/>
-						<description id="total_pe_completion" no_lang="1"/>
-					</vbox>
-					<vbox>
+						<et2-description  id="total_pe_completion" noLang="1"></et2-description>
+					</et2-vbox>
+					<et2-vbox>
 						<nextmatch-sortheader label="last modified" id="pe_modified"/>
 						<nextmatch-sortheader label="modified by" id="pe_modifier"/>
-					</vbox>
+					</et2-vbox>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
-					<image align="center" label="$row_cont[pe_app]" src="${row}[pe_icon]"/>
-					<vbox>
-						<link id="${row}[pm_link]" no_lang="1"/>
-						<link id="${row}[link]" no_lang="1"/>
+					<et2-image  align="center" label="$row_cont[pe_app]" src="${row}[pe_icon]"></et2-image>
+					<et2-vbox>
+						<et2-link  id="${row}[pm_link]" app="" noLang="1"></et2-link>
+						<et2-link  id="${row}[link]" app="" noLang="1"></et2-link>
 						<html id="${row}[pe_details]" no_lang="1"/>
-						<description id="${row}[pe_remark]" no_lang="1"/>
-						<link-string id="${row}[pe_links]"/>
-					</vbox>
-					<menulist>
-						<menupopup type="select-cat" id="${row}[cat_id]" readonly="true"/>
-					</menulist>
+						<et2-description  id="${row}[pe_remark]" noLang="1"></et2-description>
+						<et2-link-string  id="${row}[pe_links]"></et2-link-string>
+					</et2-vbox>
+					<et2-select-cat  id="${row}[cat_id]" readonly="true"></et2-select-cat>
 					<projectmanager-select-erole id="${row}[pe_eroles]" readonly="true"/>
-					<listbox type="select-account" id="${row}[pe_resources]" readonly="true"/>
-					<vbox>
-						<date id="${row}[pe_real_start]" readonly="true"/>
-						<date id="${row}[pe_planned_start]" no_lang="1" readonly="true" class="planned"/>
-					</vbox>
-					<vbox readonly="true">
-						<date id="${row}[pe_real_end]" readonly="true"/>
-						<date id="${row}[pe_planned_end]" no_lang="1" readonly="true" class="planned"/>
-					</vbox>
-                    <vbox>
-                        <date-duration id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format"
-                                       hoursPerDay="@@hoursPerDay"/>
-                        <date-duration id="${row}[pe_planned_time]" readonly="true" displayFormat="@@duration_format"
-                                       hoursPerDay="@@hoursPerDay" span="all" class="planned"/>
-                    </vbox>
-					<vbox>
-						<hbox id="pe_used_time">
-							<image label="Times" src="timesheet"/>
-                            <date-duration id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format"
-                                           hoursPerDay="@@hoursPerDay"/>
-						</hbox>
-						<hbox id="planified">
-							<image label="planned time" src="k_alarm.png"/>
-                            <date-duration id="${row}[pe_planned_time]" readonly="true"
-                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
-                                           class="planned"/>
-						</hbox>
-						<hbox id="replanified">
-							<image label="Re-planned time" src="agt_reload.png"/>
-                            <date-duration id="${row}[pe_replanned_time]" readonly="true"
-                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
-                                           class="replanned"/>
-						</hbox>
-					</vbox>
-					<vbox readonly="true">
-						<textbox type="float" id="${row}[pe_used_budget]" readonly="true" max="2"/>
-						<textbox type="float" id="${row}[pe_planned_budget]" no_lang="1" readonly="true" max="2" class="planned"/>
-					</vbox>
-					<vbox align="center">
-						<image align="center" src="${row}[pe_healt_icon]"/>
+					<et2-select-account  id="${row}[pe_resources]" readonly="true"></et2-select-account>
+					<et2-vbox>
+						<et2-date  id="${row}[pe_real_start]" readonly="true"></et2-date>
+						<et2-date  id="${row}[pe_planned_start]" readonly="true" class="planned" noLang="1"></et2-date>
+					</et2-vbox>
+					<et2-vbox  readonly="true">
+						<et2-date  id="${row}[pe_real_end]" readonly="true"></et2-date>
+						<et2-date  id="${row}[pe_planned_end]" readonly="true" class="planned" noLang="1"></et2-date>
+					</et2-vbox>
+                    <et2-vbox>
+                        <et2-date-duration  id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
+                        <et2-date-duration  id="${row}[pe_planned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="planned"></et2-date-duration>
+                    </et2-vbox>
+					<et2-vbox>
+						<et2-hbox  id="pe_used_time">
+							<et2-image  label="Times" src="timesheet"></et2-image>
+                            <et2-date-duration  id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
+						</et2-hbox>
+						<et2-hbox  id="planified">
+							<et2-image  label="planned time" src="k_alarm.png"></et2-image>
+                            <et2-date-duration  id="${row}[pe_planned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="planned"></et2-date-duration>
+						</et2-hbox>
+						<et2-hbox  id="replanified">
+							<et2-image  label="Re-planned time" src="agt_reload.png"></et2-image>
+                            <et2-date-duration  id="${row}[pe_replanned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="replanned"></et2-date-duration>
+						</et2-hbox>
+					</et2-vbox>
+					<et2-vbox  readonly="true">
+						<et2-number  id="${row}[pe_used_budget]" readonly="true" max="2"></et2-number>
+						<et2-number  id="${row}[pe_planned_budget]" readonly="true" max="2" class="planned" noLang="1"></et2-number>
+					</et2-vbox>
+					<et2-vbox  align="center">
+						<et2-image  align="center" src="${row}[pe_healt_icon]"></et2-image>
 						<progress align="center" id="${row}[pe_completion]" no_lang="1"/>
-						<image align="center" src="${row}[pe_completion_icon]" no_lang="1"/>
-						<image align="center" src="$row_cont[ignored]" no_lang="1"/>
-					</vbox>
-					<vbox readonly="true">
-						<date-time id="${row}[pe_modified]" readonly="true"/>
-						<menulist>
-							<menupopup type="select-account" id="${row}[pe_modifier]" readonly="true"/>
-						</menulist>
-					</vbox>
+						<et2-image  align="center" src="${row}[pe_completion_icon]" noLang="1"></et2-image>
+						<et2-image  align="center" src="$row_cont[ignored]" noLang="1"></et2-image>
+					</et2-vbox>
+					<et2-vbox  readonly="true">
+						<et2-date-time  id="${row}[pe_modified]" readonly="true"></et2-date-time>
+						<et2-select-account  id="${row}[pe_modifier]" readonly="true"></et2-select-account>
+					</et2-vbox>
 				</row>
 			</rows>
 		</grid>
@@ -174,15 +157,15 @@
 	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
 		<nextmatch id="nm" options="projectmanager.elements.list.rows"
                    header_left="projectmanager.elements.list.add-new" class="hide"/>
-		<box id="add_existing_popup" class="action_popup prompt">
-			<vbox>
-				<description value="Add element" class="promptheader"/>
-				<link-entry id="link" class="action_popup-content" width="330px"/>
-				<hbox>
-					<button label="Add" id="link_action[add]" image="add" onclick="nm_submit_popup(this); return false;"/>
-					<buttononly label="Cancel" id="link_action[cancel]" onclick="nm_hide_popup(this,'link_popup');"/>
-				</hbox>
-			</vbox>
-		</box>
+		<et2-box  id="add_existing_popup" class="action_popup prompt">
+			<et2-vbox>
+				<et2-description  value="Add element" class="promptheader"></et2-description>
+				<et2-link-entry  id="link" class="action_popup-content" width="330px"></et2-link-entry>
+				<et2-hbox>
+					<et2-button  label="Add" id="link_action[add]" image="add" onclick="nm_submit_popup(this); return false;"></et2-button>
+					<et2-button  label="Cancel" id="link_action[cancel]" onclick="nm_hide_popup(this,'link_popup');" noSubmit="true"></et2-button>
+				</et2-hbox>
+			</et2-vbox>
+		</et2-box>
 	</template>
 </overlay>

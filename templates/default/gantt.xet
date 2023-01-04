@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.gantt" template="" lang="" group="0" version="1.9.001">
-		<vbox width="100%" height="100%">
-			<hbox>
-				<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"/>
-				<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints" onchange="1"/>
-				<button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"/>
-				<button statustext="Add a new milestone" label="Add milestone" id="milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"/>
+		<et2-vbox  width="100%" height="100%">
+			<et2-hbox>
+				<et2-checkbox  statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"></et2-checkbox>
+				<et2-checkbox  statustext="Show constraints and milestones" label="Constraints" id="constraints" onchange="1"></et2-checkbox>
+				<et2-button  statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"></et2-button>
+				<et2-button  statustext="Add a new milestone" label="Add milestone" id="milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
 				<!-- Disabled for now, as these use external services
-				<button statustext="Export as PDF" label="PDF" onclick="widget.getRoot().getWidgetById('gantt').exportToPDF();"/>
-				<button statustext="Export as PNG" label="PNG" onclick="widget.getRoot().getWidgetById('gantt').exportToPNG();"/>
+				<et2-button  statustext="Export as PDF" label="PDF" onclick="widget.getRoot().getWidgetById('gantt').exportToPDF();"></et2-button>
+				<et2-button  statustext="Export as PNG" label="PNG" onclick="widget.getRoot().getWidgetById('gantt').exportToPNG();"></et2-button>
 				-->
-			</hbox>
+			</et2-hbox>
 			<projectmanager-gantt id="gantt" class="ganttContent" autoload="projectmanager_gantt::ajax_gantt_project" ajax_update="projectmanager_gantt::ajax_update" span="all">
 				<grid>
 					<columns>
@@ -27,42 +26,36 @@
 					</columns>
 					<rows>
 						<row>
-							<description value="Startdate" for="start"/>
-							<date id="start_date"/>
-							<description value="Enddate" for="end"/>
-							<date id="end_date"/>
-							<description/>
-							<description/>
+							<et2-description  value="Startdate" for="start"></et2-description>
+							<et2-date  id="start_date"></et2-date>
+							<et2-description  value="Enddate" for="end"></et2-description>
+							<et2-date  id="end_date"></et2-date>
+							<et2-description></et2-description>
+							<et2-description></et2-description>
 						</row>
 						<row>
-							<description value="Category"/>
-							<menulist>
-								<menupopup type="select-cat" id="cat_id" options="All"/>
-							</menulist>
-							<description value="Status filter" for="filter"/>
-							<menulist>
-								<menupopup id="filter" no_lang="1"/>
-							</menulist>
-							<description value="Resources"/>
-							<menulist>
-								<menupopup type="select-account" id="pe_resources" options="All"/>
-							</menulist>
+							<et2-description  value="Category"></et2-description>
+							<et2-select-cat  id="cat_id" emptyLabel="All"></et2-select-cat>
+							<et2-description  value="Status filter" for="filter"></et2-description>
+							<et2-select  id="filter" noLang="1"></et2-select>
+							<et2-description  value="Resources"></et2-description>
+							<et2-select-account  id="pe_resources" emptyLabel="All"></et2-select-account>
 						</row>
 					</rows>
 				</grid>
 			</projectmanager-gantt>
-		</vbox>
+		</et2-vbox>
 	</template>
 	<template id="projectmanager.gantt.edit" template="" lang="" group="0" version="1.9.001">
-		<textbox readonly="true" label="Change the following details of %s" id="pe_title"/>
+		<et2-textbox  readonly="true" label="Change the following details of %s" id="pe_title"></et2-textbox>
 		<grid id="fields" width="100%">
 			<columns><column/><column/><column/><column/></columns>
 			<rows>
 				<row>
-					<description id="${row}[label]" no_lang="true"/>
-					<description id="${row}[old_value]" no_lang="true"/>
-					<description value="=&gt;" no_lang="true"/>
-					<description id="${row}[new_value]" no_lang="true"/>
+					<et2-description  id="${row}[label]" noLang="true"></et2-description>
+					<et2-description  id="${row}[old_value]" noLang="true"></et2-description>
+					<et2-description  value="=&gt;" noLang="true"></et2-description>
+					<et2-description  id="${row}[new_value]" noLang="true"></et2-description>
 				</row>
 			</rows>
 		</grid>

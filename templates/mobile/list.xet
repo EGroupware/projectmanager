@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.002">
-		<buttononly parent_node="projectmanager-list_plus_button_container" class="plus_button" statustext="Add a new project" id="add_button" onclick="egw.open('','projectmanager','add');"/>
+		<et2-button  class="plus_button" statustext="Add a new project" id="add_button" onclick="egw.open('','projectmanager','add');" noSubmit="true" parentId="projectmanager-list_plus_button_container"></et2-button>
 	</template>
 	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
@@ -16,32 +15,32 @@
 				<row class="th">
 				</row>
 				<row class="$row_cont[class]">
-					<description class=" cat_$row_cont[cat_id] mobile_cat_col"/>
-					<vbox class="pmCol2">
+					<et2-description  class="cat_$row_cont[cat_id] mobile_cat_col"></et2-description>
+					<et2-vbox  class="pmCol2">
 						<customfields-list id="$row" class="customfields" app="projectmanager" disabled="true"/>
-						<hbox>
-							<description id="${row}[pm_number]" no_lang="1"/>
-							<hbox class="priority">
-								<image src="priority"/>
-								<description align="center" id="${row}[pm_priority]" no_lang="1"/>
-							</hbox>
-						</hbox>
+						<et2-hbox>
+							<et2-description  id="${row}[pm_number]" noLang="1"></et2-description>
+							<et2-hbox  class="priority">
+								<et2-image  src="priority"></et2-image>
+								<et2-description  align="center" id="${row}[pm_priority]" noLang="1"></et2-description>
+							</et2-hbox>
+						</et2-hbox>
 
-						<description id="${row}[pm_title]" no_lang="1" />
-						<hbox>
-							<label value="Start" class="startPlanned"/>
-							<date id="${row}[pm_planned_start]" readonly="true" class="planned"/>
-							<hbox class="endPlanned">
-								<label value="End" />
-								<date id="${row}[pm_planned_end]" readonly="true" class="planned"/>
-							</hbox>
-						</hbox>
-					</vbox>
-					<vbox class="pmCol1">
-						<date-duration label="time" id="${row}[pm_used_time]" readonly="true" options="@@duration_format"/>
-						<date-duration label="planned" id="${row}[pm_planned_time]" readonly="true" options="@@duration_format" span="all" class="planned"/>
+						<et2-description  id="${row}[pm_title]" noLang="1"></et2-description>
+						<et2-hbox>
+							<et2-label  value="Start" class="startPlanned"></et2-label>
+							<et2-date  id="${row}[pm_planned_start]" readonly="true" class="planned"></et2-date>
+							<et2-hbox  class="endPlanned">
+								<et2-label  value="End" ></et2-label>
+								<et2-date  id="${row}[pm_planned_end]" readonly="true" class="planned"></et2-date>
+							</et2-hbox>
+						</et2-hbox>
+					</et2-vbox>
+					<et2-vbox  class="pmCol1">
+						<et2-date-duration  label="time" id="${row}[pm_used_time]" readonly="true" dataFormat="@@duration_format" ></et2-date-duration>
+						<et2-date-duration  label="planned" id="${row}[pm_planned_time]" readonly="true" span="all" class="planned" dataFormat="@@duration_format"></et2-date-duration>
 						<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
-					</vbox>
+					</et2-vbox>
 				</row>
 			</rows>
 		</grid>
@@ -54,30 +53,28 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description align="center" id="msg" no_lang="1" class="message"/>
+					<et2-description  align="center" id="msg" class="message" noLang="1"></et2-description>
 				</row>
 				<row disabled="1">
 					<template align="right" id="projectmanager.list.right" span="all"/>
 				</row>
 				<row>
-					<description id="plus_button_container"/>
+					<et2-description  id="plus_button_container"></et2-description>
 				</row>
 				<row>
-					<nextmatch id="nm" template="projectmanager.list.rows"  header_right='projectmanager.list.right'/>
+					<nextmatch id="nm" template="projectmanager.list.rows"  header_right="projectmanager.list.right"/>
 				</row>
 				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
-					<hbox>
-						<hbox>
-							<menulist>
-								<menupopup statustext="Create a new empty project or use a template" id="template_id" no_lang="1" options="Empty"/>
-							</menulist>
-							<buttononly class="add" statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')"/>
-						</hbox>
-						<hbox align="right">
-							<buttononly statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;"/>
-							<button statustext="Check all" label="Check all" id="check_all" needed="1" onclick="egw_globalObjectManager.getObjectById('projectmanager.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow"/>
-						</hbox>
-					</hbox>
+					<et2-hbox>
+						<et2-hbox>
+							<et2-select  statustext="Create a new empty project or use a template" id="template_id" noLang="1" emptyLabel="Empty"></et2-select>
+							<et2-button  class="add" statustext="Add a new project" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_ui.edit&amp;template=')+document.getElementById(form::name('template_id')).value,'_blank','dependent=yes,width=900,height=450,scrollbars=yes,status=yes')" noSubmit="true"></et2-button>
+						</et2-hbox>
+						<et2-hbox  align="right">
+							<et2-button  statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;" noSubmit="true"></et2-button>
+							<et2-button  statustext="Check all" label="Check all" id="check_all" onclick="egw_globalObjectManager.getObjectById('projectmanager.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow" required="1"></et2-button>
+						</et2-hbox>
+					</et2-hbox>
 				</row>
 			</rows>
 		</grid>

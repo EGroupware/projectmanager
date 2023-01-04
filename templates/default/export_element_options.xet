@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.export_element_options" template="" lang="" group="0" version="1.9.001">
 		<grid>
@@ -9,30 +8,22 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<description value="Duration format"/>
+					<et2-description  value="Duration format"></et2-description>
 				</row>
 				<row>
-					<menulist>
-						<menupopup label="Used time" id="pe_used_time"/>
-					</menulist>
+					<et2-select  label="Used time" id="pe_used_time"></et2-select>
 				</row>
 				<row>
-					<menulist>
-						<menupopup label="Planned time" id="pe_planned_time"/>
-					</menulist>
+					<et2-select  label="Planned time" id="pe_planned_time"></et2-select>
 				</row>
 				<row>
-					<menulist>
-						<menupopup label="Replanned time" id="pe_replanned_time"/>
-					</menulist>
+					<et2-select  label="Replanned time" id="pe_replanned_time"></et2-select>
 				</row>
 				<row>
-					<description/>
+					<et2-description></et2-description>
 				</row>
 				<row>
-					<menulist>
-						<menupopup type="select-bool" label="Include units" id="include_duration_unit"/>
-					</menulist>
+					<et2-select-bool  label="Include units" id="include_duration_unit"></et2-select-bool>
 				</row>
 			</rows>
 		</grid>

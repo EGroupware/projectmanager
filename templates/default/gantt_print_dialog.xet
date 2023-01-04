@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="gantt_print_dialog" template="" lang="" group="0" version="16.1">
-		<vbox>
-			<description value="Columns to print"/>
-			<select id="columns" multiple="true" selected_first="false"/>
-			<description value="If the gantt chart is wider than the page, it will be trimmed."/>
-			<description value="How would you like to print the chart?"/>
-			<select id="orientation">
+		<et2-vbox>
+			<et2-description  value="Columns to print"></et2-description>
+			<et2-select  id="columns" multiple="true" selectedFirst="false"></et2-select>
+			<et2-description  value="If the gantt chart is wider than the page, it will be trimmed."></et2-description>
+			<et2-description  value="How would you like to print the chart?"></et2-description>
+			<et2-select  id="orientation">
 				<option value="">All tasks (horizontal)</option>
 				<option value="vertical">All dates (vertical)</option>
-			</select>
-		</vbox>
+			</et2-select>
+		</et2-vbox>
 	</template>
 </overlay>

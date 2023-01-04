@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="1.9.002">
 		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
@@ -27,37 +26,29 @@
 							</columns>
 							<rows>
 								<row>
-									<description value="Startdate" for="start"/>
-									<date id="start"/>
-									<description value="Depth of display" for="depth"/>
-									<menulist>
-										<menupopup id="depth" no_lang="1" />
-									</menulist>
-									<checkbox statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" />
-									<description/>
-									<button label="Update" id="update"/>
+									<et2-description  value="Startdate" for="start"></et2-description>
+									<et2-date  id="start"></et2-date>
+									<et2-description  value="Depth of display" for="depth"></et2-description>
+									<et2-select  id="depth" noLang="1"></et2-select>
+									<et2-checkbox  statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" ></et2-checkbox>
+									<et2-description></et2-description>
+									<et2-button  label="Update" id="update"></et2-button>
 								</row>
 								<row>
-									<description value="Enddate" for="end"/>
-									<date id="end" />
-									<description value="Status filter" for="filter"/>
-									<menulist>
-										<menupopup id="filter" no_lang="1" />
-									</menulist>
-									<checkbox statustext="Show constraints and milestones" label="Constraints" id="constraints" />
-									<description/>
-									<button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"/>
+									<et2-description  value="Enddate" for="end"></et2-description>
+									<et2-date  id="end" ></et2-date>
+									<et2-description  value="Status filter" for="filter"></et2-description>
+									<et2-select  id="filter" noLang="1"></et2-select>
+									<et2-checkbox  statustext="Show constraints and milestones" label="Constraints" id="constraints" ></et2-checkbox>
+									<et2-description></et2-description>
+									<et2-button  statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"></et2-button>
 								</row>
 								<row>
-									<description value="Resources"/>
-									<menulist>
-										<menupopup type="select-account" id="pe_resources" options="All"/>
-									</menulist>
-									<description value="Category"/>
-									<menulist span="3">
-										<menupopup type="select-cat" id="cat_id"  options="All"/>
-									</menulist>
-									<description/>
+									<et2-description  value="Resources"></et2-description>
+									<et2-select-account  id="pe_resources" emptyLabel="All"></et2-select-account>
+									<et2-description  value="Category"></et2-description>
+									<et2-select-cat  span="3" id="cat_id" emptyLabel="All"></et2-select-cat>
+									<et2-description></et2-description>
 								</row>
 							</rows>
 						</grid>
@@ -67,10 +58,10 @@
 					<html id="map"/>
 				</row>
 				<row>
-					<image src="ganttchart" imagemap="ganttchart"/>
+					<et2-image  src="ganttchart" imagemap="ganttchart"></et2-image>
 				</row>
 				<row>
-					<button statustext="Add a new milestone" label="Add milestone" id="milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"/>
+					<et2-button  statustext="Add a new milestone" label="Add milestone" id="milestone" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
 				</row>
 			</rows>
 		</grid>

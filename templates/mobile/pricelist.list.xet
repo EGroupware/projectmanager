@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
@@ -13,25 +12,21 @@
 					
 				</row>
 				<row class="row $row_cont[class]">
-					<vbox>
-						<textbox id="${row}[pl_title]" no_lang="1" readonly="true"/>
-						<menulist>
-							<menupopup id="${row}[pm_id]" no_lang="1" readonly="true"/>
-						</menulist>
-						<description id="${row}[pl_customertitle]" no_lang="1"/>
-					</vbox>
-					<vbox>
-						<textbox type="float" label="%s / $row_cont[pl_unit]" id="${row}[pl_price]" no_lang="1" readonly="true" max="2"/>
-						<menulist>
-							<menupopup id="${row}[pl_billable]" readonly="true" options="No"/>
-						</menulist>
-					</vbox>
+					<et2-vbox>
+						<et2-textbox  id="${row}[pl_title]" readonly="true" noLang="1"></et2-textbox>
+						<et2-select  id="${row}[pm_id]" readonly="true" noLang="1"></et2-select>
+						<et2-description  id="${row}[pl_customertitle]" noLang="1"></et2-description>
+					</et2-vbox>
+					<et2-vbox>
+						<et2-number  label="%s / $row_cont[pl_unit]" id="${row}[pl_price]" readonly="true" max="2" noLang="1"></et2-number>
+						<et2-select  id="${row}[pl_billable]" readonly="true" emptyLabel="No"></et2-select>
+					</et2-vbox>
 				</row>
 			</rows>
 		</grid>
 	</template>
 	<template id="projectmanager.pricelist.add-new" template="" lang="" group="0" version="1.9.001">
-		<button align="right" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"/>
+		<et2-button  align="right" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
 	</template>
 	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">

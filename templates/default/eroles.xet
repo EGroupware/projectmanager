@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.eroles" template="" lang="" group="0" version="1.9.001">
-		<vbox>
-			<hbox orient=",0,0" options="0,0">
-				<menulist>
-					<menupopup label="Project" id="pm_id" no_lang="1" onchange="1" options="All"/>
-				</menulist>
-				<description align="right" id="msg" no_lang="1" class="message"/>
-			</hbox>
+		<et2-vbox>
+			<et2-hbox  orient=",0,0" cellpadding="0" cellspacing="0" >
+				<et2-select  label="Project" id="pm_id" onchange="1" noLang="1" emptyLabel="All"></et2-select>
+				<et2-description  align="right" id="msg" class="message" noLang="1"></et2-description>
+			</et2-hbox>
 			<grid>
 				<columns>
 					<column/>
@@ -20,36 +17,36 @@
 				</columns>
 				<rows>
 					<row class="th">
-						<description value="Element role"/>
-						<description value="Description"/>
-						<description align="center" value="Only this project"/>
-						<description align="center" statustext="Check to make one element role assignable to multiple elements" value="Multi assignable"/>
-						<description/>
+						<et2-description  value="Element role"></et2-description>
+						<et2-description  value="Description"></et2-description>
+						<et2-description  align="center" value="Only this project"></et2-description>
+						<et2-description  align="center" statustext="Check to make one element role assignable to multiple elements" value="Multi assignable"></et2-description>
+						<et2-description></et2-description>
 					</row>
 					<row class="row" disabled="@view">
-						<textbox id="${row}[role_title]" size="16" maxlength="80"/>
-						<textbox id="${row}[role_description]" size="24" maxlength="255"/>
-						<checkbox align="center" id="${row}[pm_id]" selected_value="@pm_id"/>
-						<checkbox align="center" statustext="Check to make one element role assignable to multiple elements" id="${row}[role_multi]"/>
-						<description align="right"/>
+						<et2-textbox  id="${row}[role_title]" maxlength="80"></et2-textbox>
+						<et2-textbox  id="${row}[role_description]" maxlength="255"></et2-textbox>
+						<et2-checkbox  align="center" id="${row}[pm_id]" selectedValue="@pm_id"></et2-checkbox>
+						<et2-checkbox  align="center" statustext="Check to make one element role assignable to multiple elements" id="${row}[role_multi]"></et2-checkbox>
+						<et2-description  align="right"></et2-description>
 					</row>
 					<row class="row">
-						<description id="${row}[role_title]"/>
-						<description id="${row}[role_description]"/>
-						<checkbox align="center" id="${row}[pm_id]" readonly="true" selected_value="@pm_id"/>
-						<checkbox align="center" id="${row}[role_multi]" readonly="true"/>
-						<hbox orient=",0,0" options="0,0">
-							<button statustext="Edit this element role" label="Edit" id="edit[$row_cont[role_id]]" image="edit"/>
-							<button align="right" statustext="Delete this element role" label="Delete" id="delete[$row_cont[role_id]]" onclick="return app.projectmanager.erole_refresh('delete');" image="delete"/>
-						</hbox>
+						<et2-description  id="${row}[role_title]"></et2-description>
+						<et2-description  id="${row}[role_description]"></et2-description>
+						<et2-checkbox  align="center" id="${row}[pm_id]" readonly="true" selectedValue="@pm_id"></et2-checkbox>
+						<et2-checkbox  align="center" id="${row}[role_multi]" readonly="true"></et2-checkbox>
+						<et2-hbox  orient=",0,0" cellpadding="0" cellspacing="0" >
+							<et2-button  statustext="Edit this element role" label="Edit" id="edit[$row_cont[role_id]]" image="edit"></et2-button>
+							<et2-button  align="right" statustext="Delete this element role" label="Delete" id="delete[$row_cont[role_id]]" onclick="return app.projectmanager.erole_refresh('delete');" image="delete"></et2-button>
+						</et2-hbox>
 					</row>
 				</rows>
 			</grid>
-			<hbox>
-				<button statustext="Save the changes made" label="Save" id="save" onclick="app.projectmanager.erole_refresh"/>
-				<button statustext="Applies the changes made" label="Apply" id="apply" onclick="app.projectmanager.erole_refresh"/>
-				<button statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"/>
-			</hbox>
-		</vbox>
+			<et2-hbox>
+				<et2-button  statustext="Save the changes made" label="Save" id="save" onclick="app.projectmanager.erole_refresh"></et2-button>
+				<et2-button  statustext="Applies the changes made" label="Apply" id="apply" onclick="app.projectmanager.erole_refresh"></et2-button>
+				<et2-button  statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"></et2-button>
+			</et2-hbox>
+		</et2-vbox>
 	</template>
 </overlay>

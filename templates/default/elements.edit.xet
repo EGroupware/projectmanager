@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.elements.edit.dates" template="" lang="" group="0" version="0.3.001">
 		<grid width="100%" height="170">
@@ -11,31 +10,31 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<description value="Startdate" for="pe_real_start"/>
-					<date-time id="pe_real_start"/>
-					<date-time id="ds[pe_real_start]" readonly="true"/>
+					<et2-description  value="Startdate" for="pe_real_start"></et2-description>
+					<et2-date-time  id="pe_real_start"></et2-date-time>
+					<et2-date-time  id="ds[pe_real_start]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row">
-					<description value="- planned" for="pe_planned_end"/>
-					<date-time id="pe_planned_start"/>
-					<date-time id="ds[pe_planned_start]" readonly="true"/>
+					<et2-description  value="- planned" for="pe_planned_end"></et2-description>
+					<et2-date-time  id="pe_planned_start"></et2-date-time>
+					<et2-date-time  id="ds[pe_planned_start]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row">
-					<description value="Enddate" for="pe_real_end"/>
-					<date-time id="pe_real_end"/>
-					<date-time id="ds[pe_real_end]" readonly="true"/>
+					<et2-description  value="Enddate" for="pe_real_end"></et2-description>
+					<et2-date-time  id="pe_real_end"></et2-date-time>
+					<et2-date-time  id="ds[pe_real_end]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row" valign="top" height="50%">
-					<description value="- planned" for="pe_planned_end"/>
-					<date-time id="pe_planned_end"/>
-					<date-time id="ds[pe_planned_end]" readonly="true"/>
+					<et2-description  value="- planned" for="pe_planned_end"></et2-description>
+					<et2-date-time  id="pe_planned_end"></et2-date-time>
+					<et2-date-time  id="ds[pe_planned_end]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row" disabled="!@no_times">
-					<description value="Share" for="pe_share"/>
-					<hbox span="all">
-						<textbox statustext="Share on the whole project" id="pe_share" size="10" validator="/^[0-9.]*\.?[0-9%]*$/"/>
-						<textbox type="float" label="default" id="default_percentage" readonly="true"/>
-					</hbox>
+					<et2-description  value="Share" for="pe_share"></et2-description>
+					<et2-hbox  span="all">
+						<et2-textbox  statustext="Share on the whole project" id="pe_share" validator="/^[0-9.]*\.?[0-9%]*$/"></et2-textbox>
+						<et2-number  label="default" id="default_percentage" readonly="true"></et2-number>
+					</et2-hbox>
 				</row>
 			</rows>
 		</grid>
@@ -49,37 +48,37 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<description value="Times" for="pe_used_time"/>
-					<date-duration id="pe_used_time" options=",$cont[duration_format]"/>
-					<date-duration id="ds[pe_used_time]" readonly="true" options="@duration_format"/>
+					<et2-description  value="Times" for="pe_used_time"></et2-description>
+					<et2-date-duration  id="pe_used_time" ></et2-date-duration>
+					<et2-date-duration  id="ds[pe_used_time]" readonly="true" dataFormat="@duration_format" ></et2-date-duration>
 				</row>
 				<row class="row">
-					<description value="- planned" for="pe_planned_time"/>
-					<date-duration id="pe_planned_time" options=",$cont[duration_format]"/>
-					<date-duration id="ds[pe_planned_time]" readonly="true" options="@duration_format"/>
+					<et2-description  value="- planned" for="pe_planned_time"></et2-description>
+					<et2-date-duration  id="pe_planned_time" ></et2-date-duration>
+					<et2-date-duration  id="ds[pe_planned_time]" readonly="true" dataFormat="@duration_format" ></et2-date-duration>
 				</row>
 				<row class="row">
-					<description value="- re-planned" for="pe_replanned_time"/>
-					<date-duration id="pe_replanned_time" options=",$cont[duration_format]"/>
-					<description/>
+					<et2-description  value="- re-planned" for="pe_replanned_time"></et2-description>
+					<et2-date-duration  id="pe_replanned_time" ></et2-date-duration>
+					<et2-description></et2-description>
 				</row>
 				<row class="row">
-					<description value="Share" for="pe_share"/>
-					<hbox>
-						<date-duration statustext="Share on the whole project in hours or percent, defaults to planned time" id="pe_share" options=",%$cont[duration_format],1"/>
-						<date-duration label="/" id="share_total" readonly="true" options=",$cont[duration_format],1"/>
-						<description value="=" id="share_percentage" no_lang="1"/>
-					</hbox>
-					<description/>
+					<et2-description  value="Share" for="pe_share"></et2-description>
+					<et2-hbox>
+						<et2-date-duration  statustext="Share on the whole project in hours or percent, defaults to planned time" id="pe_share" ></et2-date-duration>
+						<et2-date-duration  label="/" id="share_total" readonly="true" ></et2-date-duration>
+						<et2-description  value="=" id="share_percentage" noLang="1"></et2-description>
+					</et2-hbox>
+					<et2-description></et2-description>
 				</row>
 				<row class="row" valign="top" height="50%">
-					<description value="Default"/>
-					<hbox>
-						<date-duration id="default_share" readonly="true" options=",$cont[duration_format]"/>
-						<date-duration label="/" id="default_total" readonly="true" options=",$cont[duration_format]"/>
-						<description value="=" id="default_percentage" no_lang="1"/>
-					</hbox>
-					<description/>
+					<et2-description  value="Default"></et2-description>
+					<et2-hbox>
+						<et2-date-duration  id="default_share" readonly="true" ></et2-date-duration>
+						<et2-date-duration  label="/" id="default_total" readonly="true" ></et2-date-duration>
+						<et2-description  value="=" id="default_percentage" noLang="1"></et2-description>
+					</et2-hbox>
+					<et2-description></et2-description>
 				</row>
 			</rows>
 		</grid>
@@ -93,37 +92,37 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<description value="Calculate budget by quantity (eg. time) and price" span="all"/>
+					<et2-description  value="Calculate budget by quantity (eg. time) and price" span="all"></et2-description>
 				</row>
 				<row class="row">
-					<description value="Quantity" for="pe_used_quantity"/>
-					<textbox type="float" blur="@used_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_used_quantity" onchange="app.projectmanager.calc_budget(this.form);"/>
-					<textbox type="float" id="ds[pe_used_quantity]" readonly="true"/>
+					<et2-description  value="Quantity" for="pe_used_quantity"></et2-description>
+					<et2-number  statustext="leave it empty, if identitcal to the time" id="pe_used_quantity" onchange="app.projectmanager.calc_budget(this.form);" placeholder="@used_quantity_blur"></et2-number>
+					<et2-number  id="ds[pe_used_quantity]" readonly="true"></et2-number>
 				</row>
 				<row class="row">
-					<description value="- planned" for="pe_planned_quantity"/>
-					<textbox type="float" blur="@planned_quantity_blur" statustext="leave it empty, if identitcal to the time" id="pe_planned_quantity" onchange="app.projectmanager.calc_budget(this.form);"/>
-					<textbox type="float" id="ds[pe_planned_quantity]" readonly="true"/>
+					<et2-description  value="- planned" for="pe_planned_quantity"></et2-description>
+					<et2-number  statustext="leave it empty, if identitcal to the time" id="pe_planned_quantity" onchange="app.projectmanager.calc_budget(this.form);" placeholder="@planned_quantity_blur"></et2-number>
+					<et2-number  id="ds[pe_planned_quantity]" readonly="true"></et2-number>
 				</row>
 				<row class="row" disabled="@no_pricelist">
-					<description value="Activity"/>
+					<et2-description  value="Activity"></et2-description>
 					<projectmanager-pricelist statustext="select an activity if you want to calculate costs by quantity (time) and price" id="pl_id" onchange="this.form['exec[pe_unitprice]'].value=this.options[this.selectedIndex].text.lastIndexOf('(') &lt; 0 ? '' : this.options[this.selectedIndex].text.slice(this.options[this.selectedIndex].text.lastIndexOf('(')+1,-1); app.projectmanager.calc_budget(this.form);" options="None"/>
 					<projectmanager-pricelist id="ds[pl_id]" readonly="true" span="all"/>
 				</row>
 				<row class="row" valign="top">
-					<description value="Unitprice" for="pe_cost_per_time"/>
-					<textbox type="float" blur="@ds[pe_unitprice]" id="pe_unitprice" onchange="app.projectmanager.calc_budget(this.form);"/>
-					<textbox type="float" id="ds[pe_unitprice]" readonly="true" min="2"/>
+					<et2-description  value="Unitprice" for="pe_cost_per_time"></et2-description>
+					<et2-number  id="pe_unitprice" onchange="app.projectmanager.calc_budget(this.form);" placeholder="@ds[pe_unitprice]"></et2-number>
+					<et2-number  id="ds[pe_unitprice]" readonly="true" min="2"></et2-number>
 				</row>
 				<row class="th">
-					<description value="Budget" for="pe_real_budget"/>
-					<textbox type="float" blur="@ds[pe_used_budget]" id="pe_used_budget"/>
-					<textbox type="float" id="ds[pe_used_budget]" readonly="true" min="2"/>
+					<et2-description  value="Budget" for="pe_real_budget"></et2-description>
+					<et2-number  id="pe_used_budget" placeholder="@ds[pe_used_budget]"></et2-number>
+					<et2-number  id="ds[pe_used_budget]" readonly="true" min="2"></et2-number>
 				</row>
 				<row class="row">
-					<description value="- planned" for="pe_planned_budget"/>
-					<textbox type="float" blur="@ds[pe_planned_budget]" id="pe_planned_budget"/>
-					<textbox type="float" id="ds[pe_planned_budget]" readonly="true" min="2"/>
+					<et2-description  value="- planned" for="pe_planned_budget"></et2-description>
+					<et2-number  id="pe_planned_budget" placeholder="@ds[pe_planned_budget]"></et2-number>
+					<et2-number  id="ds[pe_planned_budget]" readonly="true" min="2"></et2-number>
 				</row>
 			</rows>
 		</grid>
@@ -138,16 +137,16 @@
 			</columns>
 			<rows>
 				<row valign="top" class="${row_cont[class]}">
-					<vbox>
-						<link id="${row}[pe_id_start]" readonly="true" only_app="projectelement"/>
-						<link id="${row}[ms_id]" readonly="true" only_app="pm_milestone" disabled="$row_cont[pe_id_start]"/>
-					</vbox>
-					<listbox id="${row}[type]" readonly="true"/>
-					<vbox>
-						<link id="${row}[pe_id_end]" readonly="true" only_app="projectelement"/>
-						<link id="${row}[ms_id]" readonly="true" only_app="pm_milestone" disabled="$row_cont[pe_id_end]"/>
-					</vbox>
-					<button id="delete[${row}]" image="delete"/>
+					<et2-vbox>
+						<et2-link  id="${row}[pe_id_start]" app="projectelement"></et2-link>
+						<et2-link  id="${row}[ms_id]" disabled="$row_cont[pe_id_start]" app="pm_milestone"></et2-link>
+					</et2-vbox>
+					<et2-select  id="${row}[type]" readonly="true"></et2-select>
+					<et2-vbox>
+						<et2-link  id="${row}[pe_id_end]" app="projectelement"></et2-link>
+						<et2-link  id="${row}[ms_id]" disabled="$row_cont[pe_id_end]" app="pm_milestone"></et2-link>
+					</et2-vbox>
+					<et2-button-icon  id="delete[${row}]" image="delete"></et2-button-icon>
 				</row>
 			</rows>
 		</grid>
@@ -160,10 +159,10 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<link readonly="true" only_app="projectelement" value="$cont[pe_id]"/>
-					<listbox id="type"/>
-					<link-entry id="target" application_list="projectelement,pm_milestone" query="app.projectmanager.element_constraint_pre_query"/>
-					<button id="add_button" image="add"/>
+					<et2-link  value="$cont[pe_id]" app="projectelement"></et2-link>
+					<et2-select  id="type"></et2-select>
+					<et2-link-entry  id="target" query="app.projectmanager.element_constraint_pre_query" applicationList="projectelement,pm_milestone"></et2-link-entry>
+					<et2-button-icon  id="add_button" image="add"></et2-button-icon>
 				</row>
 			</rows>
 		</grid>
@@ -177,9 +176,9 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description value="Resources"/>
-					<listbox type="select-account" id="pe_resources" rows="6"/>
-					<listbox type="select-account" id="ds[pe_resources]" readonly="true" rows="6"/>
+					<et2-description  value="Resources"></et2-description>
+					<et2-select-account  id="pe_resources" rows="6" multiple="1"></et2-select-account>
+					<et2-select-account  id="ds[pe_resources]" readonly="true" rows="6" multiple="1"></et2-select-account>
 				</row>
 			</rows>
 		</grid>
@@ -192,7 +191,7 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top">
-					<description value="Details"/>
+					<et2-description  value="Details"></et2-description>
 					<html id="ds[pe_details]"/>
 				</row>
 			</rows>
@@ -205,7 +204,7 @@
 			</columns>
 			<rows>
 				<row>
-					<button statustext="Edit element roles" label="Edit element roles" id="eroles_edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_eroles_ui.eroles&amp;pm_id=$cont[pm_id]&amp;pe_id=$cont[pe_id]'),'eroles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;"/>
+					<et2-button  statustext="Edit element roles" label="Edit element roles" id="eroles_edit" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_eroles_ui.eroles&amp;pm_id=$cont[pm_id]&amp;pe_id=$cont[pe_id]'),'eroles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
 				</row>
 				<row>
 					<projectmanager-select-erole id="pe_eroles" no_lang="1" options="7,,width:99%"/>
@@ -222,45 +221,39 @@
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<description align="center" id="msg" no_lang="1" span="all" class="message"/>
-					<description/>
-					<description/>
+					<et2-description  align="center" id="msg" span="all" class="message" noLang="1"></et2-description>
+					<et2-description></et2-description>
+					<et2-description></et2-description>
 				</row>
 				<row class="th">
-					<image align="center" src="pe_icon"/>
-					<description id="pe_title" no_lang="1" span="2"/>
+					<et2-image  align="center" src="pe_icon"></et2-image>
+					<et2-description  id="pe_title" span="2" noLang="1"></et2-description>
 				</row>
 				<row class="dialogHeader" height="50">
-					<description value="Comment" for="pe_remark"/>
-					<textbox id="pe_remark" size="48" maxlength="50"/>
-					<checkbox statustext="do not use that entry as project-element" label="ignore that entry" id="pe_status" options="ignore,regular" span="2"/>
+					<et2-description  value="Comment" for="pe_remark"></et2-description>
+					<et2-textbox  id="pe_remark" maxlength="50"></et2-textbox>
+					<et2-checkbox  statustext="do not use that entry as project-element" label="ignore that entry" id="pe_status" span="2" selectedValue="ignore" unselectedValue="regular"></et2-checkbox>
 				</row>
 				<row class="dialogHeader2">
-					<description value="Value"/>
-					<description value="Overwrite the datasource"/>
-					<description value="Datasource"/>
+					<et2-description  value="Value"></et2-description>
+					<et2-description  value="Overwrite the datasource"></et2-description>
+					<et2-description  value="Datasource"></et2-description>
 				</row>
 				<row class="dialogHeader3">
-					<description value="Category" for="pe_cat_id"/>
-					<menulist>
-						<menupopup type="select-cat" id="cat_id" options="None"/>
-					</menulist>
-					<menulist>
-						<menupopup type="select-cat" id="ds[cat_id]" readonly="true"/>
-					</menulist>
+					<et2-description  value="Category" for="pe_cat_id"></et2-description>
+					<et2-select-cat  id="cat_id" emptyLabel="None"></et2-select-cat>
+					<et2-select-cat  id="ds[cat_id]" readonly="true"></et2-select-cat>
 				</row>
 				<row class="dialogHeader4">
-					<description value="Status" for="pe_completion"/>
-					<hbox>
-						<menulist>
-							<menupopup type="select-percent" id="pe_completion" options="None"/>
-						</menulist>
-						<description/>
-					</hbox>
-					<description id="ds[pe_completion]" no_lang="1"/>
+					<et2-description  value="Status" for="pe_completion"></et2-description>
+					<et2-hbox>
+						<et2-select-percent  id="pe_completion" emptyLabel="None"></et2-select-percent>
+						<et2-description></et2-description>
+					</et2-hbox>
+					<et2-description  id="ds[pe_completion]" noLang="1"></et2-description>
 				</row>
 				<row>
-					<tabbox id="dates|times|budget|constraints|resources|details|eroles" span="all" height="180">
+					<et2-tabbox  id="dates|times|budget|constraints|resources|details|eroles" span="all" height="180">
 						<tabs>
 							<tab id="dates" label="Dates" statustext="Start- &amp; Enddate"/>
 							<tab id="times" label="Times" statustext="Times"/>
@@ -279,26 +272,24 @@
 							<template id="projectmanager.elements.edit.details"/>
 							<template id="projectmanager.elements.edit.eroles"/>
 						</tabpanels>
-					</tabbox>
+					</et2-tabbox>
 				</row>
 				<row class="row_on dialogOperators">
-					<description value="Modified"/>
-					<hbox>
-						<date-time id="pe_modified" readonly="true"/>
-						<menulist>
-							<menupopup type="select-account" label="by" id="pe_modifier" readonly="true"/>
-						</menulist>
-					</hbox>
-					<date-time id="pe_synced" readonly="true"/>
+					<et2-description  value="Modified"></et2-description>
+					<et2-hbox>
+						<et2-date-time  id="pe_modified" readonly="true"></et2-date-time>
+						<et2-select-account  label="by" id="pe_modifier" readonly="true"></et2-select-account>
+					</et2-hbox>
+					<et2-date-time  id="pe_synced" readonly="true"></et2-date-time>
 				</row>
 				<row class="dialogFooterToolbar">
-					<hbox span="2">
-						<button statustext="Edit this project-element" label="Edit" id="edit"/>
-						<button statustext="Save this project element" label="Save" id="save"/>
-						<button statustext="Apply the changes" label="Apply" id="apply"/>
-						<button statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"/>
-					</hbox>
-					<button align="right" statustext="Delete this project-element, does NOT remove the linked entry" label="Delete" id="delete" onclick="app.projectmanager.p_element_delete();"/>
+					<et2-hbox  span="2">
+						<et2-button  statustext="Edit this project-element" label="Edit" id="edit"></et2-button>
+						<et2-button  statustext="Save this project element" label="Save" id="save"></et2-button>
+						<et2-button  statustext="Apply the changes" label="Apply" id="apply"></et2-button>
+						<et2-button  statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"></et2-button>
+					</et2-hbox>
+					<et2-button  align="right" statustext="Delete this project-element, does NOT remove the linked entry" label="Delete" id="delete" onclick="app.projectmanager.p_element_delete();"></et2-button>
 				</row>
 			</rows>
 		</grid>

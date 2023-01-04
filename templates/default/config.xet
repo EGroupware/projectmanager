@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.config.configuration" template="" lang="" group="0" version="16.0.001">
 		<grid width="80%">
@@ -10,58 +9,50 @@
 			</columns>
 			<rows>
 				<row>
-					<description align="center" id="msg" no_lang="1" span="all" class="message"/>
-					<description/>
+					<et2-description  align="center" id="msg" span="all" class="message" noLang="1"></et2-description>
+					<et2-description></et2-description>
 				</row>
 				<row class="th">
-					<description value="Times" span="all"/>
+					<et2-description  value="Times" span="all"></et2-description>
 				</row>
 				<row class="row" valign="top">
-					<description value="Allowed units" for="duration_units"/>
-					<listbox statustext="default all and a selectbox to choose" id="duration_units" needed="1" rows="2"/>
+					<et2-description  value="Allowed units" for="duration_units"></et2-description>
+					<et2-select  statustext="default all and a selectbox to choose" id="duration_units" rows="2" multiple="1" required="1"></et2-select>
 				</row>
 				<row class="row">
-					<description value="Hours per workday" for="hours_per_workday"/>
-					<menulist>
-						<menupopup type="select-number" statustext="conversation between days and hours, default 8" id="hours_per_workday" options=",1,24"/>
-					</menulist>
+					<et2-description  value="Hours per workday" for="hours_per_workday"></et2-description>
+					<et2-select-number  statustext="conversation between days and hours, default 8" id="hours_per_workday" min="1" max="24"></et2-select-number>
 				</row>
 				<row class="row">
-					<description value="Allow users to change their working times"/>
-					<menulist>
-						<menupopup id="allow_change_workingtimes"/>
-					</menulist>
+					<et2-description  value="Allow users to change their working times"></et2-description>
+					<et2-select  id="allow_change_workingtimes"></et2-select>
 				</row>
 				<row>
-					<description span="all"/>
+					<et2-description  span="all"></et2-description>
 				</row>
 				<row class="th">
-					<description value="Accounting" span="all"/>
+					<et2-description  value="Accounting" span="all"></et2-description>
 				</row>
 				<row class="row" valign="top">
-					<description value="Allowed accounting types" for="accounting_types"/>
-					<listbox statustext="select the accounting types visible for users of projectmanager" id="accounting_types" needed="1" no_lang="1" rows="4"/>
+					<et2-description  value="Allowed accounting types" for="accounting_types"></et2-description>
+					<et2-select  statustext="select the accounting types visible for users of projectmanager" id="accounting_types" rows="4" multiple="1" required="1" noLang="1"></et2-select>
 				</row>
 				<row class="th">
-					<description value="History logging" span="all"/>
+					<et2-description  value="History logging" span="all"></et2-description>
 				</row>
 				<row>
-					<description value="History logging and deleting of items"/>
-					<menulist>
-						<menupopup id="history"/>
-					</menulist>
+					<et2-description  value="History logging and deleting of items"></et2-description>
+					<et2-select  id="history"></et2-select>
 				</row>
 				<row class="th">
-					<description value="Document merge" span="all"/>
+					<et2-description  value="Document merge" span="all"></et2-description>
 				</row>
 				<row class="row">
-					<description value="Enable element roles"/>
-					<menulist>
-						<menupopup id="enable_eroles"/>
-					</menulist>
+					<et2-description  value="Enable element roles"></et2-description>
+					<et2-select  id="enable_eroles"></et2-select>
 				</row>
 				<row>
-					<description value="Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go. " span="all"/>
+					<et2-description  value="Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go. " span="all"></et2-description>
 				</row>
 			</rows>
 		</grid>
@@ -74,24 +65,22 @@
 			</columns>
 			<rows>
 				<row>
-					<checkbox label="Use custom notification message" id="notification[use_custom]"/>
+					<et2-checkbox  label="Use custom notification message" id="notification[use_custom]"></et2-checkbox>
 				</row>
                 <row>
                     <htmlarea id="notification[message]" height="180px" width="100%" toolbar="false" span="all"/>
                 </row>
                 <row>
-                    <description value="Full list of placeholder names"
-                                 href="projectmanager.projectmanager_merge.show_replacements"
-                                 extra_link_target="_blank"/>
-                    <description/>
+                    <et2-description  value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extraLinkTarget="_blank"></et2-description>
+                    <et2-description></et2-description>
                 </row>
             </rows>
         </grid>
     </template>
     <template id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
-        <vbox>
-            <description id="msg" span="all" class="message"/>
-            <tabbox id="configuration|notification">
+        <et2-vbox>
+            <et2-description  id="msg" span="all" class="message"></et2-description>
+            <et2-tabbox  id="configuration|notification">
                 <tabs>
                     <tab id="configuration" label="Configuration"/>
                     <tab id="notification" label="Notification"/>
@@ -100,12 +89,12 @@
                     <template id="projectmanager.config.configuration"/>
                     <template id="projectmanager.config.notification"/>
                 </tabpanels>
-            </tabbox>
-            <hbox class="dialogFooterToolbar">
-                <button statustext="Save the changes made" label="Save" id="save"/>
-                <button statustext="apply the changes" label="Apply" id="apply"/>
-                <button statustext="Exit without saving" label="Cancel" id="cancel"/>
-            </hbox>
-        </vbox>
+            </et2-tabbox>
+            <et2-hbox  class="dialogFooterToolbar">
+                <et2-button  statustext="Save the changes made" label="Save" id="save"></et2-button>
+                <et2-button  statustext="apply the changes" label="Apply" id="apply"></et2-button>
+                <et2-button  statustext="Exit without saving" label="Cancel" id="cancel"></et2-button>
+            </et2-hbox>
+        </et2-vbox>
     </template>
 </overlay>

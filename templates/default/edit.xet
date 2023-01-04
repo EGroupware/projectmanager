@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "http://www.egroupware.org/etemplate2.dtd">
-<!-- $Id$ -->
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
@@ -13,83 +12,76 @@
 			</columns>
 			<rows>
 				<row class="row">
-					<description value="Category" for="cat_id"/>
-					<menulist class="et2_fullWidth">
-						<menupopup type="select-cat" id="cat_id" options="None"/>
-					</menulist>
-					<description/>
-					<description value="Access" for="pm_access"/>
-					<select id="pm_access" no_lang="1" class="et2_fullWidth"/>
+					<et2-description  value="Category" for="cat_id"></et2-description>
+					<et2-select-cat  id="cat_id" emptyLabel="None"></et2-select-cat>
+					<et2-description></et2-description>
+					<et2-description  value="Access" for="pm_access"></et2-description>
+					<et2-select  id="pm_access" noLang="1"></et2-select>
 				</row>
 				<row class="row">
-					<description value="Priority" for="pm_priority"/>
-					<menulist class="et2_fullWidth">
-						<menupopup type="select-number" id="pm_priority" options=",1,10"/>
-					</menulist>
-					<description/>
-					<description value="Status" for="pm_status"/>
-					<hbox>
-						<select id="pm_status" no_lang="1"/>
-						<checkbox
-								statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too."
-								label="datasources too" id="status_sources" class="projectmanager_leftPad5"/>
-					</hbox>
+					<et2-description  value="Priority" for="pm_priority"></et2-description>
+					<et2-select-number  id="pm_priority" min="1" max="10"></et2-select-number>
+					<et2-description></et2-description>
+					<et2-description  value="Status" for="pm_status"></et2-description>
+					<et2-hbox>
+						<et2-select  id="pm_status" noLang="1"></et2-select>
+						<et2-checkbox
+ statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" class="projectmanager_leftPad5"></et2-checkbox>
+					</et2-hbox>
 				</row>
 				<row class="th" height="20" valign="bottom">
-					<description value="Value"/>
-					<description value="Project"/>
-					<description/>
-					<description value="Elementlist" span="all"/>
+					<et2-description  value="Value"></et2-description>
+					<et2-description  value="Project"></et2-description>
+					<et2-description></et2-description>
+					<et2-description  value="Elementlist" span="all"></et2-description>
 				</row>
 				<row class="row">
-					<description value="Startdate" for="pm_real_start"/>
-					<date-time id="pm_real_start" class="et2_fullWidth"/>
-					<description/>
-					<date-time id="ds[pe_real_start]" readonly="true" span="all"/>
+					<et2-description  value="Startdate" for="pm_real_start"></et2-description>
+					<et2-date-time  id="pm_real_start"></et2-date-time>
+					<et2-description></et2-description>
+					<et2-date-time  id="ds[pe_real_start]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
-					<description value="- planned" for="pm_planned_end"/>
-					<date-time id="pm_planned_start" class="et2_fullWidth"/>
-					<description/>
-					<date-time id="ds[pe_planned_start]" readonly="true" span="all"/>
+					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
+					<et2-date-time  id="pm_planned_start"></et2-date-time>
+					<et2-description></et2-description>
+					<et2-date-time  id="ds[pe_planned_start]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
-					<description value="Enddate" for="pm_real_end"/>
-					<date-time id="pm_real_end" class="et2_fullWidth"/>
-					<description/>
-					<date-time id="ds[pe_real_end]" readonly="true" span="all"/>
+					<et2-description  value="Enddate" for="pm_real_end"></et2-description>
+					<et2-date-time  id="pm_real_end"></et2-date-time>
+					<et2-description></et2-description>
+					<et2-date-time  id="ds[pe_real_end]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
-					<description value="- planned" for="pm_planned_end"/>
-					<date-time id="pm_planned_end" class="et2_fullWidth"/>
-					<description/>
-					<date-time id="ds[pe_planned_end]" readonly="true" span="all"/>
+					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
+					<et2-date-time  id="pm_planned_end"></et2-date-time>
+					<et2-description></et2-description>
+					<et2-date-time  id="ds[pe_planned_end]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description value="Times" for="pm_used_time"/>
-					<date-duration id="pm_used_time" options="@duration_format" class="et2_fullWidth"/>
-					<description/>
-					<date-duration id="ds[pe_used_time]" readonly="true" options="@duration_format" span="all"/>
+					<et2-description  value="Times" for="pm_used_time"></et2-description>
+					<et2-date-duration  id="pm_used_time" dataFormat="@duration_format"></et2-date-duration>
+					<et2-description></et2-description>
+					<et2-date-duration  id="ds[pe_used_time]" readonly="true" span="all" dataFormat="@duration_format"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description value="- planned" for="pm_planned_time"/>
-					<date-duration id="pm_planned_time" options="@duration_format" class="et2_fullWidth"/>
-					<description/>
-					<date-duration id="ds[pe_planned_time]" readonly="true" options="@duration_format" span="all"/>
+					<et2-description  value="- planned" for="pm_planned_time"></et2-description>
+					<et2-date-duration  id="pm_planned_time" dataFormat="@duration_format"></et2-date-duration>
+					<et2-description></et2-description>
+					<et2-date-duration  id="ds[pe_planned_time]" readonly="true" span="all" dataFormat="@duration_format"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
-					<description value="- re-planned" for="pm_replanned_time"/>
-					<date-duration id="pm_replanned_time" options="@duration_format" class="et2_fullWidth"/>
-					<description/>
-					<date-duration id="ds[pe_replanned_time]" readonly="true" options="@duration_format" span="all"/>
+					<et2-description  value="- re-planned" for="pm_replanned_time"></et2-description>
+					<et2-date-duration  id="pm_replanned_time" dataFormat="@duration_format"></et2-date-duration>
+					<et2-description></et2-description>
+					<et2-date-duration  id="ds[pe_replanned_time]" readonly="true" span="all" dataFormat="@duration_format"></et2-date-duration>
 				</row>
 				<row class="row">
-					<description value="Status" for="pm_completion"/>
-					<menulist class="et2_fullWidth">
-						<menupopup type="select-percent" id="pm_completion" options="None"/>
-					</menulist>
-					<description/>
-					<description id="ds[pe_completion]" no_lang="1" readonly="true" span="all"/>
+					<et2-description  value="Status" for="pm_completion"></et2-description>
+					<et2-select-percent  id="pm_completion" emptyLabel="None"></et2-select-percent>
+					<et2-description></et2-description>
+					<et2-description  id="ds[pe_completion]" readonly="true" span="all" noLang="1"></et2-description>
 				</row>
 			</rows>
 		</grid>
@@ -107,34 +99,28 @@
 			</columns>
 			<rows>
 				<row class="th" height="20">
-					<description value="Members"/>
-					<description value="General availibility"/>
-					<description value="Project availibility"/>
-					<hbox>
-						<description value="Role"/>
-						<button statustext="Add or edit roles and their ACL" label="Edit" id="edit_roles" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_roles_ui.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;" image="edit" background_image="1"/>
-					</hbox>
+					<et2-description  value="Members"></et2-description>
+					<et2-description  value="General availibility"></et2-description>
+					<et2-description  value="Project availibility"></et2-description>
+					<et2-hbox>
+						<et2-description  value="Role"></et2-description>
+						<et2-button  statustext="Add or edit roles and their ACL" label="Edit" id="edit_roles" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_roles_ui.roles&amp;pm_id=$cont[pm_id]'),'roles','dependent=yes,width=760,height=450,scrollbars=yes,status=yes'); return false;" image="edit"></et2-button>
+					</et2-hbox>
 				</row>
 				<row class="row" height="12" disabled="@view">
-					<select-account id="member[1]" empty_label="select one" account_type="both" class="et2_fullWidth"/>
-					<textbox type="float" statustext="Percentage the member is availible for projects"
-							 id="general_avail[1]"/>
-					<textbox type="float" statustext="Percentage the member is availible for this project"
-							 id="availibility[1]"/>
-					<hbox orient=",0,0" options="0,0">
-						<menulist>
-							<menupopup id="role[1]"/>
-						</menulist>
-						<button label="Add" id="add" image="add" background_image="1"/>
-					</hbox>
+					<et2-select-account  id="member[1]" emptyLabel="select one" accountType="both"></et2-select-account>
+					<et2-textbox  type="float" statustext="Percentage the member is availible for projects" id="general_avail[1]"></et2-textbox>
+					<et2-textbox  type="float" statustext="Percentage the member is availible for this project" id="availibility[1]"></et2-textbox>
+					<et2-hbox  orient=",0,0" cellpadding="0" cellspacing="0" >
+						<et2-select  id="role[1]"></et2-select>
+						<et2-button  label="Add" id="add" image="add"></et2-button>
+					</et2-hbox>
 				</row>
 				<row class="row" valign="top" disabled="!@member">
-					<select-account id="member[$row]" readonly="true"/>
-					<textbox type="float" statustext="Percentage the member is availible for projects"
-							 id="general_avail[$row]"/>
-					<textbox type="float" statustext="Percentage the member is availible for this project"
-							 id="availibility[$row]"/>
-					<select id="role[$row]" options="None"/>
+					<et2-select-account  id="member[$row]" readonly="true"></et2-select-account>
+					<et2-textbox  type="float" statustext="Percentage the member is availible for projects" id="general_avail[$row]"></et2-textbox>
+					<et2-textbox  type="float" statustext="Percentage the member is availible for this project" id="availibility[$row]"></et2-textbox>
+					<et2-select  id="role[$row]" emptyLabel="None"></et2-select>
 				</row>
 			</rows>
 		</grid>
@@ -148,30 +134,28 @@
 			</columns>
 			<rows>
 				<row class="row" valign="top" height="12">
-					<description value="Accounting type" for="pm_accounting_type"/>
-					<menulist span="all">
-						<menupopup id="pm_accounting_type" onchange="1"/>
-					</menulist>
+					<et2-description  value="Accounting type" for="pm_accounting_type"></et2-description>
+					<et2-select  span="all" id="pm_accounting_type" onchange="1"></et2-select>
 				</row>
 				<row class="th" height="20" disabled="@no_budget" valign="bottom">
-					<description value="Value"/>
-					<description value="Project"/>
-					<description value="Elementlist"/>
+					<et2-description  value="Value"></et2-description>
+					<et2-description  value="Project"></et2-description>
+					<et2-description  value="Elementlist"></et2-description>
 				</row>
 				<row class="row" height="12" disabled="@no_budget">
-					<description value="Budget" for="pm_used_budget"/>
-					<textbox type="float" id="pm_used_budget" size="10"/>
-					<textbox type="float" id="ds[pe_used_budget]" readonly="true" min="2"/>
+					<et2-description  value="Budget" for="pm_used_budget"></et2-description>
+					<et2-number  id="pm_used_budget"></et2-number>
+					<et2-number  id="ds[pe_used_budget]" readonly="true" min="2"></et2-number>
 				</row>
 				<row class="row" valign="top" height="12" disabled="@no_budget">
-					<description value="- planned" for="pm_planned_budget"/>
-					<textbox type="float" id="pm_planned_budget" size="10"/>
-					<textbox type="float" id="ds[pe_planned_budget]" readonly="true" min="2"/>
+					<et2-description  value="- planned" for="pm_planned_budget"></et2-description>
+					<et2-number  id="pm_planned_budget"></et2-number>
+					<et2-number  id="ds[pe_planned_budget]" readonly="true" min="2"></et2-number>
 				</row>
 				<row valign="top">
-					<description/>
-					<description/>
-					<description/>
+					<et2-description></et2-description>
+					<et2-description></et2-description>
+					<et2-description></et2-description>
 				</row>
 			</rows>
 		</grid>
@@ -196,13 +180,13 @@
 			</columns>
 			<rows>
 				<row class="row" disabled="@view">
-					<link-to id="link_to" span="all"/>
+					<et2-link-to  id="link_to" span="all"></et2-link-to>
 				</row>
 				<row class="th">
-					<description value="Existing links" span="all"/>
+					<et2-description  value="Existing links" span="all"></et2-description>
 				</row>
 				<row class="row_off" valign="top" height="164">
-					<link-list id="link_to" span="all"/>
+					<et2-link-list  id="link_to" span="all"></et2-link-list>
 				</row>
 			</rows>
 		</grid>
@@ -220,17 +204,17 @@
 			</columns>
 			<rows>
 				<row class="dialogHeader">
-					<description value="Project ID" for="pm_number"/>
-					<textbox statustext="leave it empty to have one generated" id="pm_number" no_lang="1" size="20" maxlength="64"/>
-					<textbox blur="Title" statustext="a describtive title for the project, must not be empty" id="pm_title" needed="1" class="et2_fullWidth" maxlength="255" tabindex="1"/>
-					<appicon src="projectmanager"/>
+					<et2-description  value="Project ID" for="pm_number"></et2-description>
+					<et2-textbox  statustext="leave it empty to have one generated" id="pm_number" maxlength="64" noLang="1"></et2-textbox>
+					<et2-textbox  statustext="a describtive title for the project, must not be empty" id="pm_title" maxlength="255" tabindex="1" placeholder="Title" required="1"></et2-textbox>
+					<et2-appicon  src="projectmanager"></et2-appicon>
 				</row>
 				<row class="et2_toolbar">
-					<description id="spacer" span="3"/>
-					<timestamper statustext="Insert timestamp into description field" id="timestamp" target="pm_description" class="projectTimestamp"/>
+					<et2-description  id="spacer" span="3"></et2-description>
+					<et2-button-timestamp  statustext="Insert timestamp into description field" id="timestamp" target="pm_description" class="projectTimestamp"></et2-button-timestamp>
 				</row>
 				<row>
-					<tabbox id="tabs" span="all" tab_height="340px">
+					<et2-tabbox  id="tabs" span="all" tabHeight="340px">
 						<tabs>
 							<tab id="general" label="General" statustext="Start, End, Category, ..."/>
 							<tab id="description" label="Description" statustext="free descriptiv text"/>
@@ -249,30 +233,30 @@
 							<template id="projectmanager.edit.links"/>
 							<template id="projectmanager.edit.history"/>
 						</tabpanels>
-					</tabbox>
+					</et2-tabbox>
 				</row>
 				<row disabled="!@pm_id" class="dialogOperators">
-					<hbox span="2">
-						<description value="Modified"/>
-						<date-time id="pm_modified" readonly="true"/>
-						<select-account label="by" id="pm_modifier" readonly="true"/>
-					</hbox>
-					<hbox align="right" span="2">
-						<date-time label="created" id="pm_created" no_lang="1" readonly="true"/>
-						<select-account label="by" id="pm_creator" readonly="true"/>
-					</hbox>
+					<et2-hbox  span="2">
+						<et2-description  value="Modified"></et2-description>
+						<et2-date-time  id="pm_modified" readonly="true"></et2-date-time>
+						<et2-select-account  label="by" id="pm_modifier" readonly="true"></et2-select-account>
+					</et2-hbox>
+					<et2-hbox  align="right" span="2">
+						<et2-date-time  label="created" id="pm_created" readonly="true" noLang="1"></et2-date-time>
+						<et2-select-account  label="by" id="pm_creator" readonly="true"></et2-select-account>
+					</et2-hbox>
 				</row>
 				<row class="dialogFooterToolbar">
-					<hbox span="2">
-						<button statustext="Edit this project" label="Edit" id="edit" image="edit" background_image="1"/>
-						<button statustext="Save the changes made" label="Save" id="save" image="save" background_image="1"/>
-						<button statustext="Apply the changes" label="Apply" id="apply" image="apply" background_image="1"/>
-						<buttononly statustext="Exit without saving" label="Cancel" id="cancel" onclick="window.close();" image="cancel" background_image="1"/>
-					</hbox>
-					<hbox align="right">
-						<checkbox statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"/>
-						<button statustext="Delete this project" label="Delete" id="delete" onclick="et2_dialog.confirm(widget,'Delete this project','Delete')" image="delete" background_image="1"/>
-					</hbox>
+					<et2-hbox  span="2">
+						<et2-button  statustext="Edit this project" label="Edit" id="edit" image="edit"></et2-button>
+						<et2-button  statustext="Save the changes made" label="Save" id="save" image="save"></et2-button>
+						<et2-button  statustext="Apply the changes" label="Apply" id="apply" image="apply"></et2-button>
+						<et2-button  statustext="Exit without saving" label="Cancel" id="cancel" onclick="window.close();" image="cancel" noSubmit="true"></et2-button>
+					</et2-hbox>
+					<et2-hbox  align="right">
+						<et2-checkbox  statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"></et2-checkbox>
+						<et2-button  statustext="Delete this project" label="Delete" id="delete" onclick="et2_dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button>
+					</et2-hbox>
 				</row>
 			</rows>
 		</grid>
