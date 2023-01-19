@@ -23,6 +23,7 @@
 				<column width="60"/>
 				<column width="130"/>
 				<column width="25%"/>
+                <column width="120"/>
 			</columns>
 			<rows>
 				<row class="th">
@@ -61,6 +62,7 @@
 					<nextmatch-sortheader align="center" label="Status" id="pm_completion"/>
 					<nextmatch-sortheader label="last modified" id="pm_modified"/>
 					<nextmatch-customfields id="customfields"/>
+                    <nextmatch-header label="Kanban"/>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
 					<et2-description  id="${row}[pm_number]" noLang="1"></et2-description>
@@ -100,17 +102,21 @@
                             <et2-date-duration  id="${row}[pm_planned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="planned"></et2-date-duration>
                         </et2-hbox>
                         <et2-hbox  id="replanified">
-                            <et2-image  label="Re-planned time" src="agt_reload"></et2-image>
-                            <et2-date-duration  id="${row}[pm_replanned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="replanned"></et2-date-duration>
+                            <et2-image label="Re-planned time" src="agt_reload"></et2-image>
+                            <et2-date-duration id="${row}[pm_replanned_time]" readonly="true"
+                                               displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                               class="replanned"></et2-date-duration>
                         </et2-hbox>
                     </et2-vbox>
-					<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
-					<et2-vbox  readonly="true">
-						<et2-date-time  id="${row}[pm_modified]" readonly="true"></et2-date-time>
-						<et2-select-account  id="${row}[pm_modifier]" readonly="true"></et2-select-account>
-					</et2-vbox>
-					<customfields-list id="$row"/>
-				</row>
+                    <progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+                    <et2-vbox readonly="true">
+                        <et2-date-time id="${row}[pm_modified]" readonly="true"></et2-date-time>
+                        <et2-select-account id="${row}[pm_modifier]" readonly="true"></et2-select-account>
+                    </et2-vbox>
+                    <customfields-list id="$row"/>
+                    <et2-link-string entryId="${row_cont[pm_id]}" application="projectmanager"
+                                     onlyApp="kanban"></et2-link-string>
+                </row>
 			</rows>
 		</grid>
 	</template>
