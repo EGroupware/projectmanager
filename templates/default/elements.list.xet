@@ -71,18 +71,28 @@
 					</et2-vbox>
 					<et2-vbox>
                         <nextmatch-sortheader label="Times" id="pe_used_time"/>
-                        <et2-date-duration  id="total_pe_used_time" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
+                        <et2-date-duration id="total_pe_used_time" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format"
+                                           hoursPerDay="@@hoursPerDay"></et2-date-duration>
                         <nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-                        <et2-date-duration  id="total_pe_planned_time" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" class="planned"></et2-date-duration>
+                        <et2-date-duration id="total_pe_planned_time" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"
+                                           class="planned"></et2-date-duration>
                     </et2-vbox>
-					<et2-vbox>
-						<nextmatch-sortheader label="Times" id="pe_used_time"/>
-                        <et2-date-duration  id="total_pe_used_time_2" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
-						<nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
-                        <et2-date-duration  id="total_pe_planned_time_2" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" class="planned"></et2-date-duration>
-						<nextmatch-sortheader label="re-planned" id="pe_replanned_time" class="replanned"/>
-                        <et2-date-duration  id="total_pe_replanned_time" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" class="replanned"></et2-date-duration>
-					</et2-vbox>
+                    <et2-vbox>
+                        <nextmatch-sortheader label="Times" id="pe_used_time"/>
+                        <et2-date-duration id="total_pe_used_time_2" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format"
+                                           hoursPerDay="@@hoursPerDay"></et2-date-duration>
+                        <nextmatch-sortheader label="planned" id="pe_planned_time" class="planned"/>
+                        <et2-date-duration id="total_pe_planned_time_2" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"
+                                           class="planned"></et2-date-duration>
+                        <nextmatch-sortheader label="re-planned" id="pe_replanned_time" class="replanned"/>
+                        <et2-date-duration id="total_pe_replanned_time" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"
+                                           class="replanned"></et2-date-duration>
+                    </et2-vbox>
 					<et2-vbox>
 						<nextmatch-sortheader label="Budget" id="pe_used_budget"/>
 						<et2-description  id="total_pe_used_budget" noLang="1"></et2-description>
@@ -121,21 +131,31 @@
 						<et2-date  id="${row}[pe_planned_end]" readonly="true" class="planned" noLang="1"></et2-date>
 					</et2-vbox>
                     <et2-vbox>
-                        <et2-date-duration  id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
-                        <et2-date-duration  id="${row}[pe_planned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="planned"></et2-date-duration>
+                        <et2-date-duration id="${row}[pe_used_time]" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format"
+                                           hoursPerDay="@@hoursPerDay"></et2-date-duration>
+                        <et2-date-duration id="${row}[pe_planned_time]" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                           class="planned"></et2-date-duration>
                     </et2-vbox>
 					<et2-vbox>
 						<et2-hbox  id="pe_used_time">
 							<et2-image  label="Times" src="timesheet"></et2-image>
-                            <et2-date-duration  id="${row}[pe_used_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
+                            <et2-date-duration id="${row}[pe_used_time]" readonly="true" selectUnit="true"
+                                               displayFormat="@@duration_format"
+                                               hoursPerDay="@@hoursPerDay"></et2-date-duration>
 						</et2-hbox>
 						<et2-hbox  id="planified">
 							<et2-image  label="planned time" src="k_alarm.png"></et2-image>
-                            <et2-date-duration  id="${row}[pe_planned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="planned"></et2-date-duration>
+                            <et2-date-duration id="${row}[pe_planned_time]" readonly="true" selectUnit="true"
+                                               displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                               class="planned"></et2-date-duration>
 						</et2-hbox>
 						<et2-hbox  id="replanified">
 							<et2-image  label="Re-planned time" src="agt_reload.png"></et2-image>
-                            <et2-date-duration  id="${row}[pe_replanned_time]" readonly="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="replanned"></et2-date-duration>
+                            <et2-date-duration id="${row}[pe_replanned_time]" readonly="true" selectUnit="true"
+                                               displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                               class="replanned"></et2-date-duration>
 						</et2-hbox>
 					</et2-vbox>
 					<et2-vbox  readonly="true">
