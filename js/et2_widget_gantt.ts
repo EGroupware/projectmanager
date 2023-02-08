@@ -1037,65 +1037,45 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 		// Build the popup
 		if(!this.selectPopup)
 		{
-			var select = et2_createWidget("select", {
-				multiple: true,
-				rows: 8,
-				empty_label:this.egw().lang("select columns"),
-				selected_first: false
-			}, this);
-			select.set_select_options(columns);
-			select.set_value(columns_selected);
-
-			var okButton = et2_createWidget("buttononly", {}, this);
-			okButton.set_label(this.egw().lang("ok"));
-			okButton.onclick = function() {
-				// Update columns
-				var value = select.getValue() || [];
-				for (var i = 0; i < columns.length; i++)
+			let updateColumns = function(button, values)
+			{
+				if(button == Et2Dialog.OK_BUTTON)
 				{
-					self.options.columns[i].hide = value.indexOf(columns[i].value) < 0 ;
+					for(var i = 0; i < columns.length; i++)
+					{
+						self.options.columns[i].hide = values.columns.indexOf(columns[i].value) < 0;
+					}
+					self.set_columns(self.options.columns);
+
+					// Update Implicit preference
+					this.egw().set_preference(self.getInstanceManager().app, 'gantt_columns_' + self.id, values.columns);
 				}
-				self.set_columns(self.options.columns);
 
-				// Update Implicit preference
-				this.egw().set_preference(self.getInstanceManager().app, 'gantt_columns_' + self.id, value);
-
-				// Hide popup
-				self.selectPopup.toggle();
-				self.selectPopup.remove();
-				self.selectPopup = null;
 				jQuery('body').off('click.gantt');
-			};
-
-			var cancelButton = et2_createWidget("buttononly", {}, this);
-			cancelButton.set_label(this.egw().lang("cancel"));
-			cancelButton.onclick = function() {
-				self.selectPopup.toggle();
-				self.selectPopup.remove();
-				self.selectPopup = null;
-				jQuery('body').off('click.gantt');
-			};
-
-			// Create and add popup
-			this.selectPopup = jQuery(document.createElement("div"))
-				.addClass("colselection ui-dialog ui-widget-content")
-				.append(select.getDOMNode())
-				.append(okButton.getDOMNode())
-				.append(cancelButton.getDOMNode())
-				.appendTo(this.getInstanceManager().DOMContainer);
-			// Bind so if you click elsewhere, it closes
-			window.setTimeout(function() {jQuery(document).one('mouseup.gantt', function(e){
-				if(!self.selectPopup.is(e.target) && self.selectPopup.has(e.target).length === 0)
-				{
-					cancelButton.onclick();
+			}
+			this.selectPopup = new Et2Dialog(this.egw());
+			this.selectPopup.transformAttributes({
+				destroyOnClose: false,
+				title: this.egw().lang("Select columns"),
+				buttons: Et2Dialog.BUTTONS_OK_CANCEL,
+				template: this.egw().link(this.egw().webserverUrl + "/projectmanager/templates/default/gantt_column_selection.xet"),
+				callback: updateColumns,
+				value: {
+					content: {
+						columns: columns_selected
+					},
+					sel_options: {
+						columns: columns
+					}
 				}
-			});},1);
+			});
+
+			document.body.appendChild(this.selectPopup);
 		}
 		else
 		{
-			this.selectPopup.toggle();
+			this.selectPopup.show();
 		}
-		this.selectPopup.position({my:'right top', at:'right bottom', of: e.target});
 	}
 
 	/**
