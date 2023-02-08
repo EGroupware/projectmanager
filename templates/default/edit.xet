@@ -49,13 +49,13 @@
 				</row>
 				<row class="row">
 					<et2-description  value="Enddate" for="pm_real_end"></et2-description>
-					<et2-date-time  id="pm_real_end"></et2-date-time>
+					<et2-date-time id="pm_real_end" placement="top"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_real_end]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
-					<et2-date-time  id="pm_planned_end"></et2-date-time>
+                    <et2-date-time id="pm_planned_end" placement="top"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_planned_end]" readonly="true" span="all"></et2-date-time>
 				</row>
