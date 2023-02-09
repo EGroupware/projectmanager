@@ -224,10 +224,12 @@ how should ids for new projects be generated?	projectmanager	de	Wie sollen Proje
 how should ids for new subprojects be generated?	projectmanager	de	Wie sollen Nummern für neue Unterprojekte generiert werden?
 how should the project selection in the menu be displayed	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
+how would you like to print the chart?	projectmanager	de	Wie möchten Sie die Tabelle ausdrucken?
 html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintrag
 id generation	projectmanager	de	Generierung Projektnummern
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Elemente (z. B. InfoLog-Einträge) mit gelöscht
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Elemente (z.B. InfoLog-Einträge) mit geändert
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	de	Wenn das Gantt-Diagramm breiter als die Seite ist, wird es beschnitten.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Gantt-Diagramm statt Umlauten komische Zeichen sehen, schalten Sie das ab
 if you specify an export definition, it will be used when you export	projectmanager	de	Wählen Sie eine Export-Definition für den Export
 ignore that entry	projectmanager	de	Eintrag ignorieren
