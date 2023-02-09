@@ -37,25 +37,25 @@
 				</row>
 				<row class="row">
 					<et2-description  value="Startdate" for="pm_real_start"></et2-description>
-					<et2-date-time  id="pm_real_start"></et2-date-time>
+					<et2-date-time id="pm_real_start" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_real_start]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
-					<et2-date-time  id="pm_planned_start"></et2-date-time>
+                    <et2-date-time id="pm_planned_start" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_planned_start]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="Enddate" for="pm_real_end"></et2-description>
-					<et2-date-time id="pm_real_end" placement="top"></et2-date-time>
+                    <et2-date-time id="pm_real_end" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_real_end]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
-                    <et2-date-time id="pm_planned_end" placement="top"></et2-date-time>
+                    <et2-date-time id="pm_planned_end" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_planned_end]" readonly="true" span="all"></et2-date-time>
 				</row>
@@ -214,17 +214,17 @@
 					<et2-button-timestamp  statustext="Insert timestamp into description field" id="timestamp" target="pm_description" class="projectTimestamp"></et2-button-timestamp>
 				</row>
 				<row>
-					<et2-tabbox  id="tabs" span="all" tabHeight="340px">
-						<tabs>
-							<tab id="general" label="General" statustext="Start, End, Category, ..."/>
-							<tab id="description" label="Description" statustext="free descriptiv text"/>
-							<tab id="members" label="Members" statustext="Project members and roles"/>
-							<tab id="accounting" label="Accounting" statustext="Accounting options"/>
-							<tab id="custom" label="Custom" statustext="Custom fields"/>
-							<tab id="links" label="Links" statustext="Linked elements"/>
-							<tab id="history" label="History"/>
-						</tabs>
-						<tabpanels>
+                    <et2-tabbox id="tabs" span="all" tabHeight="345px">
+                        <tabs>
+                            <tab id="general" label="General" statustext="Start, End, Category, ..."/>
+                            <tab id="description" label="Description" statustext="free descriptiv text"/>
+                            <tab id="members" label="Members" statustext="Project members and roles"/>
+                            <tab id="accounting" label="Accounting" statustext="Accounting options"/>
+                            <tab id="custom" label="Custom" statustext="Custom fields"/>
+                            <tab id="links" label="Links" statustext="Linked elements"/>
+                            <tab id="history" label="History"/>
+                        </tabs>
+                        <tabpanels>
 							<template id="projectmanager.edit.general"/>
 							<template id="projectmanager.edit.description"/>
 							<template id="projectmanager.edit.members"/>
