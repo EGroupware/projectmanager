@@ -2,37 +2,38 @@
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.elements.edit.dates" template="" lang="" group="0" version="0.3.001">
-		<grid width="100%" height="170">
-			<columns>
-				<column width="95"/>
-				<column width="51%"/>
-				<column/>
-			</columns>
-			<rows>
-				<row class="row">
-					<et2-description  value="Startdate" for="pe_real_start"></et2-description>
-					<et2-date-time  id="pe_real_start"></et2-date-time>
-					<et2-date-time  id="ds[pe_real_start]" readonly="true"></et2-date-time>
-				</row>
-				<row class="row">
-					<et2-description  value="- planned" for="pe_planned_end"></et2-description>
-					<et2-date-time  id="pe_planned_start"></et2-date-time>
-					<et2-date-time  id="ds[pe_planned_start]" readonly="true"></et2-date-time>
-				</row>
-				<row class="row">
-					<et2-description  value="Enddate" for="pe_real_end"></et2-description>
-					<et2-date-time  id="pe_real_end"></et2-date-time>
-					<et2-date-time  id="ds[pe_real_end]" readonly="true"></et2-date-time>
-				</row>
-				<row class="row" valign="top" height="50%">
-					<et2-description  value="- planned" for="pe_planned_end"></et2-description>
-					<et2-date-time  id="pe_planned_end"></et2-date-time>
-					<et2-date-time  id="ds[pe_planned_end]" readonly="true"></et2-date-time>
-				</row>
-				<row class="row" disabled="!@no_times">
-					<et2-description  value="Share" for="pe_share"></et2-description>
-					<et2-hbox  span="all">
-						<et2-textbox  statustext="Share on the whole project" id="pe_share" validator="/^[0-9.]*\.?[0-9%]*$/"></et2-textbox>
+        <grid width="100%" height="210">
+            <columns>
+                <column/>
+                <column/>
+                <column width="51%"/>
+            </columns>
+            <rows>
+                <row class="row">
+                    <et2-description value="Startdate" for="pe_real_start"></et2-description>
+                    <et2-date-time id="pe_real_start" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time id="ds[pe_real_start]" readonly="true"></et2-date-time>
+                </row>
+                <row class="row">
+                    <et2-description value="- planned" for="pe_planned_end"></et2-description>
+                    <et2-date-time id="pe_planned_start" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time id="ds[pe_planned_start]" readonly="true"></et2-date-time>
+                </row>
+                <row class="row">
+                    <et2-description value="Enddate" for="pe_real_end"></et2-description>
+                    <et2-date-time id="pe_real_end" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time id="ds[pe_real_end]" readonly="true"></et2-date-time>
+                </row>
+                <row class="row" valign="top" height="50%">
+                    <et2-description value="- planned" for="pe_planned_end"></et2-description>
+                    <et2-date-time id="pe_planned_end" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time id="ds[pe_planned_end]" readonly="true"></et2-date-time>
+                </row>
+                <row class="row" disabled="!@no_times">
+                    <et2-description value="Share" for="pe_share"></et2-description>
+                    <et2-hbox span="all">
+                        <et2-textbox statustext="Share on the whole project" id="pe_share"
+                                     validator="/^[0-9.]*\.?[0-9%]*$/"></et2-textbox>
 						<et2-number  label="default" id="default_percentage" readonly="true"></et2-number>
 					</et2-hbox>
 				</row>
