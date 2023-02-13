@@ -285,7 +285,8 @@
 				</row>
 				<row class="dialogFooterToolbar">
 					<et2-hbox  span="2">
-						<et2-button  statustext="Edit this project-element" label="Edit" id="edit"></et2-button>
+						<et2-button statustext="Edit this project-element" label="Edit" id="edit"
+                                    hideOnReadonly="true"></et2-button>
 						<et2-button  statustext="Save this project element" label="Save" id="save"></et2-button>
 						<et2-button  statustext="Apply the changes" label="Apply" id="apply"></et2-button>
 						<et2-button  statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"></et2-button>
