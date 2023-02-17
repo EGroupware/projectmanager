@@ -1,0 +1,11 @@
+history logging and deleting of items	projectmanager	ro	Înregistrarea istoricului și ștergerea elementelor
+how would you like to print the chart?	projectmanager	ro	Cum doriți să imprimați graficul?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	ro	În cazul în care diagrama Gantt este mai lată decât pagina, aceasta va fi tăiată.
+milestone	projectmanager	ro	Etapa de referință
+milestone deleted	projectmanager	ro	Etapă de etapă ștearsă.
+milestone saved	projectmanager	ro	Milestone salvat.
+milestones before this element has to be finished	projectmanager	ro	Milestones before this element has to be finished
+pm_milestone	projectmanager	ro	Etapa de referință
+progress	projectmanager	ro	Progres
+project	common	ro	Proiect
+resize	projectmanager	ro	Redimensionați
