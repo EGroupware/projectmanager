@@ -206,16 +206,19 @@ global categories	projectmanager	sk	Globálne kategórie
 h	projectmanager	sk	h
 has been moved to settings to allow eg. group-specific ids	projectmanager	sk	Presunulo sa do Nastavení kvôli umožneniu napr. skupinovo špecifických ID
 health	projectmanager	sk	Zdravie
+history logging and deleting of items	projectmanager	sk	Zaznamenávanie histórie a odstraňovanie položiek
 hours	projectmanager	sk	Hodín
 hours per workday	projectmanager	sk	Hodín pracovného dňa
 how long do you work on the given day.	projectmanager	sk	Koľko hodín pracujete v daný deň.
 how should ids for new projects be generated?	projectmanager	sk	Ako sa budú vytvárať ID pre nové projekty?
 how should ids for new subprojects be generated?	projectmanager	sk	Ako sa budú vytvárať ID pre nové podprojekty?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke: Strom ponúka lepší prehľad, výberové okno zase lepší výkon.
+how would you like to print the chart?	projectmanager	sk	Ako chcete vytlačiť graf?
 html link to the current record	projectmanager	sk	HTML odkaz na aktuálny záznam
 id generation	projectmanager	sk	Vytváranie ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) sa tiež odstránia.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	sk	Ak je Ganttov diagram širší ako strana, bude orezaný.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
 if you specify an export definition, it will be used when you export	projectmanager	sk	Ak zadáte exportnú definíciu, bude sa používať pri exportoch.
 ignore that entry	projectmanager	sk	Ignorovať túto položku
@@ -298,6 +301,7 @@ price deleted	projectmanager	sk	Cena bola odstránená
 price per unit	projectmanager	sk	Cena za jednotku
 price saved	projectmanager	sk	Cena bola uložená
 pricelist	projectmanager	sk	Cenník
+progress	projectmanager	sk	Pokrok
 project	common	sk	Projekt
 project access (e.g. public)	projectmanager	sk	Prístup k projektu, napr. verejný
 project availibility	projectmanager	sk	Dostupnosť pre projekt
@@ -353,6 +357,7 @@ receive notifications about starting entries (planned dates)	projectmanager	sk	D
 receive notifications about starting entries (real dates)	projectmanager	sk	Dostávať upozornenia pre začínajúce položky (skutočné dátumy)
 remark	projectmanager	sk	Poznámka
 replanned time in minutes	projectmanager	sk	Pre-plánovaný čas v minútach
+resize	projectmanager	sk	Zmena veľkosti
 resources	projectmanager	sk	Zdroje
 role	projectmanager	sk	Rola
 role deleted	projectmanager	sk	Rola bola odstránená
@@ -394,6 +399,7 @@ startdate	projectmanager	sk	Dátum začatia
 startrecord	projectmanager	sk	Prvý záznam
 starts after	projectmanager	sk	Začína po
 starts before	projectmanager	sk	Začína pred
+status	projectmanager	sk	Stav
 status filter	projectmanager	sk	Filter stavov
 status set	projectmanager	sk	Stav nastavený
 style used for everything but elements. some fonts have only normal style.	projectmanager	sk	Štýl použitý pre čokoľvek okrem prvkov. Niektoré písma majú len normálny štýl.

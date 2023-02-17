@@ -1,0 +1,11 @@
+history logging and deleting of items	projectmanager	lt	Istorijos registravimas ir elementų ištrynimas
+how would you like to print the chart?	projectmanager	lt	Kaip norėtumėte spausdinti diagramą?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	lt	Jei Gantto diagrama yra platesnė už puslapį, ji bus apkarpyta.
+milestone	projectmanager	lt	Etapas
+milestone deleted	projectmanager	lt	Ištrintas orientyras.
+milestone saved	projectmanager	lt	Išsaugotas orientyras.
+milestones	projectmanager	lt	Etapai
+milestones before this element has to be finished	projectmanager	lt	Etapai iki šio elemento užbaigimo
+pm_milestone	projectmanager	lt	Etapas
+progress	projectmanager	lt	Pažanga
+resize	projectmanager	lt	Pakeisti dydį

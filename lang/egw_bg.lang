@@ -204,16 +204,19 @@ global categories	projectmanager	bg	Глобални категории
 h	projectmanager	bg	час
 has been moved to settings to allow eg. group-specific ids	projectmanager	bg	Преместен е в Настройки, за да позволи например: специфични за групата идентификационни номера
 health	projectmanager	bg	Здраве
+history logging and deleting of items	projectmanager	bg	Регистриране на историята и изтриване на елементи
 hours	projectmanager	bg	часа
 hours per workday	projectmanager	bg	Часове за един работен ден
 how long do you work on the given day.	projectmanager	bg	Колко време работите в дадения ден
 how should ids for new projects be generated?	projectmanager	bg	Как трябва да се генерират идентификационни номера (IDs) за нови проекти?
 how should ids for new subprojects be generated?	projectmanager	bg	Как трябва да се генерират идентификационни номера (IDs) за нови подпроекти?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	bg	Как трябва да се показва изборът на проекти в менюто: "Дървото" дава по-добър преглед, а "полето за избор" може да функционира по-добре.
+how would you like to print the chart?	projectmanager	bg	Как искате да отпечатате диаграмата?
 html link to the current record	projectmanager	bg	HTML връзка (препратка) към текущия запис
 id generation	projectmanager	bg	Генериране на идентификационен номер (ID)
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	bg	Записите в InfoLog се изтриват, ако са проверени източниците на данни за елементите.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	bg	Записите в InfoLog ще променят положението си, ако са проверени източниците на данни за елементите.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	bg	Ако диаграмата на Гант е по-широка от страницата, тя ще бъде изрязана.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	bg	Изключете това, ако видите записи (напр. {) в диаграмата на Гант (Gantt chart).
 if you specify an export definition, it will be used when you export	projectmanager	bg	Ако посочите дефиниция за експортиране, тя ще се използва, когато експортирате
 ignore that entry	projectmanager	bg	Игнориране на запис
@@ -296,6 +299,7 @@ price deleted	projectmanager	bg	Цената е изтрита.
 price per unit	projectmanager	bg	Цена за артикул
 price saved	projectmanager	bg	Цената е запазена.
 pricelist	projectmanager	bg	Ценова листа
+progress	projectmanager	bg	Прогрес
 project	common	bg	Проект
 project access (e.g. public)	projectmanager	bg	Достъп до проекта, (напр. "общодостъпен")
 project availibility	projectmanager	bg	Наличност на проекта

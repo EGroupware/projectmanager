@@ -94,7 +94,6 @@ elements which have to be finished before this can start	projectmanager	zh	开�
 empty	projectmanager	zh	清空
 empty for all	projectmanager	zh	全部清空
 encode non-ascii	projectmanager	zh	非 ascii 编码
-end before	projectmanager	zh	截至日
 enddate	projectmanager	zh	结束日期
 error: deleting price !!!	projectmanager	zh	错误：删除价格时！
 error: deleting project !!!	projectmanager	zh	错误：删除项目时！
@@ -126,11 +125,14 @@ general pricelist	projectmanager	zh	通用价格表
 global categories	projectmanager	zh	全局分类
 h	projectmanager	zh	时
 health	projectmanager	zh	健全的
+history logging and deleting of items	projectmanager	zh	历史记录和删除项目
 hours	projectmanager	zh	时
 hours per workday	projectmanager	zh	工作日时数
 how long do you work on the given day.	projectmanager	zh	在这一天，您工作时间是多长。
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	zh	将如何在菜单中显示选定的项目：树状显示可以提供较佳的概要，而下拉框则比较易于操作。
+how would you like to print the chart?	projectmanager	zh	你想如何打印图表？
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	zh	如果选择了要素的数据源(如记事簿条目)，数据源将同时被删除。
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	zh	如果甘特图比页面宽，它将被修剪。
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	zh	如果您看到甘特图中的实体(例如：{)，将这个功能关闭。
 ignore that entry	projectmanager	zh	忽略这一条目
 ignored	projectmanager	zh	忽略
@@ -173,11 +175,13 @@ permission denied !!!	projectmanager	zh	没有权限！
 planned	projectmanager	zh	计划
 planned times	projectmanager	zh	计划时间
 please download a recent version from %1 and install it in %2.	projectmanager	zh	请从%1载最新版本并在%2进行安装。
+pm_milestone	projectmanager	zh	里程碑
 price	projectmanager	zh	价格
 price / unit	projectmanager	zh	单价
 price deleted	projectmanager	zh	价格已删除
 price saved	projectmanager	zh	价格已保存
 pricelist	projectmanager	zh	价格表
+progress	projectmanager	zh	进展情况
 project availibility	projectmanager	zh	项目可行性
 project deleted	projectmanager	zh	项目已删除
 project id	projectmanager	zh	项目编号
@@ -220,7 +224,6 @@ show planned times instead of the real times	projectmanager	zh	显示已计划�
 show status icons of the datasources	projectmanager	zh	显示数据源状态图示
 show the project selection as	projectmanager	zh	将所选项目显示为
 site configuration saved	projectmanager	zh	站点配置已保存
-start after	projectmanager	zh	开始日期
 start working on %1	projectmanager	zh	%1开始工作时间
 start, end, category, ...	projectmanager	zh	开始、结束、类别、...
 start- & enddate	projectmanager	zh	开始- 和结束日期

@@ -94,7 +94,6 @@ elements which have to be finished before this can start	projectmanager	hu	Eleme
 empty	projectmanager	hu	Üres
 empty for all	projectmanager	hu	összes üres
 encode non-ascii	projectmanager	hu	Nem-ASCII kódolás
-end before	projectmanager	hu	Befejezés ezelőtt
 enddate	projectmanager	hu	Befejezés dátuma
 error: deleting price !!!	projectmanager	hu	Hiba történt az ár törlésekor!
 error: deleting project !!!	projectmanager	hu	Hiba történt a projekt törlésekor!
@@ -129,12 +128,15 @@ general pricelist	projectmanager	hu	Általános árlista
 global categories	projectmanager	hu	Globális kategóriák
 h	projectmanager	hu	óra
 health	projectmanager	hu	Egészség
+history logging and deleting of items	projectmanager	hu	Előzmények naplózása és elemek törlése
 hours	projectmanager	hu	órák
 hours per workday	projectmanager	hu	Napi munkaórák száma
 how long do you work on the given day.	projectmanager	hu	Az egy átlagos napra eső munkaórák száma.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	hu	A menüben hogyan jelenjen meg a projekt kiválasztása: A fa könnyebb áttekinthetőséget biztosít, míg a kiválasztódoboz gyorsabb.
+how would you like to print the chart?	projectmanager	hu	Hogyan szeretné kinyomtatni a táblázatot?
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	hu	Megjelölve az elemek adatforrásai (pl. InfoLog bejegyzések) is törlődnek.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	hu	Megjelölve az elemek adatforrásaink státusza (pl. InfoLog bejegyzések) is módosul.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	hu	Ha a Gantt-diagram szélesebb, mint az oldal, a rendszer levágja.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	hu	Ha furcsaságokat lát (pl. {) a Ganttchart-ban, akkor ezt kapcsolja ki.
 ignore that entry	projectmanager	hu	bejegyzés figyelmen kívül hagyása
 ignored	projectmanager	hu	figyelmen kívül hagyva
@@ -175,11 +177,14 @@ planned	projectmanager	hu	tervezett
 planned time	projectmanager	hu	tervezett idő
 planned times	projectmanager	hu	Tervezett időráfordítás
 please download a recent version from %1 and install it in %2.	projectmanager	hu	Kérem töltse le a legújabb verziót %1 helyről és telepítse %2 helyre.
+pm_milestone	projectmanager	hu	Mérföldkő
 price	projectmanager	hu	Ár
 price / unit	projectmanager	hu	Egységár
 price deleted	projectmanager	hu	Az ár törölve
 price saved	projectmanager	hu	Az ár elmentve
 pricelist	projectmanager	hu	Árlista
+progress	projectmanager	hu	Haladás
+project	common	hu	Projekt
 project availibility	projectmanager	hu	Projekt rendelkezésre állás
 project deleted	projectmanager	hu	A projekt törölve
 project id	projectmanager	hu	Projekt ID
@@ -194,6 +199,7 @@ projectlist	projectmanager	hu	Projektlista
 projectmanager	common	hu	Projektkezelő
 projectmanager-fieldname	projectmanager	hu	Projektmanager mezőnév
 projectmember	projectmanager	hu	Projekt tag
+projects	common	hu	Projektek
 quantity	projectmanager	hu	Mennyiség
 re-planned	projectmanager	hu	újratervezett
 re-planned time	projectmanager	hu	újratervezés ideje
@@ -202,6 +208,7 @@ read access, no budget	projectmanager	hu	olvasási (költségvetés nélkül) jo
 real end	projectmanager	hu	Tényleges befejezés
 real start	projectmanager	hu	Tényleges indulás
 remark	projectmanager	hu	Megjegyzés
+resize	projectmanager	hu	Méretváltoztatás
 resources	projectmanager	hu	Erőforrások
 role	projectmanager	hu	Szerep
 role deleted	projectmanager	hu	A szerepkör törölve
@@ -224,12 +231,12 @@ show planned times instead of the real times	projectmanager	hu	Tervezett idő mu
 show status icons of the datasources	projectmanager	hu	Adatforrások státusz ikonjainak mutatása
 show the project selection as	projectmanager	hu	Mutasd a projekt választást mint
 site configuration saved	projectmanager	hu	Webhely konfiguráció elmentve
-start after	projectmanager	hu	Indulás ezután
 start working on %1	projectmanager	hu	Munkaidő kezdete %1
 start, end, category, ...	projectmanager	hu	Indulás, befejezés, kategória ...
 start- & enddate	projectmanager	hu	Indulási- és befejezési dátum
 startdate	projectmanager	hu	Indulási dátum
 startrecord	projectmanager	hu	Kezdőrekord
+status	projectmanager	hu	Állapot
 status filter	projectmanager	hu	Állapot szűrő
 style used for everything but elements. some fonts have only normal style.	projectmanager	hu	A stílus mindenre vonatkozik, kivéve az elemekre. Néhány fontnak csak normál stílusa van (nincs pl. dőlt, vastag stb.).
 subelements	projectmanager	hu	Al-elemek

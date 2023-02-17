@@ -13,14 +13,13 @@
 (project id) project title - template name	projectmanager	fr	(ID projet) titre du projet - nom du modèle
 - planned	projectmanager	fr	- prévu
 - re-planned	projectmanager	fr	- replanifié
+/	projectmanager	fr	/
 0ngoing (0 < % < 100)	projectmanager	fr	En cours (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	fr	Un titre descriptif pour le projet (ne doit pas être vide)
-access	projectmanager	fr	Accès
 accounting	projectmanager	fr	Comptabilité
 accounting options	projectmanager	fr	Options de comptabilité
 accounting type	projectmanager	fr	Type de comptabilité
 actions	projectmanager	fr	Actions
-active	projectmanager	fr	Active
 activity	projectmanager	fr	Activité
 add a new milestone	projectmanager	fr	Ajouter une nouvelle étape
 add a new project	projectmanager	fr	Ajouter un nouveau projet
@@ -37,21 +36,21 @@ add timesheet	projectmanager	fr	Ajouter une feuille de temps
 add timesheet only	projectmanager	fr	Ajouter une feuille de temps seulement
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	fr	Les éléments de carnet d'adresses d'un projet peuvent être utilisés pour définir des destinataires de publipostage. Les champs disponibles sont
 addressbook fields	projectmanager	fr	Champs du carnet d'adresses
-admin	projectmanager	fr	Admin
-all	projectmanager	fr	Tout
+all dates (vertical)	projectmanager	fr	Toutes les dates (verticalement)
 all projects	projectmanager	fr	Tous les projets
 all roles	projectmanager	fr	Tous les rôles
+all tasks (horizontal)	projectmanager	fr	Toutes les tâches (horizontalement)
 all_roles	projectmanager	fr	Tous les rôles
 allow users to change their working times	projectmanager	fr	Autoriser les utilisateurs à changer leurs horaires de travail
 allowed accounting types	projectmanager	fr	Types de comptabilité autorisés
 allowed units	projectmanager	fr	Unités autorisées
 anonymous public	projectmanager	fr	Anonyme
 app.	projectmanager	fr	App.
-application	projectmanager	fr	Demande
 apply the changes	projectmanager	fr	Appliquer les modifications
 archive	projectmanager	fr	Archive
 assistant	projectmanager	fr	Assistant
 at which time do you start working on the given day.	projectmanager	fr	A quelle heure commencez-vous à travailler ce jour-là ?
+automatic	projectmanager	fr	Automatique
 availability settings	projectmanager	fr	Paramètres de disponibilité
 available fields for this plugin:	projectmanager	fr	Champs disponibles pour ce plugin :
 availible	projectmanager	fr	Disponible
@@ -62,8 +61,6 @@ budget (no pricelist)	projectmanager	fr	Budget (sans liste de prix)
 budget and pricelist	projectmanager	fr	Budget et liste de prix
 by	projectmanager	fr	par
 calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le budget par quantité (p.ex. temps) et prix
-cancel	projectmanager	fr	Annuler
-category	projectmanager	fr	Catégorie
 category in %1 project-element(s) updated.	projectmanager	fr	Catégorie mise à jour dans %1 élément(s)
 category set	projectmanager	fr	Catégorie définie
 change category	projectmanager	fr	Changer la catégorie
@@ -73,6 +70,7 @@ charset of the above selected font	projectmanager	fr	Jeu de caractères de la po
 check all	projectmanager	fr	Tout cocher
 close the window, discard the changes made	projectmanager	fr	Fermer la fenêtre en ignorant les modifications
 completion	projectmanager	fr	Autocomplétion
+configuration	projectmanager	fr	Configuration
 constraints	projectmanager	fr	Contraintes
 contact fields for serial letters	projectmanager	fr	Champs du contacts puor le publipostage
 conversation between days and hours, default 8	projectmanager	fr	conversion entre jours et heures, par défaut 8
@@ -84,6 +82,7 @@ created	projectmanager	fr	créé
 created a ganttchart from the checked projects	projectmanager	fr	Créé un diagramme de Gantt à partir des projets sélectionnés
 creation date and time	projectmanager	fr	Date et heure de création
 creator	projectmanager	fr	Créateur
+criteria to break into subdirectories	projectmanager	fr	Critères pour répartir les sous-dossiers
 csv-fieldname	projectmanager	fr	CSV - Nom du champ
 csv-filename	projectmanager	fr	CSV - Nom du fichier
 csv-import	common	fr	CSV-Importer
@@ -93,12 +92,10 @@ customer title	projectmanager	fr	Titre client
 data exchange settings	projectmanager	fr	Paramètres d'échange de données
 datasource	projectmanager	fr	Source de données
 datasources too	projectmanager	fr	Les sources de données aussi
-date	projectmanager	fr	Date
 dates	projectmanager	fr	Dates
 days	projectmanager	fr	Jours
 default action on double-click	projectmanager	fr	Action par défaut au double clic
 default all and a selectbox to choose	projectmanager	fr	par défaut tous et une boîte de sélection pour choisir
-delete	projectmanager	fr	Supprimer
 delete all checked projects	projectmanager	fr	Supprimer tous les projets sélectionnés
 delete this element role	projectmanager	fr	Supprimer cet élément de rôle
 delete this milestone	projectmanager	fr	Supprimer cette étape
@@ -108,16 +105,15 @@ delete this project-element, does not remove the linked entry	projectmanager	fr	
 delete this role	projectmanager	fr	Supprimer ce rôle
 deleted	projectmanager	fr	supprimé
 depth of display	projectmanager	fr	Profondeur d'affichage
-description	projectmanager	fr	Description
-details	projectmanager	fr	Détails
 details of cumulated	projectmanager	fr	Détail cumul
 details of subelements	projectmanager	fr	Détails des sous-éléments
-direct update from gantt chart requires <a href="http://www.egroupware.org/products">stylite egroupware enterprise line (epl)</a>.	projectmanager	fr	La mise à jour directe depuis le Gantt nécessite  la <a href="http://www.egroupware.org/products">version EPL</a>.
 directory with documents to insert project data	projectmanager	fr	Répertoire avec les documents pour l'insertion de données
 do not use that entry as project-element	projectmanager	fr	Ne pas utiliser cette entrée comme élément de projet
 document '%1' does not exist or is not readable for you!	projectmanager	fr	Le document '%1' n'existe pas ou n'est pas lisible avec votre profil !
+document merge	projectmanager	fr	Fusion de document
+don't break into subdirectories	projectmanager	fr	Ne pas éclater en sous-dossiers
 done (100%)	projectmanager	fr	Fait (100%)
-due %1	projectmanager	fr	Echéance %1
+due %1	projectmanager	fr	Echus %1
 edit access, incl. editing budget and elements	projectmanager	fr	Accès en édition (comprenant l'édition du budget et des éléments)
 edit budget	projectmanager	fr	Modifier le budget
 edit element roles	projectmanager	fr	Modifier les rôles sur les éléments
@@ -151,8 +147,9 @@ elements that can't start before this one is finished	projectmanager	fr	Elément
 elements which have to be finished before this can start	projectmanager	fr	Eléments ne pouvant être terminés avant que celui-ci ne commence
 empty	projectmanager	fr	Vide
 empty for all	projectmanager	fr	vide pour tous
+enable element roles	projectmanager	fr	Ativer les rôles sur les éléments
 encode non-ascii	projectmanager	fr	Encodage non-ascii
-end date	projectmanager	fr	Date de fin
+end	projectmanager	fr	Fin
 enddate	projectmanager	fr	Date de fin
 ends after	projectmanager	fr	Fin après
 ends before	projectmanager	fr	Fin avant
@@ -175,6 +172,8 @@ existing data will be overwrited if checked	projectmanager	fr	Les données exist
 existing links	projectmanager	fr	Liens existants
 exists	projectmanager	fr	Existe
 exit without saving	projectmanager	fr	Quitter sans enregistrer
+export as pdf	projectmanager	fr	Exporter en PDF
+export as png	projectmanager	fr	Exporter en PNG
 exports a list of project elements to a csv file.	projectmanager	fr	Exporter une liste d'éléments de projet vers un fichier CSV.
 exports a list of projects to a csv file.	projectmanager	fr	Exporter une liste de projets vers un fichier CSV.
 external	projectmanager	fr	Externe
@@ -191,14 +190,15 @@ from %1 to %2	projectmanager	fr	de %1 à %2
 full access	projectmanager	fr	Acccès complet
 ganttchart	projectmanager	fr	Diagramme de Gantt
 ganttchart parameter	projectmanager	fr	Paramètre du diagramme de Gantt
+general	projectmanager	fr	Général
 general availibility	projectmanager	fr	Disponibilité générale
 general fields:	projectmanager	fr	Champs généraux :
 general pricelist	projectmanager	fr	Liste de prix générale
 general settings	projectmanager	fr	Paramètres généraux
-global	projectmanager	fr	Global
 global categories	projectmanager	fr	Catégorie globale
 h	projectmanager	fr	h
 health	projectmanager	fr	Santé
+history logging and deleting of items	projectmanager	fr	Enregistrement de l'historique et suppression des éléments
 hours	projectmanager	fr	heures
 hours per workday	projectmanager	fr	Heures par jour ouvré
 how long do you work on the given day.	projectmanager	fr	Combien de temps travaillez-vous ce jour-là.
@@ -206,8 +206,10 @@ how should ids for new projects be generated?	projectmanager	fr	Comment génére
 how should ids for new subprojects be generated?	projectmanager	fr	Comment générer les IDs des nouveaux sous-projets ?
 how should the project selection in the menu be displayed	projectmanager	fr	Comment afficher la sélection des projets dans le menu
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	fr	Comment doit apparaître la sélection du projet dans lemenu: une arborescence donne une meilleure vue d'ensemble, une boîte de sélection peut être plus efficace.
+how would you like to print the chart?	projectmanager	fr	Comment voulez-vous imprimer le graphique ?
 html link to the current record	projectmanager	fr	Lien HTML vers l'enregistrement courant
 id generation	projectmanager	fr	Génération des ID
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	fr	Si le graphique de gantt est plus large que la page, il sera rogné.
 if you specify an export definition, it will be used when you export	projectmanager	fr	Si vous spécifier un format d'export, il sera utilisé à l'export.
 ignore that entry	projectmanager	fr	Ignorer cette entrée
 ignored	projectmanager	fr	Ignoré
@@ -221,7 +223,6 @@ leave it empty to have one generated	projectmanager	fr	Laissez ce champ vide pou
 leave it empty, if identitcal to the time	projectmanager	fr	Laissez ce champ vide si identique au temps
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	fr	Limiter le nombre de caractères dans les titres d'éléments du Gantt (0 pour aucune limite)
 linked elements	projectmanager	fr	Eléments liés
-linked to %1	projectmanager	fr	lié à %1
 links	projectmanager	fr	Liens
 links and attached files	projectmanager	fr	Liens et fichiers attachés
 links to specified application.  example: {{links/infolog}}	projectmanager	fr	Liens vers les applications spécifiés. Exemple :  {{links/infolog}}
@@ -232,7 +233,6 @@ mainproject only	projectmanager	fr	Projet principal seulement
 mainprojects	projectmanager	fr	Projets principaux
 manage mapping	projectmanager	fr	Gestion des correspondances
 members	projectmanager	fr	Membres
-menu	projectmanager	fr	Menu
 milestone	projectmanager	fr	Etape
 milestone deleted	projectmanager	fr	Etape effacée
 milestone saved	projectmanager	fr	Etape sauvegardée
@@ -250,7 +250,6 @@ necessary for project-elements doing that not automatic	projectmanager	fr	néces
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fr	Les extensions PHP nécessaires %1 ne sont pas chargées et ne peuvent pas l'être !!!
 new	projectmanager	fr	Nouveau
 new project submitted by %1 at %2	projectmanager	fr	Nouveau projet soumis par %1 à %2
-no	projectmanager	fr	Non
 no accounting, only status	projectmanager	fr	Pas de comptabilité, statut uniquement
 no accounting, only times and status	projectmanager	fr	Pas de comptabilité, temps et statut uniquement
 no details	projectmanager	fr	Pas de détail
@@ -258,18 +257,18 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	fr	Vous n'avez pas le droit d'exporter plus que %1 entrées !
 no save necessary	projectmanager	fr	Aucun enregistrement nécessaire
 nonactive	projectmanager	fr	Inactif
-none	projectmanager	fr	aucun
 not available	projectmanager	fr	Indisponible
 not started (0%)	projectmanager	fr	Non commencé (0%)
 not working	projectmanager	fr	ne fonctionne pas
+notification	projectmanager	fr	Notification
 notification settings	projectmanager	fr	Paramètres de notification
 number of records to read (%1)	projectmanager	fr	Nombre d'enregistrements à lire (%1)
-ok	projectmanager	fr	OK
 one day after	projectmanager	fr	un jour après
 one day in advance	projectmanager	fr	un jour en avance
 ongoing (0 < % < 100)	projectmanager	fr	En cours  (0 < % < 100)
 only this project	projectmanager	fr	Seulement ce projet
 overwrite the datasource	projectmanager	fr	Ecraser la source de données
+pdf	projectmanager	fr	PDF
 percentage the member is availible for projects	projectmanager	fr	Pourcentage de disponibilité pour les projets
 percentage the member is availible for this project	projectmanager	fr	Pourcentage de disponibilité pour ce projet
 permission denied !!!	projectmanager	fr	Permission refusée !!!
@@ -292,9 +291,7 @@ price deleted	projectmanager	fr	Prix supprimé
 price per unit	projectmanager	fr	Prix par unité
 price saved	projectmanager	fr	Prix enregistré
 pricelist	projectmanager	fr	Liste de prix
-print	projectmanager	fr	Imprimer
-priority	projectmanager	fr	Priorité
-private	projectmanager	fr	Privé
+progress	projectmanager	fr	Progression
 project	common	fr	Projet
 project access (e.g. public)	projectmanager	fr	Accès au projet, par ex. public
 project availibility	projectmanager	fr	Disponibilité du projet
@@ -333,7 +330,6 @@ projectmanager fields:	projectmanager	fr	Champs du gestionnaire de projet
 projectmanager-fieldname	projectmanager	fr	Nom des champs du gestionnaire de projet
 projectmember	projectmanager	fr	Membre de projet
 projects	common	fr	Projets
-public	projectmanager	fr	Public
 quantity	projectmanager	fr	Quantité
 re-planned	projectmanager	fr	Re-planifié
 re-planned time	projectmanager	fr	Temps re-planifié
@@ -349,9 +345,11 @@ receive notifications about items assigned to you with these roles	projectmanage
 receive notifications about own items	projectmanager	fr	Recevoir les notifications sur ses propres éléments
 receive notifications about starting entries (planned dates)	projectmanager	fr	Recevoir les notification sur les éléments débutant (dates planifiées)
 receive notifications about starting entries (real dates)	projectmanager	fr	Recevoir les notification sur les éléments débutant (dates réelles)
-recovered	projectmanager	fr	récupéré
+recovered	projectmanager	fr	récupérés
 remark	projectmanager	fr	Remarque
+replanned time	projectmanager	fr	Temps replanifié
 replanned time in minutes	projectmanager	fr	Temps replanifié en minutes
+resize	projectmanager	fr	Redimensionner
 resources	projectmanager	fr	Ressources
 role	projectmanager	fr	Rôle
 role deleted	projectmanager	fr	Rôle supprimé
@@ -362,7 +360,6 @@ save the changes made	projectmanager	fr	Enregistre les modifications
 save this project element	projectmanager	fr	Enregistre l'élément de projet
 select a project	projectmanager	fr	Sélectionner un projet
 select an activity if you want to calculate costs by quantity (time) and price	projectmanager	fr	choisissez une activité si vous désirez calculer les coûts par quantité (temps) et prix
-select columns	projectmanager	fr	sélectionner les colonnes
 select export options	projectmanager	fr	Sélectionner les options d'export
 select multiple projects for a further action	projectmanager	fr	Choisissez plusieurs projets pour continuer
 select the accounting types visible for users of projectmanager	projectmanager	fr	Sélectionnez les types de comptabilités visibles par les utilisateurs du gestionnaire de projets
@@ -380,15 +377,14 @@ show links in the project elements list	projectmanager	fr	Afficher des liens sur
 show planned times instead of the real times	projectmanager	fr	Montrer les temps prévus au lieu des temps réels
 show status icons of the datasources	projectmanager	fr	Montrer les icônes de statut de la source de données
 show the project selection as	projectmanager	fr	Montrer la sélection de projet comme
-site configuration	projectmanager	fr	Configuration
 site configuration saved	projectmanager	fr	Configuration du site enregistrée
-start date	projectmanager	fr	Date de début
+start	projectmanager	fr	Début
 start date, end date	projectmanager	fr	Date de début, Date de fin
 start working on %1	projectmanager	fr	Commencer de travailler sur %1
 start, end, category, ...	projectmanager	fr	Début, Fin, Catégorie...
 start- & enddate	projectmanager	fr	Dates de début et de fin
+start- &amp; enddate	projectmanager	fr	Dates de début et de fin
 startdate	projectmanager	fr	Date de début
-starting %1	projectmanager	fr	Début %1
 startrecord	projectmanager	fr	Enregistrement de départ
 starts after	projectmanager	fr	Début après
 starts before	projectmanager	fr	Début avant
@@ -413,26 +409,24 @@ the following document-types are supported:	projectmanager	fr	Les documents type
 time	projectmanager	fr	Temps
 times	projectmanager	fr	Temps
 timezone	projectmanager	fr	Fuseau horaire
-title	projectmanager	fr	Titre
 title must not be empty	projectmanager	fr	Le titre ne doit pas être vide
 titles of any entries linked to the current record, excluding attached files	projectmanager	fr	Titres de toutes les entrées liées à l'enregistrement courant, à l'exception des fichiers
 to many might exceed your execution-time-limit	projectmanager	fr	trop pourrait dépasser votre temps limite d'exécution
-today	projectmanager	fr	Aujourd'hui
-total	projectmanager	fr	Total
 translation	projectmanager	fr	Traduction
 tree with %1	projectmanager	fr	Arborescence avec %1
 unable to find parent project %1	projectmanager	fr	Impossible de trouver l'objet parent %1
 unit	projectmanager	fr	Unité
 unitprice	projectmanager	fr	Unité de prix
-update	projectmanager	fr	mis à jour
 usage	projectmanager	fr	Usage
+use all	projectmanager	fr	Tout utiliser
+use definition filter	projectmanager	fr	Utiliser le filtre de la définition
+use search results	projectmanager	fr	Utiliser le résultat de la recherche
 use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	fr	Utiliser cette balise pour les étiquettes d'adresse. Placer le contenu que vous voulez répéter entre deux balises.
 used	projectmanager	fr	Utilisé
 used budget	projectmanager	fr	Budget utilisé
 used quantity	projectmanager	fr	Quantité utilisée
 used time	projectmanager	fr	Temps passé
 used time in minutes	projectmanager	fr	Temps passé en minutes
-username	projectmanager	fr	Nom d'utilisateur
 valid since	projectmanager	fr	Valide depuis
 view all subs of this entry	projectmanager	fr	Voir tous les Enfants de cette entrée
 view ganttchart of this project	projectmanager	fr	Voir le diagramme de Gantt de ce projet
@@ -447,11 +441,12 @@ view this price	projectmanager	fr	Voir ce prix
 view this project	projectmanager	fr	Voir ce projet
 view this project-element	projectmanager	fr	Voir cet élément de projet
 working duration on %1	projectmanager	fr	Durée de travail sur %1
+year & month	projectmanager	fr	Année & mois
+year only	projectmanager	fr	Année seulement
 yes, noone can purge deleted items	projectmanager	fr	Oui, personne ne peut purger les éléments supprimés
 yes, only admins can purge deleted items	projectmanager	fr	Oui, seuls les administrateurs peuvent purger les éléments supprimés
 yes, with purging of deleted items possible	projectmanager	fr	Oui, avec la possibilité de purger les éléments supprimés.
 you can leave the date of the first price empty	projectmanager	fr	vous pouvez laisser la date du premier prix vide
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	fr	Vous n'avez pas de version de JPGraph %1 ou plus !  Ceci est nécessaire pour les diagrammes de Gantt dans le gestionnaire de projets.
 you need to select a project first	projectmanager	fr	Vous devez d'abord sélectionner un projet
-you need to select some entries first!	projectmanager	fr	Vous devez d'abord supprimer certaines entrées !
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	fr	Votre base de données n'est PAS à jour (%1 contre %2), exécutez %3setup%4 pour la mettre à jour.

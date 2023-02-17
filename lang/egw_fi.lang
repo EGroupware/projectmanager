@@ -96,7 +96,6 @@ elements which have to be finished before this can start	projectmanager	fi	Eleme
 empty	projectmanager	fi	Tyhjä
 empty for all	projectmanager	fi	Tyhjennä kaikki
 encode non-ascii	projectmanager	fi	Koodaa non-ascii
-end before	projectmanager	fi	Päättyy ennen
 enddate	projectmanager	fi	Päättymispäivä
 error: deleting price !!!	projectmanager	fi	Virhe: Poistettaessa hintaa !!!
 error: deleting project !!!	projectmanager	fi	Virhe: Poistettaessa projektia !!!
@@ -137,12 +136,15 @@ general pricelist	projectmanager	fi	Yleinen hinnasto
 global categories	projectmanager	fi	Yleiset kategoriat
 h	projectmanager	fi	t
 health	projectmanager	fi	Kunto
+history logging and deleting of items	projectmanager	fi	Historiatietojen kirjaaminen ja kohteiden poistaminen
 hours	projectmanager	fi	tuntia
 hours per workday	projectmanager	fi	Tuntia per työpäivä
 how long do you work on the given day.	projectmanager	fi	Kuinka kauan työskentelet kyseisenä päivänä?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	fi	Kuinka projektien valinta näytetään valikossa: Runkonäkymässä saat paremman yleiskatsauksen, valintalaatikossa projektin valinta on helpompaa.
+how would you like to print the chart?	projectmanager	fi	Miten haluat tulostaa kaavion?
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	fi	Jos valittu, elementtien Datasourcet (esim. InfoLog merkinnät) poistetaan myös.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	fi	Jos valittu, elementtien Datasourcet (esim. InfoLog merkinnät) vaihtavat tilan.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	fi	Jos gantt-kaavio on leveämpi kuin sivu, se leikataan.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	fi	Jos merkkejä kuten {) näkyy GanttChartissa, sulje tämä.
 if you specify an export definition, it will be used when you export	projectmanager	fi	Valitse viennin oletusasetus
 ignore that entry	projectmanager	fi	Jätä merkintä huomiotta
@@ -162,9 +164,10 @@ mainproject only	projectmanager	fi	Vain pääprojektit
 mainprojects	projectmanager	fi	Pääprojektit
 manage mapping	projectmanager	fi	Hallitse mappingiä
 members	projectmanager	fi	Jäsenet
+milestone	projectmanager	fi	Välitavoite
 milestone deleted	projectmanager	fi	Tavoite poistettu
 milestone saved	projectmanager	fi	Tavoite tallennettu
-milestones	projectmanager	fi	Tavoitteet
+milestones	projectmanager	fi	Välitavoitteet
 milestones before this element has to be finished	projectmanager	fi	Tavoitteet pitää valmistua ennen tätä elementtiä
 modified	projectmanager	fi	Muokattu
 modified by	projectmanager	fi	Muokannut
@@ -193,11 +196,13 @@ planned	projectmanager	fi	Suunniteltu
 planned time	projectmanager	fi	Suunniteltu aikataulu
 planned times	projectmanager	fi	Suunnittelu aika
 please download a recent version from %1 and install it in %2.	projectmanager	fi	Lataa viimeisin versio %1 ja asenna se %2
+pm_milestone	projectmanager	fi	Välitavoite
 price	projectmanager	fi	Hinta
 price / unit	projectmanager	fi	Hinta / yksikkö
 price deleted	projectmanager	fi	Hinta poistettu
 price saved	projectmanager	fi	Hinta tallennettu
 pricelist	projectmanager	fi	Hinnasto
+progress	projectmanager	fi	Edistyminen
 project availibility	projectmanager	fi	Projektin käytettävyys
 project deleted	projectmanager	fi	Projekti poistettu
 project id	projectmanager	fi	Projektin tunnus
@@ -244,7 +249,6 @@ show planned times instead of the real times	projectmanager	fi	Näytä suunnitel
 show status icons of the datasources	projectmanager	fi	Näytä tilat kuvakkeena tietolähteestä
 show the project selection as	projectmanager	fi	Näytä projektin valinta
 site configuration saved	projectmanager	fi	Palvelun asetukset tallennettu
-start after	projectmanager	fi	Aloita jälkeen
 start working on %1	projectmanager	fi	Aloita työskentely %1na
 start, end, category, ...	projectmanager	fi	Aloitus, lopetus, kategoria ...
 start- & enddate	projectmanager	fi	Aloitus- ja päätöspäivä

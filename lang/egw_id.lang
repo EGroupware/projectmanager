@@ -73,7 +73,6 @@ elements of elements	projectmanager	id	Elemen dari elemen
 empty	projectmanager	id	Kosong
 empty for all	projectmanager	id	kosongkan untuk semua
 encode non-ascii	projectmanager	id	Encode non-ascii
-end before	projectmanager	id	Berakhir sebelum
 enddate	projectmanager	id	Tanggal berakhir
 everything recursive	projectmanager	id	Everything recursive
 existing links	projectmanager	id	Tautan yang ada
@@ -92,8 +91,11 @@ general pricelist	projectmanager	id	General pricelist
 global categories	projectmanager	id	Kategori Global
 h	projectmanager	id	h
 health	projectmanager	id	Kesehatan
+history logging and deleting of items	projectmanager	id	Pencatatan riwayat dan penghapusan item
 hours	projectmanager	id	jam
 hours per workday	projectmanager	id	Jam per hari-kerja
+how would you like to print the chart?	projectmanager	id	Bagaimana Anda ingin mencetak bagan?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	id	Jika bagan Gantt lebih lebar dari halaman, bagan tersebut akan terpotong.
 ignore that entry	projectmanager	id	abaikan entri tersebut
 ignored	projectmanager	id	diabaikan
 import	projectmanager	id	Impor
@@ -104,9 +106,11 @@ mainproject only	projectmanager	id	Hanya Proyek Utama
 mainprojects	projectmanager	id	Proyek Utama
 manage mapping	projectmanager	id	Mengelola pemetaan
 members	projectmanager	id	Anggota
-milestone deleted	projectmanager	id	Milestone dihapus
-milestone saved	projectmanager	id	Milestone disimpan
-milestones	projectmanager	id	Milestones
+milestone	projectmanager	id	Tonggak sejarah
+milestone deleted	projectmanager	id	Tonggak sejarah dihapus.
+milestone saved	projectmanager	id	Tonggak sejarah disimpan.
+milestones	projectmanager	id	Tonggak sejarah
+milestones before this element has to be finished	projectmanager	id	Tonggak pencapaian sebelum elemen ini harus diselesaikan
 modified	projectmanager	id	Diubah
 modified by	projectmanager	id	diubah oleh
 new	projectmanager	id	baru
@@ -123,11 +127,14 @@ permission denied !!!	projectmanager	id	Ijin ditolak !!!
 planned	projectmanager	id	direncanakan
 planned time	projectmanager	id	waktu yang direncanakan
 planned times	projectmanager	id	Waktu yang direncanakan
+pm_milestone	projectmanager	id	Tonggak sejarah
 price	projectmanager	id	Harga
 price / unit	projectmanager	id	Harga/Satuan
 price deleted	projectmanager	id	Harga dihapus
 price saved	projectmanager	id	Harga disimpan
 pricelist	projectmanager	id	Daftar harga
+progress	projectmanager	id	Kemajuan
+project	common	id	Proyek
 project availibility	projectmanager	id	Project availibility
 project deleted	projectmanager	id	Proyek dihapus
 project id	projectmanager	id	ID Proyek
@@ -148,6 +155,7 @@ re-planned time	projectmanager	id	Waktu Perencanaan ulang
 real end	projectmanager	id	Akhir sesungguhnya
 real start	projectmanager	id	Real start
 remark	projectmanager	id	Remark
+resize	projectmanager	id	Ubah ukuran
 resources	projectmanager	id	Sumberdaya
 role	projectmanager	id	Role
 role deleted	projectmanager	id	Role dihapus
@@ -157,7 +165,6 @@ save the changes made	projectmanager	id	Simpan pengubahan
 save this project element	projectmanager	id	Simpan elemen proyek ini
 select a project	projectmanager	id	pilih proyek
 share	projectmanager	id	Share
-start after	projectmanager	id	Memulai setelah
 start working on %1	projectmanager	id	Mulai bekerja pada %1
 start, end, category, ...	projectmanager	id	Memulai, Berakhir, Kategori, ...
 start- & enddate	projectmanager	id	Tanggal Memulai & Berakhir

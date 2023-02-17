@@ -13,17 +13,24 @@ enddate	projectmanager	et	Lõpukuupäev
 existing links	projectmanager	et	Eksisteerivad lingid
 fieldseparator	projectmanager	et	Väljaeraldaja
 global categories	projectmanager	et	Globaalsed Kategooriad
+history logging and deleting of items	projectmanager	et	Ajaloo logimine ja objektide kustutamine
 hours	projectmanager	et	tundi
+how would you like to print the chart?	projectmanager	et	Kuidas soovite diagrammi välja printida?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	et	Kui gantt diagramm on laiem kui lehekülg, kärbitakse see ära.
 import	projectmanager	et	Import
 last modified	projectmanager	et	Viimati muudetud
 links	projectmanager	et	Lingid
+milestone	projectmanager	et	Milestone
+milestones	projectmanager	et	Milestones
 modified	projectmanager	et	Muudetud
 new	projectmanager	et	Uus
 no details	projectmanager	et	mitte detailselt
 permission denied !!!	projectmanager	et	Õigused puuduvad !!!
 planned	projectmanager	et	kavandatud
 planned time	projectmanager	et	kavandatud aeg
+pm_milestone	projectmanager	et	Milestone
 price	projectmanager	et	Hind
+progress	projectmanager	et	Progress
 projects	common	et	Projektid
 quantity	projectmanager	et	Kogus
 resources	projectmanager	et	Resursid

@@ -95,7 +95,6 @@ elements which have to be finished before this can start	projectmanager	pl	Skła
 empty	projectmanager	pl	Pusty
 empty for all	projectmanager	pl	puste dla wszystkich
 encode non-ascii	projectmanager	pl	Zakoduj znaki spoza ASCII
-end before	projectmanager	pl	Zakończ przed
 enddate	projectmanager	pl	Termin zakończenia
 error: deleting price !!!	projectmanager	pl	Błąd: kasowanie ceny !!!
 error: deleting project !!!	projectmanager	pl	Błąd: kasowanie projektu !!!
@@ -132,12 +131,15 @@ general pricelist	projectmanager	pl	Ogólny cennik
 global categories	projectmanager	pl	Kategorie globalne
 h	projectmanager	pl	h
 health	projectmanager	pl	Zdrowie
+history logging and deleting of items	projectmanager	pl	Rejestrowanie historii i usuwanie elementów
 hours	projectmanager	pl	godziny
 hours per workday	projectmanager	pl	Godziny/dzień pracy
 how long do you work on the given day.	projectmanager	pl	Jak długo pracujesz w podanym dniu.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pl	W jaki sposób pokazywać wybór projektu w menu: drzewko oznacza lepszy przekrój ale lista wyboru działa szybciej.
+how would you like to print the chart?	projectmanager	pl	Jak chciałbyś wydrukować wykres?
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	pl	Jeśli zaznaczysz źródła danych elementów (np. wpisy Dziennika) także zostaną skasowane.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	pl	Jeśli zaznaczysz źródła danych elementów (np. wpisy Dziennika) także zmienią status.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	pl	Jeśli wykres Gantta jest szerszy niż strona, zostanie przycięty.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pl	Jeżeli widzisz encje (np. {) na wykresach Gantta, wyłącz to.
 ignore that entry	projectmanager	pl	pomiń tą pozycję
 ignored	projectmanager	pl	pominięty
@@ -153,6 +155,7 @@ mainproject only	projectmanager	pl	Tylko główne projekty
 mainprojects	projectmanager	pl	Główne projekty
 manage mapping	projectmanager	pl	Zarządzaj mapowaniem
 members	projectmanager	pl	Członkowie
+milestone	projectmanager	pl	Kamień milowy
 milestone deleted	projectmanager	pl	Kamień milowy usunięty
 milestone saved	projectmanager	pl	kamień milowy zapisany
 milestones	projectmanager	pl	Kamienie milowe
@@ -182,11 +185,13 @@ planned	projectmanager	pl	zaplanowany
 planned time	projectmanager	pl	zaplanowany termin
 planned times	projectmanager	pl	Zaplanowane terminy
 please download a recent version from %1 and install it in %2.	projectmanager	pl	Prosimy ściągnąć ostatnią wersję z %1 i zainstalować ją w %2.
+pm_milestone	projectmanager	pl	Kamień milowy
 price	projectmanager	pl	Cena
 price / unit	projectmanager	pl	Cena / Jednostka
 price deleted	projectmanager	pl	Cena usunięta
 price saved	projectmanager	pl	Cena zachowana
 pricelist	projectmanager	pl	Cennik
+progress	projectmanager	pl	Zmiana rozmiaru
 project availibility	projectmanager	pl	Dostępność dla projektu
 project deleted	projectmanager	pl	Projekt usunięty
 project id	projectmanager	pl	ID projektu
@@ -232,7 +237,6 @@ show planned times instead of the real times	projectmanager	pl	Pokaż zaplanowan
 show status icons of the datasources	projectmanager	pl	Pokaż ikonki statusu danych
 show the project selection as	projectmanager	pl	Pokazuj wybór projektu jako
 site configuration saved	projectmanager	pl	Konfiguracja strony zapisana
-start after	projectmanager	pl	Rozpocznij po
 start working on %1	projectmanager	pl	Rozpocznij pracę od %1
 start, end, category, ...	projectmanager	pl	Początek, Koniec, Kategoria, ...
 start- & enddate	projectmanager	pl	Początkowy & Końcowy termin

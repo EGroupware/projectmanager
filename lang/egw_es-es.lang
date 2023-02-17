@@ -213,16 +213,19 @@ global categories	projectmanager	es-es	Categorías globales
 h	projectmanager	es-es	h
 has been moved to settings to allow eg. group-specific ids	projectmanager	es-es	Se ha movido a la configuración para permitir, por ejemplo, ID específicos de grupo
 health	projectmanager	es-es	Salud
+history logging and deleting of items	projectmanager	es-es	Registro histórico y eliminación de elementos
 hours	projectmanager	es-es	horas
 hours per workday	projectmanager	es-es	Horas por día de trabajo
 how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
 how should ids for new projects be generated?	projectmanager	es-es	¿Cómo deben generarse los ID para nuevos proyectos?
 how should ids for new subprojects be generated?	projectmanager	es-es	¿Cómo deben generarse los ID para nuevos subproyectos?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
+how would you like to print the chart?	projectmanager	es-es	¿Cómo desea imprimir el diagrama?
 html link to the current record	projectmanager	es-es	Enlace HTML al registro actual
 id generation	projectmanager	es-es	Generación de ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	es-es	Si se selecciona, también se borran los elementos de origen (p. ej, entradas InfoLog).
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	es-es	Si se selecciona, también se cambiará el estado de los elementos de origen (p. ej, entradas InfoLog).
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	es-es	Si el diagrama de Gantt es más ancho que la página, se recortará.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	es-es	Si ve entidades (p. ej. {) en el diagrama de Gantt, desactive esta opción.
 if you specify an export definition, it will be used when you export	projectmanager	es-es	Si especifica una definición de exportación, se usará cuando exporte
 ignore that entry	projectmanager	es-es	ignorar esa entrada
@@ -305,6 +308,7 @@ price deleted	projectmanager	es-es	Precio borrado
 price per unit	projectmanager	es-es	Precio por unidad
 price saved	projectmanager	es-es	Precio guardado
 pricelist	projectmanager	es-es	Lista de precios
+progress	projectmanager	es-es	Progreso
 project	common	es-es	Proyecto
 project access (e.g. public)	projectmanager	es-es	Acceso del proyecto, p. ej. público
 project availibility	projectmanager	es-es	Disponibilidad del proyecto
@@ -360,6 +364,7 @@ receive notifications about starting entries (planned dates)	projectmanager	es-e
 receive notifications about starting entries (real dates)	projectmanager	es-es	Recibir notificaciones sobre entradas iniciales (fechas reales)
 remark	projectmanager	es-es	Remarcar
 replanned time in minutes	projectmanager	es-es	Tiempo replanificado en minutos
+resize	projectmanager	es-es	Redimensionar
 resources	projectmanager	es-es	Recursos
 role	projectmanager	es-es	Rol
 role deleted	projectmanager	es-es	Se ha borrado el rol
@@ -401,6 +406,7 @@ startdate	projectmanager	es-es	Fecha de inicio
 startrecord	projectmanager	es-es	Registro de inicio
 starts after	projectmanager	es-es	Inicia después
 starts before	projectmanager	es-es	Inicia antes
+status	projectmanager	es-es	Estado
 status filter	projectmanager	es-es	Filtro de estados
 status set	projectmanager	es-es	Se ha establecido el estado
 style used for everything but elements. some fonts have only normal style.	projectmanager	es-es	Estilo utilizado para todo excepto los elementos. Algunos tipos de letra sólo tienen estilo normal.

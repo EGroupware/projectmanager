@@ -63,7 +63,6 @@ elements that can't start before this one is finished	projectmanager	lv	Elementi
 elements which have to be finished before this can start	projectmanager	lv	Elementi, kuriem jābeidzas pirms šis var sākties
 empty	projectmanager	lv	Tukšš
 empty for all	projectmanager	lv	iztukšot visiem
-end before	projectmanager	lv	Beidzas pirms
 enddate	projectmanager	lv	Beigu datums
 error: deleting project !!!	projectmanager	lv	Kļūda: dzēšot projektu!!!
 error: deleting project-element !!!	projectmanager	lv	Kļūda: dzēšot projekta elemntu !!!
@@ -85,9 +84,12 @@ general availibility	projectmanager	lv	Vispārēja pieejamība
 global categories	projectmanager	lv	Globālās kategorijas
 h	projectmanager	lv	h
 health	projectmanager	lv	Veselība
+history logging and deleting of items	projectmanager	lv	Vēstures reģistrēšana un elementu dzēšana
 hours	projectmanager	lv	stundas
 hours per workday	projectmanager	lv	Stundas darba dienā
 how long do you work on the given day.	projectmanager	lv	Cik ilgi tu strādā dotajā dienā.
+how would you like to print the chart?	projectmanager	lv	Kā vēlaties izdrukāt diagrammu?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	lv	Ja Ganta diagramma ir platāka par lapu, tā tiks apgriezta.
 ignore that entry	projectmanager	lv	ignorēt to ierakstu
 ignored	projectmanager	lv	ignorēts
 import	projectmanager	lv	Importēt
@@ -98,6 +100,11 @@ links	projectmanager	lv	Saites
 mainproject only	projectmanager	lv	Tikai galvenais projekts
 mainprojects	projectmanager	lv	Galvenie projekti
 members	projectmanager	lv	Locekļi
+milestone	projectmanager	lv	Stūrakmens
+milestone deleted	projectmanager	lv	Izdzēsts pavērsiena punkts.
+milestone saved	projectmanager	lv	Žetons saglabāts.
+milestones	projectmanager	lv	Stūrakmeņi
+milestones before this element has to be finished	projectmanager	lv	Robežpunkti pirms šī elementa pabeigšanas
 modified	projectmanager	lv	Pārveidots
 modified by	projectmanager	lv	pārveidoja
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	lv	Nepieciešami PHP paplašinajumi %1 nav ielādeti un nevar tikt ielādēti!!!
@@ -117,6 +124,7 @@ permission denied !!!	projectmanager	lv	Atļauja liegta!!!
 planned	projectmanager	lv	plānots
 planned times	projectmanager	lv	Plānotās reizes
 please download a recent version from %1 and install it in %2.	projectmanager	lv	Lūdzu lejupielādē jaunāku versiju no %1 un uzinstalē to %2.
+progress	projectmanager	lv	Progress
 project availibility	projectmanager	lv	Projekta pieejamība
 project deleted	projectmanager	lv	Projekts izdzēsts
 project id	projectmanager	lv	Projekta ID
@@ -135,6 +143,7 @@ read access, no budget	projectmanager	lv	lasīsanas pieeja, bez budžeta
 real end	projectmanager	lv	Rālas eigas
 real start	projectmanager	lv	Reālais sākums
 remark	projectmanager	lv	Piezīme
+resize	projectmanager	lv	Mainīt izmēru
 resources	projectmanager	lv	resursi
 role	projectmanager	lv	Loma
 role deleted	projectmanager	lv	Loma izdzēsta
@@ -148,7 +157,6 @@ share	projectmanager	lv	Dalīties
 share on the whole project	projectmanager	lv	Dalīties visā projektā
 show planned times instead of the real times	projectmanager	lv	Rādīt plānotos laikus reālā laika vietā
 site configuration saved	projectmanager	lv	Vietnes konfigurācija saglabāta
-start after	projectmanager	lv	Sakt pēc
 start working on %1	projectmanager	lv	Sākt strādāt %1
 start, end, category, ...	projectmanager	lv	Sākt, Beigt, Kategorija
 start- & enddate	projectmanager	lv	Sākuma & Beigu  datums

@@ -206,6 +206,7 @@ general settings	projectmanager	it	Impostazioni generali
 global categories	projectmanager	it	Categorie Globali
 h	projectmanager	it	h
 health	projectmanager	it	Salute
+history logging and deleting of items	projectmanager	it	Registrazione della cronologia e cancellazione degli elementi
 hours	projectmanager	it	ore
 hours per workday	projectmanager	it	Ore per giorno lavorativo
 how long do you work on the given day.	projectmanager	it	Quanto lavori il dato giorno.
@@ -213,6 +214,7 @@ how should the project selection in the menu be displayed: a tree gives a better
 html link to the current record	projectmanager	it	Collegamento HTML al record attuale
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	it	Se selezionato, verrano eliminate anche le sorgenti di elemento, p.es. schede attività
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	it	Se selezionato, verrà aggiornato lo stato anche delle sorgenti di elemento, p.es. schede attività
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	it	Se il diagramma di Gantt è più largo della pagina, verrà tagliato.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	it	Se vedi entità (p.es. {) nel grafico Gantt, disabilita questa opzione
 if you specify an export definition, it will be used when you export	projectmanager	it	Se specifichi una definizione di esportazione, allora verrà usata durante la relativa operazione
 ignore that entry	projectmanager	it	ignora quella voce
@@ -237,11 +239,11 @@ mainproject only	projectmanager	it	Solo progetto principale
 mainprojects	projectmanager	it	Progetti principali
 manage mapping	projectmanager	it	Gestisci la mappatura
 members	projectmanager	it	Membri
-milestone	projectmanager	it	Milestone
-milestone deleted	projectmanager	it	Traguardo cancellato
-milestone saved	projectmanager	it	Traguardo salvato
-milestones	projectmanager	it	Traguardi
-milestones before this element has to be finished	projectmanager	it	I traguardi prima di questo elemento devono essere raggiunti
+milestone	projectmanager	it	Pietre miliari
+milestone deleted	projectmanager	it	Pietra miliare cancellata.
+milestone saved	projectmanager	it	Pietra miliare salvata.
+milestones	projectmanager	it	Pietre miliari
+milestones before this element has to be finished	projectmanager	it	Pietre miliari prima che questo elemento debba essere terminato.
 modified	projectmanager	it	Modificato
 modified by	projectmanager	it	Modificato da
 modified date and time	projectmanager	it	Data e ora modifica
@@ -295,6 +297,7 @@ price deleted	projectmanager	it	Prezzo cancellato
 price per unit	projectmanager	it	Prezzo per unità
 price saved	projectmanager	it	Prezzo salvato
 pricelist	projectmanager	it	Listino
+progress	projectmanager	it	Progressi
 project	common	it	Progetto
 project access (e.g. public)	projectmanager	it	Accesso al progetto, p.es. pubblico
 project availibility	projectmanager	it	Disponibilità progetto
@@ -350,6 +353,7 @@ receive notifications about starting entries (planned dates)	projectmanager	it	R
 receive notifications about starting entries (real dates)	projectmanager	it	Ricevere notifiche per voci in avvio (date reali)
 remark	projectmanager	it	Osservazione
 replanned time in minutes	projectmanager	it	Tempo ripianificato in minuti
+resize	projectmanager	it	Ridimensionamento
 resources	projectmanager	it	Risorse
 role	projectmanager	it	Ruolo
 role deleted	projectmanager	it	Ruolo cancellato

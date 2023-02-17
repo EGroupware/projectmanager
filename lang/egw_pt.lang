@@ -90,7 +90,6 @@ elements that can't start before this one is finished	projectmanager	pt	Os eleme
 elements which have to be finished before this can start	projectmanager	pt	Elementos a concluir antes deste poder começar
 empty	projectmanager	pt	Vazio
 empty for all	projectmanager	pt	vazio para todos
-end before	projectmanager	pt	Terminar antes de
 enddate	projectmanager	pt	Data de fim
 error: deleting price !!!	projectmanager	pt	Erro ao eliminar preço !!!
 error: deleting project !!!	projectmanager	pt	Erro ao eliminar projecto !!!
@@ -120,10 +119,13 @@ general settings	projectmanager	pt	Definições gerais
 global categories	projectmanager	pt	Categorias gerais
 h	projectmanager	pt	h
 health	projectmanager	pt	Saúde
+history logging and deleting of items	projectmanager	pt	Registo do histórico e eliminação de artigos
 hours	projectmanager	pt	Horas
 hours per workday	projectmanager	pt	Horas por dia de trabalho
 how long do you work on the given day.	projectmanager	pt	Duração deste dia de trabalho.
+how would you like to print the chart?	projectmanager	pt	Como gostaria de imprimir o gráfico?
 html link to the current record	projectmanager	pt	Link HTML para o registro atual
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	pt	Se o gráfico de Gantt for mais largo do que a página, será recortado.
 ignore that entry	projectmanager	pt	ignorar esse registo
 ignored	projectmanager	pt	Ignorado
 import	projectmanager	pt	Importar
@@ -140,6 +142,7 @@ mainproject only	projectmanager	pt	Projecto principal apenas
 mainprojects	projectmanager	pt	Projectos principais
 manage mapping	projectmanager	pt	Gerenciar mapeamento
 members	projectmanager	pt	Membros
+milestone	projectmanager	pt	Objectivo
 milestone deleted	projectmanager	pt	Objectivo eliminado
 milestone saved	projectmanager	pt	Objectivo guardado
 milestones	projectmanager	pt	Objectivos
@@ -168,11 +171,13 @@ planned	projectmanager	pt	Planeado
 planned time	projectmanager	pt	Tempo previsto
 planned times	projectmanager	pt	Tempo previsto
 please download a recent version from %1 and install it in %2.	projectmanager	pt	Por favor, transfira uma versão mais recente de %1 e instale-a em %2
+pm_milestone	projectmanager	pt	Objectivo
 price	projectmanager	pt	Preço
 price / unit	projectmanager	pt	Preço / Unidade
 price deleted	projectmanager	pt	Preço eliminado
 price saved	projectmanager	pt	Preço guardado
 pricelist	projectmanager	pt	Lista de preços
+progress	projectmanager	pt	Progresso
 project availibility	projectmanager	pt	Disponibilidade do projecto
 project deleted	projectmanager	pt	Projecto eliminado
 project id	projectmanager	pt	ID do projecto
@@ -194,6 +199,7 @@ read access, no budget	projectmanager	pt	Acesso de leitura, sem orçamentos
 real end	projectmanager	pt	Fim real
 real start	projectmanager	pt	Início real
 remark	projectmanager	pt	Remarcar
+resize	projectmanager	pt	Redimensionar
 resources	projectmanager	pt	Recursos
 role	projectmanager	pt	Papel
 role deleted	projectmanager	pt	Papel eliminado
@@ -214,7 +220,6 @@ show constraints and milestones	projectmanager	pt	Exibir dificuldades e objectiv
 show planned times instead of the real times	projectmanager	pt	Exibir previsões em vez dos tempos reais
 show status icons of the datasources	projectmanager	pt	Exibir ícones do estado das fontes de informação
 site configuration saved	projectmanager	pt	Configuração do sítio guardada
-start after	projectmanager	pt	Iniciar depois
 start working on %1	projectmanager	pt	Início do trabalho no dia de %1
 start, end, category, ...	projectmanager	pt	Ínicio, Fim, Categoria, ...
 start- & enddate	projectmanager	pt	Data de início e de fim

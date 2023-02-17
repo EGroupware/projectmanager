@@ -13,15 +13,28 @@ enddate	projectmanager	uk	Число закінчення
 existing links	projectmanager	uk	Існуючі посилання
 fieldseparator	projectmanager	uk	Розділитель полів
 global categories	projectmanager	uk	Глобальні категорії
+history logging and deleting of items	projectmanager	uk	Ведення журналу історії та видалення елементів
 hours	projectmanager	uk	години
+how would you like to print the chart?	projectmanager	uk	Як ви хочете надрукувати діаграму?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	uk	Якщо діаграма Ганта ширша за сторінку, вона буде обрізана.
 import	projectmanager	uk	Імпорт
 last modified	projectmanager	uk	Востаннє змінено
 links	projectmanager	uk	Посилання
+milestone	projectmanager	uk	Віха
+milestone deleted	projectmanager	uk	Етапи
+milestone saved	projectmanager	uk	Етап збережено.
+milestones	projectmanager	uk	Етап збережено.
+milestones before this element has to be finished	projectmanager	uk	Етапи до завершення цього елемента
 modified	projectmanager	uk	Змінено
 number of records to read (%1)	projectmanager	uk	Кількість записів для читання (%1)
+pm_milestone	projectmanager	uk	Віха
+progress	projectmanager	uk	Прогрес
+projects	common	uk	Проекти
 remark	projectmanager	uk	Ремарка
+resize	projectmanager	uk	Змінити розмір
 startdate	projectmanager	uk	Число початку
 startrecord	projectmanager	uk	Початковий запис
+status	projectmanager	uk	Статус
 test import (show importable records <u>only</u> in browser)	projectmanager	uk	Тестувати Імпорт (тільки показати записи, що можуть бути імпортовані)
 times	projectmanager	uk	Раз
 to many might exceed your execution-time-limit	projectmanager	uk	надто багато може перевищити Ваш ліміт часу

@@ -206,13 +206,16 @@ general settings	projectmanager	sl	Splošne nastavitve
 global categories	projectmanager	sl	Globalne kategorije
 h	projectmanager	sl	h
 health	projectmanager	sl	Popravi
+history logging and deleting of items	projectmanager	sl	Beleženje zgodovine in brisanje elementov
 hours	projectmanager	sl	ure
 hours per workday	projectmanager	sl	Hours per work day
 how long do you work on the given day.	projectmanager	sl	Kako dolgo delate na dan?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sl	Kako naj se prikaže izbor projekta v meniju: drevo daje boljši pregled, izbirno okence lahko bolje deluje.
+how would you like to print the chart?	projectmanager	sl	Kako želite natisniti grafikon?
 html link to the current record	projectmanager	sl	Povezava HTML s trenutnim zapisom
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sl	Če ste preverili podatkovne vire elementov, npr. Tudi zapisi InfoLog se izbrišejo.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sl	Če ste preverili podatkovne vire elementov, npr. Točke vnosa InfoLog bodo spremenile tudi njihovo stanje.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	sl	Če je Ganttov diagram širši od strani, bo obrezan.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sl	Če vidite elemente (npr. {) V gantogramu, to izključite.
 if you specify an export definition, it will be used when you export	projectmanager	sl	Če določite definicijo izvoza, se bo uporabil, ko boste izvozili
 ignore that entry	projectmanager	sl	Prezri vnos
@@ -294,6 +297,7 @@ price deleted	projectmanager	sl	Cena je izbrisana.
 price per unit	projectmanager	sl	Cena na enoto
 price saved	projectmanager	sl	Cena je shranjena
 pricelist	projectmanager	sl	Cenik
+progress	projectmanager	sl	Napredek
 project	common	sl	Project
 project access (e.g. public)	projectmanager	sl	Dostop do projekta, npr. javnost
 project availibility	projectmanager	sl	Razpoložljivost projekta
@@ -349,6 +353,7 @@ receive notifications about starting entries (planned dates)	projectmanager	sl	P
 receive notifications about starting entries (real dates)	projectmanager	sl	Prejem obvestil o začetnih vnosih (pravi datumi)
 remark	projectmanager	sl	Opazka
 replanned time in minutes	projectmanager	sl	Ponovno načrtovani čas v minutah
+resize	projectmanager	sl	Spremeni velikost
 resources	projectmanager	sl	Sredstva
 role	projectmanager	sl	Vloga
 role deleted	projectmanager	sl	Pravilo zbrisano
@@ -390,6 +395,7 @@ startdate	projectmanager	sl	Začetni datum
 startrecord	projectmanager	sl	Začetni zapis
 starts after	projectmanager	sl	Začne za
 starts before	projectmanager	sl	Začne prej
+status	projectmanager	sl	Status
 status filter	projectmanager	sl	Filter stanja
 status set	projectmanager	sl	Stanje nastavljeno
 style used for everything but elements. some fonts have only normal style.	projectmanager	sl	Slog za vse, razen za elemente. Nekatere pisave imajo le običajni slog.

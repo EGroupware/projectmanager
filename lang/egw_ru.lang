@@ -131,7 +131,6 @@ elements which have to be finished before this can start	projectmanager	ru	Эл�
 empty	projectmanager	ru	Пусто(очистить)
 empty for all	projectmanager	ru	Пусто для всех
 encode non-ascii	projectmanager	ru	Кодировать как не-ascii
-end before	projectmanager	ru	Завершить до
 enddate	projectmanager	ru	Дата завершения
 error: deleting element role !!!	projectmanager	ru	Ошибка при удалении роли элемента!
 error: deleting price !!!	projectmanager	ru	Ошибка: удаление цены !!!
@@ -181,13 +180,16 @@ general settings	projectmanager	ru	Основные установки
 global categories	projectmanager	ru	Общие категории
 h	projectmanager	ru	ч
 health	projectmanager	ru	Здоровье
+history logging and deleting of items	projectmanager	ru	Регистрация истории и удаление элементов
 hours	projectmanager	ru	часы
 hours per workday	projectmanager	ru	Часов в рабочем дне
 how long do you work on the given day.	projectmanager	ru	Сколько вы работаете в данный день.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	ru	Как должно отображаться выбор проекта в меню: Дерево даёт лучший осмотр, Выбор даёт лучший результат.
+how would you like to print the chart?	projectmanager	ru	Как вы хотите распечатать диаграмму?
 html link to the current record	projectmanager	ru	HTML-ссылка на запись
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также будут удалены.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также изменят свое состояние.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	ru	Если диаграмма Ганта шире страницы, она будет обрезана.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ru	Если вы видите объекты (напр. {) в диаграмме Гантта, выключите.
 if you specify an export definition, it will be used when you export	projectmanager	ru	Если указать определение экспорта, оно будет использовано при последующем экспорте
 ignore that entry	projectmanager	ru	Игнорировать эту запись
@@ -211,6 +213,7 @@ mainproject only	projectmanager	ru	Только главный проект
 mainprojects	projectmanager	ru	Главные проекты
 manage mapping	projectmanager	ru	Управление отображениями
 members	projectmanager	ru	Участники
+milestone	projectmanager	ru	Веха
 milestone deleted	projectmanager	ru	Веха удалена.
 milestone saved	projectmanager	ru	Веха сохранена.
 milestones	projectmanager	ru	Вехи
@@ -253,12 +256,15 @@ planned time	projectmanager	ru	Запланированное время
 planned time in minutes	projectmanager	ru	Запланированное время в минутах
 planned times	projectmanager	ru	Запланированное время
 please download a recent version from %1 and install it in %2.	projectmanager	ru	Пожалуйста загрузите последнию версию из %1 и установите в %2
+pm_milestone	projectmanager	ru	Веха
 price	projectmanager	ru	Цена
 price / unit	projectmanager	ru	Цена за единицу
 price deleted	projectmanager	ru	Цена удалена.
 price per unit	projectmanager	ru	Цена за единицу
 price saved	projectmanager	ru	Цена сохранена.
 pricelist	projectmanager	ru	Прайс-лист
+progress	projectmanager	ru	Прогресс
+project	common	ru	Проект
 project access (e.g. public)	projectmanager	ru	Доступ к проекту, например, общий
 project availibility	projectmanager	ru	Доступность проекта
 project category	projectmanager	ru	Категория проекта
@@ -305,6 +311,7 @@ real start	projectmanager	ru	Фактический запуск
 real start date and time	projectmanager	ru	Фактическая дата и время старта
 remark	projectmanager	ru	Примечания
 replanned time in minutes	projectmanager	ru	Повторно запланированное время в минутах
+resize	projectmanager	ru	Изменить размер
 resources	projectmanager	ru	ресурсы
 role	projectmanager	ru	Роли
 role deleted	projectmanager	ru	Роль удалена
@@ -329,12 +336,12 @@ show planned times instead of the real times	projectmanager	ru	Показыва�
 show status icons of the datasources	projectmanager	ru	Показывать статус на источнике данных
 show the project selection as	projectmanager	ru	Показать выбор проекта как
 site configuration saved	projectmanager	ru	Конфигурация сохранена
-start after	projectmanager	ru	Запуск после
 start working on %1	projectmanager	ru	Начало работы %1
 start, end, category, ...	projectmanager	ru	Запуск,завершение,категории
 start- & enddate	projectmanager	ru	Дата запуска и завершения
 startdate	projectmanager	ru	Дата запуска
 startrecord	projectmanager	ru	Начальная запись
+status	projectmanager	ru	Статус
 status filter	projectmanager	ru	Фильтр статуса
 status set	projectmanager	ru	Состояние установлено
 style used for everything but elements. some fonts have only normal style.	projectmanager	ru	Стиль используется для всего за исключением элементов. Некоторые шрифты имеют только нормальный стиль.

@@ -96,7 +96,6 @@ elements which have to be finished before this can start	projectmanager	nl	Eleme
 empty	projectmanager	nl	Leeg
 empty for all	projectmanager	nl	leeg voor alle
 encode non-ascii	projectmanager	nl	Codeer niet-ASCII
-end before	projectmanager	nl	Einde voordat
 enddate	projectmanager	nl	Einddatum
 error: deleting price !!!	projectmanager	nl	Fout: tarief verwijderen !!!
 error: deleting project !!!	projectmanager	nl	Fout: project verwijderen !!!
@@ -135,13 +134,16 @@ general settings	projectmanager	nl	Algemene instellingen
 global categories	projectmanager	nl	Algemene categoriën
 h	projectmanager	nl	h
 health	projectmanager	nl	Gezondheid
+history logging and deleting of items	projectmanager	nl	Geschiedenis loggen en verwijderen van items
 hours	projectmanager	nl	uren
 hours per workday	projectmanager	nl	Uren per werkdag
 how long do you work on the given day.	projectmanager	nl	Hoe lang werkt u op de gegeven dag.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	nl	Hoe moet de project keuze in het menu worden weergegeven: een boomstructuur geeft een beter overzicht, een keuzelijst werkt sneller.
+how would you like to print the chart?	projectmanager	nl	Hoe wilt u de grafiek afdrukken?
 html link to the current record	projectmanager	nl	HTML link naar huidig record
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	nl	Indien aangevinkt worden de gegevensbronnen van de elementen (bijv. InfoLog records) ook verwijderd.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	nl	Indien aangevinkt worden de gegevensbronnen van de elementen (bijv. InfoLog records) ook van status veranderden.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	nl	Als het Gantt-diagram breder is dan de pagina, wordt het bijgesneden.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	nl	Indien u tekens (bijv. {) in de Ganttchart ziet, dit uitschakelen.
 if you specify an export definition, it will be used when you export	projectmanager	nl	Als u een export definitie kiest, zal deze worden gebruikt bij de export
 ignore that entry	projectmanager	nl	negeer die entry
@@ -161,6 +163,7 @@ mainproject only	projectmanager	nl	Uitsluitend hoofdproject
 mainprojects	projectmanager	nl	Hoofdprojecten
 manage mapping	projectmanager	nl	Beheer de mappings
 members	projectmanager	nl	Deelnemers
+milestone	projectmanager	nl	Mijlpaal
 milestone deleted	projectmanager	nl	Mijlpaal verwijderd
 milestone saved	projectmanager	nl	Mijlpaal opgeslagen
 milestones	projectmanager	nl	Mijlpalen
@@ -189,11 +192,13 @@ planned	projectmanager	nl	gepland
 planned time	projectmanager	nl	geplande tijd
 planned times	projectmanager	nl	Geplande tijden
 please download a recent version from %1 and install it in %2.	projectmanager	nl	Download a.u.b. een recente versie van %1 en installeer het in %2.
+pm_milestone	projectmanager	nl	Mijlpaal
 price	projectmanager	nl	Tarief
 price / unit	projectmanager	nl	Tarief / Eenheid
 price deleted	projectmanager	nl	Prijs verwijderd
 price saved	projectmanager	nl	Prijs bewaard
 pricelist	projectmanager	nl	Prijslijst
+progress	projectmanager	nl	Voortgang
 project availibility	projectmanager	nl	Project beschikbaarheid
 project deleted	projectmanager	nl	Project verwijderd
 project id	projectmanager	nl	Project ID
@@ -217,6 +222,7 @@ read access, no budget	projectmanager	nl	lees rechten, geen budget
 real end	projectmanager	nl	Werkelijke einde
 real start	projectmanager	nl	Werkelijke begin
 remark	projectmanager	nl	aandachtspunt
+resize	projectmanager	nl	Formaat wijzigen
 resources	projectmanager	nl	Bronnen
 role	projectmanager	nl	Rol
 role deleted	projectmanager	nl	Rol verwijderd
@@ -239,7 +245,6 @@ show planned times instead of the real times	projectmanager	nl	Toon geplande tij
 show status icons of the datasources	projectmanager	nl	Toon statuspictogrammen van de gegevensbronnen
 show the project selection as	projectmanager	nl	Toon de project keuze als
 site configuration saved	projectmanager	nl	Site configuratie bewaard
-start after	projectmanager	nl	Start na
 start working on %1	projectmanager	nl	Start met werken op %1
 start, end, category, ...	projectmanager	nl	Start, Eind, Categorie, ...
 start- & enddate	projectmanager	nl	Start- & Einddatum

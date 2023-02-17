@@ -5,6 +5,17 @@ csv-filename	projectmanager	ja	CSVファイル名
 custom fields	projectmanager	ja	カスタム項目
 fieldseparator	projectmanager	ja	項目の区切り
 global categories	projectmanager	ja	グローバルカテゴリ
+history logging and deleting of items	projectmanager	ja	履歴の記録と項目の削除
+how would you like to print the chart?	projectmanager	ja	チャートをどのように印刷しますか？
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	ja	ガントチャートの幅がページより大きい場合、トリミングされます。
 import	projectmanager	ja	インポート
+milestone	projectmanager	ja	マイルストーン
+milestone deleted	projectmanager	ja	マイルストーンが削除されました。
+milestone saved	projectmanager	ja	マイルストーンが保存されました。
+milestones	projectmanager	ja	マイルストーン
+milestones before this element has to be finished	projectmanager	ja	この要素が終了するまでのマイルストーン
 new	projectmanager	ja	新規作成
+pm_milestone	projectmanager	ja	マイルストーン
+progress	projectmanager	ja	進捗状況
+resize	projectmanager	ja	サイズ変更
 translation	projectmanager	ja	翻訳

@@ -19,10 +19,15 @@ existing links	projectmanager	el	Υπάρχοντες σύνδεσμοι
 fieldseparator	projectmanager	el	Διαχωριστής πεδίων
 general fields:	projectmanager	el	Γενικά πεδία:
 global categories	projectmanager	el	Παγκόσμιες κατηγορίες
+history logging and deleting of items	projectmanager	el	Καταγραφή ιστορικού και διαγραφή στοιχείων
 hours	projectmanager	el	Ωρες
+how would you like to print the chart?	projectmanager	el	Πώς θα θέλατε να εκτυπώσετε το διάγραμμα;
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	el	Εάν το διάγραμμα gantt έχει μεγαλύτερο πλάτος από τη σελίδα, θα περικοπεί.
 import	projectmanager	el	Εισαγωγή
 last modified	projectmanager	el	Τελευταία τροποποίηση
 links	projectmanager	el	Σύνδεσμοι
+milestone	projectmanager	el	Ορόσημο
+milestones	projectmanager	el	Ορόσημα
 modified	projectmanager	el	Τροποποιήθηκε
 modified by	projectmanager	el	Τροποποιήθηκε από
 new	projectmanager	el	Νέο
@@ -32,8 +37,10 @@ number of records to read (%1)	projectmanager	el	Αριθμός εγγραφών
 permission denied !!!	projectmanager	el	Άδεια απορρίπτεται !!!
 planned	projectmanager	el	προγραμματίστηκε
 planned time	projectmanager	el	ώρα σχεδίου
+pm_milestone	projectmanager	el	Ορόσημο
 price	projectmanager	el	Τιμή
 pricelist	projectmanager	el	Τιμοκατάλογος
+progress	projectmanager	el	Πρόοδος
 quantity	projectmanager	el	Ποσότητα
 remark	projectmanager	el	Ξαναμαρκάρετε
 resources	projectmanager	el	Πόροι

@@ -18,10 +18,14 @@ existing links	projectmanager	da	eksisterende links
 fieldseparator	projectmanager	da	Feltseperator
 global categories	projectmanager	da	Globale Kategorier
 h	projectmanager	da	h
+history logging and deleting of items	projectmanager	da	Logning af historik og sletning af emner
 hours	projectmanager	da	timer
+how would you like to print the chart?	projectmanager	da	Hvordan vil du gerne udskrive diagrammet?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	da	Hvis gantt-diagrammet er bredere end siden, vil det blive beskåret.
 import	projectmanager	da	Importer
 last modified	projectmanager	da	Sidst opdateret
 links	projectmanager	da	Links
+milestone	projectmanager	da	Milepæl
 modified	projectmanager	da	Modificeret
 modified by	projectmanager	da	Ændret af
 new	projectmanager	da	Ny
@@ -29,6 +33,8 @@ no details	projectmanager	da	Ingen detaljer
 number of records to read (%1)	projectmanager	da	Antal posteringer at læse (%1)
 planned	projectmanager	da	Planlagt
 planned time	projectmanager	da	Planlagt tid
+pm_milestone	projectmanager	da	Milepæl
+progress	projectmanager	da	Fremskridt
 remark	projectmanager	da	Bemærkning
 resources	projectmanager	da	Ressourcer
 startdate	projectmanager	da	Start dato

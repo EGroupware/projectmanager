@@ -125,7 +125,6 @@ elements which have to be finished before this can start	projectmanager	pt-br	El
 empty	projectmanager	pt-br	Vazio
 empty for all	projectmanager	pt-br	vazio para todos
 encode non-ascii	projectmanager	pt-br	Codificar não-ASCII
-end before	projectmanager	pt-br	Termina antes
 enddate	projectmanager	pt-br	Data Final
 error: deleting element role !!!	projectmanager	pt-br	Eliminação de erros papel elemento!
 error: deleting price !!!	projectmanager	pt-br	Erro: removendo preço !!!
@@ -169,13 +168,16 @@ general settings	projectmanager	pt-br	definições gerais
 global categories	projectmanager	pt-br	Categorias Globais
 h	projectmanager	pt-br	h
 health	projectmanager	pt-br	Saúde
+history logging and deleting of items	projectmanager	pt-br	Registro de histórico e exclusão de itens
 hours	projectmanager	pt-br	horas
 hours per workday	projectmanager	pt-br	Horas por dias de trabalho
 how long do you work on the given day.	projectmanager	pt-br	Quanto tempo você trabalha em um dado dia.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pt-br	Como a seleção de projeto deverá ser exibida no menu: Uma árvore dá uma melhor visão; uma caixa de seleção pode ter uma melhor performance.
+how would you like to print the chart?	projectmanager	pt-br	Como você gostaria de imprimir a tabela?
 html link to the current record	projectmanager	pt-br	Link HTML para o registro atual
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) são removidas também.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) terão seus status alterados também.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	pt-br	Se o gráfico de Gantt for mais largo que a página, ele será recortado.
 if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se você ver entidades (exemplo: {) no gráfico de Gantt, desabilite-o.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
@@ -195,6 +197,7 @@ mainproject only	projectmanager	pt-br	Apenas projeto Principal
 mainprojects	projectmanager	pt-br	Projetos principais
 manage mapping	projectmanager	pt-br	Gerenciar mapeamento
 members	projectmanager	pt-br	Membros
+milestone	projectmanager	pt-br	Marcos
 milestone deleted	projectmanager	pt-br	Marco removido
 milestone saved	projectmanager	pt-br	Marco salvo
 milestones	projectmanager	pt-br	Marcos
@@ -239,12 +242,15 @@ planned time	projectmanager	pt-br	Horas planejadas
 planned time in minutes	projectmanager	pt-br	Planejado tempo em minutos
 planned times	projectmanager	pt-br	Horas planejadas
 please download a recent version from %1 and install it in %2.	projectmanager	pt-br	Por favor, faça o download de uma versão recente de %1 e instale-a em %2.
+pm_milestone	projectmanager	pt-br	Marcos
 price	projectmanager	pt-br	Preço
 price / unit	projectmanager	pt-br	Preço / Unidade
 price deleted	projectmanager	pt-br	Preço removido
 price per unit	projectmanager	pt-br	Preço por unidade
 price saved	projectmanager	pt-br	Price salvo
 pricelist	projectmanager	pt-br	Lista de preços
+progress	projectmanager	pt-br	Progresso
+project	common	pt-br	Projeto
 project access (e.g. public)	projectmanager	pt-br	Projeto acesso, por exemplo, público
 project availibility	projectmanager	pt-br	Disponibilidade para projeto
 project category	projectmanager	pt-br	categoria Projeto
@@ -291,6 +297,7 @@ real start	projectmanager	pt-br	Início real
 real start date and time	projectmanager	pt-br	Data final do real e do tempo
 remark	projectmanager	pt-br	Destaque
 replanned time in minutes	projectmanager	pt-br	Tempo re-planejado em minutos
+resize	projectmanager	pt-br	Redimensionar
 resources	projectmanager	pt-br	Recursos
 role	projectmanager	pt-br	Perfil
 role deleted	projectmanager	pt-br	Perfil removido
@@ -318,7 +325,6 @@ show planned times instead of the real times	projectmanager	pt-br	Mostra horas p
 show status icons of the datasources	projectmanager	pt-br	Mostra ícones de estado das origens de dados
 show the project selection as	projectmanager	pt-br	Exibir a seleção do projeto como
 site configuration saved	projectmanager	pt-br	Configuração do site salva
-start after	projectmanager	pt-br	Começar depois
 start date, end date	projectmanager	pt-br	Data de Início, Data Fim
 start working on %1	projectmanager	pt-br	Iniciando o trabalho em %1
 start, end, category, ...	projectmanager	pt-br	Início, Fim, Categoria, ...

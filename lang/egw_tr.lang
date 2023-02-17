@@ -11,13 +11,26 @@ empty for all	projectmanager	tr	Tamam? için bo?
 enddate	projectmanager	tr	BitişTarih
 fieldseparator	projectmanager	tr	Alan ayrac?
 global categories	projectmanager	tr	Genel kategoriler
+history logging and deleting of items	projectmanager	tr	Geçmiş kaydı ve öğelerin silinmesi
 hours	projectmanager	tr	saat
+how would you like to print the chart?	projectmanager	tr	Grafiği nasıl yazdırmak istersiniz?
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	tr	Gantt grafiği sayfadan daha genişse kırpılacaktır.
 import	projectmanager	tr	?thal Et
+milestone	projectmanager	tr	Kilometre taşı
+milestone deleted	projectmanager	tr	Kilometre taşı silindi.
+milestone saved	projectmanager	tr	Kilometre taşı kaydedildi.
+milestones	projectmanager	tr	Kilometre Taşları
+milestones before this element has to be finished	projectmanager	tr	Bu öğenin tamamlanmasından önceki kilometre taşları
 modified	projectmanager	tr	Değiştirilmiş
 new	projectmanager	tr	Yeni
 number of records to read (%1)	projectmanager	tr	Okunacak kay?t say?s? (1%)
+pm_milestone	projectmanager	tr	Kilometre taşı
+progress	projectmanager	tr	İlerleme
+projects	common	tr	Projeler
+resize	projectmanager	tr	Yeniden Boyutlandır
 startdate	projectmanager	tr	Başlangıç tarihi
 startrecord	projectmanager	tr	Kaydetmeye ba?la
+status	projectmanager	tr	Durum
 test import (show importable records <u>only</u> in browser)	projectmanager	tr	?thal test (?thal edilebilecek ba?lant?lar? <u>sadece</u> görüntüle.
 times	projectmanager	tr	Kere
 to many might exceed your execution-time-limit	projectmanager	tr	çok fazlas? execution-time-limit'inizi a?abilir!
