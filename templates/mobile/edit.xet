@@ -233,30 +233,27 @@
 					<et2-textbox  id="pm_title" maxlength="255" tabindex="1" span="all" placeholder="Title" required="1"></et2-textbox>
 				</row>
 				<row>
-					<et2-vbox  id="tabs" span="all" width="100%">
-						<et2-details  id="general" summary="General" title="Start, End, Category, ...">
-							<template id="projectmanager.edit.general"/>
-						</et2-details>
-						<et2-details  id="description" summary="Description" title="free descriptiv text">
-							<template id="projectmanager.edit.description"/>
-						</et2-details>
-						<et2-details  id="members" summary="Members" title="Project members and roles">
-							<template id="projectmanager.edit.members"/>
-						</et2-details>
-						<et2-details  id="accounting" summary="Accounting" title="Accounting options">
-							<template id="projectmanager.edit.accounting"/>
-						</et2-details>
-						<et2-details  id="custom" summary="Custom" title="Custom fields">
-							<template id="projectmanager.edit.custom"/>
-						</et2-details>
-						<et2-details  id="links" summary="Links" title="Linked elements">
-							<template id="projectmanager.edit.links"/>
-						</et2-details>
-						<et2-details  id="ownership" summary="Ownership" title="Ownership">
-							<template id="projectmanager.edit.ownership"/>
-						</et2-details>
-					</et2-vbox>
-				</row>
+                    <et2-tabbox id="tabs" span="all">
+                        <tabs>
+                            <tab id="general" label="General" statustext="Start, End, Category, ..."/>
+                            <tab id="description" label="Description" statustext="free descriptiv text"/>
+                            <tab id="members" label="Members" statustext="Project members and roles"/>
+                            <tab id="accounting" label="Accounting" statustext="Accounting options"/>
+                            <tab id="custom" label="Custom" statustext="Custom fields"/>
+                            <tab id="links" label="Links" statustext="Linked elements"/>
+                            <tab id="ownership" label="Ownership"/>
+                        </tabs>
+                        <tabpanels>
+                            <template id="projectmanager.edit.general"/>
+                            <template id="projectmanager.edit.description"/>
+                            <template id="projectmanager.edit.members"/>
+                            <template id="projectmanager.edit.accounting"/>
+                            <template id="projectmanager.edit.custom"/>
+                            <template id="projectmanager.edit.links"/>
+                            <template id="projectmanager.edit.ownership"/>
+                        </tabpanels>
+                    </et2-tabbox>
+                </row>
 			</rows>
 		</grid>
 	</template>
