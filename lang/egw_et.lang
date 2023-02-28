@@ -8,6 +8,13 @@ csv-filename	projectmanager	et	CSV-Failinimi
 csv-import	common	et	CSV-Impirt
 days	projectmanager	et	päeva
 deleted	projectmanager	et	kustutatud
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	et	Kas soovite teateid, kui objektid on algamas vastavalt nende kavandatud kuupäevadele?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	et	Kas soovite teateid, kui objektid on algamas vastavalt nende tegelikele kuupäevadele?
+do you want a notification, if items are due according to their planned dates?	projectmanager	et	Kas soovite teateid, kui objektide tähtaeg on kavandatud kuupäevade kohaselt saabunud?
+do you want a notification, if items are due according to their real dates?	projectmanager	et	Kas soovite teateid, kui objektide tähtaeg on nende tegelik kuupäev?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	et	Kas soovite teateid, kui teile määratakse objekte või kui määratud objekte ajakohastatakse?
+do you want a notification, if items you created get updated?	projectmanager	et	Kas soovite teateid, kui teie loodud objekte uuendatakse?
+document merge	projectmanager	et	Dokumendi täitmine
 empty for all	projectmanager	et	tühi kõigijaoks
 enddate	projectmanager	et	Lõpukuupäev
 existing links	projectmanager	et	Eksisteerivad lingid
@@ -33,6 +40,12 @@ price	projectmanager	et	Hind
 progress	projectmanager	et	Progress
 projects	common	et	Projektid
 quantity	projectmanager	et	Kogus
+receive notifications about due entries (planned dates)	projectmanager	et	saada teateid tähtaegsete kirjete kohta (kavandatud kuupäevad)
+receive notifications about due entries (real dates)	projectmanager	et	Saate teateid tähtajaliste kirjete kohta (tegelikud kuupäevad)
+receive notifications about items assigned to you with these roles	projectmanager	et	Saate teateid nende rollidega teile määratud kirjete kohta
+receive notifications about own items	projectmanager	et	Saate teateid oma kirjete kohta
+receive notifications about starting entries (planned dates)	projectmanager	et	Saate teateid alustavate kirjete kohta (kavandatud kuupäevad)
+receive notifications about starting entries (real dates)	projectmanager	et	Saate teateid alustavate kirjete kohta (tegelikud kuupäevad)
 resources	projectmanager	et	Resursid
 select a project	projectmanager	et	Vali Projekt
 startdate	projectmanager	et	Algus kuupäev

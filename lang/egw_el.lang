@@ -13,6 +13,13 @@ csv-import	common	el	CSV-Εισαγωγή
 custom fields	projectmanager	el	Προσαρμοσμένα πεδία
 days	projectmanager	el	ημέρες
 deleted	projectmanager	el	διεγράφη
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	el	Θέλετε μια ειδοποίηση, εάν τα αντικείμενα πρόκειται να ξεκινήσουν σύμφωνα με τις προγραμματισμένες ημερομηνίες τους;
+do you want a notification, if items are about to start according to their real dates?	projectmanager	el	Θέλετε μια ειδοποίηση, αν τα αντικείμενα πρόκειται να ξεκινήσουν σύμφωνα με τις πραγματικές ημερομηνίες τους;
+do you want a notification, if items are due according to their planned dates?	projectmanager	el	Θέλετε μια ειδοποίηση, αν τα αντικείμενα λήγουν σύμφωνα με τις προγραμματισμένες ημερομηνίες τους;
+do you want a notification, if items are due according to their real dates?	projectmanager	el	Θέλετε μια ειδοποίηση, αν τα αντικείμενα είναι ληξιπρόθεσμα σύμφωνα με τις πραγματικές τους ημερομηνίες;
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	el	Θέλετε μια ειδοποίηση, εάν σας ανατίθενται αντικείμενα ή εάν ενημερώνονται τα αντικείμενα που σας έχουν ανατεθεί;
+do you want a notification, if items you created get updated?	projectmanager	el	Θέλετε μια ειδοποίηση, αν τα αντικείμενα που δημιουργήσατε ενημερωθούν;
+document merge	projectmanager	el	Συμπλήρωση εγγράφων
 empty for all	projectmanager	el	Κενό για όλα
 enddate	projectmanager	el	Τελος ημερομηνίας
 existing links	projectmanager	el	Υπάρχοντες σύνδεσμοι
@@ -42,6 +49,12 @@ price	projectmanager	el	Τιμή
 pricelist	projectmanager	el	Τιμοκατάλογος
 progress	projectmanager	el	Πρόοδος
 quantity	projectmanager	el	Ποσότητα
+receive notifications about due entries (planned dates)	projectmanager	el	Λάβετε ειδοποιήσεις σχετικά με τις καταχωρήσεις που πρέπει να γίνουν (προγραμματισμένες ημερομηνίες)
+receive notifications about due entries (real dates)	projectmanager	el	Λήψη ειδοποιήσεων σχετικά με ληξιπρόθεσμες καταχωρήσεις (πραγματικές ημερομηνίες)
+receive notifications about items assigned to you with these roles	projectmanager	el	Λήψη ειδοποιήσεων για στοιχεία που σας έχουν ανατεθεί με αυτούς τους ρόλους
+receive notifications about own items	projectmanager	el	Λήψη ειδοποιήσεων για δικά σας αντικείμενα
+receive notifications about starting entries (planned dates)	projectmanager	el	Λήψη ειδοποιήσεων για αρχικές καταχωρήσεις (προγραμματισμένες ημερομηνίες)
+receive notifications about starting entries (real dates)	projectmanager	el	Λήψη ειδοποιήσεων για αρχικές καταχωρήσεις (πραγματικές ημερομηνίες)
 remark	projectmanager	el	Ξαναμαρκάρετε
 resources	projectmanager	el	Πόροι
 role	projectmanager	el	Ρόλος

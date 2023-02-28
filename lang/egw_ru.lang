@@ -309,6 +309,12 @@ real end	projectmanager	ru	Завершено
 real end date and time	projectmanager	ru	Фактическая дата и время завершения
 real start	projectmanager	ru	Фактический запуск
 real start date and time	projectmanager	ru	Фактическая дата и время старта
+receive notifications about due entries (planned dates)	projectmanager	ru	Получение уведомлений о подлежащих внесению записях (запланированные даты)
+receive notifications about due entries (real dates)	projectmanager	ru	Получать уведомления о подлежащих исполнению записях (реальные даты)
+receive notifications about items assigned to you with these roles	projectmanager	ru	Получайте уведомления о предметах, назначенных вам с этими ролями
+receive notifications about own items	projectmanager	ru	Получать уведомления о собственных элементах
+receive notifications about starting entries (planned dates)	projectmanager	ru	Получать уведомления о начальных записях (запланированные даты)
+receive notifications about starting entries (real dates)	projectmanager	ru	Получать уведомления о начальных записях (реальные даты)
 remark	projectmanager	ru	Примечания
 replanned time in minutes	projectmanager	ru	Повторно запланированное время в минутах
 resize	projectmanager	ru	Изменить размер

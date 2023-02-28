@@ -207,6 +207,12 @@ read access, incl. budget and adding elements	projectmanager	hu	olvasási (bele�
 read access, no budget	projectmanager	hu	olvasási (költségvetés nélkül) jogosultság
 real end	projectmanager	hu	Tényleges befejezés
 real start	projectmanager	hu	Tényleges indulás
+receive notifications about due entries (planned dates)	projectmanager	hu	Értesítések fogadása az esedékes bejegyzésekről (tervezett időpontok)
+receive notifications about due entries (real dates)	projectmanager	hu	Értesítések fogadása az esedékes bejegyzésekről (valós dátumok)
+receive notifications about items assigned to you with these roles	projectmanager	hu	Értesítések fogadása az ilyen szerepkörökkel hozzárendelt tételekről
+receive notifications about own items	projectmanager	hu	Értesítések fogadása saját tételekről
+receive notifications about starting entries (planned dates)	projectmanager	hu	Értesítések fogadása a kezdő bejegyzésekről (tervezett időpontok)
+receive notifications about starting entries (real dates)	projectmanager	hu	Értesítések fogadása a kezdő bejegyzésekről (valós dátumok)
 remark	projectmanager	hu	Megjegyzés
 resize	projectmanager	hu	Méretváltoztatás
 resources	projectmanager	hu	Erőforrások

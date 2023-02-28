@@ -214,6 +214,12 @@ read access, incl. budget and adding elements	projectmanager	pl	dostęp do odczy
 read access, no budget	projectmanager	pl	dostęp do odczytu, bez budżetu
 real end	projectmanager	pl	Rzeczywisty koniec
 real start	projectmanager	pl	Rzeczywisty początek
+receive notifications about due entries (planned dates)	projectmanager	pl	Otrzymuj powiadomienia o wpisach do zapłaty (planowane daty)
+receive notifications about due entries (real dates)	projectmanager	pl	Otrzymywać powiadomienia o wpisach do zapłaty (daty rzeczywiste)
+receive notifications about items assigned to you with these roles	projectmanager	pl	Otrzymywać powiadomienia o elementach przypisanych do Ciebie za pomocą tych ról
+receive notifications about own items	projectmanager	pl	Otrzymywać powiadomienia o własnych pozycjach
+receive notifications about starting entries (planned dates)	projectmanager	pl	Otrzymuj powiadomienia o wpisach początkowych (planowane daty)
+receive notifications about starting entries (real dates)	projectmanager	pl	Otrzymywanie powiadomień o rozpoczęciu wpisów (daty rzeczywiste)
 remark	projectmanager	pl	Przypomnienie
 resources	projectmanager	pl	Zasoby
 role	projectmanager	pl	Rola

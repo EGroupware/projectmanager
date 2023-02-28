@@ -49,6 +49,13 @@ delete all checked projects	projectmanager	lv	Dzēst visus pārbaudītos projekt
 delete this project	projectmanager	lv	Dzēst šo projektu
 delete this role	projectmanager	lv	Dzēst šo lomu
 deleted	projectmanager	lv	Izdzēsts
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	lv	Vai vēlaties saņemt paziņojumu, ja preces drīz sāksies atbilstoši plānotajam datumam?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	lv	Vai vēlaties saņemt paziņojumu, ja preces drīz sāksies atbilstoši to reālajiem datumiem?
+do you want a notification, if items are due according to their planned dates?	projectmanager	lv	Vai vēlaties saņemt paziņojumu, ja preces ir jāsamaksā saskaņā ar plānotajiem datumiem?
+do you want a notification, if items are due according to their real dates?	projectmanager	lv	Vai vēlaties saņemt paziņojumu, ja preces ir jāsaņem atbilstoši to reālajiem datumiem?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	lv	Vai vēlaties saņemt paziņojumu, ja jums tiek piešķirti priekšmeti vai tiek atjaunināti piešķirtie priekšmeti?
+do you want a notification, if items you created get updated?	projectmanager	lv	Vai vēlaties saņemt paziņojumu, ja tiek atjaunināti jūsu izveidotie vienumi?
+document merge	projectmanager	lv	Dokumentu aizpildīšana
 done (100%)	projectmanager	lv	Izdarīts(100%)
 edit access, incl. editing budget and elements	projectmanager	lv	rediģēšanas pieeja, iekļaujot budžeta un elementu rediģēšanu
 edit budget	projectmanager	lv	Rediģēt budžetu
@@ -142,6 +149,12 @@ read access, incl. budget and adding elements	projectmanager	lv	lasīšanas piee
 read access, no budget	projectmanager	lv	lasīsanas pieeja, bez budžeta
 real end	projectmanager	lv	Rālas eigas
 real start	projectmanager	lv	Reālais sākums
+receive notifications about due entries (planned dates)	projectmanager	lv	Paziņojumu saņemšana par veicamajiem ierakstiem (plānotie datumi)
+receive notifications about due entries (real dates)	projectmanager	lv	Saņemt paziņojumus par veicamajiem ierakstiem (īstie datumi)
+receive notifications about items assigned to you with these roles	projectmanager	lv	Saņemt paziņojumus par posteņiem, kas jums piešķirti ar šīm lomām
+receive notifications about own items	projectmanager	lv	Saņemt paziņojumus par saviem posteņiem
+receive notifications about starting entries (planned dates)	projectmanager	lv	Saņemt paziņojumus par sāktiem ierakstiem (plānotie datumi)
+receive notifications about starting entries (real dates)	projectmanager	lv	Saņemt paziņojumus par ierakstu sākšanu (īstie datumi)
 remark	projectmanager	lv	Piezīme
 resize	projectmanager	lv	Mainīt izmēru
 resources	projectmanager	lv	resursi

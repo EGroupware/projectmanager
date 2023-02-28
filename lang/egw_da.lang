@@ -12,6 +12,13 @@ csv-import	common	da	CSV-Import
 custom fields	projectmanager	da	Valgfri Felter
 days	projectmanager	da	dage
 deleted	projectmanager	da	slettet
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	da	Ønsker du en meddelelse, hvis emnerne er ved at starte i henhold til deres planlagte datoer?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	da	Ønsker du en meddelelse, hvis varer er ved at starte på deres faktiske datoer?
+do you want a notification, if items are due according to their planned dates?	projectmanager	da	Ønsker du en meddelelse, hvis varer forfalder til betaling i henhold til deres planlagte datoer?
+do you want a notification, if items are due according to their real dates?	projectmanager	da	Ønsker du en meddelelse, hvis varer forfalder til betaling på deres faktiske datoer?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	da	Ønsker du en meddelelse, hvis du får tildelt elementer eller hvis de tildelte elementer opdateres?
+do you want a notification, if items you created get updated?	projectmanager	da	Ønsker du en meddelelse, hvis emner, som du har oprettet, bliver opdateret?
+document merge	projectmanager	da	Udfyldning af dokumenter
 empty for all	projectmanager	da	tøm for alt
 enddate	projectmanager	da	Slutdato
 existing links	projectmanager	da	eksisterende links
@@ -35,6 +42,12 @@ planned	projectmanager	da	Planlagt
 planned time	projectmanager	da	Planlagt tid
 pm_milestone	projectmanager	da	Milepæl
 progress	projectmanager	da	Fremskridt
+receive notifications about due entries (planned dates)	projectmanager	da	Modtag meddelelser om forfaldne poster (planlagte datoer)
+receive notifications about due entries (real dates)	projectmanager	da	Modtag meddelelser om forfaldne posteringer (faktiske datoer)
+receive notifications about items assigned to you with these roles	projectmanager	da	Modtag meddelelser om poster, der er tildelt dig med disse roller
+receive notifications about own items	projectmanager	da	Modtage meddelelser om egne poster
+receive notifications about starting entries (planned dates)	projectmanager	da	Modtag meddelelser om påbegyndte posteringer (planlagte datoer)
+receive notifications about starting entries (real dates)	projectmanager	da	Modtag meddelelser om startposter (reelle datoer)
 remark	projectmanager	da	Bemærkning
 resources	projectmanager	da	Ressourcer
 startdate	projectmanager	da	Start dato

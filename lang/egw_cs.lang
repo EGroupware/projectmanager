@@ -108,8 +108,15 @@ details of cumulated	projectmanager	cs	Detaily kumulovaných
 details of subelements	projectmanager	cs	Detaily dílčích součástí
 directory with documents to insert project data	projectmanager	cs	Složka s dokumenty pro vložení informací o projektu
 do not use that entry as project-element	projectmanager	cs	nepoužívat tento záznam jako součást projektu
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	cs	Chcete, aby vám bylo zasláno upozornění, pokud se položky začnou plnit podle plánovaných termínů?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	cs	Chcete oznámení, pokud se položky chystají začít podle svých skutečných termínů?
+do you want a notification, if items are due according to their planned dates?	projectmanager	cs	Chcete oznámení, pokud jsou položky splatné podle jejich plánovaných termínů?
+do you want a notification, if items are due according to their real dates?	projectmanager	cs	Chcete oznámení, pokud jsou položky splatné podle jejich skutečných dat?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	cs	Chcete upozornění, pokud vám budou přiřazeny položky nebo aktualizovány přiřazené položky?
+do you want a notification, if items you created get updated?	projectmanager	cs	Chcete oznámení, pokud se aktualizují vámi vytvořené položky?
 document '%1' does not exist or is not readable for you!	projectmanager	cs	Dokument '%1' neexistuje nebo nemáte oprávnění k jeho čtení!
 document download filename	projectmanager	cs	Jméno pro stažený dokument
+document merge	projectmanager	cs	Vyplňování dokumentů
 don't break into subdirectories	projectmanager	cs	Nerozdělujte se do podsložek
 done (100%)	projectmanager	cs	Hotovo (100%)
 edit access, incl. editing budget and elements	projectmanager	cs	Změnit oprávnění k úpravám, včetně úprav rozpočtu a součástí
@@ -348,6 +355,12 @@ real end	projectmanager	cs	Skutečný konec
 real end date and time	projectmanager	cs	Skutečné datum a čas konce
 real start	projectmanager	cs	Skutečný začátek
 real start date and time	projectmanager	cs	Skutečné datum a čas začátku
+receive notifications about due entries (planned dates)	projectmanager	cs	Přijímání upozornění o splatných položkách (plánovaných termínech)
+receive notifications about due entries (real dates)	projectmanager	cs	Přijímání oznámení o splatných položkách (skutečná data)
+receive notifications about items assigned to you with these roles	projectmanager	cs	Přijímat oznámení o položkách, které vám byly přiřazeny pomocí těchto rolí
+receive notifications about own items	projectmanager	cs	Přijímat oznámení o vlastních položkách
+receive notifications about starting entries (planned dates)	projectmanager	cs	Přijímat oznámení o začínajících položkách (plánovaná data)
+receive notifications about starting entries (real dates)	projectmanager	cs	Přijímat oznámení o zahájení záznamů (skutečná data)
 remark	projectmanager	cs	Poznámka
 replanned time in minutes	projectmanager	cs	Přeplánovaný čas v minutách
 resize	projectmanager	cs	Změna velikosti

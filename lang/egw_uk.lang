@@ -30,6 +30,12 @@ number of records to read (%1)	projectmanager	uk	Кількість записі
 pm_milestone	projectmanager	uk	Віха
 progress	projectmanager	uk	Прогрес
 projects	common	uk	Проекти
+receive notifications about due entries (planned dates)	projectmanager	uk	Отримувати сповіщення про надходження платежів (заплановані дати)
+receive notifications about due entries (real dates)	projectmanager	uk	Отримувати сповіщення про надходження (реальні дати)
+receive notifications about items assigned to you with these roles	projectmanager	uk	Отримувати сповіщення про об'єкти, призначені вам з цими ролями
+receive notifications about own items	projectmanager	uk	Отримувати сповіщення про власні об'єкти
+receive notifications about starting entries (planned dates)	projectmanager	uk	Отримувати сповіщення про нові записи (заплановані дати)
+receive notifications about starting entries (real dates)	projectmanager	uk	Отримувати сповіщення про нові записи (реальні дати)
 remark	projectmanager	uk	Ремарка
 resize	projectmanager	uk	Змінити розмір
 startdate	projectmanager	uk	Число початку

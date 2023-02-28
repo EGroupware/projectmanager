@@ -187,6 +187,12 @@ read access, incl. budget and adding elements	projectmanager	sv	läsrättighet, 
 read access, no budget	projectmanager	sv	läsrättighet, för utom budget
 real end	projectmanager	sv	Faktiskt avslut
 real start	projectmanager	sv	Faktiskt påbörjad
+receive notifications about due entries (planned dates)	projectmanager	sv	Få meddelanden om förfallna poster (planerade datum)
+receive notifications about due entries (real dates)	projectmanager	sv	Ta emot meddelanden om förfallna poster (verkliga datum)
+receive notifications about items assigned to you with these roles	projectmanager	sv	Ta emot meddelanden om objekt som tilldelats dig med dessa roller
+receive notifications about own items	projectmanager	sv	Ta emot meddelanden om egna objekt
+receive notifications about starting entries (planned dates)	projectmanager	sv	Ta emot meddelanden om påbörjade poster (planerade datum)
+receive notifications about starting entries (real dates)	projectmanager	sv	Ta emot meddelanden om påbörjade poster (verkliga datum)
 remark	projectmanager	sv	Anmärkning
 resize	projectmanager	sv	Ändra storlek
 resources	projectmanager	sv	Resurser

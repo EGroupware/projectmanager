@@ -221,6 +221,12 @@ read access, incl. budget and adding elements	projectmanager	nl	lees rechten, in
 read access, no budget	projectmanager	nl	lees rechten, geen budget
 real end	projectmanager	nl	Werkelijke einde
 real start	projectmanager	nl	Werkelijke begin
+receive notifications about due entries (planned dates)	projectmanager	nl	Ontvang meldingen over te verwachten items (geplande data)
+receive notifications about due entries (real dates)	projectmanager	nl	Ontvang meldingen over te verwachten items (echte data)
+receive notifications about items assigned to you with these roles	projectmanager	nl	Ontvang meldingen over items die aan u zijn toegewezen met deze rollen
+receive notifications about own items	projectmanager	nl	Ontvang meldingen over eigen items
+receive notifications about starting entries (planned dates)	projectmanager	nl	Ontvang meldingen over beginnende items (geplande data)
+receive notifications about starting entries (real dates)	projectmanager	nl	Ontvang meldingen over startende items (echte data)
 remark	projectmanager	nl	aandachtspunt
 resize	projectmanager	nl	Formaat wijzigen
 resources	projectmanager	nl	Bronnen

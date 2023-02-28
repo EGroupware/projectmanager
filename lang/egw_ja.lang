@@ -3,6 +3,13 @@ actions	projectmanager	ja	動作
 created	projectmanager	ja	作成
 csv-filename	projectmanager	ja	CSVファイル名
 custom fields	projectmanager	ja	カスタム項目
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	ja	予定された日付で項目が開始されようとしている場合、通知を受けたいですか？
+do you want a notification, if items are about to start according to their real dates?	projectmanager	ja	項目が実際の日付に従って開始されようとしている場合、通知を受けたいですか？
+do you want a notification, if items are due according to their planned dates?	projectmanager	ja	予定された日付にアイテムがある場合、通知を受けたいですか？
+do you want a notification, if items are due according to their real dates?	projectmanager	ja	項目が実際の日付で期限切れになった場合、通知が必要ですか？
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	ja	アイテムがあなたに割り当てられたり、割り当てられたアイテムが更新された場合、通知が必要ですか？
+do you want a notification, if items you created get updated?	projectmanager	ja	自分が作成したアイテムが更新された場合、通知を受けたいですか？
+document merge	projectmanager	ja	ドキュメントの記入
 fieldseparator	projectmanager	ja	項目の区切り
 global categories	projectmanager	ja	グローバルカテゴリ
 history logging and deleting of items	projectmanager	ja	履歴の記録と項目の削除
@@ -17,5 +24,11 @@ milestones before this element has to be finished	projectmanager	ja	この要素
 new	projectmanager	ja	新規作成
 pm_milestone	projectmanager	ja	マイルストーン
 progress	projectmanager	ja	進捗状況
+receive notifications about due entries (planned dates)	projectmanager	ja	応募締切日（予定日）のお知らせを受け取る
+receive notifications about due entries (real dates)	projectmanager	ja	期限切れ（実日付）の通知を受け取る
+receive notifications about items assigned to you with these roles	projectmanager	ja	このロールで割り当てられたアイテムの通知を受け取る
+receive notifications about own items	projectmanager	ja	自分のアイテムの通知を受け取る
+receive notifications about starting entries (planned dates)	projectmanager	ja	開始日（予定日）の通知を受け取る
+receive notifications about starting entries (real dates)	projectmanager	ja	開始日（実日付）の通知を受け取る
 resize	projectmanager	ja	サイズ変更
 translation	projectmanager	ja	翻訳

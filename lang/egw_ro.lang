@@ -8,4 +8,10 @@ milestones before this element has to be finished	projectmanager	ro	Milestones b
 pm_milestone	projectmanager	ro	Etapa de referință
 progress	projectmanager	ro	Progres
 project	common	ro	Proiect
+receive notifications about due entries (planned dates)	projectmanager	ro	Primiți notificări despre intrările scadente (date planificate)
+receive notifications about due entries (real dates)	projectmanager	ro	Primiți notificări despre intrările scadente (date reale)
+receive notifications about items assigned to you with these roles	projectmanager	ro	Primiți notificări cu privire la elementele care vă sunt atribuite cu aceste roluri
+receive notifications about own items	projectmanager	ro	Primiți notificări cu privire la propriile elemente
+receive notifications about starting entries (planned dates)	projectmanager	ro	Primiți notificări despre intrările care încep (date planificate)
+receive notifications about starting entries (real dates)	projectmanager	ro	Primiți notificări despre intrările care încep (date reale)
 resize	projectmanager	ro	Redimensionați
