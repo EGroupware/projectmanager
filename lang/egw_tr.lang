@@ -27,6 +27,12 @@ number of records to read (%1)	projectmanager	tr	Okunacak kay?t say?s? (1%)
 pm_milestone	projectmanager	tr	Kilometre taşı
 progress	projectmanager	tr	İlerleme
 projects	common	tr	Projeler
+receive notifications about due entries (planned dates)	projectmanager	tr	Son girişler (planlanan tarihler) hakkında bildirimler alın
+receive notifications about due entries (real dates)	projectmanager	tr	Son girişler hakkında bildirimler alın (gerçek tarihler)
+receive notifications about items assigned to you with these roles	projectmanager	tr	Bu rollerle size atanan öğeler hakkında bildirimler alın
+receive notifications about own items	projectmanager	tr	Kendi öğeleriniz hakkında bildirimler alın
+receive notifications about starting entries (planned dates)	projectmanager	tr	Başlangıç girişleri hakkında bildirimler alın (planlanan tarihler)
+receive notifications about starting entries (real dates)	projectmanager	tr	Başlangıç girişleri hakkında bildirimler alın (gerçek tarihler)
 resize	projectmanager	tr	Yeniden Boyutlandır
 startdate	projectmanager	tr	Başlangıç tarihi
 startrecord	projectmanager	tr	Kaydetmeye ba?la

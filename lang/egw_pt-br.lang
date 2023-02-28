@@ -295,6 +295,12 @@ real end	projectmanager	pt-br	Fim real
 real end date and time	projectmanager	pt-br	Data final do real e do tempo
 real start	projectmanager	pt-br	Início real
 real start date and time	projectmanager	pt-br	Data final do real e do tempo
+receive notifications about due entries (planned dates)	projectmanager	pt-br	Receber notificações sobre as entradas devidas (datas planejadas)
+receive notifications about due entries (real dates)	projectmanager	pt-br	Receber notificações sobre as entradas vencidas (datas reais)
+receive notifications about items assigned to you with these roles	projectmanager	pt-br	Receber notificações sobre itens atribuídos a você com estas funções
+receive notifications about own items	projectmanager	pt-br	Receber notificações sobre itens próprios
+receive notifications about starting entries (planned dates)	projectmanager	pt-br	Receber notificações sobre as entradas iniciais (datas planejadas)
+receive notifications about starting entries (real dates)	projectmanager	pt-br	Receber notificações sobre as entradas iniciais (datas reais)
 remark	projectmanager	pt-br	Destaque
 replanned time in minutes	projectmanager	pt-br	Tempo re-planejado em minutos
 resize	projectmanager	pt-br	Redimensionar

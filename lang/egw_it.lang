@@ -114,6 +114,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	it	Hai bisogno di una notifica quando voci che hai creato tu vengono modificate?
 document '%1' does not exist or is not readable for you!	projectmanager	it	Il documento '%1' non esiste o non è leggibile da te!
 document download filename	projectmanager	it	Nom file documento scaricato
+document merge	projectmanager	it	Riempimento dei documenti
 done (100%)	projectmanager	it	Completato (100%)
 edit access, incl. editing budget and elements	projectmanager	it	modifica accesso, incl. modifica budget ed elementi
 edit budget	projectmanager	it	Modifica budget
@@ -211,6 +212,7 @@ hours	projectmanager	it	ore
 hours per workday	projectmanager	it	Ore per giorno lavorativo
 how long do you work on the given day.	projectmanager	it	Quanto lavori il dato giorno.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	it	Come deve essere visualizzata la selezione progetti nel menù: un albero dà un quadro d'insieme migliore, una selectbox può avere prestazioni migliori.
+how would you like to print the chart?	projectmanager	it	Come si desidera stampare il grafico?
 html link to the current record	projectmanager	it	Collegamento HTML al record attuale
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	it	Se selezionato, verrano eliminate anche le sorgenti di elemento, p.es. schede attività
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	it	Se selezionato, verrà aggiornato lo stato anche delle sorgenti di elemento, p.es. schede attività

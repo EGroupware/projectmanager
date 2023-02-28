@@ -74,7 +74,14 @@ depth of display	projectmanager	zh	显示深度
 details of cumulated	projectmanager	zh	集合细节
 details of subelements	projectmanager	zh	子要素细节
 do not use that entry as project-element	projectmanager	zh	不要使用那一条目作为项目要素
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	zh	如果项目即将按计划日期开始，你想收到通知吗？
+do you want a notification, if items are about to start according to their real dates?	projectmanager	zh	如果项目要按照实际日期开始，你想收到通知吗？
+do you want a notification, if items are due according to their planned dates?	projectmanager	zh	如果项目按照计划的日期到期，你想收到通知吗？
+do you want a notification, if items are due according to their real dates?	projectmanager	zh	如果项目按照实际日期到期，您希望收到通知吗？
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	zh	如果项目被分配给你或分配的项目被更新，你想收到通知吗？
+do you want a notification, if items you created get updated?	projectmanager	zh	如果你创建的项目被更新，你想收到通知吗？
 document '%1' does not exist or is not readable for you!	projectmanager	zh	文件'%1'不存在或是您没有读取权限！
+document merge	projectmanager	zh	文件填充
 done (100%)	projectmanager	zh	完成 (100%)
 edit access, incl. editing budget and elements	projectmanager	zh	编辑访问权限，包括预算编辑和要素
 edit budget	projectmanager	zh	编辑预算
@@ -201,6 +208,12 @@ read access, incl. budget and adding elements	projectmanager	zh	读取权限，�
 read access, no budget	projectmanager	zh	读取权限，不包含预算
 real end	projectmanager	zh	实际结束日期
 real start	projectmanager	zh	实际开始日期
+receive notifications about due entries (planned dates)	projectmanager	zh	接收关于到期条目（计划日期）的通知
+receive notifications about due entries (real dates)	projectmanager	zh	接收关于到期条目（实际日期）的通知
+receive notifications about items assigned to you with these roles	projectmanager	zh	接收关于以这些角色分配给你的项目的通知
+receive notifications about own items	projectmanager	zh	接收关于自己项目的通知
+receive notifications about starting entries (planned dates)	projectmanager	zh	接收关于起始条目（计划日期）的通知
+receive notifications about starting entries (real dates)	projectmanager	zh	接收关于起始条目（实际日期）的通知
 remark	projectmanager	zh	注释
 resources	projectmanager	zh	资源
 role	projectmanager	zh	角色

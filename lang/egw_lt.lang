@@ -8,4 +8,10 @@ milestones	projectmanager	lt	Etapai
 milestones before this element has to be finished	projectmanager	lt	Etapai iki šio elemento užbaigimo
 pm_milestone	projectmanager	lt	Etapas
 progress	projectmanager	lt	Pažanga
+receive notifications about due entries (planned dates)	projectmanager	lt	Gauti pranešimus apie planuojamus įrašus (planuojamas datas)
+receive notifications about due entries (real dates)	projectmanager	lt	Gauti pranešimus apie mokėtinus įrašus (realios datos)
+receive notifications about items assigned to you with these roles	projectmanager	lt	Gauti pranešimus apie elementus, priskirtus jums su šiais vaidmenimis
+receive notifications about own items	projectmanager	lt	Gauti pranešimus apie savo elementus
+receive notifications about starting entries (planned dates)	projectmanager	lt	Gauti pranešimus apie pradedamus įrašus (planuojamos datos)
+receive notifications about starting entries (real dates)	projectmanager	lt	Gauti pranešimus apie pradedamus įrašus (realiomis datomis)
 resize	projectmanager	lt	Pakeisti dydį

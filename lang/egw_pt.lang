@@ -198,6 +198,12 @@ read access, incl. budget and adding elements	projectmanager	pt	Acesso de leitur
 read access, no budget	projectmanager	pt	Acesso de leitura, sem orçamentos
 real end	projectmanager	pt	Fim real
 real start	projectmanager	pt	Início real
+receive notifications about due entries (planned dates)	projectmanager	pt	Receber notificações sobre as entradas devidas (datas previstas)
+receive notifications about due entries (real dates)	projectmanager	pt	Receber notificações sobre as entradas devidas (datas reais)
+receive notifications about items assigned to you with these roles	projectmanager	pt	Receber notificações sobre itens que lhe foram atribuídos com estas funções
+receive notifications about own items	projectmanager	pt	Receber notificações sobre artigos próprios
+receive notifications about starting entries (planned dates)	projectmanager	pt	Receber notificações sobre as entradas iniciais (datas previstas)
+receive notifications about starting entries (real dates)	projectmanager	pt	Receber notificações sobre entradas iniciais (datas reais)
 remark	projectmanager	pt	Remarcar
 resize	projectmanager	pt	Redimensionar
 resources	projectmanager	pt	Recursos

@@ -113,6 +113,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	bg	Искате ли известие, когато елементите създадените от вас се актуализират?
 document '%1' does not exist or is not readable for you!	projectmanager	bg	Документът '%1' не съществува или нямате право на достъп до него!
 document download filename	projectmanager	bg	Име на файла за изтегляне на документ
+document merge	projectmanager	bg	Запълване на документи
 done (100%)	projectmanager	bg	Готово (100%)
 edit access, incl. editing budget and elements	projectmanager	bg	Редактиране на достъп, включващ бюджет и елементи
 edit budget	projectmanager	bg	Редактиране на бюджета

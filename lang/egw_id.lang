@@ -57,7 +57,14 @@ delete this milestone	projectmanager	id	Hapus milestone ini
 delete this price	projectmanager	id	Hapus harga ini
 delete this project	projectmanager	id	Hapus proyek ini
 deleted	projectmanager	id	terhapus
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	id	Apakah Anda ingin mendapatkan notifikasi, jika item akan dimulai sesuai dengan tanggal yang direncanakan?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	id	Apakah Anda ingin mendapatkan notifikasi, jika item akan dimulai sesuai dengan tanggal sebenarnya?
+do you want a notification, if items are due according to their planned dates?	projectmanager	id	Apakah Anda ingin mendapatkan notifikasi, jika item akan jatuh tempo sesuai dengan tanggal yang direncanakan?
+do you want a notification, if items are due according to their real dates?	projectmanager	id	Apakah Anda ingin mendapatkan notifikasi, jika item jatuh tempo sesuai dengan tanggal sebenarnya?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	id	Apakah Anda ingin mendapatkan notifikasi, jika item ditugaskan kepada Anda atau item yang ditugaskan diperbarui?
+do you want a notification, if items you created get updated?	projectmanager	id	Apakah Anda ingin mendapatkan notifikasi, jika item yang Anda buat diperbarui?
 document '%1' does not exist or is not readable for you!	projectmanager	id	Dokumen '%1' tidak ada atau tidak terbaca oleh anda!
+document merge	projectmanager	id	Isi dokumen
 done (100%)	projectmanager	id	Tuntas (100%)
 edit budget	projectmanager	id	Edit anggaran
 edit milestone	projectmanager	id	Edit milestone
@@ -154,6 +161,12 @@ re-planned	projectmanager	id	direncanakan ulang
 re-planned time	projectmanager	id	Waktu Perencanaan ulang
 real end	projectmanager	id	Akhir sesungguhnya
 real start	projectmanager	id	Real start
+receive notifications about due entries (planned dates)	projectmanager	id	Menerima pemberitahuan tentang entri yang akan jatuh tempo (tanggal yang direncanakan)
+receive notifications about due entries (real dates)	projectmanager	id	Menerima pemberitahuan tentang entri yang jatuh tempo (tanggal sebenarnya)
+receive notifications about items assigned to you with these roles	projectmanager	id	Menerima notifikasi tentang item yang ditugaskan kepada Anda dengan peran ini
+receive notifications about own items	projectmanager	id	Menerima notifikasi tentang item milik sendiri
+receive notifications about starting entries (planned dates)	projectmanager	id	Menerima notifikasi tentang entri yang akan dimulai (tanggal yang direncanakan)
+receive notifications about starting entries (real dates)	projectmanager	id	Menerima pemberitahuan tentang entri yang dimulai (tanggal sebenarnya)
 remark	projectmanager	id	Remark
 resize	projectmanager	id	Ubah ukuran
 resources	projectmanager	id	Sumberdaya

@@ -76,7 +76,13 @@ depth of display	projectmanager	fi	Näytön syvyys
 details of cumulated	projectmanager	fi	Kumulatiiviset yksityiskohdat
 details of subelements	projectmanager	fi	Alielementtien lisätiedot
 do not use that entry as project-element	projectmanager	fi	Älä käytä tätä merkintää projektin elementtinä
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	fi	Haluatko ilmoituksen, jos kohteet ovat alkamassa suunniteltujen päivämäärien mukaisesti?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	fi	Haluatko ilmoituksen, jos kohteet alkavat pian niiden todellisten päivämäärien mukaisesti?
+do you want a notification, if items are due according to their planned dates?	projectmanager	fi	Haluatko ilmoituksen, jos kohteet erääntyvät niiden suunniteltujen päivämäärien mukaisesti?
+do you want a notification, if items are due according to their real dates?	projectmanager	fi	Haluatko ilmoituksen, jos kohteet erääntyvät niiden todellisten päivämäärien mukaisesti?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	fi	Haluatko ilmoituksen, jos kohteet osoitetaan sinulle tai osoitetut kohteet päivitetään?
 document '%1' does not exist or is not readable for you!	projectmanager	fi	Tiedostoa '%1' ei ole olemassa tai sinulla ei ole lukuoikeutta!
+document merge	projectmanager	fi	Asiakirjan täyttäminen
 done (100%)	projectmanager	fi	Valmis (100%)
 edit access, incl. editing budget and elements	projectmanager	fi	Muokkausoikeus, sisältää budjetin ja elementtien muokkauksen
 edit budget	projectmanager	fi	Muokkaa budjettia
@@ -226,6 +232,12 @@ read access, incl. budget and adding elements	projectmanager	fi	Lukuoikeus, sis�
 read access, no budget	projectmanager	fi	Lukuoikeus, ei budjettia
 real end	projectmanager	fi	Oikeasti päättynyt
 real start	projectmanager	fi	Oikeasti alkanut
+receive notifications about due entries (planned dates)	projectmanager	fi	Vastaanota ilmoituksia erääntyneistä merkinnöistä (suunnitellut päivämäärät).
+receive notifications about due entries (real dates)	projectmanager	fi	Vastaanottaa ilmoituksia erääntyneistä merkinnöistä (todelliset päivämäärät)
+receive notifications about items assigned to you with these roles	projectmanager	fi	Vastaanottaa ilmoituksia kohteista, jotka on määritetty sinulle näillä rooleilla.
+receive notifications about own items	projectmanager	fi	Vastaanottaa ilmoituksia omista kohteista
+receive notifications about starting entries (planned dates)	projectmanager	fi	Vastaanottaa ilmoituksia alkavista merkinnöistä (suunnitellut päivämäärät).
+receive notifications about starting entries (real dates)	projectmanager	fi	Vastaanota ilmoituksia alkavista merkinnöistä (todelliset päivämäärät)
 remark	projectmanager	fi	Merkitse uudelleen
 resources	projectmanager	fi	Resurssit
 role	projectmanager	fi	Rooli
