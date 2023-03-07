@@ -211,7 +211,9 @@
 				</row>
 				<row class="et2_toolbar">
 					<et2-description  id="spacer" span="3"></et2-description>
-					<et2-button-timestamp  statustext="Insert timestamp into description field" id="timestamp" target="pm_description" class="projectTimestamp"></et2-button-timestamp>
+					<et2-button-timestamp parentId="projectmanager-edit_tabs" slot="nav"
+                                          statustext="Insert timestamp into description field" id="timestamp"
+                                          target="pm_description" class="projectTimestamp"></et2-button-timestamp>
 				</row>
 				<row>
                     <et2-tabbox id="tabs" span="all" tabHeight="345px">
