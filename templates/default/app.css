@@ -130,9 +130,7 @@ td.projectTimestamp {
 	position: relative;
 }
 #projectmanager-edit_timestamp {
-	position: absolute;
-	top: 13px;
-	right: 0px;
+	margin-left: auto;
 }
 
 .et2_gantt .gantt_cell .gantt_column_pe_resources:hover {
