@@ -20,7 +20,8 @@
 				</row>
 				<row class="row">
 					<et2-number  id="prices[$row][pl_price]"></et2-number>
-					<et2-date  id="prices[$row][pl_validsince]" statustext="you can leave the date of the first price empty"></et2-date>
+					<et2-date id="prices[$row][pl_validsince]"
+                              statustext="you can leave the date of the first price empty" position="above"></et2-date>
 					<et2-date-time  id="prices[$row][pl_modified]" readonly="true"></et2-date-time>
 					<et2-select-account  id="prices[$row][pl_modifier]" readonly="true"></et2-select-account>
 					<et2-checkbox  id="delete_price[$row]" statustext="Delete this price"></et2-checkbox>
