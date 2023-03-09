@@ -166,3 +166,10 @@ td.projectTimestamp {
 	top: 106px !important;
 	left: 50% !important;
 }
+
+/* Slightly different positioning in price list */
+.flatpickr-calendar.pl_side_calendar {
+	top: 60px !important;
+	left: auto !important;
+	right: 0px !important;
+}
