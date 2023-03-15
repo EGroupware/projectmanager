@@ -114,6 +114,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	sk	Želáte si dostať upozornenie, ak sa zmenia položky ktoré ste vytvorili?
 document '%1' does not exist or is not readable for you!	projectmanager	sk	Dokument '%1' neexistuje alebo nemáte právo ho čítať!
 document download filename	projectmanager	sk	Názov súboru stiahnutého dokumentu
+document merge	projectmanager	sk	Naplnenie dokumentu
 done (100%)	projectmanager	sk	Hotovo (100%)
 edit access, incl. editing budget and elements	projectmanager	sk	Oprávnenia k úpravám, vrátane rozpočtu a prvkov
 edit budget	projectmanager	sk	Upraviť rozpočet

@@ -71,6 +71,13 @@ depth of display	projectmanager	sv	Vy djup
 details of cumulated	projectmanager	sv	Detaljer över sammanslagna
 details of subelements	projectmanager	sv	Underelement detaljer
 do not use that entry as project-element	projectmanager	sv	Använd inte posten som projekt element
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	sv	Vill du få ett meddelande om att objekt är på väg att starta enligt planerat datum?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	sv	Vill du få en avisering om objekt är på väg att starta enligt sina verkliga datum?
+do you want a notification, if items are due according to their planned dates?	projectmanager	sv	Vill du få ett meddelande om objekt är förfallna enligt planerat datum?
+do you want a notification, if items are due according to their real dates?	projectmanager	sv	Vill du få ett meddelande om objekt ska betalas enligt sina verkliga datum?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	sv	Vill du få ett meddelande om objekt tilldelas dig eller om tilldelade objekt uppdateras?
+do you want a notification, if items you created get updated?	projectmanager	sv	Vill du få ett meddelande om objekt som du har skapat uppdateras?
+document merge	projectmanager	sv	Fyllning av dokument
 done (100%)	projectmanager	sv	Färdig (100%)
 edit access, incl. editing budget and elements	projectmanager	sv	Ändra åtkomst, inkl. budgetförändring och element
 edit budget	projectmanager	sv	Ändra budget

@@ -91,8 +91,15 @@ details of cumulated	projectmanager	pt-br	Detalhes dos acumulados
 details of subelements	projectmanager	pt-br	Detalhes dos subelementos
 directory with documents to insert project data	projectmanager	pt-br	Diretório com documentos para inserir os dados do projeto
 do not use that entry as project-element	projectmanager	pt-br	não use esta entrada como elemento de projeto
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	pt-br	Você quer uma notificação, se os itens estão prestes a começar de acordo com suas datas planejadas?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	pt-br	Você deseja uma notificação, se os itens estão prestes a começar de acordo com suas datas reais?
+do you want a notification, if items are due according to their planned dates?	projectmanager	pt-br	Você deseja uma notificação, se os itens estiverem prestes a começar de acordo com suas datas planejadas?
+do you want a notification, if items are due according to their real dates?	projectmanager	pt-br	Você deseja uma notificação, se os itens estão prestes a começar de acordo com suas datas reais?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	pt-br	Você deseja uma notificação, se os itens forem atribuídos a você ou se os itens atribuídos forem atualizados?
+do you want a notification, if items you created get updated?	projectmanager	pt-br	Você deseja uma notificação, se os itens que você criou forem atualizados?
 document '%1' does not exist or is not readable for you!	projectmanager	pt-br	Documento '%1' não existe ou você não pode ser lido por você!
 document download filename	projectmanager	pt-br	Documento download nome do arquivo
+document merge	projectmanager	pt-br	Preenchimento do documento
 done (100%)	projectmanager	pt-br	Feito (100%)
 edit access, incl. editing budget and elements	projectmanager	pt-br	editar acesso, incl. edição de orçamento e elementos
 edit budget	projectmanager	pt-br	Editar orçamento

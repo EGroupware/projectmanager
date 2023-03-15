@@ -74,7 +74,14 @@ depth of display	projectmanager	hu	Megjelenítés mélysége
 details of cumulated	projectmanager	hu	Halmozás részletei
 details of subelements	projectmanager	hu	Al-elemek részletei
 do not use that entry as project-element	projectmanager	hu	Ne használja a bejegyzést projekt-elemként
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	hu	Szeretne értesítést kapni, ha a tételek a tervezett időpontok szerint indulnak?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	hu	Szeretne értesítést kapni, ha a tételek a tényleges időpontjuk szerint kezdődnek?
+do you want a notification, if items are due according to their planned dates?	projectmanager	hu	Szeretne értesítést kapni, ha a tételek a tervezett időpontok szerint esedékesek?
+do you want a notification, if items are due according to their real dates?	projectmanager	hu	Szeretne értesítést kapni, ha a tételek valós dátumuk szerint esedékesek?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	hu	Szeretne értesítést kapni, ha tételek kerülnek hozzárendelésre, vagy a hozzárendelt tételek frissülnek?
+do you want a notification, if items you created get updated?	projectmanager	hu	Szeretne értesítést kapni, ha az Ön által létrehozott tételek frissülnek?
 document '%1' does not exist or is not readable for you!	projectmanager	hu	A(z) '%1' dokumentum nem létezik, vagy nincs hozzá olvasási joga!
+document merge	projectmanager	hu	Dokumentum kitöltése
 done (100%)	projectmanager	hu	Kész (100%)
 edit access, incl. editing budget and elements	projectmanager	hu	hozzáférés szerkesztése, beleértve a költségkeret és elem szerkesztést
 edit budget	projectmanager	hu	Költségkeret szerkeszése

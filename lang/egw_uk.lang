@@ -8,6 +8,13 @@ csv-filename	projectmanager	uk	CSV-Filename
 custom fields	projectmanager	uk	Власні поля
 days	projectmanager	uk	Дні
 deleted	projectmanager	uk	Видалено
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	uk	Чи хочете ви отримувати сповіщення, якщо події починаються відповідно до запланованих дат?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	uk	Отримувати сповіщення, якщо події починаються відповідно до їх реальних дат?
+do you want a notification, if items are due according to their planned dates?	projectmanager	uk	Чи хочете ви отримувати сповіщення, якщо події починаються відповідно до запланованих дат?
+do you want a notification, if items are due according to their real dates?	projectmanager	uk	Чи хочете ви отримувати сповіщення, якщо події починаються відповідно до їх реальних дат?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	uk	Отримувати сповіщення, коли вам призначають завдання або оновлюють призначені завдання?
+do you want a notification, if items you created get updated?	projectmanager	uk	Отримувати сповіщення, якщо оновлюються створені вами завдання?
+document merge	projectmanager	uk	Заповнення документа
 empty for all	projectmanager	uk	Порожнє для всіх
 enddate	projectmanager	uk	Число закінчення
 existing links	projectmanager	uk	Існуючі посилання

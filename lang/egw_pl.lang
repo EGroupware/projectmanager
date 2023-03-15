@@ -75,7 +75,14 @@ depth of display	projectmanager	pl	Głębia wyświetlania
 details of cumulated	projectmanager	pl	Szczegóły skumulowanych
 details of subelements	projectmanager	pl	Szczegóły dla elementów podrzędnych
 do not use that entry as project-element	projectmanager	pl	Nie używaj tego wpisu jako składnika projektu
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	pl	Czy chcesz otrzymać powiadomienie, jeśli pozycje mają się rozpocząć zgodnie z planowanym terminem?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	pl	Czy chcesz otrzymać powiadomienie, jeśli elementy mają się rozpocząć zgodnie z ich rzeczywistymi datami?
+do you want a notification, if items are due according to their planned dates?	projectmanager	pl	Czy chcesz otrzymać powiadomienie, jeśli pozycje są wymagalne zgodnie z ich planowanymi datami?
+do you want a notification, if items are due according to their real dates?	projectmanager	pl	Czy chcesz otrzymać powiadomienie, jeśli pozycje są wymagalne zgodnie z ich rzeczywistymi datami?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	pl	Czy chcesz otrzymać powiadomienie, jeśli elementy zostaną przypisane do Ciebie lub przypisane elementy zostaną zaktualizowane?
+do you want a notification, if items you created get updated?	projectmanager	pl	Czy chcesz otrzymać powiadomienie, jeśli elementy utworzone przez Ciebie zostaną zaktualizowane?
 document '%1' does not exist or is not readable for you!	projectmanager	pl	Dokument '%1' nie istnieje lub nie masz praw do jego odczytu!
+document merge	projectmanager	pl	Wypełnianie dokumentów
 done (100%)	projectmanager	pl	Wykonane (100%)
 edit access, incl. editing budget and elements	projectmanager	pl	Edytuj dostęp wraz z edycją budżetu i elementów
 edit budget	projectmanager	pl	Edytuj budżet
