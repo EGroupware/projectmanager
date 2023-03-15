@@ -1,3 +1,10 @@
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai pradedami naudoti pagal suplanuotas datas?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai bus pradėti pagal tikrąsias datas?
+do you want a notification, if items are due according to their planned dates?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai turi būti pateikti pagal planuotas datas?
+do you want a notification, if items are due according to their real dates?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai turi būti pateikti pagal tikrąsias datas?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai jums priskiriami arba priskirti elementai atnaujinami?
+do you want a notification, if items you created get updated?	projectmanager	lt	Ar norite gauti pranešimą, jei atnaujinami jūsų sukurti elementai?
+document merge	projectmanager	lt	Dokumentų pildymas
 history logging and deleting of items	projectmanager	lt	Istorijos registravimas ir elementų ištrynimas
 how would you like to print the chart?	projectmanager	lt	Kaip norėtumėte spausdinti diagramą?
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	lt	Jei Gantto diagrama yra platesnė už puslapį, ji bus apkarpyta.

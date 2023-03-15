@@ -267,7 +267,7 @@ modify status	projectmanager	de	Status ändern
 multi assignable	projectmanager	de	Mehrfach zuweisbar
 multi assignments	projectmanager	de	Mehrfachzuweisung
 name of current user, all other contact fields are valid too	projectmanager	de	Name des aktuellen Benutzers, auch alle anderen Kontaktfelder sind erlaubt
-necessary for project-elements doing that not automatic	projectmanager	de	notwendig für Projekt-Element(e), die nicht automatisch synchronisieren
+necessary for project-elements doing that not automatic	projectmanager	de	Notwendig für Projekt-Elemente, die nicht automatisch synchronisieren
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	de	Die notwendige PHP Erweiterung %1 ist nicht geladen und kann nicht geladen werden !!!
 new	projectmanager	de	Neu
 new project submitted by %1 at %2	projectmanager	de	Neues Projekt übertragen von %1 am %2

@@ -1,3 +1,10 @@
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	ro	Doriți să primiți o notificare, dacă elementele sunt pe cale să înceapă conform datelor planificate?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	ro	Doriți o notificare, în cazul în care elementele sunt pe cale să înceapă conform datelor lor reale?
+do you want a notification, if items are due according to their planned dates?	projectmanager	ro	Doriți o notificare, dacă elementele sunt scadente în conformitate cu datele planificate?
+do you want a notification, if items are due according to their real dates?	projectmanager	ro	Doriți o notificare, dacă elementele sunt scadente în conformitate cu datele lor reale?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	ro	Doriți să primiți o notificare în cazul în care elementele vă sunt atribuite sau elementele atribuite sunt actualizate?
+do you want a notification, if items you created get updated?	projectmanager	ro	Doriți să primiți o notificare în cazul în care elementele create de dumneavoastră sunt actualizate?
+document merge	projectmanager	ro	Completarea documentelor
 history logging and deleting of items	projectmanager	ro	Înregistrarea istoricului și ștergerea elementelor
 how would you like to print the chart?	projectmanager	ro	Cum doriți să imprimați graficul?
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	ro	În cazul în care diagrama Gantt este mai lată decât pagina, aceasta va fi tăiată.

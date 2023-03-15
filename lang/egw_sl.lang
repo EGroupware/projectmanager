@@ -114,6 +114,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	sl	Želite obvestilo, če so elementi, ki ste jih ustvarili, posodobljeni?
 document '%1' does not exist or is not readable for you!	projectmanager	sl	Dokument '%1' ne obstaja ali pa nimate pravice branja!
 document download filename	projectmanager	sl	Ime datoteke za prenos dokumenta
+document merge	projectmanager	sl	Polnjenje dokumentov
 done (100%)	projectmanager	sl	Narejeno (100%)
 edit access, incl. editing budget and elements	projectmanager	sl	Uredi dostop, vklj. urejanje proračuna in elementov
 edit budget	projectmanager	sl	Uredi proračun

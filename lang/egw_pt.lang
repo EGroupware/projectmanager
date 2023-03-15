@@ -71,6 +71,13 @@ delete this role	projectmanager	pt	Eliminar este papel
 deleted	projectmanager	pt	eliminado/a
 depth of display	projectmanager	pt	Profundidade da exibição
 do not use that entry as project-element	projectmanager	pt	não utilizar esse registo como elemento do projecto
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	pt	Deseja uma notificação, se os artigos estão prestes a começar de acordo com as datas previstas?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	pt	Deseja uma notificação, se os artigos estão prestes a começar de acordo com as suas datas reais?
+do you want a notification, if items are due according to their planned dates?	projectmanager	pt	Deseja uma notificação, se os artigos estão prestes a começar de acordo com as suas datas planeadas?
+do you want a notification, if items are due according to their real dates?	projectmanager	pt	Deseja uma notificação, se os artigos estão prestes a começar de acordo com as suas datas reais?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	pt	Deseja uma notificação, se os artigos lhe forem atribuídos ou se os artigos atribuídos forem actualizados?
+do you want a notification, if items you created get updated?	projectmanager	pt	Pretende uma notificação, se os artigos que criou forem actualizados?
+document merge	projectmanager	pt	Preenchimento do documento
 done (100%)	projectmanager	pt	Concluído (100%)
 edit access, incl. editing budget and elements	projectmanager	pt	Acesso de edição, incluindo a edição do orçamento e elementos
 edit budget	projectmanager	pt	Editar orçamento

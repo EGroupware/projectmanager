@@ -116,6 +116,7 @@ do you want a notification, if items get assigned to you or assigned items get u
 do you want a notification, if items you created get updated?	projectmanager	es-es	¿Desea una notificación si los rubros que creó son actualizados?
 document '%1' does not exist or is not readable for you!	projectmanager	es-es	¡El documento '%1' no existe o no tiene permiso para leerlo!
 document download filename	projectmanager	es-es	Nombre del archivo a descargar
+document merge	projectmanager	es-es	Relleno de documentos
 don't break into subdirectories	projectmanager	es-es	No dividir en subdirectorios
 done (100%)	projectmanager	es-es	Finalizado (100%)
 edit access, incl. editing budget and elements	projectmanager	es-es	editar acceso, incluyendo edición de presupuesto y elementos

@@ -76,6 +76,12 @@ depth of display	projectmanager	nl	Weergavediepte
 details of cumulated	projectmanager	nl	Details van gecumuleerd
 details of subelements	projectmanager	nl	Details van subelementen
 do not use that entry as project-element	projectmanager	nl	gebruik die entry niet als een projectelement
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	nl	Wilt u een melding als items op de geplande datum beginnen?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	nl	Wilt u een melding als items op het punt staan te beginnen volgens hun werkelijke data?
+do you want a notification, if items are due according to their planned dates?	projectmanager	nl	Wilt u een notificatie als items moeten starten op de geplande datum?
+do you want a notification, if items are due according to their real dates?	projectmanager	nl	Wilt u een notificatie als items moeten beginnen volgens hun werkelijke datum?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	nl	Wilt u een melding als items aan u worden toegewezen of als toegewezen items worden bijgewerkt?
+do you want a notification, if items you created get updated?	projectmanager	nl	Wilt u een melding als items die u heeft aangemaakt worden bijgewerkt?
 document '%1' does not exist or is not readable for you!	projectmanager	nl	Document '%1' bestaat niet of is niet toegankelijk voor jou!
 done (100%)	projectmanager	nl	Voltooid (100%)
 edit access, incl. editing budget and elements	projectmanager	nl	bewerk toegang, incl. budget en elementen bewerken

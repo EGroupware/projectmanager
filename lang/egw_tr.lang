@@ -7,6 +7,13 @@ csv-filename	projectmanager	tr	CSV Dosya Ad?
 custom fields	projectmanager	tr	Özel Alanlar
 days	projectmanager	tr	gün
 deleted	projectmanager	tr	Silindi
+do you want a notification, if items are about to start according to their planned dates?	projectmanager	tr	Öğeler planlanan tarihlerine göre başlamak üzereyse bir bildirim istiyor musunuz?
+do you want a notification, if items are about to start according to their real dates?	projectmanager	tr	Öğeler gerçek tarihlerine göre başlamak üzereyse bir bildirim istiyor musunuz?
+do you want a notification, if items are due according to their planned dates?	projectmanager	tr	Öğelerin planlanan tarihlerine göre vadesi gelmişse bir bildirim istiyor musunuz?
+do you want a notification, if items are due according to their real dates?	projectmanager	tr	Öğelerin gerçek tarihlerine göre vadesi gelmişse bir bildirim istiyor musunuz?
+do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	tr	Öğeler size atanırsa veya atanmış öğeler güncellenirse bir bildirim istiyor musunuz?
+do you want a notification, if items you created get updated?	projectmanager	tr	Oluşturduğunuz öğeler güncellenirse bildirim almak ister misiniz?
+document merge	projectmanager	tr	Belge doldurma
 empty for all	projectmanager	tr	Tamam? için bo?
 enddate	projectmanager	tr	BitişTarih
 fieldseparator	projectmanager	tr	Alan ayrac?
