@@ -538,7 +538,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		else
 		{
 			unset($query['col_filter']['cat_id']);
-			unset($query_in['link_add']['extra']);
+			if (is_array($query_in['link_add'])) unset($query_in['link_add']['extra']);
 		}
 		if (!$query['col_filter']['pe_resources'])
 		{
