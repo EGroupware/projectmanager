@@ -548,7 +548,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			unset($query['col_filter']['pe_app']);
 		}
-		if ($query['filter2'] & 2)	// show sub-elements (elements of sub-projects)
+		if ((int)$query['filter2'] & 2)	// show sub-elements (elements of sub-projects)
 		{
 			$query['col_filter']['pm_id'] = $this->project->children($this->pm_id, array($this->pm_id));
 			if(count($query['col_filter']['pm_id']) <= 1)
