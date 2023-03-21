@@ -578,7 +578,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		unset($query['col_filter']['elem_id']);
 
 		// cumulate eg. timesheets in also included infologs
-		$query['col_filter']['cumulate'] = !($query['filter2'] & 4);
+		$query['col_filter']['cumulate'] = !((int)$query['filter2'] & 4);
 		$total = parent::get_rows($query, $rows, $readonlys, true);
 		unset($query['col_filter']['cumulate']);
 
@@ -633,13 +633,13 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						lang('View this element in %1', lang($row['pe_app'])),
 				);
 			}
-			if(!($query['filter2'] & 1))
+			if(!((int)$query['filter2'] & 1))
 			{
 				unset($row['pe_details']);
 			}
 
 			// add project-title for elements from sub-projects
-			if(($query['filter2'] & 2) && $row['pm_id'] != $this->pm_id)
+			if(((int)$query['filter2'] & 2) && $row['pm_id'] != $this->pm_id)
 			{
 				$row['pm_title'] = $this->project->link_title($row['pm_id']);
 				$row['pm_link'] = array(
@@ -655,7 +655,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 			$row['elem_id'] = $row['pe_app'] . ':' . $row['pe_app_id'] . ':' . $row['pe_id'];
 			// add pe links
-			if($query['filter2'] & 3)
+			if((int)$query['filter2'] & 3)
 			{
 				if (!empty($this->prefs['show_links']) &&
 					(isset($row['pe_all_links']) || ($row['pe_all_links'] = Link::get_links($row['link']['app'],$row['link']['id'],'',true))))
