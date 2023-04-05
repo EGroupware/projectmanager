@@ -163,9 +163,9 @@
 						<et2-number  id="${row}[pe_planned_budget]" readonly="true" max="2" class="planned" noLang="1"></et2-number>
 					</et2-vbox>
                     <et2-vbox align="center">
-                        <et2-image align="center" src="${row}[pe_healt_icon]"></et2-image>
+                        <et2-image align="center" src="${row_cont[pe_healt_icon]}"></et2-image>
                         <progress align="center" id="${row}[pe_completion]" no_lang="1"/>
-                        <et2-image align="center" src="${row}[pe_completion_icon]" noLang="1"></et2-image>
+                        <et2-image align="center" src="${row_cont[pe_completion_icon]}" noLang="1"></et2-image>
                         <et2-image align="center" src="$row_cont[ignored]" noLang="1"></et2-image>
                     </et2-vbox>
                     <et2-vbox readonly="true">
