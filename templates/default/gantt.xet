@@ -50,15 +50,25 @@
 	<template id="projectmanager.gantt.edit" template="" lang="" group="0" version="1.9.001">
 		<et2-textbox  readonly="true" label="Change the following details of %s" id="pe_title"></et2-textbox>
 		<grid id="fields" width="100%">
-			<columns><column/><column/><column/><column/></columns>
-			<rows>
-				<row>
-					<et2-description  id="${row}[label]" noLang="true"></et2-description>
-					<et2-description  id="${row}[old_value]" noLang="true"></et2-description>
-					<et2-description  value="=&gt;" noLang="true"></et2-description>
-					<et2-description  id="${row}[new_value]" noLang="true"></et2-description>
-				</row>
-			</rows>
-		</grid>
-	</template>
+            <columns>
+                <column/>
+                <column/>
+                <column/>
+                <column/>
+            </columns>
+            <rows>
+                <row>
+                    <et2-description id="${row}[label]" noLang="true"></et2-description>
+                    <et2-description id="${row}[old_value]" noLang="true"></et2-description>
+                    <et2-description value="=&gt;" noLang="true"></et2-description>
+                    <et2-description id="${row}[new_value]" noLang="true"></et2-description>
+                </row>
+            </rows>
+        </grid>
+        <et2-box disabled="!@EPL">
+            <et2-checkbox id="remember" label="Remember and do not ask again"
+                          hideOnDisabled="true"></et2-checkbox>
+        </et2-box>
+
+    </template>
 </overlay>
