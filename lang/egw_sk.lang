@@ -47,6 +47,7 @@ apply the changes	projectmanager	sk	Uplatniť zmeny
 archive	projectmanager	sk	Archív
 assistant	projectmanager	sk	Pomocník
 at which time do you start working on the given day.	projectmanager	sk	Kedy začína Váš pracovný čas v daný deň?
+automatic	projectmanager	sk	Automaticky
 availability settings	projectmanager	sk	Nastavenia dostupnosti
 available fields for this plugin:	projectmanager	sk	Dostupné polia pre tento zásuvný modul:
 availible	projectmanager	sk	Dostupné
@@ -80,6 +81,7 @@ created	projectmanager	sk	Vytvorené
 created a ganttchart from the checked projects	projectmanager	sk	Vytvorený postupový diagram pre označené projekty
 creation date and time	projectmanager	sk	Dátum a čas vytvorenia
 creator	projectmanager	sk	Tvorca
+criteria to break into subdirectories	projectmanager	sk	Kritériá na rozdelenie do podpriečinkov
 csv-fieldname	projectmanager	sk	CSV-názov poľa
 csv-filename	projectmanager	sk	CSV-názov súboru
 csv-import	common	sk	CSV-Import
@@ -115,6 +117,7 @@ do you want a notification, if items you created get updated?	projectmanager	sk	
 document '%1' does not exist or is not readable for you!	projectmanager	sk	Dokument '%1' neexistuje alebo nemáte právo ho čítať!
 document download filename	projectmanager	sk	Názov súboru stiahnutého dokumentu
 document merge	projectmanager	sk	Naplnenie dokumentu
+don't break into subdirectories	projectmanager	sk	Nerozdeľovať do podpriečinkov
 done (100%)	projectmanager	sk	Hotovo (100%)
 edit access, incl. editing budget and elements	projectmanager	sk	Oprávnenia k úpravám, vrátane rozpočtu a prvkov
 edit budget	projectmanager	sk	Upraviť rozpočet
@@ -151,6 +154,8 @@ elements that can't start before this one is finished	projectmanager	sk	Prvky, k
 elements which have to be finished before this can start	projectmanager	sk	Prvkyy, ktoré musia byť dokončené, než sa tento môže začať
 empty	projectmanager	sk	Prázdne
 empty for all	projectmanager	sk	Prázdne znamená: všetko
+enable element roles	projectmanager	sk	Povoliť role prvkov
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	sk	Povolením tejto funkcie získate prepracovanejšie použitie zlúčenia dokumentov. Keď sú povolené role prvkov, je možné dať projektovým prvkom určitú rolu v dokumente. Pre všetky tieto prvky s definovanými rolami prvkov, Projektovník bude vedieť poskytnúť veľmi podrobné informácie až na aplikačnú úroveň, ktoré sa dajú použiť na vytvorenie jednotlivého dokumentu alebo dokonca sériového listu.
 encode non-ascii	projectmanager	sk	Ne-ASCII kódovanie
 enddate	projectmanager	sk	Dátum ukončenie
 ends after	projectmanager	sk	Končí po
@@ -181,12 +186,16 @@ exists	projectmanager	sk	Existuje.
 exit without saving	projectmanager	sk	Skončiť bez uloženia
 export definition to use for nextmatch export (elements)	projectmanager	sk	Exportná definícia (Prvky)
 export definition to use for nextmatch export (projects)	projectmanager	sk	Exportná definícia (Projekty)
+export definition to use for nextmatch export (projekte)	projectmanager	sk	Exportná definícia (Projekty)
 exports a list of project elements to a csv file.	projectmanager	sk	Exportuje zoznam prvkov projektu do súboru CSV.
 exports a list of projects to a csv file.	projectmanager	sk	Exportuje zoznam projektov do súboru CSV.
 external	projectmanager	sk	Externý
 favorites	projectmanager	sk	Obľúbené
 fields for element roles:	projectmanager	sk	Polia pre role prvku:
 fieldseparator	projectmanager	sk	Oddeľovač polí
+filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	sk	Správca súborov zobrazuje virtuálnu štruktúru projektov, napr. podľa roku alebo roku a mesiaca. Predvolené je stránkovanie podľa počtu projektov. Môžete si vybrať aj pevné kritériá pre túto štruktúru.
+filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	sk	Správca súborov zobrazuje virtuálnu štruktúru projektov, napr. podľa dátumu vytvorenia projektu. Môžete si vybrať aj iné kritériá pre túto štruktúru, napr. dátum začiatku alebo číslo projektu.
+filemanager subdirectories	projectmanager	sk	Podpriečinky Správcu súborov
 font	projectmanager	sk	Písmo
 font charset	projectmanager	sk	Znaková sada písma
 font style	projectmanager	sk	Štýl písma
@@ -213,6 +222,7 @@ hours per workday	projectmanager	sk	Hodín pracovného dňa
 how long do you work on the given day.	projectmanager	sk	Koľko hodín pracujete v daný deň.
 how should ids for new projects be generated?	projectmanager	sk	Ako sa budú vytvárať ID pre nové projekty?
 how should ids for new subprojects be generated?	projectmanager	sk	Ako sa budú vytvárať ID pre nové podprojekty?
+how should the project selection in the menu be displayed	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	sk	Ako sa má zobrazovať výber projektov v ponuke: Strom ponúka lepší prehľad, výberové okno zase lepší výkon.
 how would you like to print the chart?	projectmanager	sk	Ako chcete vytlačiť graf?
 html link to the current record	projectmanager	sk	HTML odkaz na aktuálny záznam
@@ -456,6 +466,11 @@ view this price	projectmanager	sk	Zobraziť túto cenu
 view this project	projectmanager	sk	Zobraziť tento projekt
 view this project-element	projectmanager	sk	Zobraziť tento prvok projektu
 working duration on %1	projectmanager	sk	Dĺžka práce v %1
+year & month	projectmanager	sk	Rok a mesiac
+year only	projectmanager	sk	Iba rok
+yes, noone can purge deleted items	projectmanager	sk	Áno, nikto nemôže vyčistiť odstránené položky
+yes, only admins can purge deleted items	projectmanager	sk	Áno, iba admini môžu vyčistiť odstránené položky
+yes, with purging of deleted items possible	projectmanager	sk	Áno, vyčistenie odstránených položiek je možné
 you can leave the date of the first price empty	projectmanager	sk	Dátum prvej ceny môžete ponechať prázdny
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	sk	Nemáte nainštalovaný JPGraph verzie %1 alebo vyššej! Je potrebný pre postupové diagramy v Projektovníku.
 you need to select a project first	projectmanager	sk	Musíte najprv vybrať projekt
