@@ -24,7 +24,6 @@ import {ClassWithAttributes} from "../../api/js/etemplate/et2_core_inheritance";
 import {et2_DOMWidget} from "../../api/js/etemplate/et2_core_DOMWidget";
 import {et2_IInput, et2_IPrint, et2_IResizeable} from "../../api/js/etemplate/et2_core_interfaces";
 import {et2_dynheight} from "../../api/js/etemplate/et2_widget_dynheight";
-import {et2_date} from "../../api/js/etemplate/et2_widget_date";
 import {egw} from "../../api/js/jsapi/egw_global";
 import {EGW_AO_FLAG_IS_CONTAINER, EGW_AO_STATE_SELECTED} from "../../api/js/egw_action/egw_action_constants.js";
 import {
@@ -34,6 +33,7 @@ import {
 } from "../../api/js/egw_action/egw_action.js";
 import {egwBitIsSet} from "../../api/js/egw_action/egw_action_common";
 import {Et2Dialog} from "../../api/js/etemplate/Et2Dialog/Et2Dialog";
+import type {Et2Date} from "../../api/js/etemplate/Et2Date/Et2Date";
 
 
 /* import dhtml-gantt, need to use commented out import statement, as egw:uses is not considered, if we have import(s)
@@ -255,20 +255,23 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 	doLoadingFinished()
 	{
 		super.doLoadingFinished();
-		if(this.gantt != null) return false;
+		if(this.gantt != null)
+		{
+			return false;
+		}
 
 		var config = jQuery.extend({}, gantt.config, this.gantt_config);
 
 		// Set initial values for start and end, if those filters exist
-		var start_date = <et2_date>this.getWidgetById('start_date');
-		var end_date = <et2_date>this.getWidgetById('end_date');
+		let start_date = <Et2Date><unknown>this.getWidgetById('start_date');
+		let end_date = <Et2Date><unknown>this.getWidgetById('end_date');
 		if(start_date)
 		{
-			config.start_date = start_date.getValue() ? new Date(start_date.getValue() * 1000) : null;
+			config.start_date = start_date.getValue() ? new Date(start_date.getValue()) : null;
 		}
 		if(end_date)
 		{
-			config.end_date = end_date.getValue() ? new Date(end_date.getValue() * 1000): null;
+			config.end_date = end_date.getValue() ? new Date(end_date.getValue()) : null;
 		}
 		if(this.options.duration_unit)
 		{
@@ -768,15 +771,20 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 		var gantt_widget = this;
 
 		// Click on scale to zoom - top zooms out, bottom zooms in
-		this.gantt_node.on('click','.gantt_scale_line', function(e) {
+		this.gantt_node.on('click', '.gantt_scale_line', function(e)
+		{
 			var current_position = e.target.offsetLeft / jQuery(e.target.parentNode).width();
 			var date = new Date(gantt_widget.gantt.getState().min_date.getTime() + (gantt_widget.gantt.getState().max_date.getTime() - gantt_widget.gantt.getState().min_date.getTime()) * current_position);
 
 			// Make it more consistently go to where you click, instead of the middle
 			// of the range
-			var id = gantt_widget.gantt.ext.zoom.attachEvent("onAfterZoom", function() {
-				gantt_widget.gantt.detachEvent(id);
-				gantt_widget.gantt.showDate(date);
+			var id = gantt_widget.gantt.ext.zoom.attachEvent("onAfterZoom", function()
+			{
+				if(gantt_widget && gantt_widget.gantt)
+				{
+					gantt_widget.gantt.detachEvent(id);
+					gantt_widget.gantt.showDate(date);
+				}
 			});
 
 			if(this.parentNode && this.parentNode.firstChild === this && this.parentNode.childElementCount > 1)
@@ -970,17 +978,27 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 	_bindChildren()
 	{
 		var gantt_widget = this;
-		this.iterateOver(function(_widget){
-			if(_widget.instanceOf(et2_gantt)) return;
+		this.iterateOver(function(_widget)
+		{
+			if(_widget.instanceOf(et2_gantt))
+			{
+				return;
+			}
 			// Existing change function
-			var widget_change = _widget.change;
+			var widget_change = _widget.onchange;
 
-			var change = function(_node) {
+			var change = function(_node)
+			{
 				// Call previously set change function
-				var result = widget_change.call(_widget,_node);
+				let result = true;
+				if(widget_change)
+				{
+					result = widget_change.call(_widget, _node);
+				}
 
 				// Update filters
-				if(result) {
+				if(result)
+				{
 					// Update dirty
 					_widget._oldValue = _widget.getValue();
 
@@ -988,15 +1006,18 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 					// Start date & end date change the display
 					if(_widget.id == 'start_date' || _widget.id == 'end_date')
 					{
-						var start = this.getWidgetById('start_date');
-						var end = this.getWidgetById('end_date');
+						var start = <Et2Date><unknown>gantt_widget.getWidgetById('start_date');
+						var end = <Et2Date><unknown>gantt_widget.getWidgetById('end_date');
 						gantt_widget.gantt.config.start_date = start && start.getValue() ? new Date(start.getValue()) : null;
 						// End date is inclusive
-						gantt_widget.gantt.config.end_date = end && end.getValue() ? new Date(new Date(end.getValue()).valueOf()+86400000) : null;
-						if(gantt_widget.gantt.config.end_date <= gantt_widget.gantt.config.start_date)
+						gantt_widget.gantt.config.end_date = end && end.getValue() ? new Date(new Date(end.getValue()).valueOf() + 86400000) : null;
+						if(gantt_widget.gantt.config.end_date && gantt_widget.gantt.config.end_date <= gantt_widget.gantt.config.start_date)
 						{
 							gantt_widget.gantt.config.end_date = null;
-							if(end) end.set_value(null);
+							if(end)
+							{
+								end.set_value(null);
+							}
 						}
 						gantt_widget.set_zoom();
 						gantt_widget.gantt.render();
@@ -1007,8 +1028,11 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 				return true;
 			};
 
-			if(_widget.change != change) _widget.change = change;
-		}, this, et2_inputWidget);
+			if(_widget.onchange != change)
+			{
+				_widget.onchange = change;
+			}
+		}, this, et2_IInput);
 	}
 
 	/**
