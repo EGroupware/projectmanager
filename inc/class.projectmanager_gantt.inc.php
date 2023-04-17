@@ -205,10 +205,11 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'min_width' => 120
 			),
 			array(
-				'name' => 'pe_completion',
-				'label'=>lang('Status'),
-				'width' => 60,
-				'hide'=> true
+				'name'      => 'pe_completion',
+				'label'     => lang('Status'),
+				'width'     => 50,
+				'max_width' => 60,
+				'hide'      => true
 			),
 			array(
 				'name' => 'pe_planned_time',
@@ -241,20 +242,22 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				'hide'=> true
 			),
 			array(
-				'name' => 'start_date',
-				'label' => lang('Start date'),
-				'width' => 120,
+				'name'      => 'start_date',
+				'label'     => lang('Start date'),
+				'width'     => 120,
+				'min_width' => 110,
 				'max_width' => 120,
-				'hide'=> true,
-				'widget'=>'date-time'
+				'hide'      => true,
+				'widget'    => 'date-time'
 			),
 			array(
-				'name' => 'end_date',
-				'label' => lang('End date'),
-				'width' => 120,
+				'name'      => 'end_date',
+				'label'     => lang('End date'),
+				'width'     => 120,
+				'min_width' => 110,
 				'max_width' => 120,
-				'hide'=> true,
-				'widget'=>'date-time'
+				'hide'      => true,
+				'widget'    => 'date-time'
 			),
 			array(
 				'name' => 'pe_resources',
