@@ -396,13 +396,13 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 					}
 					if(this.widget && typeof this.widget == 'string')
 					{
-						var attrs = jQuery.extend({readonly:true}, this.widget_attributes||{});
+						var attrs = jQuery.extend({readonly: true}, this.widget_attributes || {});
 						this.widget = et2_createWidget(this.widget, attrs, gantt_widget);
 					}
-					if (this.widget)
+					if(this.widget)
 					{
-						this.widget.set_value(value);
-						value = jQuery(this.widget.getDOMNode()).html();
+						value = typeof value.toJSON == "function" ? value.toJSON() : value.toString();
+						value = "<" + this.widget.localName + ' value="' + value + '"></' + this.widget.localName + ">";
 					}
 					return '<div class="gantt_column_'+this.name+'">' + value + '</div>';
 				};
@@ -417,7 +417,7 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 
 		}
 		// Add in add column
-		displayed_columns.push({name: 'add', width: 26, _width:26});
+		displayed_columns.push({name: 'add', width: 26, min_width: 26, max_width: 26, _width: 26});
 		width += 26;
 
 		this._set_grid_width(width);
