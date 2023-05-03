@@ -18,7 +18,7 @@ import {egw, egw_getFramework} from "../../api/js/jsapi/egw_global";
 import {etemplate2} from "../../api/js/etemplate/etemplate2";
 import {et2_gantt} from "./et2_widget_gantt";
 import {et2_nextmatch} from "../../api/js/etemplate/et2_extension_nextmatch";
-import {et2_link_add} from "../../api/js/etemplate/et2_widget_link";
+import {Et2LinkAdd} from "../../api/js/etemplate/Et2Link/Et2LinkAdd";
 
 /**
  * JS for projectmanager
@@ -174,9 +174,9 @@ export class ProjectmanagerApp extends EgwApp
 		}
 
 		// Update with current project
-		if(current_project)
+		const et2 = this.views[what].etemplate?.widgetContainer;
+		if(current_project && et2)
 		{
-			let et2 = this.views[what].etemplate.widgetContainer;
 			switch(what)
 			{
 				case 'elements':
@@ -188,7 +188,7 @@ export class ProjectmanagerApp extends EgwApp
 					et2.getWidgetById('nm').applyFilters({col_filter: {'pm_id': current_project}});
 					if(et2.getWidgetById('link_add'))
 					{
-						et2.getWidgetById('link_add').options.value.to_id = current_project;
+						et2.getWidgetById('link_add').value.to_id = current_project;
 					}
 					break;
 				case 'gantt':
@@ -240,10 +240,9 @@ export class ProjectmanagerApp extends EgwApp
 					et2.getWidgetById('nm').applyFilters({col_filter:{'pm_id': pricelist_project}});
 			}
 		}
-		else if (what == 'prices')
+		else if (what == 'prices' && et2)
 		{
 			// Price list doesn't need a project
-			let et2 = this.views[what].etemplate.widgetContainer;
 			et2.getWidgetById('nm').applyFilters({col_filter:{'pm_id': '0'}});
 		}
 		else if (what != 'list')
@@ -575,7 +574,7 @@ export class ProjectmanagerApp extends EgwApp
 	 * @param event
 	 * @param widget
 	 */
-	element_add_app_change_handler(event, widget : et2_link_add)
+	element_add_app_change_handler(event, widget : Et2LinkAdd)
 	{
 		if(widget.id !== 'link_addapp') return false;
 		var nm = widget.getParent();
