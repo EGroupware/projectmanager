@@ -185,11 +185,12 @@ export class ProjectmanagerApp extends EgwApp
 					{
 						elements.getDOMNode().classList.remove("hide");
 					}
-					et2.getWidgetById('nm').applyFilters({col_filter: {'pm_id': current_project}});
+					const filter = {col_filter: {'pm_id': current_project}}
 					if(et2.getWidgetById('link_add'))
 					{
-						et2.getWidgetById('link_add').value.to_id = current_project;
+						filter['link_add'] = {...et2.getWidgetById('link_add').value, ...{to_id: current_project}};
 					}
+					et2.getWidgetById('nm').applyFilters(filter);
 					break;
 				case 'gantt':
 					const gantt = et2.getWidgetById('gantt');
