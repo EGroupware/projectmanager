@@ -10,7 +10,7 @@
 			<grid width="100%">
 				<columns>
 					<column/>
-					<column/>
+					<column width="200px"/>
 					<column disabled="!@pm_id"/>
 					<column/>
 					<column/>
