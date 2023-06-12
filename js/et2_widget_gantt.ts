@@ -548,6 +548,8 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 	 * @param {string[]|string} _task_ids tasks to refresh
 	 * @param {?string} _type "update", "edit", "delete" or "add"
 	 *
+	 * @return Promise
+	 *
 	 * @see jsapi.egw_refresh()
 	 * @fires refresh from the widget itself
 	 */
@@ -564,6 +566,7 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 			// Use the root
 			_task_ids = this.gantt.$data.tasksStore._branches[0];
 		}
+		let promises = [];
 
 		id_loop:
 		for(var i = 0; i < _task_ids.length; i++)
@@ -588,21 +591,22 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 			{
 				_type = null;
 			}
+
 			switch(_type)
 			{
 				case "edit":
 				case "update":
 					var value = this.getInstanceManager().getValues(this.getInstanceManager().widgetContainer);
 					this.gantt.showCover();
-					this.egw().json(this.options.autoload,
-						[update_id,value,task.parent||false],
-						function(data) {
+					promises.push(this.egw().json(this.options.autoload,
+						[update_id, value, task.parent || false],
+						function(data)
+						{
 							this.gantt.parse(data);
 							this._apply_sort();
-							this.gantt.hideCover();
 						},
-						this,true,this
-					).sendRequest();
+						this, true, this
+					).sendRequest());
 					break;
 				case "delete":
 					this.gantt.deleteTask(update_id);
@@ -628,7 +632,12 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 		}
 
 		// Trigger an event so app code can act on it
-		jQuery(this).triggerHandler("refresh",[this,_task_ids,_type]);
+		jQuery(this).triggerHandler("refresh", [this, _task_ids, _type]);
+
+		return Promise.all(promises).then(() =>
+		{
+			setTimeout(() => {this.gantt.hideCover()}, 500);
+		});
 	}
 
 	/**
@@ -897,14 +906,38 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 
 		// Bind AJAX for dynamic expansion
 		// TODO: This could be improved
-		this.gantt.attachEvent("onTaskOpened", function(id, item) {
-			gantt_widget.refresh(id);
+		this.gantt.attachEvent("onTaskOpened", function(id, item)
+		{
+			const button = this.$grid_data.querySelector("[task_id='" + id + "']").querySelector(".gantt_close,.gantt_open");
+			if(button)
+			{
+				const width = getComputedStyle(button).width;
+				button.classList.add("loading")
+				button.classList.remove("gantt_open", "gantt_close");
+				button.style.width = width;
+			}
+			const request = gantt_widget.refresh(id);
+			request.then(() =>
+			{
+				if(button)
+				{
+					button.classList.remove("loading");
+				}
+			});
+		});
+		// Wait a bit to slow down users, otherwise they might try to close it before refresh is done
+		this.gantt.attachEvent("onTaskClosed", function(id, item)
+		{
+			this.showCover();
+			setTimeout(() => {this.hideCover()}, 500);
 		});
 
 		// Filters
-		this.gantt.attachEvent("onBeforeTaskDisplay", function(id, task) {
+		this.gantt.attachEvent("onBeforeTaskDisplay", function(id, task)
+		{
 			var display = true;
-			gantt_widget.iterateOver(function(_widget){
+			gantt_widget.iterateOver(function(_widget)
+			{
 				switch(_widget.id)
 				{
 					// Start and end date are an interval.  Also update the chart to
@@ -913,7 +946,7 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 					case 'end_date':
 						if(_widget.getValue())
 						{
-							display = display && ((task['start_date'].valueOf() / 1000) < (new Date(_widget.getValue()).valueOf() / 1000) + 86400 );
+							display = display && ((task['start_date'].valueOf() / 1000) < (new Date(_widget.getValue()).valueOf() / 1000) + 86400);
 						}
 						return;
 					case 'start_date':
