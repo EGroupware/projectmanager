@@ -6,7 +6,7 @@
 			<et2-hbox>
 				<et2-checkbox  statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"></et2-checkbox>
 				<et2-checkbox  statustext="Show constraints and milestones" label="Constraints" id="constraints" onchange="1"></et2-checkbox>
-				<et2-button  statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all"></et2-button>
+				<et2-button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all" image="agt_reload"></et2-button>
 				<et2-button statustext="Add a new milestone" label="Add milestone" id="milestone" image="milestone"
                             onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
 				<!-- Disabled for now, as these use external services
