@@ -61,21 +61,21 @@
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="Times" for="pm_used_time"></et2-description>
-					<et2-date-duration  id="pm_used_time" dataFormat="@duration_format"></et2-date-duration>
+					<et2-date-duration id="pm_used_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 					<et2-description></et2-description>
-					<et2-date-duration  id="ds[pe_used_time]" readonly="true" span="all" dataFormat="@duration_format"></et2-date-duration>
+                    <et2-date-duration id="ds[pe_used_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="- planned" for="pm_planned_time"></et2-description>
-					<et2-date-duration  id="pm_planned_time" dataFormat="@duration_format"></et2-date-duration>
+                    <et2-date-duration id="pm_planned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 					<et2-description></et2-description>
-					<et2-date-duration  id="ds[pe_planned_time]" readonly="true" span="all" dataFormat="@duration_format"></et2-date-duration>
+                    <et2-date-duration id="ds[pe_planned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="- re-planned" for="pm_replanned_time"></et2-description>
-					<et2-date-duration  id="pm_replanned_time" dataFormat="@duration_format"></et2-date-duration>
+                    <et2-date-duration id="pm_replanned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 					<et2-description></et2-description>
-					<et2-date-duration  id="ds[pe_replanned_time]" readonly="true" span="all" dataFormat="@duration_format"></et2-date-duration>
+                    <et2-date-duration id="ds[pe_replanned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row">
 					<et2-description  value="Status" for="pm_completion"></et2-description>
