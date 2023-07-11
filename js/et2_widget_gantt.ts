@@ -25,12 +25,12 @@ import {et2_DOMWidget} from "../../api/js/etemplate/et2_core_DOMWidget";
 import {et2_IInput, et2_IPrint, et2_IResizeable} from "../../api/js/etemplate/et2_core_interfaces";
 import {et2_dynheight} from "../../api/js/etemplate/et2_widget_dynheight";
 import {egw} from "../../api/js/jsapi/egw_global";
-import {EGW_AO_FLAG_IS_CONTAINER, EGW_AO_STATE_SELECTED} from "../../api/js/egw_action/egw_action_constants.js";
+import {EGW_AO_FLAG_IS_CONTAINER, EGW_AO_STATE_SELECTED} from "../../api/js/egw_action/egw_action_constants";
 import {
 	egw_getAppObjectManager,
 	egw_getObjectManager,
 	egwActionObjectInterface
-} from "../../api/js/egw_action/egw_action.js";
+} from "../../api/js/egw_action/egw_action";
 import {egwBitIsSet} from "../../api/js/egw_action/egw_action_common";
 import {Et2Dialog} from "../../api/js/etemplate/Et2Dialog/Et2Dialog";
 import type {Et2Date} from "../../api/js/etemplate/Et2Date/Et2Date";
