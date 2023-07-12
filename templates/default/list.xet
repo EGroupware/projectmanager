@@ -23,7 +23,7 @@
 				<column width="60"/>
 				<column width="130"/>
 				<column width="25%"/>
-                <column width="120"/>
+                <column width="120" disabled="@no_kanban"/>
 			</columns>
 			<rows>
 				<row class="th">

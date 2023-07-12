@@ -45,7 +45,7 @@
 				<column width="80" disabled="@no_pe_used_budget_pe_planned_budget"/>
 				<column width="80"/>
 				<column width="130"/>
-                <column width="120"/>
+                <column width="120" disabled="@no_kanban"/>
 			</columns>
 			<rows>
 				<row class="th">

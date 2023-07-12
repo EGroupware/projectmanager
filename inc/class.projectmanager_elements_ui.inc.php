@@ -1053,8 +1053,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// edit sync_all
 		$content['nm']['actions'] = $this->get_actions();
 
+		// disable kanban column if we have no kanban
+		if(empty($GLOBALS['egw_info']['user']['apps']['kanban']))
+		{
+			$content['nm']['no_kanban'] = true;
+		}
+
 		// add "buttons" only with add-rights
-		if ($this->project->check_acl(Acl::ADD))
+		if($this->project->check_acl(Acl::ADD))
 		{
 			if(!$this->config['enable_eroles'])
 			{
