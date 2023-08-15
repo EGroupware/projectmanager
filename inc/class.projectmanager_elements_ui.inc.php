@@ -297,7 +297,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			else if ($_GET['pe_id'] && strpos($_GET['pe_id'],':') > 0)
 			{
 				list($app,$app_id,$pe_id) = explode(':',$_GET['pe_id']);
-				$this->read((int) $pe_id);
+				$this->read(['pe_id' => (int)$pe_id]);
 			}
 			if ($this->data['pe_id'])
 			{
