@@ -76,6 +76,11 @@ class projectmanager_admin
 			}
 
 			// Notifications
+			if($content['notification']['custom_date'])
+			{
+				$this->config->config_data[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'] = $content['notification']['custom_date'];
+				unset($content['notification']['custom_date']);
+			}
 			$this->config->config_data[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'] = $content['notification'];
 
 			$this->config->save_repository();
@@ -95,8 +100,19 @@ class projectmanager_admin
 		if(!$content['ID_GENERATION_FORMAT_SUB']) $content['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
 
 		$content['notification'] = $content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'];
+		$content['notification']['custom_date'] = $content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'];
 		$content['msg'] = $msg;
 
+		// Custom date fields for custom notification
+		$date_fields = [];
+		foreach(Api\Storage\Customfields::get('projectmanager') as $cf)
+		{
+			if($cf['type'] !== 'date')
+			{
+				continue;
+			}
+			$date_fields[] = ['value' => $cf['name'], 'label' => $cf['label']];
+		}
 		$sel_options = array(
 			'duration_units'   => $this->duration_units,
 			'accounting_types' => $this->accounting_types,
@@ -108,6 +124,7 @@ class projectmanager_admin
 				'history_admin_delete' => lang('Yes, only admins can purge deleted items'),
 				'history_no_delete' => lang('Yes, noone can purge deleted items'),
 			),
+			'field' => $date_fields
 		);
 		Api\Translation::add_app('projectmanager');
 

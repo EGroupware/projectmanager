@@ -71,6 +71,12 @@
                     <htmlarea id="notification[message]" height="180px" width="100%" toolbar="false" span="all"/>
                 </row>
                 <row>
+                    <et2-vbox>
+                        <et2-select id="notification[custom_date][field]" label="Notify on custom date field" emptyLabel="None"></et2-select>
+                        <htmlarea id="notification[custom_date][message]" height="180px" width="100%" toolbar="false" span="all"/>
+                    </et2-vbox>
+                </row>
+                <row>
                     <et2-description  value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extraLinkTarget="_blank"></et2-description>
                     <et2-description></et2-description>
                 </row>
