@@ -529,7 +529,10 @@ class projectmanager_bo extends projectmanager_so
 		{
 			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_offset_s;
 		}
-		if (substr($data['pm_completion'],-1) == '%') $data['pm_completion'] = (int) round(substr($data['pm_completion'],0,-1));
+		if(array_key_exists('pm_completion', $data) && substr($data['pm_completion'], -1) == '%')
+		{
+			$data['pm_completion'] = (int)round(substr($data['pm_completion'], 0, -1));
+		}
 
 		return $data;
 	}
