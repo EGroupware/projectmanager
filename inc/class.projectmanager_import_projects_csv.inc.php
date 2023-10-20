@@ -120,7 +120,6 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 			// Not really a valid field, so remove it now that we're done
 			unset($record->field_name);
 		}
-		if(count($more_categories) > 0) $record->cat_id = array_merge(is_array($record->cat_id) ? $record->cat_id : explode(',',$record->cat_id), $more_categories);
 
 		foreach($this->bo->pe_name2id as $name => $id)
 		{
