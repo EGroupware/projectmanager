@@ -84,7 +84,7 @@
                 <row>
                     <et2-vbox>
                         <et2-hbox class="field_header">
-                            <et2-description id="${row}[field]"/>
+                            <et2-description id="${row}[label]"/>
                             <et2-button id="${row}[remove]" image="delete"></et2-button>
                         </et2-hbox>
                         <htmlarea id="${row}[message]" height="180px" width="100%" toolbar="false" span="all"/>

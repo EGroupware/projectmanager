@@ -134,7 +134,11 @@ class projectmanager_admin
 			$content['notification']['custom_date'] = array_map(
 				function ($field, $notification)
 				{
-					return ['field' => $field, 'message' => $notification];
+					return [
+						'field'   => $field,
+						'label'   => Api\Storage\Customfields::get('projectmanager')[$field]['label'] ?: $field,
+						'message' => $notification
+					];
 				},
 				array_keys($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date']),
 				array_values($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'])
