@@ -129,14 +129,17 @@ class projectmanager_admin
 		$content['notification'] = $content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'];
 
 		// Map Key=>value to field, message
-		$content['notification']['custom_date'] = array_map(
-			function ($field, $notification)
-			{
-				return ['field' => $field, 'message' => $notification];
-			},
-			array_keys($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date']),
-			array_values($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'])
-		);
+		if(is_array($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date']))
+		{
+			$content['notification']['custom_date'] = array_map(
+				function ($field, $notification)
+				{
+					return ['field' => $field, 'message' => $notification];
+				},
+				array_keys($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date']),
+				array_values($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'])
+			);
+		}
 		if(empty($content['notification']['custom_date']))
 		{
 			unset($content['notification']['custom_date']);
