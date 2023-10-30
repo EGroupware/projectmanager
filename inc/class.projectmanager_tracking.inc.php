@@ -134,7 +134,10 @@ class projectmanager_tracking extends Api\Storage\Tracking
 				$global = $config[self::CUSTOM_NOTIFICATION]['~global~'];
 
 				// Disabled
-				if(!$type_config['use_custom'] && !$global['use_custom']) return '';
+				if(!$global['use_custom'])
+				{
+					return '';
+				}
 
 				// Type or globabl
 				$config = trim(strip_tags($type_config['message'])) != '' && $type_config['use_custom'] ? $type_config['message'] : $global['message'];
