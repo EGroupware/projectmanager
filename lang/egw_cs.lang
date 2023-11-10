@@ -154,6 +154,8 @@ elements that can't start before this one is finished	projectmanager	cs	Součás
 elements which have to be finished before this can start	projectmanager	cs	Součásti, které musí být ukončeny dříve než tato bude moci začít
 empty	projectmanager	cs	Prázdný
 empty for all	projectmanager	cs	prázdné znamená vše
+enable element roles	projectmanager	cs	Povolení rolí prvků
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	cs	Tuto funkci povolte pro sofistikovanější použití slučování dokumentů. S povolenou funkcí rolí prvků je možné přidělit prvkům projektu určitou roli v dokumentu. Pro všechny tyto prvky, které mají definované role prvků, bude Projectmanager schopen poskytnout velmi podrobné informace až do úrovně aplikace, které lze využít k vytvoření jednoho dokumentu nebo dokonce sériového dopisu najednou.
 encode non-ascii	projectmanager	cs	Kódovat ne-ascii
 enddate	projectmanager	cs	Koncové datum
 ends after	projectmanager	cs	Končí po
@@ -175,6 +177,7 @@ everything recursive	projectmanager	cs	Vše rekurzivní
 example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	cs	Příklad {{IF n_prefix~Pan~Vážený pane~Vážená paní}} - hledá se výskyt slova "Pan" v poli "n_prefix", pokud je nalezeno, vloží se  text Vážený pane, jinak Vážená paní.
 example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	cs	Příklad {{LETTERPREFIXCUSTOM n_prefix title n_family}} - Příklad: Mr Dr. James Miller
 example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	cs	Příklad {{NELF role}} - pokud pole role není prázdné, bude na nový řádek vypsán obsah pole role.
+example {{nenvlf role}} - if field role is not empty, set a lf without any value of the field	projectmanager	cs	Příklad {{nenvlf role}} - Pokud pole role není prázdné, nastavte LF bez jakékoli hodnoty pole.
 example:	projectmanager	cs	Příklad:
 examples:	projectmanager	cs	Příklady:
 existing data will be overwrited if checked	projectmanager	cs	Pokud zaškrtnete, budou stávající data přepsána
@@ -183,6 +186,7 @@ exists	projectmanager	cs	Existuje.
 exit without saving	projectmanager	cs	Ukočit bez uložení
 export definition to use for nextmatch export (elements)	projectmanager	cs	Export definic pro použití v dalších exportech (součásti)
 export definition to use for nextmatch export (projects)	projectmanager	cs	Export definic pro použití v dalších exportech (projekty)
+export definition to use for nextmatch export (projekte)	projectmanager	cs	Definice exportu, která se použije pro export nextmatch (Projekte)
 exports a list of project elements to a csv file.	projectmanager	cs	Export seznamu součástí projektu jako soubor CSV
 exports a list of projects to a csv file.	projectmanager	cs	Export seznamu projektů jako soubor CSV
 external	projectmanager	cs	Externí
@@ -210,6 +214,7 @@ general pricelist	projectmanager	cs	Hlavní ceník
 general settings	projectmanager	cs	Obecné nastavení
 global categories	projectmanager	cs	Všeobecné kategorie
 h	projectmanager	cs	h
+has been moved to settings to allow eg. group-specific ids	projectmanager	cs	Bylo přesunuto do nastavení, aby umožňovalo např. ID specifické pro skupinu.
 health	projectmanager	cs	Zdraví
 history logging and deleting of items	projectmanager	cs	Zaznamenávání historie a mazání položek
 hours	projectmanager	cs	hodin

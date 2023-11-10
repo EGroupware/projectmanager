@@ -153,7 +153,9 @@ elements of elements	projectmanager	es-es	Elementos de elementos
 elements that can't start before this one is finished	projectmanager	es-es	Elementos que no pueden comenzar antes de que éste esté terminado
 elements which have to be finished before this can start	projectmanager	es-es	Elementos que tienen que estar terminados antes de que éste pueda comenzar
 empty	projectmanager	es-es	Vacío
-empty for all	projectmanager	es-es	vacío para todo
+empty for all	projectmanager	es-es	Vacío para todos
+enable element roles	projectmanager	es-es	Habilitar las funciones de los elementos
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	es-es	Habilite esta función para un uso más sofisticado de la fusión de documentos. Con la función de roles de elementos activada, es posible asignar a los elementos del proyecto un determinado rol en un documento. Para todos estos elementos con roles definidos, projectmanager será capaz de proporcionar información muy detallada hasta un nivel de aplicación que se puede utilizar para crear un documento único o incluso una carta en serie de una sola vez.
 encode non-ascii	projectmanager	es-es	No codificar en ascii
 enddate	projectmanager	es-es	Fecha de término
 ends after	projectmanager	es-es	Termina después
@@ -220,6 +222,7 @@ hours per workday	projectmanager	es-es	Horas por día de trabajo
 how long do you work on the given day.	projectmanager	es-es	Cuánto se trabaja en el día indicado
 how should ids for new projects be generated?	projectmanager	es-es	¿Cómo deben generarse los ID para nuevos proyectos?
 how should ids for new subprojects be generated?	projectmanager	es-es	¿Cómo deben generarse los ID para nuevos subproyectos?
+how should the project selection in the menu be displayed	projectmanager	es-es	¿Cómo debe mostrarse la selección de proyectos en el menú?
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	es-es	Cómo mostrar en el menú la selección del proyecto: un árbol proporciona una descripción mejor, pero una lista puede ser más rápido.
 how would you like to print the chart?	projectmanager	es-es	¿Cómo desea imprimir el diagrama?
 html link to the current record	projectmanager	es-es	Enlace HTML al registro actual
@@ -465,6 +468,9 @@ view this project-element	projectmanager	es-es	Ver este elemento del proyecto
 working duration on %1	projectmanager	es-es	Duración del trabajo en %1
 year & month	projectmanager	es-es	Año y mes
 year only	projectmanager	es-es	solo año
+yes, noone can purge deleted items	projectmanager	es-es	Sí, nadie puede purgar los elementos borrados
+yes, only admins can purge deleted items	projectmanager	es-es	Sí, sólo los administradores pueden purgar elementos borrados
+yes, with purging of deleted items possible	projectmanager	es-es	Sí, con purga de elementos borrados posible
 you can leave the date of the first price empty	projectmanager	es-es	puede dejar la fecha del primer precio en blanco
 you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	es-es	Puede usar %Ymd para insertar la fecha de creación. Utiliza la misma sintaxis de función fecha() de PHP. Otros marcadores de posición son %px para insertar la ID de los padres (solo en la generación de subproyectos) o %ix para insertar un índice. Los índices se aumentarán automáticamente para evitar IDs duplicadas. ¡Cada formato de generación debe contener exactamente un índice! (Excepto que usted esté seguro de que la fecha identificará el proyecto). También puede usar e.g. %04ix. Este índice se completará con '0' a 4 dígitos (e.g. 0001). Si omite el carácter de relleno (e.g. %5ix), el índice se rellenará con '0'.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	es-es	¡No tiene la versión %1 de JPGraph o superior instalada! Se necesita desde el Administador de proyectos para gráficas Gantt.
