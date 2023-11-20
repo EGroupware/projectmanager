@@ -284,7 +284,7 @@ class projectmanager_so extends Api\Storage
 	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
 	{
 		// include sub-categories in the search
-		if ($filter['cat_id'])
+		if(isset($filter['cat_id']))
 		{
 			if (!is_object($GLOBALS['egw']->categories))
 			{
@@ -325,7 +325,7 @@ class projectmanager_so extends Api\Storage
 			}
 		}
 
-		if ($filter['subs_or_mains'])
+		if(isset($filter['subs_or_mains']))
 		{
 			$subs_mains_join = '';
 			if ($filter['subs_or_mains'] == 'mains')
