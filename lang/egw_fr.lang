@@ -52,12 +52,13 @@ availability settings	projectmanager	fr	Paramètres de disponibilité
 available fields for this plugin:	projectmanager	fr	Champs disponibles pour ce plugin :
 availible	projectmanager	fr	Disponible
 billable	projectmanager	fr	facturable
-bookable	projectmanager	fr	qu'on peut réserver
+bookable	projectmanager	fr	Réservable
 budget	projectmanager	fr	Budget
 budget (no pricelist)	projectmanager	fr	Budget (sans liste de prix)
 budget and pricelist	projectmanager	fr	Budget et liste de prix
-by	projectmanager	fr	par
+by	projectmanager	fr	Par
 calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le budget par quantité (p.ex. temps) et prix
+can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	fr	Peut être utilisé avec les rôles d'éléments, le plugin de tableau "eRoles" et le plugin de tableau "elements".
 category in %1 project-element(s) updated.	projectmanager	fr	Catégorie mise à jour dans %1 élément(s)
 category set	projectmanager	fr	Catégorie définie
 change category	projectmanager	fr	Changer la catégorie
@@ -65,16 +66,18 @@ change the following details of %s	projectmanager	fr	Changer les détails suivan
 charset of file	projectmanager	fr	Jeu de caractères du fichier
 charset of the above selected font	projectmanager	fr	Jeu de caractères de la police sélectionnée ci-dessus
 check all	projectmanager	fr	Tout cocher
+check to make one element role assignable to multiple elements	projectmanager	fr	Cochez cette case pour qu'un rôle d'élément puisse être attribué à plusieurs éléments.
+choose the default filename for downloaded documents.	projectmanager	fr	Choisir le nom de fichier par défaut pour les documents téléchargés.
 close the window, discard the changes made	projectmanager	fr	Fermer la fenêtre en ignorant les modifications
 completion	projectmanager	fr	Autocomplétion
 constraints	projectmanager	fr	Contraintes
 contact fields for serial letters	projectmanager	fr	Champs du contacts puor le publipostage
-conversation between days and hours, default 8	projectmanager	fr	conversion entre jours et heures, par défaut 8
+conversation between days and hours, default 8	projectmanager	fr	Conversion entre jours et heures, par défaut : 8
 coordinator	projectmanager	fr	Coordinateur
 cost per time	projectmanager	fr	Coût au temps
 create a new empty project or use a template	projectmanager	fr	Créer un projet vide ou utiliser un modèle
 create new links	projectmanager	fr	Créer de nouveaux liens
-created	projectmanager	fr	créé
+created	projectmanager	fr	Créé
 created a ganttchart from the checked projects	projectmanager	fr	Créé un diagramme de Gantt à partir des projets sélectionnés
 creation date and time	projectmanager	fr	Date et heure de création
 creator	projectmanager	fr	Créateur
@@ -91,7 +94,7 @@ datasources too	projectmanager	fr	Les sources de données aussi
 dates	projectmanager	fr	Dates
 days	projectmanager	fr	Jours
 default action on double-click	projectmanager	fr	Action par défaut au double clic
-default all and a selectbox to choose	projectmanager	fr	par défaut tous et une boîte de sélection pour choisir
+default all and a selectbox to choose	projectmanager	fr	Par défaut tous et une boîte de sélection pour choisir
 delete all checked projects	projectmanager	fr	Supprimer tous les projets sélectionnés
 delete this element role	projectmanager	fr	Supprimer cet élément de rôle
 delete this milestone	projectmanager	fr	Supprimer cette étape
@@ -99,7 +102,7 @@ delete this price	projectmanager	fr	Supprimer ce prix
 delete this project	projectmanager	fr	Supprimer ce projet
 delete this project-element, does not remove the linked entry	projectmanager	fr	Supprimer cet élément de projet (n'efface PAS l'entrée liée)
 delete this role	projectmanager	fr	Supprimer ce rôle
-deleted	projectmanager	fr	supprimé
+deleted	projectmanager	fr	Supprimé
 depth of display	projectmanager	fr	Profondeur d'affichage
 details of cumulated	projectmanager	fr	Détail cumul
 details of subelements	projectmanager	fr	Détails des sous-éléments
@@ -110,7 +113,9 @@ do you want a notification, if items are about to start according to their real 
 do you want a notification, if items are due according to their planned dates?	projectmanager	fr	Voulez-vous une notification, si les articles sont dus en fonction de leurs dates planifiées ?
 do you want a notification, if items are due according to their real dates?	projectmanager	fr	Voulez-vous une notification, si les articles sont dus en fonction de leurs dates réelles ?
 do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	fr	Voulez-vous une notification, si des éléments vous sont assignés ou si des éléments assignés sont mis à jour ?
+do you want a notification, if items you created get updated?	projectmanager	fr	Souhaitez-vous recevoir une notification en cas de mise à jour des éléments que vous avez créés ?
 document '%1' does not exist or is not readable for you!	projectmanager	fr	Le document '%1' n'existe pas ou n'est pas lisible avec votre profil !
+document download filename	projectmanager	fr	Nom du fichier de téléchargement du document
 document merge	projectmanager	fr	Fusion de document
 don't break into subdirectories	projectmanager	fr	Ne pas éclater en sous-dossiers
 done (100%)	projectmanager	fr	Fait (100%)
@@ -137,6 +142,8 @@ element role deleted	projectmanager	fr	Rôle supprimé.
 element role saved	projectmanager	fr	Rôle sauvegardé.
 element role title	projectmanager	fr	Titre du rôle
 element roles	projectmanager	fr	Rôles
+element roles defined as "mutliple" can be used here.	projectmanager	fr	Les rôles d'éléments définis comme "multiples" peuvent être utilisés ici.
+element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	fr	La fonctionnalité des rôles d'éléments n'est actuellement pas activée dans votre configuration globale du gestionnaire de projet.
 element roles:	projectmanager	fr	Rôles
 element status	projectmanager	fr	Statut de l'élément
 element title	projectmanager	fr	Titre de l'élément
@@ -146,8 +153,9 @@ elements of elements	projectmanager	fr	Eléments d'éléments
 elements that can't start before this one is finished	projectmanager	fr	Eléments ne pouvant commencer avant que celui-ci ne soit terminé
 elements which have to be finished before this can start	projectmanager	fr	Eléments ne pouvant être terminés avant que celui-ci ne commence
 empty	projectmanager	fr	Vide
-empty for all	projectmanager	fr	vide pour tous
+empty for all	projectmanager	fr	Vide pour tous
 enable element roles	projectmanager	fr	Ativer les rôles sur les éléments
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	fr	Activez cette fonctionnalité pour une utilisation plus sophistiquée de la fusion de documents. Avec la fonctionnalité des rôles d'éléments activée, il est possible de donner aux éléments du projet un certain rôle dans un document. Pour tous ces éléments ayant des rôles définis, projectmanager sera en mesure de fournir des informations très détaillées jusqu'au niveau de l'application, ce qui peut être utilisé pour créer un document unique ou même une lettre en série en une seule fois.
 encode non-ascii	projectmanager	fr	Encodage non-ascii
 enddate	projectmanager	fr	Date de fin
 ends after	projectmanager	fr	Fin après
@@ -157,7 +165,8 @@ error: deleting price !!!	projectmanager	fr	Erreur à la suppression du prix !
 error: deleting project !!!	projectmanager	fr	Erreur à la suppression du projet !
 error: deleting project-element !!!	projectmanager	fr	Erreur à la suppression de l'élément de projet !
 error: deleting role !!!	projectmanager	fr	Erreur à la suppression du rôle !
-error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	fr	Erreur : cet ID de projet existe déjà, choisissez-en un autre ou laissez le champ vide pour que l'application génère l'ID !!!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	fr	Erreur : cet ID de projet existe déjà, choisissez-en un autre ou laissez le champ vide pour que l'application génère l'ID !
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	fr	ERREUR : Récursion trouvée, ID %1 plus d'une fois dans le chemin du projet, lors de la construction de l'arbre du projet :
 error: saving element role !!!	projectmanager	fr	Erreur à l'enregistrement de l'élément du rôle !
 error: saving milestone	projectmanager	fr	Erreur à l'enregistrement de l'étape !
 error: saving role !!!	projectmanager	fr	Erreur à l'enregistrement du rôle !
@@ -165,26 +174,38 @@ error: saving the price (%1) !!!	projectmanager	fr	Erreur à l'enregistrement du
 error: saving the project (%1) !!!	projectmanager	fr	Erreur à l'enregistrement du projet (%1) !
 error: saving the project-element (%1) !!!	projectmanager	fr	Erreur à l'enregistrement de l'élément de projet (%1) !
 everything recursive	projectmanager	fr	Tout récursif
+example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	fr	Exemple {{IF n_prefix~Mr~Hello Mr.~Hello Ms.}} - rechercher "Mr" dans le champ "n_prefix", si trouvé, écrire Hello Mr., sinon écrire Hello Ms.
+example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	fr	Exemple {{LETTERPREFIXCUSTOM n_prefixe titre n_famille}} - Exemple : M. Dr. James Miller
+example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	fr	Exemple {{NELF rôle}} - si le champ role n'est pas vide, vous obtiendrez une nouvelle ligne avec la valeur du champ role
+example {{nenvlf role}} - if field role is not empty, set a lf without any value of the field	projectmanager	fr	Exemple {{nenvlf rôle}} - si le champ role n'est pas vide, vous obtiendrez une nouvelle ligne avec la valeur du champ role.
 example:	projectmanager	fr	Exemple :
 examples:	projectmanager	fr	Exemples :
 existing data will be overwrited if checked	projectmanager	fr	Les données existantes seront écrasées si coché.
 existing links	projectmanager	fr	Liens existants
 exists	projectmanager	fr	Existe
 exit without saving	projectmanager	fr	Quitter sans enregistrer
+export definition to use for nextmatch export (elements)	projectmanager	fr	Définition d'exportation à utiliser pour l'exportation du match suivant (Éléments)
+export definition to use for nextmatch export (projects)	projectmanager	fr	Définition d'exportation à utiliser pour l'exportation nextmatch (Projets)
+export definition to use for nextmatch export (projekte)	projectmanager	fr	Définition d'exportation à utiliser pour l'exportation nextmatch (Projets)
 exports a list of project elements to a csv file.	projectmanager	fr	Exporter une liste d'éléments de projet vers un fichier CSV.
 exports a list of projects to a csv file.	projectmanager	fr	Exporter une liste de projets vers un fichier CSV.
 external	projectmanager	fr	Externe
 favorites	projectmanager	fr	Favoris
 fields for element roles:	projectmanager	fr	Champs pour les éléments du rôle :
 fieldseparator	projectmanager	fr	Séparateur de champs
+filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	fr	Le gestionnaire de fichiers affiche une structure virtuelle pour les projets, par exemple par année ou par année et mois. Par défaut, la pagination se fait automatiquement en fonction du nombre de projets. Vous pouvez également choisir un critère fixe pour cette structure.
+filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	fr	Le gestionnaire de fichiers affiche une structure virtuelle pour les projets, par exemple par année, sur la base de la date de création du projet. Vous pouvez sélectionner différents critères pour cette structure, par exemple la date de début ou l'ID du projet.
+filemanager subdirectories	projectmanager	fr	Sous-dossiers du gestionnaire de fichiers
 font	projectmanager	fr	Police
 font charset	projectmanager	fr	Charset de police
 font style	projectmanager	fr	Style de police
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	fr	Police à utiliser dans le diagramme de Gantt, seules les polices Vera sont incluses dans le gestionnaire de projet.
 fontfile '%1' not found!!!	projectmanager	fr	Le fichier de font '%1' n'a pu être trouvé !
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	fr	Pour les lettres en série utiliser cette balise. Placer le contenu que vous voulez répéter entre deux balises.
 free descriptiv text	projectmanager	fr	Descriptif libre
-from %1 to %2	projectmanager	fr	de %1 à %2
+from %1 to %2	projectmanager	fr	De %1 à %2
 full access	projectmanager	fr	Acccès complet
+furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	fr	Les éléments du carnet d'adresses dans la liste des éléments du gestionnaire de projet peuvent être sélectionnés pour définir les destinataires individuels d'une lettre en série.
 ganttchart	projectmanager	fr	Diagramme de Gantt
 ganttchart parameter	projectmanager	fr	Paramètre du diagramme de Gantt
 general availibility	projectmanager	fr	Disponibilité générale
@@ -193,9 +214,10 @@ general pricelist	projectmanager	fr	Liste de prix générale
 general settings	projectmanager	fr	Paramètres généraux
 global categories	projectmanager	fr	Catégorie globale
 h	projectmanager	fr	h
+has been moved to settings to allow eg. group-specific ids	projectmanager	fr	A été déplacé dans les paramètres pour permettre, par exemple, des identifiants spécifiques à un groupe.
 health	projectmanager	fr	Santé
 history logging and deleting of items	projectmanager	fr	Enregistrement de l'historique et suppression des éléments
-hours	projectmanager	fr	heures
+hours	projectmanager	fr	Heures
 hours per workday	projectmanager	fr	Heures par jour ouvré
 how long do you work on the given day.	projectmanager	fr	Combien de temps travaillez-vous ce jour-là.
 how should ids for new projects be generated?	projectmanager	fr	Comment générer les IDs des nouveaux projets ?
@@ -205,7 +227,10 @@ how should the project selection in the menu be displayed: a tree gives a better
 how would you like to print the chart?	projectmanager	fr	Comment voulez-vous imprimer le graphique ?
 html link to the current record	projectmanager	fr	Lien HTML vers l'enregistrement courant
 id generation	projectmanager	fr	Génération des ID
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	fr	Si la case est cochée, les sources de données des éléments, par exemple les entrées de l'InfoLog, sont également supprimées.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	fr	Si la case est cochée, les sources de données des éléments, par exemple les entrées du journal d'information, changeront également d'état.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	fr	Si le graphique de gantt est plus large que la page, il sera rogné.
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	fr	Si vous voyez des entités (par exemple {) dans le diagramme de Gantt, désactivez cette option.
 if you specify an export definition, it will be used when you export	projectmanager	fr	Si vous spécifier un format d'export, il sera utilisé à l'export.
 ignore that entry	projectmanager	fr	Ignorer cette entrée
 ignored	projectmanager	fr	Ignoré
@@ -214,7 +239,7 @@ imports a list of projects from a csv file.  does not include project elements.	
 insert	projectmanager	fr	Insérer
 last modified	projectmanager	fr	Dernière modification
 last sync date and time	projectmanager	fr	Date et heure de la dernière synchro
-leave it empty if you dont need a different customer title	projectmanager	fr	laissez vide si vous n'avez pas besoin d'un titre de client différent
+leave it empty if you dont need a different customer title	projectmanager	fr	Laissez vide si vous n'avez pas besoin d'un titre de client différent
 leave it empty to have one generated	projectmanager	fr	Laissez ce champ vide pour que la valeur soit générée automatiquement
 leave it empty, if identitcal to the time	projectmanager	fr	Laissez ce champ vide si identique au temps
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	fr	Limiter le nombre de caractères dans les titres d'éléments du Gantt (0 pour aucune limite)
@@ -242,31 +267,33 @@ modify status	projectmanager	fr	Modifier le statut
 multi assignable	projectmanager	fr	Assignable à plusieurs
 multi assignments	projectmanager	fr	Assignements multiples
 name of current user, all other contact fields are valid too	projectmanager	fr	Nom de l'utilisateur courant, tous les autres champs de contacts sont valides aussi
-necessary for project-elements doing that not automatic	projectmanager	fr	nécessaire pour les éléments de projet ne le faisant pas automatiquement
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fr	Les extensions PHP nécessaires %1 ne sont pas chargées et ne peuvent pas l'être !!!
+necessary for project-elements doing that not automatic	projectmanager	fr	Nécessaire pour les éléments de projet ne le faisant pas automatiquement
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fr	Les extensions PHP nécessaires %1 ne sont pas chargées et ne peuvent pas l'être !
 new	projectmanager	fr	Nouveau
 new project submitted by %1 at %2	projectmanager	fr	Nouveau projet soumis par %1 à %2
 no accounting, only status	projectmanager	fr	Pas de comptabilité, statut uniquement
 no accounting, only times and status	projectmanager	fr	Pas de comptabilité, temps et statut uniquement
 no details	projectmanager	fr	Pas de détail
-no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	fr	Aucun droit en LECTURE à la source des données: enlever les valeurs écrasées va juste les vider !!!
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	fr	Aucun droit en LECTURE à la source des données: enlever les valeurs écrasées va juste les vider !
 no rights to export more then %1 entries!	projectmanager	fr	Vous n'avez pas le droit d'exporter plus que %1 entrées !
 no save necessary	projectmanager	fr	Aucun enregistrement nécessaire
 nonactive	projectmanager	fr	Inactif
 not available	projectmanager	fr	Indisponible
 not started (0%)	projectmanager	fr	Non commencé (0%)
-not working	projectmanager	fr	ne fonctionne pas
+not working	projectmanager	fr	Ne fonctionne pas
 notification settings	projectmanager	fr	Paramètres de notification
+number of characters to which title of ganttchart elements should be shortened to.	projectmanager	fr	Nombre de caractères auquel le titre des éléments du diagramme de Gantt doit être raccourci.
 number of records to read (%1)	projectmanager	fr	Nombre d'enregistrements à lire (%1)
 one day after	projectmanager	fr	un jour après
 one day in advance	projectmanager	fr	un jour en avance
 ongoing (0 < % < 100)	projectmanager	fr	En cours  (0 < % < 100)
 only this project	projectmanager	fr	Seulement ce projet
+order of sub-project bars in ganttcharts	projectmanager	fr	Ordre des barres de sous-projets dans les diagrammes de Gantt
 overwrite the datasource	projectmanager	fr	Ecraser la source de données
 percentage the member is availible for projects	projectmanager	fr	Pourcentage de disponibilité pour les projets
 percentage the member is availible for this project	projectmanager	fr	Pourcentage de disponibilité pour ce projet
-permission denied !!!	projectmanager	fr	Permission refusée !!!
-planned	projectmanager	fr	prévu
+permission denied !!!	projectmanager	fr	Permission refusée !
+planned	projectmanager	fr	Prévu
 planned budget	projectmanager	fr	Budget planifié
 planned end	projectmanager	fr	Fin planifiée
 planned end date and time	projectmanager	fr	Date et heure de fin planifiée
@@ -351,9 +378,10 @@ same day	projectmanager	fr	même jour
 save the changes made	projectmanager	fr	Enregistre les modifications
 save this project element	projectmanager	fr	Enregistre l'élément de projet
 select a project	projectmanager	fr	Sélectionner un projet
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	fr	choisissez une activité si vous désirez calculer les coûts par quantité (temps) et prix
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	fr	Choisissez une activité si vous désirez calculer les coûts par quantité (temps) et prix
 select export options	projectmanager	fr	Sélectionner les options d'export
 select multiple projects for a further action	projectmanager	fr	Choisissez plusieurs projets pour continuer
+select project sort order for project tree and link search	projectmanager	fr	Sélection de l'ordre de tri des projets pour l'arbre des projets et la recherche de liens
 select the accounting types visible for users of projectmanager	projectmanager	fr	Sélectionnez les types de comptabilités visibles par les utilisateurs du gestionnaire de projets
 select this project and show it's elements	projectmanager	fr	Sélectionner ce projet et montrer ses éléments
 selectbox with %1	projectmanager	fr	Boîte de sélection avec %1
@@ -362,9 +390,13 @@ share	projectmanager	fr	Partager
 share on the whole project	projectmanager	fr	Partager sur le projet entier
 share on the whole project in hours or percent, defaults to planned time	projectmanager	fr	Partager sur le projet entier en heures ou pourcentage, par défaut sur le temps planifié
 shared time in minutes	projectmanager	fr	Temps partagé en minutes
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	fr	La liste des éléments du projet devrait afficher les icônes dédiées aux types d'InfoLog. Les icônes des types personnalisés d'InfoLog peuvent être ajoutées dans le chemin VFS où se trouvent des images, des icônes ou des logos supplémentaires (voir Configuration du site). Si des icônes de 32x32 pixels sont téléchargées avec un nom de fichier se terminant par "_element", cette icône plus grande sera chargée dans la liste des éléments.
+should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	fr	Si les éléments de projet doivent afficher les liens vers d'autres applications et/ou les pièces jointes dans la liste des éléments de projet (uniquement lors de l'affichage des détails).
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	fr	Le Gestionnaire de projets doit-il afficher les icônes de statut de la source de données (c'est-à-dire InfoLog) ou seulement une barre de progression avec le statut numérique (plus rapide).
 show constraints and milestones	projectmanager	fr	Montrer les contraintes et les étapes
 show elements in ganttchart by applications	projectmanager	fr	Afficher les élément dans les Gantt par demande
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	fr	Afficher les éléments dans le diagramme de Gantt en fonction des applications dont ils proviennent (aucun = tous).
+show infolog type icon in the project elements list	projectmanager	fr	Afficher l'icône de type InfoLog dans la liste des éléments du projet.
 show links in the project elements list	projectmanager	fr	Afficher des liens sur la liste des éléments
 show planned times instead of the real times	projectmanager	fr	Montrer les temps prévus au lieu des temps réels
 show status icons of the datasources	projectmanager	fr	Montrer les icônes de statut de la source de données
@@ -372,7 +404,7 @@ show the project selection as	projectmanager	fr	Montrer la sélection de projet 
 site configuration saved	projectmanager	fr	Configuration du site enregistrée
 start date, end date	projectmanager	fr	Date de début, Date de fin
 start working on %1	projectmanager	fr	Commencer de travailler sur %1
-start, end, category, ...	projectmanager	fr	Début, Fin, Catégorie...
+start, end, category, ...	projectmanager	fr	Début, Fin, Catégorie ...
 start- & enddate	projectmanager	fr	Dates de début et de fin
 startdate	projectmanager	fr	Date de début
 startrecord	projectmanager	fr	Enregistrement de départ
@@ -387,6 +419,7 @@ subproject	projectmanager	fr	Sous-projet
 subprojects	projectmanager	fr	Sous-projets
 synced	projectmanager	fr	Synchronisé
 synchronise all	projectmanager	fr	Tout synchroniser
+table plugins:	projectmanager	fr	Plugins de table :
 tag to mark positions for address labels	projectmanager	fr	Balise pour marquer les positions des étiquettes d'adresses
 template	projectmanager	fr	Modèle
 template as subproject	projectmanager	fr	Modèle de sous-projet
@@ -395,13 +428,18 @@ template name	projectmanager	fr	Nom du modèle
 template name - project title	projectmanager	fr	Nom du modèle - Titre de projet
 test import (show importable records <u>only</u> in browser)	projectmanager	fr	Tester l'import (montrer <u>seulement</u> les enregistrements importables dans le navigateur)
 that action allows to download the specified document with the project and elements data inserted.	projectmanager	fr	Cette action permet de télécharger le document spécifier avec le projet et les éléments insérés.
+the charset depends on the font you want to use.	projectmanager	fr	Le jeu de caractères dépend de la police que vous souhaitez utiliser.
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	fr	le document peut contenir des espaces réservés comme {{%3}}, qui seront remplacés par les données (%1 full list of placeholder names%2).
 the following document-types are supported:	projectmanager	fr	Les documents types suivants sont supportés :
 time	projectmanager	fr	Temps
 times	projectmanager	fr	Temps
 timezone	projectmanager	fr	Fuseau horaire
+title contains invalid characters (use a-z, numbers, dash and underscore)	projectmanager	fr	Le titre contient des caractères non valides. Utilisez les caractères A-Z, les chiffres, les tirets et les traits de soulignement.
 title must not be empty	projectmanager	fr	Le titre ne doit pas être vide
 titles of any entries linked to the current record, excluding attached files	projectmanager	fr	Titres de toutes les entrées liées à l'enregistrement courant, à l'exception des fichiers
-to many might exceed your execution-time-limit	projectmanager	fr	trop pourrait dépasser votre temps limite d'exécution
+to many might exceed your execution-time-limit	projectmanager	fr	Trop pourrait dépasser votre temps limite d'exécution
+total completion shares	projectmanager	fr	Nombre total de parts d'achèvement
+total shares	projectmanager	fr	Total des actions
 translation	projectmanager	fr	Traduction
 tree with %1	projectmanager	fr	Arborescence avec %1
 unable to find parent project %1	projectmanager	fr	Impossible de trouver l'objet parent %1
@@ -434,6 +472,7 @@ yes, noone can purge deleted items	projectmanager	fr	Oui, personne ne peut purge
 yes, only admins can purge deleted items	projectmanager	fr	Oui, seuls les administrateurs peuvent purger les éléments supprimés
 yes, with purging of deleted items possible	projectmanager	fr	Oui, avec la possibilité de purger les éléments supprimés.
 you can leave the date of the first price empty	projectmanager	fr	vous pouvez laisser la date du premier prix vide
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	fr	Vous pouvez utiliser %Ymd pour insérer la date de création. Il utilise la même syntaxe que la fonction PHP date(). D'autres caractères de remplacement sont %px pour insérer l'ID des parents (uniquement lors de la génération des sous-projets) ou %ix pour insérer un index. Les index seront augmentés automatiquement pour éviter les doublons. Chaque format de génération doit contenir exactement un index ! (Sauf si vous êtes sûr que la date identifiera le projet). Vous pouvez également utiliser par exemple %04ix. Cet index sera rempli de '0' à 4 chiffres (par exemple 0001). Si vous omettez le caractère de remplissage (par exemple %5ix), l'index sera rempli avec '0'.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	fr	Vous n'avez pas de version de JPGraph %1 ou plus !  Ceci est nécessaire pour les diagrammes de Gantt dans le gestionnaire de projets.
 you need to select a project first	projectmanager	fr	Vous devez d'abord sélectionner un projet
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	fr	Votre base de données n'est PAS à jour (%1 contre %2), exécutez %3setup%4 pour la mettre à jour.

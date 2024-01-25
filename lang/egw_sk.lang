@@ -15,7 +15,7 @@
 - re-planned	projectmanager	sk	-pre-plánované
 0ngoing (0 < % < 100)	projectmanager	sk	Vybavuje sa (0 < % < 100)
 a describtive title for the project, must not be empty	projectmanager	sk	Opisný názov projektu, nesmie byť prázdny
-accounting	projectmanager	sk	Účtovník
+accounting	projectmanager	sk	Účtovníctvo
 accounting options	projectmanager	sk	Možnosti účtovania
 accounting type	projectmanager	sk	Typ účtovania
 actions	projectmanager	sk	Akcie
@@ -85,7 +85,7 @@ criteria to break into subdirectories	projectmanager	sk	Kritériá na rozdelenie
 csv-fieldname	projectmanager	sk	CSV-názov poľa
 csv-filename	projectmanager	sk	CSV-názov súboru
 csv-import	common	sk	CSV-Import
-cumulated elements too	projectmanager	sk	Taktiež aj kumulované prvky
+cumulated elements too	projectmanager	sk	Vrátane kumulovaných prvkov
 custom fields	projectmanager	sk	Vlastné polia
 customer title	projectmanager	sk	Meno klienta
 data exchange settings	projectmanager	sk	Nastavenia pre výmenu údajov
@@ -157,7 +157,7 @@ empty for all	projectmanager	sk	Prázdne znamená: všetko
 enable element roles	projectmanager	sk	Povoliť role prvkov
 enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	sk	Povolením tejto funkcie získate prepracovanejšie použitie zlúčenia dokumentov. Keď sú povolené role prvkov, je možné dať projektovým prvkom určitú rolu v dokumente. Pre všetky tieto prvky s definovanými rolami prvkov, Projektovník bude vedieť poskytnúť veľmi podrobné informácie až na aplikačnú úroveň, ktoré sa dajú použiť na vytvorenie jednotlivého dokumentu alebo dokonca sériového listu.
 encode non-ascii	projectmanager	sk	Ne-ASCII kódovanie
-enddate	projectmanager	sk	Dátum ukončenie
+enddate	projectmanager	sk	Dátum ukončenia
 ends after	projectmanager	sk	Končí po
 ends before	projectmanager	sk	Končí pred
 error: deleting element role !!!	projectmanager	sk	Chyba pri odstraňovaní úlohy v prvku!
@@ -237,7 +237,7 @@ ignored	projectmanager	sk	Ignorované
 import	projectmanager	sk	Import
 imports a list of projects from a csv file.  does not include project elements.	projectmanager	sk	Naimportuje zoznam projektov zo súboru CSV. Neobsahuje prvky projektu.
 insert	projectmanager	sk	Vložiť
-last modified	projectmanager	sk	Naposledy zmenené
+last modified	projectmanager	sk	Posledná zmena
 last sync date and time	projectmanager	sk	Dátum a čas poslednej synchronizácie
 leave it empty if you dont need a different customer title	projectmanager	sk	Ponechajte prázdne, ak nepotrebujete odlišné meno klienta
 leave it empty to have one generated	projectmanager	sk	Ponechajte prázdne, ak chcete aby sa automaticky pridelilo
@@ -293,7 +293,7 @@ overwrite the datasource	projectmanager	sk	Prepísať zdroj dát
 percentage the member is availible for projects	projectmanager	sk	Na koľko percent je člen dostupný pre projekty
 percentage the member is availible for this project	projectmanager	sk	Na koľko percent je člen dostupný pre tento projekt
 permission denied !!!	projectmanager	sk	Prístup bol odmietnutý!!!
-planned	projectmanager	sk	Plánované
+planned	projectmanager	sk	Plánovaný
 planned budget	projectmanager	sk	Plánovaný rozpočet
 planned end	projectmanager	sk	Plánovaný koniec
 planned end date and time	projectmanager	sk	Plánovaný dátum a čas konca

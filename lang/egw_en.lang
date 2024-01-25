@@ -33,8 +33,8 @@ add project-elements	projectmanager	en	Add project elements
 add this role	projectmanager	en	Add this role
 add timesheet	projectmanager	en	Add timesheet
 add timesheet only	projectmanager	en	Add timesheet only
-addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	en	Address book elements of a project can be used to define individual serial letter recipients. Available fields are
-addressbook fields	projectmanager	en	Address book fields
+addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	en	Address Book elements of a project can be used to define individual serial letter recipients. Available fields are
+addressbook fields	projectmanager	en	Address Book fields
 all projects	projectmanager	en	All projects
 all roles	projectmanager	en	All roles
 all_roles	projectmanager	en	All roles
@@ -72,7 +72,7 @@ close the window, discard the changes made	projectmanager	en	Close the window, d
 completion	projectmanager	en	Completion
 constraints	projectmanager	en	Constraints
 contact fields for serial letters	projectmanager	en	Contact fields for serial letters
-conversation between days and hours, default 8	projectmanager	en	Conversation between days and hours, default 8
+conversation between days and hours, default 8	projectmanager	en	Conversation between days and hours, default: 8
 coordinator	projectmanager	en	Coordinator
 cost per time	projectmanager	en	Cost per Time
 create a new empty project or use a template	projectmanager	en	Create a new empty project or use a template
@@ -143,7 +143,7 @@ element role saved	projectmanager	en	Element role saved.
 element role title	projectmanager	en	Element role title
 element roles	projectmanager	en	Element roles
 element roles defined as "mutliple" can be used here.	projectmanager	en	Element roles defined as "multiple" can be used here.
-element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	en	Element roles feature is currently not enabled in your global ProjectManager configuration.
+element roles feature is currently not enabled in your global projectmanager configuration	projectmanager	en	Element roles feature is currently not enabled in your global Project Manager configuration.
 element roles:	projectmanager	en	Element roles:
 element status	projectmanager	en	Element status
 element title	projectmanager	en	Element title
@@ -155,8 +155,8 @@ elements which have to be finished before this can start	projectmanager	en	Eleme
 empty	projectmanager	en	Empty
 empty for all	projectmanager	en	Empty for all
 enable element roles	projectmanager	en	Enable element roles
-enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	en	Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.
-encode non-ascii	projectmanager	en	Encode non-ascii
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	en	Enable this feature for a more sophisticated usage of document merge. With element roles feature enabled it's possible to give project elements a certain role in a document. For all these elements having element roles defined, Project Manager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.
+encode non-ascii	projectmanager	en	Encode non-ASCII
 enddate	projectmanager	en	End date
 ends after	projectmanager	en	Ends after
 ends before	projectmanager	en	Ends before
@@ -170,9 +170,9 @@ error: rekursion found: id %1 more than once in projectpath, while building proj
 error: saving element role !!!	projectmanager	en	Error saving element role!
 error: saving milestone	projectmanager	en	Error saving milestone!
 error: saving role !!!	projectmanager	en	Error saving role!
-error: saving the price (%1) !!!	projectmanager	en	Error saving the price (%1) !
-error: saving the project (%1) !!!	projectmanager	en	Error saving the project (%1) !
-error: saving the project-element (%1) !!!	projectmanager	en	Error saving the project element (%1) !
+error: saving the price (%1) !!!	projectmanager	en	Error saving the price (%1)!
+error: saving the project (%1) !!!	projectmanager	en	Error saving the project (%1)!
+error: saving the project-element (%1) !!!	projectmanager	en	Error saving the project element (%1)!
 everything recursive	projectmanager	en	Everything recursive
 example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	en	Example {{IF n_prefix~Mr~Hello Mr.~Hello Ms.}} - search the field "n_prefix", for "Mr", if found, write Hello Mr., else write Hello Ms.
 example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	en	Example {{LETTERPREFIXCUSTOM n_prefix title n_family}} - Example: Mr Dr. James Miller
@@ -186,16 +186,16 @@ exists	projectmanager	en	Exists.
 exit without saving	projectmanager	en	Exit without saving
 export definition to use for nextmatch export (elements)	projectmanager	en	Export definition to use for nextmatch export (Elements)
 export definition to use for nextmatch export (projects)	projectmanager	en	Export definition to use for nextmatch export (Projects)
-export definition to use for nextmatch export (projekte)	projectmanager	en	Export definition to use for nextmatch export (Projekte)
+export definition to use for nextmatch export (projekte)	projectmanager	en	Export definition to use for nextmatch export (Projects)
 exports a list of project elements to a csv file.	projectmanager	en	Exports a list of project elements to a CSV file.
 exports a list of projects to a csv file.	projectmanager	en	Exports a list of projects to a CSV file.
 external	projectmanager	en	External
 favorites	projectmanager	en	Favorites
 fields for element roles:	projectmanager	en	Fields for element roles:
 fieldseparator	projectmanager	en	Field separator
-filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	en	Filemanager shows a virtual structure for the projects e.g. by year or year & month. By default, pagination is done automatically based on the number of projects. You can choose also a fixed criteria for this structure.
-filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	en	Filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. You can select a different criteria for that structure e.g. Startdate or Projectnumber.
-filemanager subdirectories	projectmanager	en	Filemanager subfolders
+filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	en	File Manager shows a virtual structure for the projects e.g. by year or year & month. By default, pagination is done automatically based on the number of projects. You can choose also a fixed criteria for this structure.
+filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	en	File Manager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. You can select a different criteria for that structure e.g. startdate or project ID.
+filemanager subdirectories	projectmanager	en	File Manager subfolders
 font	projectmanager	en	Font
 font charset	projectmanager	en	Font charset
 font style	projectmanager	en	Font style
@@ -205,8 +205,8 @@ for serial letter use this tag. put the content, you want to repeat between two 
 free descriptiv text	projectmanager	en	Free descriptive text
 from %1 to %2	projectmanager	en	From %1 to %2
 full access	projectmanager	en	Full access
-furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	en	Address book elements in the project manager element list can be selected to define individual recipients of a serial letter.
-ganttchart	projectmanager	en	Gantt Chart
+furthermore addressbook elements in the projectmanager elements list can be selected to define individual recipients of a serial letter.	projectmanager	en	Address Book elements in the Project Manager element list can be selected to define individual recipients of a serial letter.
+ganttchart	projectmanager	en	Gantt chart
 ganttchart parameter	projectmanager	en	Gantt chart parameter
 general availibility	projectmanager	en	General availability
 general fields:	projectmanager	en	General fields:
@@ -222,7 +222,7 @@ hours per workday	projectmanager	en	Hours per work day
 how long do you work on the given day.	projectmanager	en	How long do you work on the given day
 how should ids for new projects be generated?	projectmanager	en	How should IDs for new projects be generated?
 how should ids for new subprojects be generated?	projectmanager	en	How should IDs for new subprojects be generated?
-how should the project selection in the menu be displayed	projectmanager	en	How should the project selection in the menu be displayed
+how should the project selection in the menu be displayed	projectmanager	en	How should the project selection in the menu be displayed.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	en	How should the project selection in the menu be displayed: A tree gives a better overview, a select box might perform better.
 how would you like to print the chart?	projectmanager	en	How would you like to print the chart?
 html link to the current record	projectmanager	en	HTML link to the current record
@@ -390,14 +390,14 @@ share	projectmanager	en	Share
 share on the whole project	projectmanager	en	Share on the whole project
 share on the whole project in hours or percent, defaults to planned time	projectmanager	en	Share on the whole project in hours or percent, defaults to planned time
 shared time in minutes	projectmanager	en	Shared time in minutes
-should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	en	Should Project Elements list show the dedicated icons of the infolog types. Icons for infolog custom types can be added at the VFS-Path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.
-should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	en	Should Project Elements show the links to other applications and/or the file-attachments in the Project Elements list (only when showing details).
+should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	en	Should project elements list show the dedicated icons of the InfoLog types. Icons for InfoLog custom types can be added at the VFS path where additional images, icons or logos can be found (see Site Configuration). If 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.
+should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	en	Should Project Elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	en	Should Project Manager display the status icons of the data source, eg. InfoLog or just a progress bar with the numerical status.
 show constraints and milestones	projectmanager	en	Show constraints
 show elements in ganttchart by applications	projectmanager	en	Show elements in Gantt chart by applications
-show elements in ganttchart depending on applications they come from (none = all)	projectmanager	en	Show elements in Gantt chart depending on applications they come from (none = all)
-show infolog type icon in the project elements list	projectmanager	en	Show infolog type icon in the Project Elements list
-show links in the project elements list	projectmanager	en	Show links in the Project Elements list
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	en	Show elements in Gantt chart depending on applications they come from (none = all).
+show infolog type icon in the project elements list	projectmanager	en	Show InfoLog type icon in the project elements list
+show links in the project elements list	projectmanager	en	Show links in the project elements list
 show planned times instead of the real times	projectmanager	en	Show planned times instead of the real times
 show status icons of the datasources	projectmanager	en	Show status icons of the data sources
 show the project selection as	projectmanager	en	Show the project selection as
@@ -467,7 +467,7 @@ view this project	projectmanager	en	View this project
 view this project-element	projectmanager	en	View this project element
 working duration on %1	projectmanager	en	Working duration on %1
 year & month	projectmanager	en	Year & month
-year only	projectmanager	en	year only
+year only	projectmanager	en	Year only
 yes, noone can purge deleted items	projectmanager	en	Yes, no one can purge deleted items
 yes, only admins can purge deleted items	projectmanager	en	Yes, only admins can purge deleted items
 yes, with purging of deleted items possible	projectmanager	en	Yes, with purging of deleted items possible
