@@ -258,7 +258,7 @@ export class ProjectmanagerApp extends EgwApp
 		// Update tree
 		if(this.views.list.etemplate)
 		{
-			this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').set_value(current_project? 'projectmanager::'+current_project : null);
+			this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').set_value(current_project ? 'projectmanager::' + current_project : '');
 		}
 
 		// Show selected sub-template
