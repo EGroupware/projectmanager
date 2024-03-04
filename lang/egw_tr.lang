@@ -1,11 +1,11 @@
-%1 records imported	projectmanager	tr	%1 kay?t ithal edildi.
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	tr	%1 kay?t okundu. (Henüz ithal edilmedi, %2geri%3 giderek ?thal Etme seçene?indeki tik i?aretini kald?rabilirsiniz.)
+%1 records imported	projectmanager	tr	%1 kayıt içe aktarıldı.
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	tr	%1 kayıt okundu. Henüz içe aktarılmadı, %2geri%3'e gidin ve İçe aktarmayı test et seçeneğinin işaretini kaldırın.
 actions	projectmanager	tr	Eylemler
 charset of file	projectmanager	tr	Dosya Karakter Kümesi (char-set)
-csv-fieldname	projectmanager	tr	CSV Alan-Ad?
-csv-filename	projectmanager	tr	CSV Dosya Ad?
-custom fields	projectmanager	tr	Özel Alanlar
-days	projectmanager	tr	gün
+csv-fieldname	projectmanager	tr	CSV alan adı
+csv-filename	projectmanager	tr	CSV dosya adı
+custom fields	projectmanager	tr	Özel alanlar
+days	projectmanager	tr	Gün
 deleted	projectmanager	tr	Silindi
 do you want a notification, if items are about to start according to their planned dates?	projectmanager	tr	Öğeler planlanan tarihlerine göre başlamak üzereyse bir bildirim istiyor musunuz?
 do you want a notification, if items are about to start according to their real dates?	projectmanager	tr	Öğeler gerçek tarihlerine göre başlamak üzereyse bir bildirim istiyor musunuz?
@@ -14,15 +14,15 @@ do you want a notification, if items are due according to their real dates?	proj
 do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	tr	Öğeler size atanırsa veya atanmış öğeler güncellenirse bir bildirim istiyor musunuz?
 do you want a notification, if items you created get updated?	projectmanager	tr	Oluşturduğunuz öğeler güncellenirse bildirim almak ister misiniz?
 document merge	projectmanager	tr	Belge doldurma
-empty for all	projectmanager	tr	Tamam? için bo?
-enddate	projectmanager	tr	BitişTarih
-fieldseparator	projectmanager	tr	Alan ayrac?
+empty for all	projectmanager	tr	Herkes için boş
+enddate	projectmanager	tr	Bitiş tarihi
+fieldseparator	projectmanager	tr	Alan ayırıcı
 global categories	projectmanager	tr	Genel kategoriler
 history logging and deleting of items	projectmanager	tr	Geçmiş kaydı ve öğelerin silinmesi
-hours	projectmanager	tr	saat
+hours	projectmanager	tr	Saat
 how would you like to print the chart?	projectmanager	tr	Grafiği nasıl yazdırmak istersiniz?
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	tr	Gantt grafiği sayfadan daha genişse kırpılacaktır.
-import	projectmanager	tr	?thal Et
+import	projectmanager	tr	İthalat
 milestone	projectmanager	tr	Kilometre taşı
 milestone deleted	projectmanager	tr	Kilometre taşı silindi.
 milestone saved	projectmanager	tr	Kilometre taşı kaydedildi.
@@ -30,8 +30,8 @@ milestones	projectmanager	tr	Kilometre Taşları
 milestones before this element has to be finished	projectmanager	tr	Bu öğenin tamamlanmasından önceki kilometre taşları
 modified	projectmanager	tr	Değiştirilmiş
 new	projectmanager	tr	Yeni
-number of records to read (%1)	projectmanager	tr	Okunacak kay?t say?s? (1%)
-pm_milestone	projectmanager	tr	Kilometre taşı
+number of records to read (%1)	projectmanager	tr	Okunacak kayıt sayısı (%1)
+pm_milestone	projectmanager	tr	Dönüm Noktası
 progress	projectmanager	tr	İlerleme
 projects	common	tr	Projeler
 receive notifications about due entries (planned dates)	projectmanager	tr	Son girişler (planlanan tarihler) hakkında bildirimler alın
@@ -42,9 +42,9 @@ receive notifications about starting entries (planned dates)	projectmanager	tr	B
 receive notifications about starting entries (real dates)	projectmanager	tr	Başlangıç girişleri hakkında bildirimler alın (gerçek tarihler)
 resize	projectmanager	tr	Yeniden Boyutlandır
 startdate	projectmanager	tr	Başlangıç tarihi
-startrecord	projectmanager	tr	Kaydetmeye ba?la
+startrecord	projectmanager	tr	Başlangıç kaydı
 status	projectmanager	tr	Durum
-test import (show importable records <u>only</u> in browser)	projectmanager	tr	?thal test (?thal edilebilecek ba?lant?lar? <u>sadece</u> görüntüle.
+test import (show importable records <u>only</u> in browser)	projectmanager	tr	İçe aktarmayı test edin. Tarayıcıda <u>sadece</u> içe aktarılabilir kayıtları gösterin.
 times	projectmanager	tr	Kere
-to many might exceed your execution-time-limit	projectmanager	tr	çok fazlas? execution-time-limit'inizi a?abilir!
+to many might exceed your execution-time-limit	projectmanager	tr	Çok fazla sayıda olması yürütme süresi sınırınızı aşabilir
 translation	projectmanager	tr	Tercüme
