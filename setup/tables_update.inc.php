@@ -512,3 +512,14 @@ function projectmanager_upgrade21_1()
 {
 	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '23.1';
 }
+function projectmanager_upgrade23_1()
+{
+	$GLOBALS['egw_setup']->oProc->AlterColumn('egw_pm_extra','pm_extra_name',array(
+		'type' => 'varchar',
+		'meta' => 'cfname',
+		'precision' => '64'
+	));
+
+	return $GLOBALS['setup_info']['projectmanager']['currentver'] = '23.1.001';
+}
+

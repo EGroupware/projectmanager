@@ -47,7 +47,7 @@ $phpgw_baseline = array(
 	'egw_pm_extra' => array(
 		'fd' => array(
 			'pm_id' => array('type' => 'int','precision' => '4'),
-			'pm_extra_name' => array('type' => 'varchar','meta' => 'cfname','precision' => '40'),
+			'pm_extra_name' => array('type' => 'varchar','meta' => 'cfname','precision' => '64'),
 			'pm_extra_value' => array('type' => 'text','meta' => 'cfvalue')
 		),
 		'pk' => array('pm_id','pm_extra_name'),
