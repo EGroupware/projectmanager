@@ -211,11 +211,15 @@ class projectmanager_merge extends Api\Storage\Merge
 	 *
 	 * @param string[]|null $ids Allows extending classes to process IDs in their own way.  Leave null to pull from request.
 	 * @param Merge|null $document_merge Already instantiated Merge object to do the merge.
-	 * @param boolean|null $pdf Convert result to PDF
+	 * @param Array options
+	 * @param boolean options[individual] Instead of merging all entries into the file, merge each entry into its own file
+	 * @param boolean options[pdf] Convert result to PDF
+	 * @param boolean options[link] Link generated file to the entry
+	 * @param boolean $return Return the path of the generated document instead of opening or downloading
 	 * @throws Api\Exception
 	 * @throws Api\Exception\AssertionFailed
 	 */
-	public static function merge_entries(array $ids = null, Merge &$document_merge = null, $pdf = null)
+	public static function merge_entries(array $ids = null, Merge &$document_merge = null, $options = [], bool $return = null)
 	{
 		$document_merge = new projectmanager_merge();
 		if(is_null($ids))
@@ -240,7 +244,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			}
 		}
 
-		return parent::merge_entries($ids, $document_merge, $pdf);
+		return parent::merge_entries($ids, $document_merge, $options, $return);
 	}
 
 	/**
