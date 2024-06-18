@@ -226,6 +226,13 @@ class projectmanager_elements_so extends Api\Storage\Base
 				unset($filter['pe_app']);
 			}
 
+			// if sorting by start, end, budget, time or quantity: consider both varieties, but prefer the requested one
+			if (preg_match('/^pe_(real|planned|used)_(start|end|budget|time|quantity)( (ASC|DESC))?$/',$order_by, $matches))
+			{
+				$other = $matches[1] === 'planned' ? ($matches[2] === 'start' || $matches[2] === 'end' ? 'real' : 'used') : 'planned';
+				$order_by = "COALESCE(pe_$matches[1]_$matches[2],pe_{$other}_$matches[2]) $matches[4]";
+			}
+
 			$order_by = "ORDER BY (link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
 		}
 		// fix some special filters: resources, cats
