@@ -232,6 +232,11 @@ class projectmanager_elements_so extends Api\Storage\Base
 				$other = $matches[1] === 'planned' ? ($matches[2] === 'start' || $matches[2] === 'end' ? 'real' : 'used') : 'planned';
 				$order_by = "COALESCE(pe_$matches[1]_$matches[2],pe_{$other}_$matches[2]) $matches[4]";
 			}
+			else
+			{
+				$order_by = self::sanitizeOrderBy($order_by);
+			}
+			$this->sanitize_order_by = false;
 
 			$order_by = "ORDER BY (link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
 		}
