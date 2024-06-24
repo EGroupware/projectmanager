@@ -235,7 +235,7 @@ if you specify an export definition, it will be used when you export	projectmana
 ignore that entry	projectmanager	en	Ignore entry
 ignored	projectmanager	en	Ignored.
 import	projectmanager	en	Import
-imports a list of projects from a csv file.  does not include project elements.	projectmanager	en	Imports a list of projects from a CSV file.  Does not include project elements.
+imports a list of projects from a csv file.  does not include project elements.	projectmanager	en	Imports a list of projects from a CSV file. Does not include project elements.
 insert	projectmanager	en	Insert
 last modified	projectmanager	en	Last modified
 last sync date and time	projectmanager	en	Last sync date and time
@@ -246,7 +246,7 @@ limit number of characters in ganttchart element title (0 for no limit)	projectm
 linked elements	projectmanager	en	Linked elements
 links	projectmanager	en	Links
 links and attached files	projectmanager	en	Links and attached files
-links to specified application.  example: {{links/infolog}}	projectmanager	en	Links to specified application.  Example: {{links/infolog}}
+links to specified application.  example: {{links/infolog}}	projectmanager	en	Links to specified application. Example: {{links/infolog}}
 list of files linked to the current record	projectmanager	en	List of files linked to the current record
 lists all elements assigned to an element role in a table.	projectmanager	en	Lists all elements assigned to an element role in a table.
 lists all project elements in a table.	projectmanager	en	Lists all project elements in a table.
