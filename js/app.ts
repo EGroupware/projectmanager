@@ -618,7 +618,12 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			const split = node_id.split('::');
 			if(split.length > 1 && split[1]) node_id = split[1];
-			if(this.views['elements'].etemplate != null)
+			if(!split || split.length <= 1 || Number.isNaN(node_id))
+			{
+				// Active / Non-active / Archive / Template
+				return this.setState({state: {view: "list", filter2: node_id}});
+			}
+			else if(this.views['elements'].etemplate != null)
 			{
 				// Change the current view to the new project, or element list
 				// if current view is project list
