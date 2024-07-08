@@ -66,8 +66,17 @@ class projectmanager_admin
 	function config($content=null)
 	{
 		$tpl = new Etemplate('projectmanager.config');
+		$tab = $content['tabs'] ?: 'configuration';
 
-		if ($content['save'] || $content['apply'])
+		$custom_notification_change = array_reduce(
+			$content['notification']['custom_date'] ?: [],
+			function ($carry, $item)
+			{
+				return $carry || is_array($item) && (array_key_exists('remove', $item));
+			},
+			is_array($content['notification']['custom_date']) && array_key_exists('add_field', $content['notification']['custom_date'])
+		);
+		if($content['save'] || $content['apply'] || $custom_notification_change)
 		{
 			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
 				'enable_eroles','ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB', 'history') as $name)
@@ -76,6 +85,28 @@ class projectmanager_admin
 			}
 
 			// Notifications
+			if($content['notification']['custom_date']['add_field'])
+			{
+				$content['notification']['custom_date'][] = [
+					'field'   => $content['notification']['custom_date']['field'],
+					'message' => ''
+				];
+				unset($content['notification']['custom_date']['add_field']);
+			}
+			if($content['notification']['custom_date'])
+			{
+				unset($content['notification']['custom_date']['field']);
+				$this->config->config_data[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'] = array();
+				array_walk($content['notification']['custom_date'], function ($row)
+				{
+					if(empty($row['remove']) && $row['field'])
+					{
+						$this->config->config_data[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'][$row['field']] = $row['message'];
+					}
+				});
+
+				unset($content['notification']['custom_date']);
+			}
 			$this->config->config_data[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'] = $content['notification'];
 
 			$this->config->save_repository();
@@ -87,6 +118,7 @@ class projectmanager_admin
 		}
 
 		$content = $this->config->config_data;
+		$content['tabs'] = $tab;
 		if (!$content['duration_units']) $content['duration_units'] = array_keys($this->duration_units);
 		if (!$content['hours_per_workday']) $content['hours_per_workday'] = 8;
 		if (!$content['accounting_types']) $content['accounting_types'] = array_keys($this->accounting_types);
@@ -95,8 +127,41 @@ class projectmanager_admin
 		if(!$content['ID_GENERATION_FORMAT_SUB']) $content['ID_GENERATION_FORMAT_SUB'] = '%px/%04ix';
 
 		$content['notification'] = $content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['~global~'];
+
+		// Map Key=>value to field, message
+		if(is_array($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date']))
+		{
+			$content['notification']['custom_date'] = array_map(
+				function ($field, $notification)
+				{
+					return [
+						'field'   => $field,
+						'label'   => Api\Storage\Customfields::get('projectmanager')[$field]['label'] ?: $field,
+						'message' => $notification
+					];
+				},
+				array_keys($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date']),
+				array_values($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'])
+			);
+		}
+		if(empty($content['notification']['custom_date']))
+		{
+			unset($content['notification']['custom_date']);
+		}
+
 		$content['msg'] = $msg;
 
+		// Custom date fields for custom notification
+		$date_fields = [];
+		foreach(Api\Storage\Customfields::get('projectmanager') as $cf)
+		{
+			if($cf['type'] !== 'date' || in_array($cf['name'], array_keys($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'])))
+			{
+				continue;
+			}
+			$date_fields[] = ['value' => $cf['name'], 'label' => $cf['label']];
+		}
+		$content['hide_custom_notification'] = count($date_fields) == 0;
 		$sel_options = array(
 			'duration_units'   => $this->duration_units,
 			'accounting_types' => $this->accounting_types,
@@ -108,10 +173,11 @@ class projectmanager_admin
 				'history_admin_delete' => lang('Yes, only admins can purge deleted items'),
 				'history_no_delete' => lang('Yes, noone can purge deleted items'),
 			),
+			'field' => $date_fields
 		);
 		Api\Translation::add_app('projectmanager');
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Site configuration');
-		$tpl->exec('projectmanager.projectmanager_admin.config',$content,$sel_options);
+		$tpl->exec('projectmanager.projectmanager_admin.config', $content, $sel_options, null, $content);
 	}
 }

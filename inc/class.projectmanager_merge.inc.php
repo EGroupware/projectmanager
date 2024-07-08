@@ -97,6 +97,15 @@ class projectmanager_merge extends Api\Storage\Merge
 	 */
 	var $eroles = null;
 
+	const DOCUMENT_FILENAME_OPTIONS = [
+		'%document%'                            => 'Template name',
+		'%pm_title%'                            => 'Project title',
+		'%pm_title% - %document%'               => 'Project title - template name',
+		'%document% - %pm_title%'               => 'Template name - project title',
+		'%pm_number% - %document%'              => 'Project ID - template name',
+		'(%pm_number%) %pm_title% - %document%' => '(Project ID) project title - template name',
+	];
+
 	/**
 	 * Constructor
 	 *
@@ -211,11 +220,15 @@ class projectmanager_merge extends Api\Storage\Merge
 	 *
 	 * @param string[]|null $ids Allows extending classes to process IDs in their own way.  Leave null to pull from request.
 	 * @param Merge|null $document_merge Already instantiated Merge object to do the merge.
-	 * @param boolean|null $pdf Convert result to PDF
+	 * @param Array options
+	 * @param boolean options[individual] Instead of merging all entries into the file, merge each entry into its own file
+	 * @param boolean options[pdf] Convert result to PDF
+	 * @param boolean options[link] Link generated file to the entry
+	 * @param boolean $return Return the path of the generated document instead of opening or downloading
 	 * @throws Api\Exception
 	 * @throws Api\Exception\AssertionFailed
 	 */
-	public static function merge_entries(array $ids = null, Merge &$document_merge = null, $pdf = null)
+	public static function merge_entries(array $ids = null, Merge &$document_merge = null, $options = [], bool $return = null)
 	{
 		$document_merge = new projectmanager_merge();
 		if(is_null($ids))
@@ -240,7 +253,7 @@ class projectmanager_merge extends Api\Storage\Merge
 			}
 		}
 
-		return parent::merge_entries($ids, $document_merge, $pdf);
+		return parent::merge_entries($ids, $document_merge, $options, $return);
 	}
 
 	/**
@@ -1196,30 +1209,5 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 
 		return $replacement;
-	}
-
-	/**
-	 * Get preference settings
-	 *
-	 * Merge has some preferences that the same across apps, but can have different values for each app.
-	 * Overridden from parent because projectmanager has different filename generation
-	 */
-	public function merge_preferences()
-	{
-		$settings = parent::merge_preferences();
-		$settings[self::PREF_DOCUMENT_FILENAME] += array(
-			'type'    => 'select',
-			'values'  => array(
-				'%document%'                            => lang('Template name'),
-				'%pm_title%'                            => lang('Project title'),
-				'%pm_title% - %document%'               => lang('Project title - template name'),
-				'%document% - %pm_title%'               => lang('Template name - project title'),
-				'%pm_number% - %document%'              => lang('Project ID - template name'),
-				'(%pm_number%) %pm_title% - %document%' => lang('(Project ID) project title - template name'),
-
-			),
-			'default' => '%document%',
-		);
-		return $settings;
 	}
 }

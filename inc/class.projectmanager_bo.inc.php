@@ -529,7 +529,10 @@ class projectmanager_bo extends projectmanager_so
 		{
 			if (isset($data[$name]) && $data[$name]) $data[$name] -= $this->tz_offset_s;
 		}
-		if (substr($data['pm_completion'],-1) == '%') $data['pm_completion'] = (int) round(substr($data['pm_completion'],0,-1));
+		if(array_key_exists('pm_completion', $data) && substr($data['pm_completion'], -1) == '%')
+		{
+			$data['pm_completion'] = (int)round(substr($data['pm_completion'], 0, -1));
+		}
 
 		return $data;
 	}
@@ -1379,21 +1382,42 @@ class projectmanager_bo extends projectmanager_so
 			)).')'];
 
 			$notified_pm_ids = array();
-			foreach(array(
+			$notify_events = array(
 				'notify_due_planned'   => 'pm_planned_end',
 				'notify_due_real'      => 'pm_real_end',
 				'notify_start_planned' => 'pm_planned_start',
 				'notify_start_real'    => 'pm_real_start',
-			) as $pref => $filter_field)
+			);
+			foreach($this->config['custom_notification']['custom_date'] as $field => $message)
 			{
-				if (!($pref_value = $GLOBALS['egw_info']['user']['preferences']['projectmanager'][$pref])) continue;
-				if($pref_value === '0') continue;
+				$notify_events['notify_custom_date ' . $field] = self::CF_PREFIX . $field;
+			}
+
+			foreach($notify_events as $pref => $filter_field)
+			{
+				// Custom is in config, it has no preference
+				if(!str_starts_with($pref, 'notify_custom_date'))
+				{
+					if(!($pref_value = $GLOBALS['egw_info']['user']['preferences']['projectmanager'][$pref]))
+					{
+						continue;
+					}
+					if($pref_value === '0')
+					{
+						continue;
+					}
+				}
 
 				$today = time()+24*60*60*(int)$pref_value;
 				$tomorrow = $today + 24*60*60;
 
 				// Filter date
 				$filter[1] = "$today <= $filter_field AND $filter_field < $tomorrow";
+				if(str_starts_with($pref, 'notify_custom_date'))
+				{
+					unset($filter[1]);
+					$filter[$filter_field] = Api\DateTime::to($today, 'Y-m-d');
+				}
 
 				//error_log(__METHOD__."() checking with $pref filter '".print_r($filter,true)."' ($pref_value) for user $user ($email)");
 
@@ -1443,6 +1467,10 @@ class projectmanager_bo extends projectmanager_so
 							$project['message'] = lang('%1 you are responsible for is starting at %2',$prefix,
 								$this->tracking->datetime($project['pm_real_start'],null));
 							break;
+						default:
+							$project['custom_notification'] = substr($filter_field, 1);
+							// Don't check a preference, it's not there
+							$pref = null;
 					}
 					//("notifiying $user($email) about {$project['pm_title']}: {$project['message']}");
 
@@ -1452,6 +1480,9 @@ class projectmanager_bo extends projectmanager_so
 
 					$notified_pm_ids[] = $project['pm_id'];
 				}
+
+				// Unset custom date filter or it will be ANDed in
+				unset($filter[$filter_field]);
 			}
 		}
 

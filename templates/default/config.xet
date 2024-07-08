@@ -70,17 +70,37 @@
                 <row>
                     <htmlarea id="notification[message]" height="180px" width="100%" toolbar="false" span="all"/>
                 </row>
+            </rows>
+        </grid>
+        <et2-hbox hidden="@hide_custom_notification">
+            <et2-select id="notification[custom_date][field]" label="Notify on custom date field" placeholder="Add"></et2-select>
+            <et2-button id="notification[custom_date][add_field]" image="plus"></et2-button>
+        </et2-hbox>
+        <grid id="notification[custom_date]" width="100%" disabled="!@notification[custom_date]">
+            <columns>
+                <column/>
+            </columns>
+            <rows>
                 <row>
-                    <et2-description  value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extraLinkTarget="_blank"></et2-description>
-                    <et2-description></et2-description>
+                    <et2-vbox>
+                        <et2-hbox class="field_header">
+                            <et2-description id="${row}[label]"/>
+                            <et2-button id="${row}[remove]" image="delete"></et2-button>
+                        </et2-hbox>
+                        <htmlarea id="${row}[message]" height="180px" width="100%" toolbar="false" span="all"/>
+                    </et2-vbox>
                 </row>
             </rows>
         </grid>
+        <et2-description value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extraLinkTarget="_blank"></et2-description>
+        <styles>
+            .field_header { font-size: medium; margin-top: 1em; }
+        </styles>
     </template>
     <template id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
         <et2-vbox>
             <et2-description  id="msg" span="all" class="message"></et2-description>
-            <et2-tabbox  id="configuration|notification">
+            <et2-tabbox id="tabs">
                 <tabs>
                     <tab id="configuration" label="Configuration"/>
                     <tab id="notification" label="Notification"/>

@@ -160,18 +160,6 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="projectmanager.edit.custom" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%">
-			<columns>
-				<column/>
-			</columns>
-			<rows>
-				<row class="row" valign="top">
-					<customfields/>
-				</row>
-			</rows>
-		</grid>
-	</template>
 	<template id="projectmanager.edit.links" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
@@ -222,7 +210,6 @@
                             <tab id="description" label="Description" statustext="free descriptiv text"/>
                             <tab id="members" label="Members" statustext="Project members and roles"/>
                             <tab id="accounting" label="Accounting" statustext="Accounting options"/>
-                            <tab id="custom" label="Custom" statustext="Custom fields"/>
                             <tab id="links" label="Links" statustext="Linked elements"/>
                             <tab id="history" label="History"/>
                         </tabs>
@@ -231,7 +218,6 @@
 							<template id="projectmanager.edit.description"/>
 							<template id="projectmanager.edit.members"/>
 							<template id="projectmanager.edit.accounting"/>
-							<template id="projectmanager.edit.custom"/>
 							<template id="projectmanager.edit.links"/>
 							<template id="projectmanager.edit.history"/>
 						</tabpanels>

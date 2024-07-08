@@ -1,5 +1,6 @@
-/js/app.min.js
-/js/app.min.js.map
-/js/app.js.map
-/js/app.js
-/js/et2_widget_gantt.js.map
+*.old
+*.old.inc.php
+*.old.lang
+*.old.xet
+*.min.js*
+*.min.css*

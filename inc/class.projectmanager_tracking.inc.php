@@ -122,12 +122,22 @@ class projectmanager_tracking extends Api\Storage\Tracking
 				{
 					return '';
 				}
-				// Per-type notification
-				$type_config = array();//$config[self::CUSTOM_NOTIFICATION][$data['info_type']];
+
+
+				// Custom date notification
+				$type_config = $config[self::CUSTOM_NOTIFICATION]['custom_date'][$data['custom_notification']];
+				if(!empty($type_config))
+				{
+					return $type_config;
+				}
+
 				$global = $config[self::CUSTOM_NOTIFICATION]['~global~'];
 
 				// Disabled
-				if(!$type_config['use_custom'] && !$global['use_custom']) return '';
+				if(!$global['use_custom'])
+				{
+					return '';
+				}
 
 				// Type or globabl
 				$config = trim(strip_tags($type_config['message'])) != '' && $type_config['use_custom'] ? $type_config['message'] : $global['message'];

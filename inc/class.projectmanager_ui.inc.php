@@ -838,6 +838,10 @@ class projectmanager_ui extends projectmanager_bo
 		{
 			$content['project_tree'] = 'projectmanager::'.$this->prefs['current_project'];
 		}
+		else
+		{
+			$content['project_tree'] = 'active';
+		}
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Projectlist');
 		$this->template->exec('projectmanager.projectmanager_ui.pm_list',$content,$sel_options);
 	}
@@ -1173,6 +1177,7 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				$projects[] = array(
 					'id'	=> $status,
+					'value' => $status,
 					'open'	=> $status == 'active',
 					'text'	=> $label,
 					'item'	=> array(),
@@ -1195,6 +1200,7 @@ class projectmanager_ui extends projectmanager_bo
 			{
 				$nodes = array(
 					'id'	=> $filter,
+					'value' => $filter,
 					'text'	=> self::$status_labels[$filter],
 					'item'	=> array()
 				);
@@ -1262,14 +1268,16 @@ class projectmanager_ui extends projectmanager_bo
 				'id' => 'projectmanager::'.$project['pm_id'],
 				'text'	=>	$text,
 				'path'	=>	$project['path'],
+				'child' => (int)($project['children'] > 0),
+				'item'  => [],
 				/*
 				These ones to play nice when a user puts a tree & a selectbox with the same
 				ID on the form (addressbook edit):
 				if tree overwrites selectbox options, selectbox will still work
 				*/
+				'value' => 'projectmanager::' . $project['pm_id'],
 				'label'	=>	$text,
 				'title'	=>	$project[$title],
-				'child' => (int)($project['children'] > 0),
 			);
 			if($project['pm_parent'] == null && !$filter)
 			{
