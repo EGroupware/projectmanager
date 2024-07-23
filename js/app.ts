@@ -491,7 +491,7 @@ export class ProjectmanagerApp extends EgwApp
 						case 'add':
 						case 'update':
 						case 'edit':
-							tree.refreshItem(tree.input.getParentId(itemId)||0);
+							tree.refreshItem(itemId);
 							break;
 						case 'delete':
 							if (node)
