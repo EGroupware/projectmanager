@@ -18,7 +18,7 @@ use EGroupware\Api\Link;
  *
  * Tables: egw_pm_elements, egw_links
  *
- * A project P is the parent of an other project C, if link_id1=P.pm_id and link_id2=C.pm_id !
+ * A project P is the parent of another project C, if link_id1=P.pm_id and link_id2=C.pm_id !
  */
 class projectmanager_elements_so extends Api\Storage\Base
 {
@@ -76,6 +76,7 @@ class projectmanager_elements_so extends Api\Storage\Base
 	function __construct($pm_id=null,$pe_id=null)
 	{
 		parent::__construct('projectmanager','egw_pm_elements',null,'',true);		// true = no need to clone the db-object
+		$this->convert_all_timestamps();
 
 		if ((int) $pm_id || (int) $pe_id)
 		{

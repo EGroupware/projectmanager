@@ -52,6 +52,7 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 	function __construct($pm_id=0)
 	{
 		parent::__construct('projectmanager','egw_pm_pricelist');	// sets $this->table_name
+		$this->convert_all_timestamps();
 
 		$this->pm_id = (int) $pm_id;
 	}
