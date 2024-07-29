@@ -27,6 +27,7 @@ class projectmanager_roles_so extends Api\Storage\Base
 	function __construct($pm_id=null)
 	{
 		parent::__construct('projectmanager','egw_pm_roles');
+		$this->convert_all_timestamps();
 
 		if ((int) $pm_id)
 		{

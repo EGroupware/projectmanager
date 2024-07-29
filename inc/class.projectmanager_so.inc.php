@@ -83,6 +83,7 @@ class projectmanager_so extends Api\Storage
 	function __construct($pm_id=null)
 	{
 		parent::__construct('projectmanager','egw_pm_projects','egw_pm_extra','','pm_extra_name','pm_extra_value','pm_id');
+		$this->convert_all_timestamps();
 
 		$this->config = Api\Config::read('projectmanager');
 		if (!$this->config)

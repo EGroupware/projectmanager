@@ -37,6 +37,7 @@ class projectmanager_milestones_so extends Api\Storage\Base
 	function __construct($pm_id=null,$ms_id=null)
 	{
 		parent::__construct('projectmanager','egw_pm_milestones');
+		$this->convert_all_timestamps();
 
 		if ((int) $ms_id)
 		{

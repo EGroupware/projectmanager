@@ -29,6 +29,7 @@ class projectmanager_eroles_so extends Api\Storage\Base
 	function __construct()
 	{
 		parent::__construct('projectmanager','egw_pm_eroles');
+		$this->convert_all_timestamps();
 	}
 
 	/**
