@@ -106,7 +106,7 @@
 					<et2-select-cat  span="all" id="cat_id" emptyLabel="None"></et2-select-cat>
 				</row>
 				<row>
-					<et2-tabbox  span="all" id="tabs" tabHeight="200">
+					<et2-tabbox  span="all" id="tabs" tabHeight="200" cfDisabled="true">
 						<tabs>
 							<tab id="price" label="Price" statustext="General pricelist"/>
 							<tab id="project" label="Project" statustext="Project specific title, prices, ..."/>
