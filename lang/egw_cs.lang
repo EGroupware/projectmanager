@@ -190,7 +190,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	cs	Defin
 exports a list of project elements to a csv file.	projectmanager	cs	Export seznamu součástí projektu jako soubor CSV
 exports a list of projects to a csv file.	projectmanager	cs	Export seznamu projektů jako soubor CSV
 external	projectmanager	cs	Externí
-favorites	projectmanager	cs	Oblíbené
 fields for element roles:	projectmanager	cs	Pole pro role součástí:
 fieldseparator	projectmanager	cs	Oddělovač položek
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	cs	Správce souborů zobrazuje virtuální strukturu projektů, např. podle roku nebo roku a měsíce. Ve výchozím nastavení se stránkování provádí automaticky na základě počtu projektů. Pro tuto strukturu můžete zvolit také pevně stanovená kritéria.

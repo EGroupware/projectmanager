@@ -190,7 +190,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	it	Espor
 exports a list of project elements to a csv file.	projectmanager	it	Esporta una lista di elementi di progetti in csv
 exports a list of projects to a csv file.	projectmanager	it	Esporta una lista di progetti in csv
 external	projectmanager	it	Esterno
-favorites	projectmanager	it	Preferiti
 fields for element roles:	projectmanager	it	Campi per ruoli elemento:
 fieldseparator	projectmanager	it	Separatore dei campi
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	it	Filemanager mostra una struttura virtuale per i progetti, ad esempio per anno o anno e mese. Per impostazione predefinita, la paginazione avviene automaticamente in base al numero di progetti. È possibile scegliere anche un criterio fisso per questa struttura.

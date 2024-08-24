@@ -1,20 +1,20 @@
 %1 days in advance	projectmanager	de	%1 Tage im Voraus
-%1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert
-%1 new project-elements imported	projectmanager	de	%1 neue Projekt-Elemente importiert
+%1 element(s) updated	projectmanager	de	%1 Element(e) aktualisiert.
+%1 new project-elements imported	projectmanager	de	%1 neue Projekt-Elemente importiert.
 %1 project(s) %2	projectmanager	de	%1 Projekt(e) %2
 %1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	de	%1 Projekt(e) %2, %3 fehlgeschlagen wegen fehlender Rechte!
-%1 project-element(s) deleted.	projectmanager	de	%1 Projekt-Element(e) gelöscht
-%1 projects deleted	projectmanager	de	%1 Projekte gelöscht
-%1 records imported	projectmanager	de	%1 Datensätze importiert
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	de	%1 Datensätze gelesen (noch nicht importiert, Sie können %2zurück%3 gehen und Testimport ausschalten)
-%1 times permission denied, %2 projects deleted	projectmanager	de	%1 mal Zugriff verweigert, %2 Projekte gelöscht
+%1 project-element(s) deleted.	projectmanager	de	%1 Projekt-Element(e) gelöscht.
+%1 projects deleted	projectmanager	de	%1 Projekte gelöscht.
+%1 records imported	projectmanager	de	%1 Datensätze importiert.
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	de	%1 Datensätze gelesen (noch nicht importiert, Sie können %2zurück%3 gehen und Testimport ausschalten).
+%1 times permission denied, %2 projects deleted	projectmanager	de	%1 mal Zugriff verweigert, %2 Projekte gelöscht.
 %1 you are responsible for is due at %2	projectmanager	de	%1 für das Sie verantwortlich sind ist fällig am %2
 %1 you are responsible for is starting at %2	projectmanager	de	%1 für das Sie verantwortlich sind startet am %2
 (project id) project title - template name	projectmanager	de	(Projekt ID) Projekt Titel - Name der Vorlage
 - planned	projectmanager	de	- geplant
 - re-planned	projectmanager	de	- umgeplant
 0ngoing (0 < % < 100)	projectmanager	de	in Arbeit (0 < % < 100)
-a describtive title for the project, must not be empty	projectmanager	de	Ein beschreibender Titel für das Projekt, Feld darf nicht leer bleiben!
+a describtive title for the project, must not be empty	projectmanager	de	Ein beschreibender Titel für das Projekt, Feld darf nicht leer bleiben
 accounting	projectmanager	de	Abrechnung
 accounting options	projectmanager	de	Abrechnungsoptionen
 accounting type	projectmanager	de	Abrechnungsart
@@ -46,10 +46,10 @@ app.	projectmanager	de	Anw.
 apply the changes	projectmanager	de	Änderungen übernehmen
 archive	projectmanager	de	Archiviert
 assistant	projectmanager	de	Assistent
-at which time do you start working on the given day.	projectmanager	de	Um welche Uhrzeit beginnen Sie an dem angegebenen Tag zu arbeiten.
+at which time do you start working on the given day.	projectmanager	de	Um welche Uhrzeit beginnen Sie an dem angegebenen Tag zu arbeiten
 automatic	projectmanager	de	Automatisch
 availability settings	projectmanager	de	Einstellungen der Verfügbarkeit
-available fields for this plugin:	projectmanager	de	Verfügbare Felder für diese Schnittstelle
+available fields for this plugin:	projectmanager	de	Verfügbare Felder für diese Schnittstelle:
 availible	projectmanager	de	Verfügbar
 billable	projectmanager	de	Abrechenbar
 bookable	projectmanager	de	Buchbar
@@ -58,8 +58,8 @@ budget (no pricelist)	projectmanager	de	Budget (keine Preisliste)
 budget and pricelist	projectmanager	de	Budget und Preisliste
 by	projectmanager	de	von
 calculate budget by quantity (eg. time) and price	projectmanager	de	Budget nach Menge (Zeit) und Preis berechnen
-can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	de	Kann mit Element-Rollen-Tabellen Plug-In und Elements Tabellen PlugIn verwendet werden
-category in %1 project-element(s) updated.	projectmanager	de	Kategorie in %1 Projektelement(en) geändert
+can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	de	Kann mit Element-Rollen-Tabellen Plug-In und Elements Tabellen Plug-In verwendet werden.
+category in %1 project-element(s) updated.	projectmanager	de	Kategorie in %1 Projektelement(en) geändert.
 category set	projectmanager	de	Kategorie geändert
 change category	projectmanager	de	Kategorie ändern
 change the following details of %s	projectmanager	de	Ändern der folgenden Details von %s
@@ -67,7 +67,7 @@ charset of file	projectmanager	de	Zeichensatz der Datei
 charset of the above selected font	projectmanager	de	Zeichensatz des oben ausgewählten Font
 check all	projectmanager	de	Alle auswählen
 check to make one element role assignable to multiple elements	projectmanager	de	Anhaken um Element-Rollen
-choose the default filename for downloaded documents.	projectmanager	de	Wählen Sie den Standard Dateinamen für herunterladbare Dokumente
+choose the default filename for downloaded documents.	projectmanager	de	Wählen Sie den Standard Dateinamen für herunterladbare Dokumente.
 close the window, discard the changes made	projectmanager	de	Fenster schließen und Änderungen verwerfen
 completion	projectmanager	de	Komplettierung
 constraints	projectmanager	de	Bedingungen
@@ -100,7 +100,7 @@ delete this element role	projectmanager	de	Löscht diese Element-Rolle
 delete this milestone	projectmanager	de	Diesen Meilenstein löschen
 delete this price	projectmanager	de	Diesen Preis löschen
 delete this project	projectmanager	de	Dieses Projekt löschen
-delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, belässt den verlinkten Eintrag unverändert
+delete this project-element, does not remove the linked entry	projectmanager	de	Löscht dieses Projektelement, belässt den verlinkten Eintrag unverändert.
 delete this role	projectmanager	de	Diese Rolle löschen
 deleted	projectmanager	de	Gelöscht
 depth of display	projectmanager	de	Tiefe der Anzeige
@@ -114,7 +114,7 @@ do you want a notification, if items are due according to their planned dates?	p
 do you want a notification, if items are due according to their real dates?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt fällig wird gemäß tatsächlichem Enddatum?
 do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn Sie einem Projekt zugeordnet werden oder Ihnen zugewiesene Projekte gespeichert werden?
 do you want a notification, if items you created get updated?	projectmanager	de	Wollen Sie benachrichtigt werden, wenn ein Projekt das Sie erstellt haben gespeichert wird?
-document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung, oder ist für Sie nicht lesbar!
+document '%1' does not exist or is not readable for you!	projectmanager	de	Das Dokument '%1' steht nicht zur Verfügung oder ist für Sie nicht lesbar!
 document download filename	projectmanager	de	Name des heruntergeladenen Dokuments
 document merge	projectmanager	de	Dokument füllen
 don't break into subdirectories	projectmanager	de	Nie in Unterordner aufsplitten
@@ -138,8 +138,8 @@ element id	projectmanager	de	Element ID
 element list	projectmanager	de	Element-Liste
 element modifier	projectmanager	de	Element Bearbeitet von
 element role	projectmanager	de	Element-Rolle
-element role deleted	projectmanager	de	Element-Rolle gelöscht
-element role saved	projectmanager	de	Element-Rolle gespeichert
+element role deleted	projectmanager	de	Element-Rolle gelöscht.
+element role saved	projectmanager	de	Element-Rolle gespeichert.
 element role title	projectmanager	de	Titel Element-Rolle
 element roles	projectmanager	de	Element-Rollen
 element roles defined as "mutliple" can be used here.	projectmanager	de	Element-Rollen, die als "Multiple" gekennzeichnet wurden, können hier verwendet werden.
@@ -150,12 +150,12 @@ element title	projectmanager	de	Element-Titel
 elementlist	projectmanager	de	Element-Liste
 elements	projectmanager	de	Elemente
 elements of elements	projectmanager	de	Element der Elemente
-elements that can't start before this one is finished	projectmanager	de	Elemente die nicht starten können bevor dieses beendet ist
-elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann
+elements that can't start before this one is finished	projectmanager	de	Elemente die nicht starten können bevor dieses beendet ist.
+elements which have to be finished before this can start	projectmanager	de	Elemente die beendet sein müssen bevor dieses starten kann.
 empty	projectmanager	de	Leer
 empty for all	projectmanager	de	Leer für alle
 enable element roles	projectmanager	de	Element-Rollen aktivieren
-enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	de	Aktivieren Sie diese Funktion für eine anspruchsvollere Verwendung der Dokumentzusammenführung. Mit aktivierter Elementrollen-Funktion ist es möglich, Projektelementen eine bestimmte Rolle in einem Dokument zuzuweisen. Für alle diese Elemente, für die Elementrollen definiert wurden, kann der Projektmanager sehr detaillierte Informationen bis zu einem gewissen Grad der Anwendungsebene bereitstellen, die verwendet werden können, um ein einzelnes Dokument oder sogar einen Serienbrief in einem Durchgang zu erstellen
+enable this feature for a more sophisticated usage of document merge. with element roles feature enabled it's possible to give project elements a certain role in a document. for all these elements having element roles defined, projectmanager will be able to provide very detailed information up to an application level degree which can be used to create a single document or even a serial letter in one go.	projectmanager	de	Aktivieren Sie diese Funktion für eine anspruchsvollere Verwendung der Dokumentzusammenführung. Mit aktivierter Elementrollen-Funktion ist es möglich, Projektelementen eine bestimmte Rolle in einem Dokument zuzuweisen. Für alle diese Elemente, für die Elementrollen definiert wurden, kann der Projektmanager sehr detaillierte Informationen bis zu einem gewissen Grad der Anwendungsebene bereitstellen, die verwendet werden können, um ein einzelnes Dokument oder sogar einen Serienbrief in einem Durchgang zu erstellen.
 encode non-ascii	projectmanager	de	Nicht ASCII kodieren
 enddate	projectmanager	de	Enddatum
 ends after	projectmanager	de	Endet nach
@@ -180,18 +180,17 @@ example {{nelf role}} - if field role is not empty, you will get a new line with
 example {{nenvlf role}} - if field role is not empty, set a lf without any value of the field	projectmanager	de	Beispiel {{nenvlf role}} -Erzeugt einen Zeilenumbruch, wenn das Feld role (Funktion) einen Wert besitzt. Der Wert role (Funktion) wird auch bei Vorhandensein des Feldes role nicht ausgegeben.
 example:	projectmanager	de	Beispiel:
 examples:	projectmanager	de	Beispiele:
-existing data will be overwrited if checked	projectmanager	de	Bestehende Daten werden überschrieben, wenn eingeschaltet
+existing data will be overwrited if checked	projectmanager	de	Bestehende Daten werden überschrieben, wenn eingeschaltet.
 existing links	projectmanager	de	Bestehende Verknüpfungen
-exists	projectmanager	de	Besteht bereits
+exists	projectmanager	de	Besteht bereits.
 exit without saving	projectmanager	de	Abbrechen ohne zu speichern
 export definition to use for nextmatch export (elements)	projectmanager	de	Export Definition für die Elementliste
 export definition to use for nextmatch export (projects)	projectmanager	de	Export-Definition für die Projektliste
 export definition to use for nextmatch export (projekte)	projectmanager	de	Export-Definition für Projekte aus der Projektliste
-exports a list of project elements to a csv file.	projectmanager	de	Exportiert eine Liste von Projekt-Elementen als CSV-Datei
-exports a list of projects to a csv file.	projectmanager	de	Exportiert eine Liste von Projekten als CSV-Datei
+exports a list of project elements to a csv file.	projectmanager	de	Exportiert eine Liste von Projekt-Elementen als CSV-Datei.
+exports a list of projects to a csv file.	projectmanager	de	Exportiert eine Liste von Projekten als CSV-Datei.
 external	projectmanager	de	Externer Mitarbeiter
-favorites	projectmanager	de	Favoriten
-fields for element roles:	projectmanager	de	Platzhalter für Element-Rollen
+fields for element roles:	projectmanager	de	Platzhalter für Element-Rollen:
 fieldseparator	projectmanager	de	Feldtrenner
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	de	Dateimanager zeigt eine virtuelle Struktur für die Projekte z.B. nach Jahr oder Jahr & Monat. Standardmäßig erfolgt der Umbruch automatisch auf der Grundlage der Anzahl der Projekte. Sie können auch ein festes Kriterium für diese Struktur wählen.
 filemanager shows a virtual structure for the projects e.g. by year, based on the creation date of the project. you can select a different criteria for that structure e.g. startdate or projectnumber.	projectmanager	de	Dateimanager zeigt eine virtuelle Struktur für die Projekte z.B. nach Jahren, basierend auf dem Erstellungsdatum des Projektes. Sie können ein anderes Kriterium für diese Struktur wählen, z.B. Startdatum oder Projektnummer.
@@ -199,7 +198,7 @@ filemanager subdirectories	projectmanager	de	Dateimanager Unterordner
 font	projectmanager	de	Font
 font charset	projectmanager	de	Font Zeichensatz
 font style	projectmanager	de	Font Stil
-font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	de	Font für das Gantt-Diagramm. Nur der Vera Font ist beim Projektmanager dabei
+font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	de	Font für das Gantt-Diagramm. Nur der Vera Font ist beim Projektmanager dabei.
 fontfile '%1' not found!!!	projectmanager	de	Fontdatei '%1' nicht gefunden!
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	de	Wenn Sie Serienbriefe erzeugen möchten, dann benutzen Sie dieses 'Markierungszeichen'. Setzen Sie den Inhalt, der wiederholt werden soll (Anschriftstags und Briefinhalt) zwischen zwei 'Seiten-Wiederholungs-Zeichen'.
 free descriptiv text	projectmanager	de	Freier Text
@@ -222,15 +221,15 @@ hours per workday	projectmanager	de	Stunden pro Arbeitstag
 how long do you work on the given day.	projectmanager	de	Wie lange arbeiten Sie an dem angegebenen Tag
 how should ids for new projects be generated?	projectmanager	de	Wie sollen Projektnummern für neue Projekte generiert werden?
 how should ids for new subprojects be generated?	projectmanager	de	Wie sollen Nummern für neue Unterprojekte generiert werden?
-how should the project selection in the menu be displayed	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden?
+how should the project selection in the menu be displayed	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	de	Wie soll die Projektauswahl im Menü angezeigt werden: Ein Baum gibt einen besseren Überblick, eine Auswahlbox kann schneller sein.
 how would you like to print the chart?	projectmanager	de	Wie möchten Sie die Tabelle ausdrucken?
 html link to the current record	projectmanager	de	HTML-Link zum aktuellen Eintrag
 id generation	projectmanager	de	Generierung Projektnummern
-if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Elemente (z. B. InfoLog-Einträge) mit gelöscht
-if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Elemente (z.B. InfoLog-Einträge) mit geändert
+if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Elemente (z. B. InfoLog-Einträge) mit gelöscht.
+if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Elemente (z.B. InfoLog-Einträge) mit geändert.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	de	Wenn das Gantt-Diagramm breiter als die Seite ist, wird es beschnitten.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Gantt-Diagramm statt Umlauten komische Zeichen sehen, schalten Sie das ab
+if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Gantt-Diagramm statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 if you specify an export definition, it will be used when you export	projectmanager	de	Wählen Sie eine Export-Definition für den Export
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
@@ -239,7 +238,7 @@ imports a list of projects from a csv file.  does not include project elements.	
 insert	projectmanager	de	Einfügen
 last modified	projectmanager	de	Zuletzt geändert
 last sync date and time	projectmanager	de	Letzter Sync, Datum und Zeit
-leave it empty if you dont need a different customer title	projectmanager	de	Feld leer lassen, wenn kein kundenspezifischer Titel benötigt wird
+leave it empty if you dont need a different customer title	projectmanager	de	Feld leer lassen, wenn kein kundenspezifischer Titel benötigt wird.
 leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine Projekt-ID zu generieren
 leave it empty, if identitcal to the time	projectmanager	de	Feld leer lassen, wenn identisch mit der Zeit
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	de	Anzahl Zeichen des Element-Titels im Gantt-Diagramm limitieren
@@ -248,15 +247,15 @@ links	projectmanager	de	Verknüpfungen
 links and attached files	projectmanager	de	Verknüpfungen und Anhänge
 links to specified application.  example: {{links/infolog}}	projectmanager	de	Verknüpfungen zu bestimmten Anwendungen. Beispiel: {{links/infolog}}
 list of files linked to the current record	projectmanager	de	Liste der mit dem aktuellen Eintrag verknüpften Dateien
-lists all elements assigned to an element role in a table.	projectmanager	de	Listet alle Elemente einer Element-Rolle in einer Tabelle auf
-lists all project elements in a table.	projectmanager	de	Listet alle Projekt-Elemente in einer Tabelle auf
+lists all elements assigned to an element role in a table.	projectmanager	de	Listet alle Elemente einer Element-Rolle in einer Tabelle auf.
+lists all project elements in a table.	projectmanager	de	Listet alle Projekt-Elemente in einer Tabelle auf.
 mainproject only	projectmanager	de	Nur das Hauptprojekt
 mainprojects	projectmanager	de	Hauptprojekte
 manage mapping	projectmanager	de	Zuordnung verwalten
 members	projectmanager	de	Mitarbeiter
 milestone	projectmanager	de	Meilenstein
-milestone deleted	projectmanager	de	Meilenstein gelöscht
-milestone saved	projectmanager	de	Meilenstein gespeichert
+milestone deleted	projectmanager	de	Meilenstein gelöscht.
+milestone saved	projectmanager	de	Meilenstein gespeichert.
 milestones	projectmanager	de	Meilensteine
 milestones before this element has to be finished	projectmanager	de	Meilensteine, vor denen dieses Element beendet sein muß
 modified	projectmanager	de	Geändert
@@ -279,7 +278,7 @@ no rights to export more then %1 entries!	projectmanager	de	Keine Rechte mehr al
 no save necessary	projectmanager	de	Kein Speichern notwendig
 nonactive	projectmanager	de	Nicht aktiv
 not available	projectmanager	de	Nicht verfügbar
-not started (0%)	projectmanager	de	nicht gestartet (0%)
+not started (0%)	projectmanager	de	Nicht gestartet (0%)
 not working	projectmanager	de	Nicht arbeiten
 notification settings	projectmanager	de	Einstellungen der Benachrichtigungen
 number of characters to which title of ganttchart elements should be shortened to.	projectmanager	de	Anzahl der Zeichen, auf welche die Titel der Gantt-Diagramm-Elemente gekürzt werden sollen.
@@ -308,9 +307,9 @@ please download a recent version from %1 and install it in %2.	projectmanager	de
 pm_milestone	projectmanager	de	Meilenstein
 price	projectmanager	de	Preis
 price / unit	projectmanager	de	Preis / Einheit
-price deleted	projectmanager	de	Preis gelöscht
+price deleted	projectmanager	de	Preis gelöscht.
 price per unit	projectmanager	de	Preis pro Einheit
-price saved	projectmanager	de	Preis gespeichert
+price saved	projectmanager	de	Preis gespeichert.
 pricelist	projectmanager	de	Preisliste
 progress	projectmanager	de	Erledigt
 project	common	de	Projekt
@@ -338,8 +337,8 @@ project status	projectmanager	de	Projekt-Status
 project title	projectmanager	de	Projekttitel
 project title - template name	projectmanager	de	Projekttitel - Name des Templates
 project-element	projectmanager	de	Projektelement
-project-element deleted	projectmanager	de	Projekt-Element gelöscht
-project-element saved	projectmanager	de	Projekt-Element gespeichert
+project-element deleted	projectmanager	de	Projekt-Element gelöscht.
+project-element saved	projectmanager	de	Projekt-Element gespeichert.
 project-elements	projectmanager	de	Projekt-Elemente
 projectelement	projectmanager	de	Projekt-Element
 projectid	projectmanager	de	Projekt-ID
@@ -371,14 +370,14 @@ replanned time in minutes	projectmanager	de	Neu geplante Zeit in Minuten
 resize	projectmanager	de	Dauer-Änderung
 resources	projectmanager	de	Ressourcen
 role	projectmanager	de	Rolle
-role deleted	projectmanager	de	Rolle gelöscht
-role saved	projectmanager	de	Rolle gespeichert
+role deleted	projectmanager	de	Rolle gelöscht.
+role saved	projectmanager	de	Rolle gespeichert.
 roles	projectmanager	de	Rollen
 same day	projectmanager	de	gleichen Tag
 save the changes made	projectmanager	de	Änderungen speichern
 save this project element	projectmanager	de	Dieses Projekt-Element speichern
 select a project	projectmanager	de	Ein Projekt auswählen
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Menge (Zeit) und Preis berechnen wollen
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	de	Eine Tätigkeit auswählen wenn Sie die Kosten nach Menge (Zeit) und Preis berechnen wollen.
 select export options	projectmanager	de	Wählen Sie die Export-Optionen aus
 select multiple projects for a further action	projectmanager	de	Wählt mehrere Projekte für einen weiteren Befehl aus
 select project sort order for project tree and link search	projectmanager	de	Sortierung der Projekte auswählen für Projekt-Baum und Suche in Verknüpfungen
@@ -392,19 +391,19 @@ share on the whole project in hours or percent, defaults to planned time	project
 shared time in minutes	projectmanager	de	Anteilige Zeit in Minuten
 should project elements list show the dedicated icons of the infolog types. icons for infolog custom types can be added at the vfs-path where additional images, icons or logos can be found (see site configuration). if 32x32 pixels icons are uploaded with a file name ending with '_element', that bigger icon will be loaded in the element list.	projectmanager	de	Soll die Element-Liste die InfoLog-Typ Symbole pro Typ anzeigen? Symbole für benutzerdefinierte InfoLog-Typen können im Dateimanager hinterlegt werden. Der Ordner wird in der Konfiguration der Anwendung festgelegt. Wenn Sie größere Symbole für die Elementliste hinterlegen wollen (32x32pixel), benötigen diese die Namensergänzung '_element'.
 should project elements show the links to other applications and/or the file-attachments in the project elements list (only when showing details).	projectmanager	de	Soll die Element-Liste zusätzlich Verknüpfungen und/oder Anhänge in den Details anzeigen?
-should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status-Symbole der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller)
+should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	de	Soll Projektmanager die Status-Symbole der Datenquellen (z.B. InfoLog) anzeigen oder nur einen Fortschrittsbalken mit dem numerischen Status (schneller).
 show constraints and milestones	projectmanager	de	Bedingungen anzeigen
 show elements in ganttchart by applications	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm
-show elements in ganttchart depending on applications they come from (none = all)	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm (nicht selektiert=alle)
+show elements in ganttchart depending on applications they come from (none = all)	projectmanager	de	Zeige die folgenden Anwendungen im Gantt-Diagramm (nicht selektiert=alle).
 show infolog type icon in the project elements list	projectmanager	de	Zeige InfoLog-Symbol in der Projekt-Elementliste
 show links in the project elements list	projectmanager	de	Zeige Verknüpfungen in der Projektelementliste
 show planned times instead of the real times	projectmanager	de	Geplante Zeiten statt der realen Zeiten anzeigen
 show status icons of the datasources	projectmanager	de	Status-Symbol der Datenquellen anzeigen
 show the project selection as	projectmanager	de	Zeige die Projektauswahl als
-site configuration saved	projectmanager	de	Konfiguration gespeichert
+site configuration saved	projectmanager	de	Konfiguration gespeichert.
 start date, end date	projectmanager	de	Startdatum, Enddatum
 start working on %1	projectmanager	de	Arbeitsbeginn am %1
-start, end, category, ...	projectmanager	de	Start, Ende, Kategorie
+start, end, category, ...	projectmanager	de	Start, Ende, Kategorie, ...
 start- & enddate	projectmanager	de	Start- und Enddatum
 startdate	projectmanager	de	Startdatum
 startrecord	projectmanager	de	Startdatensatz

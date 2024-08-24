@@ -154,7 +154,6 @@ exists	projectmanager	pt-br	existentes
 exit without saving	projectmanager	pt-br	Sair sem salvar
 exports a list of project elements to a csv file.	projectmanager	pt-br	Exporta uma lista de elementos do projeto para um arquivo CSV.
 exports a list of projects to a csv file.	projectmanager	pt-br	Exporta uma lista de projetos para um arquivo CSV.
-favorites	projectmanager	pt-br	Favoritos
 fields for element roles:	projectmanager	pt-br	Campos para funções de elemento:
 fieldseparator	projectmanager	pt-br	Separador de campos
 font	projectmanager	pt-br	Fonte

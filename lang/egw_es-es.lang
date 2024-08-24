@@ -190,7 +190,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	es-es	De
 exports a list of project elements to a csv file.	projectmanager	es-es	Exporta una lista de elementos de proyecto a un fichero CSV.
 exports a list of projects to a csv file.	projectmanager	es-es	Exporta una lista de proyectos a un fichero CSV.
 external	projectmanager	es-es	Externo
-favorites	projectmanager	es-es	Favoritos
 fields for element roles:	projectmanager	es-es	Campos para roles de elemento:
 fieldseparator	projectmanager	es-es	Separador de campos
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	es-es	El Administrador de archivos muestra una estructura virtual para los proyectos, e.g. por año o por año y mes. Por defecto, la paginación se realiza automáticamente basada en el número de proyectos. También, puede elegir un criterio fijo para esta estructura.
