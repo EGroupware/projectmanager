@@ -190,7 +190,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	fr	Défi
 exports a list of project elements to a csv file.	projectmanager	fr	Exporter une liste d'éléments de projet vers un fichier CSV.
 exports a list of projects to a csv file.	projectmanager	fr	Exporter une liste de projets vers un fichier CSV.
 external	projectmanager	fr	Externe
-favorites	projectmanager	fr	Favoris
 fields for element roles:	projectmanager	fr	Champs pour les éléments du rôle :
 fieldseparator	projectmanager	fr	Séparateur de champs
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	fr	Le gestionnaire de fichiers affiche une structure virtuelle pour les projets, par exemple par année ou par année et mois. Par défaut, la pagination se fait automatiquement en fonction du nombre de projets. Vous pouvez également choisir un critère fixe pour cette structure.

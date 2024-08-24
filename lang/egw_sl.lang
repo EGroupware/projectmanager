@@ -185,7 +185,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	sl	Izvoz
 exports a list of project elements to a csv file.	projectmanager	sl	Izvozi seznam elementov projekta v datoteko CSV.
 exports a list of projects to a csv file.	projectmanager	sl	Izvozi seznam projektov v datoteko CSV.
 external	projectmanager	sl	Zunanji
-favorites	projectmanager	sl	Priljubljene
 fields for element roles:	projectmanager	sl	Polja za pravila elementov:
 fieldseparator	projectmanager	sl	Ločilo polj
 font	projectmanager	sl	Pisava

@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	en	A descr
 accounting	projectmanager	en	Accounting
 accounting options	projectmanager	en	Accounting options
 accounting type	projectmanager	en	Accounting type
-actions	projectmanager	en	Actions
 activity	projectmanager	en	Activity
 add a new milestone	projectmanager	en	Add a new milestone
 add a new project	projectmanager	en	Add a new project
@@ -190,7 +189,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	en	Expor
 exports a list of project elements to a csv file.	projectmanager	en	Exports a list of project elements to a CSV file.
 exports a list of projects to a csv file.	projectmanager	en	Exports a list of projects to a CSV file.
 external	projectmanager	en	External
-favorites	projectmanager	en	Favorites
 fields for element roles:	projectmanager	en	Fields for element roles:
 fieldseparator	projectmanager	en	Field separator
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	en	File Manager shows a virtual structure for the projects e.g. by year or year & month. By default, pagination is done automatically based on the number of projects. You can choose also a fixed criteria for this structure.
