@@ -657,20 +657,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// add pe links
 			if((int)$query['filter2'] & 3)
 			{
-				if (!empty($this->prefs['show_links']) &&
-					(isset($row['pe_all_links']) || ($row['pe_all_links'] = Link::get_links($row['link']['app'],$row['link']['id'],'',true))))
+				if($this->prefs['show_links'] == "1" &&
+					(isset($row['pe_all_links']) || ($row['pe_all_links'] = Link::get_links($row['link']['app'], $row['link']['id'], '', true, true, false, $GLOBALS['egw_info']['user']['preferences']['common']['maxmatchs']))))
 				{
-					foreach ($row['pe_all_links'] as $link)
+					$link_count = max(count($row['pe_all_links']), Link::$row_count);
+					foreach($row['pe_all_links'] as $link_id => $link)
 					{
-						if ($this->prefs['show_links'] !== 'none' &&
-							!($row['pm_link']['id'] == $link['id'] && $link['app'] == 'projectmanager') &&
-							!($row['pm_id'] == $link['id'] && $link['app'] == 'projectmanager') &&
-							($this->prefs['show_links'] === 'all' || ($this->prefs['show_links'] === 'links') === ($link['app'] != Link::VFS_APPNAME)))
+						if(
+							($row['pm_link']['id'] == $link['id'] && $link['app'] == 'projectmanager') ||
+							($row['pm_id'] == $link['id'] && $link['app'] == 'projectmanager')
+						)
 						{
-							$row['pe_links'][] = $link;
+							unset($row['pe_all_links'][$link_id]);
+							$link_count--;
 						}
 					}
 				}
+				$row['pe_links'] = array_values($row['pe_all_links']);
+				$row['pe_links']['total'] = $link_count;
 			}
 			//Set icon for milestone as Milestone is not an application therefore, its icon won't get set like the others
 			if ($row['pe_app'] === 'pm_milestone')
