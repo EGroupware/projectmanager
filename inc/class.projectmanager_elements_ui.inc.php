@@ -657,7 +657,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// add pe links
 			if((int)$query['filter2'] & 3)
 			{
-				if($this->prefs['show_links'] == "1" &&
+				if(!empty($this->prefs['show_links']) &&
 					(isset($row['pe_all_links']) || ($row['pe_all_links'] = Link::get_links($row['link']['app'], $row['link']['id'], '', true, true, false, $GLOBALS['egw_info']['user']['preferences']['common']['maxmatchs']))))
 				{
 					$link_count = max(count($row['pe_all_links']), Link::$row_count);
@@ -672,9 +672,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 							$link_count--;
 						}
 					}
+					$row['pe_links'] = array_values($row['pe_all_links']);
+					$row['pe_links']['total'] = $link_count;
 				}
-				$row['pe_links'] = array_values($row['pe_all_links']);
-				$row['pe_links']['total'] = $link_count;
 			}
 			//Set icon for milestone as Milestone is not an application therefore, its icon won't get set like the others
 			if ($row['pe_app'] === 'pm_milestone')
