@@ -12,6 +12,13 @@
 					<et2-description  align="center" id="msg" span="all" class="message" noLang="1"></et2-description>
 					<et2-description></et2-description>
 				</row>
+                <row>
+                    <et2-description value="Link search status filter"></et2-description>
+                    <et2-select id="link_status_filter" multiple="true" emptyLabel="Active"
+                                statustext="Normally you can only link to active projects, but you can include other statuses as well"
+                    >
+                    </et2-select>
+                </row>
 				<row class="th">
 					<et2-description  value="Times" span="all"></et2-description>
 				</row>

@@ -901,9 +901,9 @@ class projectmanager_bo extends projectmanager_so
 		$sort_order = $this->prefs['link_sort_order'];
 		// Protect against bad preference value
 		$order = isset($this->field2label[explode(' ', $sort_order)[0]]) ? $sort_order : 'pm_created DESC';
-		foreach((array)$this->search($pattern, false, $order, '', '%', false, 'OR', $limit, array('pm_status' => ['active',
-																												  'nonactive',
-																												  'archive']), true, $need_count) as $prj)
+		// Include just active or others
+		$filter = ['pm_status' => ($this->config['link_status_filter'] ?? 'active')];
+		foreach((array)$this->search($pattern, false, $order, '', '%', false, 'OR', $limit, $filter, true, $need_count) as $prj)
 		{
 			if ($prj['pm_id']) $result[$prj['pm_id']] = $this->link_title($prj);
 		}

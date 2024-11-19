@@ -78,7 +78,8 @@ class projectmanager_admin
 		);
 		if($content['save'] || $content['apply'] || $custom_notification_change)
 		{
-			foreach(array('duration_units','hours_per_workday','accounting_types','allow_change_workingtimes',
+			foreach(array('link_status_filter', 'duration_units', 'hours_per_workday', 'accounting_types',
+						  'allow_change_workingtimes',
 				'enable_eroles','ID_GENERATION_FORMAT','ID_GENERATION_FORMAT_SUB', 'history') as $name)
 			{
 				$this->config->config_data[$name] = $content[$name];
@@ -162,7 +163,9 @@ class projectmanager_admin
 			$date_fields[] = ['value' => $cf['name'], 'label' => $cf['label']];
 		}
 		$content['hide_custom_notification'] = count($date_fields) == 0;
+		$ui = new projectmanager_ui();
 		$sel_options = array(
+			'link_status_filter' => $ui::$status_labels,
 			'duration_units'   => $this->duration_units,
 			'accounting_types' => $this->accounting_types,
 			'enable_eroles' => array('no','yes'),
@@ -175,6 +178,13 @@ class projectmanager_admin
 			),
 			'field' => $date_fields
 		);
+		// Always search active projects, disable that option
+		$content['link_status_filter'] = $content['link_status_filter'] ?? ['active'];
+		array_unshift($sel_options['link_status_filter'], ['value'    => 'active',
+														   'label'    => $ui::$status_labels['active'],
+														   'disabled' => true]);
+		unset($sel_options['link_status_filter']['active']);
+
 		Api\Translation::add_app('projectmanager');
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('projectmanager').' - '.lang('Site configuration');
