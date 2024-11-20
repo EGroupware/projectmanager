@@ -246,6 +246,7 @@ linked elements	projectmanager	de	Verknüpfte Elemente
 links	projectmanager	de	Verknüpfungen
 links and attached files	projectmanager	de	Verknüpfungen und Anhänge
 links to specified application.  example: {{links/infolog}}	projectmanager	de	Verknüpfungen zu bestimmten Anwendungen. Beispiel: {{links/infolog}}
+link search status filter	projectmanager	de	Statusfilter für die Linksuche
 list of files linked to the current record	projectmanager	de	Liste der mit dem aktuellen Eintrag verknüpften Dateien
 lists all elements assigned to an element role in a table.	projectmanager	de	Listet alle Elemente einer Element-Rolle in einer Tabelle auf.
 lists all project elements in a table.	projectmanager	de	Listet alle Projekt-Elemente in einer Tabelle auf.
