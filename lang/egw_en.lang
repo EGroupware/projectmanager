@@ -245,6 +245,7 @@ linked elements	projectmanager	en	Linked elements
 links	projectmanager	en	Links
 links and attached files	projectmanager	en	Links and attached files
 links to specified application.  example: {{links/infolog}}	projectmanager	en	Links to specified application. Example: {{links/infolog}}
+link search status filter	projectmanager	en	Link search status filter
 list of files linked to the current record	projectmanager	en	List of files linked to the current record
 lists all elements assigned to an element role in a table.	projectmanager	en	Lists all elements assigned to an element role in a table.
 lists all project elements in a table.	projectmanager	en	Lists all project elements in a table.
@@ -276,6 +277,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	en	No rights to export more then %1 entries!
 no save necessary	projectmanager	en	No save necessary
 nonactive	projectmanager	en	Non active
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	en	Normally you can only link to active projects, but you can include other statuses as well
 not available	projectmanager	en	Not available
 not started (0%)	projectmanager	en	Not started (0%)
 not working	projectmanager	en	Not working
