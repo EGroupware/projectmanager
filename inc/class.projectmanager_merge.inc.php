@@ -633,11 +633,6 @@ class projectmanager_merge extends Api\Storage\Merge
 
 		foreach(array_keys($project) as $name)
 		{
-			if(!isset($this->projectmanager_fields[$name]))
-			{
-				continue;
-			} // not a supported field
-
 			$value = $project[$name];
 			switch($name)
 			{
