@@ -1,6 +1,7 @@
 %1 records imported	projectmanager	tr	%1 kayıt içe aktarıldı.
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	tr	%1 kayıt okundu. Henüz içe aktarılmadı, %2geri%3'e gidin ve İçe aktarmayı test et seçeneğinin işaretini kaldırın.
-actions	projectmanager	tr	Eylemler
+%1 times permission denied, %2 projects deleted	projectmanager	tr	%1 kez izin reddedildi, %2 proje silindi.
+automatic	projectmanager	tr	Otomatik
 charset of file	projectmanager	tr	Dosya Karakter Kümesi (char-set)
 csv-fieldname	projectmanager	tr	CSV alan adı
 csv-filename	projectmanager	tr	CSV dosya adı
@@ -23,6 +24,7 @@ hours	projectmanager	tr	Saat
 how would you like to print the chart?	projectmanager	tr	Grafiği nasıl yazdırmak istersiniz?
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	tr	Gantt grafiği sayfadan daha genişse kırpılacaktır.
 import	projectmanager	tr	İthalat
+link search status filter	projectmanager	tr	Bağlantı arama durumu filtresi
 milestone	projectmanager	tr	Kilometre taşı
 milestone deleted	projectmanager	tr	Kilometre taşı silindi.
 milestone saved	projectmanager	tr	Kilometre taşı kaydedildi.
@@ -30,6 +32,7 @@ milestones	projectmanager	tr	Kilometre Taşları
 milestones before this element has to be finished	projectmanager	tr	Bu öğenin tamamlanmasından önceki kilometre taşları
 modified	projectmanager	tr	Değiştirilmiş
 new	projectmanager	tr	Yeni
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	tr	Normalde yalnızca aktif projelere bağlantı verebilirsiniz, ancak diğer durumları da dahil edebilirsiniz
 number of records to read (%1)	projectmanager	tr	Okunacak kayıt sayısı (%1)
 pm_milestone	projectmanager	tr	Dönüm Noktası
 progress	projectmanager	tr	İlerleme
@@ -48,3 +51,4 @@ test import (show importable records <u>only</u> in browser)	projectmanager	tr	�
 times	projectmanager	tr	Kere
 to many might exceed your execution-time-limit	projectmanager	tr	Çok fazla sayıda olması yürütme süresi sınırınızı aşabilir
 translation	projectmanager	tr	Tercüme
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	tr	Oluşturma tarihini eklemek için %Ymd kullanabilirsiniz. PHP işlevi date() ile aynı sözdizimini kullanır. Diğer yer tutucular, ebeveyn kimliğini eklemek için %px (yalnızca alt projelerin oluşturulmasında) veya bir dizin eklemek için %ix'tir. Yinelenen kimlikleri önlemek için indeksler otomatik olarak artırılacaktır. Her nesil formatı tam olarak bir indeks içermelidir! (Tarihin projeyi tanımlayacağından emin olduğunuz durumlar hariç). Örneğin %04ix de kullanabilirsiniz. Bu indeks '0' ile 4 hane arasında doldurulacaktır (örn. 0001). Doldurma karakterini atlarsanız (örn. %5ix), dizin '0' ile doldurulacaktır.

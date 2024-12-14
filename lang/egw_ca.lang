@@ -10,7 +10,6 @@ a describtive title for the project, must not be empty	projectmanager	ca	un tít
 accounting	projectmanager	ca	Comptabilitat
 accounting options	projectmanager	ca	Opcions de Comptabilitat
 accounting type	projectmanager	ca	Tipus de comptabilitat
-actions	projectmanager	ca	Accions
 activity	projectmanager	ca	Activitat
 add a new milestone	projectmanager	ca	Afegeix una nova fita
 add a new project	projectmanager	ca	Afegeix un projecte nou
@@ -91,7 +90,6 @@ elements which have to be finished before this can start	projectmanager	ca	Eleme
 empty	projectmanager	ca	Buit
 empty for all	projectmanager	ca	buit per a tot
 encode non-ascii	projectmanager	ca	Codifica no-ASCII
-end before	projectmanager	ca	Acaba abans de
 enddate	projectmanager	ca	Data final
 error: deleting price !!!	projectmanager	ca	Error esborrant el preu !!!
 error: deleting project !!!	projectmanager	ca	Error esborrant el projecte !!!
@@ -126,7 +124,6 @@ hours	projectmanager	ca	hores
 hours per workday	projectmanager	ca	Hores per dia de feina
 how long do you work on the given day.	projectmanager	ca	Quant de temps fas feina aquest dia.
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	ca	Com s'hauria de mostrar la selecció de projectes en el menú: Un arbre ofereix una millor visió global, una caixa de selecció es treballa millor.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ca	Si veus entitats (per ex. {) en el diagrama de Gantt, desactiva això.
 ignore that entry	projectmanager	ca	ignora aquesta entrada
 ignored	projectmanager	ca	ignorat
 import	projectmanager	ca	Importar
@@ -212,7 +209,6 @@ show planned times instead of the real times	projectmanager	ca	Mostra hores plan
 show status icons of the datasources	projectmanager	ca	Mostra les icones d'estat de les fonsts de dades
 show the project selection as	projectmanager	ca	Mostra la selecció de projectes com
 site configuration saved	projectmanager	ca	Configuració del lloc guardada
-start after	projectmanager	ca	Inicia després
 start working on %1	projectmanager	ca	Comença fent feina amb %1
 start, end, category, ...	projectmanager	ca	Inici, Fi, Categoria,...
 start- & enddate	projectmanager	ca	Dates d'inici i Fi

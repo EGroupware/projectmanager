@@ -1,7 +1,8 @@
 %1 records imported	projectmanager	ko	%1 개의 레코드를 가져왔습니다
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ko	%1 개의 레코드를 읽음 (아직 가져오기는 수행되지 않았음, %2뒤로가기%2 해서 가져오기 테스트를 체크해제한 후 수행하세요)
-actions	projectmanager	ko	액션
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ko	%1 레코드를 읽었습니다. 아직 가져오지 않았으므로 %2백%3으로 이동하여 가져오기 테스트 확인을 취소하십시오.
+%1 times permission denied, %2 projects deleted	projectmanager	ko	%1 번 권한이 거부되었고 %2 프로젝트가 삭제되었습니다.
 apply the changes	projectmanager	ko	변경사항 적용
+automatic	projectmanager	ko	자동
 charset of file	projectmanager	ko	파일의 문자셋
 create new links	projectmanager	ko	새 링크 만들기
 created	projectmanager	ko	생성됨
@@ -18,10 +19,12 @@ global categories	projectmanager	ko	전역 카테고리
 hours	projectmanager	ko	시간
 import	projectmanager	ko	가져오기
 last modified	projectmanager	ko	마지막 수정
+link search status filter	projectmanager	ko	링크 검색 상태 필터
 links	projectmanager	ko	링크
 modified	projectmanager	ko	변경됨
 new	projectmanager	ko	새로만들기
 no details	projectmanager	ko	내용제외
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	ko	일반적으로 활성 프로젝트에만 링크할 수 있지만 다른 상태도 포함할 수 있습니다.
 number of records to read (%1)	projectmanager	ko	(%1) 읽을 레코드수
 planned	projectmanager	ko	기획
 planned time	projectmanager	ko	기획기간
@@ -37,3 +40,4 @@ translation	projectmanager	ko	번역
 used time	projectmanager	ko	사용한 시간
 view all subs of this entry	projectmanager	ko	이 엔트리의 모든 하위보기
 view subs	projectmanager	ko	하위보기
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	ko	Ymd를 사용하여 생성 날짜를 삽입할 수 있습니다. PHP 함수 date()와 같은 구문을 사용합니다. 다른 자리 표시자로는 부모 ID를 삽입하는 %px(하위 프로젝트 생성 시에만) 또는 인덱스를 삽입하는 %ix가 있습니다. 인덱스는 중복된 ID를 피하기 위해 자동으로 증가합니다. 모든 생성 형식에는 정확히 하나의 인덱스가 포함되어야 합니다! (날짜가 프로젝트를 식별할 수 있는 경우는 예외). 예를 들어 %04ix를 사용할 수도 있습니다. 이 인덱스는 '0'에서 4자리 숫자(예: 0001)로 채워집니다. 채우는 문자를 생략하면(예: %5ix) 인덱스는 '0'으로 채워집니다.

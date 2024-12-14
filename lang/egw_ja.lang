@@ -1,5 +1,7 @@
 %1 records imported	projectmanager	ja	%1 件インポートされました
-actions	projectmanager	ja	動作
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ja	%1 件のレコードが読み込まれました。まだインポートされていません。%2%3 戻って、[Test import] のチェックを外してください。
+%1 times permission denied, %2 projects deleted	projectmanager	ja	%1 回のパーミッションが拒否され、%2 プロジェクトが削除されました。
+automatic	projectmanager	ja	自動
 created	projectmanager	ja	作成
 csv-filename	projectmanager	ja	CSVファイル名
 custom fields	projectmanager	ja	カスタム項目
@@ -16,12 +18,14 @@ history logging and deleting of items	projectmanager	ja	履歴の記録と項目
 how would you like to print the chart?	projectmanager	ja	チャートをどのように印刷しますか？
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	ja	ガントチャートの幅がページより大きい場合、トリミングされます。
 import	projectmanager	ja	インポート
+link search status filter	projectmanager	ja	リンク検索ステータスフィルター
 milestone	projectmanager	ja	マイルストーン
 milestone deleted	projectmanager	ja	マイルストーンが削除されました。
 milestone saved	projectmanager	ja	マイルストーンが保存されました。
 milestones	projectmanager	ja	マイルストーン
 milestones before this element has to be finished	projectmanager	ja	この要素が終了するまでのマイルストーン
 new	projectmanager	ja	新規作成
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	ja	通常、アクティブなプロジェクトにしかリンクできませんが、他のステータスも含めることができます。
 pm_milestone	projectmanager	ja	マイルストーン
 progress	projectmanager	ja	進捗状況
 receive notifications about due entries (planned dates)	projectmanager	ja	応募締切日（予定日）のお知らせを受け取る
@@ -32,3 +36,4 @@ receive notifications about starting entries (planned dates)	projectmanager	ja	�
 receive notifications about starting entries (real dates)	projectmanager	ja	開始日（実日付）の通知を受け取る
 resize	projectmanager	ja	サイズ変更
 translation	projectmanager	ja	翻訳
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	ja	作成日を挿入するために%Ymdを使うことができます。これはPHPのdate()と同じ構文です。他のプレースホルダーは%pxで親のID(サブプロジェクト生成時のみ)を、%ixでインデックスを挿入できます。インデックスは、IDの重複を避けるために自動的に増やされます。すべての世代フォーマットには、正確に1つのインデックスを含める必要があります！(日付がプロジェクトを特定することが確実な場合を除く)。04ixのようにすることもできます。このインデックスは'0'から4桁（例：0001）で埋められます。この文字を省略すると（例：%5ix）、インデックスは'0'で埋められます。

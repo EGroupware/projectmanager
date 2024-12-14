@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	sl	Opisni 
 accounting	projectmanager	sl	Računovodstvo
 accounting options	projectmanager	sl	Možnosti računovodstva
 accounting type	projectmanager	sl	Vrsta računovodstva
-actions	projectmanager	sl	Dejanja
 activity	projectmanager	sl	Dejavnosti
 add a new milestone	projectmanager	sl	Dodaj nov milestone
 add a new project	projectmanager	sl	Dodaj nov projekt
@@ -37,16 +36,17 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	sl	Polja adresarjev
 all projects	projectmanager	sl	Vsi projekti
 all roles	projectmanager	sl	Vsa pravila
-all_roles	projectmanager	sl	Vsa pravila
 allow users to change their working times	projectmanager	sl	Dovoli uporabnikom spreminjanje svojega delovnega časa
 allowed accounting types	projectmanager	sl	Dovoljene vrste računovodstva
 allowed units	projectmanager	sl	Dovoljene enote
+all_roles	projectmanager	sl	Vsa pravila
 anonymous public	projectmanager	sl	Anonimna javnost
 app.	projectmanager	sl	Prg.
 apply the changes	projectmanager	sl	Uveljavi spremenbe
 archive	projectmanager	sl	Arhiv
 assistant	projectmanager	sl	Pomočnik
 at which time do you start working on the given day.	projectmanager	sl	Ob kateri uri začnete delati na določen dan.
+automatic	projectmanager	sl	Samodejno
 availability settings	projectmanager	sl	Nastavitve razpoložljivosti
 available fields for this plugin:	projectmanager	sl	Razpoložljiva polja za ta vtičnik:
 availible	projectmanager	sl	Na voljo
@@ -80,6 +80,7 @@ created	projectmanager	sl	ustvarjeno
 created a ganttchart from the checked projects	projectmanager	sl	Iz pregledanih projektov je ustvaril grafikon Gantt
 creation date and time	projectmanager	sl	Datum ustvarjanja in čas
 creator	projectmanager	sl	Stvarnik
+criteria to break into subdirectories	projectmanager	sl	Merila za razdelitev v podmape
 csv-fieldname	projectmanager	sl	CSV-Ime polja
 csv-filename	projectmanager	sl	CSV-Ime datoteke
 csv-import	common	sl	CSV-Uvoz
@@ -216,7 +217,6 @@ html link to the current record	projectmanager	sl	Povezava HTML s trenutnim zapi
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sl	Če ste preverili podatkovne vire elementov, npr. Tudi zapisi InfoLog se izbrišejo.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sl	Če ste preverili podatkovne vire elementov, npr. Točke vnosa InfoLog bodo spremenile tudi njihovo stanje.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	sl	Če je Ganttov diagram širši od strani, bo obrezan.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sl	Če vidite elemente (npr. {) V gantogramu, to izključite.
 if you specify an export definition, it will be used when you export	projectmanager	sl	Če določite definicijo izvoza, se bo uporabil, ko boste izvozili
 ignore that entry	projectmanager	sl	Prezri vnos
 ignored	projectmanager	sl	Prezrti.
@@ -229,6 +229,7 @@ leave it empty if you dont need a different customer title	projectmanager	sl	Pus
 leave it empty to have one generated	projectmanager	sl	Pustite, da je prazna, da jo ustvarite
 leave it empty, if identitcal to the time	projectmanager	sl	Pustite, da je prazna, če je enaka času
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	sl	Omeji število znakov v naslovu elementa gantograma (0 brez omejitve)
+link search status filter	projectmanager	sl	Filter stanja iskanja povezav
 linked elements	projectmanager	sl	Povezani elementi
 links	projectmanager	sl	Povezave
 links and attached files	projectmanager	sl	Povezave in priložene datoteke
@@ -264,6 +265,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	sl	Ni pravic za izvoz več kot %1 vnosov!
 no save necessary	projectmanager	sl	Brez prihranka
 nonactive	projectmanager	sl	Neaktivno
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	sl	Običajno se lahko povežete samo z aktivnimi projekti, lahko pa vključite tudi druge statuse
 not available	projectmanager	sl	Ni na voljo
 not started (0%)	projectmanager	sl	Ni začelo (0%)
 not working	projectmanager	sl	Ne deluje
@@ -452,6 +454,7 @@ view this project	projectmanager	sl	Oglejte si ta projekt
 view this project-element	projectmanager	sl	Oglejte si ta element projekta
 working duration on %1	projectmanager	sl	Delovno trajanje na %1
 you can leave the date of the first price empty	projectmanager	sl	Datum prve cene lahko pustite prazen
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	sl	Za vnos datuma ustvarjanja lahko uporabite %Ymd. Uporablja enako sintakso kot funkcija date() PHP. Druga nadomestna imena so %px za vstavljanje ID staršev (samo pri ustvarjanju podprojektov) ali %ix za vstavljanje indeksa. Indeksi se samodejno povečajo, da se prepreči podvajanje ID-jev. Vsaka oblika generacije mora vsebovati natanko en indeks! (Razen če ste prepričani, da bo datum identificiral projekt). Uporabite lahko tudi npr. %04ix. Ta indeks bo izpolnjen z „0“ do 4 številkami (npr. 0001). Če izpustite znak za izpolnjevanje (npr. %5ix), bo indeks izpolnjen z „0“.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	sl	Nimate nameščene različice JPGraph %1 ali novejše! Potreben je od vodje projekta za grafikone Gantt.
 you need to select a project first	projectmanager	sl	Najprej morate izbrati projekt
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sl	Vaša podatkovna baza NI obnovljena (%1 vs. %2), prosimo poženite %3 nastavitev%4 za prenovo vaše podatkovne baze.

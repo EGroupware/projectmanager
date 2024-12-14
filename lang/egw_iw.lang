@@ -1,6 +1,5 @@
 %1 records imported	projectmanager	iw	%1 רשומות הובאו
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	iw	%1 רשומות נקראו (אך עדיין לא הובאו. ניתן %2לחזור%3 ולהוריד את הסימן ליד בדוק ייבוא)
-actions	projectmanager	iw	פעולות
 charset of file	projectmanager	iw	סט תווים של הקובץ
 create new links	projectmanager	iw	יצור קישורים חדשים
 created	projectmanager	iw	נוצר

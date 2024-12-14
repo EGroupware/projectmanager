@@ -6,7 +6,7 @@
 %1 project-element(s) deleted.	projectmanager	bg	%1 проект или елемент(и) са изтрити.
 %1 projects deleted	projectmanager	bg	Изтрити %1 проекти
 %1 records imported	projectmanager	bg	Импортирани са %1 записа
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	bg	%1 записа прочетени (все още не импортирани, може да се %2върнете%3 и да размаркирате Тест Импорт)
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	bg	%1 прочетени записи. Все още не е импортиран, върнете се %2назад%3 и махнете отметката Test import.
 %1 times permission denied, %2 projects deleted	projectmanager	bg	%1 проекти са изтрити.
 %1 you are responsible for is due at %2	projectmanager	bg	%1, за който отговаряте, се дължи на %2
 %1 you are responsible for is starting at %2	projectmanager	bg	%1, за който отговаряте, започва от %2
@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	bg	Опи�
 accounting	projectmanager	bg	Счетоводство
 accounting options	projectmanager	bg	Опции за счетоводство
 accounting type	projectmanager	bg	Тип счетоводство
-actions	projectmanager	bg	Действия
 activity	projectmanager	bg	Дейност
 add a new milestone	projectmanager	bg	Добавяне на ново важно събитие
 add a new project	projectmanager	bg	Добавете нов проект
@@ -37,15 +36,16 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	bg	Полета на на Адресния указател
 all projects	projectmanager	bg	Всички проекти
 all roles	projectmanager	bg	Всички роли
-all_roles	projectmanager	bg	Всички роли
 allow users to change their working times	projectmanager	bg	Разрешете на потребителите да променят работното си време
 allowed accounting types	projectmanager	bg	Разрешете видове счетоводство
 allowed units	projectmanager	bg	Разрешени единици
+all_roles	projectmanager	bg	Всички роли
 anonymous public	projectmanager	bg	Анонимна публика
 apply the changes	projectmanager	bg	Прилагане на промените
 archive	projectmanager	bg	Архив
 assistant	projectmanager	bg	Асистент
 at which time do you start working on the given day.	projectmanager	bg	Маркирайте по кое време започвате работа в дадения ден.
+automatic	projectmanager	bg	Автоматично
 availability settings	projectmanager	bg	Настройки за наличност
 available fields for this plugin:	projectmanager	bg	Налични полета за този плъгин:
 availible	projectmanager	bg	Наличен
@@ -182,7 +182,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	bg	Де�
 exports a list of project elements to a csv file.	projectmanager	bg	Експортира списък с елементи на проект в CSV файл.
 exports a list of projects to a csv file.	projectmanager	bg	Експортира списък с проекти в CSV файл.
 external	projectmanager	bg	Външен
-favorites	projectmanager	bg	Любими
 fields for element roles:	projectmanager	bg	Полета за ролите на елемента:
 fieldseparator	projectmanager	bg	Разделител на полета
 font	projectmanager	bg	Шрифт
@@ -218,7 +217,6 @@ id generation	projectmanager	bg	Генериране на идентификац
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	bg	Записите в InfoLog се изтриват, ако са проверени източниците на данни за елементите.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	bg	Записите в InfoLog ще променят положението си, ако са проверени източниците на данни за елементите.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	bg	Ако диаграмата на Гант е по-широка от страницата, тя ще бъде изрязана.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	bg	Изключете това, ако видите записи (напр. {) в диаграмата на Гант (Gantt chart).
 if you specify an export definition, it will be used when you export	projectmanager	bg	Ако посочите дефиниция за експортиране, тя ще се използва, когато експортирате
 ignore that entry	projectmanager	bg	Игнориране на запис
 ignored	projectmanager	bg	Игнориран
@@ -231,6 +229,7 @@ leave it empty if you dont need a different customer title	projectmanager	bg	О�
 leave it empty to have one generated	projectmanager	bg	Оставете полето празно, за да бъде генерирано автоматично
 leave it empty, if identitcal to the time	projectmanager	bg	Оставете полето празно, ако е идентично с настоящия час
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	bg	Ограничете броя на знаците в заглавието на елемента в диаграма на Гант (0 за без ограничение)
+link search status filter	projectmanager	bg	Филтър за състоянието на търсенето на връзки
 linked elements	projectmanager	bg	Свързани елементи
 links	projectmanager	bg	Връзки
 links and attached files	projectmanager	bg	Връзки и прикачени файлове
@@ -266,6 +265,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	bg	Нямате права да експортирате повече от %1 записа!
 no save necessary	projectmanager	bg	Не е необходимо запазване
 nonactive	projectmanager	bg	Неактивен
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	bg	Обикновено можете да поставяте връзки само към активни проекти, но можете да включите и други статуси
 not available	projectmanager	bg	Не е наличен
 not started (0%)	projectmanager	bg	Не е стартиран (0%)
 not working	projectmanager	bg	Не работи
@@ -447,6 +447,7 @@ view this project	projectmanager	bg	Показва този проект
 view this project-element	projectmanager	bg	Показва този елемент на проекта
 working duration on %1	projectmanager	bg	Продължителност на работа на %1
 you can leave the date of the first price empty	projectmanager	bg	Можете да оставите датата на първата цена празна
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	bg	
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	bg	Нямате инсталирана JPGraph версия % 1 или по-нова! Необходима е от Мениджър проекти за Диаграмата на Гант.
 you need to select a project first	projectmanager	bg	Първо трябва да изберете проект
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	bg	Базата данни не е обновена (%1 вм. %2). Моля, използвайте %3setup%4 за обновяване.

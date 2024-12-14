@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	it	un tito
 accounting	projectmanager	it	Contabilità
 accounting options	projectmanager	it	Opzioni Contabilità
 accounting type	projectmanager	it	Tipo Contabilità
-actions	projectmanager	it	Azioni
 activity	projectmanager	it	Attività
 add a new milestone	projectmanager	it	Aggiungi un nuovo traguardo
 add a new project	projectmanager	it	Aggiungi un nuovo progetto
@@ -37,10 +36,10 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	it	Campi rubrica
 all projects	projectmanager	it	Tutti i progetti
 all roles	projectmanager	it	Tutti i ruoli
-all_roles	projectmanager	it	Tutti i ruoli
 allow users to change their working times	projectmanager	it	Permetti agli utenti di cambiare i propri orari di lavoro
 allowed accounting types	projectmanager	it	Tipi di contabilità permessi
 allowed units	projectmanager	it	Unità permesse
+all_roles	projectmanager	it	Tutti i ruoli
 anonymous public	projectmanager	it	Pubblico anonimo
 app.	projectmanager	it	App.
 apply the changes	projectmanager	it	Applica modifiche
@@ -229,7 +228,6 @@ id generation	projectmanager	it	Generazione di ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	it	Se selezionato, verrano eliminate anche le sorgenti di elemento, p.es. schede attività
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	it	Se selezionato, verrà aggiornato lo stato anche delle sorgenti di elemento, p.es. schede attività
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	it	Se il diagramma di Gantt è più largo della pagina, verrà tagliato.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	it	Se vedi entità (p.es. {) nel grafico Gantt, disabilita questa opzione
 if you specify an export definition, it will be used when you export	projectmanager	it	Se specifichi una definizione di esportazione, allora verrà usata durante la relativa operazione
 ignore that entry	projectmanager	it	Ignora quella voce
 ignored	projectmanager	it	Ignorato
@@ -242,6 +240,7 @@ leave it empty if you dont need a different customer title	projectmanager	it	Las
 leave it empty to have one generated	projectmanager	it	Lascialo vuoto per averne uno generato
 leave it empty, if identitcal to the time	projectmanager	it	Lascialo vuoto se identico all'ora
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	it	Limita il numero di caratteri nel titolo elemento del Gantt (0 per nessun limite)
+link search status filter	projectmanager	it	Filtro per la ricerca dello stato dei collegamenti
 linked elements	projectmanager	it	Elementi collegati
 links	projectmanager	it	Collegamenti
 links and attached files	projectmanager	it	Collegamenti e file allegati
@@ -277,6 +276,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	it	Puoi esportare solo %1 voci
 no save necessary	projectmanager	it	Non necessario salvare
 nonactive	projectmanager	it	Non attivo
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	it	Normalmente è possibile collegare solo progetti attivi, ma si possono includere anche altri stati
 not available	projectmanager	it	Non disponibile
 not started (0%)	projectmanager	it	Non iniziato (0%)
 not working	projectmanager	it	Non funzionante

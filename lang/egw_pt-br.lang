@@ -14,7 +14,6 @@ a describtive title for the project, must not be empty	projectmanager	pt-br	um t
 accounting	projectmanager	pt-br	Contabilização
 accounting options	projectmanager	pt-br	Opções de contabilização
 accounting type	projectmanager	pt-br	Tipos de contabilização
-actions	projectmanager	pt-br	Ações
 activity	projectmanager	pt-br	Atividades
 add a new milestone	projectmanager	pt-br	Adicionar um novo marco
 add a new project	projectmanager	pt-br	Adicionar um novo projeto
@@ -28,10 +27,10 @@ add project-elements	projectmanager	pt-br	Adicionar elementos de projeto
 add this role	projectmanager	pt-br	Adicionar este perfil
 addressbook fields	projectmanager	pt-br	Campos do catálogo de endereços
 all roles	projectmanager	pt-br	todas as funções
-all_roles	projectmanager	pt-br	todas as funções
 allow users to change their working times	projectmanager	pt-br	Permitir que usuários modifiquem suas horas de trabalho
 allowed accounting types	projectmanager	pt-br	Tipos de contabilização permitidas
 allowed units	projectmanager	pt-br	Unidades permitidas
+all_roles	projectmanager	pt-br	todas as funções
 anonymous public	projectmanager	pt-br	Público anônimo
 app.	projectmanager	pt-br	Aplic.
 apply the changes	projectmanager	pt-br	Aplicar alterações
@@ -184,7 +183,6 @@ html link to the current record	projectmanager	pt-br	Link HTML para o registro a
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) são removidas também.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	pt-br	Se marcado as origens dos dados (exemplo: registros de Tarefas) terão seus status alterados também.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	pt-br	Se o gráfico de Gantt for mais largo que a página, ele será recortado.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pt-br	Se você ver entidades (exemplo: {) no gráfico de Gantt, desabilite-o.
 ignore that entry	projectmanager	pt-br	ignorar esta entrada
 ignored	projectmanager	pt-br	ignorado(a)
 import	projectmanager	pt-br	importação
@@ -194,6 +192,7 @@ last sync date and time	projectmanager	pt-br	Última data e hora sync
 leave it empty if you dont need a different customer title	projectmanager	pt-br	deixe em branco se você não precisar de um tratamento diferente para o cliente
 leave it empty to have one generated	projectmanager	pt-br	deixe em branco para gerar automaticamente
 leave it empty, if identitcal to the time	projectmanager	pt-br	deixe em branco, se idêntico ao tempo
+link search status filter	projectmanager	pt-br	Filtro de status de pesquisa de links
 linked elements	projectmanager	pt-br	Elementos relacionados
 links	projectmanager	pt-br	Links
 links and attached files	projectmanager	pt-br	Links e arquivos anexados
@@ -226,6 +225,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	pt-br	Nenhum direito de exportar mais, em seguida, as entradas 1%!
 no save necessary	projectmanager	pt-br	não é necessário salvar
 nonactive	projectmanager	pt-br	Não ativo
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	pt-br	Normalmente, você só pode criar links para projetos ativos, mas também pode incluir outros status
 not available	projectmanager	pt-br	não disponível
 not started (0%)	projectmanager	pt-br	Não iniciado (0%)
 not working	projectmanager	pt-br	Não trabalhando

@@ -1,3 +1,5 @@
+%1 times permission denied, %2 projects deleted	projectmanager	ro	%1 ori permisiune refuzată, %2 proiecte șterse.
+automatic	projectmanager	ro	Automat
 do you want a notification, if items are about to start according to their planned dates?	projectmanager	ro	Doriți să primiți o notificare, dacă elementele sunt pe cale să înceapă conform datelor planificate?
 do you want a notification, if items are about to start according to their real dates?	projectmanager	ro	Doriți o notificare, în cazul în care elementele sunt pe cale să înceapă conform datelor lor reale?
 do you want a notification, if items are due according to their planned dates?	projectmanager	ro	Doriți o notificare, dacă elementele sunt scadente în conformitate cu datele planificate?
@@ -8,10 +10,12 @@ document merge	projectmanager	ro	Completarea documentelor
 history logging and deleting of items	projectmanager	ro	Înregistrarea istoricului și ștergerea elementelor
 how would you like to print the chart?	projectmanager	ro	Cum doriți să imprimați graficul?
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	ro	În cazul în care diagrama Gantt este mai lată decât pagina, aceasta va fi tăiată.
+link search status filter	projectmanager	ro	Filtru status căutare link
 milestone	projectmanager	ro	Etapa de referință
 milestone deleted	projectmanager	ro	Etapă de etapă ștearsă.
 milestone saved	projectmanager	ro	Milestone salvat.
 milestones before this element has to be finished	projectmanager	ro	Milestones before this element has to be finished
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	ro	În mod normal, puteți face legături numai către proiecte active, dar puteți include și alte statusuri
 pm_milestone	projectmanager	ro	Etapa de referință
 progress	projectmanager	ro	Progres
 project	common	ro	Proiect
@@ -22,3 +26,4 @@ receive notifications about own items	projectmanager	ro	Primiți notificări cu 
 receive notifications about starting entries (planned dates)	projectmanager	ro	Primiți notificări despre intrările care încep (date planificate)
 receive notifications about starting entries (real dates)	projectmanager	ro	Primiți notificări despre intrările care încep (date reale)
 resize	projectmanager	ro	Redimensionați
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	ro	Puteți utiliza %Ymd pentru a introduce data creării. Acesta utilizează aceeași sintaxă ca și funcția PHP date(). Alte marcaje sunt %px pentru a introduce ID-ul părinților (numai la generarea subproiectelor) sau %ix pentru a introduce un index. Indicii vor fi crescuți automat pentru a evita duplicarea ID-urilor. Fiecare format de generare trebuie să conțină exact un index! (Cu excepția cazului în care sunteți sigur că data va identifica proiectul). De asemenea, puteți utiliza, de exemplu, %04ix. Acest index va fi completat cu „0” până la 4 cifre (de exemplu, 0001). Dacă omiteți caracterul de umplere (de exemplu, %5ix), indexul va fi completat cu „0”.

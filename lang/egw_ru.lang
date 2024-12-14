@@ -5,7 +5,7 @@
 %1 project-element(s) deleted.	projectmanager	ru	%1 элементы проекта удалены
 %1 projects deleted	projectmanager	ru	%1 проектов удалено
 %1 records imported	projectmanager	ru	%1 записей импортировано
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ru	%1 записей считано (пока не импортировано, вы можете вернуться %2назад%3 и снять флажек Тестовый Импорт)
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	ru	Прочитано %1 записей. Еще не импортированы, вернитесь %2назад%3 и снимите флажок Тестовый импорт.
 %1 times permission denied, %2 projects deleted	projectmanager	ru	%1 раз(а) доступ запрещен, %2 проект(а,ов) удалено
 (project id) project title - template name	projectmanager	ru	(ID проекта) заголовок проекта - имя шаблона
 - planned	projectmanager	ru	- запланировано
@@ -15,7 +15,6 @@ a describtive title for the project, must not be empty	projectmanager	ru	Опи�
 accounting	projectmanager	ru	Учет
 accounting options	projectmanager	ru	Опции учета
 accounting type	projectmanager	ru	Типы учета
-actions	projectmanager	ru	Действия
 activity	projectmanager	ru	Деятельность
 add a new milestone	projectmanager	ru	Добавить новую веху
 add a new project	projectmanager	ru	Добавить новый проект
@@ -31,16 +30,17 @@ add this role	projectmanager	ru	Добавить эту роль
 addressbook elements of a project can be used to define individual serial letter recipients. available fields are	projectmanager	ru	Элементы проекта из адресной книги могут быть определены как получатели серии писем. Доступные поля
 addressbook fields	projectmanager	ru	Поля адресной книги
 all roles	projectmanager	ru	Все роли
-all_roles	projectmanager	ru	Все роли
 allow users to change their working times	projectmanager	ru	Разрешить пользователям изменять их рабочее время
 allowed accounting types	projectmanager	ru	Разрешенные типы учета
 allowed units	projectmanager	ru	Разрешенные единицы
+all_roles	projectmanager	ru	Все роли
 anonymous public	projectmanager	ru	Анонимный общий
 app.	projectmanager	ru	Прил.
 apply the changes	projectmanager	ru	Применить изменения
 archive	projectmanager	ru	Архив
 assistant	projectmanager	ru	Помощник
 at which time do you start working on the given day.	projectmanager	ru	В какое время вы начинаете работать в данный день.
+automatic	projectmanager	ru	Автоматический
 availability settings	projectmanager	ru	Установки доступности
 available fields for this plugin:	projectmanager	ru	Доступные поля для этого расширения:
 availible	projectmanager	ru	Доступный
@@ -165,7 +165,6 @@ exists	projectmanager	ru	Существует.
 exit without saving	projectmanager	ru	Выйти без сохранения
 exports a list of project elements to a csv file.	projectmanager	ru	Экспортирует список элементов проекта в файл формата CSV.
 exports a list of projects to a csv file.	projectmanager	ru	Экспортирует список проектов в файл формата CSV.
-favorites	projectmanager	ru	Избранное
 fields for element roles:	projectmanager	ru	Поля для ролей элементов:
 fieldseparator	projectmanager	ru	Разделитель полей
 font	projectmanager	ru	Шрифт
@@ -197,7 +196,6 @@ html link to the current record	projectmanager	ru	HTML-ссылка на зап�
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также будут удалены.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	ru	Если выбрано, то источники данных для элементов (напр. записи ИнфоЖурнала) также изменят свое состояние.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	ru	Если диаграмма Ганта шире страницы, она будет обрезана.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	ru	Если вы видите объекты (напр. {) в диаграмме Гантта, выключите.
 if you specify an export definition, it will be used when you export	projectmanager	ru	Если указать определение экспорта, оно будет использовано при последующем экспорте
 ignore that entry	projectmanager	ru	Игнорировать эту запись
 ignored	projectmanager	ru	Проигнорировано.
@@ -209,6 +207,7 @@ last sync date and time	projectmanager	ru	Дата и время последн�
 leave it empty if you dont need a different customer title	projectmanager	ru	Оставить незаполненным, если Вам не нужно другое пользовательское название
 leave it empty to have one generated	projectmanager	ru	Оставьте это незаполненным для того, чтобы было сгенерировано
 leave it empty, if identitcal to the time	projectmanager	ru	Оставьте незаполненным, если идентично по времени
+link search status filter	projectmanager	ru	Фильтр статусов для поиска ссылок
 linked elements	projectmanager	ru	Связанные элементы
 links	projectmanager	ru	Ссылки
 links and attached files	projectmanager	ru	Ссылки и прикреплённые файлы
@@ -242,6 +241,7 @@ no details	projectmanager	ru	без подробного описанияя
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	ru	не читается доступ к источнику данных,удаление перезаписанныз величин только очистит их
 no save necessary	projectmanager	ru	Сохранение не обязательно
 nonactive	projectmanager	ru	Не активен
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	ru	Обычно вы можете создавать ссылки только на активные проекты, но вы можете включить и другие статусы.
 not available	projectmanager	ru	Не доступен
 not started (0%)	projectmanager	ru	Не запущен
 not working	projectmanager	ru	Не работает
@@ -410,6 +410,7 @@ view this project	projectmanager	ru	Показывать данный проек
 view this project-element	projectmanager	ru	Показывать данный элемент проекта
 working duration on %1	projectmanager	ru	Продолжительность работы на %1
 you can leave the date of the first price empty	projectmanager	ru	Вы можете не заполнять дату первоначальной цены
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	ru	Вы можете использовать %Ymd для вставки даты создания. Он использует тот же синтаксис, что и PHP-функция date(). Другими заполнителями являются %px для вставки ID родительского проекта (только при генерации подпроектов) или %ix для вставки индекса. Индексы будут увеличиваться автоматически, чтобы избежать дублирования идентификаторов. Каждый формат генерации должен содержать ровно один индекс! (За исключением случаев, когда вы уверены, что дата идентифицирует проект). Вы также можете использовать, например, %04ix. Этот индекс будет заполнен от '0' до 4 цифр (например, 0
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	ru	Не установлена версия JPGraph %1 или выше! Это необходимо для диаграммы Гантта в приложении Проекты.
 you need to select a project first	projectmanager	ru	Сначала нужно выбрать проект
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	ru	Ваша база данных устарела(%1 вместо %2),пожалуйста загрузите %3 обновление %4 вашей базы данных.

@@ -10,7 +10,6 @@ a describtive title for the project, must not be empty	projectmanager	fa	عنو�
 accounting	projectmanager	fa	حسابداری
 accounting options	projectmanager	fa	تنظیمات حسابداری
 accounting type	projectmanager	fa	نوع حسابداری
-actions	projectmanager	fa	فعالیتها
 activity	projectmanager	fa	فعالیتها
 add a new milestone	projectmanager	fa	اضافه کردن یک مرحله جدید
 add a new project	projectmanager	fa	اضافه کردن یک پروژه جدید
@@ -86,7 +85,6 @@ elements that can't start before this one is finished	projectmanager	fa	عناص
 elements which have to be finished before this can start	projectmanager	fa	عناصری که باید قبل از شروع شدن این یکی تمام شوند
 empty	projectmanager	fa	خالی
 empty for all	projectmanager	fa	خالی برای همه
-end before	projectmanager	fa	پایان قبل از
 enddate	projectmanager	fa	تاریخ اتمام
 error: deleting price !!!	projectmanager	fa	خطا: حذف قیمت!!!
 error: deleting project !!!	projectmanager	fa	خطا: حذف پروژه
@@ -195,7 +193,6 @@ show constraints and milestones	projectmanager	fa	نمایش قید و مرحل�
 show planned times instead of the real times	projectmanager	fa	نمایش زمان برنامه ریزی شده بجای زمان واقعی
 show status icons of the datasources	projectmanager	fa	نمایش وضعیت نمایه ها از منبع داده
 site configuration saved	projectmanager	fa	پیکربندی سایت ذخیره شد
-start after	projectmanager	fa	شروع بعد از
 start working on %1	projectmanager	fa	شروع کار در %1
 start, end, category, ...	projectmanager	fa	شروع، پایان، دسته ...
 start- & enddate	projectmanager	fa	تاریخ شروع و پایان

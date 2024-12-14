@@ -1,3 +1,5 @@
+automatic	projectmanager	lt	Automatinis
+criteria to break into subdirectories	projectmanager	lt	Kriterijai suskirstyti į pakatalogius
 do you want a notification, if items are about to start according to their planned dates?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai pradedami naudoti pagal suplanuotas datas?
 do you want a notification, if items are about to start according to their real dates?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai bus pradėti pagal tikrąsias datas?
 do you want a notification, if items are due according to their planned dates?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai turi būti pateikti pagal planuotas datas?
@@ -5,14 +7,17 @@ do you want a notification, if items are due according to their real dates?	proj
 do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	lt	Ar norite gauti pranešimą, jei elementai jums priskiriami arba priskirti elementai atnaujinami?
 do you want a notification, if items you created get updated?	projectmanager	lt	Ar norite gauti pranešimą, jei atnaujinami jūsų sukurti elementai?
 document merge	projectmanager	lt	Dokumentų pildymas
+fieldseparator	projectmanager	lt	Lauko skirtukas
 history logging and deleting of items	projectmanager	lt	Istorijos registravimas ir elementų ištrynimas
 how would you like to print the chart?	projectmanager	lt	Kaip norėtumėte spausdinti diagramą?
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	lt	Jei Gantto diagrama yra platesnė už puslapį, ji bus apkarpyta.
+link search status filter	projectmanager	lt	Nuorodų paieškos būsenos filtras
 milestone	projectmanager	lt	Etapas
 milestone deleted	projectmanager	lt	Ištrintas orientyras.
 milestone saved	projectmanager	lt	Išsaugotas orientyras.
 milestones	projectmanager	lt	Etapai
 milestones before this element has to be finished	projectmanager	lt	Etapai iki šio elemento užbaigimo
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	lt	Įprastai galite susieti tik su aktyviais projektais, tačiau galite įtraukti ir kitas būsenas
 pm_milestone	projectmanager	lt	Etapas
 progress	projectmanager	lt	Pažanga
 receive notifications about due entries (planned dates)	projectmanager	lt	Gauti pranešimus apie planuojamus įrašus (planuojamas datas)
@@ -22,3 +27,4 @@ receive notifications about own items	projectmanager	lt	Gauti pranešimus apie s
 receive notifications about starting entries (planned dates)	projectmanager	lt	Gauti pranešimus apie pradedamus įrašus (planuojamos datos)
 receive notifications about starting entries (real dates)	projectmanager	lt	Gauti pranešimus apie pradedamus įrašus (realiomis datomis)
 resize	projectmanager	lt	Pakeisti dydį
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	lt	Galite naudoti %Ymd, kad įterptumėte sukūrimo datą. Naudojama ta pati sintaksė kaip ir PHP funkcija date(). Kiti žymenys yra %px, jei norite įterpti tėvų ID (tik subprojektų generavimo metu) arba %ix, jei norite įterpti indeksą. Indeksai bus padidinti automatiškai, kad būtų išvengta pasikartojančių ID. Kiekviename generavimo formate turi būti lygiai vienas indeksas! (Išskyrus tuos atvejus, kai esate tikri, kad data identifikuos projektą). Taip pat galite naudoti, pavyzdžiui, %04ix. Šis indeksas bus užpildytas nuo „0“ iki 4 skaitmenų (pvz., 0001). Jei nepateiksite užpildymo simbolio (pvz., %5ix), indeksas bus užpildytas „0“.

@@ -1,9 +1,9 @@
-%1 element(s) updated	projectmanager	fi	%1 elementti(ä) päivitetty
-%1 new project-elements imported	projectmanager	fi	%1 uutta projekti-elementtiä lisätty
-%1 projects deleted	projectmanager	fi	%1 projektia poistettu
-%1 records imported	projectmanager	fi	%1 uutta tietuetta tuotu
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	fi	%1 tietuetta luettu (ei vielä tuotu, palaa %2takaisin%3 ja jätä TestiTuonti valitsematta)
-%1 times permission denied, %2 projects deleted	projectmanager	fi	%1 kertaa pääsy kielletty, %2 projektia poistettu
+%1 element(s) updated	projectmanager	fi	%1 elementti(ä) päivitetty.
+%1 new project-elements imported	projectmanager	fi	%1 uutta projekti-elementtiä lisätty.
+%1 projects deleted	projectmanager	fi	%1 projektia poistettu.
+%1 records imported	projectmanager	fi	%1 uutta tietuetta tuotu.
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	fi	%1 tietuetta luettu. Ei vielä tuotu, siirry %2back%3 ja poista rasti Test import.
+%1 times permission denied, %2 projects deleted	projectmanager	fi	%1 kertaa pääsy kielletty, %2 projektia poistettu.
 - planned	projectmanager	fi	- suunnitteilla
 - re-planned	projectmanager	fi	- suunnitteilla uudelleen
 0ngoing (0 < % < 100)	projectmanager	fi	Tekeillä (0 < % < 100)
@@ -11,7 +11,6 @@ a describtive title for the project, must not be empty	projectmanager	fi	Kuvaava
 accounting	projectmanager	fi	Laskutus
 accounting options	projectmanager	fi	Laskutuksen asetukset
 accounting type	projectmanager	fi	Laskutuksen muodot
-actions	projectmanager	fi	Toiminnot
 activity	projectmanager	fi	Tapahtumat
 add a new milestone	projectmanager	fi	Lisää uusi tavoite
 add a new project	projectmanager	fi	Lisää uusi projekti
@@ -31,7 +30,8 @@ app.	projectmanager	fi	Sov.
 apply the changes	projectmanager	fi	Hyväksy muutokset
 archive	projectmanager	fi	Arkisto
 assistant	projectmanager	fi	Assistantti
-at which time do you start working on the given day.	projectmanager	fi	Mihin aikaan aloitat työskentelyn kyseisenä päivänä?
+at which time do you start working on the given day.	projectmanager	fi	Mihin aikaan aloitat työskentelyn kyseisenä päivänä.
+automatic	projectmanager	fi	Automaattinen
 availible	projectmanager	fi	Vapaana
 billable	projectmanager	fi	Laskutettavissa
 bookable	projectmanager	fi	Varattavissa
@@ -49,14 +49,14 @@ constraints	projectmanager	fi	Rajoitukset
 conversation between days and hours, default 8	projectmanager	fi	Päivien ja tuntien rajoitukset, oletuksena 8 tuntia
 coordinator	projectmanager	fi	Koordinoija
 cost per time	projectmanager	fi	Tuntihinta
-create a new empty project or use a template	projectmanager	fi	Luo uusi tyhjä projekti tai käytä mallipohjaa.
+create a new empty project or use a template	projectmanager	fi	Luo uusi tyhjä projekti tai käytä mallipohjaa
 create new links	projectmanager	fi	Luo uusi linkki
 created	projectmanager	fi	Luotu
 created a ganttchart from the checked projects	projectmanager	fi	Luotu ganttchart valitusta projekteista
 creator	projectmanager	fi	Luoja
-csv-fieldname	projectmanager	fi	CSV -kenttänimi
-csv-filename	projectmanager	fi	CSV -tiedostonimi
-csv-import	common	fi	CSV -tuonti
+csv-fieldname	projectmanager	fi	CSV-kenttänimi
+csv-filename	projectmanager	fi	CSV-tiedostonimi
+csv-import	common	fi	CSV-tuonti
 cumulated elements too	projectmanager	fi	Myös kumulatiiviset elementit
 custom fields	projectmanager	fi	Lisäkentät
 customer title	projectmanager	fi	Asiakasnimike
@@ -97,70 +97,69 @@ edit this project-element	projectmanager	fi	Muokkaa tätä projektin elementtiä
 edit this role	projectmanager	fi	Muokkaa tätä roolia
 elementlist	projectmanager	fi	Elementtilista
 elements of elements	projectmanager	fi	Elementtien elementit
-elements that can't start before this one is finished	projectmanager	fi	Elementit, jotka voidaan aloittaa vasta kuin tämä on valmis
-elements which have to be finished before this can start	projectmanager	fi	Elementit, joiden pitää olla valmiita ennen kuin tämä voidaan aloittaa
+elements that can't start before this one is finished	projectmanager	fi	Elementit, jotka voidaan aloittaa vasta kuin tämä on valmis.
+elements which have to be finished before this can start	projectmanager	fi	Elementit, joiden pitää olla valmiita ennen kuin tämä voidaan aloittaa.
 empty	projectmanager	fi	Tyhjä
 empty for all	projectmanager	fi	Tyhjennä kaikki
 encode non-ascii	projectmanager	fi	Koodaa non-ascii
 enddate	projectmanager	fi	Päättymispäivä
-error: deleting price !!!	projectmanager	fi	Virhe: Poistettaessa hintaa !!!
-error: deleting project !!!	projectmanager	fi	Virhe: Poistettaessa projektia !!!
-error: deleting project-element !!!	projectmanager	fi	Virhe: Poistettaessa projektin elementtäi !!!
-error: deleting role !!!	projectmanager	fi	Virhe: Poistettaessa roolia !!!
-error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	fi	Virhe: Projektin tunnus on jo olemassa, valitse muu tunnus tai jätä tyhjäksi jolloin se luodaan automaattisesti !!!
-error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	fi	VIRHE: Rekursio löydetty: ID %1 on useammin kuin kerran projektipolussa, projektirunkoa luotaessa.
-error: saving milestone	projectmanager	fi	Virhe: Tallennettaessa tavoitetta !!!
-error: saving role !!!	projectmanager	fi	Virhe: Tallennettaessa roolia !!!
-error: saving the price (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa hintaa (%1) !!!
-error: saving the project (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa projektia (%1) !!!
-error: saving the project-element (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa projektin elementtiä (%1) !!!
+error: deleting price !!!	projectmanager	fi	Virhe: Poistettaessa hintaa!
+error: deleting project !!!	projectmanager	fi	Virhe: Poistettaessa projektia!
+error: deleting project-element !!!	projectmanager	fi	Virhe: Poistettaessa projektin elementtäi!
+error: deleting role !!!	projectmanager	fi	Virhe: Poistettaessa roolia!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	fi	Virhe: Projektin tunnus on jo olemassa, valitse muu tunnus tai jätä tyhjäksi jolloin se luodaan automaattisesti!
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	fi	VIRHE: Rekursiota havaittu, ID %1 useammin kuin kerran projektipolussa, projektipuuta rakennettaessa:
+error: saving milestone	projectmanager	fi	Virhe: Tallennettaessa tavoitetta!
+error: saving role !!!	projectmanager	fi	Virhe: Tallennettaessa roolia!
+error: saving the price (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa hintaa (%1)!
+error: saving the project (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa projektia (%1)!
+error: saving the project-element (%1) !!!	projectmanager	fi	Virhe: Tallennettaessa projektin elementtiä (%1)!
 everything recursive	projectmanager	fi	Kaikki rekursiivisesti
 example {{if n_prefix~mr~hello mr.~hello ms.}} - search the field "n_prefix", for "mr", if found, write hello mr., else write hello ms.	projectmanager	fi	Esimerkki {{IF n_prefix~Mr~Hello Mr.~Hello Ms.}} --> etsii "n_prefix" kentästä  'Mr', jos olemassa kirjoita Hello Mr., muutoin kirjoita Hello Ms.
 example {{letterprefixcustom n_prefix title n_family}} - example: mr dr. james miller	projectmanager	fi	Esimerkki {{LETTERPREFIXCUSTOM n_prefix title n_family}} ---> Mr Dr. James Miller
 example {{nelf role}} - if field role is not empty, you will get a new line with the value of field role	projectmanager	fi	Esimerkki {{NELF role}} ---> jos kenttä 'role' = 'rooli/asema' ei ole tyhjä, se kirjoitetaan seuraavalle riville
 example {{nenvlf role}} - if field role is not empty, set a lf without any value of the field	projectmanager	fi	Esimerkki {{nenvlf role}} ---> jos kenttä 'role' = 'rooli/asema' ei ole tyhjä, aseta LF ilman arvoa
-existing data will be overwrited if checked	projectmanager	fi	Olemassa olevan tiedon päälle kirjoitetaan, jos valittuna
+existing data will be overwrited if checked	projectmanager	fi	Olemassa olevan tiedon päälle kirjoitetaan, jos valittuna.
 existing links	projectmanager	fi	Olemassa olevat linkit
-exists	projectmanager	fi	Olemassaoleva
+exists	projectmanager	fi	Olemassaoleva.
 exit without saving	projectmanager	fi	Poistu ilman tallentamista
-favorites	projectmanager	fi	Suosikit
 fieldseparator	projectmanager	fi	Kenttäerotin
 font	projectmanager	fi	Fontti
 font charset	projectmanager	fi	Fontin merkistökoodaus
 font style	projectmanager	fi	Fontin tyyli
 font to use in the ganttchart, only the vera fonts are included in the projectmanager.	projectmanager	fi	GanttChartissa käytettävät fontit, vain Vera fontti sisältyy Projektinhallintaan.
-fontfile '%1' not found!!!	projectmanager	fi	Fonttitiedostoa '%1' ei löydy!!!
-for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	fi	Käytä tätä Tagia sarjakirjeille (serial letter). Lisää toistettava sisältö kahden Tagin väliin
+fontfile '%1' not found!!!	projectmanager	fi	Fonttitiedostoa '%1' ei löydy!
+for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	fi	Sarjakirjainta varten käytä tätä tagia. Sijoita toistettava sisältö kahden tagin väliin.
 free descriptiv text	projectmanager	fi	Vapaa kuvauskenttä
 from %1 to %2	projectmanager	fi	%1:lta %2:n
 full access	projectmanager	fi	Täydet oikeudet
 ganttchart	projectmanager	fi	GanttChart
 ganttchart parameter	projectmanager	fi	GanttChart parametri
 general availibility	projectmanager	fi	Yleinen käytettävissä olo
-general fields:	projectmanager	fi	Yleiset kentät
+general fields:	projectmanager	fi	Yleiset kentät:
 general pricelist	projectmanager	fi	Yleinen hinnasto
 global categories	projectmanager	fi	Yleiset kategoriat
 h	projectmanager	fi	t
 health	projectmanager	fi	Kunto
 history logging and deleting of items	projectmanager	fi	Historiatietojen kirjaaminen ja kohteiden poistaminen
-hours	projectmanager	fi	tuntia
+hours	projectmanager	fi	Tuntia
 hours per workday	projectmanager	fi	Tuntia per työpäivä
-how long do you work on the given day.	projectmanager	fi	Kuinka kauan työskentelet kyseisenä päivänä?
+how long do you work on the given day.	projectmanager	fi	Kuinka kauan työskentelet kyseisenä päivänä
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	fi	Kuinka projektien valinta näytetään valikossa: Runkonäkymässä saat paremman yleiskatsauksen, valintalaatikossa projektin valinta on helpompaa.
 how would you like to print the chart?	projectmanager	fi	Miten haluat tulostaa kaavion?
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	fi	Jos valittu, elementtien Datasourcet (esim. InfoLog merkinnät) poistetaan myös.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	fi	Jos valittu, elementtien Datasourcet (esim. InfoLog merkinnät) vaihtavat tilan.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	fi	Jos gantt-kaavio on leveämpi kuin sivu, se leikataan.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	fi	Jos merkkejä kuten {) näkyy GanttChartissa, sulje tämä.
 if you specify an export definition, it will be used when you export	projectmanager	fi	Valitse viennin oletusasetus
 ignore that entry	projectmanager	fi	Jätä merkintä huomiotta
-ignored	projectmanager	fi	Hylätty
+ignored	projectmanager	fi	Hylätty.
 import	projectmanager	fi	Tuonti
 insert	projectmanager	fi	Syötä
 last modified	projectmanager	fi	Viimeksi muokattu
-leave it empty if you dont need a different customer title	projectmanager	fi	Jätä tyhjäksi, jos tarvitset erilaisia asiakasnimikkeitä
+leave it empty if you dont need a different customer title	projectmanager	fi	Jätä tyhjäksi, jos tarvitset erilaisia asiakasnimikkeitä.
 leave it empty to have one generated	projectmanager	fi	Jätä tyhjäksi luodaksesi uuden
 leave it empty, if identitcal to the time	projectmanager	fi	Jätä tyhjäksi, jos sama kuin aika
+link search status filter	projectmanager	fi	Linkkihaku tilasuodatin
 linked elements	projectmanager	fi	Linkitetyt elementit
 links	projectmanager	fi	Linkit
 links and attached files	projectmanager	fi	Linkit ja liitetyt tiedostot
@@ -179,17 +178,18 @@ modified	projectmanager	fi	Muokattu
 modified by	projectmanager	fi	Muokannut
 modifier	projectmanager	fi	Muokkaaja
 modify status	projectmanager	fi	Muokkaa tilaa
-name of current user, all other contact fields are valid too	projectmanager	fi	Nykyisen käyttäjän nimi, myös muut yhteystietokentät ovat voimassa.
+name of current user, all other contact fields are valid too	projectmanager	fi	Nykyisen käyttäjän nimi, myös muut yhteystietokentät ovat voimassa
 necessary for project-elements doing that not automatic	projectmanager	fi	Välttämätön, jotta projektin elementtejä ei tehdä automaattisesti
-necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fi	Välttämätöntä PHP laajennusta %1 ei ole ladattu ja sitä ei voitu ladata !!!
+necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	fi	Välttämätöntä PHP laajennusta %1 ei ole ladattu ja sitä ei voitu ladata!
 new	projectmanager	fi	Uusi
 new project submitted by %1 at %2	projectmanager	fi	Uusi projekti: Henkilö: %1, kello: %2
 no accounting, only status	projectmanager	fi	Ei laskutusta, vain tila
 no accounting, only times and status	projectmanager	fi	Ei laskutusta, vain aikataulut ja tilat
 no details	projectmanager	fi	Ei lisätietoja
-no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	fi	Tietolähteeseen ei ole LUKU oikeuksia: ylikirjoitettujen arvojen poistaminen vain tyhjentää ne !!!
+no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	fi	Tietolähteeseen ei ole LUKU oikeuksia: ylikirjoitettujen arvojen poistaminen vain tyhjentää ne!
 no save necessary	projectmanager	fi	Tallennus ei ole tarpeellinen
 nonactive	projectmanager	fi	Aktivoimaton
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	fi	Normaalisti voit linkittää vain aktiivisia projekteja, mutta voit sisällyttää myös muita statuksia.
 not started (0%)	projectmanager	fi	Aloittamatta (0%)
 not working	projectmanager	fi	Ei työskentele
 number of records to read (%1)	projectmanager	fi	Luettavien tietueiden määrä (%1)
@@ -201,12 +201,12 @@ permission denied !!!	projectmanager	fi	Pääsy estetty !!!
 planned	projectmanager	fi	Suunniteltu
 planned time	projectmanager	fi	Suunniteltu aikataulu
 planned times	projectmanager	fi	Suunnittelu aika
-please download a recent version from %1 and install it in %2.	projectmanager	fi	Lataa viimeisin versio %1 ja asenna se %2
+please download a recent version from %1 and install it in %2.	projectmanager	fi	Lataa viimeisin versio %1 ja asenna se %2.
 pm_milestone	projectmanager	fi	Välitavoite
 price	projectmanager	fi	Hinta
-price / unit	projectmanager	fi	Hinta / yksikkö
+price / unit	projectmanager	fi	Hinta / Yksikkö
 price deleted	projectmanager	fi	Hinta poistettu
-price saved	projectmanager	fi	Hinta tallennettu
+price saved	projectmanager	fi	Hinta tallennettu.
 pricelist	projectmanager	fi	Hinnasto
 progress	projectmanager	fi	Edistyminen
 project availibility	projectmanager	fi	Projektin käytettävyys
@@ -215,10 +215,10 @@ project id	projectmanager	fi	Projektin tunnus
 project members and roles	projectmanager	fi	Projektin jäsenet ja roolit
 project modified by %1 at %2	projectmanager	fi	Projektia muokannut %1 kello %2
 project overview	projectmanager	fi	Projektin yleiskatsaus
-project saved	projectmanager	fi	Projekti tallennettu
+project saved	projectmanager	fi	Projekti tallennettu.
 project specific title, prices, ...	projectmanager	fi	Projektin nimi, hinnat ...
-project-element deleted	projectmanager	fi	Projektin elementti poistettu
-project-element saved	projectmanager	fi	Projektin elementti tallennettu
+project-element deleted	projectmanager	fi	Projektin elementti poistettu.
+project-element saved	projectmanager	fi	Projektin elementti tallennettu.
 project-elements	projectmanager	fi	Projektin elementit
 projectlist	projectmanager	fi	Projektilista
 projectmanager	common	fi	Projektinhallinta
@@ -232,37 +232,37 @@ read access, incl. budget and adding elements	projectmanager	fi	Lukuoikeus, sis�
 read access, no budget	projectmanager	fi	Lukuoikeus, ei budjettia
 real end	projectmanager	fi	Oikeasti päättynyt
 real start	projectmanager	fi	Oikeasti alkanut
-receive notifications about due entries (planned dates)	projectmanager	fi	Vastaanota ilmoituksia erääntyneistä merkinnöistä (suunnitellut päivämäärät).
+receive notifications about due entries (planned dates)	projectmanager	fi	Vastaanota ilmoituksia erääntyneistä merkinnöistä (suunnitellut päivämäärät)
 receive notifications about due entries (real dates)	projectmanager	fi	Vastaanottaa ilmoituksia erääntyneistä merkinnöistä (todelliset päivämäärät)
-receive notifications about items assigned to you with these roles	projectmanager	fi	Vastaanottaa ilmoituksia kohteista, jotka on määritetty sinulle näillä rooleilla.
+receive notifications about items assigned to you with these roles	projectmanager	fi	Vastaanottaa ilmoituksia kohteista, jotka on määritetty sinulle näillä rooleilla
 receive notifications about own items	projectmanager	fi	Vastaanottaa ilmoituksia omista kohteista
-receive notifications about starting entries (planned dates)	projectmanager	fi	Vastaanottaa ilmoituksia alkavista merkinnöistä (suunnitellut päivämäärät).
+receive notifications about starting entries (planned dates)	projectmanager	fi	Vastaanottaa ilmoituksia alkavista merkinnöistä (suunnitellut päivämäärät)
 receive notifications about starting entries (real dates)	projectmanager	fi	Vastaanota ilmoituksia alkavista merkinnöistä (todelliset päivämäärät)
 remark	projectmanager	fi	Merkitse uudelleen
 resources	projectmanager	fi	Resurssit
 role	projectmanager	fi	Rooli
-role deleted	projectmanager	fi	Rooli poistettu
-role saved	projectmanager	fi	Rooli tallennettu
+role deleted	projectmanager	fi	Rooli poistettu.
+role saved	projectmanager	fi	Rooli tallennettu.
 roles	projectmanager	fi	Roolit
 save the changes made	projectmanager	fi	Tallenna tehdyt muutokset
 save this project element	projectmanager	fi	Talle tämä projektin elementti
 select a project	projectmanager	fi	Valitse projekti
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	fi	Valitse toiminto, jos haluat laskea kulut määrästä (aika) ja hinnasta
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	fi	Valitse toiminto, jos haluat laskea kulut määrästä (aika) ja hinnasta.
 select multiple projects for a further action	projectmanager	fi	Valitse useita projekteja jatkaaksesi
 select the accounting types visible for users of projectmanager	projectmanager	fi	Valitse laskutuksen muodot näkyviksi vain projektipäälliköille
 select this project and show it's elements	projectmanager	fi	Valitse projekti ja näytä sen elementit
 selectbox with %1	projectmanager	fi	Valintalaatikko %1:lla
 share	projectmanager	fi	Jaa
 share on the whole project	projectmanager	fi	Jaa koko projekti
-share on the whole project in hours or percent, defaults to planned time	projectmanager	fi	Jaa koko projekti tunteihin tai prosentteihin, oletuksena suunnitellun ajankäytön mukaan.
+share on the whole project in hours or percent, defaults to planned time	projectmanager	fi	Jaa koko projekti tunteihin tai prosentteihin, oletuksena suunnitellun ajankäytön mukaan
 should projectmanager display the status icons of the datasource (eg. infolog) or just a progressbar with the numerical status (faster).	projectmanager	fi	Näyttääkö Projektinhallinta projektin tilan kuvakkeina (kuten InfoLog) vai ainoastaan etenemisjanana ja numeroina (nopeampi).
 show constraints and milestones	projectmanager	fi	Näytä rajat ja tavoitteet
 show planned times instead of the real times	projectmanager	fi	Näytä suunniteltu aikataulu, ei toteutunut aikataulu
 show status icons of the datasources	projectmanager	fi	Näytä tilat kuvakkeena tietolähteestä
 show the project selection as	projectmanager	fi	Näytä projektin valinta
-site configuration saved	projectmanager	fi	Palvelun asetukset tallennettu
+site configuration saved	projectmanager	fi	Palvelun asetukset tallennettu.
 start working on %1	projectmanager	fi	Aloita työskentely %1na
-start, end, category, ...	projectmanager	fi	Aloitus, lopetus, kategoria ...
+start, end, category, ...	projectmanager	fi	Aloitus, Lopetus, Kategoria ...
 start- & enddate	projectmanager	fi	Aloitus- ja päätöspäivä
 startdate	projectmanager	fi	Aloituspäivä
 startrecord	projectmanager	fi	Aloitustietue
@@ -274,16 +274,16 @@ synchronise all	projectmanager	fi	Synkronisoi kaikki
 tag to mark positions for address labels	projectmanager	fi	Tägi osoitetarrojen sijainnille
 template	projectmanager	fi	Mallipohja
 template including elment-tree saved as new project	projectmanager	fi	Mallipohja sisältää elementtirungon tallennuksen uutena projektina
-test import (show importable records <u>only</u> in browser)	projectmanager	fi	TestiTuonti (näyttää tuotavat tietueet <u>vain</u> selaimessa)
+test import (show importable records <u>only</u> in browser)	projectmanager	fi	Testituonti. Näytä tuotavat tietueet <u>vain</u> selaimessa.
 the charset depends on the font you want to use.	projectmanager	fi	Merkistökoodaus riippuu käyttämästäsi fontista.
-the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	fi	Tiedosto voi sisältää merkintöjä kuten {{%3}}, mihin syötetään haluttu tieto. %1Lista mahdollisista merkinnöistä%2
+the document can contain placeholder like {{%3}}, to be replaced with the data (%1full list of placeholder names%2).	projectmanager	fi	Tiedosto voi sisältää merkintöjä kuten {{%3}}, mihin syötetään haluttu tieto. %1Lista mahdollisista merkinnöistä%2.
 the following document-types are supported:	projectmanager	fi	Seuraavat tiedostotyypit ovat tuettuja:
 time	projectmanager	fi	Aika
 times	projectmanager	fi	Ajat
 timezone	projectmanager	fi	Aikavyöhyke
 title must not be empty	projectmanager	fi	Otsake ei saa olla tyhjä
-titles of any entries linked to the current record, excluding attached files	projectmanager	fi	Linkitettyjen tietueiden otsikot/aiheet, poissulkien liitetyt tiedostot.
-to many might exceed your execution-time-limit	projectmanager	fi	Liian moni saattaa ylittää suoritusajan ylärajan.
+titles of any entries linked to the current record, excluding attached files	projectmanager	fi	Linkitettyjen tietueiden otsikot/aiheet, poissulkien liitetyt tiedostot
+to many might exceed your execution-time-limit	projectmanager	fi	Liian moni saattaa ylittää suoritusajan ylärajan
 translation	projectmanager	fi	Käännös
 tree with %1	projectmanager	fi	Runko %1
 unit	projectmanager	fi	Yksikkö
@@ -307,5 +307,6 @@ view this project	projectmanager	fi	Näytä tämä projekti
 view this project-element	projectmanager	fi	Näytä tämä projekti-elementti
 working duration on %1	projectmanager	fi	Työaika %1
 you can leave the date of the first price empty	projectmanager	fi	Voit jättää ensimmäisen hinnan tiedon tyhjäksi
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	fi	Voit lisätä luontipäivämäärän käyttämällä %Ymd. Se käyttää samaa syntaksia kuin PHP-funktio date(). Muita sijoitussanoja ovat %px vanhempien ID:n lisäämiseksi (vain aliprojektien luomisessa) tai %ix indeksin lisäämiseksi. Indeksejä kasvatetaan automaattisesti päällekkäisten tunnusten välttämiseksi. Jokaisen generointimuodon tulisi sisältää täsmälleen yksi indeksi! (Paitsi jos olet varma, että päivämäärä tunnistaa projektin). Voit myös käyttää esimerkiksi %04ix. Tämä indeksi täytetään '0' - 4 numeroa (esim. 0001). Jos jätät täyttömerkin pois (esim. %5ix), indeksiin merkitään ”0”.
 you need to select a project first	projectmanager	fi	Valitse projekti ensin
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	fi	Tietokantasi EI ole ajantasalla (%1 vs. %2), suorita %3asennus%4 päivittääksesi tietokantasi.

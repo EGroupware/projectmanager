@@ -7,7 +7,6 @@
 accounting	projectmanager	eu	Kontuak
 accounting options	projectmanager	eu	Kontuko aukerak
 accounting type	projectmanager	eu	Kontu motak
-actions	projectmanager	eu	Ekintzak
 activity	projectmanager	eu	Jarduera
 add a new milestone	projectmanager	eu	Jatorrizko leku berri bat gehitu
 add a new project	projectmanager	eu	Proiektu berri bat gehitu
@@ -68,7 +67,6 @@ elementlist	projectmanager	eu	Elementuen zerrenda
 elements of elements	projectmanager	eu	Elementuen elementuak
 empty	projectmanager	eu	Hutsa
 empty for all	projectmanager	eu	hutsik guztientzat
-end before	projectmanager	eu	Lehenago bukatu
 enddate	projectmanager	eu	Amaiera data
 error: deleting price !!!	projectmanager	eu	Errorea: prezioa ezabatzerakoan!
 error: deleting project !!!	projectmanager	eu	Errorea: proiektua ezabatzerakoan!
@@ -157,7 +155,6 @@ share	projectmanager	eu	Partekatu
 share on the whole project	projectmanager	eu	Partekatu proiektu guztian zehar
 show planned times instead of the real times	projectmanager	eu	Denbora errealak erakutsi beharrean planifikatuak erakutsi
 site configuration saved	projectmanager	eu	Erakutsi egoera ikonoak dauten iturrietatik
-start after	projectmanager	eu	Beranduago hasi
 start working on %1	projectmanager	eu	Lanean hasi %1
 start, end, category, ...	projectmanager	eu	Hasiera, Amaiera, kategoria...
 start- & enddate	projectmanager	eu	Hasiera eta amaierada data

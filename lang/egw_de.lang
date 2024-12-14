@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	de	Ein bes
 accounting	projectmanager	de	Abrechnung
 accounting options	projectmanager	de	Abrechnungsoptionen
 accounting type	projectmanager	de	Abrechnungsart
-actions	projectmanager	de	Befehle
 activity	projectmanager	de	Tätigkeit
 add a new milestone	projectmanager	de	Neuen Meilenstein hinzufügen
 add a new project	projectmanager	de	Neues Projekt hinzufügen
@@ -37,10 +36,10 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	de	Felder der Adressverwaltung
 all projects	projectmanager	de	Alle Projekte
 all roles	projectmanager	de	Rolle hinzufügen
-all_roles	projectmanager	de	Alle Rollen
 allow users to change their working times	projectmanager	de	Erlaube Benutzern ihre Arbeitszeiten zu ändern
 allowed accounting types	projectmanager	de	Erlaubte Abrechnungsarten
 allowed units	projectmanager	de	Erlaubte Einheiten
+all_roles	projectmanager	de	Alle Rollen
 anonymous public	projectmanager	de	Anonym öffentlich
 app.	projectmanager	de	Anw.
 apply the changes	projectmanager	de	Änderungen übernehmen
@@ -229,7 +228,6 @@ id generation	projectmanager	de	Generierung Projektnummern
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	de	Wenn angekreuzt werden die Datenquellen der Elemente (z. B. InfoLog-Einträge) mit gelöscht.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	de	Wenn angekreuzt werden der Status der Datenquellen der Elemente (z.B. InfoLog-Einträge) mit geändert.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	de	Wenn das Gantt-Diagramm breiter als die Seite ist, wird es beschnitten.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	de	Wenn Sie im Gantt-Diagramm statt Umlauten komische Zeichen sehen, schalten Sie das ab.
 if you specify an export definition, it will be used when you export	projectmanager	de	Wählen Sie eine Export-Definition für den Export
 ignore that entry	projectmanager	de	Eintrag ignorieren
 ignored	projectmanager	de	Ignoriert
@@ -242,11 +240,11 @@ leave it empty if you dont need a different customer title	projectmanager	de	Fel
 leave it empty to have one generated	projectmanager	de	Feld leer lassen um eine Projekt-ID zu generieren
 leave it empty, if identitcal to the time	projectmanager	de	Feld leer lassen, wenn identisch mit der Zeit
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	de	Anzahl Zeichen des Element-Titels im Gantt-Diagramm limitieren
+link search status filter	projectmanager	de	Statusfilter für die Linksuche
 linked elements	projectmanager	de	Verknüpfte Elemente
 links	projectmanager	de	Verknüpfungen
 links and attached files	projectmanager	de	Verknüpfungen und Anhänge
 links to specified application.  example: {{links/infolog}}	projectmanager	de	Verknüpfungen zu bestimmten Anwendungen. Beispiel: {{links/infolog}}
-link search status filter	projectmanager	de	Statusfilter für die Linksuche
 list of files linked to the current record	projectmanager	de	Liste der mit dem aktuellen Eintrag verknüpften Dateien
 lists all elements assigned to an element role in a table.	projectmanager	de	Listet alle Elemente einer Element-Rolle in einer Tabelle auf.
 lists all project elements in a table.	projectmanager	de	Listet alle Projekt-Elemente in einer Tabelle auf.
@@ -278,6 +276,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	de	Keine Rechte mehr als %1 Einträge zu exportieren!
 no save necessary	projectmanager	de	Kein Speichern notwendig
 nonactive	projectmanager	de	Nicht aktiv
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	de	Normalerweise können Sie nur auf aktive Projekte verlinken, aber Sie können auch andere Status einbeziehen
 not available	projectmanager	de	Nicht verfügbar
 not started (0%)	projectmanager	de	Nicht gestartet (0%)
 not working	projectmanager	de	Nicht arbeiten

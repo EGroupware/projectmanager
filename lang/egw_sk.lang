@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	sk	Opisný
 accounting	projectmanager	sk	Účtovníctvo
 accounting options	projectmanager	sk	Možnosti účtovania
 accounting type	projectmanager	sk	Typ účtovania
-actions	projectmanager	sk	Akcie
 activity	projectmanager	sk	Aktivita
 add a new milestone	projectmanager	sk	Pridať nový medzník
 add a new project	projectmanager	sk	Pridať nový projekt
@@ -37,10 +36,10 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	sk	Polia Adresára
 all projects	projectmanager	sk	Všetky projekty
 all roles	projectmanager	sk	Všetky úlohy
-all_roles	projectmanager	sk	Všetky úlohy
 allow users to change their working times	projectmanager	sk	Povoliť používateľom zmenu ich pracovných časov
 allowed accounting types	projectmanager	sk	Povolené typy účtovania
 allowed units	projectmanager	sk	Povolené jednotky
+all_roles	projectmanager	sk	Všetky úlohy
 anonymous public	projectmanager	sk	Anonymné verejné
 app.	projectmanager	sk	Apl.
 apply the changes	projectmanager	sk	Uplatniť zmeny
@@ -190,7 +189,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	sk	Expor
 exports a list of project elements to a csv file.	projectmanager	sk	Exportuje zoznam prvkov projektu do súboru CSV.
 exports a list of projects to a csv file.	projectmanager	sk	Exportuje zoznam projektov do súboru CSV.
 external	projectmanager	sk	Externý
-favorites	projectmanager	sk	Obľúbené
 fields for element roles:	projectmanager	sk	Polia pre role prvku:
 fieldseparator	projectmanager	sk	Oddeľovač polí
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	sk	Správca súborov zobrazuje virtuálnu štruktúru projektov, napr. podľa roku alebo roku a mesiaca. Predvolené je stránkovanie podľa počtu projektov. Môžete si vybrať aj pevné kritériá pre túto štruktúru.
@@ -230,7 +228,6 @@ id generation	projectmanager	sk	Vytváranie ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) sa tiež odstránia.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	sk	Ak je začiarknuté, zdroje dát prvkov (napr. záznamov Záznamníka) tiež zmenia svoj stav.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	sk	Ak je Ganttov diagram širší ako strana, bude orezaný.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	sk	Ak v postupovom diagrame vidíte entity (napr. {), tak to vypnite.
 if you specify an export definition, it will be used when you export	projectmanager	sk	Ak zadáte exportnú definíciu, bude sa používať pri exportoch.
 ignore that entry	projectmanager	sk	Ignorovať túto položku
 ignored	projectmanager	sk	Ignorované
@@ -243,6 +240,7 @@ leave it empty if you dont need a different customer title	projectmanager	sk	Pon
 leave it empty to have one generated	projectmanager	sk	Ponechajte prázdne, ak chcete aby sa automaticky pridelilo
 leave it empty, if identitcal to the time	projectmanager	sk	Ponechajte prázdne, ak je totožné s týmto časom
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	sk	Obmedziť počet znakov v nadpise priebehového diagramu (0 = bez obmedzení)
+link search status filter	projectmanager	sk	Filter stavu vyhľadávania odkazov
 linked elements	projectmanager	sk	Odkazované prvky
 links	projectmanager	sk	Odkazy
 links and attached files	projectmanager	sk	Odkazy a priložené súbory
@@ -278,6 +276,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	sk	Nemáte oprávnenie exportovať viac než %1 položiek!
 no save necessary	projectmanager	sk	Uloženie nie je nevyhnutné
 nonactive	projectmanager	sk	Neaktívne
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	sk	Normálne môžete odkazovať len na aktívne projekty, ale môžete zahrnúť aj iné stavy
 not available	projectmanager	sk	Nedostupné
 not started (0%)	projectmanager	sk	Nezačaté (0%)
 not working	projectmanager	sk	Nepracuje sa
@@ -472,6 +471,7 @@ yes, noone can purge deleted items	projectmanager	sk	Áno, nikto nemôže vyčis
 yes, only admins can purge deleted items	projectmanager	sk	Áno, iba admini môžu vyčistiť odstránené položky
 yes, with purging of deleted items possible	projectmanager	sk	Áno, vyčistenie odstránených položiek je možné
 you can leave the date of the first price empty	projectmanager	sk	Dátum prvej ceny môžete ponechať prázdny
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	sk	Na vloženie dátumu vytvorenia môžete použiť %Ymd. Používa rovnakú syntax ako PHP funkcia date(). Ďalšími zástupnými znakmi sú %px na vloženie ID rodičov (len pri generovaní podprojektov) alebo %ix na vloženie indexu. Indexy sa zvýšia automaticky, aby sa zabránilo duplicitným ID. Každý formát generovania by mal obsahovať presne jeden index! (S výnimkou prípadov, keď ste si istí, že dátum bude identifikovať projekt). Môžete tiež použiť napr. %04ix. Tento index bude vyplnený číslicami „0“ až 4 (napr. 0001). Ak vynecháte vyplňovací znak (napr. %5ix), index bude vyplnený číslicou „0“.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	sk	Nemáte nainštalovaný JPGraph verzie %1 alebo vyššej! Je potrebný pre postupové diagramy v Projektovníku.
 you need to select a project first	projectmanager	sk	Musíte najprv vybrať projekt
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	sk	Vaša databáza NIE JE aktuálna (%1 oproti %2), prosím spustite %3Setup%4 a zaktualizujte ju.
