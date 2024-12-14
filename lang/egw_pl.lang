@@ -1,17 +1,16 @@
-%1 element(s) updated	projectmanager	pl	%1 składników zaktualizowanych
-%1 new project-elements imported	projectmanager	pl	%1 składników projektu zaimportowanych
-%1 projects deleted	projectmanager	pl	%1 projektów usuniętych
-%1 records imported	projectmanager	pl	Zaimportowano %1 rekordów
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	pl	Wczytano %1 rekordów (ale jeszcze nie zaimportowano, możesz %2wrócić%3 i skasować zaznaczenie próbnego importu)
-%1 times permission denied, %2 projects deleted	projectmanager	pl	%1
+%1 element(s) updated	projectmanager	pl	%1 składników zaktualizowanych.
+%1 new project-elements imported	projectmanager	pl	%1 składników projektu zaimportowanych.
+%1 projects deleted	projectmanager	pl	%1 projektów usuniętych.
+%1 records imported	projectmanager	pl	Zaimportowano %1 rekordów.
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	pl	Wczytano %1 rekordów (ale jeszcze nie zaimportowano, możesz %2wrócić%3 i skasować zaznaczenie próbnego importu).
+%1 times permission denied, %2 projects deleted	projectmanager	pl	Odmowa uprawnień %1 razy, usunięto projekty %2.
 - planned	projectmanager	pl	- zaplanowany
 - re-planned	projectmanager	pl	- re-planowany
 0ngoing (0 < % < 100)	projectmanager	pl	Trwający (0 < % < 100)
-a describtive title for the project, must not be empty	projectmanager	pl	pole opisowego tytułu projektu nie może pozostać puste
+a describtive title for the project, must not be empty	projectmanager	pl	Pole opisowego tytułu projektu nie może pozostać puste
 accounting	projectmanager	pl	Księgowość
 accounting options	projectmanager	pl	Opcje księgowości
 accounting type	projectmanager	pl	Rodzaj księgowości
-actions	projectmanager	pl	Działania
 activity	projectmanager	pl	Aktywność
 add a new milestone	projectmanager	pl	Dodaj nowy kamień milowy
 add a new project	projectmanager	pl	Dodaj nowy projekt
@@ -32,15 +31,16 @@ apply the changes	projectmanager	pl	Zastosuj zmiany
 archive	projectmanager	pl	Archiwum
 assistant	projectmanager	pl	Asystent
 at which time do you start working on the given day.	projectmanager	pl	O której godzinie zaczynasz pracę w podanym dniu.
+automatic	projectmanager	pl	Automatyczny
 availible	projectmanager	pl	Dostępny
-billable	projectmanager	pl	do rozliczenia
-bookable	projectmanager	pl	do rezerwacji
+billable	projectmanager	pl	Do rozliczenia
+bookable	projectmanager	pl	Do rezerwacji
 budget	projectmanager	pl	Budżet
 budget (no pricelist)	projectmanager	pl	Budżet (bez cennika)
 budget and pricelist	projectmanager	pl	Budżet i cennik
-by	projectmanager	pl	przez
+by	projectmanager	pl	Przez
 calculate budget by quantity (eg. time) and price	projectmanager	pl	Przelicz budżet z uwzględnieniem ilości (np. czasu) oraz ceny
-charset of file	projectmanager	pl	strona kodowa pliku
+charset of file	projectmanager	pl	Strona kodowa pliku
 charset of the above selected font	projectmanager	pl	Zestaw znaków dla wybranej powyżej czcionki
 check all	projectmanager	pl	Zaznacz wszystko
 close the window, discard the changes made	projectmanager	pl	Zamknij okno, anuluj poczynione zmiany
@@ -50,7 +50,7 @@ coordinator	projectmanager	pl	Koordynator
 cost per time	projectmanager	pl	Koszt/Czas
 create a new empty project or use a template	projectmanager	pl	Utwórz nowy pusty projekt lub użyj szablonu
 create new links	projectmanager	pl	Utwórz nowe odsyłacze
-created	projectmanager	pl	utworzony
+created	projectmanager	pl	Utworzony
 created a ganttchart from the checked projects	projectmanager	pl	Utworzony wykres Gantta z zaznaczonych projektów
 creator	projectmanager	pl	Twórca
 csv-fieldname	projectmanager	pl	Nazwa pola CSV
@@ -62,15 +62,15 @@ customer title	projectmanager	pl	Własny tytuł
 datasource	projectmanager	pl	Źródło danych
 datasources too	projectmanager	pl	także źródła danych
 dates	projectmanager	pl	Terminy
-days	projectmanager	pl	dni
-default all and a selectbox to choose	projectmanager	pl	domyślnie wszystkie i lista rozwijana do wyboru
+days	projectmanager	pl	Dni
+default all and a selectbox to choose	projectmanager	pl	Domyślnie wszystkie i lista rozwijana do wyboru
 delete all checked projects	projectmanager	pl	Usuń wszystkie zaznaczone projekty
 delete this milestone	projectmanager	pl	Usuń ten kamień milowy
 delete this price	projectmanager	pl	Usuń tą cenę
 delete this project	projectmanager	pl	Usuń ten projekt
-delete this project-element, does not remove the linked entry	projectmanager	pl	Usuń ten składnik projektu, Nie usuwaj powiązanego wpisu
+delete this project-element, does not remove the linked entry	projectmanager	pl	Usuń ten składnik projektu, Nie usuwaj powiązanego wpisu.
 delete this role	projectmanager	pl	Usuń tę rolę
-deleted	projectmanager	pl	skasowany
+deleted	projectmanager	pl	Skasowany
 depth of display	projectmanager	pl	Głębia wyświetlania
 details of cumulated	projectmanager	pl	Szczegóły skumulowanych
 details of subelements	projectmanager	pl	Szczegóły dla elementów podrzędnych
@@ -97,29 +97,28 @@ edit this project-element	projectmanager	pl	Edytuj ten składnik projektu
 edit this role	projectmanager	pl	Edytuj tę rolę
 elementlist	projectmanager	pl	Lista składników
 elements of elements	projectmanager	pl	Składniki składników
-elements that can't start before this one is finished	projectmanager	pl	Składniki, które nie mogę się zacząc zanim ten nie będzie ukończony
-elements which have to be finished before this can start	projectmanager	pl	Składniki, które muszą zostać zakończone zanim ten będzie mógł się zacząć
+elements that can't start before this one is finished	projectmanager	pl	Składniki, które nie mogę się zacząc zanim ten nie będzie ukończony.
+elements which have to be finished before this can start	projectmanager	pl	Składniki, które muszą zostać zakończone zanim ten będzie mógł się zacząć.
 empty	projectmanager	pl	Pusty
-empty for all	projectmanager	pl	puste dla wszystkich
+empty for all	projectmanager	pl	Puste dla wszystkich
 encode non-ascii	projectmanager	pl	Zakoduj znaki spoza ASCII
 enddate	projectmanager	pl	Termin zakończenia
-error: deleting price !!!	projectmanager	pl	Błąd: kasowanie ceny !!!
-error: deleting project !!!	projectmanager	pl	Błąd: kasowanie projektu !!!
-error: deleting project-element !!!	projectmanager	pl	Błąd: kasowanie składnika projektu !!!
-error: deleting role !!!	projectmanager	pl	Błąd: kasowanie roli !!!
-error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	pl	Błąd: ID projektu już istnieje, wybierz inne lub otrzymaj wygenerowane pozostawiając puste pole !!!
-error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	pl	Błąd: Id %1 występuje więcej niż jeden raz w scieżce projektu (podczas budowania drzewa projektu):
-error: saving milestone	projectmanager	pl	Błąd: zapisywanie kamienia milowego
-error: saving role !!!	projectmanager	pl	Błąd: zapisywanie roli !!!
-error: saving the price (%1) !!!	projectmanager	pl	Błąd: zapisywanie ceny (%1) !!!
-error: saving the project (%1) !!!	projectmanager	pl	Błąd: zapisywanie projektu (%1) !!!
-error: saving the project-element (%1) !!!	projectmanager	pl	Błąd: zapisywanie składnika projektu (%1) !!!
+error: deleting price !!!	projectmanager	pl	Błąd: kasowanie ceny!
+error: deleting project !!!	projectmanager	pl	Błąd: kasowanie projektu!
+error: deleting project-element !!!	projectmanager	pl	Błąd: kasowanie składnika projektu!
+error: deleting role !!!	projectmanager	pl	Błąd: kasowanie roli!
+error: project-id already exist, choose an other one or have one generated by leaving it emtpy !!!	projectmanager	pl	Błąd: ID projektu już istnieje, wybierz inne lub otrzymaj wygenerowane pozostawiając puste pole!
+error: rekursion found: id %1 more than once in projectpath, while building projecttree:	projectmanager	pl	Błąd: ID %1 występuje więcej niż jeden raz w scieżce projektu (podczas budowania drzewa projektu):
+error: saving milestone	projectmanager	pl	Błąd: zapisywanie kamienia milowego!
+error: saving role !!!	projectmanager	pl	Błąd: zapisywanie roli!
+error: saving the price (%1) !!!	projectmanager	pl	Błąd: zapisywanie ceny (%1)!
+error: saving the project (%1) !!!	projectmanager	pl	Błąd: zapisywanie projektu (%1)!
+error: saving the project-element (%1) !!!	projectmanager	pl	Błąd: zapisywanie składnika projektu (%1)!
 everything recursive	projectmanager	pl	Wszystko rekursywnie
-existing data will be overwrited if checked	projectmanager	pl	Istniejące dane będą nadpisane jeśli zaznaczysz to pole
+existing data will be overwrited if checked	projectmanager	pl	Istniejące dane będą nadpisane jeśli zaznaczysz to pole.
 existing links	projectmanager	pl	Istniejące odsyłacze
-exists	projectmanager	pl	istnieje
+exists	projectmanager	pl	Istnieje.
 exit without saving	projectmanager	pl	Wyjdź bez zapisywania
-favorites	projectmanager	pl	Ulubione
 fieldseparator	projectmanager	pl	Separator pól
 font	projectmanager	pl	Czcionka
 font charset	projectmanager	pl	Zestaw znaków czcionki
@@ -128,7 +127,7 @@ font to use in the ganttchart, only the vera fonts are included in the projectma
 fontfile '%1' not found!!!	projectmanager	pl	Plik czcionki '%1' nie został znaleziony!
 for serial letter use this tag. put the content, you want to repeat between two tags.	projectmanager	pl	Użyj tego tagu dla listów seryjnych. Wstaw zawartość którą chcesz powtórzyć pomiędzy dwa tagi.
 free descriptiv text	projectmanager	pl	Dowolny test opisowy
-from %1 to %2	projectmanager	pl	od 1% do 2%
+from %1 to %2	projectmanager	pl	Od 1% do 2%
 full access	projectmanager	pl	pełny dostęp
 ganttchart	projectmanager	pl	Wykres Gantta
 ganttchart parameter	projectmanager	pl	Paramentr wykresu Gantta
@@ -139,23 +138,23 @@ global categories	projectmanager	pl	Kategorie globalne
 h	projectmanager	pl	h
 health	projectmanager	pl	Zdrowie
 history logging and deleting of items	projectmanager	pl	Rejestrowanie historii i usuwanie elementów
-hours	projectmanager	pl	godziny
+hours	projectmanager	pl	Godziny
 hours per workday	projectmanager	pl	Godziny/dzień pracy
-how long do you work on the given day.	projectmanager	pl	Jak długo pracujesz w podanym dniu.
+how long do you work on the given day.	projectmanager	pl	Jak długo pracujesz w podanym dniu
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	pl	W jaki sposób pokazywać wybór projektu w menu: drzewko oznacza lepszy przekrój ale lista wyboru działa szybciej.
 how would you like to print the chart?	projectmanager	pl	Jak chciałbyś wydrukować wykres?
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	pl	Jeśli zaznaczysz źródła danych elementów (np. wpisy Dziennika) także zostaną skasowane.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	pl	Jeśli zaznaczysz źródła danych elementów (np. wpisy Dziennika) także zmienią status.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	pl	Jeśli wykres Gantta jest szerszy niż strona, zostanie przycięty.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	pl	Jeżeli widzisz encje (np. {) na wykresach Gantta, wyłącz to.
 ignore that entry	projectmanager	pl	pomiń tą pozycję
-ignored	projectmanager	pl	pominięty
+ignored	projectmanager	pl	Pominięty.
 import	projectmanager	pl	Importuj
-insert	projectmanager	pl	wstaw
-last modified	projectmanager	pl	ostatnio zmodyfikowany
-leave it empty if you dont need a different customer title	projectmanager	pl	pozostaw puste pole jeśli nie potrzebujesz innego tytułu klienta
-leave it empty to have one generated	projectmanager	pl	pozostaw puste pole jeśli chcesz by zostało wygenerowane
-leave it empty, if identitcal to the time	projectmanager	pl	pozostaw puste pole jeśli jest identyczne z terminem
+insert	projectmanager	pl	Wstaw
+last modified	projectmanager	pl	Ostatnio zmodyfikowany
+leave it empty if you dont need a different customer title	projectmanager	pl	Pozostaw puste pole jeśli nie potrzebujesz innego tytułu klienta.
+leave it empty to have one generated	projectmanager	pl	Pozostaw puste pole jeśli chcesz by zostało wygenerowane
+leave it empty, if identitcal to the time	projectmanager	pl	Pozostaw puste pole jeśli jest identyczne z terminem
+link search status filter	projectmanager	pl	Filtr stanu wyszukiwania linków
 linked elements	projectmanager	pl	Składniki powiązane
 links	projectmanager	pl	Odsyłacze
 mainproject only	projectmanager	pl	Tylko główne projekty
@@ -163,8 +162,8 @@ mainprojects	projectmanager	pl	Główne projekty
 manage mapping	projectmanager	pl	Zarządzaj mapowaniem
 members	projectmanager	pl	Członkowie
 milestone	projectmanager	pl	Kamień milowy
-milestone deleted	projectmanager	pl	Kamień milowy usunięty
-milestone saved	projectmanager	pl	kamień milowy zapisany
+milestone deleted	projectmanager	pl	Kamień milowy usunięty.
+milestone saved	projectmanager	pl	Kamień milowy zapisany.
 milestones	projectmanager	pl	Kamienie milowe
 milestones before this element has to be finished	projectmanager	pl	Kamienie milowe, które muszą zostać ukończone przed tym składnikiem
 modified	projectmanager	pl	Zmodyfikowany
@@ -172,43 +171,44 @@ modified by	projectmanager	pl	zmodyfikowany przez
 name of current user, all other contact fields are valid too	projectmanager	pl	Nazwa aktualnego użytkownika, wszystkie pozostałe pola kontaktu są prawidłowe
 necessary for project-elements doing that not automatic	projectmanager	pl	konieczne dla elementów projektu, które nie robią tego automatycznie
 necessary php extentions %1 not loaded and can't be loaded !!!	projectmanager	pl	Niezbędne rozszerzenia PHP %1 nie załadowane i mogą być załadowane
-new	projectmanager	pl	nowy
+new	projectmanager	pl	Nowy
 new project submitted by %1 at %2	projectmanager	pl	Nowy projekt dodany przez %1, %2
 no accounting, only status	projectmanager	pl	Bez księgowości, tylko stan
 no accounting, only times and status	projectmanager	pl	Bez księgowości, tylko termin i stan
-no details	projectmanager	pl	bez szczegółów
+no details	projectmanager	pl	Bez szczegółów
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	pl	Brak dostępu do odczytu danych: usunięcie nadpisanych wartości spowoduje ich wyczyszczenie
-no save necessary	projectmanager	pl	zapisywanie neipotrzebne
+no save necessary	projectmanager	pl	Zapisywanie neipotrzebne
 nonactive	projectmanager	pl	Nieaktywny
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	pl	Zwykle można łączyć się tylko z aktywnymi projektami, ale można również uwzględnić inne statusy
 not started (0%)	projectmanager	pl	Nie rozpoczęty (0%)
-not working	projectmanager	pl	niepracujący
+not working	projectmanager	pl	Niepracujący
 number of records to read (%1)	projectmanager	pl	Liczba rekordów do wczytania (%1)
 only this project	projectmanager	pl	Tylko ten projekt
 overwrite the datasource	projectmanager	pl	Nadpisz dane
 percentage the member is availible for projects	projectmanager	pl	Procentowo członek jest dostępny dla projektów
 percentage the member is availible for this project	projectmanager	pl	Procentowo członek jest dostępny dla tego projektu
-permission denied !!!	projectmanager	pl	Odmowa dostępu !!!
-planned	projectmanager	pl	zaplanowany
-planned time	projectmanager	pl	zaplanowany termin
+permission denied !!!	projectmanager	pl	Odmowa dostępu!
+planned	projectmanager	pl	Zaplanowany
+planned time	projectmanager	pl	Zaplanowany termin
 planned times	projectmanager	pl	Zaplanowane terminy
 please download a recent version from %1 and install it in %2.	projectmanager	pl	Prosimy ściągnąć ostatnią wersję z %1 i zainstalować ją w %2.
 pm_milestone	projectmanager	pl	Kamień milowy
 price	projectmanager	pl	Cena
 price / unit	projectmanager	pl	Cena / Jednostka
-price deleted	projectmanager	pl	Cena usunięta
-price saved	projectmanager	pl	Cena zachowana
+price deleted	projectmanager	pl	Cena usunięta.
+price saved	projectmanager	pl	Cena zachowana.
 pricelist	projectmanager	pl	Cennik
 progress	projectmanager	pl	Zmiana rozmiaru
 project availibility	projectmanager	pl	Dostępność dla projektu
-project deleted	projectmanager	pl	Projekt usunięty
+project deleted	projectmanager	pl	Projekt usunięty.
 project id	projectmanager	pl	ID projektu
 project members and roles	projectmanager	pl	Członkowie projektu i role
 project modified by %1 at %2	projectmanager	pl	Projekt zmodyfikowany przez %1, %2
-project overview	projectmanager	pl	podgląd projektu
+project overview	projectmanager	pl	Podgląd projektu
 project saved	projectmanager	pl	Projekt zachowany
 project specific title, prices, ...	projectmanager	pl	Charakterystyczny tytuł projektu, ceny, ...
-project-element deleted	projectmanager	pl	Składnik Projektu usunięty
-project-element saved	projectmanager	pl	Składnik Projektu zapisany
+project-element deleted	projectmanager	pl	Składnik Projektu usunięty.
+project-element saved	projectmanager	pl	Składnik Projektu zapisany.
 project-elements	projectmanager	pl	Składniki Projektu
 projectlist	projectmanager	pl	Lista projektów
 projectmanager	common	pl	Menedżer Projektów
@@ -216,9 +216,9 @@ projectmanager-fieldname	projectmanager	pl	Manager projektów - nazwa pola
 projectmember	projectmanager	pl	Członek projektu
 projects	common	pl	Projekty
 quantity	projectmanager	pl	Ilość
-re-planned	projectmanager	pl	re-planowany
-read access, incl. budget and adding elements	projectmanager	pl	dostęp do odczytu, także do budżetu oraz dodawania składników
-read access, no budget	projectmanager	pl	dostęp do odczytu, bez budżetu
+re-planned	projectmanager	pl	Re-planowany
+read access, incl. budget and adding elements	projectmanager	pl	Dostęp do odczytu, także do budżetu oraz dodawania składników
+read access, no budget	projectmanager	pl	Dostęp do odczytu, bez budżetu
 real end	projectmanager	pl	Rzeczywisty koniec
 real start	projectmanager	pl	Rzeczywisty początek
 receive notifications about due entries (planned dates)	projectmanager	pl	Otrzymuj powiadomienia o wpisach do zapłaty (planowane daty)
@@ -230,13 +230,13 @@ receive notifications about starting entries (real dates)	projectmanager	pl	Otrz
 remark	projectmanager	pl	Przypomnienie
 resources	projectmanager	pl	Zasoby
 role	projectmanager	pl	Rola
-role deleted	projectmanager	pl	Rola usunięta
-role saved	projectmanager	pl	Rola zapisana
+role deleted	projectmanager	pl	Rola usunięta.
+role saved	projectmanager	pl	Rola zapisana.
 roles	projectmanager	pl	Role
 save the changes made	projectmanager	pl	Zapisz poczynione zmiany
 save this project element	projectmanager	pl	Zapisz ten składnik projektu
 select a project	projectmanager	pl	wybierz projekt
-select an activity if you want to calculate costs by quantity (time) and price	projectmanager	pl	wybierz polecenie jeśli chcesz przeliczyć koszty z uwzględnieniem ilości (czasu) i ceny
+select an activity if you want to calculate costs by quantity (time) and price	projectmanager	pl	Wybierz polecenie jeśli chcesz przeliczyć koszty z uwzględnieniem ilości (czasu) i ceny.
 select multiple projects for a further action	projectmanager	pl	Wybierz kilka projektów do dalszych czynności
 select the accounting types visible for users of projectmanager	projectmanager	pl	wybierz rodzaje księgowości widoczne dla użytkowników Menedżera Projektów
 select this project and show it's elements	projectmanager	pl	Wybierz ten projekt i pokaż jego elementy
@@ -249,7 +249,7 @@ show constraints and milestones	projectmanager	pl	Pokaż ograniczenia i kamienie
 show planned times instead of the real times	projectmanager	pl	Pokaż zaplanowane terminy zamiast faktycznych
 show status icons of the datasources	projectmanager	pl	Pokaż ikonki statusu danych
 show the project selection as	projectmanager	pl	Pokazuj wybór projektu jako
-site configuration saved	projectmanager	pl	Konfiguracja strony zapisana
+site configuration saved	projectmanager	pl	Konfiguracja strony zapisana.
 start working on %1	projectmanager	pl	Rozpocznij pracę od %1
 start, end, category, ...	projectmanager	pl	Początek, Koniec, Kategoria, ...
 start- & enddate	projectmanager	pl	Początkowy & Końcowy termin
@@ -264,20 +264,20 @@ tag to mark positions for address labels	projectmanager	pl	Zaznacz, aby oznaczy�
 template	projectmanager	pl	Szablon
 template including elment-tree saved as new project	projectmanager	pl	Szablon zawierający drzewo składników zapisany jako nowy projekt
 test import (show importable records <u>only</u> in browser)	projectmanager	pl	Import testowy (pokaż importowane rekordy <u>tylko</u> w przeglądarce)
-the charset depends on the font you want to use.	projectmanager	pl	Zestaw znaków jest zależny od czcionki, która będzie użyta
+the charset depends on the font you want to use.	projectmanager	pl	Zestaw znaków jest zależny od czcionki, która będzie użyta.
 time	projectmanager	pl	Termin
 times	projectmanager	pl	Czas
 timezone	projectmanager	pl	Strefa czasowa
 title must not be empty	projectmanager	pl	Tytuł nie może być pusty
-to many might exceed your execution-time-limit	projectmanager	pl	zbyt wiele może spowodować przekroczenie czasu wykonywania
+to many might exceed your execution-time-limit	projectmanager	pl	Zbyt wiele może spowodować przekroczenie czasu wykonywania
 translation	projectmanager	pl	Tłumaczenie
 tree with %1	projectmanager	pl	Drzewko z %1
 unit	projectmanager	pl	Jednostka
 unitprice	projectmanager	pl	Cena jednostkowa
 usage	projectmanager	pl	Użytkowanie
 use this tag for addresslabels. put the content, you want to repeat, between two tags.	projectmanager	pl	Użyj tego znacznika dla etykiet adresu. Wstaw zawartość którą chcesz powtórzyć pomiędzy dwa znaczniki.
-used	projectmanager	pl	używany
-used time	projectmanager	pl	wykorzystany czas
+used	projectmanager	pl	Używany
+used time	projectmanager	pl	Wykorzystany czas
 valid since	projectmanager	pl	Ważny od
 view all subs of this entry	projectmanager	pl	Zoabcz wszystkie podrzędne dla tego wpisu
 view ganttchart of this project	projectmanager	pl	Pokaż wykres Gantta tego projektu
@@ -293,6 +293,7 @@ view this project	projectmanager	pl	Pokaż ten projekt
 view this project-element	projectmanager	pl	Pokaż ten składnik projektu
 working duration on %1	projectmanager	pl	Czas wykonywania pracy %1
 you can leave the date of the first price empty	projectmanager	pl	Możesz nie wypełniać daty pierwszej ceny
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	pl	Możesz użyć %Ymd, aby wstawić datę utworzenia. Używa tej samej składni co funkcja PHP date(). Inne symbole zastępcze to %px do wstawienia identyfikatora rodziców (tylko przy generowaniu podprojektów) lub %ix do wstawienia indeksu. Indeksy będą zwiększane automatycznie, aby uniknąć powielania identyfikatorów. Każdy format generacji powinien zawierać dokładnie jeden indeks! (Z wyjątkiem sytuacji, gdy masz pewność, że data identyfikuje projekt). Można również użyć np. %04ix. Indeks ten będzie wypełniony od „0” do 4 cyfr (np. 0001). Jeśli pominiesz znak wypełnienia (np. %5ix), indeks zostanie wypełniony cyfrą „0”.
 you dont have jpgraph version %1 or higher installed! it is needed from projectmanager for ganttcharts.	projectmanager	pl	Nie masz zainstalowanego JPGraph %1 lub wyższej! Potrzebny jest do generowania wykresów Gantta.
 you need to select a project first	projectmanager	pl	Musisz najpierw wybrać projekt
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	pl	Twoja baza jest nieaktualna (%1 vs. %2), prosimy uruchomić %3setup%4 by zaktualizować bazę.

@@ -10,7 +10,6 @@ a describtive title for the project, must not be empty	projectmanager	zh-tw	一�
 accounting	projectmanager	zh-tw	會計
 accounting options	projectmanager	zh-tw	會計選項
 accounting type	projectmanager	zh-tw	會計類型
-actions	projectmanager	zh-tw	動作
 activity	projectmanager	zh-tw	活動
 add a new milestone	projectmanager	zh-tw	新增一個里程碑
 add a new project	projectmanager	zh-tw	新增一個專案
@@ -92,7 +91,6 @@ elements which have to be finished before this can start	projectmanager	zh-tw	�
 empty	projectmanager	zh-tw	清空
 empty for all	projectmanager	zh-tw	全部清除
 encode non-ascii	projectmanager	zh-tw	非拉丁編碼
-end before	projectmanager	zh-tw	截止日期
 enddate	projectmanager	zh-tw	結束日期
 error: deleting price !!!	projectmanager	zh-tw	錯誤：刪除價格時！
 error: deleting project !!!	projectmanager	zh-tw	錯誤：刪除專案時！
@@ -128,7 +126,6 @@ hours	projectmanager	zh-tw	時
 hours per workday	projectmanager	zh-tw	工作日時數
 how long do you work on the given day.	projectmanager	zh-tw	在指定的這天您工作多久。
 how should the project selection in the menu be displayed: a tree gives a better overview, a selectbox might perform better.	projectmanager	zh-tw	選擇的專案在選單中如何顯示： 樹狀顯示可以提供較佳的概要，下拉選單執行較快
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	zh-tw	如果您看到甘特圖資料（例如 {），將這個功能關閉。
 ignore that entry	projectmanager	zh-tw	略過那筆資料
 ignored	projectmanager	zh-tw	忽略
 import	projectmanager	zh-tw	匯入
@@ -217,7 +214,6 @@ show planned times instead of the real times	projectmanager	zh-tw	顯示已規�
 show status icons of the datasources	projectmanager	zh-tw	顯示資料來源的狀態圖示
 show the project selection as	projectmanager	zh-tw	顯示選擇的專案為
 site configuration saved	projectmanager	zh-tw	網站設定儲存了
-start after	projectmanager	zh-tw	開始日期
 start working on %1	projectmanager	zh-tw	開始工作於 %1
 start, end, category, ...	projectmanager	zh-tw	開始、結束、類別、...
 start- & enddate	projectmanager	zh-tw	開始與結束日期

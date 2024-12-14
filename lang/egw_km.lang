@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	km	ចំ�
 accounting	projectmanager	km	គណនេយ្យ
 accounting options	projectmanager	km	ជម្រើសគណនេយ្យ
 accounting type	projectmanager	km	ប្រភេទគណនេយ្យ
-actions	projectmanager	km	សកម្មភាព
 activity	projectmanager	km	សកម្មភាព
 add a new milestone	projectmanager	km	បន្ថែមចំណុចសំខាន់ថ្មី។
 add a new project	projectmanager	km	បន្ថែមគម្រោងថ្មី។
@@ -37,10 +36,10 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	km	វាលសៀវភៅអាសយដ្ឋាន
 all projects	projectmanager	km	គម្រោងទាំងអស់។
 all roles	projectmanager	km	តួនាទីទាំងអស់។
-all_roles	projectmanager	km	តួនាទីទាំងអស់។
 allow users to change their working times	projectmanager	km	អនុញ្ញាតឱ្យអ្នកប្រើប្រាស់ផ្លាស់ប្តូរពេលវេលាធ្វើការរបស់ពួកគេ។
 allowed accounting types	projectmanager	km	ប្រភេទគណនេយ្យដែលបានអនុញ្ញាត
 allowed units	projectmanager	km	ឯកតាដែលបានអនុញ្ញាត
+all_roles	projectmanager	km	តួនាទីទាំងអស់។
 anonymous public	projectmanager	km	សាធារណៈជនអនាមិក
 app.	projectmanager	km	កម្មវិធី
 apply the changes	projectmanager	km	អនុវត្តការផ្លាស់ប្តូរ
@@ -190,7 +189,6 @@ export definition to use for nextmatch export (projekte)	projectmanager	km	ក�
 exports a list of project elements to a csv file.	projectmanager	km	នាំចេញបញ្ជីធាតុគម្រោងទៅជាឯកសារ CSV ។
 exports a list of projects to a csv file.	projectmanager	km	នាំចេញបញ្ជីគម្រោងទៅជាឯកសារ CSV ។
 external	projectmanager	km	ខាងក្រៅ
-favorites	projectmanager	km	ចំណូលចិត្ត
 fields for element roles:	projectmanager	km	វាលសម្រាប់តួនាទីធាតុ៖
 fieldseparator	projectmanager	km	អ្នកបំបែកវាល
 filemanager shows a virtual structure for the projects e.g. by year or year & month. by default, pagination is done automatically based on the number of projects. you can choose also a fixed criteria for this structure.	projectmanager	km	កម្មវិធីគ្រប់គ្រងឯកសារបង្ហាញរចនាសម្ព័ន្ធនិម្មិតសម្រាប់គម្រោងឧទាហរណ៍តាមឆ្នាំ ឬឆ្នាំ និងខែ។ តាមលំនាំដើម ការដាក់ទំព័រត្រូវបានធ្វើដោយស្វ័យប្រវត្តិដោយផ្អែកលើចំនួនគម្រោង។ អ្នកក៏អាចជ្រើសរើសលក្ខណៈវិនិច្ឆ័យថេរសម្រាប់រចនាសម្ព័ន្ធនេះផងដែរ។
@@ -230,7 +228,6 @@ id generation	projectmanager	km	ការបង្កើតអត្តសញ្
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	km	ប្រសិនបើពិនិត្យប្រភពទិន្នន័យនៃធាតុ ឧ. ធាតុ InfoLog ក៏ត្រូវបានលុបផងដែរ។
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	km	ប្រសិនបើបានពិនិត្យប្រភពទិន្នន័យនៃធាតុ ឧ. ធាតុ InfoLog នឹងផ្លាស់ប្តូរស្ថានភាពរបស់វាផងដែរ។
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	km	ប្រសិនបើគំនូសតាង Gantt ធំជាងទំព័រ នោះវានឹងត្រូវបានកាត់បន្ថយ។
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	km	ប្រសិនបើអ្នកឃើញធាតុ (ឧ. {) នៅក្នុងតារាង Gantt សូមបិទវាចោល។
 if you specify an export definition, it will be used when you export	projectmanager	km	ប្រសិនបើអ្នកបញ្ជាក់និយមន័យនាំចេញ វានឹងត្រូវបានប្រើនៅពេលអ្នកនាំចេញ
 ignore that entry	projectmanager	km	មិនអើពើការចូល
 ignored	projectmanager	km	មិនអើពើ។

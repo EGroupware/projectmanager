@@ -1,13 +1,14 @@
-actions	projectmanager	et	Tegevused
-apply the changes	projectmanager	et	rakenda uuendused
+%1 times permission denied, %2 projects deleted	projectmanager	et	%1 korda luba keelatud, %2 projektid kustutatud.
+apply the changes	projectmanager	et	Rakenda uuendused
+automatic	projectmanager	et	Automaatne
 check all	projectmanager	et	Kontrolli kõik
 create new links	projectmanager	et	Tee uued lingid
 created	projectmanager	et	Tehtud
 csv-fieldname	projectmanager	et	CSV-Väljanimi
 csv-filename	projectmanager	et	CSV-Failinimi
 csv-import	common	et	CSV-Impirt
-days	projectmanager	et	päeva
-deleted	projectmanager	et	kustutatud
+days	projectmanager	et	Päeva
+deleted	projectmanager	et	Kustutatud
 do you want a notification, if items are about to start according to their planned dates?	projectmanager	et	Kas soovite teateid, kui objektid on algamas vastavalt nende kavandatud kuupäevadele?
 do you want a notification, if items are about to start according to their real dates?	projectmanager	et	Kas soovite teateid, kui objektid on algamas vastavalt nende tegelikele kuupäevadele?
 do you want a notification, if items are due according to their planned dates?	projectmanager	et	Kas soovite teateid, kui objektide tähtaeg on kavandatud kuupäevade kohaselt saabunud?
@@ -15,26 +16,28 @@ do you want a notification, if items are due according to their real dates?	proj
 do you want a notification, if items get assigned to you or assigned items get updated?	projectmanager	et	Kas soovite teateid, kui teile määratakse objekte või kui määratud objekte ajakohastatakse?
 do you want a notification, if items you created get updated?	projectmanager	et	Kas soovite teateid, kui teie loodud objekte uuendatakse?
 document merge	projectmanager	et	Dokumendi täitmine
-empty for all	projectmanager	et	tühi kõigijaoks
+empty for all	projectmanager	et	Tühi kõigijaoks
 enddate	projectmanager	et	Lõpukuupäev
 existing links	projectmanager	et	Eksisteerivad lingid
 fieldseparator	projectmanager	et	Väljaeraldaja
 global categories	projectmanager	et	Globaalsed Kategooriad
 history logging and deleting of items	projectmanager	et	Ajaloo logimine ja objektide kustutamine
-hours	projectmanager	et	tundi
+hours	projectmanager	et	Tundi
 how would you like to print the chart?	projectmanager	et	Kuidas soovite diagrammi välja printida?
-if the gantt chart is wider than the page, it will be trimmed.	projectmanager	et	Kui gantt diagramm on laiem kui lehekülg, kärbitakse see ära.
+if the gantt chart is wider than the page, it will be trimmed.	projectmanager	et	Kui Gantt diagramm on laiem kui lehekülg, kärbitakse see ära.
 import	projectmanager	et	Import
 last modified	projectmanager	et	Viimati muudetud
+link search status filter	projectmanager	et	Linkide otsingu staatuse filter
 links	projectmanager	et	Lingid
 milestone	projectmanager	et	Milestone
 milestones	projectmanager	et	Milestones
 modified	projectmanager	et	Muudetud
 new	projectmanager	et	Uus
-no details	projectmanager	et	mitte detailselt
-permission denied !!!	projectmanager	et	Õigused puuduvad !!!
-planned	projectmanager	et	kavandatud
-planned time	projectmanager	et	kavandatud aeg
+no details	projectmanager	et	Mitte detailselt
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	et	Tavaliselt saate linkida ainult aktiivseid projekte, kuid võite lisada ka teisi staatusi
+permission denied !!!	projectmanager	et	Õigused puuduvad!
+planned	projectmanager	et	Pavandatud
+planned time	projectmanager	et	Kavandatud aeg
 pm_milestone	projectmanager	et	Milestone
 price	projectmanager	et	Hind
 progress	projectmanager	et	Progress
@@ -50,5 +53,6 @@ resources	projectmanager	et	Resursid
 select a project	projectmanager	et	Vali Projekt
 startdate	projectmanager	et	Algus kuupäev
 translation	projectmanager	et	Tõlkimine
-used time	projectmanager	et	kasutauud aeg
-view subs	projectmanager	et	näita Alam
+used time	projectmanager	et	Kasutauud aeg
+view subs	projectmanager	et	Näita Alam
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	et	Saate kasutada %Ymd, et sisestada loomise kuupäev. See kasutab sama süntaksit nagu PHP-funktsioon date(). Muud paigutussalved on %px vanemate ID sisestamiseks (ainult alamprojektide loomisel) või %ix indeksi sisestamiseks. Indekseid suurendatakse automaatselt, et vältida dubleerivaid IDsid. Iga genereerimisvorming peaks sisaldama täpselt ühte indeksit! (Välja arvatud juhul, kui olete kindel, et kuupäevaga saab projekti tuvastada). Võite kasutada ka nt %04ix. See indeks täidetakse '0' kuni 4 numbriga (nt 0001). Kui jätate täitemärgi välja (nt %5ix), täidetakse indeks '0'-ga.

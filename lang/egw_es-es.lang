@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	es-es	Un t
 accounting	projectmanager	es-es	Cuentas
 accounting options	projectmanager	es-es	Opciones de cuentas
 accounting type	projectmanager	es-es	Tipo de cuentas
-actions	projectmanager	es-es	Acciones
 activity	projectmanager	es-es	Actividad
 add a new milestone	projectmanager	es-es	Añadir un nuevo hito
 add a new project	projectmanager	es-es	Añadir un proyecto nuevo
@@ -37,10 +36,10 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	es-es	Campos de la libreta de direcciones
 all projects	projectmanager	es-es	Todos los proyectos
 all roles	projectmanager	es-es	Todos los roles
-all_roles	projectmanager	es-es	Todos los roles
 allow users to change their working times	projectmanager	es-es	Permitir a los usuarios cambiar sus horas de trabajo
 allowed accounting types	projectmanager	es-es	Añadir tipos de cuenta
 allowed units	projectmanager	es-es	Unidades permitidas
+all_roles	projectmanager	es-es	Todos los roles
 anonymous public	projectmanager	es-es	Anónimo público
 app.	projectmanager	es-es	Aplicación
 apply the changes	projectmanager	es-es	Aplicar los cambios
@@ -229,7 +228,6 @@ id generation	projectmanager	es-es	Generación de ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	es-es	Si se selecciona, también se borran los elementos de origen (p. ej, entradas InfoLog).
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	es-es	Si se selecciona, también se cambiará el estado de los elementos de origen (p. ej, entradas InfoLog).
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	es-es	Si el diagrama de Gantt es más ancho que la página, se recortará.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	es-es	Si ve entidades (p. ej. {) en el diagrama de Gantt, desactive esta opción.
 if you specify an export definition, it will be used when you export	projectmanager	es-es	Si especifica una definición de exportación, se usará cuando exporte
 ignore that entry	projectmanager	es-es	Ignorar esa entrada
 ignored	projectmanager	es-es	Ignorado
@@ -242,6 +240,7 @@ leave it empty if you dont need a different customer title	projectmanager	es-es	
 leave it empty to have one generated	projectmanager	es-es	Dejar en blanco para generar uno
 leave it empty, if identitcal to the time	projectmanager	es-es	Dejar en blanco si es idéntico a la hora
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	es-es	Limitar el número de caracteres en el título del elemento en la gráfica Gantt (0 para ilimitado)
+link search status filter	projectmanager	es-es	Filtro de estado de búsqueda de enlaces
 linked elements	projectmanager	es-es	Elementos vinculados
 links	projectmanager	es-es	Enlaces
 links and attached files	projectmanager	es-es	Enlaces y ficheros adjuntos
@@ -277,6 +276,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	es-es	¡No tiene permiso para exportar más de %1 entradas!
 no save necessary	projectmanager	es-es	No es necesario guardar
 nonactive	projectmanager	es-es	No activo
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	es-es	Normalmente sólo puede enlazar a proyectos activos, pero también puede incluir otros estados
 not available	projectmanager	es-es	No está disponible
 not started (0%)	projectmanager	es-es	Sin iniciar (0%)
 not working	projectmanager	es-es	No está trabajando

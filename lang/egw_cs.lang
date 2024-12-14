@@ -18,7 +18,6 @@ a describtive title for the project, must not be empty	projectmanager	cs	Popisn�
 accounting	projectmanager	cs	Účtování
 accounting options	projectmanager	cs	Volby účtování
 accounting type	projectmanager	cs	Typ účtování
-actions	projectmanager	cs	Akce
 activity	projectmanager	cs	Činnost
 add a new milestone	projectmanager	cs	Přidat nový milník
 add a new project	projectmanager	cs	Přidat nový projekt
@@ -37,10 +36,10 @@ addressbook elements of a project can be used to define individual serial letter
 addressbook fields	projectmanager	cs	Pole adresáře
 all projects	projectmanager	cs	Všechny projekty
 all roles	projectmanager	cs	Všechny role
-all_roles	projectmanager	cs	Všechny role
 allow users to change their working times	projectmanager	cs	Povolit uživatelům změnit jejich pracovní časy
 allowed accounting types	projectmanager	cs	Povolené typy účtování
 allowed units	projectmanager	cs	Povolené jednotky
+all_roles	projectmanager	cs	Všechny role
 anonymous public	projectmanager	cs	Anonymní veřejné
 app.	projectmanager	cs	Apl.
 apply the changes	projectmanager	cs	Použít změny
@@ -229,7 +228,6 @@ id generation	projectmanager	cs	Generování ID
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	cs	Pokud zaškrtnete, datové zdroje jednotlivých součástí (např. záznamů InfoLog) budou také smazány.
 if checked the datasources of the elements (eg. infolog entries) will change their status too.	projectmanager	cs	Pokud zaškrtnete, datové zdroje jednotlivých součástí (např. záznamů InfoLog) také změní svůj status.
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	cs	Pokud je Ganttův diagram širší než stránka, bude oříznut.
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	cs	Pokud uvidíte entity (např. {) v Ganttově diagramu, vypněte tuto volbu.
 if you specify an export definition, it will be used when you export	projectmanager	cs	Pokud specifikujete definici pro export, bude při exportu použita.
 ignore that entry	projectmanager	cs	Ignorovat záznam
 ignored	projectmanager	cs	Ignorován
@@ -242,6 +240,7 @@ leave it empty if you dont need a different customer title	projectmanager	cs	Pon
 leave it empty to have one generated	projectmanager	cs	Ponechte prázdné pro automatické vygenerování
 leave it empty, if identitcal to the time	projectmanager	cs	Ponechte prázdné shoduje-li se s časem
 limit number of characters in ganttchart element title (0 for no limit)	projectmanager	cs	Omezení počtu znaků názvu součásti v Ganttově grafu (nula je bez omezení)
+link search status filter	projectmanager	cs	Filtr stavu vyhledávání odkazů
 linked elements	projectmanager	cs	Odkazované součásti
 links	projectmanager	cs	Odkazy
 links and attached files	projectmanager	cs	Odkazy a připojené soubory
@@ -277,6 +276,7 @@ no read access to the datasource: removing overwritten values will just empty th
 no rights to export more then %1 entries!	projectmanager	cs	Nemáte oprávnění exportovat více jak %1 záznamů!
 no save necessary	projectmanager	cs	Uložení neni potřeba
 nonactive	projectmanager	cs	Neaktivní
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	cs	Normálně můžete odkazovat pouze na aktivní projekty, ale můžete zahrnout i jiné stavy
 not available	projectmanager	cs	Není k dispozici
 not started (0%)	projectmanager	cs	Nezahájeno (0%)
 not working	projectmanager	cs	Nepracuje

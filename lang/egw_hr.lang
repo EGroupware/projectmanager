@@ -1,6 +1,5 @@
 %1 records imported	projectmanager	hr	%1 zapisa uvezeno
 %1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	hr	%1 zapisa pročitano (još nije uvezeno, možete se %2vratiti%3 i odznačiti Testiraj Uvoz)
-actions	projectmanager	hr	Akcije
 charset of file	projectmanager	hr	Kodna straioca datoteke
 create new links	projectmanager	hr	Create new links
 created	projectmanager	hr	Napravljeno

@@ -2,7 +2,7 @@
 %1 new project-elements imported	projectmanager	zh	导入%1个项目要素
 %1 projects deleted	projectmanager	zh	%1个项目被删除
 %1 records imported	projectmanager	zh	已导入%1条记录
-%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	zh	已读取%1条记录(但尚未导入，您可以去%2返回%3，并且取消"测试导入"复选框)
+%1 records read (not yet imported, you may go %2back%3 and uncheck test import)	projectmanager	zh	已读取 %1 条记录。尚未导入，返回 %2%3 并取消选中测试导入。
 %1 times permission denied, %2 projects deleted	projectmanager	zh	%1没有权限，%2个项目被删除
 - planned	projectmanager	zh	- 计划
 0ngoing (0 < % < 100)	projectmanager	zh	进行中 (0 < % < 100)
@@ -10,7 +10,6 @@ a describtive title for the project, must not be empty	projectmanager	zh	项目�
 accounting	projectmanager	zh	核算
 accounting options	projectmanager	zh	核算选项
 accounting type	projectmanager	zh	核算类型
-actions	projectmanager	zh	操作
 activity	projectmanager	zh	活动
 add a new milestone	projectmanager	zh	添加一个里程碑
 add a new project	projectmanager	zh	添加新项目
@@ -31,6 +30,7 @@ apply the changes	projectmanager	zh	应用更改
 archive	projectmanager	zh	存档
 assistant	projectmanager	zh	助理
 at which time do you start working on the given day.	projectmanager	zh	在这一天，您几点钟开始工作。
+automatic	projectmanager	zh	自动
 availible	projectmanager	zh	可用的
 billable	projectmanager	zh	可计费
 bookable	projectmanager	zh	可预定
@@ -140,7 +140,6 @@ how should the project selection in the menu be displayed: a tree gives a better
 how would you like to print the chart?	projectmanager	zh	你想如何打印图表？
 if checked the datasources of the elements (eg. infolog entries) are deleted too.	projectmanager	zh	如果选择了要素的数据源(如记事簿条目)，数据源将同时被删除。
 if the gantt chart is wider than the page, it will be trimmed.	projectmanager	zh	如果甘特图比页面宽，它将被修剪。
-if you see entities (eg. &#123;) in the ganttchart, switch this off.	projectmanager	zh	如果您看到甘特图中的实体(例如：{)，将这个功能关闭。
 ignore that entry	projectmanager	zh	忽略这一条目
 ignored	projectmanager	zh	忽略
 import	projectmanager	zh	导入
@@ -148,6 +147,7 @@ last modified	projectmanager	zh	最近修改
 leave it empty if you dont need a different customer title	projectmanager	zh	如果不需要一个不同的客户名则留空
 leave it empty to have one generated	projectmanager	zh	留空会自动生成
 leave it empty, if identitcal to the time	projectmanager	zh	如果与时间相同，则留空
+link search status filter	projectmanager	zh	链接搜索状态过滤器
 linked elements	projectmanager	zh	链接的要素
 links	projectmanager	zh	链接
 mainproject only	projectmanager	zh	只有主要项目
@@ -171,6 +171,7 @@ no details	projectmanager	zh	没有细节
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	zh	没有数据源的访问读取权限：移除覆盖值将它们清空！
 no save necessary	projectmanager	zh	不需要保存
 nonactive	projectmanager	zh	未激活
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	zh	通常只能链接到活动项目，但也可以包括其他状态
 not started (0%)	projectmanager	zh	未开始 (0%)
 not working	projectmanager	zh	不工作
 number of records to read (%1)	projectmanager	zh	读取记录编号(%1)
@@ -276,5 +277,6 @@ view this project	projectmanager	zh	查看这个项目
 view this project-element	projectmanager	zh	查看这个项目要素
 working duration on %1	projectmanager	zh	%1工作持续时间
 you can leave the date of the first price empty	projectmanager	zh	您可以让第一个价格的日期留空
+you can use %ymd to insert the date of creation. it uses the same syntax like the php funktion date(). other placeholders are %px to insert the parents id (only at the subprojects generation) or %ix to insert an index. indices will be increased automatically to avoid duplicated ids. every generation format should contain exactly one index! (exept you are sure that the date will identify the project). you can also use e.g. %04ix. this index will be filled with '0' to 4 digits (e.g. 0001). if you leave out the filling character (e.g. %5ix), the index will be filled with '0'.	projectmanager	zh	您可以使用 %Ymd 插入创建日期。它使用的语法与 PHP 函数 date() 相同。其他占位符包括 %px 用于插入父项目 ID（仅在子项目生成时）或 %ix 用于插入索引。索引将自动增加，以避免重复 ID。每个生成格式都应包含一个索引！(除非您确定日期可以识别项目）。您也可以使用 %04ix。该索引将由 “0 ”至 4 位数字填充（如 0001）。如果省略填充字符（例如 %5ix），索引将填充为 “0”。
 you need to select a project first	projectmanager	zh	您必须首先选择一个项目
 your database is not up to date (%1 vs. %2), please run %3setup%4 to update your database.	projectmanager	zh	您的数据库没有更新到(%1 vs. %2)，请运行%3安装%4更新您的数据库。

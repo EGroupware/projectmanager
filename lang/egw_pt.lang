@@ -10,7 +10,6 @@ a describtive title for the project, must not be empty	projectmanager	pt	Um tít
 accounting	projectmanager	pt	Contabilidade
 accounting options	projectmanager	pt	Opções de contabilidade
 accounting type	projectmanager	pt	Tipos de contabilidade
-actions	projectmanager	pt	Acções
 activity	projectmanager	pt	Actividade
 add a new milestone	projectmanager	pt	Adicionar um novo objectivo
 add a new project	projectmanager	pt	Adicionar um novo projecto
@@ -140,6 +139,7 @@ last modified	projectmanager	pt	Última modificação
 leave it empty if you dont need a different customer title	projectmanager	pt	Deixar vazio se não necessitar de um título de cliente diferente
 leave it empty to have one generated	projectmanager	pt	Deixar vazio para criar um
 leave it empty, if identitcal to the time	projectmanager	pt	Deixar vazio se igual ao tempo
+link search status filter	projectmanager	pt	Filtro de estado da pesquisa de ligações
 linked elements	projectmanager	pt	Elementos ligados
 links	projectmanager	pt	Ligações
 links and attached files	projectmanager	pt	Links e arquivos anexados
@@ -165,6 +165,7 @@ no details	projectmanager	pt	Sem detalhes
 no read access to the datasource: removing overwritten values will just empty them !!!	projectmanager	pt	Sem acesso de leitura à fonte de dados: remover valores sobrepostos irão apenas torná-los vazios !!!
 no save necessary	projectmanager	pt	Não é necessário guardar
 nonactive	projectmanager	pt	Não activo
+normally you can only link to active projects, but you can include other statuses as well	projectmanager	pt	Normalmente, só é possível ligar a projectos activos, mas também é possível incluir outros estados
 not started (0%)	projectmanager	pt	Por iniciar (0%)
 not working	projectmanager	pt	Folga
 number of records to read (%1)	projectmanager	pt	Número de registos por ler (%1)
