@@ -173,3 +173,10 @@ td.projectTimestamp {
 	left: auto !important;
 	right: 0px !important;
 }
+
+/*
+budget numbers more padding so scrollbar cant overlap
+*/
+.et2_nextmatch table et2-number_ro span{
+	padding-right: 1em;
+}
