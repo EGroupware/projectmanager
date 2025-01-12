@@ -242,7 +242,6 @@ status filter	projectmanager	pt	Filtro de estado
 subprojects	projectmanager	pt	Subprojectos
 synchronise all	projectmanager	pt	Sincronizar todos
 tag to mark positions for address labels	projectmanager	pt	Tag para marcar posições para etiquetas de endereço
-template	projectmanager	pt	Modelo
 template including elment-tree saved as new project	projectmanager	pt	O modelo inclui uma árvore de elementos guardada como um novo projecto.
 test import (show importable records <u>only</u> in browser)	projectmanager	pt	Importação de Teste (exibir no navegador <u>apenas</u> os registos importáveis)
 the following document-types are supported:	projectmanager	pt	Os seguintes tipos de documentos são suportados:

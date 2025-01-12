@@ -270,7 +270,6 @@ subelements	projectmanager	nl	Subelementen
 subprojects	projectmanager	nl	Subprojecten
 synchronise all	projectmanager	nl	Alles synchroniseren
 tag to mark positions for address labels	projectmanager	nl	Tag voor markering tbv adreslabels
-template	projectmanager	nl	Template
 template including elment-tree saved as new project	projectmanager	nl	Template inclusief elementboom opgeslagen als een nieuw project
 test import (show importable records <u>only</u> in browser)	projectmanager	nl	Test Import (toont <u>uitsluitend</u> importeerbare records in de browser).
 the charset depends on the font you want to use.	projectmanager	nl	De karakterset hangt af van het lettertype dat u wilt gebruiken.

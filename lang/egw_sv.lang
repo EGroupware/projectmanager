@@ -236,7 +236,6 @@ status filter	projectmanager	sv	Status filter
 subelements	projectmanager	sv	Underelement
 subprojects	projectmanager	sv	Underprojekt
 synchronise all	projectmanager	sv	Synkronisera alla
-template	projectmanager	sv	Mall
 template including elment-tree saved as new project	projectmanager	sv	Mall inklusive elmentträd sparades som nytt projekt
 test import (show importable records <u>only</u> in browser)	projectmanager	sv	Testa import (visa importerade poster <u>enbart</u> i webbläsaren)
 time	projectmanager	sv	Tid

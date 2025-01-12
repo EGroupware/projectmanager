@@ -255,7 +255,6 @@ style used for everything but elements. some fonts have only normal style.	proje
 subelements	projectmanager	hu	Al-elemek
 subprojects	projectmanager	hu	Alprojektek
 synchronise all	projectmanager	hu	Összes szinkronizálása
-template	projectmanager	hu	Sablon
 template including elment-tree saved as new project	projectmanager	hu	A sablon a hozzá tartozó elemekkel együtt az újonnan létrehozott projektbe átmásolva.
 test import (show importable records <u>only</u> in browser)	projectmanager	hu	Tesztimport (csak a rekordok megtekintése)
 the charset depends on the font you want to use.	projectmanager	hu	A karakterkódolás függ attól a fonttól, amit használni kíván.

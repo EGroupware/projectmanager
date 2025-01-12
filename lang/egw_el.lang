@@ -64,7 +64,6 @@ role	projectmanager	el	Ρόλος
 select a project	projectmanager	el	Επιλέξτε ένα έργο
 startdate	projectmanager	el	Ημερομηνία έναρξης
 startrecord	projectmanager	el	Αρχική εγγραφή
-template	projectmanager	el	Πρότυπο
 test import (show importable records <u>only</u> in browser)	projectmanager	el	Δοκιμαστική εισαγωγή. Εμφάνιση των εγγραφών που μπορούν να εισαχθούν <u>μόνο</u> στο πρόγραμμα περιήγησης.
 times	projectmanager	el	Φορες
 timezone	projectmanager	el	Ζώνη ώρας

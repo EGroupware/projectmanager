@@ -163,7 +163,6 @@ startrecord	projectmanager	eu	Erregistro hasera
 status filter	projectmanager	eu	Egoeren iragazkia
 subprojects	projectmanager	eu	Azpiproiektuak
 synchronise all	projectmanager	eu	Guztia sinkronizatu
-template	projectmanager	eu	Plantilla
 test import (show importable records <u>only</u> in browser)	projectmanager	eu	Inportazio proba (erakutsi inportatu daitezkeen errenkadak <u>bakarrik</u> nabigatzailean)
 time	projectmanager	eu	Denbora
 times	projectmanager	eu	Denborak
