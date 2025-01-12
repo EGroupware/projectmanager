@@ -177,7 +177,6 @@ startrecord	projectmanager	lv	Sākuma ieraksts
 status filter	projectmanager	lv	Statusa filtrs
 subprojects	projectmanager	lv	Apakšprojekti
 synchronise all	projectmanager	lv	Visu sinhronozēt
-template	projectmanager	lv	Veidne
 test import (show importable records <u>only</u> in browser)	projectmanager	lv	Testēt Importu (parādīt importējamos ierakstus <u>tikai</u> pārlūkprogrammā)
 time	projectmanager	lv	Laiks
 times	projectmanager	lv	Reizes

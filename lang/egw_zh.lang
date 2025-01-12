@@ -248,7 +248,6 @@ style used for everything but elements. some fonts have only normal style.	proje
 subelements	projectmanager	zh	子要素
 subprojects	projectmanager	zh	子项目
 synchronise all	projectmanager	zh	全部同步
-template	projectmanager	zh	模板
 template including elment-tree saved as new project	projectmanager	zh	含要素树的模板保存为新项目
 test import (show importable records <u>only</u> in browser)	projectmanager	zh	导入测试 (<u>仅</u> 仅显示可导入记录)
 the charset depends on the font you want to use.	projectmanager	zh	字符集依赖您想要使用的字型。

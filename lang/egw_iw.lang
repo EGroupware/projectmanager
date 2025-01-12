@@ -25,7 +25,6 @@ number of records to read (%1)	projectmanager	iw	(מספר הרשומות לקר
 remark	projectmanager	iw	הערה
 startdate	projectmanager	iw	תאריך התחלה
 startrecord	projectmanager	iw	רשומה מתחלת
-template	projectmanager	iw	תבנית
 test import (show importable records <u>only</u> in browser)	projectmanager	iw	(בדוק ייבוא (הצג <u>רק</u> רשומות הניתנות לייבאו בדפדפן
 times	projectmanager	iw	פעמים
 to many might exceed your execution-time-limit	projectmanager	iw	יתכן כי רבים מיידי יעברו על הקצאת זמן העיבוד שלך

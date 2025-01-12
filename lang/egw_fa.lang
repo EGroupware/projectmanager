@@ -201,7 +201,6 @@ startrecord	projectmanager	fa	رکورد شروع
 status filter	projectmanager	fa	صافی وضعیت
 subprojects	projectmanager	fa	زیر پروژه ها
 synchronise all	projectmanager	fa	همگون سازی همه
-template	projectmanager	fa	قالب
 template including elment-tree saved as new project	projectmanager	fa	قالب بهمراه درخت-عنصر ذخیره شده بعنوان پروژه جدید
 test import (show importable records <u>only</u> in browser)	projectmanager	fa	آزمایش ورود.( <u>فقط</u>  نمایش رکوردهای قابل وارد کردن در مرورگر)
 time	projectmanager	fa	زمان

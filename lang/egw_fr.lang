@@ -420,7 +420,6 @@ synced	projectmanager	fr	Synchronisé
 synchronise all	projectmanager	fr	Tout synchroniser
 table plugins:	projectmanager	fr	Plugins de table :
 tag to mark positions for address labels	projectmanager	fr	Balise pour marquer les positions des étiquettes d'adresses
-template	projectmanager	fr	Modèle
 template as subproject	projectmanager	fr	Modèle de sous-projet
 template including elment-tree saved as new project	projectmanager	fr	Modèle comprenant son arborescence enregistrée comme sous-projet
 template name	projectmanager	fr	Nom du modèle

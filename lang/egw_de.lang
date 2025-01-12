@@ -420,7 +420,6 @@ synced	projectmanager	de	Synchronisiert
 synchronise all	projectmanager	de	Alle synchronisieren
 table plugins:	projectmanager	de	Tabellen Plug-In
 tag to mark positions for address labels	projectmanager	de	Markierungszeichen, um die Positionen von Adressetiketten zu markieren
-template	projectmanager	de	Vorlage
 template as subproject	projectmanager	de	Vorlage als Unterprojekt
 template including elment-tree saved as new project	projectmanager	de	Vorlage einschl. Elementbaum als neues Projekt gespeichert
 template name	projectmanager	de	Name der Vorlage

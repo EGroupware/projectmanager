@@ -25,7 +25,6 @@ number of records to read (%1)	projectmanager	hr	Broj zapisa za pročitati (%1)
 remark	projectmanager	hr	Primjedba
 startdate	projectmanager	hr	Datum početka
 startrecord	projectmanager	hr	Početni tzapis
-template	projectmanager	hr	Template
 test import (show importable records <u>only</u> in browser)	projectmanager	hr	Testiraj Uvoz (prikaži zapise koji se mogu uvesti <u>samo</u> u internet pregledniku)
 times	projectmanager	hr	Times
 to many might exceed your execution-time-limit	projectmanager	hr	to many might exceed your execution-time-limit

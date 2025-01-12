@@ -189,7 +189,6 @@ status filter	projectmanager	id	Saringan status
 subelements	projectmanager	id	Sub-elemen
 subprojects	projectmanager	id	Sub-proyek
 synchronise all	projectmanager	id	Sinkronkan semuanya
-template	projectmanager	id	Templat
 test import (show importable records <u>only</u> in browser)	projectmanager	id	Tes Impor (tampilkan rekaman yang dapat diimpor <em>hanya</em> dalam browser)
 time	projectmanager	id	Waktu
 times	projectmanager	id	Waktu

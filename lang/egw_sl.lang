@@ -408,7 +408,6 @@ synced	projectmanager	sl	Posodobljeno
 synchronise all	projectmanager	sl	Vse posodobljeno
 table plugins:	projectmanager	sl	Vtičniki za tabele:
 tag to mark positions for address labels	projectmanager	sl	Oznaka za označitev položajev oznak adresarja
-template	projectmanager	sl	Predloga
 template as subproject	projectmanager	sl	Predloga kot podprojekt
 template including elment-tree saved as new project	projectmanager	sl	Predloga, ki vsebuje drevo elementa, je shranjena kot nov projekt
 template name	projectmanager	sl	Ime predloge

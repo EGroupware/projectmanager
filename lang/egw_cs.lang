@@ -420,7 +420,6 @@ synced	projectmanager	cs	Synchronizováno
 synchronise all	projectmanager	cs	Synchronizovat vše
 table plugins:	projectmanager	cs	Zásuvné moduly tabulek:
 tag to mark positions for address labels	projectmanager	cs	Značka pro vyznačení pozic v adresních štítcích
-template	projectmanager	cs	Šablona
 template as subproject	projectmanager	cs	Šablona jako dílčí projekt
 template including elment-tree saved as new project	projectmanager	cs	Šablona včetně stromu součástí uložena jako nový projekt
 template name	projectmanager	cs	Název šablony

@@ -261,7 +261,6 @@ subelements	projectmanager	pl	Elementy podrzędne
 subprojects	projectmanager	pl	Podprojekty
 synchronise all	projectmanager	pl	Zsynchronizuj wszystko
 tag to mark positions for address labels	projectmanager	pl	Zaznacz, aby oznaczyć pozycję dla etykiet adresu
-template	projectmanager	pl	Szablon
 template including elment-tree saved as new project	projectmanager	pl	Szablon zawierający drzewo składników zapisany jako nowy projekt
 test import (show importable records <u>only</u> in browser)	projectmanager	pl	Import testowy (pokaż importowane rekordy <u>tylko</u> w przeglądarce)
 the charset depends on the font you want to use.	projectmanager	pl	Zestaw znaków jest zależny od czcionki, która będzie użyta.

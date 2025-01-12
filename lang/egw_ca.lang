@@ -219,7 +219,6 @@ style used for everything but elements. some fonts have only normal style.	proje
 subelements	projectmanager	ca	Subelements
 subprojects	projectmanager	ca	Subprojectes
 synchronise all	projectmanager	ca	Sincronitza-ho tot
-template	projectmanager	ca	Plantilla
 template including elment-tree saved as new project	projectmanager	ca	Plantilla que inclou l'arbre d'elements guardat com un projecte nou
 test import (show importable records <u>only</u> in browser)	projectmanager	ca	Prova d'Importació - (mostrar els registres que es poden importar <b>només</b> al navegador)
 the charset depends on the font you want to use.	projectmanager	ca	El joc de caràcters depen de la font que vulguis utilitzar.

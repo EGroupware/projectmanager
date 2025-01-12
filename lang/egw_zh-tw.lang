@@ -224,7 +224,6 @@ style used for everything but elements. some fonts have only normal style.	proje
 subelements	projectmanager	zh-tw	子元件
 subprojects	projectmanager	zh-tw	子專案
 synchronise all	projectmanager	zh-tw	全部同步
-template	projectmanager	zh-tw	樣板
 template including elment-tree saved as new project	projectmanager	zh-tw	使用包含元素樹的樣板新增專案
 test import (show importable records <u>only</u> in browser)	projectmanager	zh-tw	測試匯入？（在瀏覽器中<u>只顯示</u>可匯入的紀錄）
 the charset depends on the font you want to use.	projectmanager	zh-tw	字集依賴您想要使用的字型

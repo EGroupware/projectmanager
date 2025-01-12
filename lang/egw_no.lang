@@ -208,7 +208,6 @@ startrecord	projectmanager	no	Startrekke
 status filter	projectmanager	no	Statusfilter
 subprojects	projectmanager	no	Underprosjekter
 synchronise all	projectmanager	no	Synkroniser alle
-template	projectmanager	no	Mal
 template including elment-tree saved as new project	projectmanager	no	Mal inklusive elementtre lagret som et nytt prosjekt
 test import (show importable records <u>only</u> in browser)	projectmanager	no	Test Import (vis <u>kun</u> importerbare rekker i webleser).
 time	projectmanager	no	Tid

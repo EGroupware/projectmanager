@@ -420,7 +420,6 @@ synced	projectmanager	sk	Synchonizované
 synchronise all	projectmanager	sk	Synchronizovať všetko
 table plugins:	projectmanager	sk	Tabuľkové zásuvné moduly:
 tag to mark positions for address labels	projectmanager	sk	Značka pre vyznačenie pozícií pre štítky s adresami
-template	projectmanager	sk	Šablóna
 template as subproject	projectmanager	sk	Šablóna ako podprojekt
 template including elment-tree saved as new project	projectmanager	sk	Šablóna, vrátane stromu elementov, bola uložená ako nový projekt
 template name	projectmanager	sk	Názov šablóny

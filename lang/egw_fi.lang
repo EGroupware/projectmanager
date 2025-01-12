@@ -272,7 +272,6 @@ subelements	projectmanager	fi	Alielementit
 subprojects	projectmanager	fi	Aliprojektit
 synchronise all	projectmanager	fi	Synkronisoi kaikki
 tag to mark positions for address labels	projectmanager	fi	Tägi osoitetarrojen sijainnille
-template	projectmanager	fi	Mallipohja
 template including elment-tree saved as new project	projectmanager	fi	Mallipohja sisältää elementtirungon tallennuksen uutena projektina
 test import (show importable records <u>only</u> in browser)	projectmanager	fi	Testituonti. Näytä tuotavat tietueet <u>vain</u> selaimessa.
 the charset depends on the font you want to use.	projectmanager	fi	Merkistökoodaus riippuu käyttämästäsi fontista.

@@ -404,7 +404,6 @@ synced	projectmanager	bg	Синхронизирани
 synchronise all	projectmanager	bg	Синхронизиран нае всички
 table plugins:	projectmanager	bg	Плъгини за таблица:
 tag to mark positions for address labels	projectmanager	bg	Отбележете маркираните позиции като адресни етикети
-template	projectmanager	bg	Шаблон
 template as subproject	projectmanager	bg	Шаблон като подпроект
 template including elment-tree saved as new project	projectmanager	bg	Шаблон, включващ елементи от Дървото, запазен като нов проект
 template name	projectmanager	bg	Име на шаблона
