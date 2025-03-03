@@ -603,10 +603,6 @@ export class ProjectmanagerApp extends EgwApp
 	 */
 	set_project(node_id, tree_widget, old_node_id)
 	{
-		if(node_id == old_node_id)
-		{
-			return false;
-		}
 		let same_view = (this.view != 'list');
 		if(typeof node_id == 'object' && tree_widget[0])
 		{

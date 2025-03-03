@@ -155,28 +155,17 @@ class projectmanager_hooks
 			{
 				$pm_id = (int) $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 			}
-			$file = array(
-				'Projectlist' => Egw::link('/index.php',array(
-					'menuaction' => 'projectmanager.projectmanager_ui.index',
-					'ajax' => 'true',
-				))
-			);
+			$file = array('Projectlist' => 'javascript:app.projectmanager.show("list")');
 			if($GLOBALS['projectmanager_bo']->check_acl(Acl::READ))
 			{
 				$file += array(
 					array(
 						'text' => 'Elementlist',
-						'link' =>  Egw::link('/index.php',array(
-							'menuaction' => 'projectmanager.projectmanager_ui.index',
-							'ajax' => 'true',
-						)),
+						'link' => 'javascript:app.projectmanager.show("elements")'
 					),
 					array(
 						'text' => 'Ganttchart',
-						'link' =>  Egw::link('/index.php',array(
-							'menuaction' => 'projectmanager.projectmanager_ui.index',
-							'ajax' => 'true',
-						)),
+						'link' => 'javascript:app.projectmanager.show("gantt")'
 					)
 				);
 			}
@@ -190,10 +179,7 @@ class projectmanager_hooks
 					'text' => 'Pricelist',
 					'icon' => 'pricelist',
 					'app'  => 'projectmanager',
-					'link' =>  Egw::link('/index.php',array(
-						'menuaction' => 'projectmanager.projectmanager_ui.index',
-						'ajax' => 'true',
-					))
+					'link' => 'javascript:app.projectmanager.show("prices")'
 				);
 			}
 			if (isset($GLOBALS['egw_info']['user']['apps']['filemanager']))
