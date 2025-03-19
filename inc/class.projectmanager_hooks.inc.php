@@ -239,62 +239,6 @@ class projectmanager_hooks
 	}
 
 	/**
-	 * Show the project-selection as tree
-	 *
-	 * @param int $pm_id current active project
-	 * @param array $filter filter for the project-list
-	 * @param string $select_link link to load the elementslist of an appended project (pm_id)
-	 * @param string $label column to use as label
-	 * @param string $title column to use as title (tooltip)
-	 * @return array suitable for the sidebox-menu
-	 */
-	static private function &_project_tree($pm_id,$filter,$select_link,$label,$title)
-	{
-		$selected_project = false;
-		$projects = array();
-		foreach($GLOBALS['projectmanager_bo']->get_project_tree($filter) as $project)
-		{
-			if ($GLOBALS['egw_info']['user']['preferences']['projectmanager']['show_projectselection']=='tree_with_number_title')
-				{
-					$projects[$project['path']] = array(
-						'label' => $project[$title].': '.$project[$label],
-						'title' => $project[$title].': '.$project[$label],
-					);
-				} else {
-					$projects[$project['path']] = array(
-						'label' => $project[$label],
-						'title' => $project[$title],
-					);
-				}
-			if (!$selected_project && $pm_id == $project['pm_id']) $selected_project = $project['path'];
-		}
-		if ($_GET['menuaction'] == 'projectmanager.projectmanager_pricelist_ui.index')
-		{
-			$projects['general'] = array(
-				'label' => lang('General pricelist'),
-				'image' => 'kfm_home.png',
-			);
-			if (!$pm_id) $selected_project = 'general';
-		}
-		if (!$projects)	// show project-tree only if it's not empty
-		{
-			return null;
-		}
-		// hack for stupid ie (cant set it as a class!)
-		//if (Api\Header\UserAgent::type() == 'msie') $tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; width: 198px;"',$tree);
-		// do it all the time, as we want distinct behavior here
-		$tree = str_replace('id="foldertree"','id="foldertree" style="overflow: auto; max-width:400px; width:100%; max-height:450px;"',
-			Api\Html::tree($projects,$selected_project,false,'load_project'));
-
-		return array(
-			'text' => "<script>function load_project(_nodeId) { egw_appWindow('projectmanager').location.href='$select_link'+_nodeId.substr(_nodeId.lastIndexOf('/')+1,99); }</script>\n".$tree,
-			'no_lang' => True,
-			'link' => False,
-			'icon' => False,
-		);
-	}
-
-	/**
 	 * Show the project-selection as selectbox
 	 *
 	 * @param int $pm_id current active project
