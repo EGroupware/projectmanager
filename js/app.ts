@@ -125,7 +125,7 @@ export class ProjectmanagerApp extends EgwApp
 				});
 				// First load, framework could not use our link handler since it wasn't loaded
 				const fw = egw_getFramework();
-				if(fw && !app.projectmanager.linkHandler(fw.getApplicationByName('projectmanager').browser.currentLocation))
+				if(fw && !app.projectmanager.linkHandler(fw.getApplicationByName('projectmanager')?.browser?.currentLocation ?? fw.getApplicationByName('projectmanager').url))
 				{
 					this.show('list');
 				}
@@ -390,20 +390,6 @@ export class ProjectmanagerApp extends EgwApp
 			{
 				et2.widgetContainer.iterateOver(function(gantt) {
 					state = gantt.getInstanceManager().getValues(gantt)[gantt.id];
-
-					// Gantt also needs the current PM ID stored
-					let current_project = 0;
-					if(this.views.list.etemplate)
-					{
-						const node_id = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue() || '';
-						const split = node_id.split('::');
-						if(split.length > 1 && split[1]) current_project = split[1];
-					}
-					if(!current_project)
-					{
-						current_project = parseInt(''+egw.preference('current_project','projectmanager'));
-					}
-					state.pm_id = current_project ? current_project : false;
 				}, this, et2_gantt);
 			}
 			else
@@ -416,6 +402,22 @@ export class ProjectmanagerApp extends EgwApp
 					delete state.link_addapp;
 				}, this, et2_nextmatch);
 			}
+			// Gantt & tree also need the current PM ID stored
+			let current_project = 0;
+			if(this.views.list.etemplate)
+			{
+				const node_id = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue() || '';
+				const split = node_id.split('::');
+				if(split.length > 1 && split[1])
+				{
+					current_project = split[1];
+				}
+			}
+			if(!current_project)
+			{
+				current_project = parseInt('' + egw.preference('current_project', 'projectmanager'));
+			}
+			state.pm_id = current_project ? current_project : false;
 		}
 
 		state.view = this.view || null;
@@ -603,10 +605,6 @@ export class ProjectmanagerApp extends EgwApp
 	 */
 	set_project(node_id, tree_widget, old_node_id)
 	{
-		if(node_id == old_node_id)
-		{
-			return false;
-		}
 		let same_view = (this.view != 'list');
 		if(typeof node_id == 'object' && tree_widget[0])
 		{

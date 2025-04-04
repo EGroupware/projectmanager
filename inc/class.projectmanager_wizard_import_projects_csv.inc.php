@@ -35,10 +35,10 @@ class projectmanager_wizard_import_projects_csv extends importexport_wizard_basi
 		$roles = $roles->query_list();
 		$role_list = array();
 		foreach($roles as $id => $name) {
-			$role_list['role-'.$id] = $name;
+			$role_list[] = ['value' => 'role-' . $id, 'label' => $name];
 		}
 		if(count($role_list) > 0) {
-			$this->mapping_fields[lang('Roles')] = $role_list;
+			$this->mapping_fields[lang('Roles')] = ['label' => lang('Roles'), 'children' => $role_list];
 		}
 		$custom = Api\Storage\Customfields::get('projectmanager', true);
 		foreach($custom as $name => $data) {

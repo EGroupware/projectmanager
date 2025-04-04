@@ -245,7 +245,7 @@
                     </et2-hbox>
 					<et2-hbox  align="right">
 						<et2-checkbox  statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"></et2-checkbox>
-						<et2-button  statustext="Delete this project" label="Delete" id="delete" onclick="et2_dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button>
+                        <et2-button statustext="Delete this project" label="Delete" id="delete" onclick="Et2Dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button>
 					</et2-hbox>
 				</row>
 			</rows>

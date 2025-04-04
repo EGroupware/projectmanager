@@ -132,7 +132,7 @@
 		<et2-button  statustext="Add a new project" image="add" id="add" onclick="egw.open('','projectmanager','add');" noSubmit="true"></et2-button>
 	</template>
 	<template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
-		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
+        <et2-tree id="project_tree" slot="left" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
 		<nextmatch id="nm" template="projectmanager.list.rows" header_left="projectmanager.list.add"/>
 	</template>
 </overlay>
