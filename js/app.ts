@@ -326,6 +326,13 @@ export class ProjectmanagerApp extends EgwApp
 		}
 		else
 		{
+			// Set / clear tree or its value will be used
+			const tree = this.views.list.etemplate.widgetContainer.getWidgetById('project_tree');
+			tree.value = state?.state?.pm_id || '';
+			if(!tree.value)
+			{
+				this.egw.set_preference("projectmanager", "current_project", null);
+			}
 			this.show(this.view || 'list');
 		}
 		// Try and find a nextmatch widget, and set its filters
