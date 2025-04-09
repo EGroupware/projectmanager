@@ -237,7 +237,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 		if($_REQUEST['select_all'] === 'true')
 		{
-			$ids = self::get_all_ids($document_merge);
+			$ids = static::get_all_ids($document_merge);
 		}
 
 		// Project list IDs are just PM ID, element action id's are pe_app:pe_app_id:pe_id --> pe_id
@@ -254,6 +254,28 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 
 		return parent::merge_entries($ids, $document_merge, $options, $return);
+	}
+
+	/**
+	 * Get all ids for when they try to do 'Select All', then merge into document
+	 *
+	 * @param Api\Contacts\Merge $merge App-specific merge object
+	 */
+	protected static function get_all_ids(Api\Storage\Merge $merge)
+	{
+		$ids = array();
+		$locations = array('project_list');
+		$ui_class = 'projectmanager_ui';
+		switch($_REQUEST['view'])
+		{
+			case 'elements':
+				$ui_class = 'projectmanager_elements_ui';
+				$locations = array('projectelements_list');
+				$clone = clone($merge);
+				return static::merge_element_entries(static::get_all_ids_app('projectmanager', $merge, $ui_class, $locations), $clone);
+		}
+
+		return static::get_all_ids_app('projectmanager', $merge, $ui_class, $locations);
 	}
 
 	/**

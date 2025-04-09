@@ -928,6 +928,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'hideOnMobile' => true
 			),
 		);
+		$actions['documents']['merge_data']['view'] = 'elements';
 		if(!$this->config['enable_eroles'])
 		{
 			unset($actions['erole']);
