@@ -42,7 +42,6 @@
 					<et2-vbox  align="left" class="elementCol1">
 						<et2-hbox>
 							<et2-image  label="$row_cont[pe_app]" src="${row}[pe_icon]"></et2-image>
-							<et2-image  src="${row}[pe_healt_icon]"></et2-image>
 							<et2-image  src="${row}[pe_completion_icon]" noLang="1"></et2-image>
 							<et2-image  src="$row_cont[ignored]" noLang="1"></et2-image>
 						</et2-hbox>
