@@ -215,6 +215,7 @@ export class ProjectmanagerApp extends EgwApp
 
 						if(console.time) console.timeEnd("Gantt fetch");
 						gantt.set_value(data);
+						window.setTimeout(() => gantt.resize(), 100);
 					}).sendRequest(true);
 					break;
 				case 'prices':
