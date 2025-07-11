@@ -118,8 +118,7 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 		columns: [
 			{name: "text", label: egw.lang('Title'), tree: true, width: '*'}
 		],
-		autofit: true,
-		autosize: "y"
+		autofit: true
 	};
 
 	// Gantt will handle most zooming, here we configure the zoom levels & headings
@@ -323,6 +322,8 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 	 */
 	resize()
 	{
+		// Update column size
+		this._set_grid_width();
 		if(this.dynheight)
 		{
 			this.dynheight.update(function(w,h) {
@@ -1265,11 +1266,6 @@ export class et2_gantt extends et2_inputWidget implements et2_IResizeable, et2_I
 		this.gantt.config.grid_width = this.gantt_config.grid_width;
 	}
 
-	resize()
-	{
-		// Update column size
-		this._set_grid_width();
-	}
 
 	// Printing
 	/**
