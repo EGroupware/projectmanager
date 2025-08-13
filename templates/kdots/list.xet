@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
+<overlay>
+    <template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
+        <grid width="100%">
+            <columns>
+                <column width="120"/>
+                <column width="60%"/>
+                <column width="50"/>
+                <column width="15%"/>
+                <column width="120"/>
+                <column width="120"/>
+                <column width="80" disabled="@no_role0"/>
+                <column width="80" disabled="@no_role1"/>
+                <column width="80" disabled="@no_role2"/>
+                <column width="80" disabled="@no_role3"/>
+                <column width="80" disabled="@no_role4"/>
+                <column width="120"/>
+                <column width="120"/>
+                <column width="80" disabled="@no_pm_used_budget_pm_planned_budget"/>
+                <column width="80"/>
+                <column width="80"/>
+                <column width="60"/>
+                <column width="130"/>
+                <column width="25%"/>
+                <column width="120" disabled="@no_kanban"/>
+            </columns>
+            <rows>
+                <row class="th">
+                    <nextmatch-sortheader label="Project ID" id="pm_number"/>
+                    <nextmatch-sortheader label="Title" id="pm_title"/>
+                    <nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
+                    <nextmatch-sortheader label="categories" id="cat_id"/>
+                    <nextmatch-sortheader label="Owner" id="pm_creator"/>
+                    <et2-nextmatch-header-account  id="resources" emptyLabel="Resources"/>
+                    <nextmatch-header label="@roles[0]" id="role0"/>
+                    <nextmatch-header label="@roles[1]" id="role1"/>
+                    <nextmatch-header label="@roles[2]" id="role2"/>
+                    <nextmatch-header label="@roles[3]" id="role3"/>
+                    <nextmatch-header label="@roles[4]" id="role4"/>
+                    <et2-vbox>
+                        <nextmatch-sortheader label="Startdate" id="pm_real_start"/>
+                        <nextmatch-sortheader label="planned" id="pm_planned_start" class="planned"/>
+                    </et2-vbox>
+                    <et2-vbox>
+                        <nextmatch-sortheader label="Enddate" id="pm_real_end"/>
+                        <nextmatch-sortheader label="planned" id="pm_planned_end" class="planned"/>
+                    </et2-vbox>
+                    <et2-vbox>
+                        <nextmatch-sortheader label="Budget" id="pm_used_budget"/>
+                        <nextmatch-sortheader label="planned" id="pm_planned_budget" class="planned"/>
+                    </et2-vbox>
+                    <et2-vbox>
+                        <nextmatch-sortheader label="Times" id="pm_used_time"/>
+                        <nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
+                    </et2-vbox>
+                    <et2-vbox>
+                        <nextmatch-sortheader label="Times" id="pm_used_time"/>
+                        <nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
+                        <nextmatch-sortheader label="re-planned" id="pm_replanned_time" class="replanned"/>
+                    </et2-vbox>
+                    <nextmatch-sortheader align="center" label="Status" id="pm_completion"/>
+                    <nextmatch-sortheader label="last modified" id="pm_modified"/>
+                    <nextmatch-customfields id="customfields"/>
+                    <nextmatch-header label="Kanban" id="kanban"/>
+                </row>
+                <row class="$row_cont[cat_id] $row_cont[class]">
+                    <et2-description  id="${row}[pm_number]" noLang="1"></et2-description>
+                    <et2-description  id="${row}[pm_title]" class="et2_link" onclick="javaScript:app.projectmanager.show('elements',$row_cont[pm_id]);" noLang="1"></et2-description>
+                    <et2-description  align="center" id="${row}[pm_priority]" noLang="1"></et2-description>
+                    <et2-select-cat  id="${row}[cat_id]" readonly="true" noLang="1"></et2-select-cat>
+                    <et2-select-account  id="${row}[pm_creator]" readonly="true"></et2-select-account>
+                    <et2-select-account  class="pm_resources" id="${row}[resources]" readonly="true"></et2-select-account>
+                    <et2-select-account  id="${row}[role0]" readonly="true"></et2-select-account>
+                    <et2-select-account  id="${row}[role1]" readonly="true"></et2-select-account>
+                    <et2-select-account  id="${row}[role2]" readonly="true"></et2-select-account>
+                    <et2-select-account  id="${row}[role3]" readonly="true"></et2-select-account>
+                    <et2-select-account  id="${row}[role4]" readonly="true"></et2-select-account>
+                    <et2-vbox>
+                        <et2-date  id="${row}[pm_real_start]" readonly="true"></et2-date>
+                        <et2-date  id="${row}[pm_planned_start]" readonly="true" class="planned"></et2-date>
+                    </et2-vbox>
+                    <et2-vbox>
+                        <et2-date  id="${row}[pm_real_end]" readonly="true"></et2-date>
+                        <et2-date  id="${row}[pm_planned_end]" readonly="true" class="planned"></et2-date>
+                    </et2-vbox>
+                    <et2-vbox  readonly="true">
+                        <et2-number  id="${row}[pm_used_budget]" readonly="true" max="2"></et2-number>
+                        <et2-number  id="${row}[pm_planned_budget]" readonly="true" max="2" class="planned" noLang="1"></et2-number>
+                    </et2-vbox>
+                    <et2-vbox>
+                        <et2-date-duration id="${row}[pm_used_time]" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format"
+                                           hoursPerDay="@@hoursPerDay"></et2-date-duration>
+                        <et2-date-duration id="${row}[pm_planned_time]" readonly="true" selectUnit="true"
+                                           displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                           class="planned"></et2-date-duration>
+                    </et2-vbox>
+                    <et2-vbox  readonly="true">
+                        <et2-hbox  id="pml_used_time">
+                            <et2-image  label="Times" src="timesheet"></et2-image>
+                            <et2-date-duration id="${row}[pm_used_time]" readonly="true"
+                                               displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"
+                                               selectUnit="true"></et2-date-duration>
+                        </et2-hbox>
+                        <et2-hbox  id="planified">
+                            <et2-image  label="planned time" src="k_alarm"></et2-image>
+                            <et2-date-duration id="${row}[pm_planned_time]" readonly="true"
+                                               displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"
+                                               selectUnit="true" span="all" class="planned"></et2-date-duration>
+                        </et2-hbox>
+                        <et2-hbox  id="replanified">
+                            <et2-image label="Re-planned time" src="agt_reload"></et2-image>
+                            <et2-date-duration id="${row}[pm_replanned_time]" readonly="true" selectUnit="true"
+                                               displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
+                                               class="replanned"></et2-date-duration>
+                        </et2-hbox>
+                    </et2-vbox>
+                    <progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+                    <et2-vbox readonly="true">
+                        <et2-date-time id="${row}[pm_modified]" readonly="true"></et2-date-time>
+                        <et2-select-account id="${row}[pm_modifier]" readonly="true"></et2-select-account>
+                    </et2-vbox>
+                    <customfields-list id="$row"/>
+                    <et2-link-string entryId="${row_cont[pm_id]}" application="projectmanager"
+                                     onlyApp="kanban"></et2-link-string>
+                </row>
+            </rows>
+        </grid>
+    </template>
+    <template id="projectmanager.list.header" template="" lang="" group="0" version="1.9.002">
+        <et2-button-icon  statustext="Add a new project" image="add" id="add" onclick="egw.open('','projectmanager','add');" noSubmit="true"></et2-button-icon>
+        <et2-button-icon image="search" statustext="Search" noSubmit="true" onclick="javascript:widget.closest('egw-app').filtersDrawer.open = !widget.closest('egw-app').filtersDrawer.open;"></et2-button-icon>
+    </template>
+    <template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
+        <template template="projectmanager.list.header" slot="main-header"></template>
+        <et2-tree id="project_tree" slot="left" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
+        <nextmatch id="nm" template="projectmanager.list.rows"/>
+    </template>
+</overlay>
