@@ -130,7 +130,7 @@
     </template>
     <template id="projectmanager.list.header" template="" lang="" group="0" version="1.9.002">
         <et2-button-icon  statustext="Add a new project" image="add" id="add" onclick="egw.open('','projectmanager','add');" noSubmit="true"></et2-button-icon>
-        <et2-button-icon image="search" statustext="Search" noSubmit="true" onclick="javascript:widget.closest('egw-app').filtersDrawer.open = !widget.closest('egw-app').filtersDrawer.open;"></et2-button-icon>
+        <template template="api.search-button"></template>
     </template>
     <template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
         <template template="projectmanager.list.header" slot="main-header"></template>
