@@ -47,6 +47,7 @@
 	</template>
 	<template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
 		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
+		<nextmatch id="nm" template="projectmanager.list.rows"  header_right="projectmanager.list.right"/>
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -60,9 +61,6 @@
 				</row>
 				<row>
 					<et2-description  id="plus_button_container"></et2-description>
-				</row>
-				<row>
-					<nextmatch id="nm" template="projectmanager.list.rows"  header_right="projectmanager.list.right"/>
 				</row>
 				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
 					<et2-hbox>
