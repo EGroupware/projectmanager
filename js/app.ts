@@ -19,6 +19,7 @@ import {etemplate2} from "../../api/js/etemplate/etemplate2";
 import {et2_gantt} from "./et2_widget_gantt";
 import {et2_nextmatch} from "../../api/js/etemplate/et2_extension_nextmatch";
 import {Et2LinkAdd} from "../../api/js/etemplate/Et2Link/Et2LinkAdd";
+import {EgwFrameworkApp, FilterInfo} from "../../kdots/js/EgwFrameworkApp";
 
 /**
  * JS for projectmanager
@@ -266,6 +267,10 @@ export class ProjectmanagerApp extends EgwApp
 		if(this.views[what].etemplate)
 		{
 			jQuery(this.views[what].etemplate.DOMContainer).show();
+			this.views[what].etemplate.widgetContainer.iterateOver(function(nm)
+			{
+				nm.set_disabled(false);
+			}, this, et2_nextmatch);
 			this.views[what].etemplate.resize();
 		}
 
@@ -277,6 +282,10 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			if(what != view && this.views[view].etemplate)
 			{
+				this.views[view].etemplate.widgetContainer.iterateOver(function(nm)
+				{
+					nm.set_disabled(true);
+				}, this, et2_nextmatch);
 				jQuery(this.views[view].etemplate.DOMContainer).hide();
 			}
 		}
@@ -575,6 +584,42 @@ export class ProjectmanagerApp extends EgwApp
 				gantt.refresh(ids,_type);
 				return false;
 		}
+	}
+
+	/**
+	 * Tell the framework which nextmatch to use right now
+	 *
+	 * @return {et2_nextmatch|null}
+	 */
+	getNextmatch() : et2_nextmatch | null
+	{
+		const et2 = this.views[this.view].etemplate?.widgetContainer;
+		let currentNm = null;
+		et2?.iterateOver(function(nm)
+		{
+			currentNm = nm
+		}, this, et2_nextmatch);
+		return currentNm;
+	}
+
+	getFilterInfo(filterValues : { [id : string] : string | { value : any } }, fwApp : EgwFrameworkApp) : FilterInfo
+	{
+		// Don't consider active for purpose of filter icon
+		if(this.view == "list" && filterValues.filter2 == 'active')
+		{
+			delete filterValues.filter2;
+		}
+		// Don't consider pm_id for purpose of filter icon
+		if(this.view == "elements" || this.view == "prices" && filterValues.col_filter["pm_id"] == '0')
+		{
+			delete filterValues.col_filter["pm_id"];
+		}
+
+		const info = fwApp.filterInfo(filterValues);
+		const entries = this.view == "list" ? this.egw.link_get_registry(this.appname, "entries") : this.egw.lang("entries");
+		info.tooltip = this.egw.lang("Filters") + ":  " + fwApp.rowCount + " " + entries;
+
+		return info;
 	}
 
 	/**
@@ -887,10 +932,10 @@ export class ProjectmanagerApp extends EgwApp
 			menuaction: 'projectmanager.projectmanager_pricelist_ui.edit',
 			pm_id: 0
 		};
-		const pm_filter = widget.getRoot().getWidgetById('pm_id');
+		const pm_filter = this.getNextmatch()?.activeFilters?.col_filter?.pm_id
 		if(pm_filter)
 		{
-			extras.pm_id = pm_filter.get_value();
+			extras.pm_id = pm_filter
 		}
 		window.open(this.egw.link('/index.php',extras),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes');
 		return false;
