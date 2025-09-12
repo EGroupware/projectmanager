@@ -84,7 +84,7 @@
                         <et2-date  id="${row}[pm_real_end]" readonly="true"></et2-date>
                         <et2-date  id="${row}[pm_planned_end]" readonly="true" class="planned"></et2-date>
                     </et2-vbox>
-                    <et2-vbox  readonly="true">
+                    <et2-vbox>
                         <et2-number  id="${row}[pm_used_budget]" readonly="true" max="2"></et2-number>
                         <et2-number  id="${row}[pm_planned_budget]" readonly="true" max="2" class="planned" noLang="1"></et2-number>
                     </et2-vbox>
@@ -96,7 +96,7 @@
                                            displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all"
                                            class="planned"></et2-date-duration>
                     </et2-vbox>
-                    <et2-vbox  readonly="true">
+                    <et2-vbox>
                         <et2-hbox  id="pml_used_time">
                             <et2-image  label="Times" src="timesheet"></et2-image>
                             <et2-date-duration id="${row}[pm_used_time]" readonly="true"
@@ -117,7 +117,7 @@
                         </et2-hbox>
                     </et2-vbox>
                     <progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
-                    <et2-vbox readonly="true">
+                    <et2-vbox>
                         <et2-date-time id="${row}[pm_modified]" readonly="true"></et2-date-time>
                         <et2-select-account id="${row}[pm_modifier]" readonly="true"></et2-select-account>
                     </et2-vbox>
@@ -131,10 +131,20 @@
     <template id="projectmanager.list.header" template="" lang="" group="0" version="1.9.002">
         <et2-button-icon  statustext="Add a new project" image="add" id="add" onclick="egw.open('','projectmanager','add');" noSubmit="true"></et2-button-icon>
         <template template="api.search-button"></template>
+        <et2-toolbar id="toolbar">
+            <et2-button-icon id="list-bt" image="list" statustext="Projectlist" onclick="app.projectmanager.show('list')"></et2-button-icon>
+            <et2-button-icon id="elements-bt" image="diagram-3" statustext="Elementlist" onclick="app.projectmanager.show('elements')"></et2-button-icon>
+            <et2-button-icon id="gantt-bt" image="bar-chart-steps" statustext="Ganttchart" onclick="app.projectmanager.show('gantt')"></et2-button-icon>
+            <et2-button-icon id="prices-bt" image="pricelist" statustext="Ganttchart" onclick="app.projectmanager.show('prices')"></et2-button-icon>
+            <et2-button-icon id="filemanager" image="filemanager/navbar" statustext="Filemanager" onclick="app.projectmanager.filemanager()"></et2-button-icon>
+            <et2-select-cat id="cat_id" ariaLabel="Category" onchange="app.projectmanager.changeNmFilter"/>
+            <et2-select id="filter" ariaLabel="Filter" onchange="app.projectmanager.changeNmFilter"/>
+            <et2-select id="filter2" ariaLabel="Status" onchange="app.projectmanager.changeNmFilter"/>
+        </et2-toolbar>
     </template>
     <template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
-        <template template="projectmanager.list.header" slot="main-header"></template>
-        <et2-tree id="project_tree" slot="left" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
+        <et2-template template="projectmanager.list.header" slot="main-header"></et2-template>
+        <et2-tree id="project_tree" slot="left" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project"/>
         <nextmatch id="nm" template="projectmanager.list.rows"/>
     </template>
 </overlay>

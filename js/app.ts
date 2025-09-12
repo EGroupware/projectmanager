@@ -20,6 +20,7 @@ import {et2_gantt} from "./et2_widget_gantt";
 import {et2_nextmatch} from "../../api/js/etemplate/et2_extension_nextmatch";
 import {Et2LinkAdd} from "../../api/js/etemplate/Et2Link/Et2LinkAdd";
 import {EgwFrameworkApp, FilterInfo} from "../../kdots/js/EgwFrameworkApp";
+import type {Et2Template} from "../../api/js/etemplate/Et2Template/Et2Template";
 
 /**
  * JS for projectmanager
@@ -289,6 +290,28 @@ export class ProjectmanagerApp extends EgwApp
 				jQuery(this.views[view].etemplate.DOMContainer).hide();
 			}
 		}
+
+		// enable the app-toolbar for view what
+		for(let template in this.etemplates)
+		{
+			if (this.etemplates[template] === what)
+			{
+				this.enableAppToolbar(template+'.header');
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Enable application toolbar with given template name
+	 *
+	 * @param template
+	 */
+	enableAppToolbar(template : string)
+	{
+		document.querySelectorAll('egw-app#projectmanager et2-template[slot="main-header"]').forEach((tpl : Et2Template) => {
+			tpl.set_disabled(tpl.id !== template);
+		});
 	}
 
 	/**

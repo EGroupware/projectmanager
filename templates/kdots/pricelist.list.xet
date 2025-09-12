@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
+<overlay>
+	<template id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="1.9.001">
+		<grid width="100%">
+			<columns>
+				<column width="50%"/>
+				<column width="50%"/>
+				<column width="120"/>
+				<column width="120"/>
+				<column width="140"/>
+			</columns>
+			<rows>
+				<row class="th">
+					<nextmatch-sortheader label="Title" id="pl_title"/>
+					<et2-vbox>
+						<et2-nextmatch-header-filter  id="pm_id" multiple="false" noLang="1" emptyLabel="Project"/>
+						<nextmatch-sortheader label="Customer title" id="pl_customertitle"/>
+					</et2-vbox>
+					<et2-nextmatch-header-filter  id="pl_billable" multiple="false" emptyLabel="Availible"/>
+					<et2-vbox>
+						<nextmatch-sortheader label="Price / Unit" id="pl_price"/>
+						<nextmatch-sortheader label="Valid since" id="pl_validsince"/>
+					</et2-vbox>
+					<et2-vbox>
+						<nextmatch-sortheader label="Last modified" id="pl_modified"/>
+						<nextmatch-sortheader label="Modified by" id="pl_modifier"/>
+					</et2-vbox>
+				</row>
+				<row class="row $row_cont[class]">
+					<et2-textbox  id="${row}[pl_title]" readonly="true" noLang="1"></et2-textbox>
+					<et2-vbox>
+						<et2-select  id="${row}[pm_id]" readonly="true" noLang="1"></et2-select>
+						<et2-description  id="${row}[pl_customertitle]" noLang="1"></et2-description>
+					</et2-vbox>
+					<et2-select  id="${row}[pl_billable]" readonly="true" emptyLabel="No"></et2-select>
+					<et2-vbox>
+						<et2-number  label="%s / $row_cont[pl_unit]" id="${row}[pl_price]" readonly="true" max="2" noLang="1"></et2-number>
+						<et2-date  id="${row}[pl_validsince]" readonly="true"></et2-date>
+					</et2-vbox>
+					<et2-vbox>
+						<et2-date-time  id="${row}[pl_modified]" readonly="true"></et2-date-time>
+						<et2-select-account  id="${row}[pl_modifier]" readonly="true"></et2-select-account>
+					</et2-vbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="projectmanager.pricelist.list.header" template="" lang="" group="0" version="1.9.001">
+		<et2-button  align="right" statustext="Add" id="add" onclick="app.projectmanager.add_price(widget)"></et2-button>
+		<template template="api.search-button"></template>
+		<et2-toolbar id="toolbar-prices">
+			<et2-button-icon id="list-bt" image="list" statustext="Projectlist" onclick="app.projectmanager.show('list')"></et2-button-icon>
+			<et2-button-icon id="elements-bt" image="diagram-3" statustext="Elementlist" onclick="app.projectmanager.show('elements')"></et2-button-icon>
+			<et2-button-icon id="gantt-bt" image="bar-chart-steps" statustext="Ganttchart" onclick="app.projectmanager.show('gantt')"></et2-button-icon>
+			<et2-button-icon id="prices-bt" image="pricelist" statustext="Ganttchart" onclick="app.projectmanager.show('prices')"></et2-button-icon>
+			<et2-button-icon id="filemanager" image="filemanager/navbar" statustext="Filemanager" onclick="app.projectmanager.filemanager()"></et2-button-icon>
+			<et2-select-cat id="cat_id" ariaLabel="Category" onchange="app.projectmanager.changeNmFilter"/>
+			<et2-select id="pm_id" ariaLabel="Project" onchange="app.projectmanager.changeNmFilter"/>
+			<et2-select id="pl_billable" emptyLabel="Availible" ariaLabel="Availible" onchange="app.projectmanager.changeNmFilter"/>
+		</et2-toolbar>
+	</template>
+	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
+		<et2-template template="projectmanager.pricelist.list.header" slot="main-header"></et2-template>
+		<nextmatch id="nm" template="projectmanager.pricelist.list.rows"/>
+	</template>
+</overlay>

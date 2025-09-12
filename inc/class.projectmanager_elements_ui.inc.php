@@ -1013,6 +1013,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'filter'          => 'used',// I initial value for the filter
 				'options-filter'  => $this->status_labels,
 				'filter_no_lang'  => True,// I  set no_lang for filter (=dont translate the options)
+				'filter_aria_label' => lang('Status'),
 				'options-filter2' => array(
 					0 => 'No details',
 					1 => 'Details',
@@ -1021,6 +1022,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 					4 => 'Cumulated elements too',
 					5 => 'Details of cumulated',
 				),
+				'filter2_aria_label' => lang('Show'),
 				'col_filter'      => array('pe_resources' => null),    // default value, to suppress loop
 				'order'           => 'pe_modified',// IO name of the column to sort after (optional for the sortheaders)
 				'sort'            => 'DESC',// IO direction of the sort: 'ASC' or 'DESC'

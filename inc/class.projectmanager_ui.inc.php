@@ -780,6 +780,7 @@ class projectmanager_ui extends projectmanager_bo
 				'filter2'        => 'active',// I initial value for the filter
 				'options-filter2'=> self::$status_labels,
 				'filter2_no_lang' => True,// I  set no_lang for filter (=dont translate the options)
+				'filter2_aria_label' => lang('Status'),
 				'filter'          => 'mains',
 				'options-filter'  => array('' => lang('All projects'))+$this->filter_labels,
 				'filter_no_lang'  => True,// I  set no_lang for filter (=dont translate the options)
