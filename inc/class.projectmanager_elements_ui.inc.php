@@ -1081,7 +1081,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		{
 			$content['nm']['actions']['sync_all']['enabled'] = false;
 		}
-		$content['nm']['link_add'] = array(
+		$content['link_add'] = array(
 			'to_id'   => $this->pm_id,
 			'to_app'  => 'projectmanager',
 			'add_app' => 'infolog',
