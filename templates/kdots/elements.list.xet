@@ -175,8 +175,7 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.list.header" template="" lang="" group="0" version="1.9.001">
-		<!-- adding this break loading everything :(
-		<et2-link-add id="link_add" onchange="app.projectmanager.element_add_app_change_handler"></et2-link-add-->
+        <et2-link-add id="link_add" onchange="app.projectmanager.element_add_app_change_handler"></et2-link-add>
 		<et2-toolbar id="toolbar-elements">
 			<et2-button-icon id="list-bt" image="list" statustext="Projectlist" onclick="app.projectmanager.show('list')"></et2-button-icon>
 			<et2-button-icon id="elements-bt" image="diagram-3" statustext="Elementlist" onclick="app.projectmanager.show('elements')"></et2-button-icon>

@@ -264,6 +264,19 @@ export class ProjectmanagerApp extends EgwApp
 			this.views.list.etemplate.widgetContainer.getWidgetById('project_tree').set_value(current_project ? 'projectmanager::' + current_project : '');
 		}
 
+		// Hide other views - do this first so when we show, there's space for nm to calculate its size
+		for(let view in this.views)
+		{
+			if(what != view && this.views[view].etemplate)
+			{
+				this.views[view].etemplate.widgetContainer.iterateOver(function(nm)
+				{
+					nm.set_disabled(true);
+				}, this, et2_nextmatch);
+				jQuery(this.views[view].etemplate.DOMContainer).hide();
+			}
+		}
+
 		// Show selected sub-template
 		if(this.views[what].etemplate)
 		{
@@ -277,19 +290,6 @@ export class ProjectmanagerApp extends EgwApp
 
 		// Set header
 		this.egw.app_header(this.egw.lang(this.views[what].sidemenu),'projectmanager');
-
-		// Hide other views
-		for(let view in this.views)
-		{
-			if(what != view && this.views[view].etemplate)
-			{
-				this.views[view].etemplate.widgetContainer.iterateOver(function(nm)
-				{
-					nm.set_disabled(true);
-				}, this, et2_nextmatch);
-				jQuery(this.views[view].etemplate.DOMContainer).hide();
-			}
-		}
 
 		// enable the app-toolbar for view what
 		for(let template in this.etemplates)
