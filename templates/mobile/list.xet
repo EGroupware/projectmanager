@@ -2,8 +2,7 @@
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
 	<template id="projectmanager.list.right" template="" lang="" group="0" version="1.9.002">
-		<et2-button  class="plus_button" statustext="Add a new project" id="add_button" onclick="egw.open('','projectmanager','add');" noSubmit="true" parentId="projectmanager-list_plus_button_container"></et2-button>
-	</template>
+    </template>
 	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
 			<columns>
@@ -46,22 +45,14 @@
 		</grid>
 	</template>
 	<template id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
-		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
-		<nextmatch id="nm" template="projectmanager.list.rows"  header_right="projectmanager.list.right"/>
-		<grid width="100%">
+        <tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" slot="left"/>
+        <et2-button class="plus_button" statustext="Add a new project" id="add_button" onclick="egw.open('','projectmanager','add');" noSubmit="true"></et2-button>
+        <nextmatch id="nm" template="projectmanager.list.rows" header_right="projectmanager.list.right"/>
+        <grid width="100%">
 			<columns>
 				<column/>
 			</columns>
 			<rows>
-				<row disabled="!@msg">
-					<et2-description  align="center" id="msg" class="message" noLang="1"></et2-description>
-				</row>
-				<row disabled="1">
-					<template align="right" id="projectmanager.list.right" span="all"/>
-				</row>
-				<row>
-					<et2-description  id="plus_button_container"></et2-description>
-				</row>
 				<row class="noPrint" disabled="!@nm[selectcols]=/legacy_actions/">
 					<et2-hbox>
 						<et2-hbox>
