@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
+	<template id="projectmanager.gantt.header" template="" lang="" group="0" version="1.9.002">
+		<et2-button label="Add milestone" id="milestone" image="milestone"
+			onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
+		<et2-toolbar id="toolbar-gantt">
+			<et2-button-icon id="list-bt" image="list" statustext="Projectlist" onclick="app.projectmanager.show('list')"></et2-button-icon>
+			<et2-button-icon id="elements-bt" image="diagram-3" statustext="Elementlist" onclick="app.projectmanager.show('elements')"></et2-button-icon>
+			<et2-button-icon id="gantt-bt" image="bar-chart-steps" statustext="Ganttchart" onclick="app.projectmanager.show('gantt')"></et2-button-icon>
+			<et2-button-icon id="prices-bt" image="pricelist" statustext="Ganttchart" onclick="app.projectmanager.show('prices')"></et2-button-icon>
+			<et2-button-icon id="filemanager" image="filemanager/navbar" statustext="Filemanager" onclick="app.projectmanager.filemanager()"></et2-button-icon>
+		</et2-toolbar>
+		<!-- checkboxes wont work in toolbar :( -->
+		<et2-hbox>
+			<et2-checkbox  statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"></et2-checkbox>
+			<et2-checkbox  statustext="Show constraints and milestones" label="Constraints" id="constraints" onchange="1"></et2-checkbox>
+			<et2-button statustext="{Synchronise all}: {necessary for project-elements doing that not automatic}"
+				label="Synchronise all" id="sync_all" image="agt_reload"></et2-button>
+		</et2-hbox>
+	</template>
 	<template id="projectmanager.gantt" template="" lang="" group="0" version="1.9.001">
+		<et2-template template="projectmanager.gantt.header" slot="main-header"></et2-template>
 		<et2-vbox  width="100%" height="100%">
-			<et2-hbox>
-				<et2-checkbox  statustext="Show planned times instead of the real times" label="Planned times" id="planned_times" onchange="1"></et2-checkbox>
-				<et2-checkbox  statustext="Show constraints and milestones" label="Constraints" id="constraints" onchange="1"></et2-checkbox>
-				<et2-button statustext="necessary for project-elements doing that not automatic" label="Synchronise all" id="sync_all" image="agt_reload"></et2-button>
-				<et2-button statustext="Add a new milestone" label="Add milestone" id="milestone" image="milestone"
-                            onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_milestones_ui.edit&amp;pm_id=$cont[pm_id]&amp;ms_id=0'),'milestone','dependent=yes,width=680,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
-				<!-- Disabled for now, as these use external services
-				<et2-button  statustext="Export as PDF" label="PDF" onclick="widget.getRoot().getWidgetById('gantt').exportToPDF();"></et2-button>
-				<et2-button  statustext="Export as PNG" label="PNG" onclick="widget.getRoot().getWidgetById('gantt').exportToPNG();"></et2-button>
-				-->
-			</et2-hbox>
 			<projectmanager-gantt id="gantt" class="ganttContent" autoload="projectmanager_gantt::ajax_gantt_project" ajax_update="projectmanager_gantt::ajax_update" span="all">
 				<grid>
 					<columns>

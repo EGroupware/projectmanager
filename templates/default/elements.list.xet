@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.elements.list.add-new" template="" lang="" group="0" version="1.9.001">
-		<et2-link-add  id="link_add" onchange="app.projectmanager.element_add_app_change_handler"></et2-link-add>
-	</template>
 	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
 		<grid width="99%" height="99%">
 			<columns>
@@ -177,9 +174,22 @@
 			</rows>
 		</grid>
 	</template>
+	<template id="projectmanager.elements.list.header" template="" lang="" group="0" version="1.9.001">
+        <et2-link-add id="link_add" onchange="app.projectmanager.element_add_app_change_handler"></et2-link-add>
+		<et2-toolbar id="toolbar-elements">
+			<et2-button-icon id="list-bt" image="list" statustext="Projectlist" onclick="app.projectmanager.show('list')"></et2-button-icon>
+			<et2-button-icon id="elements-bt" image="diagram-3" statustext="Elementlist" onclick="app.projectmanager.show('elements')"></et2-button-icon>
+			<et2-button-icon id="gantt-bt" image="bar-chart-steps" statustext="Ganttchart" onclick="app.projectmanager.show('gantt')"></et2-button-icon>
+			<et2-button-icon id="prices-bt" image="pricelist" statustext="Ganttchart" onclick="app.projectmanager.show('prices')"></et2-button-icon>
+			<et2-button-icon id="filemanager" image="filemanager/navbar" statustext="Filemanager" onclick="app.projectmanager.filemanager()"></et2-button-icon>
+			<et2-select-cat id="cat_id" ariaLabel="Category" onchange="app.projectmanager.changeNmFilter"/>
+			<et2-select id="filter" ariaLabel="Status" onchange="app.projectmanager.changeNmFilter"/>
+			<et2-select id="filter2" ariaLabel="Show" onchange="app.projectmanager.changeNmFilter"/>
+		</et2-toolbar>
+	</template>
 	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
-		<nextmatch id="nm" options="projectmanager.elements.list.rows"
-                   header_left="projectmanager.elements.list.add-new" class="hide"/>
+		<et2-template template="projectmanager.elements.list.header" slot="main-header"></et2-template>
+		<nextmatch id="nm" template="projectmanager.elements.list.rows" class="hide"/>
 		<et2-box  id="add_existing_popup" class="action_popup prompt">
 			<et2-vbox>
 				<et2-description  value="Add element" class="promptheader"></et2-description>
