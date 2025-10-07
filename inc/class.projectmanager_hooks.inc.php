@@ -155,51 +155,25 @@ class projectmanager_hooks
 			{
 				$pm_id = (int) $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 			}
-			$file = array('Projectlist' => 'javascript:app.projectmanager.show("list")');
+			display_sidebox($appname, lang('Projectlist'), [
+				[
+					'link' => 'javascript:app.projectmanager.show("list")'
+				]]);
 			if($GLOBALS['projectmanager_bo']->check_acl(Acl::READ))
 			{
-				$file += array(
-					array(
+				display_sidebox($appname, lang('Elementlist'), [
+					[
 						'text' => 'Elementlist',
 						'link' => 'javascript:app.projectmanager.show("elements")'
-					),
-					array(
-						'text' => 'Ganttchart',
-						'link' => 'javascript:app.projectmanager.show("gantt")'
-					)
-				);
-			}
-			// show pricelist menuitem only if we use pricelists
-			if (!self::$config['accounting_types'] || in_array('pricelist',(is_array(self::$config['accounting_types'])?self::$config['accounting_types']:explode(',',self::$config['accounting_types']))))
-			{
-				// menuitem links to project-spezific priclist only if user has rights and it is used
-				// to not always instanciate the priclist class, this code dublicats bopricelist::check_acl(Acl::READ),
-				// specialy the always existing READ right for the general pricelist!!!
-				$file[] = array(
-					'text' => 'Pricelist',
-					'icon' => 'pricelist',
-					'app'  => 'projectmanager',
-					'link' => 'javascript:app.projectmanager.show("prices")'
-				);
-			}
-			if (isset($GLOBALS['egw_info']['user']['apps']['filemanager']))
-			{
-				$file[] = array(
-					'text' => 'Filemanager',
-					'icon' => 'navbar',
-					'app'  => 'filemanager',
-					'link' => Egw::link('/index.php',array(
-						'menuaction' => 'filemanager.filemanager_ui.index',
-						'ajax'       => 'true',
-					),'filemanager'),
-				);
+					]]);
 			}
 
-
-			$file[] = ['text'=>'--'];
-			$file['Placeholders'] = Egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
-			display_sidebox($appname,$GLOBALS['egw_info']['apps'][$appname]['title'].' '.lang('Menu'),$file);
-
+			display_sidebox($appname, lang('Placeholders'), [
+				[
+					'text' => 'placeholders', 'icon' => 'braces',
+					'link' => Egw::link('/index.php', 'menuaction=projectmanager.projectmanager_merge.show_replacements')
+				]
+			]);
 			// allways show sidebox
 			unset($GLOBALS['egw_info']['user']['preferences']['common']['auto_hide_sidebox']);
 		}
