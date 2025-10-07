@@ -195,14 +195,6 @@ class projectmanager_hooks
 				);
 			}
 
-			$file[] = ['text'=>'--'];
-			// Target for project tree
-			$file[] = array(
-				'no_lang' => true,
-				'text'=>'<span id="projectmanager-tree_target" />',
-				'link'=>false,
-				'icon' => false
-			);
 
 			$file[] = ['text'=>'--'];
 			$file['Placeholders'] = Egw::link('/index.php','menuaction=projectmanager.projectmanager_merge.show_replacements');
@@ -233,7 +225,7 @@ class projectmanager_hooks
 			}
 			else
 			{
-				display_sidebox($appname, lang('Configuration'), $file);
+				//display_sidebox($appname, lang('Configuration'), $file);
 			}
 		}
 	}
