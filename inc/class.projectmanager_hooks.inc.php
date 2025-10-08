@@ -133,7 +133,7 @@ class projectmanager_hooks
 		if ($location == 'sidebox_menu')
 		{
 			// Magic etemplate2 favorites menu (from nextmatch widget)
-			display_sidebox($appname, lang('Favorites'), Framework\Favorites::list_favorites($appname, 'nextmatch-projectmanager.list.rows-favorite'));
+			$GLOBALS['egw']->framework->sidebox($appname, lang('Favorites'), Framework\Favorites::list_favorites($appname, 'nextmatch-projectmanager.list.rows-favorite'));
 
 			// project-dropdown in sidebox menu
 			if (!is_object($GLOBALS['projectmanager_bo']))
@@ -155,20 +155,20 @@ class projectmanager_hooks
 			{
 				$pm_id = (int) $GLOBALS['egw_info']['preferences']['projectmanager']['current_project'];
 			}
-			display_sidebox($appname, lang('Projectlist'), [
+			$GLOBALS['egw']->framework->sidebox($appname, lang('Projectlist'), [
 				[
 					'link' => 'javascript:app.projectmanager.show("list")'
 				]]);
 			if($GLOBALS['projectmanager_bo']->check_acl(Acl::READ))
 			{
-				display_sidebox($appname, lang('Elementlist'), [
+				$GLOBALS['egw']->framework->sidebox($appname, lang('Elementlist'), [
 					[
 						'text' => 'Elementlist',
 						'link' => 'javascript:app.projectmanager.show("elements")'
 					]]);
 			}
 
-			display_sidebox($appname, lang('Placeholders'), [
+			$GLOBALS['egw']->framework->sidebox($appname, lang('Placeholders'), [
 				[
 					'text' => 'placeholders', 'icon' => 'braces',
 					'link' => Egw::link('/index.php', 'menuaction=projectmanager.projectmanager_merge.show_replacements')
@@ -199,7 +199,7 @@ class projectmanager_hooks
 			}
 			else
 			{
-				//display_sidebox($appname, lang('Configuration'), $file);
+				//$GLOBALS['egw']->framework->sidebox($appname, lang('Configuration'), $file);
 			}
 		}
 	}
