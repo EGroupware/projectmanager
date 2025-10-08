@@ -157,12 +157,14 @@ class projectmanager_hooks
 			}
 			$GLOBALS['egw']->framework->sidebox($appname, lang('Projectlist'), [
 				[
+					'icon' => 'list',
 					'link' => 'javascript:app.projectmanager.show("list")'
 				]]);
 			if($GLOBALS['projectmanager_bo']->check_acl(Acl::READ))
 			{
 				$GLOBALS['egw']->framework->sidebox($appname, lang('Elementlist'), [
 					[
+						'icon' => 'diagram-3',
 						'text' => 'Elementlist',
 						'link' => 'javascript:app.projectmanager.show("elements")'
 					]]);
