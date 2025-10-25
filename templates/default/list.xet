@@ -122,7 +122,7 @@
                         <et2-select-account id="${row}[pm_modifier]" readonly="true"></et2-select-account>
                     </et2-vbox>
                     <customfields-list id="$row"/>
-                    <et2-link-string entryId="${row_cont[pm_id]}" application="projectmanager"
+                    <et2-link-string entryId="$row_cont[pm_id]" application="projectmanager"
                                      onlyApp="kanban"></et2-link-string>
                 </row>
             </rows>
