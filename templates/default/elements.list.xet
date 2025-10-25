@@ -111,7 +111,7 @@
                     <nextmatch-header label="Kanban" id="kanban"/>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]">
-					<et2-image align="center" label="$row_cont[pe_app]" src="${row_cont[pe_icon]}"></et2-image>
+					<et2-image align="center" label="$row_cont[pe_app]" src="$row_cont[pe_icon]"></et2-image>
 					<et2-vbox>
 						<et2-link  id="${row}[pm_link]" app="" noLang="1"></et2-link>
 						<et2-link  id="${row}[link]" app="" noLang="1"></et2-link>
@@ -165,14 +165,14 @@
                     <et2-vbox align="center">
                         <et2-image align="center" src="${row_cont[pe_healt_icon]}"></et2-image>
                         <progress align="center" id="${row}[pe_completion]" no_lang="1"/>
-                        <et2-image align="center" src="${row_cont[pe_completion_icon]}" noLang="1"></et2-image>
+                        <et2-image align="center" src="$row_cont[pe_completion_icon]" noLang="1"></et2-image>
                         <et2-image align="center" src="$row_cont[ignored]" noLang="1"></et2-image>
                     </et2-vbox>
                     <et2-vbox readonly="true">
                         <et2-date-time id="${row}[pe_modified]" readonly="true"></et2-date-time>
                         <et2-select-account id="${row}[pe_modifier]" readonly="true"></et2-select-account>
                     </et2-vbox>
-                    <et2-link-string entryId="${row_cont[pe_app_id]}" application="${row_cont[pe_app]}"
+                    <et2-link-string entryId="$row_cont[pe_app_id]" application="$row_cont[pe_app]"
                                      onlyApp="kanban"></et2-link-string>
                 </row>
 			</rows>

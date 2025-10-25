@@ -137,7 +137,7 @@
 				<column width="22"/>
 			</columns>
 			<rows>
-				<row valign="top" class="${row_cont[class]}">
+				<row valign="top" class="$row_cont[class]">
 					<et2-vbox>
 						<et2-link  id="${row}[pe_id_start]" app="projectelement"></et2-link>
 						<et2-link  id="${row}[ms_id]" disabled="$row_cont[pe_id_start]" app="pm_milestone"></et2-link>
