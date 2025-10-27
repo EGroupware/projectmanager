@@ -1170,6 +1170,33 @@ export class ProjectmanagerApp extends EgwApp
 	{
 		return this.et2.getValueById('pm_title');
 	}
+
+
+	/**
+	 * View infolog entries linked to selected project
+	 * @param {egwAction} _action Select action
+	 * @param {egwActionObject[]} _senders Selected project(s)
+	 */
+	view_infolog(_action, _senders)
+	{
+		var extras = {
+			action: 'projectmanager',
+			action_id: [],
+			action_title: _senders.length > 1 ? this.egw.lang('selected projects') : ''
+		};
+		for(var i = 0; i < _senders.length; i++)
+		{
+			// Remove UID prefix for just contact_id
+			var ids = _senders[i].id.split('::');
+			ids.shift();
+			ids = ids.join('::');
+
+			extras.action_id.push(ids);
+		}
+
+		egw.open('', 'infolog', 'list', extras, 'infolog');
+	}
+
 }
 
 app.classes.projectmanager = ProjectmanagerApp;

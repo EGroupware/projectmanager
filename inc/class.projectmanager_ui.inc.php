@@ -961,6 +961,27 @@ class projectmanager_ui extends projectmanager_bo
 				'group' => $group,
 				'hideOnMobile' => true
 			),
+		);
+		if($GLOBALS['egw_info']['user']['apps']['infolog'])
+		{
+			$actions['infolog_app'] = array(
+				'caption'      => 'InfoLog',
+				'icon'         => 'infolog/navbar',
+				'group'        => $group,
+				'children'     => array(
+					'infolog' => array(
+						'caption'         => lang('View linked InfoLog entries'),
+						'icon'            => 'infolog/navbar',
+						'onExecute'       => 'javaScript:app.projectmanager.view_infolog',
+						'disableClass'    => 'contact_duplicate',
+						'allowOnMultiple' => true,
+						'hideOnDisabled'  => true,
+					),
+				),
+				'hideOnMobile' => true
+			);
+		}
+		$actions += array(
 			'filemanager' => array(
 				'icon' => 'filemanager/navbar',
 				'caption' => 'Filemanager',
