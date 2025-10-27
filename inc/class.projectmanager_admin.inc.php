@@ -156,7 +156,7 @@ class projectmanager_admin
 		$date_fields = [];
 		foreach(Api\Storage\Customfields::get('projectmanager') as $cf)
 		{
-			if($cf['type'] !== 'date' || in_array($cf['name'], array_keys($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'])))
+			if($cf['type'] !== 'date' || in_array($cf['name'], array_keys($content[Api\Storage\Tracking::CUSTOM_NOTIFICATION]['custom_date'] ?? [])))
 			{
 				continue;
 			}
