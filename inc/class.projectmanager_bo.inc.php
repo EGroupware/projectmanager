@@ -130,6 +130,25 @@ class projectmanager_bo extends projectmanager_so
 	 */
 	var $history = '';
 
+	/**
+	 * Labels for pm_status, value - label pairs
+	 *
+	 * @var array
+	 */
+	static $status_labels;
+	/**
+	 * Labels for pm_access, value - label pairs
+	 *
+	 * @var array
+	 */
+	var $access_labels;
+	/**
+	 * Labels for mains- & sub-projects filter
+	 *
+	 * @var array
+	 */
+	var $filter_labels;
+
 	const DELETED_STATUS = 'deleted';
 
 	/**
@@ -144,6 +163,11 @@ class projectmanager_bo extends projectmanager_so
 	 * @var array
 	 */
 	var $prefs;
+
+	/**
+	 * @var ?array set in some places from datasource->pe_name2id;
+	 */
+	var $pe_name2id;
 
 	/**
 	 * Constructor, calls the constructor of the extended class
@@ -173,6 +197,27 @@ class projectmanager_bo extends projectmanager_so
 
 		// Keep deleted projects?
 		$this->history = $this->config['history'];
+
+		static::$status_labels = array(
+			'active'    => lang('Active'),
+			'nonactive' => lang('Nonactive'),
+			'archive'   => lang('Archive'),
+			'template'  => lang('Template'),
+		);
+		if($this->history)
+		{
+			static::$status_labels[self::DELETED_STATUS] = lang('Deleted');
+		}
+		$this->access_labels = array(
+			'public'    => lang('Public'),
+			'anonym'    => lang('Anonymous public'),
+			'private'   => lang('Private'),
+		);
+		$this->filter_labels = array(
+			''			=> lang('All'),
+			'mains'		=> lang('Mainprojects'),
+			'subs'		=> lang('Subprojects'),
+		);
 
 		if ($instanciate) $this->instanciate($instanciate);
 

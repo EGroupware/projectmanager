@@ -33,24 +33,6 @@ class projectmanager_ui extends projectmanager_bo
 		'edit'  => true,
 		'view'  => true,
 	);
-	/**
-	 * Labels for pm_status, value - label pairs
-	 *
-	 * @var array
-	 */
-	static $status_labels;
-	/**
-	 * Labels for pm_access, value - label pairs
-	 *
-	 * @var array
-	 */
-	var $access_labels;
-	/**
-	 * Labels for mains- & sub-projects filter
-	 *
-	 * @var array
-	 */
-	var $filter_labels;
 
 	/**
 	 * Etemplate
@@ -72,26 +54,6 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		$this->template = $etemplate;
 
-		static::$status_labels = array(
-			'active'    => lang('Active'),
-			'nonactive' => lang('Nonactive'),
-			'archive'   => lang('Archive'),
-			'template'  => lang('Template'),
-		);
-		if($this->history)
-		{
-			static::$status_labels[self::DELETED_STATUS] = lang('Deleted');
-		}
-		$this->access_labels = array(
-			'public'    => lang('Public'),
-			'anonym'    => lang('Anonymous public'),
-			'private'   => lang('Private'),
-		);
-		$this->filter_labels = array(
-			''			=> lang('All'),
-			'mains'		=> lang('Mainprojects'),
-			'subs'		=> lang('Subprojects'),
-		);
 	}
 
 
