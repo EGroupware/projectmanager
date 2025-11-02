@@ -293,6 +293,7 @@ class JsObjects extends Api\CalDAV\JsBase
 			'roleId' => (int)$member['role_id'],
 			'roleAcl' => (int)$member['role_acl'],
 			'availability' => (int)$member['member_availibility'],
+			'accountID' => (int)$member['member_uid'],
 		], $members ?? []);
 	}
 
@@ -304,7 +305,7 @@ class JsObjects extends Api\CalDAV\JsBase
 	 */
 	public static function parseJsProjectMembers(array $members)
 	{
-		throw new Api\CalDAV\JsParseException("Attribute 'members' is currently read-only, use the EGroupware UI to change it!");
+		throw new Api\CalDAV\JsParseException("Attribute 'members' is (not yet) updatable, use the EGroupware UI to change it!");
 	}
 
 	/**
