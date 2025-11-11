@@ -180,3 +180,10 @@ budget numbers more padding so scrollbar cant overlap
 .et2_nextmatch table et2-number_ro span{
 	padding-right: 1em;
 }
+
+/*style member tab input fields the same as the neighbouring select boxes*/
+#projectmanager-edit_projectmanager-edit-members input.et2_textbox{
+    box-sizing: border-box;
+    min-height:var(--sl-input-height-medium);
+
+}
