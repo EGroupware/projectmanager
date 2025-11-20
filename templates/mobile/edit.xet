@@ -191,19 +191,17 @@
 		</grid>
 	</template>
 	<template id="projectmanager.edit" template="" lang="" group="0" version="1.9.001">
+        <et2-hbox  span="all" width="100%" slot="label">
+            <et2-button-icon  statustext="Apply the changes" id="button[apply]" image="apply"></et2-button-icon>
+            <et2-button-icon statustext="Delete this project" id="delete" onclick="Et2Dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button-icon>
+            <et2-checkbox  statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"></et2-checkbox>
+        </et2-hbox>
 		<grid width="100%">
 			<columns>
 				<column width="120"/>
 				<column/>
 			</columns>
 			<rows>
-				<row disabled="@hidebuttons" class="dialogHeadbar" >
-					<et2-hbox  span="all" width="100%">
-						<et2-button-icon  statustext="Apply the changes" id="button[apply]" image="apply"></et2-button-icon>
-                        <et2-button-icon statustext="Delete this project" id="delete" onclick="Et2Dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button-icon>
-						<et2-checkbox  statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"></et2-checkbox>
-					</et2-hbox>
-				</row>
 				<row disabled="!@showsearchbuttons" class="dialogHeadbar">
 					<et2-hbox  span="all" width="100%">
 						<et2-button  label="Search" id="button[search]" image="search"></et2-button>

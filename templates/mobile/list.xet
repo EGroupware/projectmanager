@@ -35,10 +35,10 @@
 							</et2-hbox>
 						</et2-hbox>
 					</et2-vbox>
-					<et2-vbox  class="pmCol1">
+					<et2-vbox  class="pmCol1" align="right">
 						<et2-date-duration  label="time" id="${row}[pm_used_time]" readonly="true" dataFormat="@@duration_format" ></et2-date-duration>
 						<et2-date-duration  label="planned" id="${row}[pm_planned_time]" readonly="true" span="all" class="planned" dataFormat="@@duration_format"></et2-date-duration>
-						<progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+						<progress label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
 					</et2-vbox>
 				</row>
 			</rows>
