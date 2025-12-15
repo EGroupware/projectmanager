@@ -346,11 +346,20 @@ class projectmanager_so extends Api\Storage
 		}
 		unset($filter['subs_or_mains']);
 
-		// if extending class or instanciator set columns to search, convert string criteria to array
-		if ($criteria && !is_array($criteria))
+		// if extending class or instantiator set columns to search, convert string criteria to array
+		if ($criteria && is_string($criteria))
 		{
-			$search = $this->search2criteria($criteria,$wildcard,$op);
-			$criteria = array($search);
+			if (preg_match('/^#\d+$/', $criteria) ||
+				!class_exists('EGroupware\\Rag\\Embedding') ||
+				!EGroupware\Rag\Embedding::search2criteria($this->app, $criteria, $order_by, $extra_cols, $filter))
+			{
+				// legacy search
+				$criteria = [$this->search2criteria($criteria, $wildcard, $op)];
+			}
+			else
+			{
+				$this->sanitize_order_by = false;   // no need to sanitize the generated order_by, it will only remove it
+			}
 		}
 		if (!is_array($criteria))
 		{
