@@ -365,5 +365,22 @@ class projectmanager_import_projects_csv extends importexport_basic_import_csv {
 		}
 		return false;
 	}
+
+	/**
+	 * Make sure roles are not arrays
+	 *
+	 * @param egw_record $row_entry
+	 */
+	protected function row_preview(importexport_iface_egw_record &$row_entry)
+	{
+		if(is_array($row_entry->pm_members))
+		{
+			array_walk($row_entry->pm_members, function (&$item, $key)
+			{
+				$item = Api\Accounts::title((int)$item['member_uid'] ?: $item['member_uid']);
+			});
+			$row_entry->pm_members = implode(', ', $row_entry->pm_members);
+		}
+	}
 }
 ?>
