@@ -87,7 +87,6 @@ csv-import	common	cs	CSV-import
 cumulated elements too	projectmanager	cs	Také kumulované prvky
 custom fields	projectmanager	cs	Uživatelsky definované položky
 customer title	projectmanager	cs	Jméno klienta
-data exchange settings	projectmanager	cs	Nastavení výměny dat
 datasource	projectmanager	cs	Datový zdroj
 datasources too	projectmanager	cs	Datové zdroje také
 dates	projectmanager	cs	Datumy
@@ -409,7 +408,6 @@ startdate	projectmanager	cs	Počáteční datum
 startrecord	projectmanager	cs	První záznam
 starts after	projectmanager	cs	Začíná po
 starts before	projectmanager	cs	Začíná před
-status	projectmanager	cs	Stav
 status filter	projectmanager	cs	Filtr stavů
 status set	projectmanager	cs	Nastavení stavu
 style used for everything but elements. some fonts have only normal style.	projectmanager	cs	Styl použitý pro vše kromě součástí. Některá písma mají jen normální styl.

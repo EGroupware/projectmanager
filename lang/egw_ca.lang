@@ -40,7 +40,6 @@ by	projectmanager	ca	per
 calculate budget by quantity (eg. time) and price	projectmanager	ca	Calcula pressupost per quantitat (ex. temps) i preu
 charset of file	projectmanager	ca	Joc de caràcters de l'arxiu
 charset of the above selected font	projectmanager	ca	Joc de caràcters de la font seleccionada més amunt
-check all	projectmanager	ca	Comprova-ho tot
 close the window, discard the changes made	projectmanager	ca	Tanca la finestra, descarta els canvis fets
 constraints	projectmanager	ca	Restriccions
 conversation between days and hours, default 8	projectmanager	ca	correspondència entre dies i hores, per defecte 8

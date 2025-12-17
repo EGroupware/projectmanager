@@ -78,7 +78,6 @@ csv-import	common	ru	Импорт CSV
 cumulated elements too	projectmanager	ru	Сводные элементы также
 custom fields	projectmanager	ru	Пользовательские Поля
 customer title	projectmanager	ru	Пользовательские названия
-data exchange settings	projectmanager	ru	Установки обмена данных
 datasource	projectmanager	ru	Источник данных
 datasources too	projectmanager	ru	также источники данных
 dates	projectmanager	ru	Даты
@@ -354,7 +353,6 @@ start, end, category, ...	projectmanager	ru	Запуск,завершение,к
 start- & enddate	projectmanager	ru	Дата запуска и завершения
 startdate	projectmanager	ru	Дата запуска
 startrecord	projectmanager	ru	Начальная запись
-status	projectmanager	ru	Статус
 status filter	projectmanager	ru	Фильтр статуса
 status set	projectmanager	ru	Состояние установлено
 style used for everything but elements. some fonts have only normal style.	projectmanager	ru	Стиль используется для всего за исключением элементов. Некоторые шрифты имеют только нормальный стиль.

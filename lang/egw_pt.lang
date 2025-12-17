@@ -56,7 +56,6 @@ csv-filename	projectmanager	pt	CSV - Nome do ficheiro
 csv-import	common	pt	CSV - Importar
 custom fields	projectmanager	pt	Campos personalizados
 customer title	projectmanager	pt	Título do cliente
-data exchange settings	projectmanager	pt	Configurações de troca de dados
 datasource	projectmanager	pt	Fonte de informação
 dates	projectmanager	pt	Datas
 days	projectmanager	pt	Dias

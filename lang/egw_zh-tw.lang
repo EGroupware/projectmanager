@@ -40,7 +40,6 @@ by	projectmanager	zh-tw	由
 calculate budget by quantity (eg. time) and price	projectmanager	zh-tw	依據數量（像時間）與價格計算預算
 charset of file	projectmanager	zh-tw	檔案字元編碼設定
 charset of the above selected font	projectmanager	zh-tw	上面選擇字型的字集
-check all	projectmanager	zh-tw	全部勾選
 close the window, discard the changes made	projectmanager	zh-tw	關閉視窗，取消修改
 constraints	projectmanager	zh-tw	限制
 conversation between days and hours, default 8	projectmanager	zh-tw	工作天數與時數的轉換基礎，預設為8

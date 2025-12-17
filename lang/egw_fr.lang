@@ -87,7 +87,6 @@ csv-import	common	fr	CSV-Importer
 cumulated elements too	projectmanager	fr	Eléments cumulés aussi
 custom fields	projectmanager	fr	Champs personnalisés
 customer title	projectmanager	fr	Titre client
-data exchange settings	projectmanager	fr	Paramètres d'échange de données
 datasource	projectmanager	fr	Source de données
 datasources too	projectmanager	fr	Les sources de données aussi
 dates	projectmanager	fr	Dates
@@ -409,7 +408,6 @@ startdate	projectmanager	fr	Date de début
 startrecord	projectmanager	fr	Enregistrement de départ
 starts after	projectmanager	fr	Début après
 starts before	projectmanager	fr	Début avant
-status	projectmanager	fr	Statut
 status filter	projectmanager	fr	Filtre de statut
 status set	projectmanager	fr	Statut défini
 style used for everything but elements. some fonts have only normal style.	projectmanager	fr	Style utilisé pour tout sauf les éléments. Certaines polices ont seulement un style normal.

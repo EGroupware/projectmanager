@@ -87,7 +87,6 @@ csv-import	common	es-es	Importar fichero CSV
 cumulated elements too	projectmanager	es-es	También los elementos acumulados
 custom fields	projectmanager	es-es	Campos personalizados
 customer title	projectmanager	es-es	Cargo del cliente
-data exchange settings	projectmanager	es-es	Opciones para intercambio de datos
 datasource	projectmanager	es-es	Fuente de datos
 datasources too	projectmanager	es-es	También las fuentes de datos
 dates	projectmanager	es-es	Fechas
@@ -409,7 +408,6 @@ startdate	projectmanager	es-es	Fecha de inicio
 startrecord	projectmanager	es-es	Registro de inicio
 starts after	projectmanager	es-es	Inicia después
 starts before	projectmanager	es-es	Inicia antes
-status	projectmanager	es-es	Estado
 status filter	projectmanager	es-es	Filtro de estados
 status set	projectmanager	es-es	Se ha establecido el estado
 style used for everything but elements. some fonts have only normal style.	projectmanager	es-es	Estilo utilizado para todo excepto los elementos. Algunos tipos de letra sólo tienen estilo normal.

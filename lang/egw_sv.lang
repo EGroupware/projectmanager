@@ -231,7 +231,6 @@ start, end, category, ...	projectmanager	sv	Påbörjan, avslut, kategori, ...
 start- & enddate	projectmanager	sv	Start- / Slutdatum
 startdate	projectmanager	sv	Startdatum
 startrecord	projectmanager	sv	Startpost
-status	projectmanager	sv	Status
 status filter	projectmanager	sv	Status filter
 subelements	projectmanager	sv	Underelement
 subprojects	projectmanager	sv	Underprojekt

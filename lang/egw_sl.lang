@@ -87,7 +87,6 @@ csv-import	common	sl	CSV-Uvoz
 cumulated elements too	projectmanager	sl	Tudi seštevek elementov
 custom fields	projectmanager	sl	Lastna polja
 customer title	projectmanager	sl	Naslov stranke
-data exchange settings	projectmanager	sl	Nastavitve za izmenjavo podatkov
 datasource	projectmanager	sl	Vir podatkov
 datasources too	projectmanager	sl	Tudi viri podatkov
 dates	projectmanager	sl	Datumi
@@ -397,7 +396,6 @@ startdate	projectmanager	sl	Začetni datum
 startrecord	projectmanager	sl	Začetni zapis
 starts after	projectmanager	sl	Začne za
 starts before	projectmanager	sl	Začne prej
-status	projectmanager	sl	Status
 status filter	projectmanager	sl	Filter stanja
 status set	projectmanager	sl	Stanje nastavljeno
 style used for everything but elements. some fonts have only normal style.	projectmanager	sl	Slog za vse, razen za elemente. Nekatere pisave imajo le običajni slog.

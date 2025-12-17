@@ -87,7 +87,6 @@ csv-import	common	km	ការនាំចូល CSV
 cumulated elements too	projectmanager	km	សមាសធាតុផ្សំផងដែរ។
 custom fields	projectmanager	km	វាលផ្ទាល់ខ្លួន
 customer title	projectmanager	km	ចំណងជើងអតិថិជន
-data exchange settings	projectmanager	km	ការកំណត់ការផ្លាស់ប្តូរទិន្នន័យ
 datasource	projectmanager	km	ប្រភពទិន្នន័យ
 datasources too	projectmanager	km	ប្រភពទិន្នន័យផងដែរ។
 dates	projectmanager	km	កាលបរិច្ឆេទ
@@ -407,7 +406,6 @@ startdate	projectmanager	km	ថ្ងៃ​ចាប់ផ្តើម
 startrecord	projectmanager	km	ចាប់ផ្តើមកំណត់ត្រា
 starts after	projectmanager	km	ចាប់ផ្តើមបន្ទាប់ពី
 starts before	projectmanager	km	ចាប់ផ្តើមមុន។
-status	projectmanager	km	ស្ថានភាព
 status filter	projectmanager	km	តម្រងស្ថានភាព
 status set	projectmanager	km	ស្ថានភាពបានកំណត់
 style used for everything but elements. some fonts have only normal style.	projectmanager	km	រចនាប័ទ្មប្រើសម្រាប់អ្វីគ្រប់យ៉ាងលើកលែងតែធាតុ។ ពុម្ពអក្សរខ្លះមានរចនាប័ទ្មធម្មតាប៉ុណ្ណោះ។
