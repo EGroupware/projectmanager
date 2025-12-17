@@ -87,7 +87,6 @@ csv-import	common	de	CSV-Import
 cumulated elements too	projectmanager	de	Auch zusammengefasste Elemente
 custom fields	projectmanager	de	Benutzerdefinierte Felder
 customer title	projectmanager	de	Kundentitel
-data exchange settings	projectmanager	de	Einstellungen Datenaustausch
 datasource	projectmanager	de	Datenquelle
 datasources too	projectmanager	de	Auch Datenquellen
 dates	projectmanager	de	Datum
@@ -409,9 +408,8 @@ startdate	projectmanager	de	Startdatum
 startrecord	projectmanager	de	Startdatensatz
 starts after	projectmanager	de	Startet nach
 starts before	projectmanager	de	Startet vor
-status	projectmanager	de	Status
 status filter	projectmanager	de	Status Filter
-status set	projectmanager	de	Status geändert
+status set	projectmanager	de	Status geändert.
 style used for everything but elements. some fonts have only normal style.	projectmanager	de	Stil der für alles außer Elementen verwendet wird. Einige Fonts haben nur den Stil Normal.
 subelements	projectmanager	de	Unterelemente
 subproject	projectmanager	de	Unterprojekt

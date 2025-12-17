@@ -249,7 +249,6 @@ start, end, category, ...	projectmanager	hu	Indulás, befejezés, kategória ...
 start- & enddate	projectmanager	hu	Indulási- és befejezési dátum
 startdate	projectmanager	hu	Indulási dátum
 startrecord	projectmanager	hu	Kezdőrekord
-status	projectmanager	hu	Állapot
 status filter	projectmanager	hu	Állapot szűrő
 style used for everything but elements. some fonts have only normal style.	projectmanager	hu	A stílus mindenre vonatkozik, kivéve az elemekre. Néhány fontnak csak normál stílusa van (nincs pl. dőlt, vastag stb.).
 subelements	projectmanager	hu	Al-elemek

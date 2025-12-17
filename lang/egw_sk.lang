@@ -87,7 +87,6 @@ csv-import	common	sk	CSV-Import
 cumulated elements too	projectmanager	sk	Vrátane kumulovaných prvkov
 custom fields	projectmanager	sk	Vlastné polia
 customer title	projectmanager	sk	Meno klienta
-data exchange settings	projectmanager	sk	Nastavenia pre výmenu údajov
 datasource	projectmanager	sk	Zdroj dát
 datasources too	projectmanager	sk	Vrátane zdrojov dát
 dates	projectmanager	sk	Dátumy
@@ -409,7 +408,6 @@ startdate	projectmanager	sk	Dátum začatia
 startrecord	projectmanager	sk	Prvý záznam
 starts after	projectmanager	sk	Začína po
 starts before	projectmanager	sk	Začína pred
-status	projectmanager	sk	Stav
 status filter	projectmanager	sk	Filter stavov
 status set	projectmanager	sk	Stav nastavený
 style used for everything but elements. some fonts have only normal style.	projectmanager	sk	Štýl použitý pre čokoľvek okrem prvkov. Niektoré písma majú len normálny štýl.

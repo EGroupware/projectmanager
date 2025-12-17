@@ -50,7 +50,6 @@ remark	projectmanager	uk	Ремарка
 resize	projectmanager	uk	Змінити розмір
 startdate	projectmanager	uk	Число початку
 startrecord	projectmanager	uk	Початковий запис
-status	projectmanager	uk	Статус
 test import (show importable records <u>only</u> in browser)	projectmanager	uk	Тестувати Імпорт (тільки показати записи, що можуть бути імпортовані)
 times	projectmanager	uk	Раз
 to many might exceed your execution-time-limit	projectmanager	uk	надто багато може перевищити Ваш ліміт часу

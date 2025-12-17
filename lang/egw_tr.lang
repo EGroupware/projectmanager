@@ -46,7 +46,6 @@ receive notifications about starting entries (real dates)	projectmanager	tr	Baş
 resize	projectmanager	tr	Yeniden Boyutlandır
 startdate	projectmanager	tr	Başlangıç tarihi
 startrecord	projectmanager	tr	Başlangıç kaydı
-status	projectmanager	tr	Durum
 test import (show importable records <u>only</u> in browser)	projectmanager	tr	İçe aktarmayı test edin. Tarayıcıda <u>sadece</u> içe aktarılabilir kayıtları gösterin.
 times	projectmanager	tr	Kere
 to many might exceed your execution-time-limit	projectmanager	tr	Çok fazla sayıda olması yürütme süresi sınırınızı aşabilir
