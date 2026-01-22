@@ -224,29 +224,32 @@
 					</et2-tabbox>
 				</row>
 				<row disabled="!@pm_id" class="dialogOperators">
-					<et2-hbox  span="2">
-						<et2-description  value="Modified"></et2-description>
-						<et2-date-time  id="pm_modified" readonly="true"></et2-date-time>
-						<et2-select-account  label="by" id="pm_modifier" readonly="true"></et2-select-account>
-					</et2-hbox>
-					<et2-hbox  align="right" span="2">
-						<et2-date-time  label="created" id="pm_created" readonly="true" noLang="1"></et2-date-time>
-						<et2-select-account  label="by" id="pm_creator" readonly="true"></et2-select-account>
+					<et2-hbox  span="4">
+						<et2-hbox class="modified">
+							<et2-description  value="Modified"></et2-description>
+							<et2-date-time  id="pm_modified" readonly="true"></et2-date-time>
+							<et2-select-account  label="by" id="pm_modifier" readonly="true"></et2-select-account>
+						</et2-hbox>
+						<et2-hbox  align="right" class="created" width="50%">
+							<et2-date-time  label="created" id="pm_created" readonly="true" noLang="1"></et2-date-time>
+							<et2-select-account  label="by" id="pm_creator" readonly="true"></et2-select-account>
+						</et2-hbox>
 					</et2-hbox>
 				</row>
 				<row class="dialogFooterToolbar">
-					<et2-hbox span="2">
+					<et2-hbox span="4">
                         <et2-button statustext="Edit this project" label="Edit" id="edit" image="edit"
                                     hideOnReadonly="true"></et2-button>
                         <et2-button statustext="Save the changes made" label="Save" id="save" image="save"></et2-button>
                         <et2-button statustext="Apply the changes" label="Apply" id="apply" image="apply"></et2-button>
                         <et2-button statustext="Exit without saving" label="Cancel" id="cancel"
                                     onclick="window.close();" image="cancel" noSubmit="true"></et2-button>
-                    </et2-hbox>
-					<et2-hbox  align="right">
-						<et2-checkbox  statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"></et2-checkbox>
-                        <et2-button statustext="Delete this project" label="Delete" id="delete" onclick="Et2Dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button>
+						<et2-hbox  align="right">
+							<et2-checkbox  statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"></et2-checkbox>
+							<et2-button statustext="Delete this project" label="Delete" id="delete" onclick="Et2Dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button>
+						</et2-hbox>
 					</et2-hbox>
+
 				</row>
 			</rows>
 		</grid>
