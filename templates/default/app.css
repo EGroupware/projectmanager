@@ -1,4 +1,7 @@
 /* $Id$ */
+egw-app#projectmanager::part(app-header) {
+  --sl-color-neutral-400: hsl(240, 4.9%, 83.9%);
+}
 /*Media print classes*/
 @media print {
   /* Gantt chart - extend vertically (browsers truncate horizontal overflow) */
@@ -186,4 +189,3 @@ budget numbers more padding so scrollbar cant overlap
   padding-inline: var(--sl-spacing-medium);
   flex-grow: 0;
 }
-/*# sourceMappingURL=app.css.map */
