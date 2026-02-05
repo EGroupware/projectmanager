@@ -190,7 +190,7 @@ export class ProjectmanagerApp extends EgwApp
 					const filter = {col_filter: {'pm_id': current_project}}
 					if(et2.getWidgetById('link_add'))
 					{
-						filter['link_add'] = {...et2.getWidgetById('link_add').value, ...{to_id: current_project}};
+						et2.getWidgetById('link_add').value = {...et2.getWidgetById('link_add').value, ...{to_id: current_project}};
 					}
 					et2.getWidgetById('nm').applyFilters(filter);
 					break;
