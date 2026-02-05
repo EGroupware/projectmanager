@@ -98,8 +98,13 @@ tr.projectmanager_rowHasParent > td:first-child {
     display: none;
 }
 
-#projectmanager-elements-list .egwGridView_grid > tbody > tr.th > td {
+#projectmanager-elements-list .egwGridView_grid > tbody {
+  > tr.th > td {
     border-bottom: 1px solid darkgray;
+  }
+  > tr > td{
+	padding-top:var(--sl-spacing-medium)
+  }
 }
 
 /* Element list hidden eroles */

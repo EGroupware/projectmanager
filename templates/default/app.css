@@ -95,6 +95,9 @@ tr.projectmanager_rowHasParent > td:first-child {
 #projectmanager-elements-list .egwGridView_grid > tbody > tr.th > td {
   border-bottom: 1px solid darkgray;
 }
+#projectmanager-elements-list .egwGridView_grid > tbody > tr > td {
+  padding-top: var(--sl-spacing-medium);
+}
 /* Element list hidden eroles */
 table.egwLinkMoreOptions {
   display: none;
@@ -189,3 +192,4 @@ budget numbers more padding so scrollbar cant overlap
   padding-inline: var(--sl-spacing-medium);
   flex-grow: 0;
 }
+/*# sourceMappingURL=app.css.map */
