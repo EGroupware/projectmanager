@@ -820,7 +820,7 @@ class projectmanager_bo extends projectmanager_so
 		}
 		elseif ($required & Acl::READ)       // read-rights are implied by all other rights, but EGW_ACL_ADD_TIMESHEET
 		{
-			$access = (boolean) ($rights & ~EGW_ACL_ADD_TIMESHEET);
+			$access = (bool) ($rights & ~EGW_ACL_ADD_TIMESHEET);
 		}
 		else
 		{
@@ -829,7 +829,7 @@ class projectmanager_bo extends projectmanager_so
 				$required |= EGW_ACL_EDIT_BUDGET;
 			}    // EDIT_BUDGET implies BUDGET
 
-			$access = (boolean) ($rights & $required);
+			$access = (bool) ($rights & $required);
 		}
 
 		if(($required & Acl::DELETE) && $this->config_data['history'] == 'history_admin_delete' &&

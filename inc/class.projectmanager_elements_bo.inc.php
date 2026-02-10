@@ -618,7 +618,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 			if($unlink)
 			{
 				// delete one link
-				Link::unlink($pe_id,'','',0,'','',(boolean)$this->project->history);
+				Link::unlink($pe_id,'','',0,'','',(bool)$this->project->history);
 			}
 			// update the project
 			$this->project->update($pm_id);
@@ -628,7 +628,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 		elseif ($pm_id && $unlink)
 		{
 			// delete all links to project $pm_id
-			Link::unlink(0,'projectmanager',$pm_id, '','!file','',(boolean)$this->project->history);
+			Link::unlink(0,'projectmanager',$pm_id, '','!file','',(bool)$this->project->history);
 		}
 		return $ret;
 	}

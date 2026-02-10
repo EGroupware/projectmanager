@@ -244,7 +244,7 @@ class projectmanager_datasource extends datasource
 	{
 		$data_backup = $this->projectmanager_bo->data;
 
-		if (($Ok = (boolean) $this->projectmanager_bo->read((int) $id)))
+		if (($Ok = (bool) $this->projectmanager_bo->read((int) $id)))
 		{
 			$Ok = $this->projectmanager_bo->save(array('pm_status' => $status)) == 0;
 		}
