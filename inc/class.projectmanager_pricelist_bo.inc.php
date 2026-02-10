@@ -175,21 +175,21 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	/**
 	 * search elements, reimplemented to use $this->pm_id, if no pm_id given in criteria or filter and join with the prices table
 	 *
-	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
+	 * @param array|string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
 	 * @param boolean $only_keys True returns only keys, False returns all cols
 	 * @param string $order_by fieldnames + {ASC|DESC} separated by colons ','
-	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
+	 * @param string|array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
 	 * @param string $wildcard appended befor and after each criteria
 	 * @param boolean $empty False=empty criteria are ignored in query, True=empty have to be empty in row
 	 * @param string $op defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
-	 * @param int/boolean $start if != false, return only maxmatch rows begining with start
+	 * @param int|boolean $start if != false, return only maxmatch rows begining with start
 	 * @param array $filter if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
-	 * @param string/boolean $join=true default join with prices-table or string as in Api\Storage\Base
+	 * @param string|boolean $join=true default join with prices-table or string as in Api\Storage\Base
 	 * @return array of matching rows (the row is an array of the cols) or False
 	 */
 	function &search($criteria,$only_keys=false,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join=true,$need_full_no_count=false)
 	{
-		if (!$this->check_acl(Acl::READ,(int)($criteria['pm_id'] ? $criteria['pm_id'] : $this->pm_id)))
+		if (!$this->check_acl(Acl::READ,(int)($criteria['pm_id'] ?? $this->pm_id)))
 		{
 			$ret = false;
 			return $ret;
@@ -224,8 +224,8 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 * reads one pricelist-itme specified by $keys, reimplemented to use $this->pm_id, if no pm_id given
 	 *
 	 * @param array $keys array with keys in form internalName => value, may be a scalar value if only one key
-	 * @param string/array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
-	 * @param string/boolean $join=true default join with links-table or string as in Api\Storage\Base
+	 * @param string|array $extra_cols string or array of strings to be added to the SELECT, eg. "count(*) as num"
+	 * @param string|boolean $join=true default join with links-table or string as in Api\Storage\Base
 	 * @return array/boolean data if row could be retrived else False
 	*/
 	function read($keys,$extra_cols='',$join=true)
@@ -266,7 +266,7 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	 *
 	 * @param int $required EGW_ACL_{READ|WRITE|DELETE}
 	 * @param int $pm_id=0 project-id for project-spez. prices/data to check, default 0 = general pricelist
-	 * @param array/int $data=null data/id of pricelist-entry, default null = use $this->data ($pm_id is ignored)
+	 * @param array|int $data=null data/id of pricelist-entry, default null = use $this->data ($pm_id is ignored)
 	 * @return boolean true if the user has the rights, false otherwise
 	 */
 	function check_acl($required,$pm_id=0,$data=null)
