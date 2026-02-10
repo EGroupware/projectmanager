@@ -46,14 +46,14 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<et2-nextmatch-header-filter  align="center" id="pe_app" emptyLabel="Application"/>
+					<et2-nextmatch-header-filter ariaLabel="Application" id="pe_app" emptyLabel="All"/>
 					<et2-vbox>
 						<nextmatch-sortheader label="Title" id="pe_title"/>
 						<nextmatch-sortheader label="Comment" id="pe_remark"/>
 					</et2-vbox>
 					<nextmatch-header label="Category" id="cat_id"/>
 					<nextmatch-sortheader label="Element role" id="pe_eroles"/>
-					<et2-nextmatch-header-account  id="pe_resources" emptyLabel="Resources"/>
+					<et2-nextmatch-header-account ariaLabel="Resources" id="pe_resources" emptyLabel="All"/>
 					<et2-vbox>
 						<nextmatch-sortheader label="Startdate" id="pe_real_start"/>
 						<et2-date  id="total_pe_real_start" readonly="true"></et2-date>
@@ -175,8 +175,9 @@
 		</grid>
 	</template>
 	<template id="projectmanager.elements.list.header" template="" lang="" group="0" version="1.9.001">
-        <et2-link-add id="link_add" onchange="app.projectmanager.element_add_app_change_handler"></et2-link-add>
 		<et2-toolbar id="toolbar-elements">
+			<et2-link-add id="link_add" onchange="app.projectmanager.element_add_app_change_handler" slot="prefix"></et2-link-add>
+			<et2-template template="api.search-button" slot="prefix"></et2-template>
 			<et2-button-icon id="list-bt" image="list" statustext="Projectlist" onclick="app.projectmanager.show('list')"></et2-button-icon>
 			<et2-button-icon id="elements-bt" image="diagram-3" statustext="Elementlist" onclick="app.projectmanager.show('elements')"></et2-button-icon>
 			<et2-button-icon id="gantt-bt" image="bar-chart-steps" statustext="Ganttchart" onclick="app.projectmanager.show('gantt')"></et2-button-icon>
