@@ -53,7 +53,7 @@
 			<et2-button-icon id="list-bt" image="list" statustext="Projectlist" onclick="app.projectmanager.show('list')"></et2-button-icon>
 			<et2-button-icon id="elements-bt" image="diagram-3" statustext="Elementlist" onclick="app.projectmanager.show('elements')"></et2-button-icon>
 			<et2-button-icon id="gantt-bt" image="bar-chart-steps" statustext="Ganttchart" onclick="app.projectmanager.show('gantt')"></et2-button-icon>
-			<et2-button-icon id="prices-bt" image="pricelist" statustext="Ganttchart" onclick="app.projectmanager.show('prices')"></et2-button-icon>
+			<et2-button-icon id="prices-bt" image="pricelist" statustext="Pricelist" onclick="app.projectmanager.show('prices')"></et2-button-icon>
 			<et2-button-icon id="filemanager" image="filemanager/navbar" statustext="Filemanager" onclick="app.projectmanager.filemanager()"></et2-button-icon>
 			<et2-select-cat id="cat_id" ariaLabel="Category" onchange="app.projectmanager.changeNmFilter"/>
 			<et2-select id="pm_id" ariaLabel="Project" onchange="app.projectmanager.changeNmFilter"/>
