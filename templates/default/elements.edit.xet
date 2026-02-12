@@ -254,7 +254,7 @@
 					<et2-description  id="ds[pe_completion]" noLang="1"></et2-description>
 				</row>
 				<row>
-					<et2-tabbox  id="dates|times|budget|constraints|resources|details|eroles" span="all" height="180" cfDisabled="true">
+                    <et2-tabbox id="dates|times|budget|constraints|resources|details|eroles" span="all" height="180" tabHeight="auto" cfDisabled="true">
 						<tabs>
 							<tab id="dates" label="Dates" statustext="Start- &amp; Enddate"/>
 							<tab id="times" label="Times" statustext="Times"/>
