@@ -190,7 +190,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		// usually waits until Egw::on_shutdown();
 		Link::run_notifies();
 
-		$elements = new \projectmanager_elements_bo($this->bo);
+		$elements = new \projectmanager_elements_bo($this->pm_id);
 		$elements->sync_all($this->pm_id);
 
 		// Make sure all elements are created
