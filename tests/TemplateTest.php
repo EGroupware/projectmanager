@@ -406,7 +406,8 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		foreach ($this->elements as $key => $_id)
 		{
 			list($app, $id) = explode(':', $_id);
-			$copied = array_shift($indexed_elements[$app]);
+
+			$copied = is_array($indexed_elements[$app]) ? array_shift($indexed_elements[$app]) : null;
 
 			if ($this->debug)
 			{
