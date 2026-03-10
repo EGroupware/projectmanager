@@ -190,7 +190,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		// usually waits until Egw::on_shutdown();
 		Link::run_notifies();
 
-		$elements = new \projectmanager_elements_bo($this->bo);
+		$elements = new \projectmanager_elements_bo($this->pm_id);
 		$elements->sync_all($this->pm_id);
 
 		// Make sure all elements are created
@@ -406,7 +406,8 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		foreach ($this->elements as $key => $_id)
 		{
 			list($app, $id) = explode(':', $_id);
-			$copied = array_shift($indexed_elements[$app]);
+
+			$copied = is_array($indexed_elements[$app]) ? array_shift($indexed_elements[$app]) : null;
 
 			if ($this->debug)
 			{

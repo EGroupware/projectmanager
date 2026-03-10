@@ -6,7 +6,8 @@ namespace EGroupware\Projectmanager;
 require_once realpath(__DIR__.'/../../api/tests/AppTest.php');	// Application test base
 //$GLOBALS['egw_info']['flags']['currentapp'] = 'projectmanager';
 
-use Egroupware\Api;
+use EGroupware\Api;
+use EGroupware\Api\Link;
 
 /**
  * Test deleting a project.
@@ -56,6 +57,9 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 	protected function setUp() : void
 	{
+		// Flush any remaining notifies to avoid confusion
+		Link::run_notifies();
+
 		$this->bo = new \projectmanager_bo();
 		$this->mockTracking($this->bo, 'projectmanager_tracking');
 
@@ -108,7 +112,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check - null means not found
 		$this->assertNull($this->bo->read($this->pm_id));
@@ -140,7 +144,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check project
 		$project = $this->bo->read($this->pm_id);
@@ -177,7 +181,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check project
 		$project = $this->bo->read($this->pm_id);
@@ -224,7 +228,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check datasources are still there
 		$this->checkDatasources();
@@ -235,7 +239,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check project restoration
 		$project = $this->bo->read($this->pm_id);
@@ -279,7 +283,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check datasources are gone - this depends on datasource settings
 		$this->checkDatasources('deleted');
@@ -292,7 +296,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check project restoration
 		$project = $this->bo->read($this->pm_id);
@@ -333,7 +337,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check datasources are still there
 		$this->checkDatasources();
@@ -345,7 +349,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check project is gone
 		$project = $this->bo->read($this->pm_id);
@@ -377,7 +381,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check datasources are still there, but deleted
 		$this->checkDatasources('deleted');
@@ -389,7 +393,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check project is gone
 		$project = $this->bo->read($this->pm_id);
@@ -430,7 +434,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check datasources are still there
 		$this->checkDatasources();
@@ -442,7 +446,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now so we get valid testing - it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Check project still there, still deleted
 		$project = $this->bo->read($this->pm_id);
@@ -468,7 +472,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		$this->checkElements('', 0);
 	}
@@ -530,9 +534,9 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now, or we won't get elements since it
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
-		$elements = new \projectmanager_elements_bo($this->bo);
+		$elements = new \projectmanager_elements_bo($this->pm_id);
 		$elements->sync_all($this->pm_id);
 
 		// Make sure all elements are created
@@ -553,7 +557,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 			'pm_id'	=> $this->pm_id,
 		);
 		$element_id = $bo->save($element);
-		Api\Link::link('calendar',$element_id,'projectmanager',$this->pm_id);
+		Link::link('calendar', $element_id, 'projectmanager', $this->pm_id);
 		$this->elements[] = 'calendar:'.$element_id;
 	}
 
@@ -588,7 +592,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		);
 		$bo->save();
 		$element_id = $bo->data['pm_id'];
-		Api\Link::link('projectmanager',$this->pm_id,'projectmanager',$element_id);
+		Link::link('projectmanager', $this->pm_id, 'projectmanager', $element_id);
 		$this->elements[] = 'projectmanager:'.$element_id;
 	}
 
@@ -607,7 +611,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		);
 		$bo->save();
 		$element_id = $bo->data['ts_id'];
-		Api\Link::link(TIMESHEET_APP,$element_id,'projectmanager',$this->pm_id);
+		Link::link(TIMESHEET_APP, $element_id, 'projectmanager', $this->pm_id);
 		$this->elements[] = 'timesheet:'.$element_id;
 	}
 
@@ -625,7 +629,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		);
 		$bo->save();
 		$element_id = $bo->data['tr_id'];
-		Api\Link::link('tracker',$element_id,'projectmanager',$this->pm_id);
+		Link::link('tracker', $element_id, 'projectmanager', $this->pm_id);
 		$this->elements[] = 'tracker:'.$element_id;
 	}
 
@@ -636,7 +640,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	{
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		// Force to ignore setting
 		$this->bo->history = '';
@@ -645,7 +649,7 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 		// Force links to run notification now, or elements might stay
 		// usually waits until Egw::on_shutdown();
-		Api\Link::run_notifies();
+		Link::run_notifies();
 
 		$this->deleteElements();
 	}
