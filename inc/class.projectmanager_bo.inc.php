@@ -1375,7 +1375,10 @@ class projectmanager_bo extends projectmanager_so
 			}
 			$file = $dir . '/' . $file;
 		}
-		Api\Vfs::copy_files($files, "/apps/projectmanager/{$this->data['pm_id']}");
+		if(is_array($files) && count($files) > 0)
+		{
+			Api\Vfs::copy_files($files, "/apps/projectmanager/{$this->data['pm_id']}");
+		}
 
 		return $boelements->pm_id;
 	}
