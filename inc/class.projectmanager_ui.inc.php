@@ -797,9 +797,9 @@ class projectmanager_ui extends projectmanager_bo
 			'project_tree' => $this->ajax_tree(0, true,$this->prefs['current_project'])
 		);
 		$this->template->setElementAttribute('project_tree','actions', projectmanager_ui::project_tree_actions());
-		if($this->prefs['current_project'])
+		if(!empty($_REQUEST['pm_id']) || $this->prefs['current_project'])
 		{
-			$content['project_tree'] = 'projectmanager::'.$this->prefs['current_project'];
+			$content['project_tree'] = 'projectmanager::' . ($_REQUEST['pm_id'] ?: $this->prefs['current_project']);
 		}
 		else
 		{

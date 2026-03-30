@@ -127,7 +127,7 @@ export class ProjectmanagerApp extends EgwApp
 				});
 				// First load, framework could not use our link handler since it wasn't loaded
 				const fw = egw_getFramework();
-				if(fw && !app.projectmanager.linkHandler(fw.getApplicationByName('projectmanager')?.browser?.currentLocation ?? fw.getApplicationByName('projectmanager').url))
+				if(fw && !app.projectmanager.linkHandler(fw.getApplicationByName('projectmanager')?.browser?.currentLocation ?? fw.getApp('projectmanager').url))
 				{
 					this.show('list');
 				}
