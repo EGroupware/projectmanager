@@ -826,11 +826,15 @@ class projectmanager_merge extends Api\Storage\Merge
 	 */
 	public function show_replacements()
 	{
+		/**TODO: change show_replacements to use standard show_replacements template
+		 * from Parent Api/Storage/Merge::show_replacements()
+		 * and add stuff in by overriding show_replacements_hook()
+		*/
 		$GLOBALS['egw_info']['flags']['app_header'] = lang('Projectmanager') . ' - ' . lang('Replacements for inserting project data into documents');
 		$GLOBALS['egw_info']['flags']['nonavbar'] = false;
 		echo $GLOBALS['egw']->framework->header();
-
-		echo "<table width='90%' align='center'>\n";
+		echo "<div class='scrollWrapper' style='overflow: auto;max-width: 100%;max-height: 100%'>\n";
+		echo "<table>\n";
 
 		// Projectmanager
 		$n = 0;
@@ -987,6 +991,7 @@ class projectmanager_merge extends Api\Storage\Merge
 		}
 
 		echo "</table>\n";
+		echo "</div>\n";
 		echo $GLOBALS['egw']->framework->footer();
 	}
 
