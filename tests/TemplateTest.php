@@ -128,9 +128,9 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	{
 		$project = array(
 			'pm_number'         =>	'TEST',
-			'pm_title'          =>	'Auto-test for ' . $this->getName(),
+			'pm_title'          =>	'Auto-test for ' . $this->name(),
 			'pm_status'         =>	$status,
-			'pm_description'    =>	'Test project for ' . $this->getName()
+			'pm_description'    =>	'Test project for ' . $this->name()
 		);
 
 		// Save & set modifier, no notifications
@@ -205,7 +205,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$bo = new \calendar_boupdate();
 		$element = array(
 			'title' => "Test calendar for #{$this->pm_id}",
-			'des'   => 'Test element as part of the project for test ' . $this->getName(),
+			'des'   => 'Test element as part of the project for test ' . $this->name(),
 			'start' => \time(),
 			'end'   => \time() + 60,
 			'pm_id'	=> $this->pm_id,
@@ -223,7 +223,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$bo = new \infolog_bo();
 		$element = array(
 			'info_subject' => "Test infolog for #{$this->pm_id}",
-			'info_des'     => 'Test element as part of the project for test ' . $this->getName(),
+			'info_des'     => 'Test element as part of the project for test ' . $this->name(),
 			'info_status'  => 'open',
 			'pm_id'	=> $this->pm_id
 		);
@@ -242,7 +242,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			'pm_number'         =>	'SUB-TEST',
 			'pm_title'          =>	"Test project for  #{$this->pm_id}",
 			'pm_status'         =>	'active',
-			'pm_description'    =>	'Test project for ' . $this->getName()
+			'pm_description'    =>	'Test project for ' . $this->name()
 		);
 		$bo->save();
 		$element_id = $bo->data['pm_id'];
@@ -258,7 +258,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$bo = new \timesheet_bo();
 		$bo->data = array(
 			'ts_title'       => "Test timesheet for #{$this->pm_id}",
-			'ts_description' => 'Test element as part of the project for test ' . $this->getName(),
+			'ts_description' => 'Test element as part of the project for test ' . $this->name(),
 			'ts_status'      => null,
 			'ts_owner'       => $GLOBALS['egw_info']['user']['account_id'],
 			'ts_start'       => \time()
@@ -277,7 +277,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		$bo = new \tracker_bo();
 		$bo->data = array(
 			'tr_summary'     => "Test tracker for #{$this->pm_id}",
-			'tr_description' => 'Test element as part of the project for test ' . $this->getName(),
+			'tr_description' => 'Test element as part of the project for test ' . $this->name(),
 			'tr_status'      => \tracker_bo::STATUS_OPEN,
 			'tr_owner'       => $GLOBALS['egw_info']['user']['account_id']
 		);
