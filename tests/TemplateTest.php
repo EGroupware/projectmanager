@@ -72,12 +72,12 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		// Mock the etemplate call
 		// First time so UI can set up the content array
 		$this->etemplate->expects($this->exactly(2))
-				->method('exec')
-				->will($this->returnCallback(function ($method, $content)
-				{
-					$_content = $content;
-					return is_array($content) && count($content) > 0;
-				}));
+			->method('exec')
+			->willReturnCallback(function ($method, $content)
+			{
+				$_content = $content;
+				return is_array($content) && count($content) > 0;
+			});
 
 		// Create new from template
 		$_GET['template'] = $this->pm_id;
@@ -203,11 +203,16 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	protected function make_calendar()
 	{
 		$bo = new \calendar_boupdate();
+		$start = new \EGroupware\Api\DateTime('now');
+		$end = clone $start;
+		$end->modify('+1 minute');
 		$element = array(
 			'title' => "Test calendar for #{$this->pm_id}",
 			'des'   => 'Test element as part of the project for test ' . $this->name(),
-			'start' => \time(),
-			'end'   => \time() + 60,
+			'start'        => $start,
+			'end'          => $end,
+			'owner'        => $GLOBALS['egw_info']['user']['account_id'],
+			'participants' => [$GLOBALS['egw_info']['user']['account_id'] => 'A'],
 			'pm_id'	=> $this->pm_id,
 		);
 		$element_id = $bo->save($element);
