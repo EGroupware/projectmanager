@@ -3,7 +3,7 @@
 
 namespace EGroupware\Projectmanager;
 
-require_once realpath(__DIR__.'/../../api/tests/AppTest.php');	// Application test base
+require_once __DIR__ . '/../../api/tests/AppTest.php';	// Application test base
 
 use EGroupware\Api\Etemplate;
 use EGroupware\Api\Link;
