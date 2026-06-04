@@ -3,7 +3,7 @@
 
 namespace EGroupware\Projectmanager;
 
-require_once __DIR__ . '/../../api/tests/AppTest.php';	// Application test base
+require_once EGW_SERVER_ROOT . '/api/tests/AppTest.php';	// Application test base
 
 use EGroupware\Api\Etemplate;
 use EGroupware\Api\Link;
