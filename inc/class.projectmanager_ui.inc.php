@@ -979,6 +979,7 @@ class projectmanager_ui extends projectmanager_bo
 			),
 			'status' => array(
 				'icon' => 'apply',
+				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'caption' => 'Modify status',
 				'group' => $group,
 				'children' => self::$status_labels,
@@ -1023,6 +1024,46 @@ class projectmanager_ui extends projectmanager_bo
 		}
 		//_debug_array($actions);
 		return $actions;
+	}
+
+	/**
+	 * Run a context-menu action (eg. status_*) via AJAX without a form submit
+	 * and refresh only the affected rows in place, so the list keeps its
+	 * scroll position (same pattern as infolog_ui::ajax_action).
+	 *
+	 * @param string $action eg. 'status_active'
+	 * @param array $selected pm_id's
+	 * @param boolean $select_all true if "all" selection is used
+	 * @param boolean $sources_too change status of datasources too
+	 */
+	public function ajax_action($action, $selected, $select_all = false, $sources_too = false)
+	{
+		$success = $failed = 0;
+		$action_msg = $msg = '';
+		$selected = array_values((array)$selected);
+
+		if ($this->action($action, $selected, $select_all,
+			$success, $failed, $action_msg, 'project_list', $msg, $sources_too))
+		{
+			$msg .= lang('%1 project(s) %2', $success, $action_msg);
+		}
+		else
+		{
+			$msg .= lang('%1 project(s) %2, %3 failed because of insufficent rights !!!',
+				$success, $action_msg, $failed);
+		}
+		if (!$select_all && $success && !$failed)
+		{
+			// punctual selection: update only the affected rows, keep scroll position
+			Api\Json\Response::get()->call('egw.refresh', $msg, 'projectmanager',
+				$selected, 'update-in-place', null, null, null, 'success');
+		}
+		else
+		{
+			// select-all or (partial) failure: classic full refresh
+			Api\Json\Response::get()->call('egw.refresh', $msg, 'projectmanager',
+				null, null, null, null, null, $failed ? 'error' : 'success');
+		}
 	}
 
 	/**

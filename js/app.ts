@@ -1091,6 +1091,39 @@ export class ProjectmanagerApp extends EgwApp
 	}
 
 	/**
+	 * Change project status from the list's context menu via AJAX (no form
+	 * submit): only the affected rows get refreshed in place, so the list
+	 * keeps its scroll position eg. while sequentially reviewing projects.
+	 *
+	 * @param {egwAction} action eg. status_active
+	 * @param {egwActionObject[]} selected
+	 */
+	change_status(action, selected)
+	{
+		// find the nextmatch like nm_action() does: walk up the action tree
+		let nm = null, a = action;
+		while(!nm && a)
+		{
+			if(a.data && a.data.nextmatch) nm = a.data.nextmatch;
+			a = a.parent;
+		}
+		const all = nm && nm.getSelection ? !!nm.getSelection().all : false;
+		const ids = [];
+		for(let i = 0; i < selected.length; i++)
+		{
+			ids.push(String(selected[i].id).split("::").pop());
+		}
+		const sources_too = !!action.getManager().getActionById('sources_too')?.checked;
+		if(all && !confirm(this.egw.lang('Apply this action on the whole query, NOT only the shown rows?')))
+		{
+			return;
+		}
+		egw.json('projectmanager.projectmanager_ui.ajax_action', [action.id, ids, all, sources_too],
+			null, this, true, this
+		).sendRequest(true);
+	}
+
+	/**
 	 * Enabled check for project element action, used by context menu
 	 *
 	 * @param {egwAction} action
