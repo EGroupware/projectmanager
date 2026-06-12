@@ -1091,11 +1091,11 @@ export class ProjectmanagerApp extends EgwApp
 	}
 
 	/**
-	 * Change project status from the list's context menu via AJAX (no form
-	 * submit): only the affected rows get refreshed in place, so the list
-	 * keeps its scroll position eg. while sequentially reviewing projects.
+	 * Change project status or category from the list's context menu via AJAX
+	 * (no form submit): only the affected rows get refreshed in place, so the
+	 * list keeps its scroll position eg. while sequentially reviewing projects.
 	 *
-	 * @param {egwAction} action eg. status_active
+	 * @param {egwAction} action eg. status_active or cat_123
 	 * @param {egwActionObject[]} selected
 	 */
 	change_status(action, selected)

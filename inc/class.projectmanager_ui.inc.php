@@ -958,6 +958,9 @@ class projectmanager_ui extends projectmanager_bo
 			'cat' => Etemplate\Widget\Nextmatch::category_action(
 				'projectmanager',$group,'Change category','cat_'
 			)+array(
+				// reuse the same in-place ajax handler as "Modify status", so the
+				// list keeps its scroll position instead of reloading to the top
+				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'disableClass' => 'rowNoEdit',
 				'confirm_mass_selection' => true,
 			),
