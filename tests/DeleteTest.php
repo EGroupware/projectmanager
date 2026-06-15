@@ -213,12 +213,22 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->bo->history = 'history';
 
 		// Tracker will be called twice, one for deletion, once for restore
+		$track_call = 0;
 		$this->bo->tracking->expects($this->atLeastOnce())
-                ->method('track')
-				->withConsecutive(
-					[$this->callback(function($subject) { return $subject['pm_status'] == 'deleted';})],
-					[$this->callback(function($subject) { return $subject['pm_status'] == 'active';})]
-				);
+	                ->method('track')
+					->willReturnCallback(function($subject) use (&$track_call)
+					{
+						if($track_call === 0)
+						{
+							$this->assertEquals('deleted', $subject['pm_status']);
+						}
+						elseif($track_call === 1)
+						{
+							$this->assertEquals('active', $subject['pm_status']);
+						}
+						$track_call++;
+						return true;
+					});
 
 		// Execute
 		$this->bo->delete($this->pm_id, false);
@@ -267,13 +277,22 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		$this->bo->history = 'history';
 
 		// Tracker will be called twice, one for deletion, once for restore
+		$track_call = 0;
 		$this->bo->tracking->expects($this->atLeastOnce())
-                ->method('track')
-				->withConsecutive(
-					[$this->callback(function($subject) { return $subject['pm_status'] == 'deleted';})], // Sub project
-					[$this->callback(function($subject) { return $subject['pm_status'] == 'deleted';})], // Main project
-					[$this->callback(function($subject) { return $subject['pm_status'] == 'active';})]
-				);
+	                ->method('track')
+					->willReturnCallback(function($subject) use (&$track_call)
+					{
+						if($track_call === 0 || $track_call === 1)
+						{
+							$this->assertEquals('deleted', $subject['pm_status']);
+						}
+						elseif($track_call === 2)
+						{
+							$this->assertEquals('active', $subject['pm_status']);
+						}
+						$track_call++;
+						return true;
+					});
 
 		// Execute
 		$this->bo->delete($this->pm_id, true);
@@ -549,11 +568,16 @@ class DeleteTest extends \EGroupware\Api\AppTest
 	protected function make_calendar()
 	{
 		$bo = new \calendar_boupdate();
+		$start = new \EGroupware\Api\DateTime('now');
+		$end = clone $start;
+		$end->modify('+1 minute');
 		$element = array(
 			'title' => "Test calendar for #{$this->pm_id}",
 			'des'   => 'Test element as part of the project for test ' . $this->name(),
-			'start' => \time(),
-			'end'   => \time() + 60,
+			'start' => $start,
+			'end'   => $end,
+			'owner' => $GLOBALS['egw_info']['user']['account_id'],
+			'participants' => [$GLOBALS['egw_info']['user']['account_id'] => 'A'],
 			'pm_id'	=> $this->pm_id,
 		);
 		$element_id = $bo->save($element);
