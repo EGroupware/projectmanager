@@ -147,7 +147,7 @@
 						<et2-link  id="${row}[pe_id_end]" app="projectelement"></et2-link>
 						<et2-link  id="${row}[ms_id]" disabled="$row_cont[pe_id_end]" app="pm_milestone"></et2-link>
 					</et2-vbox>
-					<et2-button-icon  id="delete[${row}]" image="delete"></et2-button-icon>
+					<et2-button-icon  id="delete[$row]" image="delete"></et2-button-icon>
 				</row>
 			</rows>
 		</grid>
