@@ -239,7 +239,7 @@ class projectmanager_elements_so extends Api\Storage\Base
 			}
 			$this->sanitize_order_by = false;
 
-			$order_by = "ORDER BY (link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
+			$order_by = "(link_app1='projectmanager' AND link_app2='projectmanager') DESC".($order_by ? ','.$order_by : '');
 		}
 		// fix some special filters: resources, cats
 		$fixed_filter = $this->_fix_filter($filter);
