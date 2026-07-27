@@ -263,7 +263,11 @@ class projectmanager_so extends Api\Storage
 		}
 		unset($query['col_filter']['resources']);
 
-		$query['order'] = ' GROUP BY egw_pm_projects.pm_id ' . ($query['order'] ? 'ORDER BY '. $query['order'] : '');
+		// $query['order'] and ['sort'] are still attacker-controlled at this point --> validate/normalize
+		// BEFORE embedding them after the hardcoded GROUP BY prefix below, which parent::get_rows() will
+		// append $query['sort'] to unconditionally, since $query['order'] is now never empty
+		$query['sort'] = strtoupper((string)$query['sort']) === 'DESC' ? 'DESC' : 'ASC';
+		$query['order'] = ' GROUP BY egw_pm_projects.pm_id ' . self::sanitizeOrderBy($query['order'] ? 'ORDER BY '. $query['order'] : '');
 		return parent::get_rows($query, $rows, $readonlys, $join, $need_full_no_count,	$only_keys, $extra_cols);
 	}
 
@@ -321,7 +325,10 @@ class projectmanager_so extends Api\Storage
 			// only add role-acl column if we NOT already group by something (eg. stylite.links for PM groups by it's hash)
 			if (stripos($order_by, 'GROUP BY') === false)
 			{
-				$order_by = 'GROUP BY '.$this->table_name.'.pm_id'.($order_by ? ' ORDER BY '.$order_by : '');
+				// $order_by may still be attacker-controlled here (eg. a direct search() call bypassing
+				// get_rows()) --> validate it BEFORE embedding it after the hardcoded GROUP BY prefix
+				$validated_order = $order_by ? ' '.self::sanitizeOrderBy('ORDER BY '.$order_by) : '';
+				$order_by = 'GROUP BY '.$this->table_name.'.pm_id'.$validated_order;
 				$extra_cols[] = 'BIT_OR('.$this->acl_extracol.') AS '.$this->acl_extracol;
 			}
 		}
@@ -373,7 +380,19 @@ class projectmanager_so extends Api\Storage
 		// should we return (number or) children
 		$join .= $this->check_add_children_join($extra_cols);
 
-		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+		// $order_by may contain a GROUP BY (added above, or already present on entry), which sanitizeOrderBy()
+		// can not validate --> bypass it narrowly here; by this point $order_by has already been validated
+		// piece by piece above, it is never raw client input reaching this call
+		$bypass_sanitize = stripos($order_by, 'GROUP BY') !== false;
+		if ($bypass_sanitize) $this->sanitize_order_by = false;
+		try
+		{
+			return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+		}
+		finally
+		{
+			if ($bypass_sanitize) $this->sanitize_order_by = true;
+		}
 	}
 
 	/**
