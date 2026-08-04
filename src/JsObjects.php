@@ -133,7 +133,7 @@ class JsObjects extends Api\CalDAV\JsBase
 					'pm_number' => self::$bo->generate_pm_number(false),
 					'pm_status' => key(\projectmanager_bo::$status_labels),
 					'pm_access' => key(self::$bo->access_labels),
-					'pm_accounting_type' => key(self::$bo->config['accounting_types']),
+					'pm_accounting_type' => current(self::$bo->config['accounting_types']),
 				];
 			}
 			// make sure we parse account-type first
@@ -212,7 +212,7 @@ class JsObjects extends Api\CalDAV\JsBase
 						break;
 
 					case 'accountingType':
-						if (!isset(self::$bo->config['accounting_types'][$value]))
+						if (!in_array($value, self::$bo->config['accounting_types'], true))
 						{
 							throw new Api\CalDAV\JsParseException("Invalid $name value '$value', allowed values: '".implode("', '", self::$bo->config['accounting_types'])."'!");
 						}
@@ -248,7 +248,11 @@ class JsObjects extends Api\CalDAV\JsBase
 						break;
 
 					case 'members':
-						self::parseJsProjectMembers($value);
+						// only complain if members are actually changed, not just passed through unchanged from a PATCH merge
+						if ($value != self::JsProjectMembers($old['members'] ?? null))
+						{
+							self::parseJsProjectMembers($value);
+						}
 						break;
 
 					case 'egroupware.org:customfields':
