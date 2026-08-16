@@ -73,7 +73,11 @@ class DeleteTest extends \EGroupware\Api\AppTest
 			$project = $this->bo->read(Array('pm_number' => $number));
 			if($project && $project['pm_id'])
 			{
-				$this->bo->delete($project);
+				// Delete by id only: passing the full row lets Storage\Base::delete() build a
+				// WHERE clause matching every column (incl. timezone-converted timestamps), which
+				// can silently match zero rows and leave this fixture number permanently taken for
+				// the rest of the suite.
+				$this->bo->delete($project['pm_id']);
 			}
 		}
 
