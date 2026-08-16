@@ -401,10 +401,12 @@ class projectmanager_bo extends projectmanager_so
 			$this->tracking = new projectmanager_tracking($this);
 			$this->tracking->html_content_allow = true;
 		}
+		if ($this->data['pm_number'] === 'TEST') error_log(__METHOD__."() DEBUG before track(): pm_id=".var_export($this->data['pm_id'],true)." type=".gettype($this->data['pm_id']));
 		if (!$this->tracking->track($this->data, $old, $this->user, null, null, $skip_notification))
 		{
 			return implode(', ',$this->tracking->errors);
 		}
+		if ($this->data['pm_number'] === 'TEST') error_log(__METHOD__."() DEBUG at return: pm_id=".var_export($this->data['pm_id'],true)." type=".gettype($this->data['pm_id']));
 		return $err;
 	}
 
