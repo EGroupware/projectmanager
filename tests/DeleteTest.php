@@ -91,17 +91,26 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 	protected function tearDown() : void
 	{
-		$this->deleteProject();
+		// finally: if deleteProject() throws partway through (eg. one element's ACL check
+		// fails), the config restore and global unset below must still run - otherwise a
+		// stuck 'history' setting or stale $GLOBALS bo silently breaks unrelated tests that
+		// run later in the same PHPUnit process.
+		try
+		{
+			$this->deleteProject();
+		}
+		finally
+		{
+			$this->bo = null;
 
-		$this->bo = null;
+			// Restore original settings
+			Api\Config::save_value(static::HISTORY_SETTING, static::$pm_history_setting, 'projectmanager');
+			Api\Config::save_value(static::HISTORY_SETTING, static::$infolog_history_setting, 'infolog');
 
-		// Restore original settings
-		Api\Config::save_value(static::HISTORY_SETTING, static::$pm_history_setting, 'projectmanager');
-		Api\Config::save_value(static::HISTORY_SETTING, static::$infolog_history_setting, 'infolog');
-
-		// Projectmanager sets a lot of global stuff
-		unset($GLOBALS['projectmanager_bo']);
-		unset($GLOBALS['projectmanager_elements_bo']);
+			// Projectmanager sets a lot of global stuff
+			unset($GLOBALS['projectmanager_bo']);
+			unset($GLOBALS['projectmanager_elements_bo']);
+		}
 	}
 
 	public function testDelete()
@@ -678,13 +687,21 @@ class DeleteTest extends \EGroupware\Api\AppTest
 		// Force to ignore setting
 		$this->bo->history = '';
 		Api\Config::save_value(static::HISTORY_SETTING, '', 'projectmanager');
-		$this->bo->delete($this->pm_id, true);
+		try
+		{
+			$this->bo->delete($this->pm_id, true);
+		}
+		finally
+		{
+			// deleteElements() must still run even if the project delete itself threw -
+			// otherwise directly-created fixture elements (timesheet, tracker, ...) never
+			// get their own explicit double-delete below and leak permanently.
+			// Force links to run notification now, or elements might stay
+			// usually waits until Egw::on_shutdown();
+			Link::run_notifies();
 
-		// Force links to run notification now, or elements might stay
-		// usually waits until Egw::on_shutdown();
-		Link::run_notifies();
-
-		$this->deleteElements();
+			$this->deleteElements();
+		}
 	}
 
 
@@ -700,36 +717,46 @@ class DeleteTest extends \EGroupware\Api\AppTest
 
 			$bo_class = "{$app}_bo";
 
-			// Delete each entry twice to make sure it's gone
-			switch($app)
+			// Each case is wrapped so one element's delete failure (eg. an ACL check, or
+			// any other exception) can't abort the loop and leave later elements - notably
+			// timesheet/tracker, last in iteration order - permanently orphaned.
+			try
 			{
-				case 'calendar':
-					$bo = new \calendar_boupdate();
-					$bo->delete($id,0,true,true);
-					$bo->delete($id,0,true,true);
-					break;
-				case 'infolog':
-					$bo = new $bo_class();
-					$bo->delete($id, true, false, true);
-					$bo->delete($id, true, false, true);
-					break;
-				case 'projectmanager':
-					$bo = new $bo_class();
-					$bo->delete($id);
-					$bo->delete($id);
-					break;
-				case 'timesheet':
-					$bo = new $bo_class();
-					$bo->delete($id);
-					// Tell Timesheet to ignore ACL to make sure it's gone
-					$bo->delete($id, true);
-					break;
-				case 'tracker':
-					$bo = new $bo_class();
-					// Once is enough for tracker, it doesn't support keeping things
-					// after deleting
-					$bo->delete($id);
-					break;
+				// Delete each entry twice to make sure it's gone
+				switch($app)
+				{
+					case 'calendar':
+						$bo = new \calendar_boupdate();
+						$bo->delete($id,0,true,true);
+						$bo->delete($id,0,true,true);
+						break;
+					case 'infolog':
+						$bo = new $bo_class();
+						$bo->delete($id, true, false, true);
+						$bo->delete($id, true, false, true);
+						break;
+					case 'projectmanager':
+						$bo = new $bo_class();
+						$bo->delete($id);
+						$bo->delete($id);
+						break;
+					case 'timesheet':
+						$bo = new $bo_class();
+						$bo->delete($id);
+						// Tell Timesheet to ignore ACL to make sure it's gone
+						$bo->delete($id, true);
+						break;
+					case 'tracker':
+						$bo = new $bo_class();
+						// Once is enough for tracker, it doesn't support keeping things
+						// after deleting
+						$bo->delete($id);
+						break;
+				}
+			}
+			catch (\Throwable $e)
+			{
+				error_log(__METHOD__."() failed to delete $app:$id: ".$e);
 			}
 		}
 	}
