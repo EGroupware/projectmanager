@@ -28,22 +28,75 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	// List of element IDs so we can check if they get deleted
 	protected $elements = array();
 
+	/**
+	 * Force-purge a stray projectmanager project by id, bypassing ACL, IF it's still there
+	 * after a normal projectmanager_bo delete attempt.
+	 *
+	 * projectmanager_bo::delete() calls projectmanager_bo::read() first, which enforces an ACL
+	 * check against the CURRENT session user. Observed (but not yet root-caused) in the full
+	 * PHPUnit suite: that check can return false for a project this same test just created a
+	 * moment earlier, apparently after enough other tests have run before it in the same
+	 * process. When that happens, delete() silently no-ops (returns 0, no exception) and the
+	 * row survives, later colliding with the next test's fixture INSERT under the same
+	 * pm_number. This is test-fixture cleanup, where "get rid of it no matter what" is the
+	 * correct semantics - projectmanager_so's delete() is a plain, ACL-free row delete, used
+	 * here ONLY as a last-resort safety net *after* the normal, cascade-aware bo-level delete
+	 * has already had its chance to clean up members/elements/links properly.
+	 *
+	 * @param int|string|null $pm_id
+	 */
+	protected function forcePurgeProjectIfStillThere($pm_id)
+	{
+		if (!$pm_id)
+		{
+			return;
+		}
+		$so = new \projectmanager_so();
+		if ($so->read($pm_id))
+		{
+			$so->delete($pm_id);
+		}
+	}
+
+	/**
+	 * Make sure no stray projectmanager project with the given pm_number is left over from an
+	 * earlier, interrupted test run, before a fresh fixture gets created under the same number.
+	 *
+	 * Looks the project up via projectmanager_so, NOT projectmanager_bo: a stray row can be
+	 * ACL-invisible to the ACL-gated bo::read() used for the lookup in the original version of
+	 * this pre-cleanup, for the same not-yet-root-caused reason documented on
+	 * forcePurgeProjectIfStillThere() - which would otherwise skip cleanup entirely rather than
+	 * just no-op the delete. If found, attempts the normal cascade-aware bo-level delete first
+	 * (proper member/element/link cleanup when the ACL check happens to succeed), then falls
+	 * back to a forced purge if the row is still there afterwards.
+	 *
+	 * @param \projectmanager_bo $bo used for the normal (cascade-aware) delete attempt;
+	 *   its history property is forced to '' so a single delete() call always purges rather
+	 *   than soft-deleting
+	 * @param string $pm_number
+	 */
+	protected function purgeStaleProjectFixture(\projectmanager_bo $bo, $pm_number)
+	{
+		$so = new \projectmanager_so();
+		$project = $so->read(array('pm_number' => $pm_number));
+		if (!$project || !$project['pm_id'])
+		{
+			return;
+		}
+		$bo->history = '';
+		$bo->delete($project['pm_id'], true);
+		$this->forcePurgeProjectIfStillThere($project['pm_id']);
+	}
+
 	protected function setUp() : void
 	{
 		// Make sure a 'TEST'/'SUB-TEST' fixture left behind by a previous test (eg. an earlier
 		// test class whose own cleanup got interrupted) doesn't collide with makeProject()'s
-		// insert below - same guard as DeleteTest::setUp(). $delete_sources=true so a leftover
-		// project's linked calendar/infolog/timesheet/tracker/sub-project entries get
-		// cascade-cleaned too, instead of orphaned.
+		// insert below - same guard as DeleteTest::setUp().
 		$cleanup_bo = new \projectmanager_bo();
 		foreach(array('TEST', 'SUB-TEST') as $number)
 		{
-			$project = $cleanup_bo->read(Array('pm_number' => $number));
-			if($project && $project['pm_id'])
-			{
-				$cleanup_bo->history = '';
-				$cleanup_bo->delete($project['pm_id'], true);
-			}
+			$this->purgeStaleProjectFixture($cleanup_bo, $number);
 		}
 
 		$this->ui = new \projectmanager_ui();
@@ -353,6 +406,8 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			Link::run_notifies();
 
 			$this->deleteElements();
+
+			$this->forcePurgeProjectIfStillThere($pm_id);
 		}
 	}
 
