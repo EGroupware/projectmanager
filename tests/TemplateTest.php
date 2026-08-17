@@ -32,7 +32,9 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	{
 		// Make sure a 'TEST'/'SUB-TEST' fixture left behind by a previous test (eg. an earlier
 		// test class whose own cleanup got interrupted) doesn't collide with makeProject()'s
-		// insert below - same guard as DeleteTest::setUp().
+		// insert below - same guard as DeleteTest::setUp(). $delete_sources=true so a leftover
+		// project's linked calendar/infolog/timesheet/tracker/sub-project entries get
+		// cascade-cleaned too, instead of orphaned.
 		$cleanup_bo = new \projectmanager_bo();
 		foreach(array('TEST', 'SUB-TEST') as $number)
 		{
@@ -40,7 +42,7 @@ class TemplateTest extends \EGroupware\Api\AppTest
 			if($project && $project['pm_id'])
 			{
 				$cleanup_bo->history = '';
-				$cleanup_bo->delete($project['pm_id']);
+				$cleanup_bo->delete($project['pm_id'], true);
 			}
 		}
 

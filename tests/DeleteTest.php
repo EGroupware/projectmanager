@@ -81,8 +81,10 @@ class DeleteTest extends \EGroupware\Api\AppTest
 				// 'deleted') on the first call and keeps pm_number - a real purge needs a second
 				// delete() once already-deleted. Each test method below sets its own history
 				// value afterwards, so this doesn't leak into the actual test.
+				// $delete_sources=true so a leftover project's linked calendar/infolog/timesheet/
+				// tracker/sub-project entries get cascade-cleaned too, instead of orphaned.
 				$this->bo->history = '';
-				$this->bo->delete($project['pm_id']);
+				$this->bo->delete($project['pm_id'], true);
 			}
 		}
 
