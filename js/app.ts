@@ -14,13 +14,18 @@
 	/projectmanager/js/et2_widget_gantt.js;
 */
 import {EgwApp} from "../../api/js/jsapi/egw_app";
-import {egw, egw_getFramework} from "../../api/js/jsapi/egw_global";
+// egw/egw_getFramework are ambient globals (declared in egw_global.d.ts's "declare global {}"),
+// not real exported module members - see doc/ai/projects/app-ts-modernization.md.
 import {etemplate2} from "../../api/js/etemplate/etemplate2";
 import {et2_gantt} from "./et2_widget_gantt";
 import {et2_nextmatch} from "../../api/js/etemplate/et2_extension_nextmatch";
-import {Et2LinkAdd} from "../../api/js/etemplate/Et2Link/Et2LinkAdd";
-import {EgwFrameworkApp, FilterInfo} from "../../kdots/js/EgwFrameworkApp";
+import type {Et2LinkAdd} from "../../api/js/etemplate/Et2Link/Et2LinkAdd";
+import type {EgwFrameworkApp, FilterInfo} from "../../kdots/js/EgwFrameworkApp";
 import type {Et2Template} from "../../api/js/etemplate/Et2Template/Et2Template";
+
+// register_app_refresh is a real global set by api/js/jsapi/jsapi.js (window.register_app_refresh),
+// but is not declared in egw_global.d.ts - declared locally here instead of touching that shared file.
+declare function register_app_refresh(appname : string, refresh_func : (...args : any[]) => any) : void;
 
 /**
  * JS for projectmanager
@@ -46,6 +51,11 @@ export class ProjectmanagerApp extends EgwApp
 		"projectmanager.pricelist.list": "prices"
 	};
 
+	// Click handlers bound to sidebox links by _bind_sidebox(), keyed by link element -
+	// native equivalent of jQuery's namespaced 'click.projectmanager' event, so a later
+	// rebind/teardown can remove exactly the handler(s) we added (see _clearSideboxHandlers()).
+	private _sideboxClickHandlers : Map<HTMLElement, EventListener> = new Map();
+
 	/**
 	 * Constructor
 	 *
@@ -55,7 +65,7 @@ export class ProjectmanagerApp extends EgwApp
 		// call parent
 		super('projectmanager');
 
-		register_app_refresh(this.appname, jQuery.proxy(this.linkHandler, this));
+		register_app_refresh(this.appname, this.linkHandler.bind(this));
 	}
 
 	/**
@@ -66,7 +76,7 @@ export class ProjectmanagerApp extends EgwApp
 		// Release sidebox from views
 		if(this.sidebox)
 		{
-			this.sidebox.parent().parent().find('a').off('.projectmanager');
+			this._clearSideboxHandlers();
 		}
 
 		// Remove reference to etemplates
@@ -99,35 +109,38 @@ export class ProjectmanagerApp extends EgwApp
 			view.etemplate = et2;
 
 			// Take over sidebox menu
-			this._bind_sidebox(view.sidemenu, function() {app.projectmanager.show(view.name);return false;});
+			this._bind_sidebox(view.sidemenu, () => {(<ProjectmanagerApp>app.projectmanager).show(view.name);return false;});
 
-			// If one template disappears, we want to release it
-			jQuery(et2.DOMContainer).one('clear',function() {
+			// If one template disappears, we want to release it.  'clear' is a real native
+			// event, dispatched by etemplate2.clear() (see etemplate2.ts) - not jQuery-specific.
+			et2.DOMContainer.addEventListener('clear', () => {
 				if(app.projectmanager && app.projectmanager.sidebox)
 				{
-					app.projectmanager.sidebox.off('.projectmanager');
+					this._clearSideboxHandlers();
 				}
 				view.etemplate = null;
-			});
+			}, {once: true});
 
 			// Start hidden, except for project list
-			if(jQuery(et2.DOMContainer).siblings('.et2_container').length && !et2.widgetContainer.getArrayMgr('content').getEntry('project_tree'))
+			const hasSiblingContainer = Array.from(et2.DOMContainer.parentElement?.children ?? [])
+				.some((el : Element) => el !== et2.DOMContainer && el.matches('.et2_container'));
+			if(hasSiblingContainer && !et2.widgetContainer.getArrayMgr('content').getEntry('project_tree'))
 			{
-				jQuery(et2.DOMContainer).hide();
+				et2.DOMContainer.style.display = 'none';
 			}
 
 			if(view.name == 'list')
 			{
 				// First load, bind filemanager too
-				this._bind_sidebox('filemanager', function() {
-					app.projectmanager.show_filemanager(null, [{id:
+				this._bind_sidebox('filemanager', () => {
+					(<ProjectmanagerApp>app.projectmanager).show_filemanager(null, [{id:
 						window.app.projectmanager.views.list.etemplate.widgetContainer.getWidgetById('project_tree').getValue()||'projectmanager::'
 					}]);
 					return false;
 				});
 				// First load, framework could not use our link handler since it wasn't loaded
 				const fw = egw_getFramework();
-				if(fw && !app.projectmanager.linkHandler(fw.getApplicationByName('projectmanager')?.browser?.currentLocation ?? fw.getApp('projectmanager').url))
+				if(fw && !(<ProjectmanagerApp>app.projectmanager).linkHandler(fw.getApplicationByName('projectmanager')?.browser?.currentLocation ?? fw.getApp('projectmanager').url))
 				{
 					this.show('list');
 				}
@@ -213,17 +226,17 @@ export class ProjectmanagerApp extends EgwApp
 					{
 						project_id = [current_project];
 					}
-					project_id = project_id.map(function(id) {return typeof id == 'string' && id.indexOf('projectmanager::') == 0 ? id : 'projectmanager::'+id;});
+					project_id = project_id.map((id) => typeof id == 'string' && id.indexOf('projectmanager::') == 0 ? id : 'projectmanager::'+id);
 
 					if(console.profile) console.profile('Gantt');
 					if(console.group) console.group("Gantt loading PM_ID " + project_id);
 					if(console.time) console.time("Gantt fetch");
-					this.egw.json('projectmanager_gantt::ajax_gantt_project',[project_id,values], function(data) {
+					this.egw.request('projectmanager_gantt::ajax_gantt_project',[project_id,values]).then((data) => {
 
 						if(console.time) console.timeEnd("Gantt fetch");
 						gantt.set_value(data);
 						window.setTimeout(() => gantt.resize(), 100);
-					}).sendRequest(true);
+					});
 					break;
 				case 'prices':
 					// Pricelist is not valid for all projects.  If we have the data, adjust accordingly
@@ -274,19 +287,19 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			if(what != view && this.views[view].etemplate)
 			{
-				this.views[view].etemplate.widgetContainer.iterateOver(function(nm)
+				this.views[view].etemplate.widgetContainer.iterateOver((nm) =>
 				{
 					nm.set_disabled(true);
 				}, this, et2_nextmatch);
-				jQuery(this.views[view].etemplate.DOMContainer).hide();
+				this.views[view].etemplate.DOMContainer.style.display = 'none';
 			}
 		}
 
 		// Show selected sub-template
 		if(this.views[what].etemplate)
 		{
-			jQuery(this.views[what].etemplate.DOMContainer).show();
-			this.views[what].etemplate.widgetContainer.iterateOver(function(nm)
+			this.views[what].etemplate.DOMContainer.style.display = '';
+			this.views[what].etemplate.widgetContainer.iterateOver((nm) =>
 			{
 				nm.set_disabled(false);
 			}, this, et2_nextmatch);
@@ -390,7 +403,7 @@ export class ProjectmanagerApp extends EgwApp
 				return false;
 			default:
 				// Blank filters reset any/all nextmatches
-				if(jQuery.isEmptyObject(state.state))
+				if(Object.keys(state.state ?? {}).length === 0)
 				{
 					et2 = etemplate2.getByApplication(this.appname);
 				}
@@ -400,7 +413,7 @@ export class ProjectmanagerApp extends EgwApp
 				}
 				for(let i = 0; i < et2.length; i++)
 				{
-					et2[i].widgetContainer.iterateOver(function(_widget) {
+					et2[i].widgetContainer.iterateOver((_widget) => {
 						// Firefox has trouble with spaces in search
 						if(state.state && state.state.search) state.state.search = unescape(state.state.search);
 
@@ -433,13 +446,13 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			if(this.view == 'gantt')
 			{
-				et2.widgetContainer.iterateOver(function(gantt) {
+				et2.widgetContainer.iterateOver((gantt) => {
 					state = gantt.getInstanceManager().getValues(gantt)[gantt.id];
 				}, this, et2_gantt);
 			}
 			else
 			{
-				et2.widgetContainer.iterateOver(function(_widget) {
+				et2.widgetContainer.iterateOver((_widget) => {
 					state = _widget.getValue();
 
 					// These aren't considered for state
@@ -487,7 +500,7 @@ export class ProjectmanagerApp extends EgwApp
 			else
 			{
 				// Still loading
-				window.setTimeout(function() {app.projectmanager.linkHandler(url);},100);
+				window.setTimeout(() => {(<ProjectmanagerApp>app.projectmanager).linkHandler(url);},100);
 			}
 			return true;
 		}
@@ -524,7 +537,7 @@ export class ProjectmanagerApp extends EgwApp
 					if(_type != 'delete' && node == null && typeof _links.projectmanager != 'undefined' && _links.projectmanager.length > 0)
 					{
 						// First one should be parent
-						for(var i = 0; i < _links.projectmanager.length && node == null; i++)
+						for(let i = 0; i < _links.projectmanager.length && node == null; i++)
 						{
 							node = tree.getNode(_app+"::"+_links.projectmanager[i]);
 						}
@@ -555,7 +568,7 @@ export class ProjectmanagerApp extends EgwApp
 				// Fall through to try the element list too
 			default:
 				const appList = egw.link_app_list('query');
-				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
+				const nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
 
 				if (typeof appList[_app] != 'undefined')
 				{
@@ -578,14 +591,17 @@ export class ProjectmanagerApp extends EgwApp
 		switch (this.view)
 		{
 			case 'list':
-				var nm = this.views.list.etemplate ? this.views.list.etemplate.widgetContainer.getWidgetById('nm') : null;
+			{
+				const nm = this.views.list.etemplate ? this.views.list.etemplate.widgetContainer.getWidgetById('nm') : null;
 				if(nm)
 				{
 					nm.refresh(_id,_type);
 				}
 				return false;
+			}
 			case 'elements':
-				var nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
+			{
+				const nm = this.views.elements.etemplate ? this.views.elements.etemplate.widgetContainer.getWidgetById('nm') : null;
 				if(nm)
 				{
 					// Element list has totals that probably need refreshed, so do a
@@ -593,13 +609,14 @@ export class ProjectmanagerApp extends EgwApp
 					nm.refresh(_id);
 				}
 				return false;
+			}
 			case 'gantt':
 				const ids = [];
 				const gantt = this.views.gantt.etemplate.widgetContainer.getWidgetById('gantt');
 				if(_type == 'add' && _links.projectmanager)
 				{
 					// Refresh the parent(s)
-					for(var i = 0; i < _links.projectmanager.length; i++)
+					for(let i = 0; i < _links.projectmanager.length; i++)
 					{
 						ids.push('projectmanager::'+_links.projectmanager[i]);
 					}
@@ -623,7 +640,7 @@ export class ProjectmanagerApp extends EgwApp
 	{
 		const et2 = this.views[this.view].etemplate?.widgetContainer;
 		let currentNm = null;
-		et2?.iterateOver(function(nm)
+		et2?.iterateOver((nm) =>
 		{
 			currentNm = nm
 		}, this, et2_nextmatch);
@@ -661,7 +678,9 @@ export class ProjectmanagerApp extends EgwApp
 	element_add_app_change_handler(event, widget : Et2LinkAdd)
 	{
 		if(widget.id !== 'link_addapp') return false;
-		var nm = widget.getParent();
+		// getParent() returns a union (Et2WidgetClass | et2_widget) - only the legacy
+		// et2_widget side has instanceOf(), so walk the tree loosely typed
+		let nm : any = widget.getParent();
 		while(!nm.instanceOf(et2_nextmatch))
 		{
 			nm = nm.getParent();
@@ -726,11 +745,14 @@ export class ProjectmanagerApp extends EgwApp
 	 */
 	p_element_delete()
 	{
-		const template = this.et2._inst;
+		const template = this.et2.getInstanceManager();
+		// declared here (not inside the if) so they're still in scope below, matching the
+		// original var-hoisting behaviour if template is ever falsy
+		let content, id;
 		if (template)
 		{
-			var content = template.widgetContainer.getArrayMgr('content');
-			var id = content.data['pe_id'];
+			content = template.widgetContainer.getArrayMgr('content');
+			id = content.data['pe_id'];
 		}
 		console.log('I am element delete');
 		opener.location.href= egw.link('/index.php', {
@@ -770,7 +792,7 @@ export class ProjectmanagerApp extends EgwApp
 			case 'edit'	:
 				break;
 			default:
-				this.et2._inst.submit();
+				this.et2.getInstanceManager().submit();
 
 		}
 
@@ -789,20 +811,29 @@ export class ProjectmanagerApp extends EgwApp
 	 * Toggles display of a div
 	 *
 	 *  Used in erole list in element list, maybe others?
-	 *  @param {egw_event object} event
-	 *  @param {wiget object} widget
-	 *  @param {string} target jQuery selector
+	 *  @param {Event} event
+	 *  @param {widget object} widget
+	 *  @param {Element} [target] element to search from - not currently passed by the onclick
+	 *  dispatch (see Et2Widget._handleClick()), so this is effectively always undefined
 	 */
 	toggleDiv(event, widget, target)
 	{
-		const element = jQuery(target).closest('div').parent('div').find('table.egwLinkMoreOptions');
-		if(jQuery(element).css('display') == 'none')
+		// jQuery(target).closest('div').parent('div').find(...): target's closest <div>,
+		// then that <div>'s own parent (only if it's itself a <div>), then a descendant table
+		const closestDiv = target instanceof Element ? target.closest('div') : null;
+		const parentDiv = closestDiv?.parentElement?.matches('div') ? closestDiv.parentElement : null;
+		const element = <HTMLElement>parentDiv?.querySelector('table.egwLinkMoreOptions');
+		if(!element) return;
+
+		// Native display toggle - drops jQuery's fade animation, no simple native
+		// one-liner equivalent (same accepted tradeoff as elsewhere in this project)
+		if(getComputedStyle(element).display == 'none')
 		{
-			jQuery(element).fadeIn('medium');
+			element.style.display = '';
 		}
 		else
 		{
-			jQuery(element).fadeOut('medium');
+			element.style.display = 'none';
 		}
 	}
 
@@ -1085,9 +1116,7 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			ids.push(selected[i].id);
 		}
-		egw.json('projectmanager_elements_ui::ajax_action', [action.id, ids, action.checked],
-			null, this, true, this
-		).sendRequest(true);
+		egw.request('projectmanager_elements_ui::ajax_action', [action.id, ids, action.checked]);
 	}
 
 	/**
@@ -1118,9 +1147,7 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			return;
 		}
-		egw.json('projectmanager.projectmanager_ui.ajax_action', [action.id, ids, all, sources_too],
-			null, this, true, this
-		).sendRequest(true);
+		egw.request('projectmanager.projectmanager_ui.ajax_action', [action.id, ids, all, sources_too]);
 	}
 
 	/**
@@ -1166,7 +1193,7 @@ export class ProjectmanagerApp extends EgwApp
 			pm_id = tree.getValue();
 
 			// Gantt chart can have multiple selected
-			if(jQuery.isArray(pm_id)) pm_id = pm_id[0];
+			if(Array.isArray(pm_id)) pm_id = pm_id[0];
 
 			pm_id = pm_id.replace('::',':');
 		}
@@ -1195,9 +1222,58 @@ export class ProjectmanagerApp extends EgwApp
 	_bind_sidebox(label, click)
 	{
 		if(!app.projectmanager.sidebox) return false;
-		const sidebox = jQuery('a:contains("' + app.projectmanager.egw.lang(label) + '")', app.projectmanager.sidebox.parentsUntil('#egw_fw_sidemenu,#tdSidebox').last());
-		sidebox.off('click.projectmanager');
-		sidebox.on('click.projectmanager', click);
+		const link = this._findSideboxLink(label);
+		if(!link) return false;
+
+		// Native equivalent of jQuery's namespaced .off('click.projectmanager')/
+		// .on('click.projectmanager', click) - remove any handler we bound previously to this
+		// same link before adding the new one, using our own tracked handler map (see
+		// _sideboxClickHandlers/_clearSideboxHandlers()).
+		const existing = this._sideboxClickHandlers.get(link);
+		if(existing)
+		{
+			link.removeEventListener('click', existing);
+		}
+		link.addEventListener('click', click);
+		this._sideboxClickHandlers.set(link, click);
+	}
+
+	/**
+	 * Find the sidebox menu link with the given (untranslated) label
+	 *
+	 * Native equivalent of jQuery('a:contains("...")', sidebox.parentsUntil(selector).last()):
+	 * walk up from the sidebox node to the outermost ancestor before hitting the sidemenu
+	 * boundary, then look for an <a> whose text contains the translated label.
+	 *
+	 * @param {string} label untranslated sidebox menu label
+	 * @return {HTMLAnchorElement|null}
+	 */
+	private _findSideboxLink(label : string) : HTMLAnchorElement | null
+	{
+		const sideboxNode = <HTMLElement>app.projectmanager.sidebox[0];
+		if(!sideboxNode) return null;
+
+		let container = sideboxNode;
+		let ancestor = sideboxNode.parentElement;
+		while(ancestor && !ancestor.matches('#egw_fw_sidemenu, #tdSidebox'))
+		{
+			container = ancestor;
+			ancestor = ancestor.parentElement;
+		}
+
+		const text = app.projectmanager.egw.lang(label);
+		return <HTMLAnchorElement>Array.from(container.querySelectorAll('a')).find(a => a.textContent?.includes(text)) ?? null;
+	}
+
+	/**
+	 * Remove every click handler _bind_sidebox() has added, and forget them
+	 *
+	 * Native equivalent of jQuery's this.sidebox...off('.projectmanager') namespace-wide unbind.
+	 */
+	private _clearSideboxHandlers() : void
+	{
+		this._sideboxClickHandlers.forEach((handler, link) => link.removeEventListener('click', handler));
+		this._sideboxClickHandlers.clear();
 	}
 
 	/**
@@ -1217,15 +1293,15 @@ export class ProjectmanagerApp extends EgwApp
 	 */
 	view_infolog(_action, _senders)
 	{
-		var extras = {
+		const extras = {
 			action: 'projectmanager',
 			action_id: [],
 			action_title: _senders.length > 1 ? this.egw.lang('selected projects') : ''
 		};
-		for(var i = 0; i < _senders.length; i++)
+		for(let i = 0; i < _senders.length; i++)
 		{
 			// Remove UID prefix for just contact_id
-			var ids = _senders[i].id.split('::');
+			let ids : any = _senders[i].id.split('::');
 			ids.shift();
 			ids = ids.join('::');
 
