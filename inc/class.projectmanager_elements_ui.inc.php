@@ -579,11 +579,33 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		// cumulate eg. timesheets in also included infologs
 		$query['col_filter']['cumulate'] = !((int)$query['filter2'] & 4);
+		// the project itself is added as an extra pseudo-row on the first page only (see below),
+		// so it takes up one slot of the page-size there and shifts the offset of all following pages by one
+		$add_self = !$sub_query && (int)$query_in['start'] === 0;
+		if ($query['num_rows'])
+		{
+			if ($add_self)
+			{
+				$query['num_rows']--;
+			}
+			else if (!$sub_query)
+			{
+				$query['start']--;
+			}
+		}
 		$total = parent::get_rows($query, $rows, $readonlys, true);
 		unset($query['col_filter']['cumulate']);
 
-		// adding the project itself as first line
-		if(!$sub_query)
+		// the project itself counts towards the total on every page (it's part of the virtual,
+		// self-plus-elements sequence the pagination above is based on), even though it's only
+		// actually added as a row on the first page
+		if (!$sub_query)
+		{
+			$total++;
+		}
+
+		// adding the project itself as first line, only on the first page
+		if($add_self)
 		{
 			$self = $this->updateElement('projectmanager', $this->pm_id);
 			$self['pe_app'] = 'projectmanager';
@@ -597,7 +619,6 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			);
 			$self['class'] = 'th rowNoDelete';
 			$rows = array_merge(array($self), $rows);
-			$total++;
 		}
 
 		// Re-init user preference, $this->update() changes it indirectly
@@ -607,23 +628,26 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		$budget_rights = $this->project->check_acl(EGW_ACL_BUDGET);
 		foreach($rows as $n => &$row)
 		{
-			if ($n && !$this->check_acl(Acl::EDIT,$row))
+			// the self-row (project itself) is only ever at $n === 0, and only on the page it got added to
+			$is_self_row = $add_self && !$n;
+
+			if (!$is_self_row && !$this->check_acl(Acl::EDIT,$row))
 			{
 				$row['class'] .= ' rowNoEdit';
 			}
-			if ($n && !$this->check_acl(Acl::DELETE,$row))
+			if (!$is_self_row && !$this->check_acl(Acl::DELETE,$row))
 			{
 				$row['class'] .= ' rowNoDelete';
 			}
 			// Don't show sub triangle for first project (self)
-			$row['is_parent'] = ($row['pe_app'] == 'projectmanager') && ($sub_query ? true : $n);
+			$row['is_parent'] = ($row['pe_app'] == 'projectmanager') && ($sub_query ? true : !$is_self_row);
 
 			if (!$budget_rights)
 			{
 				unset($row['pe_used_budget']);
 				unset($row['pe_planned_budget']);
 			}
-			if ($n || $sub_query)
+			if (!$is_self_row || $sub_query)
 			{
 				$row['link'] = array(
 					'app'   => $row['pe_app'],
