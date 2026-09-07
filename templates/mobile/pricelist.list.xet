@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="1.9.001">
+	<et2-template  id="projectmanager.pricelist.list.rows" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="90%"/>
@@ -24,11 +24,11 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.pricelist.add-new" template="" lang="" group="0" version="1.9.001">
+	</et2-template>
+	<et2-template  id="projectmanager.pricelist.add-new" template="" lang="" group="0" version="1.9.001">
 		<et2-button  align="right" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
-	</template>
-	<template id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
+	</et2-template>
+	<et2-template  id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -39,5 +39,5 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>

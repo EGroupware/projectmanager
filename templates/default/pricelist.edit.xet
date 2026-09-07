@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.pricelist.edit.price" template="" lang="" group="0" version="0.5.001">
+	<et2-template  id="projectmanager.pricelist.edit.price" template="" lang="" group="0" version="0.5.001">
 		<grid width="100%" overflow="auto">
 			<columns>
 				<column width="95"/>
@@ -19,17 +19,16 @@
 					<et2-description  value="Delete"></et2-description>
 				</row>
 				<row class="row">
-                    <et2-number id="prices[$row][pl_price]"></et2-number>
-                    <et2-date id="prices[$row][pl_validsince]" class="pl_side_calendar"
-                              statustext="you can leave the date of the first price empty"></et2-date>
-                    <et2-date-time id="prices[$row][pl_modified]" readonly="true"></et2-date-time>
-                    <et2-select-account id="prices[$row][pl_modifier]" readonly="true"></et2-select-account>
-                    <et2-checkbox id="delete_price[$row]" statustext="Delete this price"></et2-checkbox>
+                    <et2-number  id="prices[$row][pl_price]"></et2-number>
+                    <et2-date  id="prices[$row][pl_validsince]" class="pl_side_calendar" statustext="you can leave the date of the first price empty"></et2-date>
+                    <et2-date-time  id="prices[$row][pl_modified]" readonly="true"></et2-date-time>
+                    <et2-select-account  id="prices[$row][pl_modifier]" readonly="true"></et2-select-account>
+                    <et2-checkbox  id="delete_price[$row]" statustext="Delete this price"></et2-checkbox>
                 </row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.pricelist.edit.project" template="" lang="" group="0" version="0.5.001">
+	</et2-template>
+	<et2-template  id="projectmanager.pricelist.edit.project" template="" lang="" group="0" version="0.5.001">
 		<grid width="100%" overflow="auto">
 			<columns>
 				<column width="95"/>
@@ -40,45 +39,42 @@
 			</columns>
             <rows>
                 <row class="row">
-                    <et2-description value="Customer title" labelFor="pd_customertitle"></et2-description>
-                    <et2-textbox maxlength="255" span="all" id="pl_customertitle"
-                                 statustext="leave it empty if you dont need a different customer title"></et2-textbox>
+                    <et2-description  value="Customer title" labelFor="pd_customertitle"></et2-description>
+                    <et2-textbox  maxlength="255" span="all" id="pl_customertitle" statustext="leave it empty if you dont need a different customer title"></et2-textbox>
                 </row>
                 <row class="row">
-                    <et2-description value="Availible" labelFor="pl_billable"></et2-description>
-                    <et2-select span="all" id="pl_billable" emptyLabel="No"></et2-select>
+                    <et2-description  value="Availible" labelFor="pl_billable"></et2-description>
+                    <et2-select  span="all" id="pl_billable" emptyLabel="No"></et2-select>
                 </row>
                 <row class="th">
-                    <et2-description value="Price"></et2-description>
-                    <et2-description value="Valid since"></et2-description>
-                    <et2-description value="Last modified"></et2-description>
-                    <et2-description value="Modified by"></et2-description>
-                    <et2-description value="Delete"></et2-description>
+                    <et2-description  value="Price"></et2-description>
+                    <et2-description  value="Valid since"></et2-description>
+                    <et2-description  value="Last modified"></et2-description>
+                    <et2-description  value="Modified by"></et2-description>
+                    <et2-description  value="Delete"></et2-description>
                 </row>
                 <row class="row">
-                    <et2-number id="project_prices[$row][pl_price]"></et2-number>
-                    <et2-date id="project_prices[$row][pl_validsince]" class="pl_side_calendar"
-                              statustext="you can leave the date of the first price empty"></et2-date>
-                    <et2-date-time id="project_prices[$row][pl_modified]" readonly="true"></et2-date-time>
-                    <et2-select-account id="project_prices[$row][pl_modifier]" readonly="true"></et2-select-account>
-                    <et2-checkbox id="delete_project_price[$row]" statustext="Delete this price"></et2-checkbox>
+                    <et2-number  id="project_prices[$row][pl_price]"></et2-number>
+                    <et2-date  id="project_prices[$row][pl_validsince]" class="pl_side_calendar" statustext="you can leave the date of the first price empty"></et2-date>
+                    <et2-date-time  id="project_prices[$row][pl_modified]" readonly="true"></et2-date-time>
+                    <et2-select-account  id="project_prices[$row][pl_modifier]" readonly="true"></et2-select-account>
+                    <et2-checkbox  id="delete_project_price[$row]" statustext="Delete this price"></et2-checkbox>
                 </row>
             </rows>
 		</grid>
-	</template>
-	<template id="projectmanager.pricelist.edit.description" template="" lang="" group="0" version="0.5.001">
+	</et2-template>
+	<et2-template  id="projectmanager.pricelist.edit.description" template="" lang="" group="0" version="0.5.001">
 		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
 			<rows>
-				<row class="row">
-					<et2-textarea  rows="12" cols="64" id="pl_description"></et2-textarea>
+				<row class="row"><et2-ai><et2-textarea  rows="12" cols="64" id="pl_description"></et2-textarea></et2-ai>
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.pricelist.edit" template="" lang="" group="0" version="1.9.001">
+	</et2-template>
+	<et2-template  id="projectmanager.pricelist.edit" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="100"/>
@@ -113,9 +109,9 @@
 							<tab id="description" label="Description" statustext="Description"/>
 						</tabs>
 						<tabpanels>
-							<template id="projectmanager.pricelist.edit.price"/>
-							<template id="projectmanager.pricelist.edit.project"/>
-							<template id="projectmanager.pricelist.edit.description"/>
+							<et2-template  id="projectmanager.pricelist.edit.price"></et2-template>
+							<et2-template  id="projectmanager.pricelist.edit.project"></et2-template>
+							<et2-template  id="projectmanager.pricelist.edit.description"></et2-template>
 						</tabpanels>
 					</et2-tabbox>
 				</row>
@@ -129,5 +125,5 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>

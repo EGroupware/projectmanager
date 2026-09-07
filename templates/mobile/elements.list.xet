@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
+	<et2-template  id="projectmanager.elements.list.add" template="" lang="" group="0" version="1.9.001">
 		<grid width="99%" height="99%">
 			<columns>
 				<column width="90%"/>
@@ -26,8 +26,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.005">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%">
 			<columns>
 				<column width="10"/>
@@ -66,16 +66,16 @@
 							<et2-date  align="right" label="Planned" id="${row}[pe_planned_end]" readonly="true" class="planned" noLang="1"></et2-date>
 						</et2-hbox>
 						<et2-hbox  disabled="@no_pe_used_budget_pe_planned_budget">
-							<et2-textbox  label="Budget" type="float" id="${row}[pe_used_budget]" readonly="true" max="2"></et2-textbox>
-							<et2-textbox  align="right" label="Planned" type="float" id="${row}[pe_planned_budget]" readonly="true" max="2" class="planned" noLang="1"></et2-textbox>
+							<et2-number  label="Budget" id="${row}[pe_used_budget]" readonly="true" max="2"></et2-number>
+							<et2-number  align="right" label="Planned" id="${row}[pe_planned_budget]" readonly="true" max="2" class="planned" noLang="1"></et2-number>
 						</et2-hbox>
 					</et2-vbox>
 
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -83,8 +83,8 @@
 			<rows>
 				<row disabled="1">
 					<et2-hbox>
-						<template id="add-new"/>
-						<template id="add"/>
+						<et2-template  id="add-new"></et2-template>
+						<et2-template  id="add"></et2-template>
 					</et2-hbox>
 				</row>
 				<row disabled="!@msg">
@@ -112,5 +112,5 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>

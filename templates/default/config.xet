@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.config.configuration" template="" lang="" group="0" version="16.0.001">
+	<et2-template  id="projectmanager.config.configuration" template="" lang="" group="0" version="16.0.001">
 		<grid width="80%">
 			<columns>
 				<column width="40%"/>
@@ -13,9 +13,8 @@
 					<et2-description></et2-description>
 				</row>
                 <row>
-                    <et2-description value="Link search status filter"></et2-description>
-                    <et2-select id="link_status_filter" multiple="true" emptyLabel="Active"
-                                statustext="Normally you can only link to active projects, but you can include other statuses as well"
+                    <et2-description  value="Link search status filter"></et2-description>
+                    <et2-select  id="link_status_filter" multiple="true" emptyLabel="Active" statustext="Normally you can only link to active projects, but you can include other statuses as well"
                     >
                     </et2-select>
                 </row>
@@ -63,8 +62,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.config.notification" template="" lang="" group="0" version="">
+	</et2-template>
+	<et2-template  id="projectmanager.config.notification" template="" lang="" group="0" version="">
 		<grid width="100%">
 			<columns>
 				<column/>
@@ -74,14 +73,13 @@
 				<row>
 					<et2-checkbox  label="Use custom notification message" id="notification[use_custom]"></et2-checkbox>
 				</row>
-                <row>
-                    <htmlarea id="notification[message]" height="180px" width="100%" toolbar="false" span="all"/>
+                <row><et2-ai  span="all"><et2-htmlarea  id="notification[message]" width="100%" noToolbar="true"></et2-htmlarea></et2-ai>
                 </row>
             </rows>
         </grid>
-        <et2-hbox hidden="@hide_custom_notification">
-            <et2-select id="notification[custom_date][field]" label="Notify on custom date field" placeholder="Add"></et2-select>
-            <et2-button id="notification[custom_date][add_field]" image="plus"></et2-button>
+        <et2-hbox  hidden="@hide_custom_notification">
+            <et2-select  id="notification[custom_date][field]" label="Notify on custom date field" placeholder="Add"></et2-select>
+            <et2-button  id="notification[custom_date][add_field]" image="plus"></et2-button>
         </et2-hbox>
         <grid id="notification[custom_date]" width="100%" disabled="!@notification[custom_date]">
             <columns>
@@ -90,31 +88,30 @@
             <rows>
                 <row>
                     <et2-vbox>
-                        <et2-hbox class="field_header">
-                            <et2-description id="${row}[label]"/>
-                            <et2-button id="${row}[remove]" image="delete"></et2-button>
-                        </et2-hbox>
-                        <htmlarea id="${row}[message]" height="180px" width="100%" toolbar="false" span="all"/>
+                        <et2-hbox  class="field_header">
+                            <et2-description  id="${row}[label]"/>
+                            <et2-button  id="${row}[remove]" image="delete"></et2-button>
+                        </et2-hbox><et2-ai  span="all"><et2-htmlarea  id="${row}[message]" width="100%" noToolbar="true"></et2-htmlarea></et2-ai>
                     </et2-vbox>
                 </row>
             </rows>
         </grid>
-        <et2-description value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extraLinkTarget="_blank"></et2-description>
-        <styles>
+        <et2-description  value="Full list of placeholder names" href="projectmanager.projectmanager_merge.show_replacements" extraLinkTarget="_blank"></et2-description>
+        <et2-styles>
             .field_header { font-size: medium; margin-top: 1em; }
-        </styles>
-    </template>
-    <template id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
+        </et2-styles>
+    </et2-template>
+    <et2-template  id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
         <et2-vbox>
             <et2-description  id="msg" span="all" class="message"></et2-description>
-            <et2-tabbox id="tabs">
+            <et2-tabbox  id="tabs">
                 <tabs>
                     <tab id="configuration" label="Configuration"/>
                     <tab id="notification" label="Notification"/>
                 </tabs>
                 <tabpanels>
-                    <template id="projectmanager.config.configuration"/>
-                    <template id="projectmanager.config.notification"/>
+                    <et2-template  id="projectmanager.config.configuration"></et2-template>
+                    <et2-template  id="projectmanager.config.notification"></et2-template>
                 </tabpanels>
             </et2-tabbox>
             <et2-hbox  class="dialogFooterToolbar">
@@ -123,5 +120,5 @@
                 <et2-button  statustext="Exit without saving" label="Cancel" id="cancel"></et2-button>
             </et2-hbox>
         </et2-vbox>
-    </template>
+    </et2-template>
 </overlay>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.roles" template="" lang="" group="0" version="0.2.001">
+	<et2-template  id="projectmanager.roles" template="" lang="" group="0" version="0.2.001">
 		<et2-vbox>
 			<et2-hbox>
 				<et2-select  label="Project" onchange="1" id="pm_id" noLang="1" emptyLabel="All"></et2-select>
@@ -72,5 +72,5 @@
 				<et2-button  label="Cancel" onclick="window.close();" id="cancel" statustext="Close the window, discard the changes made"></et2-button>
 			</et2-hbox>
 		</et2-vbox>
-	</template>
+	</et2-template>
 </overlay>

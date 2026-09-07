@@ -2,7 +2,7 @@
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <!-- This template is in a seperate file so home can find it -->
 <overlay>
-	<template id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
+	<et2-template  id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
 			<columns>
 				<column width="120"/>
@@ -31,11 +31,11 @@
 					<nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
 					<nextmatch-sortheader label="categories" id="cat_id"/>
 					<nextmatch-sortheader label="Owner" id="pm_creator"/>
-					<nextmatch-header label="@roles[0]" id="role0"/>
-					<nextmatch-header label="@roles[1]" id="role1"/>
-					<nextmatch-header label="@roles[2]" id="role2"/>
-					<nextmatch-header label="@roles[3]" id="role3"/>
-					<nextmatch-header label="@roles[4]" id="role4"/>
+					<et2-nextmatch-header  label="@roles[0]" id="role0"></et2-nextmatch-header>
+					<et2-nextmatch-header  label="@roles[1]" id="role1"></et2-nextmatch-header>
+					<et2-nextmatch-header  label="@roles[2]" id="role2"></et2-nextmatch-header>
+					<et2-nextmatch-header  label="@roles[3]" id="role3"></et2-nextmatch-header>
+					<et2-nextmatch-header  label="@roles[4]" id="role4"></et2-nextmatch-header>
 					<et2-vbox>
 						<nextmatch-sortheader label="Startdate" id="pm_real_start"/>
 						<nextmatch-sortheader label="planned" id="pm_planned_start" class="planned"/>
@@ -111,5 +111,5 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>

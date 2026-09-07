@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.ganttchart" template="" lang="" group="0" version="1.9.002">
-		<tree id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parent_node="projectmanager-tree_target"/>
+	<et2-template  id="projectmanager.ganttchart" template="" lang="" group="0" version="1.9.002">
+		<et2-tree  id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" parentId="projectmanager-tree_target"></et2-tree>
 		<grid>
 			<columns>
 				<column/>
 			</columns>
 			<rows>
 				<row disabled="!@msg">
-					<html align="center" id="msg" span="all" class="message"/>
+					<et2-html  align="center" id="msg" span="all" class="message"></et2-html>
 				</row>
 				<row>
-					<groupbox cols="5" rows="2">
-						<caption label="Ganttchart parameter"/>
+					<et2-groupbox  cols="5" rows="2" summary="Ganttchart parameter">
 						<grid>
 							<columns>
 								<column/>
@@ -52,10 +51,10 @@
 								</row>
 							</rows>
 						</grid>
-					</groupbox>
+					</et2-groupbox>
 				</row>
 				<row>
-					<html id="map"/>
+					<et2-html  id="map"></et2-html>
 				</row>
 				<row>
 					<et2-image  src="ganttchart" imagemap="ganttchart"></et2-image>
@@ -65,5 +64,5 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>
