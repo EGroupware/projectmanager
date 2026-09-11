@@ -1064,11 +1064,20 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 
 		}
-		// If no PM ID, don't get initial rows
-		if(!$this->pm_id)
-		{
-			$content['nm']['num_rows'] = 0;
-		}
+		// The element list is never the visible view on load - the app starts on the project list
+		// and only switches once the client decides to - so never send rows with it, whatever the
+		// session says.  This has to come after the session restore above: that brings back the
+		// num_rows of whatever page the client last asked for, which had us query and ship a page
+		// of elements nobody was going to look at on every load but the first of a session.  The
+		// nextmatch fetches what it needs when it is actually shown.
+		$content['nm']['num_rows'] = 0;
+
+		// The project is a real filter, not something get_rrows() re-derives from the
+		// current_project preference on every request.  Seeding it here - over whatever the session
+		// restored - means the client owns it from its very first fetch and can change it, and that
+		// a list on screen can be told apart from one showing some other project.
+		$content['nm']['col_filter']['pm_id'] = (int)$this->project->data['pm_id'];
+
 		// Set duration format once for all
 		$content['duration_format'] = preg_split('/,/', $this->config['duration_format'])[0];
 		$content['hoursPerDay'] = preg_split('/,/', $this->config['duration_format'])[1];

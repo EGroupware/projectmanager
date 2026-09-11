@@ -13,7 +13,7 @@
 	/etemplate/js/etemplate2.js;
 	/projectmanager/js/et2_widget_gantt.js;
 */
-import {EgwApp} from "../../api/js/jsapi/egw_app";
+import {EgwApp, PushData} from "../../api/js/jsapi/egw_app";
 // egw/egw_getFramework are ambient globals (declared in egw_global.d.ts's "declare global {}"),
 // not real exported module members - see doc/ai/projects/app-ts-modernization.md.
 import {etemplate2} from "../../api/js/etemplate/etemplate2";
@@ -50,6 +50,17 @@ export class ProjectmanagerApp extends EgwApp
 		"projectmanager.gantt": "gantt",
 		"projectmanager.pricelist.list": "prices"
 	};
+
+	/**
+	 * Application name the server pushes element changes under, a sub-type of projectmanager
+	 * registered in projectmanager_hooks::search_link()
+	 */
+	static readonly ELEMENT_APP = 'projectelement';
+
+	/**
+	 * dataStorePrefix of the element list, set server-side in projectmanager_elements_ui::index()
+	 */
+	static readonly ELEMENT_PREFIX = 'projectmanager_elements';
 
 	// Click handlers bound to sidebox links by _bind_sidebox(), keyed by link element -
 	// native equivalent of jQuery's namespaced 'click.projectmanager' event, so a later
@@ -505,6 +516,170 @@ export class ProjectmanagerApp extends EgwApp
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Handle a push notification about entry changes from the websocket
+	 *
+	 * Project elements are entries of other applications, so we care about more than our own
+	 * pushes:
+	 *
+	 * - "projectelement" comes from projectmanager_elements_bo::notify() and means an element
+	 *   was synced with its entry or removed from a project.  It carries the pm_id and the
+	 *   element list's row-id, and it is sent for every kind of element, including entries of
+	 *   applications that send no push of their own.  This is the one we work from.
+	 * - any other application is the entry behind an element changing.  That is only used to
+	 *   catch what the element push cannot tell us about: a row showing time cumulated from
+	 *   entries that are not listed themselves (a timesheet rolling up into the infolog it is
+	 *   linked to, see projectmanager_elements_bo::get_rows()).  The entry that changed is
+	 *   filtered out of the list, so no element push can point at the row that has to change -
+	 *   but matching the entry against the rows we already hold finds exactly that row.
+	 *
+	 * @param pushData
+	 * @param {string} pushData.app application name
+	 * @param {(string|number)} pushData.id id of entry to refresh
+	 * @param {string} pushData.type either 'update', 'edit', 'delete', 'add' or 'update-in-place'
+	 * @param {object|null} pushData.acl the keys listed as push_data in projectmanager_hooks::search_link()
+	 * @param {number} pushData.account_id User that caused the notification
+	 */
+	push(pushData : PushData)
+	{
+		switch(pushData.app)
+		{
+			case 'projectmanager':
+				return this._pushProject(pushData);
+			case ProjectmanagerApp.ELEMENT_APP:
+				return this._pushElement(pushData);
+			default:
+				return this._pushElementEntry(pushData);
+		}
+	}
+
+	/**
+	 * A project was added, changed or deleted
+	 */
+	private _pushProject(pushData : PushData)
+	{
+		const list = this.views.list.etemplate?.widgetContainer;
+		const tree = list?.getWidgetById('project_tree');
+		const itemId = 'projectmanager::' + pushData.id;
+		// Unlike observer() we have no list of links to find the parent of a project that is not
+		// in the tree yet, so a new sub-project only shows up when its parent is next expanded
+		if(tree && tree.getNode(itemId))
+		{
+			pushData.type === 'delete' ? tree.deleteItem(itemId) : tree.refreshItem(itemId);
+		}
+		const nm = <et2_nextmatch>list?.getWidgetById('nm');
+		if(nm)
+		{
+			nm.refresh(pushData.id, pushData.type);
+		}
+
+		// The project is the element list's first row and where its totals come from, so if it is
+		// the one we are showing, one row is not enough
+		const elements = this._elementList();
+		if(!elements || String(this._elementListProject(elements)) !== String(pushData.id))
+		{
+			return;
+		}
+		if(pushData.type === 'delete')
+		{
+			if(this.view === 'elements')
+			{
+				this.show('list');
+			}
+			return;
+		}
+		elements.applyFilters();
+	}
+
+	/**
+	 * An element was synced with its entry, or removed from its project
+	 */
+	private _pushElement(pushData : PushData)
+	{
+		const nm = this._elementList();
+		if(!nm)
+		{
+			return;
+		}
+		const acl : any = pushData.acl || {};
+		if(!acl.pe_app || !acl.pe_app_id)
+		{
+			return;
+		}
+		const elem_id = acl.pe_app + ':' + acl.pe_app_id + ':' + pushData.id;
+		const uid = ProjectmanagerApp.ELEMENT_PREFIX + '::' + elem_id;
+
+		if(pushData.type === 'delete')
+		{
+			// Needs no server round-trip, and drops the row whichever project it was in
+			this.egw.dataRefreshUIDs(uid, 'delete');
+			return;
+		}
+
+		// A row we already have is refreshed whatever project it belongs to, so elements of
+		// sub-projects (filter2 & 2) stay current too.  A row we do not have yet can only be
+		// added to the project we are showing - we have no way to tell a sub-project's pm_id
+		// from what the push carries.
+		if(!this.egw.dataHasUID(uid) && String(acl.pm_id) !== String(this._elementListProject(nm)))
+		{
+			return;
+		}
+		// nextmatch turns update-in-place into add or edit itself, if it does not know the row
+		nm.refresh(elem_id, 'update-in-place');
+	}
+
+	/**
+	 * An entry changed that an element may show, or cumulate into
+	 */
+	private _pushElementEntry(pushData : PushData)
+	{
+		if(!this._elementList())
+		{
+			return;
+		}
+		// Rows are keyed pe_app:pe_app_id:pe_id, so the entry identifies its row without us
+		// knowing the pe_id.  A pattern only ever matches rows we already hold, so an entry from
+		// a project we are not showing, or one that is no element at all, costs nothing.
+		this.egw.dataRefreshUIDs(
+			new RegExp('^' + ProjectmanagerApp.ELEMENT_PREFIX + '::' +
+				ProjectmanagerApp._quoteRegExp(pushData.app + ':' + pushData.id) + ':'),
+			pushData.type === 'delete' ? 'delete' : 'update-in-place'
+		);
+	}
+
+	/**
+	 * The element list's nextmatch, if that view is loaded - it stays loaded while hidden
+	 */
+	private _elementList() : et2_nextmatch | null
+	{
+		return <et2_nextmatch>this.views.elements.etemplate?.widgetContainer.getWidgetById('nm') || null;
+	}
+
+	/**
+	 * pm_id of the project the element list is showing
+	 *
+	 * Mirrors how projectmanager_elements_ui::get_rrows() finds it: the nextmatch's own filter if
+	 * it has one, otherwise the current_project preference.  That preference is not a fallback for
+	 * odd cases, it is the usual answer - a list reached through the project tree, or through a
+	 * favourite that does not name a project, carries no pm_id in its filters at all.
+	 */
+	private _elementListProject(nm : et2_nextmatch) : string
+	{
+		return nm?.activeFilters?.col_filter?.pm_id ||
+			this.egw.preference('current_project', 'projectmanager') || '';
+	}
+
+	/**
+	 * Escape a value for use inside a RegExp
+	 *
+	 * Ids are not always plain integers - a recurring calendar event's is "<cal_id>:<recur_date>",
+	 * and an application is free to use whatever it likes.
+	 */
+	private static _quoteRegExp(value : string) : string
+	{
+		return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 	}
 
 	/**

@@ -1415,8 +1415,13 @@ et2_register_widget(et2_gantt, ["gantt","projectmanager-gantt"]);
 /**
  * Common look, feel & settings for all Gantt charts
  */
+// English is the bundle's built-in locale and lives in locale.js, every other language in
+// locale_<lang>.js.  Treat an unknown language as English rather than asking for a
+// "locale_null.js" that can not exist: the preference is not always loaded when this runs, and
+// the 404 that follows costs a request and leaves the chart unlocalised either way.
+const gantt_lang = egw.preference('lang') || 'en';
 // Make sure the locale js file exists before including it otherwise it breaks the loading
-jQuery.get(egw.webserverUrl+"/vendor/npm-asset/dhtmlx-gantt/codebase/locale/locale" + (egw.preference('lang') != "en" ? "_" +egw.preference('lang') : "") + ".js", '', function(){
+jQuery.get(egw.webserverUrl+"/vendor/npm-asset/dhtmlx-gantt/codebase/locale/locale" + (gantt_lang != "en" ? "_" + gantt_lang : "") + ".js", '', function(){
 	// Localize to user's language
 	import(this.url);
 }).fail(function(e){console.log(e)});

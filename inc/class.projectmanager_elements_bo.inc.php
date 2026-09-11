@@ -210,16 +210,26 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 					{
 						// Need to just delete, without changing links
 						$e_bo->delete(array('pm_id' => $data['id'], 'pe_id' => $data['link_id']), false, false);
+						self::pushDeletedElement($data);
 						return;
 					}
 				}
 				$e_bo->delete(array('pm_id' => $data['id'],'pe_id' => $data['link_id']));
+				self::pushDeletedElement($data);
 				break;
 
 		}
 
 		if($update_data && $update_data['pe_id'])
 		{
+				// updateElement() builds its data from the datasource, which knows nothing about
+				// being an element, so pe_app/pe_app_id are only there for an element that already
+				// existed - they come from the links-join in projectmanager_elements_so.  Set them
+				// either way: together with pe_id they are the element list's row-id, so without
+				// them a client can not tell which row to update.
+				$update_data['pe_app'] = $data['target_app'];
+				$update_data['pe_app_id'] = $data['target_id'];
+
 				// Something changed with an entry.  Trigger update in place to update times.
 				Api\Hooks::process([
 						'location' => 'notify-all',
@@ -229,6 +239,38 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 						'data'     => $update_data,
 				], null, true);
 		}
+	}
+
+	/**
+	 * Tell everyone a project-element is gone
+	 *
+	 * An element disappears in two ways, and neither reaches a client on its own:
+	 * unlinking an entry from the project goes through Link::unlink() with a link_id,
+	 * which does not send the "delete" notification it sends for a whole entry being
+	 * deleted, and the update notification above is only sent for elements that still
+	 * exist.  Without this, a removed element stayed on screen until the next reload.
+	 *
+	 * The data is what the client needs to find the row and nothing more: the element
+	 * list keys its rows by "pe_app:pe_app_id:pe_id", and the notification goes to every
+	 * connected client, so it must not carry anything a stranger may not see.
+	 *
+	 * @param array $data notify() parameters, where link_id is the pe_id of the removed
+	 *	element, id the pm_id of the project and target_app/target_id the entry itself
+	 */
+	protected static function pushDeletedElement(array $data)
+	{
+		Api\Hooks::process([
+				'location' => 'notify-all',
+				'type'     => 'delete',
+				'app'      => 'projectelement',
+				'id'       => $data['link_id'],
+				'data'     => [
+					'pm_id'     => $data['id'],
+					'pe_id'     => $data['link_id'],
+					'pe_app'    => $data['target_app'],
+					'pe_app_id' => $data['target_id'],
+				],
+		], null, true);
 	}
 
 	/**

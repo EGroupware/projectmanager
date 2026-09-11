@@ -79,6 +79,11 @@ class projectmanager_hooks
 			'file_access_user' => true,	// file_access supports 4th parameter $user
 			'additional' => array(
 				'projectelement' => array(
+					// ACL relevant and privacy save keys of the element pushed to every connected
+					// client by projectmanager_elements_bo::notify(): pm_id says which project the
+					// element belongs to, the other three make up the element list's row-id
+					// (pe_app:pe_app_id:pe_id), so the client can find the row without asking.
+					'push_data'  => array('pm_id', 'pe_id', 'pe_app', 'pe_app_id'),
 					'view'       => array(
 						'menuaction' => 'projectmanager.projectmanager_elements_ui.edit',
 					),
