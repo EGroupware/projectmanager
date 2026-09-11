@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../doc/etemplate2/etemplate2.0.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.milestone.edit" template="" lang="" group="0" version="1.5.001">
+	<et2-template  id="projectmanager.milestone.edit" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -27,8 +28,7 @@
 					<et2-description  value="Date" labelFor="ms_date"></et2-description>
 					<et2-date  id="ms_date" required="1"></et2-date>
 				</row>
-				<row class="row">
-					<htmlarea span="all" id="ms_description" mode="extended" height="300px" width="100%" toolbar="true"/>
+				<row class="row"><et2-ai  span="all"><et2-htmlarea  id="ms_description" mode="extended" width="100%" noToolbar="false"></et2-htmlarea></et2-ai>
 				</row>
 				<row class="dialogFooterToolbar">
 					<et2-hbox  span="2">
@@ -41,5 +41,5 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>

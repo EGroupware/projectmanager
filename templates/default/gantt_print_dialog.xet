@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../doc/etemplate2/etemplate2.0.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="gantt_print_dialog" template="" lang="" group="0" version="16.1">
+	<et2-template  id="gantt_print_dialog" template="" lang="" group="0" version="16.1">
 		<et2-vbox>
 			<et2-description  value="Columns to print"></et2-description>
 			<et2-select  id="columns" multiple="true" selectedFirst="false"></et2-select>
@@ -12,5 +13,5 @@
 				<option value="vertical">All dates (vertical)</option>
 			</et2-select>
 		</et2-vbox>
-	</template>
+	</et2-template>
 </overlay>

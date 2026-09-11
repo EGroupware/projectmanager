@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../doc/etemplate2/etemplate2.0.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.edit.general" template="" lang="" group="0" version="1.9.001">
+	<et2-template  id="projectmanager.edit.general" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -37,45 +38,45 @@
 				</row>
 				<row class="row">
 					<et2-description  value="Startdate" for="pm_real_start"></et2-description>
-					<et2-date-time id="pm_real_start" class="pm_side_calendar"></et2-date-time>
+					<et2-date-time  id="pm_real_start" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_real_start]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
-                    <et2-date-time id="pm_planned_start" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time  id="pm_planned_start" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_planned_start]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="Enddate" for="pm_real_end"></et2-description>
-                    <et2-date-time id="pm_real_end" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time  id="pm_real_end" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_real_end]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
-                    <et2-date-time id="pm_planned_end" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time  id="pm_planned_end" class="pm_side_calendar"></et2-date-time>
 					<et2-description></et2-description>
 					<et2-date-time  id="ds[pe_planned_end]" readonly="true" span="all"></et2-date-time>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="Times" for="pm_used_time"></et2-description>
-					<et2-date-duration id="pm_used_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+					<et2-date-duration  id="pm_used_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 					<et2-description></et2-description>
-                    <et2-date-duration id="ds[pe_used_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+                    <et2-date-duration  id="ds[pe_used_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="- planned" for="pm_planned_time"></et2-description>
-                    <et2-date-duration id="pm_planned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+                    <et2-date-duration  id="pm_planned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 					<et2-description></et2-description>
-                    <et2-date-duration id="ds[pe_planned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+                    <et2-date-duration  id="ds[pe_planned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="- re-planned" for="pm_replanned_time"></et2-description>
-                    <et2-date-duration id="pm_replanned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+                    <et2-date-duration  id="pm_replanned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 					<et2-description></et2-description>
-                    <et2-date-duration id="ds[pe_replanned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+                    <et2-date-duration  id="ds[pe_replanned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row">
 					<et2-description  value="Status" for="pm_completion"></et2-description>
@@ -85,11 +86,10 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.edit.description" template="" lang="" group="0" version="0.4.001">
-		<htmlarea id="pm_description" mode="extended" height="325px" width="100%" toolbar="true" imageUpload="link_to"/>
-	</template>
-	<template id="projectmanager.edit.members" template="" lang="" group="0" version="1.9.002">
+	</et2-template>
+	<et2-template  id="projectmanager.edit.description" template="" lang="" group="0" version="0.4.001"><et2-ai><et2-htmlarea  id="pm_description" mode="extended" width="100%" imageUpload="link_to" noToolbar="false"></et2-htmlarea></et2-ai>
+	</et2-template>
+	<et2-template  id="projectmanager.edit.members" template="" lang="" group="0" version="1.9.002">
 		<grid width="100%">
 			<columns>
 				<column width="30%"/>
@@ -109,8 +109,8 @@
 				</row>
 				<row class="row" height="12" disabled="@view">
 					<et2-select-account  id="member[1]" emptyLabel="select one" accountType="both"></et2-select-account>
-					<et2-textbox  type="float" statustext="Percentage the member is availible for projects" id="general_avail[1]"></et2-textbox>
-					<et2-textbox  type="float" statustext="Percentage the member is availible for this project" id="availibility[1]"></et2-textbox>
+					<et2-number  statustext="Percentage the member is availible for projects" id="general_avail[1]"></et2-number>
+					<et2-number  statustext="Percentage the member is availible for this project" id="availibility[1]"></et2-number>
 					<et2-hbox  orient=",0,0" cellpadding="0" cellspacing="0" >
 						<et2-select  id="role[1]"></et2-select>
 						<et2-button  label="Add" id="add" image="add"></et2-button>
@@ -118,14 +118,14 @@
 				</row>
 				<row class="row" valign="top" disabled="!@member">
 					<et2-select-account  id="member[$row]" readonly="true"></et2-select-account>
-					<et2-textbox  type="float" statustext="Percentage the member is availible for projects" id="general_avail[$row]"></et2-textbox>
-					<et2-textbox  type="float" statustext="Percentage the member is availible for this project" id="availibility[$row]"></et2-textbox>
+					<et2-number  statustext="Percentage the member is availible for projects" id="general_avail[$row]"></et2-number>
+					<et2-number  statustext="Percentage the member is availible for this project" id="availibility[$row]"></et2-number>
 					<et2-select  id="role[$row]" emptyLabel="None"></et2-select>
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.edit.accounting" template="" lang="" group="0" version="1.9.001">
+	</et2-template>
+	<et2-template  id="projectmanager.edit.accounting" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -159,8 +159,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.edit.links" template="" lang="" group="0" version="1.9.001">
+	</et2-template>
+	<et2-template  id="projectmanager.edit.links" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="95"/>
@@ -178,11 +178,11 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.edit.history" template="" lang="" group="0" version="1.9.001">
+	</et2-template>
+	<et2-template  id="projectmanager.edit.history" template="" lang="" group="0" version="1.9.001">
 		<historylog id="history"/>
-	</template>
-	<template id="projectmanager.edit" template="" lang="" group="0" version="1.9.001">
+	</et2-template>
+	<et2-template  id="projectmanager.edit" template="" lang="" group="0" version="1.9.001">
 		<grid width="100%">
 			<columns>
 				<column width="100"/>
@@ -199,12 +199,10 @@
 				</row>
 				<row class="et2_toolbar">
 					<et2-description  id="spacer" span="3"></et2-description>
-					<et2-button-timestamp parentId="projectmanager-edit_tabs" slot="nav"
-                                          statustext="Insert timestamp into description field" id="timestamp"
-                                          target="pm_description" class="projectTimestamp"></et2-button-timestamp>
+					<et2-button-timestamp  parentId="projectmanager-edit_tabs" slot="nav" statustext="Insert timestamp into description field" id="timestamp" target="pm_description" class="projectTimestamp"></et2-button-timestamp>
 				</row>
 				<row>
-                    <et2-tabbox id="tabs" span="all" tabHeight="345px">
+                    <et2-tabbox  id="tabs" span="all" tabHeight="345px">
                         <tabs>
                             <tab id="general" label="General" statustext="Start, End, Category, ..."/>
                             <tab id="description" label="Description" statustext="free descriptiv text"/>
@@ -214,18 +212,18 @@
                             <tab id="history" label="History"/>
                         </tabs>
                         <tabpanels>
-							<template id="projectmanager.edit.general"/>
-							<template id="projectmanager.edit.description"/>
-							<template id="projectmanager.edit.members"/>
-							<template id="projectmanager.edit.accounting"/>
-							<template id="projectmanager.edit.links"/>
-							<template id="projectmanager.edit.history"/>
+							<et2-template  id="projectmanager.edit.general"></et2-template>
+							<et2-template  id="projectmanager.edit.description"></et2-template>
+							<et2-template  id="projectmanager.edit.members"></et2-template>
+							<et2-template  id="projectmanager.edit.accounting"></et2-template>
+							<et2-template  id="projectmanager.edit.links"></et2-template>
+							<et2-template  id="projectmanager.edit.history"></et2-template>
 						</tabpanels>
 					</et2-tabbox>
 				</row>
 				<row disabled="!@pm_id" class="dialogOperators">
 					<et2-hbox  span="4">
-						<et2-hbox class="modified">
+						<et2-hbox  class="modified">
 							<et2-description  value="Modified"></et2-description>
 							<et2-date-time  id="pm_modified" readonly="true"></et2-date-time>
 							<et2-select-account  label="by" id="pm_modifier" readonly="true"></et2-select-account>
@@ -237,21 +235,19 @@
 					</et2-hbox>
 				</row>
 				<row class="dialogFooterToolbar">
-					<et2-hbox span="4">
-                        <et2-button statustext="Edit this project" label="Edit" id="edit" image="edit"
-                                    hideOnReadonly="true"></et2-button>
-                        <et2-button statustext="Save the changes made" label="Save" id="save" image="save"></et2-button>
-                        <et2-button statustext="Apply the changes" label="Apply" id="apply" image="apply"></et2-button>
-                        <et2-button statustext="Exit without saving" label="Cancel" id="cancel"
-                                    onclick="window.close();" image="cancel" noSubmit="true"></et2-button>
+					<et2-hbox  span="4">
+                        <et2-button  statustext="Edit this project" label="Edit" id="edit" image="edit" hideOnReadonly="true"></et2-button>
+                        <et2-button  statustext="Save the changes made" label="Save" id="save" image="save"></et2-button>
+                        <et2-button  statustext="Apply the changes" label="Apply" id="apply" image="apply"></et2-button>
+                        <et2-button  statustext="Exit without saving" label="Cancel" id="cancel" onclick="window.close();" image="cancel" noSubmit="true"></et2-button>
 						<et2-hbox  align="right">
 							<et2-checkbox  statustext="If checked the datasources of the elements (eg. InfoLog entries) are deleted too." label="datasources too" id="delete_sources"></et2-checkbox>
-							<et2-button statustext="Delete this project" label="Delete" id="delete" onclick="Et2Dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button>
+							<et2-button  statustext="Delete this project" label="Delete" id="delete" onclick="Et2Dialog.confirm(widget,'Delete this project','Delete')" image="delete"></et2-button>
 						</et2-hbox>
 					</et2-hbox>
 
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>

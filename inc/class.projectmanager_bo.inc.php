@@ -188,7 +188,10 @@ class projectmanager_bo extends projectmanager_so
 		parent::__construct($pm_id);
 
 		// save us in $GLOBALS['boprojectselements'] for ExecMethod used in hooks
-		if (!is_object($GLOBALS['projectmanager_bo']))
+		// but its ACL grants are cached at construction time, so a stale instance left behind
+		// by a since-restored user-switch (eg. LoggedInTest::asAdmin()) must not be kept, or
+		// check_acl() silently denies read-access to entries owned by the current user
+		if (!is_object($GLOBALS['projectmanager_bo']) || $GLOBALS['projectmanager_bo']->user != $this->user)
 		{
 			$GLOBALS['projectmanager_bo'] =& $this;
 		}

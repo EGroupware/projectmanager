@@ -28,9 +28,77 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	// List of element IDs so we can check if they get deleted
 	protected $elements = array();
 
+	/**
+	 * Force-purge a stray projectmanager project by id, bypassing ACL, IF it's still there
+	 * after a normal projectmanager_bo delete attempt.
+	 *
+	 * projectmanager_bo::delete() calls projectmanager_bo::read() first, which enforces an ACL
+	 * check against the CURRENT session user. Observed (but not yet root-caused) in the full
+	 * PHPUnit suite: that check can return false for a project this same test just created a
+	 * moment earlier, apparently after enough other tests have run before it in the same
+	 * process. When that happens, delete() silently no-ops (returns 0, no exception) and the
+	 * row survives, later colliding with the next test's fixture INSERT under the same
+	 * pm_number. This is test-fixture cleanup, where "get rid of it no matter what" is the
+	 * correct semantics - projectmanager_so's delete() is a plain, ACL-free row delete, used
+	 * here ONLY as a last-resort safety net *after* the normal, cascade-aware bo-level delete
+	 * has already had its chance to clean up members/elements/links properly.
+	 *
+	 * @param int|string|null $pm_id
+	 */
+	protected function forcePurgeProjectIfStillThere($pm_id)
+	{
+		if (!$pm_id)
+		{
+			return;
+		}
+		$so = new \projectmanager_so();
+		if ($so->read($pm_id))
+		{
+			$so->delete($pm_id);
+		}
+	}
+
+	/**
+	 * Make sure no stray projectmanager project with the given pm_number is left over from an
+	 * earlier, interrupted test run, before a fresh fixture gets created under the same number.
+	 *
+	 * Looks the project up via projectmanager_so, NOT projectmanager_bo: a stray row can be
+	 * ACL-invisible to the ACL-gated bo::read() used for the lookup in the original version of
+	 * this pre-cleanup, for the same not-yet-root-caused reason documented on
+	 * forcePurgeProjectIfStillThere() - which would otherwise skip cleanup entirely rather than
+	 * just no-op the delete. If found, attempts the normal cascade-aware bo-level delete first
+	 * (proper member/element/link cleanup when the ACL check happens to succeed), then falls
+	 * back to a forced purge if the row is still there afterwards.
+	 *
+	 * @param \projectmanager_bo $bo used for the normal (cascade-aware) delete attempt;
+	 *   its history property is forced to '' so a single delete() call always purges rather
+	 *   than soft-deleting
+	 * @param string $pm_number
+	 */
+	protected function purgeStaleProjectFixture(\projectmanager_bo $bo, $pm_number)
+	{
+		$so = new \projectmanager_so();
+		$project = $so->read(array('pm_number' => $pm_number));
+		if (!$project || !$project['pm_id'])
+		{
+			return;
+		}
+		$bo->history = '';
+		$bo->delete($project['pm_id'], true);
+		$this->forcePurgeProjectIfStillThere($project['pm_id']);
+	}
 
 	protected function setUp() : void
 	{
+		// Make sure a 'TEST'/'SUB-TEST' fixture left behind by a previous test (eg. an earlier
+		// test class whose own cleanup got interrupted) doesn't collide with makeProject()'s
+		// insert below - same guard as DeleteTest::setUp().
+		$cleanup_bo = new \projectmanager_bo();
+		foreach(array('TEST', 'SUB-TEST') as $number)
+		{
+			$this->purgeStaleProjectFixture($cleanup_bo, $number);
+		}
+
 		$this->ui = new \projectmanager_ui();
 		// I have no idea why this has to be after the call to new \projectmanager_ui(),
 		// but it fails to find the Etemplate class otherwise
@@ -47,16 +115,31 @@ class TemplateTest extends \EGroupware\Api\AppTest
 	{
 		$this->bo = new \projectmanager_bo();
 
-		// Delete template
-		$this->deleteProject($this->pm_id);
-		// Delete clone
-		$this->deleteProject($this->cloned_id);
+		// Nested try/finally: if deleting the template throws, the clone must still get a
+		// cleanup attempt, and the global unset at the end must still run either way -
+		// otherwise a stuck $GLOBALS bo silently breaks unrelated tests running later in
+		// the same PHPUnit process.
+		try
+		{
+			// Delete template
+			$this->deleteProject($this->pm_id);
+		}
+		finally
+		{
+			try
+			{
+				// Delete clone
+				$this->deleteProject($this->cloned_id);
+			}
+			finally
+			{
+				$this->bo = null;
 
-		$this->bo = null;
-
-		// Projectmanager sets a lot of global stuff
-		unset($GLOBALS['projectmanager_bo']);
-		unset($GLOBALS['projectmanager_elements_bo']);
+				// Projectmanager sets a lot of global stuff
+				unset($GLOBALS['projectmanager_bo']);
+				unset($GLOBALS['projectmanager_elements_bo']);
+			}
+		}
 	}
 
 	public function testCreateFromTemplate()
@@ -147,12 +230,11 @@ class TemplateTest extends \EGroupware\Api\AppTest
 
 		$this->assertFalse((boolean)$result, 'Error making test project');
 		$this->assertArrayHasKey('pm_id', $this->bo->data, 'Could not make test project');
-		$this->assertThat($this->bo->data['pm_id'],
-			$this->logicalAnd(
-				$this->isType('integer'),
-				$this->greaterThan(0)
-			)
-		);
+		// Accept int or numeric string: Storage\Base::read() never casts DB columns (they come
+		// back as strings from mysqli), and any intervening read of this project - eg. via
+		// notification processing - re-hydrates pm_id as a string. Only the numeric value matters.
+		$this->assertTrue(is_numeric($this->bo->data['pm_id']) && $this->bo->data['pm_id'] > 0,
+			'pm_id is not a positive number: '.var_export($this->bo->data['pm_id'], true));
 		$this->pm_id = $this->bo->data['pm_id'];
 
 		// Add some elements
@@ -308,15 +390,25 @@ class TemplateTest extends \EGroupware\Api\AppTest
 		// usually waits until Egw::on_shutdown();
 		Link::run_notifies();
 
-		$this->bo->delete($pm_id, true);
-		// Delete again to purge
-		$this->bo->delete($pm_id, true);
+		try
+		{
+			$this->bo->delete($pm_id, true);
+			// Delete again to purge
+			$this->bo->delete($pm_id, true);
+		}
+		finally
+		{
+			// deleteElements() must still run even if the project delete itself threw -
+			// otherwise directly-created fixture elements (timesheet, tracker, ...) never
+			// get their own explicit double-delete below and leak permanently.
+			// Force links to run notification now, or elements might stay
+			// usually waits until Egw::on_shutdown();
+			Link::run_notifies();
 
-		// Force links to run notification now, or elements might stay
-		// usually waits until Egw::on_shutdown();
-		Link::run_notifies();
+			$this->deleteElements();
 
-		$this->deleteElements();
+			$this->forcePurgeProjectIfStillThere($pm_id);
+		}
 	}
 
 
@@ -332,36 +424,46 @@ class TemplateTest extends \EGroupware\Api\AppTest
 
 			$bo_class = "{$app}_bo";
 
-			// Delete each entry twice to make sure it's gone
-			switch($app)
+			// Each case is wrapped so one element's delete failure (eg. an ACL check, or
+			// any other exception) can't abort the loop and leave later elements - notably
+			// timesheet/tracker, last in iteration order - permanently orphaned.
+			try
 			{
-				case 'calendar':
-					$bo = new \calendar_boupdate();
-					$bo->delete($id,0,true,true);
-					$bo->delete($id,0,true,true);
-					break;
-				case 'infolog':
-					$bo = new $bo_class();
-					$bo->delete($id, true, false, true);
-					$bo->delete($id, true, false, true);
-					break;
-				case 'projectmanager':
-					$bo = new $bo_class();
-					$bo->delete($id);
-					$bo->delete($id);
-					break;
-				case 'timesheet':
-					$bo = new $bo_class();
-					$bo->delete($id);
-					// Tell Timesheet to ignore ACL to make sure it's gone
-					$bo->delete($id, true);
-					break;
-				case 'tracker':
-					$bo = new $bo_class();
-					// Once is enough for tracker, it doesn't support keeping things
-					// after deleting
-					$bo->delete($id);
-					break;
+				// Delete each entry twice to make sure it's gone
+				switch($app)
+				{
+					case 'calendar':
+						$bo = new \calendar_boupdate();
+						$bo->delete($id,0,true,true);
+						$bo->delete($id,0,true,true);
+						break;
+					case 'infolog':
+						$bo = new $bo_class();
+						$bo->delete($id, true, false, true);
+						$bo->delete($id, true, false, true);
+						break;
+					case 'projectmanager':
+						$bo = new $bo_class();
+						$bo->delete($id);
+						$bo->delete($id);
+						break;
+					case 'timesheet':
+						$bo = new $bo_class();
+						$bo->delete($id);
+						// Tell Timesheet to ignore ACL to make sure it's gone
+						$bo->delete($id, true);
+						break;
+					case 'tracker':
+						$bo = new $bo_class();
+						// Once is enough for tracker, it doesn't support keeping things
+						// after deleting
+						$bo->delete($id);
+						break;
+				}
+			}
+			catch (\Throwable $e)
+			{
+				error_log(__METHOD__."() failed to delete $app:$id: ".$e);
 			}
 		}
 	}

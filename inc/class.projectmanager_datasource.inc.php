@@ -45,7 +45,10 @@ class projectmanager_datasource extends datasource
 		$this->valid = PM_ALL_DATA;
 
 		// we use $GLOBALS['projectmanager_bo'] as an already running instance may be availible there
-		if (!is_object($GLOBALS['projectmanager_bo']))
+		// but its ACL grants are cached at construction time, so a stale instance left behind
+		// by a since-restored user-switch (eg. LoggedInTest::asAdmin()) must not be reused,
+		// or check_acl() silently denies read-access to entries owned by the current user
+		if (!is_object($GLOBALS['projectmanager_bo']) || $GLOBALS['projectmanager_bo']->user != (int)$GLOBALS['egw_info']['user']['account_id'])
 		{
 			$GLOBALS['projectmanager_bo'] = new projectmanager_bo();
 		}

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../doc/etemplate2/etemplate2.0.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<template id="projectmanager.elements.edit.dates" template="" lang="" group="0" version="0.3.001">
+	<et2-template  id="projectmanager.elements.edit.dates" template="" lang="" group="0" version="0.3.001">
         <grid width="100%" height="210">
             <columns>
                 <column/>
@@ -10,37 +11,36 @@
             </columns>
             <rows>
                 <row class="row">
-                    <et2-description value="Startdate" for="pe_real_start"></et2-description>
-                    <et2-date-time id="pe_real_start" class="pm_side_calendar"></et2-date-time>
-                    <et2-date-time id="ds[pe_real_start]" readonly="true"></et2-date-time>
+                    <et2-description  value="Startdate" for="pe_real_start"></et2-description>
+                    <et2-date-time  id="pe_real_start" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time  id="ds[pe_real_start]" readonly="true"></et2-date-time>
                 </row>
                 <row class="row">
-                    <et2-description value="- planned" for="pe_planned_end"></et2-description>
-                    <et2-date-time id="pe_planned_start" class="pm_side_calendar"></et2-date-time>
-                    <et2-date-time id="ds[pe_planned_start]" readonly="true"></et2-date-time>
+                    <et2-description  value="- planned" for="pe_planned_end"></et2-description>
+                    <et2-date-time  id="pe_planned_start" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time  id="ds[pe_planned_start]" readonly="true"></et2-date-time>
                 </row>
                 <row class="row">
-                    <et2-description value="Enddate" for="pe_real_end"></et2-description>
-                    <et2-date-time id="pe_real_end" class="pm_side_calendar"></et2-date-time>
-                    <et2-date-time id="ds[pe_real_end]" readonly="true"></et2-date-time>
+                    <et2-description  value="Enddate" for="pe_real_end"></et2-description>
+                    <et2-date-time  id="pe_real_end" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time  id="ds[pe_real_end]" readonly="true"></et2-date-time>
                 </row>
                 <row class="row" valign="top" height="50%">
-                    <et2-description value="- planned" for="pe_planned_end"></et2-description>
-                    <et2-date-time id="pe_planned_end" class="pm_side_calendar"></et2-date-time>
-                    <et2-date-time id="ds[pe_planned_end]" readonly="true"></et2-date-time>
+                    <et2-description  value="- planned" for="pe_planned_end"></et2-description>
+                    <et2-date-time  id="pe_planned_end" class="pm_side_calendar"></et2-date-time>
+                    <et2-date-time  id="ds[pe_planned_end]" readonly="true"></et2-date-time>
                 </row>
                 <row class="row" disabled="!@no_times">
-                    <et2-description value="Share" for="pe_share"></et2-description>
-                    <et2-hbox span="all">
-                        <et2-textbox statustext="Share on the whole project" id="pe_share"
-                                     validator="/^[0-9.]*\.?[0-9%]*$/"></et2-textbox>
+                    <et2-description  value="Share" for="pe_share"></et2-description>
+                    <et2-hbox  span="all">
+                        <et2-textbox  statustext="Share on the whole project" id="pe_share" validator="/^[0-9.]*\.?[0-9%]*$/"></et2-textbox>
 						<et2-number  label="default" id="default_percentage" readonly="true"></et2-number>
 					</et2-hbox>
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.edit.times" template="" lang="" group="0" version="0.3.001">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.edit.times" template="" lang="" group="0" version="0.3.001">
 		<grid width="100%" height="170">
 			<columns>
 				<column width="95"/>
@@ -83,8 +83,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.5.002">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.edit.budget" template="" lang="" group="0" version="0.5.002">
 		<grid width="100%" height="170">
 			<columns>
 				<column width="95"/>
@@ -127,8 +127,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.4.001">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.edit.constraints" template="" lang="" group="0" version="0.4.001">
 		<grid width="100%" overflow="auto" id="pe_constraints" disabled="!@pe_constraints">
 			<columns>
 				<column width="95"/>
@@ -147,7 +147,7 @@
 						<et2-link  id="${row}[pe_id_end]" app="projectelement"></et2-link>
 						<et2-link  id="${row}[ms_id]" disabled="$row_cont[pe_id_end]" app="pm_milestone"></et2-link>
 					</et2-vbox>
-					<et2-button-icon  id="delete[${row}]" image="delete"></et2-button-icon>
+					<et2-button-icon  id="delete[$row]" image="delete"></et2-button-icon>
 				</row>
 			</rows>
 		</grid>
@@ -167,8 +167,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.edit.resources" template="" lang="" group="0" version="0.4.001">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.edit.resources" template="" lang="" group="0" version="0.4.001">
 		<grid width="100%" height="170">
 			<columns>
 				<column width="95"/>
@@ -183,8 +183,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.edit.details" template="" lang="" group="0" version="0.4.001">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.edit.details" template="" lang="" group="0" version="0.4.001">
 		<grid width="100%" height="170" overflow="auto">
 			<columns>
 				<column width="95"/>
@@ -193,12 +193,12 @@
 			<rows>
 				<row class="row" valign="top">
 					<et2-description  value="Details"></et2-description>
-					<html id="ds[pe_details]"/>
+					<et2-html  id="ds[pe_details]"></et2-html>
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.edit.eroles" template="" lang="" group="0" version="1.9.004">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.edit.eroles" template="" lang="" group="0" version="1.9.004">
 		<grid>
 			<columns>
 				<column width="380px"/>
@@ -212,8 +212,8 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
-	<template id="projectmanager.elements.edit" template="" lang="" group="0" version="1.9.005">
+	</et2-template>
+	<et2-template  id="projectmanager.elements.edit" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%" height="170">
 			<columns>
 				<column width="100"/>
@@ -254,7 +254,7 @@
 					<et2-description  id="ds[pe_completion]" noLang="1"></et2-description>
 				</row>
 				<row>
-                    <et2-tabbox id="dates|times|budget|constraints|resources|details|eroles" span="all" height="180" tabHeight="auto" cfDisabled="true">
+                    <et2-tabbox  id="dates|times|budget|constraints|resources|details|eroles" span="all" height="180" tabHeight="auto" cfDisabled="true">
 						<tabs>
 							<tab id="dates" label="Dates" statustext="Start- &amp; Enddate"/>
 							<tab id="times" label="Times" statustext="Times"/>
@@ -265,13 +265,13 @@
 							<tab id="eroles" label="Element roles" statustext="Element roles"/>
 						</tabs>
 						<tabpanels>
-							<template id="projectmanager.elements.edit.dates"/>
-							<template id="projectmanager.elements.edit.times"/>
-							<template id="projectmanager.elements.edit.budget"/>
-							<template id="projectmanager.elements.edit.constraints"/>
-							<template id="projectmanager.elements.edit.resources"/>
-							<template id="projectmanager.elements.edit.details"/>
-							<template id="projectmanager.elements.edit.eroles"/>
+							<et2-template  id="projectmanager.elements.edit.dates"></et2-template>
+							<et2-template  id="projectmanager.elements.edit.times"></et2-template>
+							<et2-template  id="projectmanager.elements.edit.budget"></et2-template>
+							<et2-template  id="projectmanager.elements.edit.constraints"></et2-template>
+							<et2-template  id="projectmanager.elements.edit.resources"></et2-template>
+							<et2-template  id="projectmanager.elements.edit.details"></et2-template>
+							<et2-template  id="projectmanager.elements.edit.eroles"></et2-template>
 						</tabpanels>
 					</et2-tabbox>
 				</row>
@@ -285,8 +285,7 @@
 				</row>
 				<row class="dialogFooterToolbar">
 					<et2-hbox  span="2">
-						<et2-button statustext="Edit this project-element" label="Edit" id="edit"
-                                    hideOnReadonly="true"></et2-button>
+						<et2-button  statustext="Edit this project-element" label="Edit" id="edit" hideOnReadonly="true"></et2-button>
 						<et2-button  statustext="Save this project element" label="Save" id="save"></et2-button>
 						<et2-button  statustext="Apply the changes" label="Apply" id="apply"></et2-button>
 						<et2-button  statustext="Close the window, discard the changes made" label="Cancel" id="cancel" onclick="window.close();"></et2-button>
@@ -295,5 +294,5 @@
 				</row>
 			</rows>
 		</grid>
-	</template>
+	</et2-template>
 </overlay>
