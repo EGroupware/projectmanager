@@ -13,19 +13,19 @@
 			</columns>
 			<rows>
 				<row class="th">
-					<nextmatch-sortheader label="Title" id="pl_title"/>
+					<et2-nextmatch-sortheader label="Title" id="pl_title"/>
 					<et2-vbox>
 						<et2-nextmatch-header-filter  id="pm_id" multiple="false" noLang="1" emptyLabel="Project"></et2-nextmatch-header-filter>
-						<nextmatch-sortheader label="Customer title" id="pl_customertitle"/>
+						<et2-nextmatch-sortheader label="Customer title" id="pl_customertitle"/>
 					</et2-vbox>
 					<et2-nextmatch-header-filter  id="pl_billable" multiple="false" emptyLabel="Availible"></et2-nextmatch-header-filter>
 					<et2-vbox>
-						<nextmatch-sortheader label="Price / Unit" id="pl_price"/>
-						<nextmatch-sortheader label="Valid since" id="pl_validsince"/>
+						<et2-nextmatch-sortheader label="Price / Unit" id="pl_price"/>
+						<et2-nextmatch-sortheader label="Valid since" id="pl_validsince"/>
 					</et2-vbox>
 					<et2-vbox>
-						<nextmatch-sortheader label="Last modified" id="pl_modified"/>
-						<nextmatch-sortheader label="Modified by" id="pl_modifier"/>
+						<et2-nextmatch-sortheader label="Last modified" id="pl_modified"/>
+						<et2-nextmatch-sortheader label="Modified by" id="pl_modifier"/>
 					</et2-vbox>
 				</row>
 				<row class="row $row_cont[class]">
@@ -63,6 +63,6 @@
 	</et2-template>
 	<et2-template  id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
 		<et2-template  template="projectmanager.pricelist.list.header" slot="main-header"></et2-template>
-		<nextmatch id="nm" template="projectmanager.pricelist.list.rows"/>
+		<et2-nextmatch  id="nm" template="projectmanager.pricelist.list.rows"></et2-nextmatch>
 	</et2-template>
 </overlay>

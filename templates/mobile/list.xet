@@ -2,8 +2,6 @@
 <?xml-model href="../../../doc/etemplate2/etemplate2.0.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<et2-template  id="projectmanager.list.right" template="" lang="" group="0" version="1.9.002">
-    </et2-template>
 	<et2-template  id="projectmanager.list.rows" template="" lang="" group="0" version="1.9.003">
 		<grid width="100%">
 			<columns>
@@ -17,7 +15,7 @@
 				<row class="$row_cont[class]">
 					<et2-description  class="cat_$row_cont[cat_id] mobile_cat_col"></et2-description>
 					<et2-vbox  class="pmCol2">
-						<customfields-list id="$row" class="customfields" app="projectmanager" disabled="true"/>
+						<et2-customfields-list  id="$row" class="customfields" app="projectmanager" disabled="true"/>
 						<et2-hbox>
 							<et2-description  id="${row}[pm_number]" noLang="1"></et2-description>
 							<et2-hbox  class="priority">
@@ -39,16 +37,21 @@
 					<et2-vbox  class="pmCol1" align="right">
 						<et2-date-duration  label="time" id="${row}[pm_used_time]" readonly="true" dataFormat="@@duration_format" ></et2-date-duration>
 						<et2-date-duration  label="planned" id="${row}[pm_planned_time]" readonly="true" span="all" class="planned" dataFormat="@@duration_format"></et2-date-duration>
-						<progress label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+						<progress class="pm-completion" title="$row_cont[pm_completion]%" value="$row_cont[pm_completion]" max="100"/>
 					</et2-vbox>
 				</row>
 			</rows>
 		</grid>
+		<et2-styles>
+			/* A native &lt;progress&gt; defaults to ~140px, which overflows this column and gets
+			   clipped, making every bar look full whatever its value. */
+			progress.pm-completion { width: 100%; }
+		</et2-styles>
 	</et2-template>
 	<et2-template  id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
         <et2-tree  id="project_tree" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project" slot="left"></et2-tree>
         <et2-button-icon  class="plus_button" statustext="Add a new project" id="add_button" onclick="egw.open('','projectmanager','add');" noSubmit="true" image="plus-lg"></et2-button-icon>
-        <nextmatch id="nm" template="projectmanager.list.rows" header_right="projectmanager.list.right"/>
+        <et2-nextmatch  id="nm" template="projectmanager.list.rows"></et2-nextmatch>
         <grid width="100%">
 			<columns>
 				<column/>

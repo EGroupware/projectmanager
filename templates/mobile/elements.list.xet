@@ -46,7 +46,7 @@
 							<et2-image  src="$row_cont[pe_completion_icon]" noLang="1"></et2-image>
 							<et2-image  src="$row_cont[ignored]" noLang="1"></et2-image>
 						</et2-hbox>
-						<progress id="${row}[pe_completion]" no_lang="1"/>
+						<progress class="pe-completion" title="$row_cont[pe_completion]" value="$row_cont[pe_completion]" max="100"/>
 						<et2-date-duration  label="Time" id="${row}[pe_used_time]" readonly="true" dataFormat="@@duration_format" ></et2-date-duration>
 						<et2-date-duration  label="Planned" id="${row}[pe_planned_time]" readonly="true" span="all" class="planned" dataFormat="@@duration_format"></et2-date-duration>
 					</et2-vbox>
@@ -75,38 +75,29 @@
 				</row>
 			</rows>
 		</grid>
+		<et2-styles>
+			/* A native &lt;progress&gt; defaults to ~140px, which overflows this column and gets
+			   clipped, making every bar look full whatever its value. */
+			progress.pe-completion { width: 100%; }
+		</et2-styles>
 	</et2-template>
 	<et2-template  id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">
+		<et2-description  align="center" id="msg" class="message" noLang="1" disabled="!@msg"></et2-description>
+		<et2-nextmatch  id="nm" template="projectmanager.elements.list.rows"></et2-nextmatch>
+		<et2-dialog  id="add_existing_popup_dialog" title="Add element" open="false" buttons="" destroyOnClose="false">
+			<et2-box  id="add_existing_popup">
+				<et2-link-entry  id="link" class="action_popup-content" width="330px"></et2-link-entry>
+			</et2-box>
+			<et2-button  slot="footer" variant="primary" label="Add" id="add_existing_popup[link_action][add]" image="add" onclick="return app.projectmanager.submit_add_existing(ev, widget);"></et2-button>
+			<et2-button  slot="footer" label="Cancel" id="cancel" image="cancelled" noSubmit="true" onclick="widget.closest('et2-dialog').hide(); return false;"></et2-button>
+		</et2-dialog>
 		<grid width="100%">
 			<columns>
 				<column/>
 			</columns>
 			<rows>
-				<row disabled="1">
-					<et2-hbox>
-						<et2-template  id="add-new"></et2-template>
-						<et2-template  id="add"></et2-template>
-					</et2-hbox>
-				</row>
-				<row disabled="!@msg">
-					<et2-description  align="center" id="msg" class="message" noLang="1"></et2-description>
-				</row>
 				<row>
-					<nextmatch id="nm" options="projectmanager.elements.list.rows"/>
-				</row>
-				<row>
-					<et2-box  id="add_existing_popup" class="action_popup prompt">
-							<et2-vbox>
-								<et2-description  value="Add / Remove link" class="promptheader"></et2-description>
-								<et2-link-entry  id="link" class="action_popup-content"></et2-link-entry>
-								<et2-hbox>
-									<et2-button  label="Add" id="link_action[add]" onclick="nm_submit_popup(this); return false;"></et2-button>
-									<et2-button  label="Cancel" onclick="nm_hide_popup(this,'link_popup');" noSubmit="true"></et2-button>
-								</et2-hbox>
-							</et2-vbox>
-					</et2-box>
 					<et2-hbox  align="right" disabled="!@nm[selectcols]=/legacy_actions/">
-
 						<et2-button  statustext="Select action" label="Select action" id="legacy_actions" onclick="if (!egw_globalObjectManager.getObjectById('projectmanager.list.rows').executeActionImplementation(this, 'popup')) alert(egw::lang('You need to select some entries first!')); return false;;" noSubmit="true"></et2-button>
 						<et2-button  statustext="Check all" label="Check all" id="check_all" onclick="egw_globalObjectManager.getObjectById('projectmanager.elements.list.rows').toggleAllSelected(); return false;" image="arrow_ltr" class="check_all_arrow" required="1"></et2-button>
 					</et2-hbox>

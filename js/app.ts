@@ -18,7 +18,11 @@ import {EgwApp, PushData} from "../../api/js/jsapi/egw_app";
 // not real exported module members - see doc/ai/projects/app-ts-modernization.md.
 import {etemplate2} from "../../api/js/etemplate/etemplate2";
 import {et2_gantt} from "./et2_widget_gantt";
-import {et2_nextmatch} from "../../api/js/etemplate/et2_extension_nextmatch";
+// Registers <projectmanager-select-erole>, used in the element list's row template
+import "./ProjectmanagerSelectErole";
+import type {Et2Nextmatch} from "../../api/js/etemplate/Et2Nextmatch/Et2Nextmatch";
+import type {Et2Button} from "../../api/js/etemplate/Et2Button/Et2Button";
+import type {Et2DatagridUpdateType} from "../../api/js/etemplate/Et2Datagrid/Et2Datagrid.types";
 import type {Et2LinkAdd} from "../../api/js/etemplate/Et2Link/Et2LinkAdd";
 import type {EgwFrameworkApp, FilterInfo} from "../../kdots/js/EgwFrameworkApp";
 import type {Et2Template} from "../../api/js/etemplate/Et2Template/Et2Template";
@@ -67,6 +71,9 @@ export class ProjectmanagerApp extends EgwApp
 	// rebind/teardown can remove exactly the handler(s) we added (see _clearSideboxHandlers()).
 	private _sideboxClickHandlers : Map<HTMLElement, EventListener> = new Map();
 
+	// Watches <egw-app> for the filterboxes our three nextmatches append to it, see _watchFilterboxes()
+	private _filterboxObserver : MutationObserver = null;
+
 	/**
 	 * Constructor
 	 *
@@ -89,6 +96,9 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			this._clearSideboxHandlers();
 		}
+
+		this._filterboxObserver?.disconnect();
+		this._filterboxObserver = null;
 
 		// Remove reference to etemplates
 		for(let view in this.views)
@@ -139,6 +149,8 @@ export class ProjectmanagerApp extends EgwApp
 			{
 				et2.DOMContainer.style.display = 'none';
 			}
+
+			this._watchFilterboxes();
 
 			if(view.name == 'list')
 			{
@@ -298,10 +310,7 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			if(what != view && this.views[view].etemplate)
 			{
-				this.views[view].etemplate.widgetContainer.iterateOver((nm) =>
-				{
-					nm.set_disabled(true);
-				}, this, et2_nextmatch);
+				ProjectmanagerApp._nextmatches(this.views[view].etemplate).forEach(nm => nm.set_disabled(true));
 				this.views[view].etemplate.DOMContainer.style.display = 'none';
 			}
 		}
@@ -310,12 +319,12 @@ export class ProjectmanagerApp extends EgwApp
 		if(this.views[what].etemplate)
 		{
 			this.views[what].etemplate.DOMContainer.style.display = '';
-			this.views[what].etemplate.widgetContainer.iterateOver((nm) =>
-			{
-				nm.set_disabled(false);
-			}, this, et2_nextmatch);
+			ProjectmanagerApp._nextmatches(this.views[what].etemplate).forEach(nm => nm.set_disabled(false));
 			this.views[what].etemplate.resize();
 		}
+
+		// Only the view we just showed should have filters in the app's filter drawer
+		this._syncFilterboxes();
 
 		// Set header
 		this.egw.app_header(this.egw.lang(this.views[what].sidemenu),'projectmanager');
@@ -424,14 +433,14 @@ export class ProjectmanagerApp extends EgwApp
 				}
 				for(let i = 0; i < et2.length; i++)
 				{
-					et2[i].widgetContainer.iterateOver((_widget) => {
+					ProjectmanagerApp._nextmatches(et2[i]).forEach((nm) => {
 						// Firefox has trouble with spaces in search
 						if(state.state && state.state.search) state.state.search = unescape(state.state.search);
 
 						// Apply
-						_widget.applyFilters(state.state || state.filter || {});
+						nm.applyFilters(state.state || state.filter || {});
 						nextmatched = true;
-					}, this, et2_nextmatch);
+					});
 				}
 				if(nextmatched) return false;
 		}
@@ -463,13 +472,13 @@ export class ProjectmanagerApp extends EgwApp
 			}
 			else
 			{
-				et2.widgetContainer.iterateOver((_widget) => {
-					state = _widget.getValue();
+				ProjectmanagerApp._nextmatches(et2).forEach((nm) => {
+					state = nm.getValue();
 
 					// These aren't considered for state
 					delete state.link_add;
 					delete state.link_addapp;
-				}, this, et2_nextmatch);
+				});
 			}
 			// Gantt & tree also need the current PM ID stored
 			let current_project = 0;
@@ -569,10 +578,12 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			pushData.type === 'delete' ? tree.deleteItem(itemId) : tree.refreshItem(itemId);
 		}
-		const nm = <et2_nextmatch>list?.getWidgetById('nm');
+		const nm = <Et2Nextmatch>list?.getWidgetById('nm');
 		if(nm)
 		{
-			nm.refresh(pushData.id, pushData.type);
+			// Cast only - refresh() normalises ids itself (_toStringArray), and converting
+			// here would change what push hands it for no reason
+			nm.refresh(<string>pushData.id, <Et2DatagridUpdateType>pushData.type);
 		}
 
 		// The project is the element list's first row and where its totals come from, so if it is
@@ -652,9 +663,9 @@ export class ProjectmanagerApp extends EgwApp
 	/**
 	 * The element list's nextmatch, if that view is loaded - it stays loaded while hidden
 	 */
-	private _elementList() : et2_nextmatch | null
+	private _elementList() : Et2Nextmatch | null
 	{
-		return <et2_nextmatch>this.views.elements.etemplate?.widgetContainer.getWidgetById('nm') || null;
+		return <Et2Nextmatch>this.views.elements.etemplate?.widgetContainer.getWidgetById('nm') || null;
 	}
 
 	/**
@@ -665,7 +676,7 @@ export class ProjectmanagerApp extends EgwApp
 	 * odd cases, it is the usual answer - a list reached through the project tree, or through a
 	 * favourite that does not name a project, carries no pm_id in its filters at all.
 	 */
-	private _elementListProject(nm : et2_nextmatch) : string
+	private _elementListProject(nm : Et2Nextmatch) : string
 	{
 		return nm?.activeFilters?.col_filter?.pm_id ||
 			this.egw.preference('current_project', 'projectmanager') || '';
@@ -809,17 +820,92 @@ export class ProjectmanagerApp extends EgwApp
 	/**
 	 * Tell the framework which nextmatch to use right now
 	 *
-	 * @return {et2_nextmatch|null}
+	 * @return {Et2Nextmatch|null}
 	 */
-	getNextmatch() : et2_nextmatch | null
+	getNextmatch() : Et2Nextmatch | null
 	{
-		const et2 = this.views[this.view].etemplate?.widgetContainer;
-		let currentNm = null;
-		et2?.iterateOver((nm) =>
+		return ProjectmanagerApp._nextmatches(this.views[this.view].etemplate).pop() ?? null;
+	}
+
+	/**
+	 * Every Et2Nextmatch in one of our sub-templates
+	 *
+	 * The legacy nextmatch was found with widgetContainer.iterateOver(..., et2_nextmatch), which
+	 * matches on the legacy class and so finds nothing once a template is converted.  A custom
+	 * element has no such class to match on, so query the template's own DOM for the tag instead -
+	 * every one of our views puts its nextmatch directly in the template, none in a popup.
+	 *
+	 * @param et2 an etemplate2, or nothing if that view is not loaded
+	 */
+	private static _nextmatches(et2) : Et2Nextmatch[]
+	{
+		return Array.from(et2?.DOMContainer?.querySelectorAll("et2-nextmatch") ?? []);
+	}
+
+	/**
+	 * Show only the current view's filters in the app's filter drawer
+	 *
+	 * We load all four views at once and swap which one is displayed, so three Et2Nextmatches exist
+	 * side by side.  Each one builds its own <et2-filterbox> and appends it to the nearest ancestor
+	 * offering a "filter" slot - which for all three is the same <egw-app> - so the drawer would
+	 * otherwise show the project list's, the element list's and the pricelist's filters stacked on
+	 * top of each other, with no indication which belongs to what is on screen.  The legacy widget
+	 * kept its filters in its own header bar, so this could not happen before.
+	 *
+	 * Et2Nextmatch exposes no accessor for the filterbox it made, but the filterbox keeps a
+	 * reference back to it, which is enough to tell them apart.
+	 *
+	 * Mark the inactive ones `hidden` rather than hiding them with CSS: EgwFrameworkApp.filters is
+	 * `querySelector("et2-filterbox:not([hidden],[disabled])")`, so that attribute is also how the
+	 * app shell picks which filterbox its "Clear filters" button, its filter-set icon and
+	 * getFilterInfo() read.  Merely hiding them leaves all three pointed at whichever filterbox
+	 * happens to come first in the DOM.
+	 */
+	private _syncFilterboxes()
+	{
+		const appNode : any = document.querySelector("egw-app#projectmanager");
+		appNode?.querySelectorAll("et2-filterbox").forEach((filterbox : any) =>
 		{
-			currentNm = nm
-		}, this, et2_nextmatch);
-		return currentNm;
+			const nm = filterbox.nextmatch;
+			if(nm?.localName === "et2-nextmatch")
+			{
+				filterbox.hidden = nm.disabled;
+			}
+		});
+		// The drawer's heading counts rows, and the shell only updates that from a search result
+		// belonging to whichever nextmatch is current (EgwFrameworkApp.handleSearchResults()).
+		// Switching views produces no such result - the list we just showed already has its rows -
+		// so without this the heading keeps counting the view we came from.
+		const current = this.getNextmatch();
+		if(appNode && current)
+		{
+			appNode.rowCount = current.totalCount ?? "";
+		}
+	}
+
+	/**
+	 * Re-run _syncFilterboxes() as filterboxes appear
+	 *
+	 * A nextmatch does not create its filterbox until its filter template arrives, which is after
+	 * the view switch that should have hidden it - so a one-shot sync in show() would miss the two
+	 * views that were never displayed.
+	 */
+	private _watchFilterboxes()
+	{
+		const appNode = document.querySelector("egw-app#projectmanager");
+		if(!appNode || this._filterboxObserver)
+		{
+			return;
+		}
+		this._filterboxObserver = new MutationObserver((records) =>
+		{
+			if(records.some(r => Array.from(r.addedNodes)
+				.some((n : any) => n.localName === "et2-filterbox")))
+			{
+				this._syncFilterboxes();
+			}
+		});
+		this._filterboxObserver.observe(appNode, {childList: true});
 	}
 
 	getFilterInfo(filterValues : { [id : string] : string | { value : any } }, fwApp : EgwFrameworkApp) : FilterInfo
@@ -853,17 +939,40 @@ export class ProjectmanagerApp extends EgwApp
 	element_add_app_change_handler(event, widget : Et2LinkAdd)
 	{
 		if(widget.id !== 'link_addapp') return false;
-		// getParent() returns a union (Et2WidgetClass | et2_widget) - only the legacy
-		// et2_widget side has instanceOf(), so walk the tree loosely typed
-		let nm : any = widget.getParent();
-		while(!nm.instanceOf(et2_nextmatch))
-		{
-			nm = nm.getParent();
-		}
+		// activeFilters is read-only on Et2Nextmatch - applyFilters() with reload:false is how a
+		// single filter value is recorded without going back to the server for it
+		this.getNextmatch()?.applyFilters({[widget.id]: widget.get_value()}, {reload: false});
+		return false;
+	}
 
-		if((<et2_nextmatch>nm).activeFilters) {
-			(<et2_nextmatch>nm).activeFilters[widget.id] = widget.get_value();
+	/**
+	 * Submit the "Add existing" element popup
+	 *
+	 * Replaces the legacy nm_submit_popup() + window.nm_popup_action/nm_popup_ids globals: the popup
+	 * is a real <et2-dialog> now, so Et2NextmatchActionController.openActionPopup() takes its
+	 * "already a dialog" fast path (sets .selectedIds, calls .show()) and none of nm_open_popup()'s
+	 * runtime button-wrapping - which is what used to set those globals - happens any more.
+	 *
+	 * ButtonMixin._handleClick() has already marked this button clicked before the onclick runs, so
+	 * its own id ("add_existing_popup[link_action][add]") lands in the submitted content, which is
+	 * what tells projectmanager_elements_ui::action()'s 'add_existing' case that Add was pressed.
+	 * The action links the picked entry to the project the list is showing, so the rows that happen
+	 * to be selected are irrelevant to it - we still pass the live selection, because that is what
+	 * fills $content['nm']['selected'] the same way every other action does.
+	 *
+	 * @param _event
+	 * @param _widget the button that was clicked
+	 */
+	submit_add_existing(_event : Event, _widget : Et2Button) : boolean
+	{
+		const dialog : any = _widget.closest('et2-dialog');
+		const nm = <Et2Nextmatch>_widget.getInstanceManager()?.widgetContainer?.getWidgetById('nm');
+		if(!nm)
+		{
+			return false;
 		}
+		nm.executeAction('add_existing', nm.getSelection(), {nmAction: "submit"});
+		dialog?.hide();
 		return false;
 	}
 

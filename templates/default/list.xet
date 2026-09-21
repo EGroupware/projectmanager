@@ -28,11 +28,11 @@
             </columns>
             <rows>
                 <row class="th">
-                    <nextmatch-sortheader label="Project ID" id="pm_number"/>
-                    <nextmatch-sortheader label="Title" id="pm_title"/>
-                    <nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
-                    <nextmatch-sortheader label="categories" id="cat_id"/>
-                    <nextmatch-sortheader label="Owner" id="pm_creator"/>
+                    <et2-nextmatch-sortheader label="Project ID" id="pm_number"/>
+                    <et2-nextmatch-sortheader label="Title" id="pm_title"/>
+                    <et2-nextmatch-sortheader align="center" label="Priority" id="pm_priority"/>
+                    <et2-nextmatch-sortheader label="categories" id="cat_id"/>
+                    <et2-nextmatch-sortheader label="Owner" id="pm_creator"/>
                     <et2-nextmatch-header-account  id="resources" emptyLabel="Resources"></et2-nextmatch-header-account>
                     <et2-nextmatch-header  label="@roles[0]" id="role0"></et2-nextmatch-header>
                     <et2-nextmatch-header  label="@roles[1]" id="role1"></et2-nextmatch-header>
@@ -40,29 +40,29 @@
                     <et2-nextmatch-header  label="@roles[3]" id="role3"></et2-nextmatch-header>
                     <et2-nextmatch-header  label="@roles[4]" id="role4"></et2-nextmatch-header>
                     <et2-vbox>
-                        <nextmatch-sortheader label="Startdate" id="pm_real_start"/>
-                        <nextmatch-sortheader label="planned" id="pm_planned_start" class="planned"/>
+                        <et2-nextmatch-sortheader label="Startdate" id="pm_real_start"/>
+                        <et2-nextmatch-sortheader label="planned" id="pm_planned_start" class="planned"/>
                     </et2-vbox>
                     <et2-vbox>
-                        <nextmatch-sortheader label="Enddate" id="pm_real_end"/>
-                        <nextmatch-sortheader label="planned" id="pm_planned_end" class="planned"/>
+                        <et2-nextmatch-sortheader label="Enddate" id="pm_real_end"/>
+                        <et2-nextmatch-sortheader label="planned" id="pm_planned_end" class="planned"/>
                     </et2-vbox>
                     <et2-vbox>
-                        <nextmatch-sortheader label="Budget" id="pm_used_budget"/>
-                        <nextmatch-sortheader label="planned" id="pm_planned_budget" class="planned"/>
+                        <et2-nextmatch-sortheader label="Budget" id="pm_used_budget"/>
+                        <et2-nextmatch-sortheader label="planned" id="pm_planned_budget" class="planned"/>
                     </et2-vbox>
                     <et2-vbox>
-                        <nextmatch-sortheader label="Times" id="pm_used_time"/>
-                        <nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
+                        <et2-nextmatch-sortheader label="Times" id="pm_used_time"/>
+                        <et2-nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
                     </et2-vbox>
                     <et2-vbox>
-                        <nextmatch-sortheader label="Times" id="pm_used_time"/>
-                        <nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
-                        <nextmatch-sortheader label="re-planned" id="pm_replanned_time" class="replanned"/>
+                        <et2-nextmatch-sortheader label="Times" id="pm_used_time"/>
+                        <et2-nextmatch-sortheader label="planned" id="pm_planned_time" class="planned"/>
+                        <et2-nextmatch-sortheader label="re-planned" id="pm_replanned_time" class="replanned"/>
                     </et2-vbox>
-                    <nextmatch-sortheader align="center" label="Status" id="pm_completion"/>
-                    <nextmatch-sortheader label="last modified" id="pm_modified"/>
-                    <nextmatch-customfields id="customfields"/>
+                    <et2-nextmatch-sortheader align="center" label="Status" id="pm_completion"/>
+                    <et2-nextmatch-sortheader label="last modified" id="pm_modified"/>
+                    <et2-nextmatch-header-customfields  id="customfields" app="projectmanager"/>
                     <et2-nextmatch-header  label="Kanban" id="kanban"></et2-nextmatch-header>
                 </row>
                 <row class="$row_cont[cat_id] $row_cont[class]">
@@ -107,16 +107,21 @@
                             <et2-date-duration  id="${row}[pm_replanned_time]" readonly="true" selectUnit="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="replanned"></et2-date-duration>
                         </et2-hbox>
                     </et2-vbox>
-                    <progress align="center" label="$row_cont[pm_completion]" id="${row}[pm_completion]" no_lang="1"/>
+                    <progress align="center" class="pm-completion" title="$row_cont[pm_completion]%" value="$row_cont[pm_completion]" max="100"/>
                     <et2-vbox>
                         <et2-date-time  id="${row}[pm_modified]" readonly="true"></et2-date-time>
                         <et2-select-account  id="${row}[pm_modifier]" readonly="true"></et2-select-account>
                     </et2-vbox>
-                    <customfields-list id="$row"/>
+                    <et2-customfields-list  id="$row" app="projectmanager"/>
                     <et2-link-string  entryId="$row_cont[pm_id]" application="projectmanager" onlyApp="kanban"></et2-link-string>
                 </row>
             </rows>
         </grid>
+        <et2-styles>
+            /* A native &lt;progress&gt; defaults to ~140px, which overflows this column and gets
+               clipped, making every bar look full whatever its value. */
+            progress.pm-completion { width: 100%; }
+        </et2-styles>
     </et2-template>
     <et2-template  id="projectmanager.list.header" template="" lang="" group="0" version="1.9.002">
         <et2-button-icon  statustext="Add a new project" image="add" id="add" onclick="egw.open('','projectmanager','add');" noSubmit="true"></et2-button-icon>
@@ -135,6 +140,6 @@
     <et2-template  id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
         <et2-template  template="projectmanager.list.header" slot="main-header"></et2-template>
         <et2-tree  id="project_tree" slot="left" autoloading="projectmanager.projectmanager_ui.ajax_tree" onclick="app.projectmanager.set_project"/>
-        <nextmatch id="nm" template="projectmanager.list.rows"/>
+        <et2-nextmatch  id="nm" template="projectmanager.list.rows"></et2-nextmatch>
     </et2-template>
 </overlay>
