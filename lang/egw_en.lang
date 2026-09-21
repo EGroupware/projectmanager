@@ -137,6 +137,7 @@ element list	projectmanager	en	Element list
 element modifier	projectmanager	en	Element modifier
 element role	projectmanager	en	Element role
 element role deleted	projectmanager	en	Element role deleted.
+element role not available for this project	projectmanager	en	Element role not available for this project
 element role saved	projectmanager	en	Element role saved.
 element role title	projectmanager	en	Element role title
 element roles	projectmanager	en	Element roles

@@ -137,6 +137,7 @@ element list	projectmanager	de	Element-Liste
 element modifier	projectmanager	de	Element Bearbeitet von
 element role	projectmanager	de	Element-Rolle
 element role deleted	projectmanager	de	Element-Rolle gelöscht.
+element role not available for this project	projectmanager	de	Element-Rolle für dieses Projekt nicht verfügbar
 element role saved	projectmanager	de	Element-Rolle gespeichert.
 element role title	projectmanager	de	Titel Element-Rolle
 element roles	projectmanager	de	Element-Rollen

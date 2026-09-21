@@ -960,7 +960,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		else
 		{
 			$actions['erole']['children'] = array();
-			foreach($this->eroles->get_free_eroles() as $erole)
+			// Scope to the project being listed.  $this->eroles was scoped when this bo was
+			// constructed, and that falls back to $_REQUEST['pm_id'] and then to the
+			// current_project preference - neither of which is necessarily the project on screen.
+			// Reaching the list by a route carrying no pm_id therefore offered another project's
+			// roles, and they could be assigned from here.
+			$eroles = !empty($this->project->data['pm_id']) ?
+				new projectmanager_eroles_bo($this->project->data['pm_id']) : $this->eroles;
+			foreach($eroles->get_free_eroles() as $erole)
 			{
 				$actions['erole']['children']['erole_' . $erole['role_id']] = $erole + array(
 						'caption' => $erole['role_title'],
@@ -1253,7 +1260,30 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			case 'erole':
 				foreach($checked as $id)
 				{
-					$element = $this->read($id);
+					// Name the key: egw_pm_elements has a composite primary key and Base::read()
+					// maps a bare value to the FIRST of its columns, which is pm_id - reading the
+					// wrong record (or none) and, because read() re-inits $this->data either way,
+					// leaving save() below to insert a row with no pe_id.
+					$element = $this->read(array('pe_id' => $id));
+					if(!$element)
+					{
+						continue;	// nothing read: save() below would insert a new, id-less row
+					}
+					// What the menu offered is not authority - it is built once per request, for
+					// whichever project was current.  Ask this element's own project what it may
+					// actually take: its roles plus the global ones, minus any non-multi role
+					// another of its elements already holds.
+					$available = new projectmanager_eroles_bo($element['pm_id'], $element['pe_id']);
+					$allowed = array();
+					foreach((array)$available->get_free_eroles() as $free)
+					{
+						$allowed[] = (string)$free['role_id'];
+					}
+					if(!in_array((string)$erole, $allowed, true))
+					{
+						$msg = lang('Element role not available for this project');
+						continue;
+					}
 					if($element['pe_eroles'] && !is_array($element['pe_eroles']))
 					{
 						$element['pe_eroles'] = explode(',', $element['pe_eroles']);
