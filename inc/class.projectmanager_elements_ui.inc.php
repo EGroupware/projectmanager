@@ -862,6 +862,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'nm_action' => 'open_popup',
 			),
 			'sync_all' => array(
+				'onExecute' => 'javaScript:app.projectmanager.ignore_action',
 				'caption' => 'Synchronise all',
 				'icon'    => 'agt_reload',
 				'hint'    => 'necessary for project-elements doing that not automatic',
@@ -945,6 +946,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$group, 'Insert in document', 'document_'
 			),
 			'delete' => array(
+				'onExecute'    => 'javaScript:app.projectmanager.ignore_action',
 				'caption'      => 'Delete',
 				'confirm'      => 'Delete this project-element, does NOT remove the linked entry',
 				'group'        => ++$group,
@@ -1364,6 +1366,23 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 		switch($action)
 		{
+			case 'delete':
+			case 'sync_all':
+				// both of these used to submit the whole eTemplate, rebuilding the element list
+				// and losing its scroll position and selection, to do the same work action()
+				// already does here
+				$ui = new projectmanager_elements_ui();
+				$checked = [];
+				foreach((array)$selected as $entry)
+				{
+					$checked[] = strpos($entry, '::') !== false ? explode('::', $entry)[1] : $entry;
+				}
+				$msg = '';
+				$ok = $ui->action($action, $checked, $msg, null);
+				$response->call('egw.refresh', $msg, 'projectmanager', null, null, 'projectmanager',
+					null, null, $ok ? 'success' : 'error');
+				break;
+
 			case 'ignore':
 				$ui = new projectmanager_elements_ui();
 				$checked = array();

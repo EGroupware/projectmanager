@@ -992,6 +992,8 @@ class projectmanager_ui extends projectmanager_bo
 				'confirm_mass_selection' => true,
 			),
 			'delete' => array(
+				// same ajax handler as "Modify status"/"Change category" above
+				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'caption' => 'Delete',
 				'confirm' => 'Delete this project',
 				'confirm_multiple' => 'Delete these entries',
@@ -1001,6 +1003,8 @@ class projectmanager_ui extends projectmanager_bo
 				'confirm_mass_selection' => true,
 			),
 			'undelete' => array(
+				// same ajax handler as "Modify status"/"Change category" above
+				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'caption' => 'Un-Delete',
 				'confirm' => 'Recover this entry',
 				'confirm_multiple' => 'Recover these entries',
