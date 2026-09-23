@@ -955,12 +955,13 @@ class projectmanager_ui extends projectmanager_bo
 				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
 				$group, 'Insert in document', 'document_'
 			),
+			// cat_id holds exactly ONE category, so the dialog offers Set/Remove. No onExecute
+			// here any more: nm_action=categories dispatches to ajax_action itself, and an
+			// onExecute would run instead of opening the dialog.
 			'cat' => Etemplate\Widget\Nextmatch::category_action(
-				'projectmanager',$group,'Change category','cat_'
+				'projectmanager',$group,'Change category','cat_',
+				true, 0, Etemplate\Widget\Nextmatch::DEFAULT_MAX_MENU_LENGTH, false
 			)+array(
-				// reuse the same in-place ajax handler as "Modify status", so the
-				// list keeps its scroll position instead of reloading to the top
-				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'disableClass' => 'rowNoEdit',
 				'confirm_mass_selection' => true,
 			),
