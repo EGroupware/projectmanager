@@ -343,11 +343,15 @@ class JsObjects extends Api\CalDAV\JsBase
 	/**
 	 * Convert integer overwrite mask to an array of overwritten field-names
 	 *
-	 * @param int $overwrite
+	 * @param ?int $overwrite null (eg. a project saved without ever touching this bit-field,
+	 *   which projectmanager_bo::save() persists as an explicit DB NULL, not the column's '0'
+	 *   default - that only applies when a column is omitted from the INSERT entirely) is
+	 *   equivalent to 0: nothing overwritten
 	 * @return string[]
 	 */
-	protected static function getOverwrite(int $overwrite) : array
+	protected static function getOverwrite(?int $overwrite) : array
 	{
+		$overwrite ??= 0;
 		$names = [];
 		foreach(self::$bo->pe_name2id as $name => $mask)
 		{
