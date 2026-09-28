@@ -339,6 +339,12 @@ class projectmanager_merge extends Api\Storage\Merge
 			$document_projects[] = $query['col_filter']['pm_id'];
 		}
 
+		// Load the project now, get_filename() needs it before the merge does
+		if(!empty($document_projects[0]))
+		{
+			$document_merge->change_project($document_projects[0]);
+		}
+
 		foreach($elements_ui->search(array('pm_id' => $document_projects), false) as $id => $element)
 		{
 			// add contact
