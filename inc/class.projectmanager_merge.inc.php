@@ -386,6 +386,11 @@ class projectmanager_merge extends Api\Storage\Merge
 	protected function get_filename($document, $ids = []) : string
 	{
 		$name = '';
+		// Merging individually names each file before merging it, so the previous project is still loaded
+		if(count($ids) == 1 && is_numeric($ids[0]) && $ids[0] != $this->pm_id)
+		{
+			$this->change_project($ids[0]);
+		}
 		if(isset($this->projectmanager_bo->prefs['document_download_name']))
 		{
 			$ext = '.' . pathinfo($document, PATHINFO_EXTENSION);
