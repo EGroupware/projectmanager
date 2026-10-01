@@ -31,15 +31,13 @@
 	<et2-template  id="projectmanager.elements.list.rows" template="" lang="" group="0" version="1.9.005">
 		<grid width="100%">
 			<columns>
-				<column width="10"/>
-				<column width="100"/>
+				<column width="84"/>
 				<column width="90%"/>
 			</columns>
 			<rows>
 				<row class="th">
 				</row>
-				<row class="$row_cont[class]">
-					<et2-description  class="cat_$row_cont[cat_id] mobile_cat_col"></et2-description>
+				<row class="$row_cont[cat_id] $row_cont[class]">
 					<et2-vbox  align="left" class="elementCol1">
 						<et2-hbox>
 							<et2-image  label="$row_cont[pe_app]" src="${row}[pe_icon]"></et2-image>
@@ -79,6 +77,17 @@
 			/* A native &lt;progress&gt; defaults to ~140px, which overflows this column and gets
 			   clipped, making every bar look full whatever its value. */
 			progress.pe-completion { width: 100%; }
+			/* Keep the icon column just wide enough for a 4-digit-hours duration: less cell padding, no
+			   padding on the durations themselves, a slightly smaller font, and everything centred */
+			td:has(> .elementCol1) { padding-inline: 0.25em; }
+			.elementCol1::part(base) { align-items: center; }
+			.elementCol1 > et2-date-duration_ro, .elementCol1 > et2-date-duration { font-size: 0.9em; padding: 0; }
+			/* The title links ellipsize, so they have next to no content width: shared in one row they
+			   squeeze each other (and the fixed 30% category box) down to a few letters.  Give each its own
+			   line, and let the date/budget pairs wrap instead of running out of the cell. */
+			.elementCol2 > et2-hbox::part(base) { flex-wrap: wrap; column-gap: 0.5em; }
+			.elementCol2 > et2-hbox > et2-link { flex: 1 1 100%; min-width: 0; }
+			.elementCol2 > et2-hbox > .elementCat { width: auto !important; flex: 0 1 auto !important; max-width: 100%; }
 		</et2-styles>
 	</et2-template>
 	<et2-template  id="projectmanager.elements.list" template="" lang="" group="0" version="1.9.005">

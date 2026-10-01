@@ -46,6 +46,9 @@
 			/* A native &lt;progress&gt; defaults to ~140px, which overflows this column and gets
 			   clipped, making every bar look full whatever its value. */
 			progress.pm-completion { width: 100%; }
+			/* Line the priority up on the right, whatever the length of the project number before it */
+			.pmCol2 .priority { margin-left: auto; flex: 0 0 auto; align-items: center; }
+			.pmCol2 .priority > :last-child { flex: 0 0 auto; min-width: 1.5em; text-align: center; }
 		</et2-styles>
 	</et2-template>
 	<et2-template  id="projectmanager.list" template="" lang="" group="0" version="1.9.001">
