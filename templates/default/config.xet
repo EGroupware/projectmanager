@@ -105,7 +105,7 @@
     <et2-template  id="projectmanager.config" template="" lang="" group="0" version="16.1.001">
         <et2-vbox>
             <et2-description  id="msg" span="all" class="message"></et2-description>
-            <et2-tabbox  id="tabs">
+            <et2-tabbox  id="tabs" cfDisabled="true">
                 <tabs>
                     <tab id="configuration" label="Configuration"/>
                     <tab id="notification" label="Notification"/>
