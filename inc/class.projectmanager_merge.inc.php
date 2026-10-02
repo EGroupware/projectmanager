@@ -339,6 +339,12 @@ class projectmanager_merge extends Api\Storage\Merge
 			$document_projects[] = $query['col_filter']['pm_id'];
 		}
 
+		// Load the project now, get_filename() needs it before the merge does
+		if(!empty($document_projects[0]))
+		{
+			$document_merge->change_project($document_projects[0]);
+		}
+
 		foreach($elements_ui->search(array('pm_id' => $document_projects), false) as $id => $element)
 		{
 			// add contact
@@ -380,6 +386,11 @@ class projectmanager_merge extends Api\Storage\Merge
 	protected function get_filename($document, $ids = []) : string
 	{
 		$name = '';
+		// Merging individually names each file before merging it, so the previous project is still loaded
+		if(count($ids) == 1 && is_numeric($ids[0]) && $ids[0] != $this->pm_id)
+		{
+			$this->change_project($ids[0]);
+		}
 		if(isset($this->projectmanager_bo->prefs['document_download_name']))
 		{
 			$ext = '.' . pathinfo($document, PATHINFO_EXTENSION);
