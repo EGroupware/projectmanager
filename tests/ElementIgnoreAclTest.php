@@ -44,10 +44,13 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 
 	protected $pe_id;
 
+	protected $pref_project;
+
 	protected function setUp() : void
 	{
 		Link::run_notifies();
 
+		$this->pref_project = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] ?? null;
 		$this->bo = new \projectmanager_bo();
 		$this->makeProject();
 		$this->makeElement();
@@ -72,7 +75,27 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 		// the elements bo is reused through a global singleton, so a stale one would hand the
 		// next test this project's pm_id, see projectmanager_elements_bo's constructor
 		unset($GLOBALS['projectmanager_elements_bo']);
+		unset($_REQUEST['pm_id']);
+		$GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = $this->pref_project;
 		$this->pm_id = $this->pe_id = null;
+	}
+
+	/**
+	 * An element list for a given project.
+	 *
+	 * Which project the object is built for matters to more than rights: so::read() adds
+	 * `pm_id => $this->pm_id` to the keys whenever it has one, so a pe_id is only resolvable
+	 * within that project. The constructor takes it from $_REQUEST, falling back to the
+	 * current_project preference - which is per-user state left behind by whatever was opened
+	 * last, so a test that does not pin both gets whichever project ran before it.
+	 *
+	 * @param int $pm_id 0 for "no project at all", the shape ajax_action() builds
+	 */
+	protected function ui(int $pm_id) : \projectmanager_elements_ui
+	{
+		$_REQUEST['pm_id'] = $pm_id;
+		$GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = $pm_id;
+		return new \projectmanager_elements_ui();
 	}
 
 	protected function makeProject() : void
@@ -168,7 +191,7 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 	 */
 	public function testOwnerCanStillIgnoreTheirOwnElement()
 	{
-		$ui = new \projectmanager_elements_ui();
+		$ui = $this->ui($this->pm_id);
 		$msg = '';
 		$this->assertTrue($ui->action('ignore_1', array($this->pe_id), $msg, null),
 			'the project owner has ADD rights, so this must succeed: ' . $msg);
@@ -188,12 +211,57 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 	{
 		$before = $this->elementStatus();
 
-		$ui = new \projectmanager_elements_ui();
+		$ui = $this->ui($this->pm_id);
 		$msg = '';
 		$this->assertFalse($ui->action('ignore_1', array(0x7FFFFFF0), $msg, null),
 			'an element id that resolves to nothing has to be reported as failed');
 		$this->assertSame($before, $this->elementStatus(),
 			'and it must not have written the status onto some other element');
+	}
+
+	/**
+	 * The rejection path: rights are refused for the element's project.
+	 *
+	 * A second logged-in user would be the fuller fixture, but this harness has no helper for
+	 * one, and what actually needs pinning is this class's own decision rather than the ACL
+	 * system's: that a refusal stops the write, and that the project asked about is the
+	 * ELEMENT's, passed explicitly. The explicit pm_id is the whole point - with a falsy one
+	 * projectmanager_bo::check_acl() answers "new entry, everything allowed but delete" and
+	 * would wave every id through, which is the bypass this guards.
+	 */
+	public function testRefusedWhenTheElementsProjectDeniesAdd()
+	{
+		$before = $this->elementStatus();
+
+		// built for the element's own project, so read() resolves it and the refusal below can
+		// only be coming from the rights check
+		$ui = $this->ui($this->pm_id);
+		$ui->project = new class extends \projectmanager_bo {
+			public $asked = array();
+			// deliberately not calling parent::__construct(): this stands in for the project
+			// only to answer check_acl(), and action() must not get as far as anything else
+			public function __construct() {}
+			function check_acl($required, $data=0, $no_cache=false, $user=null)
+			{
+				unset($no_cache, $user);
+				$this->asked[] = array('required' => $required, 'pm_id' => $data);
+				return false;
+			}
+		};
+
+		$msg = '';
+		$this->assertFalse($ui->action('ignore_1', array($this->pe_id), $msg, null),
+			'a denied element has to be reported as failed');
+		$this->assertSame($before, $this->elementStatus(),
+			'and nothing may be written for it');
+
+		$this->assertNotEmpty($ui->project->asked, 'rights have to actually be checked');
+		$asked = $ui->project->asked[0];
+		$this->assertSame(Acl::ADD, $asked['required'], 'ADD is the right this action needs');
+		$this->assertSame((int)$this->pm_id, (int)$asked['pm_id'],
+			"the element's own project has to be the one asked about");
+		$this->assertNotEmpty($asked['pm_id'],
+			'and it has to be passed explicitly - a falsy pm_id means "allow everything but delete"');
 	}
 
 	/**
@@ -203,6 +271,7 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 	public function testEndpointRefusesWithoutAnExecId()
 	{
 		$before = $this->elementStatus();
+		$this->ui($this->pm_id);	// pin what ajax_action()'s own constructor falls back to
 
 		\projectmanager_elements_ui::ajax_action('', 'ignore',
 			array('projectmanager_elements::infolog:1:' . $this->pe_id), true);
@@ -217,6 +286,8 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 	 */
 	public function testEndpointActsWithAnExecId()
 	{
+		$this->ui($this->pm_id);	// pin what ajax_action()'s own constructor falls back to
+
 		\projectmanager_elements_ui::ajax_action($this->execId(), 'ignore',
 			array('projectmanager_elements::infolog:1:' . $this->pe_id), true);
 
