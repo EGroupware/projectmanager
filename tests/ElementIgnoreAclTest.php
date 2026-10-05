@@ -145,14 +145,26 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 		{
 			$infolog = new \infolog_bo();
 			$infolog->delete($info_id, false, false, true);	// -> info_status 'deleted'
-			$infolog->delete($info_id, false, false, true);	// -> row gone
+			$infolog->delete($info_id, false, false, true);	// -> row gone, where history allows
 		}
 		catch (\Exception $e)
 		{
 			$problem = ': ' . get_class($e) . ': ' . $e->getMessage();
 		}
+		// Whether the second delete purges depends on infolog's history config, which is global
+		// and which other suites set for their own purposes - DeleteTest saves 'history' for the
+		// whole class. With it on, delete() only ever marks the entry deleted, so the fixture row
+		// survives however many times it is called. Remove what is left directly: this row exists
+		// only because makeElement() created it a moment ago.
 		$left = $GLOBALS['egw']->db->select('egw_infolog', 'info_status', array('info_id' => $info_id),
 			__LINE__, __FILE__, false, '', 'infolog')->fetchColumn();
+		if ($left !== false)
+		{
+			$GLOBALS['egw']->db->delete('egw_infolog', array('info_id' => $info_id),
+				__LINE__, __FILE__, 'infolog');
+			$left = $GLOBALS['egw']->db->select('egw_infolog', 'info_status', array('info_id' => $info_id),
+				__LINE__, __FILE__, false, '', 'infolog')->fetchColumn();
+		}
 		if ($left === false && !$problem)
 		{
 			return '';
