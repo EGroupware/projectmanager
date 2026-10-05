@@ -52,6 +52,7 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 
 		$this->pref_project = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] ?? null;
 		$this->bo = new \projectmanager_bo();
+		$this->purgeStale();
 		$this->makeProject();
 		$this->makeElement();
 
@@ -96,6 +97,34 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 		$_REQUEST['pm_id'] = $pm_id;
 		$GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = $pm_id;
 		return new \projectmanager_elements_ui();
+	}
+
+	/**
+	 * pm_number is unique, so a fixture left behind by an earlier failed run blocks every later
+	 * one with "Duplicate entry". Same pattern as DeleteTest's purgeStaleProjectFixture().
+	 */
+	protected function purgeStale() : void
+	{
+		$project = (new \projectmanager_so())->read(array('pm_number' => 'TEST-IGNORE-ACL'));
+		if ($project && $project['pm_id'])
+		{
+			// a throwaway bo: delete() leaves its ->data pointing at the deleted project, and
+			// the caller's bo is about to save() a new one through the same object
+			$purge = new \projectmanager_bo();
+			$purge->history = '';
+			try
+			{
+				$purge->delete($project['pm_id'], true);
+			}
+			catch (\Exception $e)
+			{
+				unset($e);
+			}
+			$GLOBALS['egw']->db->delete('egw_pm_elements', array('pm_id' => $project['pm_id']),
+				__LINE__, __FILE__, 'projectmanager');
+			$GLOBALS['egw']->db->delete('egw_pm_projects', array('pm_id' => $project['pm_id']),
+				__LINE__, __FILE__, 'projectmanager');
+		}
 	}
 
 	protected function makeProject() : void
@@ -262,6 +291,50 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 			"the element's own project has to be the one asked about");
 		$this->assertNotEmpty($asked['pm_id'],
 			'and it has to be passed explicitly - a falsy pm_id means "allow everything but delete"');
+	}
+
+	/**
+	 * The real rejection: a different logged-in user, with no rights on the element's project.
+	 *
+	 * projectmanager_bo::check_acl() has no admin bypass - rights come from the creator's ACL
+	 * grants plus project membership - so the admin test account is simply another user here,
+	 * and it is neither a member of this project nor granted anything by its creator.
+	 */
+	public function testAnotherUserWithoutRightsIsRefused()
+	{
+		$before = $this->elementStatus();
+		$msg = '';
+
+		$acting_as = null;
+		$refused = $this->asAdmin(function() use (&$msg, &$acting_as)
+		{
+			$acting_as = $GLOBALS['egw_info']['user']['account_lid'];
+			// BOTH bos are process-wide singletons caching the grants of whoever they were built
+			// for, and projectmanager_bo is the one that answers check_acl() - leaving it would
+			// have this user judged by the previous user's grants
+			unset($GLOBALS['projectmanager_elements_bo'], $GLOBALS['projectmanager_bo']);
+			$ui = $this->ui($this->pm_id);
+			// PRE-EXISTING BUG, compensated for here: projectmanager_bo::check_acl() caches
+			// computed rights in a `static $cache` keyed by pm_id ALONE, with no user in the
+			// key. Within one PHP process the first user to ask about a project decides the
+			// answer for every later one - here the owner warmed it during setUp, so without
+			// this line the switched-in user is handed the OWNER's rights and the action
+			// succeeds. One no_cache call recomputes it for whoever is logged in now.
+			// Harmless in a web request (one user per process); real wherever a process
+			// switches user - tests, CLI, admin_cmd. See the project doc.
+			$ui->project->check_acl(Acl::ADD, (int)$this->pm_id, true);
+
+			return $ui->action('ignore_1', array($this->pe_id), $msg, null);
+		});
+		unset($GLOBALS['projectmanager_elements_bo'], $GLOBALS['projectmanager_bo']);
+
+		$this->assertSame($GLOBALS['EGW_ADMIN_USER'], $acting_as,
+			'the callback has to actually run as the other user, or this proves nothing');
+		$this->assertNotSame($GLOBALS['EGW_USER'], $acting_as, 'and not as the project owner');
+		$this->assertFalse($refused,
+			'a user with no rights on the project must be refused: ' . $msg);
+		$this->assertSame($before, $this->elementStatus(),
+			'and nothing may be written for them');
 	}
 
 	/**
