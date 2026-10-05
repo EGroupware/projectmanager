@@ -63,38 +63,102 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 
 	protected function tearDown() : void
 	{
-		if ($this->pm_id)
-		{
-			try
-			{
-				$this->bo->delete(array('pm_id' => $this->pm_id), true);
-			}
-			catch (\Exception $e)
-			{
-				// a failed delete must not mask the test's own failure
-				unset($e);
-			}
-		}
+		// both of these clean up and report rather than throw, so one failing does not stop the
+		// other from running - the infolog entry has no equivalent of purgeStale() behind it
+		$leaked = array_filter(array($this->purgeProject(), $this->purgeElementInfolog()));
 		// the elements bo is reused through a global singleton, so a stale one would hand the
 		// next test this project's pm_id, see projectmanager_elements_bo's constructor
-		// the linked infolog entry is a fixture too - deleting only the project leaves it behind,
-		// which on a shared instance means a growing pile of "Element for test..." entries
-		if ($this->info_id)
-		{
-			try
-			{
-				(new \infolog_bo())->delete($this->info_id, false, false, true);
-			}
-			catch (\Exception $e)
-			{
-				unset($e);
-			}
-			$this->info_id = null;
-		}
 		unset($GLOBALS['projectmanager_elements_bo']);
 		unset($_REQUEST['pm_id']);
 		$GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = $this->pref_project;
 		$this->pm_id = $this->pe_id = null;
+		// last, so the globals above are restored either way: a leak must not also derail the
+		// tests after this one. PHPUnit reports this against a test that passed, and leaves a
+		// test that failed on its own reported by its own failure.
+		if ($leaked)
+		{
+			throw new \RuntimeException(implode('; ', $leaked));
+		}
+	}
+
+	/**
+	 * Delete the project makeProject() created, and say so when it survives.
+	 *
+	 * projectmanager_bo::delete() reads the project first and silently no-ops when the rights
+	 * check refuses it - it returns 0 and throws nothing, so a bare call cannot be distinguished
+	 * from a successful one. Read the row back instead of trusting the return value.
+	 *
+	 * @return string empty when the project is gone, otherwise what is left behind and why
+	 */
+	protected function purgeProject() : string
+	{
+		if (!$this->pm_id)
+		{
+			return '';
+		}
+		$pm_id = $this->pm_id;
+
+		$problem = '';
+		try
+		{
+			$this->bo->delete(array('pm_id' => $pm_id), true);
+		}
+		catch (\Exception $e)
+		{
+			$problem = ': ' . get_class($e) . ': ' . $e->getMessage();
+		}
+		$left = $GLOBALS['egw']->db->select('egw_pm_projects', 'pm_number', array('pm_id' => $pm_id),
+			__LINE__, __FILE__, false, '', 'projectmanager')->fetchColumn();
+		if ($left === false && !$problem)
+		{
+			return '';
+		}
+		return sprintf('could not clean up the fixture project #%d, it is still in egw_pm_projects%s',
+			$pm_id, $problem);
+	}
+
+	/**
+	 * Purge the infolog entry makeElement() created, and say so when it survives.
+	 *
+	 * infolog_bo::delete() soft-deletes: it sets info_status to 'deleted', unlinks everything but
+	 * file attachments and keeps the row, and only purges once the entry already reads 'deleted'.
+	 * One call therefore returns true with the row still in egw_infolog, which on a shared
+	 * instance means a growing pile of "Element for test..." entries. How many calls it takes
+	 * also depends on what ran before: deleting the project cascades a soft-delete onto its
+	 * linked entries, so with a project delete that went through, the FIRST call here is already
+	 * the purging one - and with one that was refused, it is not. Hence two calls unconditionally,
+	 * and a read of egw_infolog afterwards rather than trusting either return value.
+	 *
+	 * @return string empty when the row is gone, otherwise what is left behind and why
+	 */
+	protected function purgeElementInfolog() : string
+	{
+		if (!$this->info_id)
+		{
+			return '';
+		}
+		$info_id = $this->info_id;
+		$this->info_id = null;
+
+		$problem = '';
+		try
+		{
+			$infolog = new \infolog_bo();
+			$infolog->delete($info_id, false, false, true);	// -> info_status 'deleted'
+			$infolog->delete($info_id, false, false, true);	// -> row gone
+		}
+		catch (\Exception $e)
+		{
+			$problem = ': ' . get_class($e) . ': ' . $e->getMessage();
+		}
+		$left = $GLOBALS['egw']->db->select('egw_infolog', 'info_status', array('info_id' => $info_id),
+			__LINE__, __FILE__, false, '', 'infolog')->fetchColumn();
+		if ($left === false && !$problem)
+		{
+			return '';
+		}
+		return sprintf('could not clean up the fixture infolog #%d, it is still in egw_infolog as "%s"%s',
+			$info_id, (string)$left, $problem);
 	}
 
 	/**
@@ -344,6 +408,12 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 			return $ui->action('ignore_1', array($this->pe_id), $msg, null);
 		});
 		unset($GLOBALS['projectmanager_elements_bo'], $GLOBALS['projectmanager_bo']);
+		// the no_cache call inside the callback left check_acl()'s user-less static cache holding
+		// the OTHER user's answer for this project. Unsetting the globals above does not reach it
+		// - it is a static inside the method - so recompute it for whoever is logged in again.
+		// Without this tearDown()'s project delete is refused through that stale entry, no-ops
+		// silently, and the project's linked infolog entry is never cascaded away.
+		$this->bo->check_acl(Acl::DELETE, (int)$this->pm_id, true);
 
 		$this->assertSame($GLOBALS['EGW_ADMIN_USER'], $acting_as,
 			'the callback has to actually run as the other user, or this proves nothing');
