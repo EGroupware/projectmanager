@@ -206,6 +206,11 @@ class projectmanager_pricelist_bo extends projectmanager_pricelist_so
 	function pricelist($pm_id)
 	{
 		//echo "<p>projectmanager_pricelist_bo::pricelist($pm_id)</p>\n";
+		// same check_acl() this class's own read()/delete() already use
+		if (!$this->check_acl(Acl::READ, (int)$pm_id))
+		{
+			return false;
+		}
 		if (!($prices =& $this->search(array('pm_id' => $pm_id))))
 		{
 			return false;
