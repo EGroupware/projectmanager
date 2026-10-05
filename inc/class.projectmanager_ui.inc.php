@@ -1044,8 +1044,15 @@ class projectmanager_ui extends projectmanager_bo
 	 * @param boolean $select_all true if "all" selection is used
 	 * @param boolean $sources_too change status of datasources too
 	 */
-	public function ajax_action($action, $selected, $select_all = false, $sources_too = false)
+	public function ajax_action($exec_id, $action, $selected, $select_all = false, $sources_too = false)
 	{
+		// action() checks rights per project, but this is a public menuaction - the exec id is
+		// the only thing saying the caller had one of our lists open rather than a bare project
+		// id they guessed
+		if (!Api\Etemplate\Widget\Nextmatch::validateExecId($exec_id))
+		{
+			return;
+		}
 		$success = $failed = 0;
 		$action_msg = $msg = '';
 		$selected = array_values((array)$selected);
