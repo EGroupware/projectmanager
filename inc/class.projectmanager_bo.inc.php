@@ -861,6 +861,10 @@ class projectmanager_bo extends projectmanager_so
 		}
 		if (!$this->check_acl(Acl::READ))
 		{
+			// parent::read() above already populated $this->data with the row before this check -
+			// clear it again, so a caller that reads ->data without checking this method's return
+			// value (eg. via the constructor) does not find a row it was just denied access to
+			$this->data = null;
 			return false;
 		}
 		return $this->data;
