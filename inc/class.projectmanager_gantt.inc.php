@@ -656,6 +656,12 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		if($values['pe_id'])
 		{
 			$pe_bo = new projectmanager_elements_bo((int)$values['pm_id']);
+			// same check as update_cat() - the explicit pm_id (not the default 0) makes check_acl()
+			// do its own independent lookup rather than relying on the constructor's own read
+			if (!$pe_bo->check_acl(Acl::EDIT, array('pm_id' => (int)$values['pm_id'])))
+			{
+				return;
+			}
 			$pe_bo->read(array('pe_id' => (int)$values['pe_id']));
 			$update_mask = $update_mask | $pe_bo->data['pe_overwrite'];
 			$keys = array('pe_overwrite' => $update_mask);
@@ -681,12 +687,24 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		{
 			// Update milestone
 			$pe_bo = new projectmanager_elements_bo((int)$values['pm_id']);
+			// a milestone is a project element too, same gate as the element branch above
+			if (!$pe_bo->check_acl(Acl::EDIT, array('pm_id' => (int)$values['pm_id'])))
+			{
+				return;
+			}
 			$milestone = $pe_bo->milestones->read((int)$values['ms_id']);
 			$pe_bo->milestones->save(array('ms_date' => Api\DateTime::to($values['start_date'],'ts')));
 		}
 		else if ($values['pm_id'])
 		{
 			$pm_bo = new projectmanager_bo((int)$values['pm_id']);
+			// passing the pm_id explicitly (instead of the default 0, which falls back to
+			// $this->data) makes check_acl() do its own independent lookup. Acl::EDIT, not the
+			// elements' ADD-translated right, matches projectmanager_ui's own project-save path.
+			if (!$pm_bo->check_acl(Acl::EDIT, (int)$values['pm_id']))
+			{
+				return;
+			}
 			$keys = array('pm_overwrite' => $update_mask | $pm_bo->data['pm_overwrite']);
 			$keys['pm_completion'] = (int)($values['progress'] * 100).'%';
 			if(array_key_exists('start_date', $values))
@@ -705,9 +723,14 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		else if ($values['id'] && $values['source'] && $values['target'])
 		{
 			// Link added or removed
-			$pe_bo = new projectmanager_elements_bo((int)$pm_id);
-
+			// pm_id resolved first - both the elements_bo constructor and the check below need it
 			list(,$pm_id) = explode('::',$values['parent']);
+			$pe_bo = new projectmanager_elements_bo((int)$pm_id);
+			if (!$pe_bo->check_acl(Acl::EDIT, array('pm_id' => (int)$pm_id)))
+			{
+				return;
+			}
+
 			list(,$m_start_id,$start_id) = explode(':',$values['source']);
 			list(,$m_end_id,$end_id) = explode(':',$values['target']);
 			$keys = array(
