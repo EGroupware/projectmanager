@@ -46,6 +46,8 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 
 	protected $pref_project;
 
+	protected $info_id;
+
 	protected function setUp() : void
 	{
 		Link::run_notifies();
@@ -75,6 +77,20 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 		}
 		// the elements bo is reused through a global singleton, so a stale one would hand the
 		// next test this project's pm_id, see projectmanager_elements_bo's constructor
+		// the linked infolog entry is a fixture too - deleting only the project leaves it behind,
+		// which on a shared instance means a growing pile of "Element for test..." entries
+		if ($this->info_id)
+		{
+			try
+			{
+				(new \infolog_bo())->delete($this->info_id, false, false, true);
+			}
+			catch (\Exception $e)
+			{
+				unset($e);
+			}
+			$this->info_id = null;
+		}
 		unset($GLOBALS['projectmanager_elements_bo']);
 		unset($_REQUEST['pm_id']);
 		$GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] = $this->pref_project;
@@ -154,6 +170,7 @@ class ElementIgnoreAclTest extends \EGroupware\Api\AppTest
 		);
 		$info_id = $infolog->write($values, false, false, true, true);
 		$this->assertNotFalse($info_id, 'could not make the linked infolog entry');
+		$this->info_id = $info_id;
 
 		Link::link('infolog', $info_id, 'projectmanager', $this->pm_id);
 		Link::run_notifies();
