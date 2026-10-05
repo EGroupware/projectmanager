@@ -59,7 +59,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	bg	Изчисл
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	bg	Може да се използва с елементи на роли, плъгин за таблица "eRoles" и плъгин за таблица "елементи".
 category in %1 project-element(s) updated.	projectmanager	bg	Актуализирана е категорията в %1 елемент(и) на проекта.
 category set	projectmanager	bg	Зададена категория
-change category	projectmanager	bg	Промяна на категорията
 change the following details of %s	projectmanager	bg	Променете следните подробности за %s
 charset of file	projectmanager	bg	Символен набор на файла
 charset of the above selected font	projectmanager	bg	Символен набор на избрания по- напред шрифт

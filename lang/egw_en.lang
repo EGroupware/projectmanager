@@ -1,5 +1,6 @@
 %1 days in advance	projectmanager	en	%1 days in advance
 %1 element(s) updated	projectmanager	en	%1 element(s) updated.
+%1 element(s) updated, %2 failed because of insufficent rights !!!	projectmanager	en	%1 element(s) updated, %2 failed because of insufficient rights!
 %1 new project-elements imported	projectmanager	en	%1 new project elements imported.
 %1 project(s) %2	projectmanager	en	%1 project(s) %2
 %1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	en	%1 project(s) %2, %3 failed because of insufficient rights!
@@ -60,7 +61,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	en	Calculate bu
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	en	Can be used with element roles, "eRoles" table plugin and "elements" table plugin.
 category in %1 project-element(s) updated.	projectmanager	en	Category in %1 project element(s) updated.
 category set	projectmanager	en	Category set
-change category	projectmanager	en	Change category
 change the following details of %s	projectmanager	en	Change the following details of %s
 charset of file	projectmanager	en	Charset of file
 charset of the above selected font	projectmanager	en	Charset of the above selected font

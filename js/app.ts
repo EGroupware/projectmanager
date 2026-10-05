@@ -1400,7 +1400,11 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			ids.push(selected[i].id);
 		}
-		egw.request('projectmanager_elements_ui::ajax_action', [action.id, ids, action.checked]);
+		// the exec id says the caller had one of our lists open - without it the endpoint is
+		// reachable by anyone with projectmanager, armed with nothing but guessed element ids
+		const nm = action?.parent?.data?.nextmatch || action?.data?.nextmatch || this.nm;
+		egw.request('projectmanager_elements_ui::ajax_action',
+			[ProjectmanagerApp._execId(nm, this.et2), action.id, ids, action.checked]);
 	}
 
 	/**
@@ -1431,7 +1435,8 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			return;
 		}
-		egw.request('projectmanager.projectmanager_ui.ajax_action', [action.id, ids, all, sources_too]);
+		egw.request('projectmanager.projectmanager_ui.ajax_action',
+			[ProjectmanagerApp._execId(nm, this.et2), action.id, ids, all, sources_too]);
 	}
 
 	/**
