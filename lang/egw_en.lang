@@ -1,5 +1,6 @@
 %1 days in advance	projectmanager	en	%1 days in advance
 %1 element(s) updated	projectmanager	en	%1 element(s) updated.
+%1 element(s) updated, %2 failed because of insufficent rights !!!	projectmanager	en	%1 element(s) updated, %2 failed because of insufficient rights!
 %1 new project-elements imported	projectmanager	en	%1 new project elements imported.
 %1 project(s) %2	projectmanager	en	%1 project(s) %2
 %1 project(s) %2, %3 failed because of insufficent rights !!!	projectmanager	en	%1 project(s) %2, %3 failed because of insufficient rights!

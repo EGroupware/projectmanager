@@ -1315,6 +1315,19 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				foreach($checked as $id)
 				{
 					$element = $this->read(array('pe_id' => $id));
+					// An element names the project it belongs to, so rights are checked against
+					// THAT project - not against whatever project this object was constructed
+					// with. The two differ whenever the id comes from outside: the list's project
+					// is a client-owned filter the user can change, and over ajax there is no
+					// project at all, only ids. Passing the pm_id explicitly also matters:
+					// projectmanager_bo::check_acl() treats a falsy one as "new entry, everything
+					// allowed but delete" and would wave every id through.
+					if (!$element || !($pm_id = (int)$this->data['pm_id']) ||
+						!$this->project->check_acl(Acl::ADD, $pm_id))
+					{
+						$failed++;
+						continue;
+					}
 					if(!$this->save(array('pe_status' => $ignore ? 'ignore' : 'new')))
 					{
 						$success++;
@@ -1324,7 +1337,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						$failed++;
 					}
 				}
-				$msg = lang('%1 element(s) updated', $success);
+				$msg = $failed ? lang('%1 element(s) updated, %2 failed because of insufficent rights !!!', $success, $failed) :
+					lang('%1 element(s) updated', $success);
 				return $failed == 0;
 				break;
 			case 'delete':
@@ -1356,15 +1370,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	}
 
 	/**
-	 * Run given action on given path(es) and return array/object with values for keys 'msg', 'errs', 'dirs', 'files'
+	 * Run an action from the element list's context menu over AJAX, so the list keeps its
+	 * scroll position and selection instead of being rebuilt by a submit
 	 *
-	 * @param string $action eg. 'delete', ...
-	 * @param array $selected selected path(s)
+	 * @param string $exec_id eTemplate request this came from, see Nextmatch::validateExecId()
+	 * @param string $action eg. 'ignore'
+	 * @param array $selected selected row ids, 'projectmanager_elements::<pe_app>:<pe_app_id>:<pe_id>'
 	 * @param string $data Action specific data
 	 * @see static::action()
 	 */
-	public static function ajax_action($action, $selected, $data = array())
+	public static function ajax_action($exec_id, $action, $selected, $data = array())
 	{
+		// the only thing saying the caller had one of our pages open. action() checks rights per
+		// element, but an endpoint that anyone can call with guessed ids should not be the first
+		// line of defence
+		if (!Api\Etemplate\Widget\Nextmatch::validateExecId($exec_id))
+		{
+			return;
+		}
 
 		$response = EGroupware\Api\Json\Response::get();
 
