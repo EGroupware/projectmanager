@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	it	Calcola il b
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	it	Può essere usato con ruoli di elementi, "eRoles" plugin e "elements" plugin
 category in %1 project-element(s) updated.	projectmanager	it	Categoria aggiornata per %1 elementi di progetto
 category set	projectmanager	it	Categoria impostata
-change category	projectmanager	it	Modifica categoria
 change the following details of %s	projectmanager	it	Modifica i seguenti dati di %s
 charset of file	projectmanager	it	Set di caratteri del file
 charset of the above selected font	projectmanager	it	Set di caratteri del font selezionato sopra

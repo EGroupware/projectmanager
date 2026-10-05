@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	fr	Calculer le 
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	fr	Peut être utilisé avec les rôles d'éléments, le plugin de tableau "eRoles" et le plugin de tableau "elements".
 category in %1 project-element(s) updated.	projectmanager	fr	Catégorie mise à jour dans %1 élément(s)
 category set	projectmanager	fr	Catégorie définie
-change category	projectmanager	fr	Changer la catégorie
 change the following details of %s	projectmanager	fr	Changer les détails suivants de %s
 charset of file	projectmanager	fr	Jeu de caractères du fichier
 charset of the above selected font	projectmanager	fr	Jeu de caractères de la police sélectionnée ci-dessus

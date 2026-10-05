@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	cs	Spočítat r
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	cs	Může být použito se základními rolemi a s tabulkami zásuvných modulů "eRoles" a "elements"
 category in %1 project-element(s) updated.	projectmanager	cs	Byla zaktualizována kategorie v %1 součástech projektu.
 category set	projectmanager	cs	Nastavení kategorie
-change category	projectmanager	cs	Změna kategorie
 change the following details of %s	projectmanager	cs	Změna těchto údajů %s
 charset of file	projectmanager	cs	Znaková sada souboru
 charset of the above selected font	projectmanager	cs	Znaková sada výše vybraného písma

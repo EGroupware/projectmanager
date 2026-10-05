@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	de	Budget nach 
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	de	Kann mit Element-Rollen-Tabellen Plug-In und Elements Tabellen Plug-In verwendet werden.
 category in %1 project-element(s) updated.	projectmanager	de	Kategorie in %1 Projektelement(en) geändert.
 category set	projectmanager	de	Kategorie geändert
-change category	projectmanager	de	Kategorie ändern
 change the following details of %s	projectmanager	de	Ändern der folgenden Details von %s
 charset of file	projectmanager	de	Zeichensatz der Datei
 charset of the above selected font	projectmanager	de	Zeichensatz des oben ausgewählten Font

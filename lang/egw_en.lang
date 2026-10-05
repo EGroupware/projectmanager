@@ -61,7 +61,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	en	Calculate bu
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	en	Can be used with element roles, "eRoles" table plugin and "elements" table plugin.
 category in %1 project-element(s) updated.	projectmanager	en	Category in %1 project element(s) updated.
 category set	projectmanager	en	Category set
-change category	projectmanager	en	Change category
 change the following details of %s	projectmanager	en	Change the following details of %s
 charset of file	projectmanager	en	Charset of file
 charset of the above selected font	projectmanager	en	Charset of the above selected font

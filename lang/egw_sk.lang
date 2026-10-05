@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	sk	Vypočítať
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	sk	Dá sa použiť s úlohami prvku, tabuľkový zásuvný modul "eÚlohy" a "prvky".
 category in %1 project-element(s) updated.	projectmanager	sk	Kategória v %1 prvkoch projektu bola aktualizovaná.
 category set	projectmanager	sk	Kategória bola nastavená
-change category	projectmanager	sk	Zmeniť kategóriu
 change the following details of %s	projectmanager	sk	Zmeniť nasledovné podrobnosti pre %s
 charset of file	projectmanager	sk	Znaková sada súboru
 charset of the above selected font	projectmanager	sk	Znaková sada vybraného písma

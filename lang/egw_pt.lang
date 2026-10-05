@@ -38,7 +38,6 @@ budget (no pricelist)	projectmanager	pt	Orçamento (sem lista de preços)
 budget and pricelist	projectmanager	pt	Orçamento e lista de preços
 by	projectmanager	pt	por
 calculate budget by quantity (eg. time) and price	projectmanager	pt	Calcular orçamento por quantidade (ex: tempo) e preço
-change category	projectmanager	pt	Alterar categoria
 charset of file	projectmanager	pt	Charset do ficheiro
 check all	projectmanager	pt	Marcar todas
 close the window, discard the changes made	projectmanager	pt	Fechar a janela sem guardar as alterações efectuadas
