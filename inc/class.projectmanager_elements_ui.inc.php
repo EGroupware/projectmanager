@@ -572,8 +572,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$query['col_filter']['pe_id'] = array_map(static function($elem_id)
 			{
 				list(,,$pe_id) = explode(':', $elem_id);
-				return $pe_id;
+				return (int)$pe_id;
 			}, (array)$query['col_filter']['elem_id']);
+
+			// a single-row refresh carries the viewed project's pm_id, but a row of an expanded sub-project
+			// lives in that sub-project, so the filter is the projects the requested elements belong to
+			// and the user may read (-1 matches nothing)
+			$pm_ids = [];
+			foreach($this->db->select($this->table_name, 'pm_id', ['pe_id' => $query['col_filter']['pe_id']],
+				__LINE__, __FILE__, false, '', 'projectmanager') as $row)
+			{
+				if ($this->project->check_acl(Acl::READ, (int)$row['pm_id']))
+				{
+					$pm_ids[] = (int)$row['pm_id'];
+				}
+			}
+			$query['col_filter']['pm_id'] = $pm_ids ? array_values(array_unique($pm_ids)) : -1;
 		}
 		unset($query['col_filter']['elem_id']);
 
