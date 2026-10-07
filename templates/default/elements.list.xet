@@ -128,7 +128,7 @@
                             <et2-date-duration  id="${row}[pe_used_time]" readonly="true" selectUnit="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay"></et2-date-duration>
 						</et2-hbox>
 						<et2-hbox  id="planified">
-							<et2-image  label="planned time" src="k_alarm"></et2-image>
+							<et2-image  label="planned time" src="alarm"></et2-image>
                             <et2-date-duration  id="${row}[pe_planned_time]" readonly="true" selectUnit="true" displayFormat="@@duration_format" hoursPerDay="@@hoursPerDay" span="all" class="planned"></et2-date-duration>
 						</et2-hbox>
 						<et2-hbox  id="replanified">
