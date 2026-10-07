@@ -438,7 +438,7 @@ export class ProjectmanagerApp extends EgwApp
 						if(state.state && state.state.search) state.state.search = unescape(state.state.search);
 
 						// Apply
-						nm.applyFilters(state.state || state.filter || {});
+						nm.applyFilters(this._favoriteFilters(nm, state.state || state.filter || {}));
 						nextmatched = true;
 					});
 				}
