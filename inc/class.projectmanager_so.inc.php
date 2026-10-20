@@ -83,6 +83,14 @@ class projectmanager_so extends Api\Storage
 	function __construct($pm_id=null)
 	{
 		parent::__construct('projectmanager','egw_pm_projects','egw_pm_extra','','pm_extra_name','pm_extra_value','pm_id');
+
+		// TEMPORARY per-instance opt-in (doc/ai/projects/sql-fragment-type-safety.md): own clone
+		// (not the shared global instance) so this only affects projectmanager's own queries - every
+		// raw SQL fragment projectmanager builds itself now uses Api\Db\SqlFragment. Once
+		// requireSqlFragmentObjects() becomes the default (opt-out) for Api\Db generally, remove
+		// this clone again - Api\Storage::__construct() already defaults $no_clone=true.
+		$this->db = (clone $this->db)->requireSqlFragmentObjects(true);
+
 		$this->convert_all_timestamps();
 
 		$this->config = Api\Config::read('projectmanager');
@@ -318,9 +326,9 @@ class projectmanager_so extends Api\Storage
 				unset($filter['pm_id']);
 			}
 			// include an ACL filter for read-access
-			$filter[] = "(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
+			$filter[] = Api\Db\SqlFragment::raw("(pm_access='anonym' OR pm_access='public' AND pm_creator IN (".implode(',',$this->read_grants).
 				") OR pm_access='private' AND pm_creator IN (".implode(',',$this->private_grants).')'.
-				' OR '.$this->acl_extracol.'!=0)';
+				' OR '.$this->acl_extracol.'!=0)');
 
 			// only add role-acl column if we NOT already group by something (eg. stylite.links for PM groups by it's hash)
 			if (stripos($order_by, 'GROUP BY') === false)

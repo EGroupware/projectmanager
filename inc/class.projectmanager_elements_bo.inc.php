@@ -415,7 +415,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 
 		$updated = $update_project = 0;
 		++$GLOBALS['egw_info']['flags']['projectmanager']['pm_ds_ignore_elements'];
-		foreach((array) $this->search(array('pm_id'=>$pm_id,"pe_status != 'ignore'"),false,'pe_planned_start') as $data)
+		foreach((array) $this->search(array('pm_id'=>$pm_id,Api\Db\SqlFragment::raw("pe_status != 'ignore'")),false,'pe_planned_start') as $data)
 		{
 			$this->updateElement($data['pe_app'],$data['pe_app_id'],$data['pe_id'],$pm_id,false);
 

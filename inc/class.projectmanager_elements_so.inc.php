@@ -76,6 +76,14 @@ class projectmanager_elements_so extends Api\Storage\Base
 	function __construct($pm_id=null,$pe_id=null)
 	{
 		parent::__construct('projectmanager','egw_pm_elements',null,'',true);		// true = no need to clone the db-object
+
+		// TEMPORARY per-instance opt-in (doc/ai/projects/sql-fragment-type-safety.md): own clone
+		// (not the shared global instance) so this only affects projectmanager's own queries - every
+		// raw SQL fragment this class builds itself now uses Api\Db\SqlFragment. Once
+		// requireSqlFragmentObjects() becomes the default (opt-out) for Api\Db generally, remove
+		// this clone again and restore the $no_clone=true behaviour above.
+		$this->db = (clone $this->db)->requireSqlFragmentObjects(true);
+
 		$this->convert_all_timestamps();
 
 		if ((int) $pm_id || (int) $pe_id)

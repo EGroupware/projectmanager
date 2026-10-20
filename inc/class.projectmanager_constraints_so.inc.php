@@ -36,6 +36,13 @@ class projectmanager_constraints_so extends Api\Storage\Base
 	{
 		parent::__construct('projectmanager','egw_pm_constraints');
 
+		// TEMPORARY opt-in (doc/ai/projects/sql-fragment-type-safety.md): Api\Storage\Base's
+		// constructor already clones $GLOBALS['egw']->db for us (default $no_clone=false), so this
+		// only flips the flag on our own already-private clone - every raw SQL fragment this class
+		// builds itself now uses Api\Db\SqlFragment. Once requireSqlFragmentObjects() becomes the
+		// default (opt-out) for Api\Db generally, remove this line.
+		$this->db->requireSqlFragmentObjects(true);
+
 		if ((int) $pm_id)
 		{
 			$this->pm_id = (int) $pm_id;
@@ -79,7 +86,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 		}
 		if ($pe_id)
 		{
-			$filter[] = '('.$this->db->column_data_implode(' OR ',array('pe_id_start' => $pe_id, 'pe_id_end' => $pe_id)) .')';
+			$filter[] = Api\Db\SqlFragment::raw('('.$this->db->column_data_implode(' OR ',array('pe_id_start' => $pe_id, 'pe_id_end' => $pe_id)) .')');
 
 			if ($extra_cols && !is_array($extra_cols)) $extra_cols = explode(',',$extra_cols);
 			if (!$order_by) $order_by = 'pe_id_start';

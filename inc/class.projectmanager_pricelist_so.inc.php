@@ -52,6 +52,14 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 	function __construct($pm_id=0)
 	{
 		parent::__construct('projectmanager','egw_pm_pricelist');	// sets $this->table_name
+
+		// TEMPORARY opt-in (doc/ai/projects/sql-fragment-type-safety.md): Api\Storage\Base's
+		// constructor already clones $GLOBALS['egw']->db for us (default $no_clone=false), so this
+		// only flips the flag on our own already-private clone - every raw SQL fragment this class
+		// builds itself now uses Api\Db\SqlFragment. Once requireSqlFragmentObjects() becomes the
+		// default (opt-out) for Api\Db generally, remove this line.
+		$this->db->requireSqlFragmentObjects(true);
+
 		$this->convert_all_timestamps();
 
 		$this->pm_id = (int) $pm_id;
