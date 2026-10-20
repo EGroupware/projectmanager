@@ -338,7 +338,7 @@ class projectmanager_so extends Api\Storage
 			$subs_mains_join = '';
 			if ($filter['subs_or_mains'] == 'mains')
 			{
-				$filter[] = $this->links_table.'.link_id2 IS NULL';
+				$filter[] = Api\Db\SqlFragment::raw($this->links_table.'.link_id2 IS NULL');
 				$subs_mains_join .= ' LEFT';
 			}
 			// PostgreSQL requires cast as link_idx is varchar and pm_id an integer
@@ -508,10 +508,10 @@ class projectmanager_so extends Api\Storage
 
 		foreach($this->db->select($this->table_name,'DISTINCT pm_creator',array(
 			'pm_status' => 'active',
-			'(ABS(pm_real_start-'.time().')<'.(4*24*60*60).' OR '.	// start within 4 days
+			Api\Db\SqlFragment::raw('(ABS(pm_real_start-'.time().')<'.(4*24*60*60).' OR '.	// start within 4 days
 			'ABS(pm_planned_start-'.time().')<'.(4*24*60*60).' OR '.	// planned start within 4 days
 			'ABS(pm_real_end-'.time().')<'.(4*24*60*60).' OR '.		// end_day within 4 days
-			'ABS(pm_planned_end-'.time().')<'.(4*24*60*60).')',		// end_day within 4 days
+			'ABS(pm_planned_end-'.time().')<'.(4*24*60*60).')'),		// end_day within 4 days
 		),__LINE__,__FILE__) as $row)
 		{
 			$users[] = $row['pm_creator'];

@@ -443,7 +443,7 @@ class ApiHandler extends Api\CalDAV\Handler
 			if ($matches) $prop_filters[] = implode($prop_test=='allof'?' AND ':' OR ',$matches);
 			if ($prop_filters)
 			{
-				$filters[] = $filter = '(('.implode($filter_test=='allof'?') AND (':') OR (', $prop_filters).'))';
+				$filters[] = $filter = Api\Db\SqlFragment::raw('(('.implode($filter_test=='allof'?') AND (':') OR (', $prop_filters).'))');
 				if ($this->debug) error_log(__METHOD__."(path=$options[path], ...) sql-filter: $filter");
 			}
 		}
@@ -471,7 +471,7 @@ class ApiHandler extends Api\CalDAV\Handler
 					{
 						$parts = explode('/', $option['data']);
 						$filters['sync_token_offset'] = explode(self::SYNC_TOKEN_OFFSET_DELIMITER, array_pop($parts))+[null, 0];
-						$filters[] = 'pm_modified>='.(int)$filters['sync_token_offset'][0];
+						$filters[] = Api\Db\SqlFragment::raw('pm_modified>='.(int)$filters['sync_token_offset'][0]);
 					}
 					break;
 				case 'sync-level':

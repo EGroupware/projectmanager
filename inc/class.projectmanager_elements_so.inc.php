@@ -115,7 +115,7 @@ class projectmanager_elements_so extends Api\Storage\Base
 
 		// need to set / unset PM_CAT_ID in pe_overwrite, as otherwise cat_id would get overwritten again
 		require_once EGW_INCLUDE_ROOT.'/projectmanager/inc/class.datasource.inc.php';	// defines PM_CAT_ID
-		$set[] = $cat_id ? 'pe_overwrite=pe_overwrite|'.PM_CAT_ID : 'pe_overwrite=pe_overwrite&~'.PM_CAT_ID;
+		$set[] = Api\Db\SqlFragment::raw($cat_id ? 'pe_overwrite=pe_overwrite|'.PM_CAT_ID : 'pe_overwrite=pe_overwrite&~'.PM_CAT_ID);
 
 		$this->db->update($this->table_name, $set, array(
 				'pm_id' => $this->pm_id,
@@ -152,11 +152,12 @@ class projectmanager_elements_so extends Api\Storage\Base
 		if ($save_data) $this->project->data = $save_data;
 
 		if (!isset($_filter['pm_id'])) $_filter['pm_id'] = $pm_id;
-		if (!isset($_filter['pe_status'])) $_filter[] = "pe_status != 'ignore'";
+		if (!isset($_filter['pe_status'])) $_filter[] = Api\Db\SqlFragment::raw("pe_status != 'ignore'");
 		// fix some special filters: resources, cats
 		$filter = $this->_fix_filter($_filter);
 
-		if (($link_app1 = array_search("link_app1!='projectmanager'", $filter)) !== false)
+		// string-cast comparison: a caller may hand this in as a Db\SqlFragment now, not a plain string
+		if (($link_app1 = array_search("link_app1!='projectmanager'", array_map('strval', $filter))) !== false)
 		{
 			unset($filter[$link_app1]);
 		}
@@ -260,7 +261,7 @@ class projectmanager_elements_so extends Api\Storage\Base
 		{
 			if ($filter['pe_resources'])
 			{
-				$filter[] = $this->db->concat("','",'pe_resources',"','").' LIKE '.$this->db->quote('%,'.$filter['pe_resources'].',%');
+				$filter[] = Api\Db\SqlFragment::raw($this->db->concat("','",'pe_resources',"','").' LIKE '.$this->db->quote('%,'.$filter['pe_resources'].',%'));
 			}
 			unset($filter['pe_resources']);
 		}

@@ -72,17 +72,17 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 		if ($join === true)	// add join with links-table and extra-columns
 		{
 			// just pl_id would be ambigues
-			$keys[] = $this->table_name.'.pl_id='.(int)$keys['pl_id'];
+			$keys[] = Api\Db\SqlFragment::raw($this->table_name.'.pl_id='.(int)$keys['pl_id']);
 			unset($keys['pl_id']);
 
 			if (isset($keys['pl_validsince']))
 			{
-				$keys[] = 'pl_validsince <= '.(int)$keys['pl_validsince'];
+				$keys[] = Api\Db\SqlFragment::raw('pl_validsince <= '.(int)$keys['pl_validsince']);
 				unset($keys['pl_validsince']);
 			}
 			if (isset($keys['pm_id']))
 			{
-				$keys[] = $this->db->expression($this->prices_table,array('pm_id' => $keys['pm_id']));
+				$keys[] = Api\Db\SqlFragment::raw($this->db->expression($this->prices_table,array('pm_id' => $keys['pm_id'])));
 				unset($keys['pm_id']);
 			}
 			$join = $this->prices_join;
@@ -176,7 +176,7 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 
 			if (isset($filter['pl_validsince']))
 			{
-				$filter[] = 'pl_validsince <= '.($validsince=(int)$filter['pl_validsince']);
+				$filter[] = Api\Db\SqlFragment::raw('pl_validsince <= '.($validsince=(int)$filter['pl_validsince']));
 				unset($filter['pl_validsince']);
 			}
 			else
@@ -204,16 +204,16 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 			}
 			if ($this->db->capabilities['sub_queries'])
 			{
-				$filter[] = "pl_validsince = (SELECT MAX(t.pl_validsince) FROM $this->prices_table t WHERE p.pl_id=t.pl_id AND p.pm_id=t.pm_id AND t.pl_validsince <= $validsince)";
+				$filter[] = Api\Db\SqlFragment::raw("pl_validsince = (SELECT MAX(t.pl_validsince) FROM $this->prices_table t WHERE p.pl_id=t.pl_id AND p.pm_id=t.pm_id AND t.pl_validsince <= $validsince)");
 
 				if (!$order_by) $order_by = 'pl_title';
 
 				if ($pm_id)
 				{
-					$filter[] = $this->sql_priority($pm_id,'p.pm_id').' = (select MAX('.$this->sql_priority($pm_id,'m.pm_id').
-						") FROM $this->prices_table m WHERE m.pl_id=p.pl_id)";
+					$filter[] = Api\Db\SqlFragment::raw($this->sql_priority($pm_id,'p.pm_id').' = (select MAX('.$this->sql_priority($pm_id,'m.pm_id').
+						") FROM $this->prices_table m WHERE m.pl_id=p.pl_id)");
 
-					if ($no_general) $filter[] = 'pl_billable IN (0,1)';
+					if ($no_general) $filter[] = Api\Db\SqlFragment::raw('pl_billable IN (0,1)');
 				}
 				else
 				{
@@ -225,7 +225,7 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 				// ToDo: avoid subqueries (eg. use a join) or do it manual inside php
 				//echo "<p>Pricelist needs a DB capabal of subqueries (eg. MySQL 4.1+) !!!</p>\n";
 				$filter['pm_id'] = projectmanager_bo::ancestors($this->pm_id,array(0,(int)$this->pm_id));
-				$filter[] = 'pl_validsince <= '.$validsince;
+				$filter[] = Api\Db\SqlFragment::raw('pl_validsince <= '.$validsince);
 			}
 			$prices_filter = array();
 			foreach($extra_cols as $col)
@@ -238,14 +238,14 @@ class projectmanager_pricelist_so extends Api\Storage\Base
 			}
 			if (count($prices_filter))
 			{
-				$filter[] = $this->db->expression($this->prices_table,$prices_filter);
+				$filter[] = Api\Db\SqlFragment::raw($this->db->expression($this->prices_table,$prices_filter));
 			}
 			// do we run a search
 			if ($op == 'OR' && $wildcard == '%' && $criteria['pl_id'] && $criteria['pl_id'] == $criteria['pl_title'])
 			{
 				foreach(array('pl_customertitle','pl_price') as $col)
 				{
-					$criteria[] = $col. ' LIKE '.$this->db->quote('%'.$criteria['pl_id'].'%');
+					$criteria[] = Api\Db\SqlFragment::raw($col. ' LIKE '.$this->db->quote('%'.$criteria['pl_id'].'%'));
 				}
 				unset($criteria['pl_id']);	// its ambigues
 			}

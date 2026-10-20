@@ -218,7 +218,7 @@ class projectmanager_constraints_so extends Api\Storage\Base
 				$pe_id = (int) $keys;
 				$keys = array();
 			}
-			$keys[] = "(pe_id_end=$pe_id OR pe_id_start=$pe_id)";
+			$keys[] = Api\Db\SqlFragment::raw("(pe_id_end=$pe_id OR pe_id_start=$pe_id)");
 			return $this->db->delete($this->table_name,$keys,__LINE__,__FILE__);
 		}
 		return parent::delete($keys, $only_return_query);

@@ -556,7 +556,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$query['col_filter']['pm_id'] = $this->pm_id;
 			}
 			// dont show the sub-projects
-			$query['col_filter'][] = "link_app1!='projectmanager'";
+			$query['col_filter'][] = Api\Db\SqlFragment::raw("link_app1!='projectmanager'");
 		}
 		// Sub-grid queries
 		if($query['col_filter']['parent_id'])
