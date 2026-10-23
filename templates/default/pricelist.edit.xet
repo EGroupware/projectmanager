@@ -75,56 +75,31 @@
 			</rows>
 		</grid>
 	</et2-template>
-	<et2-template  id="projectmanager.pricelist.edit" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%">
-			<columns>
-				<column width="100"/>
-				<column/>
-				<column/>
-			</columns>
-			<rows>
-				<row disabled="!@msg">
-					<et2-description  span="all" class="message" id="msg" align="center" noLang="1"></et2-description>
-					<et2-description></et2-description>
-					<et2-description></et2-description>
-				</row>
-				<row class="dialogHeader" height="50">
-					<et2-description  value="Title" labelFor="pl_title"></et2-description>
-					<et2-textbox  maxlength="255" id="pl_title" span="all" class="inputFullWidth" required="1"></et2-textbox>
-					<et2-description></et2-description>
-				</row>
-				<row class="row dialogHeader2">
-					<et2-description  value="Unit" labelFor="pl_unit"></et2-description>
-					<et2-textbox  maxlength="20" id="pl_unit" placeholder="h"></et2-textbox>
-					<et2-select  label="General pricelist" id="gen_pl_billable" emptyLabel="Not available"></et2-select>
-				</row>
-				<row class="row dialogHeader3">
-					<et2-description  value="Category" labelFor="cat_id"></et2-description>
-					<et2-select-cat  span="all" id="cat_id" emptyLabel="None"></et2-select-cat>
-				</row>
-				<row>
-					<et2-tabbox  span="all" id="tabs" tabHeight="200" cfDisabled="true">
-						<tabs>
-							<tab id="price" label="Price" statustext="General pricelist"/>
-							<tab id="project" label="Project" statustext="Project specific title, prices, ..."/>
-							<tab id="description" label="Description" statustext="Description"/>
-						</tabs>
-						<tabpanels>
-							<et2-template  id="projectmanager.pricelist.edit.price"></et2-template>
-							<et2-template  id="projectmanager.pricelist.edit.project"></et2-template>
-							<et2-template  id="projectmanager.pricelist.edit.description"></et2-template>
-						</tabpanels>
-					</et2-tabbox>
-				</row>
-				<row class="dialogFooterToolbar">
-					<et2-hbox  span="all">
-						<et2-button  label="Edit" id="button[edit]" statustext="Edit this price"></et2-button>
-						<et2-button  id="button[save]" label="Save" statustext="Save the changes made"></et2-button>
-						<et2-button  id="button[apply]" label="Apply" statustext="Apply the changes"></et2-button>
-						<et2-button  id="button[cancel]" label="Cancel" statustext="Closes the window without saving the changes" onclick="window.close();"></et2-button>
-					</et2-hbox>
-				</row>
-			</rows>
-		</grid>
+	<et2-template  id="projectmanager.pricelist.edit" template="" lang="" group="0" version="1.9.002" layout="edit">
+		<et2-description  hidden="!@msg" span="all" class="message" id="msg" align="center" noLang="1"></et2-description>
+		<et2-hbox  class="dialogHeader">
+			<et2-textbox  label="Title" maxlength="255" id="pl_title" class="inputFullWidth et2-label-fixed" required="1"></et2-textbox>
+		</et2-hbox>
+		<et2-textbox  label="Unit" maxlength="20" id="pl_unit" placeholder="h"></et2-textbox>
+		<et2-select  label="General pricelist" id="gen_pl_billable" emptyLabel="Not available"></et2-select>
+		<et2-select-cat  label="Category" id="cat_id" emptyLabel="None"></et2-select-cat>
+		<et2-tabbox  id="tabs" tabHeight="auto" cfDisabled="true">
+			<tabs>
+				<tab id="price" label="Price" statustext="General pricelist"/>
+				<tab id="project" label="Project" statustext="Project specific title, prices, ..."/>
+				<tab id="description" label="Description" statustext="Description"/>
+			</tabs>
+			<tabpanels>
+				<et2-template  id="projectmanager.pricelist.edit.price"></et2-template>
+				<et2-template  id="projectmanager.pricelist.edit.project"></et2-template>
+				<et2-template  id="projectmanager.pricelist.edit.description"></et2-template>
+			</tabpanels>
+		</et2-tabbox>
+		<et2-hbox  class="dialogFooterToolbar" style="min-width:0">
+			<et2-button  label="Edit" id="button[edit]" statustext="Edit this price"></et2-button>
+			<et2-button  id="button[save]" label="Save" statustext="Save the changes made"></et2-button>
+			<et2-button  id="button[apply]" label="Apply" statustext="Apply the changes"></et2-button>
+			<et2-button  id="button[cancel]" label="Cancel" statustext="Closes the window without saving the changes" onclick="window.close();"></et2-button>
+		</et2-hbox>
 	</et2-template>
 </overlay>
