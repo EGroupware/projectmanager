@@ -2,90 +2,71 @@
 <?xml-model href="../../../doc/etemplate2/etemplate2.0.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2.0//EN" "https://www.egroupware.org/etemplate2.0.dtd">
 <overlay>
-	<et2-template  id="projectmanager.edit.general" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%">
+	<et2-template  id="projectmanager.edit.general" template="" lang="" group="0" version="1.9.002" class="pm_general" layout="2-column" style="--label-width:7em">
+		<et2-select-cat  label="Category" class="et2-label-fixed" id="cat_id" emptyLabel="None"></et2-select-cat>
+		<et2-select  label="Access" class="et2-label-fixed" id="pm_access" noLang="1"></et2-select>
+		<et2-select-number  label="Priority" class="et2-label-fixed" id="pm_priority" min="1" max="10"></et2-select-number>
+		<et2-vbox  style="min-width:0">
+			<et2-select  label="Status" class="et2-label-fixed" id="pm_status" noLang="1"></et2-select>
+			<et2-checkbox
+ statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" style="margin-left:calc(var(--label-width, 8em) + var(--sl-spacing-medium, 1em))"></et2-checkbox>
+		</et2-vbox>
+		<et2-vbox  span="all" style="overflow-x:auto">
+		<grid width="100%" class="pm_dates">
 			<columns>
-				<column width="95"/>
-				<column width="40%"/>
-				<column width="30"/>
-				<column width="8%"/>
-				<column width="40%"/>
+				<column/>
+				<column/>
+				<column/>
 			</columns>
 			<rows>
-				<row class="row">
-					<et2-description  value="Category" for="cat_id"></et2-description>
-					<et2-select-cat  id="cat_id" emptyLabel="None"></et2-select-cat>
-					<et2-description></et2-description>
-					<et2-description  value="Access" for="pm_access"></et2-description>
-					<et2-select  id="pm_access" noLang="1"></et2-select>
-				</row>
-				<row class="row">
-					<et2-description  value="Priority" for="pm_priority"></et2-description>
-					<et2-select-number  id="pm_priority" min="1" max="10"></et2-select-number>
-					<et2-description></et2-description>
-					<et2-description  value="Status" for="pm_status"></et2-description>
-					<et2-hbox>
-						<et2-select  id="pm_status" noLang="1"></et2-select>
-						<et2-checkbox
- statustext="If checked the datasources of the elements (eg. InfoLog entries) will change their status too." label="datasources too" id="status_sources" class="projectmanager_leftPad5"></et2-checkbox>
-					</et2-hbox>
-				</row>
 				<row class="th" height="20" valign="bottom">
 					<et2-description  value="Value"></et2-description>
 					<et2-description  value="Project"></et2-description>
-					<et2-description></et2-description>
-					<et2-description  value="Elementlist" span="all"></et2-description>
+					<et2-description  value="Elementlist"></et2-description>
 				</row>
 				<row class="row">
 					<et2-description  value="Startdate" for="pm_real_start"></et2-description>
 					<et2-date-time  id="pm_real_start" class="pm_side_calendar"></et2-date-time>
-					<et2-description></et2-description>
-					<et2-date-time  id="ds[pe_real_start]" readonly="true" span="all"></et2-date-time>
+					<et2-date-time  id="ds[pe_real_start]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
                     <et2-date-time  id="pm_planned_start" class="pm_side_calendar"></et2-date-time>
-					<et2-description></et2-description>
-					<et2-date-time  id="ds[pe_planned_start]" readonly="true" span="all"></et2-date-time>
+					<et2-date-time  id="ds[pe_planned_start]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="Enddate" for="pm_real_end"></et2-description>
                     <et2-date-time  id="pm_real_end" class="pm_side_calendar"></et2-date-time>
-					<et2-description></et2-description>
-					<et2-date-time  id="ds[pe_real_end]" readonly="true" span="all"></et2-date-time>
+					<et2-date-time  id="ds[pe_real_end]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row">
 					<et2-description  value="- planned" for="pm_planned_end"></et2-description>
                     <et2-date-time  id="pm_planned_end" class="pm_side_calendar"></et2-date-time>
-					<et2-description></et2-description>
-					<et2-date-time  id="ds[pe_planned_end]" readonly="true" span="all"></et2-date-time>
+					<et2-date-time  id="ds[pe_planned_end]" readonly="true"></et2-date-time>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="Times" for="pm_used_time"></et2-description>
 					<et2-date-duration  id="pm_used_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
-					<et2-description></et2-description>
-                    <et2-date-duration  id="ds[pe_used_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+					<et2-date-duration  id="ds[pe_used_time]" readonly="true" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="- planned" for="pm_planned_time"></et2-description>
                     <et2-date-duration  id="pm_planned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
-					<et2-description></et2-description>
-                    <et2-date-duration  id="ds[pe_planned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+					<et2-date-duration  id="ds[pe_planned_time]" readonly="true" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row" disabled="@pm_accounting_type=status">
 					<et2-description  value="- re-planned" for="pm_replanned_time"></et2-description>
                     <et2-date-duration  id="pm_replanned_time" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
-					<et2-description></et2-description>
-                    <et2-date-duration  id="ds[pe_replanned_time]" readonly="true" span="all" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
+					<et2-date-duration  id="ds[pe_replanned_time]" readonly="true" displayFormat="@duration_format" hoursPerDay="@hoursPerDay"></et2-date-duration>
 				</row>
 				<row class="row">
 					<et2-description  value="Status" for="pm_completion"></et2-description>
 					<et2-select-percent  id="pm_completion" emptyLabel="None"></et2-select-percent>
-					<et2-description></et2-description>
-					<et2-description  id="ds[pe_completion]" readonly="true" span="all" noLang="1"></et2-description>
+					<et2-description  id="ds[pe_completion]" readonly="true" noLang="1"></et2-description>
 				</row>
 			</rows>
 		</grid>
+		</et2-vbox>
 	</et2-template>
 	<et2-template  id="projectmanager.edit.description" template="" lang="" group="0" version="0.4.001"><et2-ai><et2-htmlarea  id="pm_description" mode="extended" width="100%" imageUpload="link_to" noToolbar="false"></et2-htmlarea></et2-ai>
 	</et2-template>

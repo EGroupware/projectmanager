@@ -189,4 +189,61 @@ budget numbers more padding so scrollbar cant overlap
   padding-inline: var(--sl-spacing-medium);
   flex-grow: 0;
 }
-/*# sourceMappingURL=app.css.map */
+/* The dates table follows the columns of the layout above it.  Fixed layout: a label column as wide
+ * as the labels plus the gap after them, the two value columns share the rest equally.  Each value
+ * column gives up half of (gap + label) on the side facing the other, which puts the end of the
+ * project values where the first column of the layout ends and the start of the elementlist values
+ * where the inputs of the second column start. */
+table.pm_dates {
+  table-layout: fixed;
+  --pm-label: calc(var(--label-width, 8em) + var(--sl-spacing-medium, 1em));
+  --pm-gap: var(--sl-spacing-large, 1rem);
+  --pm-inset: calc((var(--pm-gap) + var(--pm-label)) / 2);
+}
+table.pm_dates col:nth-child(1) {
+  width: var(--pm-label) !important;
+}
+table.pm_dates.et2_grid > tbody > tr > :nth-child(2) {
+  padding-right: var(--pm-inset);
+}
+table.pm_dates.et2_grid > tbody > tr > :nth-child(3) {
+  padding-left: var(--pm-inset);
+}
+/* One column: there is no second column to line up with, so the table lets its columns take the
+ * room their content needs and the elementlist values keep a gap after the project values.  The
+ * box scrolls sideways before the widgets get squeezed. */
+@container (max-width: 600px) {
+  table.pm_dates {
+    table-layout: auto;
+    min-width: min-content;
+  }
+  table.pm_dates.et2_grid > tbody > tr > :nth-child(2) {
+    padding-right: 0;
+  }
+  table.pm_dates.et2_grid > tbody > tr > :nth-child(3) {
+    padding-left: calc(var(--pm-gap) * 2);
+    /* The datasource values are short and fixed in format; they take their width before the project column gets any spare */
+    white-space: nowrap;
+  }
+}
+/* The tab is two columns from the width of a popup up, however wide the dialog gets: the dates table
+ * below the fields is laid out against exactly two columns */
+@container (min-width: 601px) {
+  .pm_general::part(base) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* A cell may be narrower than its content (the category chips), instead of spilling into the next column */
+.pm_general > * {
+  min-width: 0;
+}
+/* A category with a value has a wide intrinsic width (icon, colour, name).  The fixed label gave way
+ * to it - shrunk to its text - and the select still spilled over into the next column.  The label
+ * keeps its width and the select takes what is left. */
+.pm_general et2-select-cat::part(form-control-label) {
+  flex: none;
+}
+.pm_general et2-select-cat::part(form-control-input) {
+  min-width: 0;
+  flex: 1 1 0;
+}
