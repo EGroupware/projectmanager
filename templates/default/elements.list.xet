@@ -99,7 +99,7 @@
                     <et2-nextmatch-header  label="Kanban" id="kanban"></et2-nextmatch-header>
 				</row>
 				<row class="$row_cont[cat_id] $row_cont[class]" valign="top">
-					<et2-image  align="center" label="$row_cont[pe_app]" src="$row_cont[pe_icon]"></et2-image>
+					<et2-image  align="center" label="$row_cont[pe_app]" src="$row_cont[pe_icon]" class="pmElementIcon"></et2-image>
 					<et2-vbox>
 						<et2-link  id="${row}[pm_link]" app="" noLang="1"></et2-link>
 						<et2-link  id="${row}[link]" app="" noLang="1"></et2-link>
@@ -157,6 +157,9 @@
 			/* A native &lt;progress&gt; defaults to ~140px, which overflows this column and gets
 			   clipped, making every bar look full whatever its value. */
 			progress.pe-completion { width: 100%; }
+			/* Milestone and InfoLog-type icons are Bootstrap font icons,
+			   size them like the 32px app (navbar) images. */
+			et2-image.pmElementIcon { font-size: 32px; }
 		</et2-styles>
 	</et2-template>
 	<et2-template  id="projectmanager.elements.list.header" template="" lang="" group="0" version="1.9.001">
