@@ -30,15 +30,6 @@
 		<et2-button  align="right" label="Add" id="add" onclick="window.open(egw::link('/index.php','menuaction=projectmanager.projectmanager_pricelist_ui.edit'),'_blank','dependent=yes,width=600,height=450,scrollbars=yes,status=yes'); return false;"></et2-button>
 	</et2-template>
 	<et2-template  id="projectmanager.pricelist.list" template="" lang="" group="0" version="1.9.001">
-		<grid width="100%">
-			<columns>
-				<column/>
-			</columns>
-			<rows>
-				<row>
-					<nextmatch id="nm" options="projectmanager.pricelist.list.rows"/>
-				</row>
-			</rows>
-		</grid>
+		<et2-nextmatch  id="nm" template="projectmanager.pricelist.list.rows"></et2-nextmatch>
 	</et2-template>
 </overlay>

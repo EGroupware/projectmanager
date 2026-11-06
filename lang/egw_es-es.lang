@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	es-es	Calcular 
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	es-es	Puede usarse con roles de elemento, el plugin de la tabla "eRoles" y el plugin de la tabla "elements".
 category in %1 project-element(s) updated.	projectmanager	es-es	Se ha actualizado la categoría en %1 elementos de proyecto
 category set	projectmanager	es-es	Se ha establecido la categoría
-change category	projectmanager	es-es	Cambiar categoría
 change the following details of %s	projectmanager	es-es	Cambiar los detalles siguientes de %s
 charset of file	projectmanager	es-es	Juego de caracteres del fichero
 charset of the above selected font	projectmanager	es-es	Juego de caracteres del tipo de letra seleccionado arriba

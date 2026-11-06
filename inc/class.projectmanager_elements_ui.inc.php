@@ -572,8 +572,22 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			$query['col_filter']['pe_id'] = array_map(static function($elem_id)
 			{
 				list(,,$pe_id) = explode(':', $elem_id);
-				return $pe_id;
+				return (int)$pe_id;
 			}, (array)$query['col_filter']['elem_id']);
+
+			// a single-row refresh carries the viewed project's pm_id, but a row of an expanded sub-project
+			// lives in that sub-project, so the filter is the projects the requested elements belong to
+			// and the user may read (-1 matches nothing)
+			$pm_ids = [];
+			foreach($this->db->select($this->table_name, 'pm_id', ['pe_id' => $query['col_filter']['pe_id']],
+				__LINE__, __FILE__, false, '', 'projectmanager') as $row)
+			{
+				if ($this->project->check_acl(Acl::READ, (int)$row['pm_id']))
+				{
+					$pm_ids[] = (int)$row['pm_id'];
+				}
+			}
+			$query['col_filter']['pm_id'] = $pm_ids ? array_values(array_unique($pm_ids)) : -1;
 		}
 		unset($query['col_filter']['elem_id']);
 
@@ -862,6 +876,10 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				'nm_action' => 'open_popup',
 			),
 			'sync_all' => array(
+				// deliberately still a submit: it acts on a whole PROJECT rather than on the
+				// selected rows, and an ajax endpoint has no trustworthy way to be told which -
+				// projectmanager_bo::check_acl() passes everything when no project is loaded, so
+				// taking a pm_id from the request would skip the permission check
 				'caption' => 'Synchronise all',
 				'icon'    => 'agt_reload',
 				'hint'    => 'necessary for project-elements doing that not automatic',
@@ -945,6 +963,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				$group, 'Insert in document', 'document_'
 			),
 			'delete' => array(
+				// deliberately still a submit, see the "not converted" note in
+				// doc/ai/projects/nextmatch-action-ajax-conversion.md
 				'caption'      => 'Delete',
 				'confirm'      => 'Delete this project-element, does NOT remove the linked entry',
 				'group'        => ++$group,
@@ -960,7 +980,14 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		else
 		{
 			$actions['erole']['children'] = array();
-			foreach($this->eroles->get_free_eroles() as $erole)
+			// Scope to the project being listed.  $this->eroles was scoped when this bo was
+			// constructed, and that falls back to $_REQUEST['pm_id'] and then to the
+			// current_project preference - neither of which is necessarily the project on screen.
+			// Reaching the list by a route carrying no pm_id therefore offered another project's
+			// roles, and they could be assigned from here.
+			$eroles = !empty($this->project->data['pm_id']) ?
+				new projectmanager_eroles_bo($this->project->data['pm_id']) : $this->eroles;
+			foreach($eroles->get_free_eroles() as $erole)
 			{
 				$actions['erole']['children']['erole_' . $erole['role_id']] = $erole + array(
 						'caption' => $erole['role_title'],
@@ -1064,11 +1091,20 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 
 
 		}
-		// If no PM ID, don't get initial rows
-		if(!$this->pm_id)
-		{
-			$content['nm']['num_rows'] = 0;
-		}
+		// The element list is never the visible view on load - the app starts on the project list
+		// and only switches once the client decides to - so never send rows with it, whatever the
+		// session says.  This has to come after the session restore above: that brings back the
+		// num_rows of whatever page the client last asked for, which had us query and ship a page
+		// of elements nobody was going to look at on every load but the first of a session.  The
+		// nextmatch fetches what it needs when it is actually shown.
+		$content['nm']['num_rows'] = 0;
+
+		// The project is a real filter, not something get_rrows() re-derives from the
+		// current_project preference on every request.  Seeding it here - over whatever the session
+		// restored - means the client owns it from its very first fetch and can change it, and that
+		// a list on screen can be told apart from one showing some other project.
+		$content['nm']['col_filter']['pm_id'] = (int)$this->project->data['pm_id'];
+
 		// Set duration format once for all
 		$content['duration_format'] = preg_split('/,/', $this->config['duration_format'])[0];
 		$content['hoursPerDay'] = preg_split('/,/', $this->config['duration_format'])[1];
@@ -1244,7 +1280,30 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			case 'erole':
 				foreach($checked as $id)
 				{
-					$element = $this->read($id);
+					// Name the key: egw_pm_elements has a composite primary key and Base::read()
+					// maps a bare value to the FIRST of its columns, which is pm_id - reading the
+					// wrong record (or none) and, because read() re-inits $this->data either way,
+					// leaving save() below to insert a row with no pe_id.
+					$element = $this->read(array('pe_id' => $id));
+					if(!$element)
+					{
+						continue;	// nothing read: save() below would insert a new, id-less row
+					}
+					// What the menu offered is not authority - it is built once per request, for
+					// whichever project was current.  Ask this element's own project what it may
+					// actually take: its roles plus the global ones, minus any non-multi role
+					// another of its elements already holds.
+					$available = new projectmanager_eroles_bo($element['pm_id'], $element['pe_id']);
+					$allowed = array();
+					foreach((array)$available->get_free_eroles() as $free)
+					{
+						$allowed[] = (string)$free['role_id'];
+					}
+					if(!in_array((string)$erole, $allowed, true))
+					{
+						$msg = lang('Element role not available for this project');
+						continue;
+					}
 					if($element['pe_eroles'] && !is_array($element['pe_eroles']))
 					{
 						$element['pe_eroles'] = explode(',', $element['pe_eroles']);
@@ -1270,6 +1329,19 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 				foreach($checked as $id)
 				{
 					$element = $this->read(array('pe_id' => $id));
+					// An element names the project it belongs to, so rights are checked against
+					// THAT project - not against whatever project this object was constructed
+					// with. The two differ whenever the id comes from outside: the list's project
+					// is a client-owned filter the user can change, and over ajax there is no
+					// project at all, only ids. Passing the pm_id explicitly also matters:
+					// projectmanager_bo::check_acl() treats a falsy one as "new entry, everything
+					// allowed but delete" and would wave every id through.
+					if (!$element || !($pm_id = (int)$this->data['pm_id']) ||
+						!$this->project->check_acl(Acl::ADD, $pm_id))
+					{
+						$failed++;
+						continue;
+					}
 					if(!$this->save(array('pe_status' => $ignore ? 'ignore' : 'new')))
 					{
 						$success++;
@@ -1279,7 +1351,8 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 						$failed++;
 					}
 				}
-				$msg = lang('%1 element(s) updated', $success);
+				$msg = $failed ? lang('%1 element(s) updated, %2 failed because of insufficent rights !!!', $success, $failed) :
+					lang('%1 element(s) updated', $success);
 				return $failed == 0;
 				break;
 			case 'delete':
@@ -1311,15 +1384,24 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	}
 
 	/**
-	 * Run given action on given path(es) and return array/object with values for keys 'msg', 'errs', 'dirs', 'files'
+	 * Run an action from the element list's context menu over AJAX, so the list keeps its
+	 * scroll position and selection instead of being rebuilt by a submit
 	 *
-	 * @param string $action eg. 'delete', ...
-	 * @param array $selected selected path(s)
+	 * @param string $exec_id eTemplate request this came from, see Nextmatch::validateExecId()
+	 * @param string $action eg. 'ignore'
+	 * @param array $selected selected row ids, 'projectmanager_elements::<pe_app>:<pe_app_id>:<pe_id>'
 	 * @param string $data Action specific data
 	 * @see static::action()
 	 */
-	public static function ajax_action($action, $selected, $data = array())
+	public static function ajax_action($exec_id, $action, $selected, $data = array())
 	{
+		// the only thing saying the caller had one of our pages open. action() checks rights per
+		// element, but an endpoint that anyone can call with guessed ids should not be the first
+		// line of defence
+		if (!Api\Etemplate\Widget\Nextmatch::validateExecId($exec_id))
+		{
+			return;
+		}
 
 		$response = EGroupware\Api\Json\Response::get();
 

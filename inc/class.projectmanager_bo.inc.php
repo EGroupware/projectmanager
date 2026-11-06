@@ -348,7 +348,11 @@ class projectmanager_bo extends projectmanager_so
 			$this->generate_pm_number();
 		}
 		// set creation and modification data
-		if (!$this->data['pm_id'])
+		// read() below re-initialises $this->data even when it finds nothing, so the $old it
+		// leaves behind is a truthy array of empty values for a project that does not exist yet -
+		// remember here instead of asking $old
+		$is_new = empty($this->data['pm_id']);
+		if ($is_new)
 		{
 			$this->data['pm_creator'] = $GLOBALS['egw_info']['user']['account_id'];
 			$this->data['pm_created'] = $this->now_su;
@@ -371,7 +375,7 @@ class projectmanager_bo extends projectmanager_so
 		if (!($err = parent::save(null, $check_modified)) && $do_notify)
 		{
 			$extra = array();
-			if ($old && $this->link_title($new) !== ($old_title=$this->link_title($old)))
+			if (!$is_new && $this->link_title($new) !== ($old_title=$this->link_title($old)))
 			{
 				$extra[Link::OLD_LINK_TITLE] = $old_title;
 			}
@@ -381,8 +385,11 @@ class projectmanager_bo extends projectmanager_so
 				Link::restore('projectmanager', $this->data['pm_id']);
 			}
 			// notify the link-class about the update, as other apps may be subscribt to it
+			// the type is what decides whether the change is pushed to connected clients at all:
+			// without one it defaults to "unknown", which the push is documented to drop as coming
+			// from an app that is not push aware
 			//error_log(__METHOD__."() calling Link::notify_update('projectmanager', {$this->data['pm_id']}, ".array2string($this->data+$extra).")");
-			Link::notify_update('projectmanager',$this->data['pm_id'],$this->data+$extra);
+			Link::notify_update('projectmanager',$this->data['pm_id'],$this->data+$extra,$is_new ? 'add' : 'edit');
 		}
 		//$changed[] = array();
 		if (isset($old)) foreach($old as $name => $value)
@@ -445,6 +452,17 @@ class projectmanager_bo extends projectmanager_so
 			parent::save($deleted);
 
 			Link::unlink(0,'projectmanager',$pm_id,'','!file','',true);	// keep the file attachments, hide the rest
+
+			// Link::unlink() only notifies about a deleted entry when called without an app2, which
+			// the '!file' above is - so tell everyone ourselves, or a client showing this project
+			// would keep it on screen.  The hard-delete branch below needs no such call, there
+			// Link::unlink() does send it.
+			Api\Hooks::process([
+				'location' => 'notify-all',
+				'type'     => 'delete',
+				'app'      => 'projectmanager',
+				'id'       => $pm_id,
+			], null, true);
 
 			if($delete_sources)
 			{

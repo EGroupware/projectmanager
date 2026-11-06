@@ -955,12 +955,13 @@ class projectmanager_ui extends projectmanager_bo
 				$GLOBALS['egw_info']['user']['preferences']['projectmanager']['document_dir'],
 				$group, 'Insert in document', 'document_'
 			),
+			// cat_id holds exactly ONE category, so the dialog offers Set/Remove. No onExecute
+			// here any more: nm_action=categories dispatches to ajax_action itself, and an
+			// onExecute would run instead of opening the dialog.
 			'cat' => Etemplate\Widget\Nextmatch::category_action(
-				'projectmanager',$group,'Change category','cat_'
+				'projectmanager',$group,'Change category','cat_',
+				true, 0, Etemplate\Widget\Nextmatch::DEFAULT_MAX_MENU_LENGTH, false
 			)+array(
-				// reuse the same in-place ajax handler as "Modify status", so the
-				// list keeps its scroll position instead of reloading to the top
-				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'disableClass' => 'rowNoEdit',
 				'confirm_mass_selection' => true,
 			),
@@ -992,6 +993,8 @@ class projectmanager_ui extends projectmanager_bo
 				'confirm_mass_selection' => true,
 			),
 			'delete' => array(
+				// same ajax handler as "Modify status"/"Change category" above
+				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'caption' => 'Delete',
 				'confirm' => 'Delete this project',
 				'confirm_multiple' => 'Delete these entries',
@@ -1001,6 +1004,8 @@ class projectmanager_ui extends projectmanager_bo
 				'confirm_mass_selection' => true,
 			),
 			'undelete' => array(
+				// same ajax handler as "Modify status"/"Change category" above
+				'onExecute' => 'javaScript:app.projectmanager.change_status',
 				'caption' => 'Un-Delete',
 				'confirm' => 'Recover this entry',
 				'confirm_multiple' => 'Recover these entries',
@@ -1039,8 +1044,15 @@ class projectmanager_ui extends projectmanager_bo
 	 * @param boolean $select_all true if "all" selection is used
 	 * @param boolean $sources_too change status of datasources too
 	 */
-	public function ajax_action($action, $selected, $select_all = false, $sources_too = false)
+	public function ajax_action($exec_id, $action, $selected, $select_all = false, $sources_too = false)
 	{
+		// action() checks rights per project, but this is a public menuaction - the exec id is
+		// the only thing saying the caller had one of our lists open rather than a bare project
+		// id they guessed
+		if (!Api\Etemplate\Widget\Nextmatch::validateExecId($exec_id))
+		{
+			return;
+		}
 		$success = $failed = 0;
 		$action_msg = $msg = '';
 		$selected = array_values((array)$selected);

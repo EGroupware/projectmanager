@@ -40,7 +40,6 @@ budget (no pricelist)	projectmanager	fi	Budjetti (ei hinnastoa)
 budget and pricelist	projectmanager	fi	Budjetti ja hinnasto
 by	projectmanager	fi	Henkilö:
 calculate budget by quantity (eg. time) and price	projectmanager	fi	Laske budjetti määrän (esim. tuntien) ja hinnan mukaan
-change category	projectmanager	fi	Muuta kategoriaa
 charset of file	projectmanager	fi	Tiedoston merkistö
 charset of the above selected font	projectmanager	fi	Merkistökoodaus yllä valitulla fontilla
 check all	projectmanager	fi	Tarkista kaikki

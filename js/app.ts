@@ -13,12 +13,16 @@
 	/etemplate/js/etemplate2.js;
 	/projectmanager/js/et2_widget_gantt.js;
 */
-import {EgwApp} from "../../api/js/jsapi/egw_app";
+import {EgwApp, PushData} from "../../api/js/jsapi/egw_app";
 // egw/egw_getFramework are ambient globals (declared in egw_global.d.ts's "declare global {}"),
 // not real exported module members - see doc/ai/projects/app-ts-modernization.md.
 import {etemplate2} from "../../api/js/etemplate/etemplate2";
 import {et2_gantt} from "./et2_widget_gantt";
-import {et2_nextmatch} from "../../api/js/etemplate/et2_extension_nextmatch";
+// Registers <projectmanager-select-erole>, used in the element list's row template
+import "./ProjectmanagerSelectErole";
+import type {Et2Nextmatch} from "../../api/js/etemplate/Et2Nextmatch/Et2Nextmatch";
+import type {Et2Button} from "../../api/js/etemplate/Et2Button/Et2Button";
+import type {Et2DatagridUpdateType} from "../../api/js/etemplate/Et2Datagrid/Et2Datagrid.types";
 import type {Et2LinkAdd} from "../../api/js/etemplate/Et2Link/Et2LinkAdd";
 import type {EgwFrameworkApp, FilterInfo} from "../../kdots/js/EgwFrameworkApp";
 import type {Et2Template} from "../../api/js/etemplate/Et2Template/Et2Template";
@@ -51,10 +55,24 @@ export class ProjectmanagerApp extends EgwApp
 		"projectmanager.pricelist.list": "prices"
 	};
 
+	/**
+	 * Application name the server pushes element changes under, a sub-type of projectmanager
+	 * registered in projectmanager_hooks::search_link()
+	 */
+	static readonly ELEMENT_APP = 'projectelement';
+
+	/**
+	 * dataStorePrefix of the element list, set server-side in projectmanager_elements_ui::index()
+	 */
+	static readonly ELEMENT_PREFIX = 'projectmanager_elements';
+
 	// Click handlers bound to sidebox links by _bind_sidebox(), keyed by link element -
 	// native equivalent of jQuery's namespaced 'click.projectmanager' event, so a later
 	// rebind/teardown can remove exactly the handler(s) we added (see _clearSideboxHandlers()).
 	private _sideboxClickHandlers : Map<HTMLElement, EventListener> = new Map();
+
+	// Watches <egw-app> for the filterboxes our three nextmatches append to it, see _watchFilterboxes()
+	private _filterboxObserver : MutationObserver = null;
 
 	/**
 	 * Constructor
@@ -78,6 +96,9 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			this._clearSideboxHandlers();
 		}
+
+		this._filterboxObserver?.disconnect();
+		this._filterboxObserver = null;
 
 		// Remove reference to etemplates
 		for(let view in this.views)
@@ -128,6 +149,8 @@ export class ProjectmanagerApp extends EgwApp
 			{
 				et2.DOMContainer.style.display = 'none';
 			}
+
+			this._watchFilterboxes();
 
 			if(view.name == 'list')
 			{
@@ -287,10 +310,7 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			if(what != view && this.views[view].etemplate)
 			{
-				this.views[view].etemplate.widgetContainer.iterateOver((nm) =>
-				{
-					nm.set_disabled(true);
-				}, this, et2_nextmatch);
+				ProjectmanagerApp._nextmatches(this.views[view].etemplate).forEach(nm => nm.set_disabled(true));
 				this.views[view].etemplate.DOMContainer.style.display = 'none';
 			}
 		}
@@ -299,12 +319,12 @@ export class ProjectmanagerApp extends EgwApp
 		if(this.views[what].etemplate)
 		{
 			this.views[what].etemplate.DOMContainer.style.display = '';
-			this.views[what].etemplate.widgetContainer.iterateOver((nm) =>
-			{
-				nm.set_disabled(false);
-			}, this, et2_nextmatch);
+			ProjectmanagerApp._nextmatches(this.views[what].etemplate).forEach(nm => nm.set_disabled(false));
 			this.views[what].etemplate.resize();
 		}
+
+		// Only the view we just showed should have filters in the app's filter drawer
+		this._syncFilterboxes();
 
 		// Set header
 		this.egw.app_header(this.egw.lang(this.views[what].sidemenu),'projectmanager');
@@ -413,14 +433,14 @@ export class ProjectmanagerApp extends EgwApp
 				}
 				for(let i = 0; i < et2.length; i++)
 				{
-					et2[i].widgetContainer.iterateOver((_widget) => {
+					ProjectmanagerApp._nextmatches(et2[i]).forEach((nm) => {
 						// Firefox has trouble with spaces in search
 						if(state.state && state.state.search) state.state.search = unescape(state.state.search);
 
 						// Apply
-						_widget.applyFilters(state.state || state.filter || {});
+						nm.applyFilters(this._favoriteFilters(nm, state.state || state.filter || {}));
 						nextmatched = true;
-					}, this, et2_nextmatch);
+					});
 				}
 				if(nextmatched) return false;
 		}
@@ -452,13 +472,13 @@ export class ProjectmanagerApp extends EgwApp
 			}
 			else
 			{
-				et2.widgetContainer.iterateOver((_widget) => {
-					state = _widget.getValue();
+				ProjectmanagerApp._nextmatches(et2).forEach((nm) => {
+					state = nm.getValue();
 
 					// These aren't considered for state
 					delete state.link_add;
 					delete state.link_addapp;
-				}, this, et2_nextmatch);
+				});
 			}
 			// Gantt & tree also need the current PM ID stored
 			let current_project = 0;
@@ -505,6 +525,172 @@ export class ProjectmanagerApp extends EgwApp
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Handle a push notification about entry changes from the websocket
+	 *
+	 * Project elements are entries of other applications, so we care about more than our own
+	 * pushes:
+	 *
+	 * - "projectelement" comes from projectmanager_elements_bo::notify() and means an element
+	 *   was synced with its entry or removed from a project.  It carries the pm_id and the
+	 *   element list's row-id, and it is sent for every kind of element, including entries of
+	 *   applications that send no push of their own.  This is the one we work from.
+	 * - any other application is the entry behind an element changing.  That is only used to
+	 *   catch what the element push cannot tell us about: a row showing time cumulated from
+	 *   entries that are not listed themselves (a timesheet rolling up into the infolog it is
+	 *   linked to, see projectmanager_elements_bo::get_rows()).  The entry that changed is
+	 *   filtered out of the list, so no element push can point at the row that has to change -
+	 *   but matching the entry against the rows we already hold finds exactly that row.
+	 *
+	 * @param pushData
+	 * @param {string} pushData.app application name
+	 * @param {(string|number)} pushData.id id of entry to refresh
+	 * @param {string} pushData.type either 'update', 'edit', 'delete', 'add' or 'update-in-place'
+	 * @param {object|null} pushData.acl the keys listed as push_data in projectmanager_hooks::search_link()
+	 * @param {number} pushData.account_id User that caused the notification
+	 */
+	push(pushData : PushData)
+	{
+		switch(pushData.app)
+		{
+			case 'projectmanager':
+				return this._pushProject(pushData);
+			case ProjectmanagerApp.ELEMENT_APP:
+				return this._pushElement(pushData);
+			default:
+				return this._pushElementEntry(pushData);
+		}
+	}
+
+	/**
+	 * A project was added, changed or deleted
+	 */
+	private _pushProject(pushData : PushData)
+	{
+		const list = this.views.list.etemplate?.widgetContainer;
+		const tree = list?.getWidgetById('project_tree');
+		const itemId = 'projectmanager::' + pushData.id;
+		// Unlike observer() we have no list of links to find the parent of a project that is not
+		// in the tree yet, so a new sub-project only shows up when its parent is next expanded
+		if(tree && tree.getNode(itemId))
+		{
+			pushData.type === 'delete' ? tree.deleteItem(itemId) : tree.refreshItem(itemId);
+		}
+		const nm = <Et2Nextmatch>list?.getWidgetById('nm');
+		if(nm)
+		{
+			// Cast only - refresh() normalises ids itself (_toStringArray), and converting
+			// here would change what push hands it for no reason
+			nm.refresh(<string>pushData.id, <Et2DatagridUpdateType>pushData.type);
+		}
+
+		// The project is the element list's first row and where its totals come from, so if it is
+		// the one we are showing, one row is not enough
+		const elements = this._elementList();
+		if(!elements || String(this._elementListProject(elements)) !== String(pushData.id))
+		{
+			return;
+		}
+		if(pushData.type === 'delete')
+		{
+			if(this.view === 'elements')
+			{
+				this.show('list');
+			}
+			return;
+		}
+		elements.applyFilters();
+	}
+
+	/**
+	 * An element was synced with its entry, or removed from its project
+	 */
+	private _pushElement(pushData : PushData)
+	{
+		const nm = this._elementList();
+		if(!nm)
+		{
+			return;
+		}
+		const acl : any = pushData.acl || {};
+		if(!acl.pe_app || !acl.pe_app_id)
+		{
+			return;
+		}
+		const elem_id = acl.pe_app + ':' + acl.pe_app_id + ':' + pushData.id;
+		const uid = ProjectmanagerApp.ELEMENT_PREFIX + '::' + elem_id;
+
+		if(pushData.type === 'delete')
+		{
+			// Needs no server round-trip, and drops the row whichever project it was in
+			this.egw.dataRefreshUIDs(uid, 'delete');
+			return;
+		}
+
+		// A row we already have is refreshed whatever project it belongs to, so elements of
+		// sub-projects (filter2 & 2) stay current too.  A row we do not have yet can only be
+		// added to the project we are showing - we have no way to tell a sub-project's pm_id
+		// from what the push carries.
+		if(!this.egw.dataHasUID(uid) && String(acl.pm_id) !== String(this._elementListProject(nm)))
+		{
+			return;
+		}
+		// nextmatch turns update-in-place into add or edit itself, if it does not know the row
+		nm.refresh(elem_id, 'update-in-place');
+	}
+
+	/**
+	 * An entry changed that an element may show, or cumulate into
+	 */
+	private _pushElementEntry(pushData : PushData)
+	{
+		if(!this._elementList())
+		{
+			return;
+		}
+		// Rows are keyed pe_app:pe_app_id:pe_id, so the entry identifies its row without us
+		// knowing the pe_id.  A pattern only ever matches rows we already hold, so an entry from
+		// a project we are not showing, or one that is no element at all, costs nothing.
+		this.egw.dataRefreshUIDs(
+			new RegExp('^' + ProjectmanagerApp.ELEMENT_PREFIX + '::' +
+				ProjectmanagerApp._quoteRegExp(pushData.app + ':' + pushData.id) + ':'),
+			pushData.type === 'delete' ? 'delete' : 'update-in-place'
+		);
+	}
+
+	/**
+	 * The element list's nextmatch, if that view is loaded - it stays loaded while hidden
+	 */
+	private _elementList() : Et2Nextmatch | null
+	{
+		return <Et2Nextmatch>this.views.elements.etemplate?.widgetContainer.getWidgetById('nm') || null;
+	}
+
+	/**
+	 * pm_id of the project the element list is showing
+	 *
+	 * Mirrors how projectmanager_elements_ui::get_rrows() finds it: the nextmatch's own filter if
+	 * it has one, otherwise the current_project preference.  That preference is not a fallback for
+	 * odd cases, it is the usual answer - a list reached through the project tree, or through a
+	 * favourite that does not name a project, carries no pm_id in its filters at all.
+	 */
+	private _elementListProject(nm : Et2Nextmatch) : string
+	{
+		return nm?.activeFilters?.col_filter?.pm_id ||
+			this.egw.preference('current_project', 'projectmanager') || '';
+	}
+
+	/**
+	 * Escape a value for use inside a RegExp
+	 *
+	 * Ids are not always plain integers - a recurring calendar event's is "<cal_id>:<recur_date>",
+	 * and an application is free to use whatever it likes.
+	 */
+	private static _quoteRegExp(value : string) : string
+	{
+		return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 	}
 
 	/**
@@ -634,17 +820,92 @@ export class ProjectmanagerApp extends EgwApp
 	/**
 	 * Tell the framework which nextmatch to use right now
 	 *
-	 * @return {et2_nextmatch|null}
+	 * @return {Et2Nextmatch|null}
 	 */
-	getNextmatch() : et2_nextmatch | null
+	getNextmatch() : Et2Nextmatch | null
 	{
-		const et2 = this.views[this.view].etemplate?.widgetContainer;
-		let currentNm = null;
-		et2?.iterateOver((nm) =>
+		return ProjectmanagerApp._nextmatches(this.views[this.view].etemplate).pop() ?? null;
+	}
+
+	/**
+	 * Every Et2Nextmatch in one of our sub-templates
+	 *
+	 * The legacy nextmatch was found with widgetContainer.iterateOver(..., et2_nextmatch), which
+	 * matches on the legacy class and so finds nothing once a template is converted.  A custom
+	 * element has no such class to match on, so query the template's own DOM for the tag instead -
+	 * every one of our views puts its nextmatch directly in the template, none in a popup.
+	 *
+	 * @param et2 an etemplate2, or nothing if that view is not loaded
+	 */
+	private static _nextmatches(et2) : Et2Nextmatch[]
+	{
+		return Array.from(et2?.DOMContainer?.querySelectorAll("et2-nextmatch") ?? []);
+	}
+
+	/**
+	 * Show only the current view's filters in the app's filter drawer
+	 *
+	 * We load all four views at once and swap which one is displayed, so three Et2Nextmatches exist
+	 * side by side.  Each one builds its own <et2-filterbox> and appends it to the nearest ancestor
+	 * offering a "filter" slot - which for all three is the same <egw-app> - so the drawer would
+	 * otherwise show the project list's, the element list's and the pricelist's filters stacked on
+	 * top of each other, with no indication which belongs to what is on screen.  The legacy widget
+	 * kept its filters in its own header bar, so this could not happen before.
+	 *
+	 * Et2Nextmatch exposes no accessor for the filterbox it made, but the filterbox keeps a
+	 * reference back to it, which is enough to tell them apart.
+	 *
+	 * Mark the inactive ones `hidden` rather than hiding them with CSS: EgwFrameworkApp.filters is
+	 * `querySelector("et2-filterbox:not([hidden],[disabled])")`, so that attribute is also how the
+	 * app shell picks which filterbox its "Clear filters" button, its filter-set icon and
+	 * getFilterInfo() read.  Merely hiding them leaves all three pointed at whichever filterbox
+	 * happens to come first in the DOM.
+	 */
+	private _syncFilterboxes()
+	{
+		const appNode : any = document.querySelector("egw-app#projectmanager");
+		appNode?.querySelectorAll("et2-filterbox").forEach((filterbox : any) =>
 		{
-			currentNm = nm
-		}, this, et2_nextmatch);
-		return currentNm;
+			const nm = filterbox.nextmatch;
+			if(nm?.localName === "et2-nextmatch")
+			{
+				filterbox.hidden = nm.disabled;
+			}
+		});
+		// The drawer's heading counts rows, and the shell only updates that from a search result
+		// belonging to whichever nextmatch is current (EgwFrameworkApp.handleSearchResults()).
+		// Switching views produces no such result - the list we just showed already has its rows -
+		// so without this the heading keeps counting the view we came from.
+		const current = this.getNextmatch();
+		if(appNode && current)
+		{
+			appNode.rowCount = current.totalCount ?? "";
+		}
+	}
+
+	/**
+	 * Re-run _syncFilterboxes() as filterboxes appear
+	 *
+	 * A nextmatch does not create its filterbox until its filter template arrives, which is after
+	 * the view switch that should have hidden it - so a one-shot sync in show() would miss the two
+	 * views that were never displayed.
+	 */
+	private _watchFilterboxes()
+	{
+		const appNode = document.querySelector("egw-app#projectmanager");
+		if(!appNode || this._filterboxObserver)
+		{
+			return;
+		}
+		this._filterboxObserver = new MutationObserver((records) =>
+		{
+			if(records.some(r => Array.from(r.addedNodes)
+				.some((n : any) => n.localName === "et2-filterbox")))
+			{
+				this._syncFilterboxes();
+			}
+		});
+		this._filterboxObserver.observe(appNode, {childList: true});
 	}
 
 	getFilterInfo(filterValues : { [id : string] : string | { value : any } }, fwApp : EgwFrameworkApp) : FilterInfo
@@ -678,17 +939,40 @@ export class ProjectmanagerApp extends EgwApp
 	element_add_app_change_handler(event, widget : Et2LinkAdd)
 	{
 		if(widget.id !== 'link_addapp') return false;
-		// getParent() returns a union (Et2WidgetClass | et2_widget) - only the legacy
-		// et2_widget side has instanceOf(), so walk the tree loosely typed
-		let nm : any = widget.getParent();
-		while(!nm.instanceOf(et2_nextmatch))
-		{
-			nm = nm.getParent();
-		}
+		// activeFilters is read-only on Et2Nextmatch - applyFilters() with reload:false is how a
+		// single filter value is recorded without going back to the server for it
+		this.getNextmatch()?.applyFilters({[widget.id]: widget.get_value()}, {reload: false});
+		return false;
+	}
 
-		if((<et2_nextmatch>nm).activeFilters) {
-			(<et2_nextmatch>nm).activeFilters[widget.id] = widget.get_value();
+	/**
+	 * Submit the "Add existing" element popup
+	 *
+	 * Replaces the legacy nm_submit_popup() + window.nm_popup_action/nm_popup_ids globals: the popup
+	 * is a real <et2-dialog> now, so Et2NextmatchActionController.openActionPopup() takes its
+	 * "already a dialog" fast path (sets .selectedIds, calls .show()) and none of nm_open_popup()'s
+	 * runtime button-wrapping - which is what used to set those globals - happens any more.
+	 *
+	 * ButtonMixin._handleClick() has already marked this button clicked before the onclick runs, so
+	 * its own id ("add_existing_popup[link_action][add]") lands in the submitted content, which is
+	 * what tells projectmanager_elements_ui::action()'s 'add_existing' case that Add was pressed.
+	 * The action links the picked entry to the project the list is showing, so the rows that happen
+	 * to be selected are irrelevant to it - we still pass the live selection, because that is what
+	 * fills $content['nm']['selected'] the same way every other action does.
+	 *
+	 * @param _event
+	 * @param _widget the button that was clicked
+	 */
+	submit_add_existing(_event : Event, _widget : Et2Button) : boolean
+	{
+		const dialog : any = _widget.closest('et2-dialog');
+		const nm = <Et2Nextmatch>_widget.getInstanceManager()?.widgetContainer?.getWidgetById('nm');
+		if(!nm)
+		{
+			return false;
 		}
+		nm.executeAction('add_existing', nm.getSelection(), {nmAction: "submit"});
+		dialog?.hide();
 		return false;
 	}
 
@@ -1116,7 +1400,11 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			ids.push(selected[i].id);
 		}
-		egw.request('projectmanager_elements_ui::ajax_action', [action.id, ids, action.checked]);
+		// the exec id says the caller had one of our lists open - without it the endpoint is
+		// reachable by anyone with projectmanager, armed with nothing but guessed element ids
+		const nm = action?.parent?.data?.nextmatch || action?.data?.nextmatch || this.nm;
+		egw.request('projectmanager_elements_ui::ajax_action',
+			[ProjectmanagerApp._execId(nm, this.et2), action.id, ids, action.checked]);
 	}
 
 	/**
@@ -1147,7 +1435,8 @@ export class ProjectmanagerApp extends EgwApp
 		{
 			return;
 		}
-		egw.request('projectmanager.projectmanager_ui.ajax_action', [action.id, ids, all, sources_too]);
+		egw.request('projectmanager.projectmanager_ui.ajax_action',
+			[ProjectmanagerApp._execId(nm, this.et2), action.id, ids, all, sources_too]);
 	}
 
 	/**

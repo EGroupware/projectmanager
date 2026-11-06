@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	sl	Izračunajte
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	sl	Uporablja se lahko pri pravilih elementa, vtičnici »eRoles« in vtičniku »elementi«.
 category in %1 project-element(s) updated.	projectmanager	sl	Kategorija je posodobljena v elementih projekta %1.
 category set	projectmanager	sl	Skupina kategorij
-change category	projectmanager	sl	Spremeni kategorijo
 change the following details of %s	projectmanager	sl	Spremenite naslednje podrobnosti o %s
 charset of file	projectmanager	sl	Kodna tabela datoteke
 charset of the above selected font	projectmanager	sl	Kodna tabela zgoraj izbrane pisave

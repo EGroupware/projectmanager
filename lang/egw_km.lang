@@ -60,7 +60,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	km	គណនា
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	km	អាចប្រើជាមួយតួនាទីធាតុ កម្មវិធីជំនួយតារាង "eRoles" និងកម្មវិធីជំនួយតារាង "ធាតុ"។
 category in %1 project-element(s) updated.	projectmanager	km	ប្រភេទក្នុង %1 ធាតុគម្រោង បានធ្វើបច្ចុប្បន្នភាព។
 category set	projectmanager	km	សំណុំ​ប្រភេទ
-change category	projectmanager	km	ផ្លាស់ប្តូរប្រភេទ
 change the following details of %s	projectmanager	km	ផ្លាស់ប្តូរព័ត៌មានលម្អិតខាងក្រោមនៃ %s
 charset of file	projectmanager	km	សំណុំតួអក្សរ
 charset of the above selected font	projectmanager	km	សំណុំតួអក្សរនៃពុម្ពអក្សរដែលបានជ្រើសរើសខាងលើ

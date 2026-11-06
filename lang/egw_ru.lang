@@ -54,7 +54,6 @@ calculate budget by quantity (eg. time) and price	projectmanager	ru	Посчит
 can be used with element roles, "eroles" table plugin and "elements" table plugin	projectmanager	ru	Могут быть использованы с элементами Роли, таблица расширений "ERoles" и "Элементы"
 category in %1 project-element(s) updated.	projectmanager	ru	Категории в %1 элементах проекта обновлены.
 category set	projectmanager	ru	Категория установлена
-change category	projectmanager	ru	Изменить категорию
 charset of file	projectmanager	ru	Кодировка файла
 charset of the above selected font	projectmanager	ru	Таблица символов выбранного выше шрифта
 check all	projectmanager	ru	Отметить все
