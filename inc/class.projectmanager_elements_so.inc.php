@@ -232,7 +232,7 @@ class projectmanager_elements_so extends Api\Storage\Base
 			}
 			if (isset($filter['pe_app']) && $filter['pe_app'])
 			{
-				$filter[] = $this->pe_app_sql.'='.$this->db->quote($filter['pe_app']);
+				$filter[] = Api\Db\SqlFragment::raw($this->pe_app_sql.'='.$this->db->quote($filter['pe_app']));
 				unset($filter['pe_app']);
 			}
 
