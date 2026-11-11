@@ -377,20 +377,26 @@ class projectmanager_so extends Api\Storage
 				$this->sanitize_order_by = false;   // no need to sanitize the generated order_by, it will only remove it
 			}
 		}
-		if (!is_array($criteria))
+		// RAG search2criteria() sets $criteria to null once it's already added its own filter above -
+		// null is not a condition to splice in (nor is it an array parse_search() below can take),
+		// unlike a plain search string or a criteria array
+		if ($criteria)
 		{
-			$filter[] = $criteria;
-		}
-		else
-		{
-			$query = $this->parse_search($criteria, $wildcard, $empty, $op);
-			if(is_string($query))
+			if (!is_array($criteria))
 			{
-				$filter[] = $query;
+				$filter[] = $criteria;
 			}
-			else if (is_array($query))
+			else
 			{
-				$filter = array_merge($filter, $query);
+				$query = $this->parse_search($criteria, $wildcard, $empty, $op);
+				if(is_string($query))
+				{
+					$filter[] = $query;
+				}
+				else if (is_array($query))
+				{
+					$filter = array_merge($filter, $query);
+				}
 			}
 		}
 		$criteria = [];	// added to filter now, no need to add again by parent
