@@ -381,7 +381,13 @@ class projectmanager_so extends Api\Storage
 			else
 			{
 				$query = $this->parse_search($criteria, $wildcard, $empty, $op);
-				if(is_string($query))
+				// parse_search() collapses its array into a single Api\Db\SqlFragment (not a plain
+				// string any more) whenever $op isn't 'AND' - which search2criteria() just set it to,
+				// since it ORs together the match against every searched column. Missing that case
+				// here silently dropped the entire search condition, matching neither is_string() nor
+				// is_array(), so the search fell through to whatever filter was already there (ticket
+				// #127681's "returns every project" symptom - no exception, so nothing to notice).
+				if(is_string($query) || $query instanceof Api\Db\SqlFragment)
 				{
 					$filter[] = $query;
 				}
