@@ -41,15 +41,32 @@ class SearchFilteringRegressionTest extends \EGroupware\Api\AppTest
 	 */
 	public function testSearchWithNullCriteriaDoesNotThrow()
 	{
-		$withEmptyString = $this->bo->search('', false);
-		$withNull = $this->bo->search(null, false);
+		// a fixture row, so "no criteria" is guaranteed non-empty regardless of whatever else
+		// exists (or doesn't) in this install's own data - a fresh CI database has none at all
+		$this->bo->save(array(
+			'pm_number'      => 'TEST-NULLCRIT-'.uniqid(),
+			'pm_title'       => 'Auto-test for ' . $this->name(),
+			'pm_status'      => 'active',
+			'pm_description' => 'Null-criteria search test',
+		), true, false);
+		$pm_id = $this->bo->data['pm_id'];
 
-		$this->assertIsArray($withNull, 'search(null) must return rows, not throw');
-		$this->assertSame(
-			array_column($withEmptyString, 'pm_id'),
-			array_column($withNull, 'pm_id'),
-			'null criteria must return exactly the same rows as an empty-string criteria'
-		);
+		try
+		{
+			$withEmptyString = (array)$this->bo->search('', false);
+			$withNull = (array)$this->bo->search(null, false);
+
+			$this->assertNotEmpty($withNull, 'search(null) must find the fixture row, not throw or come back empty');
+			$this->assertSame(
+				array_column($withEmptyString, 'pm_id'),
+				array_column($withNull, 'pm_id'),
+				'null criteria must return exactly the same rows as an empty-string criteria'
+			);
+		}
+		finally
+		{
+			$this->bo->delete(array('pm_id' => $pm_id), true);
+		}
 	}
 
 	/**
