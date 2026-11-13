@@ -144,4 +144,56 @@ class ProjectListAjaxActionTest extends \EGroupware\Api\AppTest
 		$this->expectException(Api\Exception\WrongUserinput::class);
 		(new \projectmanager_ui())->ajax_action($this->execId(), 'selectalltest-noop', array(), true);
 	}
+
+	/**
+	 * The egw.refresh message of the response, or null
+	 */
+	protected function refreshMessage() : ?string
+	{
+		$response = Api\Json\Response::get();
+		$prop = (new \ReflectionClass($response))->getProperty('responseArray');
+		$prop->setAccessible(true);
+		foreach((array)$prop->getValue($response) as $chunk)
+		{
+			$chunk = (array)$chunk;
+			if (($chunk['data']['func'] ?? null) === 'egw.refresh')
+			{
+				return (string)((array)$chunk['data']['parms'])[0];
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * With "select all" the client still sends the ids of the rows it has loaded, and the query
+	 * the server re-runs finds those rows again. The action must run once per project: the ids
+	 * the client sent are replaced by what the query found, not added to it. Adding them changed
+	 * every loaded project twice, and made a delete report each of them as failed the second
+	 * time round.
+	 *
+	 * The stored query is narrowed to this test's project by its title, and the count sent
+	 * along (1) makes the server refuse should it ever find more than two.
+	 */
+	public function testSelectAllActsOncePerProject()
+	{
+		// narrowed by the fixture's title: the list's row method drops a pm_id column filter
+		Api\Cache::setSession('projectmanager', 'project_list', array(
+			'start' => 0, 'order' => 'pm_id', 'sort' => 'ASC', 'filter' => '', 'filter2' => '',
+			'search' => '', 'col_filter' => array('pm_title' => 'Auto-test for ' . $this->name()),
+		));
+
+		$ui = new \projectmanager_ui();
+		$query = Api\Cache::getSession('projectmanager', 'project_list') + array('num_rows' => -1, 'csv_export' => true);
+		$rows = $readonlys = null;
+		$ui->get_rrows($query, $rows, $readonlys);
+		$this->assertContains((string)$this->pm_id, array_map('strval', array_column(array_filter((array)$rows, 'is_array'), 'pm_id')),
+			'the stored query has to find the fixture project');
+
+		$ui->ajax_action($this->execId(), 'status_archive', array($this->pm_id), 1);
+
+		$this->assertSame('archive', $this->projectStatus(), 'the project the list showed is changed');
+		$this->assertStringContainsString('1 project', (string)$this->refreshMessage(),
+			'and reported once, not once for the id sent and once for the id found');
+		Api\Cache::unsetSession('projectmanager', 'project_list');
+	}
 }
