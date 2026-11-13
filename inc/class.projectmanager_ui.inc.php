@@ -1121,7 +1121,10 @@ class projectmanager_ui extends projectmanager_bo
 			@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
 			$query['num_rows'] = -1;	// all
 			$this->get_rrows($query,$projects,$readonlys);
-			// only use the ids
+			// only use the ids, and only those the query found: the ids the client sent are the
+			// rows it had loaded, which the query finds again - keeping them ran every action
+			// twice on those rows
+			$checked = array();
 			$expanded = 0;
 			foreach($projects as $project)
 			{
@@ -1134,8 +1137,7 @@ class projectmanager_ui extends projectmanager_bo
 			// Reset query: get_rows() stored the unlimited one above as what the list shows.
 			// Before the check below, which throws - a refusal must leave nothing changed.
 			Api\Cache::setSession('projectmanager', $stored_as, $old_query);
-			// refuse to act on a different number of projects than the list showed the user;
-			// $checked also holds the ids the client sent, so count what the query found
+			// refuse to act on a different number of projects than the list showed the user
 			Api\Etemplate\Widget\Nextmatch::checkSelectAllCount($use_all, $expanded);
 		}
 
