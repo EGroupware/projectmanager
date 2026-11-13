@@ -535,7 +535,8 @@ class projectmanager_ui extends projectmanager_bo
 		$query = $query_in;
 		// Don't keep pm_id filter in seesion
 		unset($query_in['col_filter']['pm_id']);
-		Api\Cache::setSession('projectmanager', 'project_list',
+		// a list shown somewhere else (a Home portlet) stores its query under its own name
+		Api\Cache::setSession('projectmanager', $query_in['session_for'] ?? 'project_list',
 			array_diff_key ($query_in, array_flip(array('rows','actions','action_links','placeholder_actions'))));
 
 		//echo "<p>projectmanager_ui::get_rows(".print_r($query,true).")</p>\n";
@@ -1031,7 +1032,9 @@ class projectmanager_ui extends projectmanager_bo
 			unset($actions['pricelist']);
 		}
 		//_debug_array($actions);
-		return $actions;
+		// with "select all" action() expands the selection itself from the list's query, so the
+		// client does not have to fetch the ids of all rows first
+		return Api\Etemplate\Widget\Nextmatch::flagServerSelectAll($actions, ['javaScript:app.projectmanager.change_status']);
 	}
 
 	/**
@@ -1057,8 +1060,9 @@ class projectmanager_ui extends projectmanager_bo
 		$action_msg = $msg = '';
 		$selected = array_values((array)$selected);
 
-		if ($this->action($action, $selected, $select_all,
-			$success, $failed, $action_msg, 'project_list', $msg, $sources_too))
+		if ($this->action($action, $selected, $select_all, $success, $failed, $action_msg,
+			// the main list, or the Home portlet this came from
+			Api\Etemplate\Widget\Nextmatch::listQueryName($exec_id, 'project_list'), $msg, $sources_too))
 		{
 			$msg .= lang('%1 project(s) %2', $success, $action_msg);
 		}
@@ -1102,19 +1106,37 @@ class projectmanager_ui extends projectmanager_bo
 		if ($use_all)
 		{
 			// get the whole selection
-			$old_query = Api\Cache::getSession('projectmanager', 'project_list');
+			// get_rows() stores the query it is run with under the name the query carries
+			$stored_as = is_array($session_name) ? $session_name['session_for'] ?? 'project_list' : $session_name;
+			$old_query = Api\Cache::getSession('projectmanager', $stored_as);
 			$query = is_array($session_name) ? $session_name : Api\Cache::getSession('projectmanager', $session_name);
+			// nothing stored means we do not know what the user was looking at, and an empty
+			// query would be every project they can see
+			if (!is_array($query))
+			{
+				throw new Api\Exception\WrongUserinput(
+					lang('Could not determine the current selection. Nothing was changed, please reload the list and try again.'));
+			}
 
 			@set_time_limit(0);			// switch off the execution time limit, as it's for big selections to small
 			$query['num_rows'] = -1;	// all
 			$this->get_rrows($query,$projects,$readonlys);
 			// only use the ids
+			$expanded = 0;
 			foreach($projects as $project)
 			{
-				if(is_array($project) && $project['pm_id'] && is_numeric($project['pm_id'])) $checked[] = $project['pm_id'];
+				if(is_array($project) && $project['pm_id'] && is_numeric($project['pm_id']))
+				{
+					$checked[] = $project['pm_id'];
+					++$expanded;
+				}
 			}
-			// Reset query
-			Api\Cache::setSession('projectmanager', 'project_list', $old_query);
+			// Reset query: get_rows() stored the unlimited one above as what the list shows.
+			// Before the check below, which throws - a refusal must leave nothing changed.
+			Api\Cache::setSession('projectmanager', $stored_as, $old_query);
+			// refuse to act on a different number of projects than the list showed the user;
+			// $checked also holds the ids the client sent, so count what the query found
+			Api\Etemplate\Widget\Nextmatch::checkSelectAllCount($use_all, $expanded);
 		}
 
 		// Dialogs to get options

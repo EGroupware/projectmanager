@@ -31,10 +31,9 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 		parent::__construct($context,$need_reload);
 
 		$this->nm_settings += array(
-			'get_rows'	=> 'projectmanager.projectmanager_ui.get_rows',
+			'get_rows'	=> 'projectmanager_favorite_portlet::get_rows',
 			'template'	=> 'projectmanager.list.rows',
 			// Don't overwrite projectmanager
-			'session_for'	=> 'home',
 			'no_filter2'	=> true,
 			// Allow add actions even when there's no rows
 			'placeholder_actions'	=> array(),
@@ -44,6 +43,21 @@ class projectmanager_favorite_portlet extends home_favorite_portlet
 			'row_id'        => 'pm_id',
 			'row_modified'	=> 'pm_modified'
 		);
+	}
+
+	/**
+	 * Fetch the rows of the portlet's list
+	 *
+	 * @param array $query
+	 * @param array $rows
+	 * @param array $readonlys
+	 * @return int total rows found
+	 */
+	protected static function rows(&$query, &$rows, &$readonlys)
+	{
+		$ui = new projectmanager_ui();
+
+		return $ui->get_rows($query, $rows, $readonlys);
 	}
 
 	public function exec($id = null, Etemplate &$etemplate = null)

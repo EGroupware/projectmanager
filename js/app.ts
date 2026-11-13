@@ -14,6 +14,7 @@
 	/projectmanager/js/et2_widget_gantt.js;
 */
 import {EgwApp, PushData} from "../../api/js/jsapi/egw_app";
+import {selectAllFlag} from "../../api/js/etemplate/Et2Nextmatch/selectAllFlag";
 // egw/egw_getFramework are ambient globals (declared in egw_global.d.ts's "declare global {}"),
 // not real exported module members - see doc/ai/projects/app-ts-modernization.md.
 import {etemplate2} from "../../api/js/etemplate/etemplate2";
@@ -1436,7 +1437,9 @@ export class ProjectmanagerApp extends EgwApp
 			return;
 		}
 		egw.request('projectmanager.projectmanager_ui.ajax_action',
-			[ProjectmanagerApp._execId(nm, this.et2), action.id, ids, all, sources_too]);
+			// with "select all" the server expands the selection itself: tell it how many
+			// projects we mean, so it can refuse if its expansion comes out different
+			[ProjectmanagerApp._execId(nm, this.et2), action.id, ids, all && selectAllFlag(nm, ids, action), sources_too]);
 	}
 
 	/**
