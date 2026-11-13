@@ -127,4 +127,21 @@ class ProjectListAjaxActionTest extends \EGroupware\Api\AppTest
 
 		$this->assertSame('archive', $this->projectStatus(), 'with a valid exec id it has to act');
 	}
+
+	/**
+	 * "Select all" re-runs the query the list last stored. With none stored - a session that was
+	 * replaced while the page stayed open, or a list that never loaded - there is no way to know
+	 * what the user was looking at, and an empty query is every project they can see: it has to
+	 * be refused.
+	 *
+	 * The action name is one the endpoint does not know, so should the refusal ever regress this
+	 * test fails without having changed a single project.
+	 */
+	public function testSelectAllIsRefusedWithoutAStoredQuery()
+	{
+		Api\Cache::unsetSession('projectmanager', 'project_list');
+
+		$this->expectException(Api\Exception\WrongUserinput::class);
+		(new \projectmanager_ui())->ajax_action($this->execId(), 'selectalltest-noop', array(), true);
+	}
 }
