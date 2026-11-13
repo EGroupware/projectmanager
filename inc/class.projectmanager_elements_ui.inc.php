@@ -645,6 +645,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// the self-row (project itself) is only ever at $n === 0, and only on the page it got added to
 			$is_self_row = $add_self && !$n;
 
+			// db2data() / the datasources give "50%", which a native <progress> can't parse (shows indeterminate)
+			if (isset($row['pe_completion'])) $row['pe_completion'] = (int)$row['pe_completion'];
+
 			if (!$is_self_row && !$this->check_acl(Acl::EDIT,$row))
 			{
 				$row['class'] .= ' rowNoEdit';

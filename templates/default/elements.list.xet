@@ -141,7 +141,7 @@
 						<et2-number  id="${row}[pe_planned_budget]" readonly="true" max="2" class="planned" noLang="1"></et2-number>
 					</et2-vbox>
                     <et2-vbox  align="center">
-                        <progress align="center" class="pe-completion" title="$row_cont[pe_completion]" value="$row_cont[pe_completion]" max="100"/>
+                        <progress align="center" class="pe-completion" title="$row_cont[pe_completion]%" value="$row_cont[pe_completion]" max="100"/>
                         <et2-image  align="center" src="$row_cont[pe_completion_icon]" noLang="1"></et2-image>
                         <et2-image  align="center" src="$row_cont[ignored]" noLang="1"></et2-image>
                     </et2-vbox>
