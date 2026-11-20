@@ -101,4 +101,38 @@ class ElementsPeAppFilterTest extends Api\AppTest
 		$this->assertIsArray($rows, 'search() with a pe_app filter must return rows, not throw');
 		$this->assertNotEmpty($rows, 'the linked infolog element must be found');
 	}
+
+	/**
+	 * The "used" status of the element list means "everything but ignored", which get_rrows()
+	 * adds to the filter as SQL of its own: it has to be an Api\Db\SqlFragment for the database
+	 * layer to accept it.
+	 */
+	public function testListWithUsedStatusFilterDoesNotThrow()
+	{
+		$elements_bo = new \projectmanager_elements_bo($this->pm_id);
+		$elements_bo->sync_all($this->pm_id);
+
+		$_GET['pm_id'] = $this->pm_id;
+		try
+		{
+			$ui = new \projectmanager_elements_ui();
+			$query = array(
+				'start'      => 0,
+				'num_rows'   => 50,
+				'filter'     => 'used',
+				'filter2'    => 0,
+				'col_filter' => array('pm_id' => $this->pm_id),
+				'order'      => 'pe_modified',
+				'sort'       => 'DESC',
+			);
+			$rows = $readonlys = array();
+			$ui->get_rrows($query, $rows, $readonlys);
+		}
+		finally
+		{
+			unset($_GET['pm_id']);
+		}
+		$apps = array_column(array_filter($rows, 'is_array'), 'pe_app');
+		$this->assertContains('infolog', $apps, 'the linked infolog element is not ignored, so "used" must list it');
+	}
 }
