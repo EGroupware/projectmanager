@@ -266,7 +266,7 @@ class projectmanager_so extends Api\Storage
 				{
 					$members = array_unique($members);
 				}
-				$query['col_filter'][] = 'resources.member_uid IN ('.implode(', ',$members).' ) ';
+				$query['col_filter'][] = Api\Db\SqlFragment::raw('resources.member_uid IN ('.implode(', ', array_map('intval', $members)).' ) ');
 			}
 		}
 		unset($query['col_filter']['resources']);

@@ -114,4 +114,23 @@ class SearchFilteringRegressionTest extends \EGroupware\Api\AppTest
 			if (isset($other_id)) $this->bo->delete(array('pm_id' => $other_id), true);
 		}
 	}
+
+	/**
+	 * Filtering the project list by a resource adds SQL of its own for the members to match,
+	 * which has to be an Api\Db\SqlFragment for the database layer to accept it.
+	 */
+	public function testListFilteredByResourceDoesNotThrow()
+	{
+		$query = array(
+			'start'      => 0,
+			'num_rows'   => 5,
+			'col_filter' => array('resources' => $GLOBALS['egw_info']['user']['account_id']),
+			'order'      => 'pm_modified',
+			'sort'       => 'DESC',
+		);
+		$rows = $readonlys = array();
+		$total = $this->bo->get_rows($query, $rows, $readonlys);
+
+		$this->assertIsNumeric($total, 'get_rows() with a resources filter must return a total, not throw');
+	}
 }
