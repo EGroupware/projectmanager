@@ -1107,6 +1107,9 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// restored - means the client owns it from its very first fetch and can change it, and that
 		// a list on screen can be told apart from one showing some other project.
 		$content['nm']['col_filter']['pm_id'] = (int)$this->project->data['pm_id'];
+		// No widget of the list stands for the project, so the nextmatch has to be told to pass it
+		// on.  get_rrows() casts it to an integer and checks the read permission of that project.
+		$content['nm']['extra_attributes'] = ['col_filter[pm_id]'];
 
 		// Set duration format once for all
 		$content['duration_format'] = preg_split('/,/', $this->config['duration_format'])[0];
