@@ -470,22 +470,19 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 	{
 		if(!$query_in['csv_export'])
 		{
-			if($query_in['col_filter']['pm_id'])
+			// the project the list is filtered by, the current project only if it has none
+			$pm_id = $query_in['col_filter']['pm_id'] ?? null;
+			if (empty($pm_id))
 			{
-				$this->pm_id = (int)$query_in['col_filter']['pm_id'];
+				$pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'] ?? null ?: $this->pm_id;
 			}
-			else if ( $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'])
-			{
-				$this->pm_id = $GLOBALS['egw_info']['user']['preferences']['projectmanager']['current_project'];
-			}
-			if (!property_exists ($this, 'pm_id') || !$this->pm_id)
-			{
-				return 0;
-			}
-			if(!$this->project->check_acl(Acl::READ, $this->pm_id))
+			// one project the user may read, not eg. a list of projects
+			if (!is_scalar($pm_id) || !preg_match('/^[1-9][0-9]*$/', (string)$pm_id) ||
+				!$this->project->check_acl(Acl::READ, (int)$pm_id))
 			{
 				return 0;
 			}
+			$this->pm_id = $query_in['col_filter']['pm_id'] = (int)$pm_id;
 		}
 
 		// Check for filter change, need to get totals
@@ -558,10 +555,18 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 			// dont show the sub-projects
 			$query['col_filter'][] = Api\Db\SqlFragment::raw("link_app1!='projectmanager'");
 		}
-		// Sub-grid queries
-		if($query['col_filter']['parent_id'])
+		// Sub-grid queries: the row of a sub-project is "projectmanager:<pm_id>:<pe_id>", its elements
+		// are only listed if the user may read that project
+		if(!empty($query['col_filter']['parent_id']))
 		{
-			list(, $query['col_filter']['pm_id']) = explode(':', $query['col_filter']['parent_id']);
+			[$parent_app, $parent_pm_id] = is_string($query['col_filter']['parent_id']) ?
+				explode(':', $query['col_filter']['parent_id']) + [null, null] : [null, null];
+			if ($parent_app !== 'projectmanager' || !preg_match('/^[1-9][0-9]*$/', (string)$parent_pm_id) ||
+				!$this->project->check_acl(Acl::READ, (int)$parent_pm_id))
+			{
+				return 0;
+			}
+			$query['col_filter']['pm_id'] = (int)$parent_pm_id;
 			$sub_query = true;
 		}
 		unset($query['col_filter']['parent_id']);
@@ -1108,7 +1113,7 @@ class projectmanager_elements_ui extends projectmanager_elements_bo
 		// a list on screen can be told apart from one showing some other project.
 		$content['nm']['col_filter']['pm_id'] = (int)$this->project->data['pm_id'];
 		// No widget of the list stands for the project, so the nextmatch has to be told to pass it
-		// on.  get_rrows() casts it to an integer and checks the read permission of that project.
+		// on.  get_rrows() accepts only a single project id, of a project the user may read.
 		$content['nm']['extra_attributes'] = ['col_filter[pm_id]'];
 
 		// Set duration format once for all
