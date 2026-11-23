@@ -247,7 +247,11 @@ class projectmanager_pricelist_ui extends projectmanager_pricelist_bo
 	 */
 	function get_rrows(&$query,&$rows,&$readonlys)
 	{
-		Api\Cache::setSession('projectmanager', 'pricelist', $query);
+		// a refresh of single rows or an export is no new state of the list, it would replace the one restored on the next visit
+		if (empty($query['csv_export']))
+		{
+			Api\Cache::setSession('projectmanager', 'pricelist', $query);
+		}
 
 		if ($query['cat_id'])
 		{
