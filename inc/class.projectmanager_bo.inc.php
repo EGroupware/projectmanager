@@ -1449,11 +1449,11 @@ class projectmanager_bo extends projectmanager_so
 
 			// Only get projects this user is involved in and wants notification for (or creator)
 			$filter = ['('.$this->db->column_data_implode(' OR ',Array(
-				$this->table_name.'.pm_creator = ' . $user,
-				'('.$this->db->column_data_implode(' AND ', Array(
-						$this->members_table.'.member_uid = ' . $user,
+				Api\Db\SqlFragment::raw($this->table_name.'.pm_creator = ' . $user),
+				Api\Db\SqlFragment::raw('('.$this->db->column_data_implode(' AND ', Array(
+						Api\Db\SqlFragment::raw($this->members_table.'.member_uid = ' . $user),
 						$this->db->column_data_implode(',', [$this->members_table.'.role_id' => $assigned]),
-				)).')'
+				)).')'),
 			)).')'];
 
 			$notified_pm_ids = array();
