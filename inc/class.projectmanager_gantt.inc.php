@@ -457,7 +457,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		}
 		$filter = array(
 			'pm_id'	=> $pm_id,
-			"pe_status != 'ignore'",
+			Api\Db\SqlFragment::raw("pe_status != 'ignore'"),
 			'cumulate' => true,
 		);
 		$extra_cols = array(
@@ -466,11 +466,11 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 		);
 		if($params['end'])
 		{
-			$filter[] = $start.' <= ' . (int)$params['end'];
+			$filter[] = Api\Db\SqlFragment::raw($start.' <= ' . (int)$params['end']);
 		}
 		if($params['start'])
 		{
-			$filter[] = $end.' >= ' . (int)$params['start'];
+			$filter[] = Api\Db\SqlFragment::raw($end.' >= ' . (int)$params['start']);
 		}
 		if($this->prefs['gantt_show_elements_by_type'])
 		{
@@ -485,7 +485,7 @@ class projectmanager_gantt extends projectmanager_elements_ui {
 				$filter['pe_completion'] = 0;
 				break;
 			case 'ongoing':
-				$filter[] = 'pe_completion!=100';
+				$filter[] = Api\Db\SqlFragment::raw('pe_completion!=100');
 				break;
 			case 'done':
 				$filter['pe_completion'] = 100;

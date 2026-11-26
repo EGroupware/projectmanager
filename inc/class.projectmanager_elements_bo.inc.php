@@ -995,7 +995,7 @@ class projectmanager_elements_bo extends projectmanager_elements_so
 				foreach(parent::search(
 						array('pe_id' => array_keys($cumulate_in))
 						,false,'','','',False, 'AND',false,array(
-							 'pe_status != "ignore"'
+							Api\Db\SqlFragment::raw("pe_status != 'ignore'")
 						)
 				) as $to_cumulate)
 				{

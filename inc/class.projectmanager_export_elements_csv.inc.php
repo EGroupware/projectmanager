@@ -137,10 +137,14 @@ class projectmanager_export_elements_csv implements importexport_iface_export_pl
 				$query['col_filter'][$field] = $value;
 				if(!is_array($value) || (!$value['from'] && !$value['to'])) continue;
 
-				// Ranges are inclusive, so should be provided that way (from 2 to 10 includes 2 and 10)
-				if($value['from']) $query['col_filter'][] = "$field >= " . (int)$value['from'];
-				if($value['to']) $query['col_filter'][] = "$field <= " . (int)$value['to'];
 				unset($query['col_filter'][$field]);
+				// $field comes from the stored export definition: only accept a plain (table.)column name, quote it
+				if(!preg_match('/^\w+(\.\w+)?$/', (string)$field)) continue;
+				$column = $GLOBALS['egw']->db->name_quote($field);
+
+				// Ranges are inclusive, so should be provided that way (from 2 to 10 includes 2 and 10)
+				if($value['from']) $query['col_filter'][] = Api\Db\SqlFragment::raw("$column >= " . (int)$value['from']);
+				if($value['to']) $query['col_filter'][] = Api\Db\SqlFragment::raw("$column <= " . (int)$value['to']);
 			}
 
 			$ui->get_rows($query,$selection,$readonlys);
