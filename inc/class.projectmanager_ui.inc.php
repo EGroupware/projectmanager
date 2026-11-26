@@ -759,6 +759,8 @@ class projectmanager_ui extends projectmanager_bo
 			// use the state of the last session stored in the user prefs
 			if(($state = @unserialize($this->prefs['pm_index_state'])))
 			{
+				// get_rows must always come from server-side widget content, never a user preference
+				unset($state['get_rows']);
 				$content['nm'] = array_merge($content['nm'], $state);
 			}
 		}
